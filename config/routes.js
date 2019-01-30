@@ -24,9 +24,8 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  '/': {
-    view: 'pages/homepage'
-  },
+  'GET /':                { view: 'pages/homepage' },
+  'GET /administrar':     { action: 'administrador/view-administrar-contenidos' },
 
   /***************************************************************************
   *                                                                          *

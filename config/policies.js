@@ -16,7 +16,10 @@ module.exports.policies = {
   * (`true` allows public access)                                            *
   *                                                                          *
   ***************************************************************************/
+  /**
+   * Las politicas solo se aplican a los controladores y acciones mas no a vistas
+   * Las politicas se evaluan ANTES de ejecutar cada ACCION o CONTROLADOR
+   */
 
-  // '*': true,
-
+  //'*': true,
 };

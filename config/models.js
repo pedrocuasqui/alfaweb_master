@@ -35,7 +35,8 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  // schema: true,
+  schema: false, // en FALSE cualquier otro atributo que yo defina en mi modelo podrá ser insertado en la coleccion de la base de datos seleccionada y elimina de la base de datos cualquieer campo que no se pase desde mi modelo
+  // en TRUE se mantienen los campos que se hayan definido previamente en la base de datos, aun cuando los  registros creados desde sails no contengan dichos campos
 
 
   /***************************************************************************
@@ -53,7 +54,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  // migrate: 'alter',
+  migrate: 'alter',
 
 
   /***************************************************************************
@@ -71,7 +72,8 @@ module.exports.models = {
   attributes: {
     createdAt: { type: 'number', autoCreatedAt: true, },
     updatedAt: { type: 'number', autoUpdatedAt: true, },
-    id: { type: 'number', autoIncrement: true, },
+    id: { type: 'string', columnName: '_id'},
+    //id: { type: 'number', autoIncrement: true, columnName: 'id'}, // esta fila solo se usa cuando => dontUseObjectId: true
     //--------------------------------------------------------------------------
     //  /\   Using MongoDB?
     //  ||   Replace `id` above with this instead:
@@ -118,7 +120,11 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  cascadeOnDestroy: true
+  cascadeOnDestroy: true,
+
+  /**dontUseObjectIds
+   * This feature is for use with the sails-mongo adapter only. */
+  //dontUseObjectIds: true, // si se establece a tre tomar las siguientes consideraciones: 1) cada vez que se crea un nuevo documento(registro) se debe pasar un valor para el atributo ''id'' en la base de datos. 2) se debe configurar la propiedad id en attributes de config/models.js o en los atributos de cada modelo. 3) Lo mejor es dejar que sails use el "_id" de mongoDB como el atributo "id" de los modelos por defecto
 
 
 };

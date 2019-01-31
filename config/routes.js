@@ -26,6 +26,7 @@ module.exports.routes = {
 
   'GET /':                { view: 'pages/homepage' },
   'GET /administrar':     { action: 'administrador/view-administrar-contenidos' },
+  'GET /indice-estudiante':{action: 'estudiante/view-indice-estudiante'}
 
   /***************************************************************************
   *                                                                          *

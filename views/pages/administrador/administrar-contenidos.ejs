@@ -6,15 +6,19 @@
     </div>
     <div>
         <ul>
-            <li v-for="item in contenidos">{{item}}</li>
+            <li v-for="modulo in contenidos" @click="clickSeleccionarModulo(modulo.nombreModulo)">{{modulo.nombreModulo}}</li>
            
         </ul>
     </div>
-    <div>
-        <input type="text" v-model="contenidoNuevo" v-on:keyup.enter="agregarModulo">
-        <label>Usted está digitando + {{contenidoNuevo}}</label>
+   <!--  <div>
+        <input type="text" v-model="nombreModulo" v-on:keyup.enter="agregarModulo">
+        <label>Usted está digitando : {{nombreModulo}}</label>
     </div>
-    
+ -->
+    <div>
+
+        
+    </div>
 
 </div>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

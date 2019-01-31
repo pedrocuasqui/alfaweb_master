@@ -18,7 +18,6 @@ module.exports = function defineCustomHook(sails) {// toma como parámetro la in
      */
     initialize: async function (done) {
       /**La initializecaracterística permite que un gancho realice tareas de inicio que pueden ser asíncronas o confiar en otros ganchos. Se garantiza que toda la configuración de Sails se completará antes de initializeque se ejecute la función de un gancho . Ejemplos de tareas que puede querer poner en initialize:
-      
       Iniciar sesión en una API remota */
       sails.log.info('Initializing hook... (`api/hooks/custom`)');
       return done();

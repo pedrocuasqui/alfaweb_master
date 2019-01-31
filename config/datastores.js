@@ -51,7 +51,7 @@ module.exports.datastores = {
     // adapter: 'sails-mysql',
     // url: 'mysql://user:password@host:port/database',
 
-    /*Mongo db por defecto no tiene habilitada la autenticacion ni autorizacion*/ 
+    /*Mongo db por defecto no tiene habilitada la autenticacion ni autorizacion*/
     adapter: 'sails-mongo',
     url: 'mongodb://localhost:27017/alfabetizaweb'
 

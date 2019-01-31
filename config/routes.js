@@ -26,7 +26,7 @@ module.exports.routes = {
 
   'GET /':                { view: 'pages/homepage' },
   'GET /administrar':     { action: 'administrador/view-administrar-contenidos' },
-  'GET /indice-estudiante':{action: 'estudiante/view-indice-estudiante'}
+  'GET /indice-estudiante':{action: 'estudiante/view-indice-estudiante'},
 
   /***************************************************************************
   *                                                                          *
@@ -43,7 +43,7 @@ module.exports.routes = {
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
-
+  'DELETE /api/v1/admiminstrador/eliminar-contenido' : {action: 'administrador/eliminar-contenido'},
 
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
@@ -54,6 +54,7 @@ module.exports.routes = {
   //  ╔╦╗╦╔═╗╔═╗
   //  ║║║║╚═╗║
   //  ╩ ╩╩╚═╝╚═╝
-
+  /**usar funciones de redireccion */
+  'GET /acerca' : { view:'pages/acerca-de'}
 
 };

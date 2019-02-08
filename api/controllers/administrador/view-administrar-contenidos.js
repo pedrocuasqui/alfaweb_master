@@ -1,6 +1,5 @@
 module.exports = {
 
-
   friendlyName: 'Administrar contenidos',
 
 
@@ -28,20 +27,66 @@ module.exports = {
           throw {redirect:'/welcome'};
         }
     */
-    //para este tipo de consultas con select, es necesario configurar este modelo a schema: true
-    var contenidos = await ModuloLibro.find();
+    // var contenidos = await ModuloLibro.find();
 
-    /*
-    var db = sails.getDatastore().manager;
-    // Find all users who own albums with the word "blue" in the title.
-    // ("albums" would be defined in `api/models/User.js` as an attribute of type "json".)
-    db.collection('ModuloLibro').find({"nombreModulo": 'Introducción'}).toArray(console.log); */
-    //  var contenidos =[ {nombreModulo:'Introduccion al curso', descripcion:'descripcion de la intro'},
-    //         {nombreModulo:'antes de empezar', descripcion:'descripcion antes de empezar'},
-    //         {nombreModulo:'Módulo 1- La computadora', descripcion:'descripcion modulo'}]
+    var contenidos = [
+      {
+        id:'a',
+        nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la intro',
+        multimedia: 'http://...',
+        submodulos: []
+      },
+      {
+        id:'b',
+        nombreModulo: 'antes de empezar', descripcion: 'descripcion antes de empezar',
+        multimedia: 'http://...',
+        submodulos: []
+      },
+      {
+        id:'c',
+        nombreModulo: 'Módulo 1- La computadora',
+        descripcion: 'descripcion modulo',
+        multimedia: 'http://...',
+        submodulos: [{
+          id:'1',
+          nombre: 'El sistema informático (Hardware y software)',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://...',
+          temas: [
+            {
+              id:'1',
+              nombre: 'Hardware',
+              descripcion: 'El hardware ...',
+              multimedia: 'http://...'
+            },
+            {
+              id:'2',
+              nombre: 'Monitor',
+              descripcion: 'El monitor ...',
+              multimedia: 'http://...'
+            },
+            {
+              id:'3',
+              nombre: 'Mouse',
+              descripcion: 'El monitor ...',
+              multimedia: 'http://...'
+            }]
+        },
+        {
+          id:'2',
+          nombre: 'Conexion de los distintos componentes de la computadora',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://...',
+          temas: [
+            {}
+          ]
+        }
+        ]
+      }];
 
     return exits.success({
-      contenidos: contenidos
+      contenidos
+      // cuando el nombre de la propiedad es igual al nombre del objeto que contiene la información, es posible enviar solo un dato es decir que, pasar, contenido: contenidos es igual que pasar contenidos
     });
 
   }

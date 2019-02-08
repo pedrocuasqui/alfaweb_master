@@ -1,4 +1,7 @@
+
 parasails.registerPage('administrar-contenidos', {
+  // Los script pages y las vistas están del lado del cliente 
+
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
@@ -16,10 +19,9 @@ parasails.registerPage('administrar-contenidos', {
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
   beforeMount: function () {
-    // Vincula cualquier dato inicial desde el servidor en las páginas ejs exposeLocalsToBrowser()
+    // Vincula cualquier dato inicial pasado desde el servidor como parámetro en las páginas ejs por medio de <%- exposeLocalsToBrowser() %>
     _.extend(this, SAILS_LOCALS);
-    // contenidosFront.push(this.contenidos);
-
+    // aqui se está extendiendo el contenido de la variable CONTENIDOS pasada desde la accion view-administrar-contenidos.js
   },
   mounted: async function () {
 

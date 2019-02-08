@@ -17,7 +17,7 @@ module.exports.policies = {
   *                                                                          *
   ***************************************************************************/
   /**
-   * Las politicas solo se aplican a los controladores y acciones mas no a vistas
+   * Las politicas solo se aplican a los CONTROLADORES o ACCIONES mas no a vistas
    * Las politicas se evaluan ANTES de ejecutar cada ACCION o CONTROLADOR
    */
 

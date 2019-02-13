@@ -22,16 +22,16 @@ parasails.registerPage('mouse-sobre-imagen', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
     mouseOverMonitor(){
-      alert('Seleccion Monitor');
+      // alert('Seleccion Monitor');
     },
     mouseOverCpu(){
-      alert('Seleccion Cpu');
+      // alert('Seleccion Cpu');
     },
     mouseOverTeclado(){
-      alert('Seleccion Teclado');
+      // alert('Seleccion Teclado');
     },
     mouseOverMouse(){
-      alert('Seleccion Mouse');
+      // alert('Seleccion Mouse');
     }
   }
 });

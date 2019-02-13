@@ -1,13 +1,46 @@
 #mouse-sobre-imagen {
   
-  
+  .div-contenedor{
+    text-align: center;
+    background-color: palevioletred;
+  }
+
   #lienzo-svg{
     display: inline-block;
     margin-left: auto;
     margin-right:auto;
-    background-color: brown;
     text-align: center;
     opacity:0.9;
+    overflow: visible;/*permite que el tooltip se pueda ver sobre los márgenes*/
   }
+
+  g.contenedor:hover {
+    fill: rgb(14, 179, 50) 
+  } 
+  // aplica el estilo a todos los elementos g.tooltip.css que estan inmediatemente despues de g.contenedor en estado :hover, 
+
+  g.contenedor:hover + g.tooltip.css{
+    opacity:1;
+  }
+
+   
+.tooltip {
+    pointer-events:none; /*let mouse events pass through*/
+    opacity:0;
+    transition: opacity 0.3s;
+    text-shadow:1px 1px 0px gray;
+
+}
+
+/* elementos g.tooltip que no estan en la clase .css */
+g.tooltip:not(.css) {
+  fill:currentColor;
+}
+g.tooltip rect {
+    fill: lightblue;
+    stroke: gray;
+}
+
+
 
 }

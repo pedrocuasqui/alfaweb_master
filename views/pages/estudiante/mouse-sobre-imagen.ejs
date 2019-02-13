@@ -1,12 +1,13 @@
 <div id="mouse-sobre-imagen" v-cloak>
-<!-- v-cloak mantiene invisible las expresiones de vue que aun no han sido cargadas por el objeto Vue, pueesto que el codigo HTML se carga primero y las expresiones se ven mal sin datos -->
+  <!-- v-cloak mantiene invisible las expresiones de vue que aun no han sido cargadas por el objeto Vue, pueesto que el codigo HTML se carga primero y las expresiones se ven mal sin datos -->
 
 
-
-<svg width="600" height="600" id="lienzoSvg" >
-  <g class="imagen-mouse-over"> <image  href="images/mouseSobreImagen/image6_sin_fondo.png"  width="500" height="500"></image></g>
-
-</svg>
+  <svg  id="lienzo-svg" width="210mm" height="297mm" version="1.1" view-box="0 0 210 297" >
+    <rect @mouseover="mouseOver" x="9.683" y="57.692" width="50.49" height="62.939" style="stroke-width:.26458"/>
+    <ellipse cx="48.069" cy="90.199" rx="39.078" ry="34.582" style="fill:#0f0;stroke-width:.26458"/>
+    <path d="m70.045 91.428-9.4311 11.57-8.0154 6.9096-13.918-5.3941-9.0483-5.4879 0.82908-14.904 2.4232-10.301 14.431-3.8171 10.546-0.87866 8.0896 12.545z" style="fill:#d40000;stroke-width:.26458"/>
+  </svg>
+  
 
 
 
@@ -14,29 +15,31 @@
 
 
   <h1>TODO: Implement this page.</h1>
-  <p>(See also <em>assets/styles/pages/estudiante/mouseSobreImagen.less</em>, <em>assets/js/pages/estudiante/mouseSobreImagen.page.js</em>, and <em>api/controllers/estudiante/view-mouse-sobre-imagen.js</em>.)</p>
+  <p>(See also <em>assets/styles/pages/estudiante/mouseSobreImagen.less</em>,
+    <em>assets/js/pages/estudiante/mouseSobreImagen.page.js</em>, and
+    <em>api/controllers/estudiante/view-mouse-sobre-imagen.js</em>.)</p>
   <div>
     Successfully generated:
- •- views\pages\estudiante\mouseSobreImagen.ejs
- •- api\controllers\estudiante\view-mouse-sobre-imagen.js
- •- assets\styles\pages\estudiante\mouseSobreImagen.less
- •- assets\js\pages\estudiante\mouseSobreImagen.page.js
+    •- views\pages\estudiante\mouseSobreImagen.ejs
+    •- api\controllers\estudiante\view-mouse-sobre-imagen.js
+    •- assets\styles\pages\estudiante\mouseSobreImagen.less
+    •- assets\js\pages\estudiante\mouseSobreImagen.page.js
 
-A few reminders:
- (1)  These files were generated assuming your Sails app is using
-      Vue.js as its front-end framework.  (If you're unsure,
-      head over to https://sailsjs.com/support)
+    A few reminders:
+    (1) These files were generated assuming your Sails app is using
+    Vue.js as its front-end framework. (If you're unsure,
+    head over to https://sailsjs.com/support)
 
- (2)  You'll need to manually add a route for this new page's
-      action in your `config/routes.js` file; e.g.
-          'GET /estudiante/mouseSobreImagen': { action: 'estudiante/view-mouse-sobre-imagen' },
+    (2) You'll need to manually add a route for this new page's
+    action in your `config/routes.js` file; e.g.
+    'GET /estudiante/mouseSobreImagen': { action: 'estudiante/view-mouse-sobre-imagen' },
 
- (3)  You'll need to manually import the new LESS stylesheet
-      from your `assets/styles/importer.less` file; e.g.
-          @import 'pages/estudiante/mouseSobreImagen.less';
+    (3) You'll need to manually import the new LESS stylesheet
+    from your `assets/styles/importer.less` file; e.g.
+    @import 'pages/estudiante/mouseSobreImagen.less';
 
- (4)  Last but not least, since some of the above are backend changes,
-      don't forget to re-lift the server before testing!
+    (4) Last but not least, since some of the above are backend changes,
+    don't forget to re-lift the server before testing!
   </div>
 
 

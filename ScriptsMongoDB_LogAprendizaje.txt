@@ -1,0 +1,50 @@
+/*Por defecto mongo no tiene habilitado el control de acceso*/
+
+>use alfabetizaweb 
+switched to db alfabetizaweb
+> db.createCollection("LibroAlfabetizacion")                                                                            { "ok" : 1 }
+> db.LibroAlfabetizacion.insert([
+{
+"nombre_modulo":"Antes de empezar (Practica tus habilidades con el mouse)",
+"descripcion":"",
+"ruta_medios":"C:/Users/PedroW10/Pictures/a.png"
+},
+{
+"nombre_modulo":"Módulo1: la computadora",
+"descripcion":"",
+"ruta_medios":"C:/Users/PedroW10/Documents/ProyectoIntegradorFis/alfabetizacioninformatica/4ta edicion/media/image6.gif"
+]})
+
+/*renombro la coleccion de LibroAlfabetizacion a ModuloLibro*/
+
+db.LibroAlfabetizacion.renameCollection("ModuloLibro")
+
+/*Elimino los documentos de la coleccion y vuelvo a insertar los documentos con un nuevo campo*/
+ db.collection.remove() 
+
+/*insercion*/
+> db.ModuloLibro.insert([
+{
+"id":1,
+"nombreModulo":"Introducción",
+"descripcion":"",
+"rutaMedios":"C:/Users/PedroW10/Pictures/a.png"
+},
+{
+"id":2,
+"nombreModulo":"Antes de empezar (Practica tus habilidades con el mouse)",
+"descripcion":"",
+"rutaMedios":"C:/Users/PedroW10/Pictures/a.png"
+},
+{
+"id":3,
+"nombreModulo":"Módulo1: la computadora",
+"descripcion":"La computadora es un dispositivo que realiza miles de operaciones rapidamente",
+"rutaMedios":"C:/Users/PedroW10/Documents/ProyectoIntegradorFis/alfabetizacioninformatica/4ta edicion/media/image6.gif"
+}
+])
+/*,
+        ".tmp" : true*/
+
+12/02/2019
+BODY PARSER llamado SKIPPPER de sails         

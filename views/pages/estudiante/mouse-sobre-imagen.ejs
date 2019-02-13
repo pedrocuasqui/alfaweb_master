@@ -1,0 +1,44 @@
+<div id="mouse-sobre-imagen" v-cloak>
+<!-- v-cloak mantiene invisible las expresiones de vue que aun no han sido cargadas por el objeto Vue, pueesto que el codigo HTML se carga primero y las expresiones se ven mal sin datos -->
+
+
+
+<svg width="600" height="600" id="lienzoSvg" >
+  <g class="imagen-mouse-over"> <image  href="images/mouseSobreImagen/image6_sin_fondo.png"  width="500" height="500"></image></g>
+
+</svg>
+
+
+
+
+
+
+  <h1>TODO: Implement this page.</h1>
+  <p>(See also <em>assets/styles/pages/estudiante/mouseSobreImagen.less</em>, <em>assets/js/pages/estudiante/mouseSobreImagen.page.js</em>, and <em>api/controllers/estudiante/view-mouse-sobre-imagen.js</em>.)</p>
+  <div>
+    Successfully generated:
+ •- views\pages\estudiante\mouseSobreImagen.ejs
+ •- api\controllers\estudiante\view-mouse-sobre-imagen.js
+ •- assets\styles\pages\estudiante\mouseSobreImagen.less
+ •- assets\js\pages\estudiante\mouseSobreImagen.page.js
+
+A few reminders:
+ (1)  These files were generated assuming your Sails app is using
+      Vue.js as its front-end framework.  (If you're unsure,
+      head over to https://sailsjs.com/support)
+
+ (2)  You'll need to manually add a route for this new page's
+      action in your `config/routes.js` file; e.g.
+          'GET /estudiante/mouseSobreImagen': { action: 'estudiante/view-mouse-sobre-imagen' },
+
+ (3)  You'll need to manually import the new LESS stylesheet
+      from your `assets/styles/importer.less` file; e.g.
+          @import 'pages/estudiante/mouseSobreImagen.less';
+
+ (4)  Last but not least, since some of the above are backend changes,
+      don't forget to re-lift the server before testing!
+  </div>
+
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

@@ -21,8 +21,17 @@ parasails.registerPage('mouse-sobre-imagen', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-    mouseOver(){
-      alert('mouse sobre imagen');
+    mouseOverMonitor(){
+      alert('Seleccion Monitor');
+    },
+    mouseOverCpu(){
+      alert('Seleccion Cpu');
+    },
+    mouseOverTeclado(){
+      alert('Seleccion Teclado');
+    },
+    mouseOverMouse(){
+      alert('Seleccion Mouse');
     }
   }
 });

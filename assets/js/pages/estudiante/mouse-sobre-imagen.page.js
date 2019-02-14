@@ -3,8 +3,8 @@ parasails.registerPage('mouse-sobre-imagen', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    mouseX:800,
-    mouseY:600,
+    mouseX: 800,
+    mouseY: 600,
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -22,21 +22,21 @@ parasails.registerPage('mouse-sobre-imagen', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-    mouseOverMonitor(event) {
+    mouseMoveMonitor(event) {
       // clientX/Y gives the coordinates relative to the viewport in CSS pixels.
       console.log("x: " + event.clientX + " y: " + event.clientY)
-      
+
       var svg = document.getElementById("lienzo-svg");
       let bound = svg.getBoundingClientRect();
       this.mouseX = event.clientX - bound.left;
       this.mouseY = event.clientY - bound.top;
-      // $("#lienzo-svg").css({'transform' : 'translate(' +  this.mouseX +', ' + this.mouseY + ')'});
-      // console.log("x relativo: "+ x+ " y relativo: " + y)
-       var toolTip= document.getElementById("toolMonitor") ; 
-      toolTip.setAttribute("transform", "translate("
-            + this.mouseX  + "," 
-            + this.mouseY + ")"); 
-      console.log("x relativo: " + this.mouseX + " y relativo: " + this.mouseY);
+
+      // las siguientes dos formas tambien son valederas para asignar un estilo a la etiqueta
+      /* var toolTip= document.getElementById("toolMonitor") ; 
+            toolTip.setAttribute("transform", "translate("
+                  + this.mouseX  + "," 
+                  + this.mouseY + ")");  */
+      /* document.getElementById("toolMonitor").style.transform= "translate("+ this.mouseX+"px,"+this.mouseY+"px)"; */
     },
     mouseOverCpu() {
       // alert('Seleccion Cpu');
@@ -50,9 +50,8 @@ parasails.registerPage('mouse-sobre-imagen', {
   },
   computed: {
     styleToolTip() {
-      let estilo={transform: 'translate('+ this.mouseX+','+this.mouseY+')'};
-      console.log(estilo);
-      return estilo
+      // funciona solo con comillas dobles
+      return { transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
     }
   }
 });

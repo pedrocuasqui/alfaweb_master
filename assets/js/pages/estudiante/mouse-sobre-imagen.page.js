@@ -5,6 +5,11 @@ parasails.registerPage('mouse-sobre-imagen', {
   data: {
     mouseX: 800,
     mouseY: 600,
+    mostrarToolTip:false,
+    nombreObjeto:{
+      type: String,
+      default:"computador"
+    },
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -25,18 +30,20 @@ parasails.registerPage('mouse-sobre-imagen', {
     mouseMovePc(event) {
       // clientX/Y gives the coordinates relative to the viewport in CSS pixels.
       console.log("x: " + event.clientX + " y: " + event.clientY)
+      // getBoundingClientRect() no aplica para objetos jquery
       var svg = document.getElementById("lienzo-svg");
       let bound = svg.getBoundingClientRect();
-      this.mouseX = event.clientX - bound.left;
-      this.mouseY = event.clientY - bound.top;
+      this.mouseX = event.clientX - bound.left - 100;
+      this.mouseY = event.clientY - bound.top - 50;
 
-      // las siguientes dos formas tambien son valederas para asignar un estilo a la etiqueta
-      /* var toolTip= document.getElementById("toolMonitor") ; 
-            toolTip.setAttribute("transform", "translate("
-                  + this.mouseX  + "," 
-                  + this.mouseY + ")");  */
-      /* document.getElementById("toolMonitor").style.transform= "translate("+ this.mouseX+"px,"+this.mouseY+"px)"; */
-    }
+      this.mostrarToolTip=true;
+      let objetoSeleccionado= event.target.parentNode.id;
+      this.nombreObjeto=objetoSeleccionado.toString().toUpperCase();
+
+    },
+    mouseOutPc(evet){
+      this.mostrarToolTip=false;
+    },
   },
   computed: {
     styleToolTip() {

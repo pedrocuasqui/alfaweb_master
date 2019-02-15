@@ -1,5 +1,8 @@
 #mouse-sobre-imagen {
   
+  [v-cloak]>* {
+    display: none;
+  }
   .div-contenedor{
     text-align: center;
     background-color: palevioletred;
@@ -10,38 +13,17 @@
     margin-left: auto;
     margin-right:auto;
     text-align: center;
-    opacity:0.9;
     overflow: visible;/*permite que el tooltip se pueda ver sobre los márgenes*/
   }
   //aplica estilo a los elementos de clase g con clase "contenedor", estos elementos contendrán el grupo de graficos svg sobre los cuales se moverá el mouse 
   g.contenedor:hover {
-    fill: rgb(14, 179, 50) 
+    fill: #CC2600;
   } 
-  // aplica el estilo a todos los elementos g.tooltip.css que estan inmediatemente despues de g.contenedor en estado :hover, 
-  g.contenedor:hover + g.tooltip.css{
-    opacity:1;
-  }
-
    
 .tooltip {
-    pointer-events:none; /*let mouse events pass through*/
-    opacity:0;
-    transition: opacity 0.3s;
+    pointer-events:none;//permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
+    opacity:1;
     text-shadow:1px 1px 0px gray;
     font-size:2em;
-    // en lo posible insertar el atriburo transform : translate () con los parametros calculados
-
 }
-
-/* elementos g.tooltip que no aplican la clase .css */
-g.tooltip:not(.css) {
-  fill:currentColor;
-}
-g.tooltip rect {
-    fill: lightblue;
-    stroke: gray;
-}
-
-
-
 }

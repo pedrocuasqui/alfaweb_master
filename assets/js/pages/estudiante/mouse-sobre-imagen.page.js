@@ -22,10 +22,9 @@ parasails.registerPage('mouse-sobre-imagen', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-    mouseMoveMonitor(event) {
+    mouseMovePc(event) {
       // clientX/Y gives the coordinates relative to the viewport in CSS pixels.
       console.log("x: " + event.clientX + " y: " + event.clientY)
-
       var svg = document.getElementById("lienzo-svg");
       let bound = svg.getBoundingClientRect();
       this.mouseX = event.clientX - bound.left;
@@ -37,15 +36,6 @@ parasails.registerPage('mouse-sobre-imagen', {
                   + this.mouseX  + "," 
                   + this.mouseY + ")");  */
       /* document.getElementById("toolMonitor").style.transform= "translate("+ this.mouseX+"px,"+this.mouseY+"px)"; */
-    },
-    mouseOverCpu() {
-      // alert('Seleccion Cpu');
-    },
-    mouseOverTeclado() {
-      // alert('Seleccion Teclado');
-    },
-    mouseOverMouse() {
-      // alert('Seleccion Mouse');
     }
   },
   computed: {

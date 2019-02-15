@@ -13,12 +13,11 @@
     opacity:0.9;
     overflow: visible;/*permite que el tooltip se pueda ver sobre los márgenes*/
   }
-
+  //aplica estilo a los elementos de clase g con clase "contenedor", estos elementos contendrán el grupo de graficos svg sobre los cuales se moverá el mouse 
   g.contenedor:hover {
     fill: rgb(14, 179, 50) 
   } 
   // aplica el estilo a todos los elementos g.tooltip.css que estan inmediatemente despues de g.contenedor en estado :hover, 
-
   g.contenedor:hover + g.tooltip.css{
     opacity:1;
   }

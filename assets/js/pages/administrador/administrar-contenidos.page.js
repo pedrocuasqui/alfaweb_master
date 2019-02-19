@@ -6,7 +6,6 @@ parasails.registerPage('administrar-contenidos', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    valorPrueba: 'valores de prueba',
     nombreModulo: '',
     contenidoNuevo: {
       nombreModulo: '',

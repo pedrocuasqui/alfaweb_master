@@ -1,7 +1,39 @@
 <div id="indice-estudiante" v-cloak>
 
-  <h1>TODO: Implement this page.</h1>
-  <p>(See also <em>assets/styles/pages/estuadiante/indice-estudiante.less</em>, <em>assets/js/pages/estudiante/indice-estudiante.page.js</em>, and <em>api/controllers/estudiante/view-indice-estudiante.js</em>.)</p>
 
+    <div class="container-fluid">
+        <div class="row">
+          <div class="col-md-3">
+            <div id="MainMenu">
+              <!-- clase que engloba los elementos de la lista -->
+              <div class="list-group panel">
+                <!-- Item 1 que hace referencia al collapse "demo3" -->
+                <div v-for="modulo in contenidos">
+                    <ul class="pagination">
+                      <li  class="page-item" >
+                        <!-- evaluar un condicional (if corto)en v-bind si es posible -->
+                  <a :href="'#'+modulo.id" class="list-group-item list-group-item " data-toggle="collapse"
+                    data-parent="#MainMenu">{{modulo.nombreModulo}} </a>
+                    <a :href="modulo.enlace">link </a> </li>
+
+                  <div class="collapse" :id="modulo.id">
+                    <div v-for="submodulo in modulo.submodulos">
+                      <!--  -->
+                      <a :href="'#'+submodulo.id " class="list-group-item" data-toggle="collapse"
+                        :data-parent="'#'+submodulo.id">{{">"+submodulo.nombre}} </a>
+                      <!--  -->
+                      <div class="collapse list-group-submenu" :id="submodulo.id">
+                        <a v-for="tema in submodulo.temas" href="#" class="list-group-item"
+                          data-parent="#SubMenu1">{{">>"+tema.nombre}}</a>
+                      </div>
+                    </div>
+                  </div>
+                </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

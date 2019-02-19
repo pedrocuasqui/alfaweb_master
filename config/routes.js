@@ -24,12 +24,17 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'GET /':                { view: 'pages/homepage' },
-  'GET /administrar':     { action: 'administrador/view-administrar-contenidos' },
+  'GET /': { view: 'pages/homepage' },
+  'GET /administrar': { action: 'administrador/view-administrar-contenidos' },
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
   // estudiante
-  'GET /indice-estudiante':{action: 'estudiante/view-indice-estudiante'},
-  'GET /mouse-sobre-imagen' :{action: 'estudiante/view-mouse-sobre-imagen'},
+  'GET /indice-estudiante': { action: 'estudiante/view-indice-estudiante' },
+  'GET /m1-computadora': {
+    action: 'estudiante/view-m1-computadora',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
 
   /***************************************************************************
   *                                                                          *
@@ -46,7 +51,7 @@ module.exports.routes = {
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
-  'DELETE /api/v1/admiminstrador/eliminar-contenido' : {action: 'administrador/eliminar-contenido'},
+  'DELETE /api/v1/admiminstrador/eliminar-contenido': { action: 'administrador/eliminar-contenido' },
 
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
@@ -58,6 +63,6 @@ module.exports.routes = {
   //  ║║║║╚═╗║
   //  ╩ ╩╩╚═╝╚═╝
   /**usar funciones de redireccion */
-  'GET /acerca' : { view:'pages/acerca-de'}
+  'GET /acerca': { view: 'pages/acerca-de' }
 
 };

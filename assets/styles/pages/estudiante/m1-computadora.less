@@ -1,13 +1,23 @@
 #m1-computadora {
   // el alto del contenedor será el 80% del viewport
-  height: 80vh;
-
+  height: 88.5vh;
+  nav:first-child ol{
+    margin: 0 !important;
+  
+  }
   [v-cloak]>* {
     display: none;
+    
   }
-  .div-contenedor{
+  .div-header{
+    display: inline-block;
+    width: 100%;
+  }
+  .div-contenido{
+    display: inline-block;
     text-align: center;
     background-color: palevioletred;
+    width: 100%;
     height: 100%;
 
   }
@@ -20,7 +30,7 @@
     overflow: visible;/*permite que el tooltip se pueda ver sobre los márgenes*/
     background-color:chartreuse;
     width:70%; //width y height son el viewport de el grafico svg
-    height: 100%; //100% del 80vh del contenedor principal
+    height: 90%; //100% del 80vh del contenedor principal
   }
   //aplica estilo a los elementos de clase g con clase "contenedor", estos elementos contendrán el grupo de graficos svg sobre los cuales se moverá el mouse 
   g.contenedor:hover {

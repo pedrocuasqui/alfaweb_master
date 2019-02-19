@@ -1,14 +1,16 @@
 <div id="m1-computadora" class="container-fluid" v-cloak>
   <!-- v-cloak mantiene invisible las expresiones de vue que aun no han sido cargadas por el objeto Vue, pueesto que el codigo HTML se carga primero y las expresiones se ven mal sin datos -->
-
+<div class="div-header">
   <nav aria-label="ruta">
     <ol class="breadcrumb">
       <li class="breadcrumb-item "><a href="/indice-estudiante">Indice</a></li>
       <li class="breadcrumb-item active" aria-current="pagina">La computadora</li>
     </ol>
   </nav>
-  <div class="div-contenedor">
-    <svg id="lienzo-svg"  enable-background="new" version="1.1" viewBox="0 0 600 660 "
+</div>
+<div class="div-contenido">
+    <!-- <h1>{{tituloContenido}}</h1> -->
+    <svg id="lienzo-svg" enable-background="new" version="1.1" viewBox="0 0 600 660 "
       xmlns="http://www.w3.org/2000/svg">
       <g id="monitor" class="contenedor" @mousemove="mouseMovePc" @mouseout="mouseOutPc"
         transform="matrix(.1 0 0 -.1 -22.241 644.64)">
@@ -159,14 +161,14 @@
       </g>
     </svg>
     <!-- el footer puede estar en un container que reciba como parámetro el id del contenido anterior y establezca los href de anterior y siguiente -->
-    <footer>
+    <div>
       <nav>
         <ul class="pagination justify-content-end">
-          <li  class="page-item"><a class="page-link previous" href=""> Atrás</a></li>
-          <li  class="page-item"><a class="page-link next" href="">Siguiente</a></li>
+          <li class="page-item"><a class="page-link previous" href=""> Atrás</a></li>
+          <li class="page-item"><a class="page-link next" href="">Siguiente</a></li>
         </ul>
       </nav>
-    </footer>
+    </div>
     <!--  -->
   </div>
 

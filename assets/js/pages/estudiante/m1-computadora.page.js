@@ -10,6 +10,7 @@ parasails.registerPage('m1-computadora', {
       type: String,
       default:"computador"
     },
+    tituloContenido: 'Módulo 1 - La computadora'
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

@@ -3,14 +3,17 @@ parasails.registerPage('m1-computadora', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    mouseX: 800,
-    mouseY: 600,
+    mouseX: 0,
+    mouseY: 0,
+    toolCurrentX:0,
+    toolCurrentY:0,
     mostrarToolTip:false,
-    nombreObjeto:{
+    textoToolTip:{
       type: String,
       default:"computador"
     },
-    tituloContenido: 'Módulo 1 - La computadora'
+    tituloContenido: 'Módulo 1 - La computadora',
+
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -22,6 +25,10 @@ parasails.registerPage('m1-computadora', {
   },
   mounted: async function () {
     //…
+    let posicionToolTip=$(".tooltip").offset();//retorna un objeto que contiene las propiedades top y left del elemento seleccionado
+    this.toolCurrentX=posicionToolTip.left;
+    this.toolCurrentY=posicionToolTip.top;
+    console.log(this.toolCurrentX,this.toolCurrentY);
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -29,18 +36,23 @@ parasails.registerPage('m1-computadora', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
     mouseMovePc(event) {
-      // clientX/Y gives the coordinates relative to the viewport in CSS pixels.
-      console.log("x: " + event.clientX + " y: " + event.clientY)
-      // getBoundingClientRect() no aplica para objetos jquery
-      var svg = document.getElementById("lienzo-svg");
-      let bound = svg.getBoundingClientRect();
-      this.mouseX = event.clientX - bound.left - 100;
-      this.mouseY = event.clientY - bound.top - 50;
+      // clientX/Y obtiene las coordenadas del elemento con respecto al elemento padre, en este caso las coordenadas con respecto a <div id="m1-computadora"
 
-      this.mostrarToolTip=true;
+      this.mouseX = event.clientX ;
+      this.mouseY = event.clientY ;
+
+      // var mensaje= document.getElementById("tooltip");
+      // // mensaje.style.display = 'block';
+      // mensaje.style.top = (event.clientY) + 'px';
+      // mensaje.style.left = (event.clientX)+ 'px';
+      
+
+// El text del tooltip se basa en valor de la propiedad ""id"" de cada elemento ""
       let objetoSeleccionado= event.target.parentNode.id;
-      this.nombreObjeto=objetoSeleccionado.toString().toUpperCase();
+      this.textoToolTip=objetoSeleccionado.toString().toUpperCase();
 
+      //una vez que los valores para x y y del texto del tooltip han sido establecidos, se muestra en la pantalla
+      this.mostrarToolTip=true;
     },
     mouseOutPc(evet){
       this.mostrarToolTip=false;
@@ -48,8 +60,14 @@ parasails.registerPage('m1-computadora', {
   },
   computed: {
     styleToolTip() {
+      // translate define cuanto se moverá el objeto a partir de su posicion original
       // funciona solo con comillas dobles
-      return { transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
+      //{ transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
+      let estilo= {
+        top:this.mouseY+'px',
+        left: this.mouseX+'px' 
+      }
+      return estilo;
     }
   }
 });

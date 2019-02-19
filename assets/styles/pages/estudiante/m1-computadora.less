@@ -1,6 +1,7 @@
 #m1-computadora {
-  // el alto del contenedor será el 80% del viewport
-  height: 88.5vh;
+  
+  height: 88.5vh; // el alto del contenedor será el 80% del viewport
+  position: relative; //para que el tooltip pueda funcionar con position: aboslute
   nav:first-child ol{
     margin: 0 !important;
   
@@ -23,24 +24,35 @@
   }
 
   #lienzo-svg{
-    display: inline-block;
+   
+    display: block;
     margin-left: auto;
     margin-right:auto;
     text-align: center;
     overflow: visible;/*permite que el tooltip se pueda ver sobre los márgenes*/
-    background-color:chartreuse;
-    width:70%; //width y height son el viewport de el grafico svg
+    // background-color:chartreuse;
+    width:50%; //width y height son el viewport de el grafico svg
     height: 90%; //100% del 80vh del contenedor principal
   }
   //aplica estilo a los elementos de clase g con clase "contenedor", estos elementos contendrán el grupo de graficos svg sobre los cuales se moverá el mouse 
   g.contenedor:hover {
-    fill: #CC2600;
+    fill: chartreuse;
   } 
    
 .tooltip {
     pointer-events:none;//permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
     opacity:1;
-    font-size:2em;
+    display: block;
+    position: absolute; // toma como referencia el inicio del padre que contenga la propiedad position:.. con cualquier valor
+
+    border-radius: 3px;
+    border:#d3d3d3 solid 1px;
+    background: #fff;
+    color: red;
+    font-family: Comfortaa, Verdana;
+    font-size: medium;
+    padding: 8px;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
 }
 .breadcrumb>li+li:before { 
   color: rgb(53, 51, 51); 

@@ -1,5 +1,34 @@
 #m1-evaluacion {
 
-  //…
+  height: 88.5vh; // el alto del contenedor será el 80% del viewport
+  position: relative; //para que el tooltip pueda funcionar con position: aboslute
+  nav:first-child ol{
+    margin: 0 !important;
+  
+  }
+  [v-cloak] * { display:none }
+  // [v-cloak]::before { content: "loading…" } //usar esta etiqueta si se quiere usar loading mientras carga, solo sirve para vuejs, no para carga de imagenes o carga de base de datos
+  .div-header{
+    width: 100%;
+  }
+  .div-contenido{
+    display: inline-block;
+    text-align: center;
+    background-color: palevioletred;
+    width: 100%;
+    height: 100%;
+    border-radius: 4px;
+  }
+
+  #lienzo-svg{
+    display: block;
+    margin-left: auto;
+    margin-right:auto;
+    text-align: center;
+    overflow: visible;/*permite que el tooltip se pueda ver sobre los márgenes*/
+    background-color:rgb(1, 131, 124);
+    width:50%; //width y height son el viewport de el grafico svg
+    height: 79%; //89% del 80vh del contenedor principal, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+  }
 
 }

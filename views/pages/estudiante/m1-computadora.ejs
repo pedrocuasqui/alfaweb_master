@@ -8,8 +8,8 @@
     </ol>
   </nav>
 </div>
-<div class="div-contenido" >
-    <!-- <h1>{{tituloContenido}}</h1> -->
+<div class="div-contenido" v-cloak>
+    <h1 >{{tituloContenido}}</h1>
     <svg id="lienzo-svg" enable-background="new" version="1.1" viewBox="0 0 600 660 "
       xmlns="http://www.w3.org/2000/svg">
       <g id="monitor" class="contenedor" @mousemove="mouseMovePc" @mouseout="mouseOutPc"
@@ -161,13 +161,14 @@
           {{textoToolTip }}</text>
       </g> -->
     </svg>
-    <div v-show="mostrarToolTip" class="tooltip" :style="styleToolTip"  v-cloak> 
-      {{textoToolTip}}
+    <div v-cloak v-show="mostrarToolTip" class="tooltip" :style="styleToolTip" > 
+      <!-- la etiqueta span dentro sirve para que funcione v-cloak -->
+      <span>{{textoToolTip}}</span>
     </div>
-    <!-- el footer puede estar en un container que reciba como parámetro el id del contenido anterior y establezca los href de anterior y siguiente -->
+    <!-- el siguiente div puede estar en un container que reciba como parámetro el id del contenido anterior y establezca los href de anterior y siguiente -->
     <div>
       <nav>
-        <ul class="pagination justify-content-end">
+        <ul id="navegacion" class="pagination justify-content-end">
           <li class="page-item"><a class="page-link previous" href=""> Atrás</a></li>
           <li class="page-item"><a class="page-link next" href="/m1-evaluacion">Siguiente</a></li>
         </ul>

@@ -4,91 +4,138 @@ parasails.registerPage('m1-evaluacion', {
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
     tituloContenido: 'Demuestra tus conocimientos',
-    descripcionActividad: 'Da clic sobre el: ',
+    descripcionActividad: 'Tienes 12 segundos para seleccionar el objeto que se te indica, Suerte!',
+    accion: 'Da clic sobre el: ',
     elementos: [],
     elementoTurno: '',
     timer: null,
-    tiempoSegundos: 5,
-    contadorTimer:0,
-    idElementoSeleccionado:null,
-    esCorrecto:false,
+    tiempoSegundos: 12,
+    contadorTimer: 0,
+    idElementoSeleccionado: null,
+    // esCorrecto: false,
     conteoAciertos: 0,
-    actividadFinaliza:false
+    actividadFinaliza: false
 
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
+  beforeCreate(){
+// Llamada sincronicamente inmediatamente despues de que la instancia ha sido inicializada antes de que data-observation y event/watcher sean establecidas,
+
+  },
+  created() {
+    // aqui se puede ejecutar código apenas la instancia ha sido creada, la propiedad "el" aun no estará disponible
+    // mostramos el modal
+    this.mostrarModal();
+  },
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-  },
-  mounted: async function () {
-    let objetosg = document.getElementById("lienzo-svg").getElementsByTagName("g")
 
+  },
+
+  mounted: async function () {
+
+    // cargamos los objetos "g" que se van a usar para evaluar
+    let objetosg = document.getElementById("lienzo-svg").getElementsByTagName("g")
     for (i = 0; i < objetosg.length; i++) {
       this.elementos.push(objetosg[i].getAttribute('id'))
     }
-    console.log(this.elementos.toString());
-    this.elementoTurno=this.elementos[this.contadorTimer];
-    setTimeout(this.iniciaConteo,1000);
+    // cargamos el primer elemento en la vista
+    this.elementoTurno = this.elementos[this.contadorTimer];
+
+
   },
-  updated:function(){
-// console.log('actualizado');
+  updated: function () {
+    // console.log('actualizado');
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    mostrarModal() {
+      // para verficar que el DOM está listo se puede usar: $(fn)
+      // fuente: https://es.stackoverflow.com/questions/51946/cu%C3%A1l-es-la-diferencia-entre-window-onload-y-document-ready
+      $(function () {
+        $('#exampleModalCenter').modal('show');
+      });
+    },
     iniciaConteo() {
-      this.timer = setInterval(() => this.cuentaRegresiva(), 1000);
+      this.timer = setInterval(this.cuentaRegresiva, 1000);
     },
     cuentaRegresiva() {
-// Si el contador aun no ha llegado a cero, continua restando un numero cada segundo
+      // Si el contador aun no ha llegado a cero, continua restando un numero cada segundo
       if (this.tiempoSegundos >= 1) {
         this.tiempoSegundos--;
       } else {
-        // si el contador de elementos ha llegado a su fin, se detiene la funcion setInterval
-        if(this.contadorTimer==this.elementos.length-1){
-          clearInterval(this.timer);
-          this.tiempoSegundos=0;
-          this.elementoTurno='';
-          this.actividadFinaliza=true;
-        }
-        // caso contrario se aumenta el contador de elementos y se obtiene un elemento "g" actual
-        else{
+        // si aún no se han recorrido todos los elementos del arreglo  se aumenta el contador de elementos y se obtiene un elemento "g" actual
+        if (this.contadorTimer < (this.elementos.length - 1)) {
           this.contadorTimer++;
-          this.tiempoSegundos = 5;
-          this.elementoTurno=this.elementos[this.contadorTimer];
+          this.elementoTurno = this.elementos[this.contadorTimer];
+          this.nextTimer();
         }
-        
+        // si se terminan de evaluar todos los objetos, se detiene la funcion setInterval
+        else {
+          this.actividadFinaliza = true;
+          clearInterval(this.timer);
+          this.mostrarModalFinalizacion();
+        }
+
       }
 
     },
+    mostrarModalFinalizacion() {
+      // no funciona el modal si se hace un v-show
+      $('#actividadFinalizada').modal('show');
+    },
+    empezarEvaluacion() {
+      this.iniciaConteo();
+    },
     mouseClickPc(event) {
-      // event.target funciona tal como document.getElementById() 
-      // fuente: https://stackoverflow.com/questions/7723188/what-properties-can-i-use-with-event-target
-      let elementoSeleccionado = event.target;
-      // si el elemento seleccionado es un elemento "path" entonces selecciona al objeto padre
-      if(elementoSeleccionado){
-        this.idElementoSeleccionado=elementoSeleccionado.parentNode;
-        // caso contrario selecciona al elemento "event"
-      }else{
-        this.idElementoSeleccionado=elementoSeleccionado;
-      }
-      if(this.idElementoSeleccionado.getAttribute('id') == this.elementoTurno){
-        this.esCorrecto=true;
-        this.conteoAciertos++;
-        this.tiempoSegundos = 0;
-        this.idElementoSeleccionado.setAttribute("style", "fill: chartreuse;")
-        document.getElementById(this.idElementoSeleccionado.getAttribute('id')).removeAttribute('onmousedown');
-      }else{
-        this.tiempoSegundos = 0;
-        this.idElementoSeleccionado.setAttribute("style", "fill: red;")
-      }
+      console.log(this.contadorTimer)
+      if (this.contadorTimer < (this.elementos.length)) {
+        // event.target funciona tal como document.getElementById() 
+        // fuente: https://stackoverflow.com/questions/7723188/what-properties-can-i-use-with-event-target
+        let elementoSeleccionado = event.target;
+        if (elementoSeleccionado) {// si el elemento seleccionado es un elemento "path" entonces selecciona al objeto padre
+          this.idElementoSeleccionado = elementoSeleccionado.parentNode;
+          // caso contrario selecciona al elemento "event"
+        } else {
+          this.idElementoSeleccionado = elementoSeleccionado;
+        }
+        // verifica que el elemento seleccionado sea el correcto
+        if (this.idElementoSeleccionado.getAttribute('id') == this.elementoTurno) {
+          this.idElementoSeleccionado.setAttribute("style", "fill: chartreuse;")
+          this.conteoAciertos++;
+          this.contadorTimer++;
+          //si ya se aumenta un valor mas a la posicion final del arreglo, se termina la actividad
+          if (this.contadorTimer == this.elementos.length) {
+            this.actividadFinaliza = true;
+            clearInterval(this.timer);
+            this.mostrarModalFinalizacion();
+          } else {
+            this.elementoTurno = this.elementos[this.contadorTimer];
+            this.nextTimer();
 
+          }
+
+        } else {
+          this.idElementoSeleccionado.setAttribute("style", "fill: red;")
+        }
+      }
+    },
+    nextTimer() {
+      // this.tiempoSegundos=0;
+      clearInterval(this.timer); //se cancela el timer actual
+      this.tiempoSegundos = 12;
+      this.iniciaConteo();//comienza nuevamente el timer
+
+    },
+    omitirActividad(){
+      return res.view("/");
     }
   },
   computed: {

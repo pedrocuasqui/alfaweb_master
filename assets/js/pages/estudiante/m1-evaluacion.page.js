@@ -4,7 +4,7 @@ parasails.registerPage('m1-evaluacion', {
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
     tituloContenido: 'Demuestra tus conocimientos',
-    descripcionActividad: 'Tienes 12 segundos para seleccionar el objeto que se te indica, Suerte!',
+    descripcionActividad: 'Tienes 12 segundos para seleccionar el objeto que se te indica. Si necesitas ayuda presiona el avatar... Suerte!',
     accion: 'Da clic sobre el: ',
     elementos: [],
     elementoTurno: '',

@@ -1,6 +1,8 @@
 <div id="m1-evaluacion" class="container-fluid" v-cloak>
   <!-- v-cloak mantiene invisible las expresiones de vue que aun no han sido cargadas por el objeto Vue, pueesto que el codigo HTML se carga primero y las expresiones se ven mal sin datos -->
   <!-- en esta pantalla se pone a prueba el conocimiento adquirido en la página anterior, se pregunta al usuario por un elemento de la computadora y que el usuario seleccione el correcto -->
+ 
+  <!-- MODALS******************************************************************************************* -->
   <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
     aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -42,7 +44,7 @@ fuente: https://stackoverflow.com/questions/34627271/understanding-how-data-dism
       </div>
     </div>
   </div>
-<!-- ******************************************************************************************* -->
+  <!--HEADER ******************************************************************************************* -->
   <div class="div-header">
     <nav aria-label="ruta">
       <ol class="breadcrumb">
@@ -51,17 +53,32 @@ fuente: https://stackoverflow.com/questions/34627271/understanding-how-data-dism
       </ol>
     </nav>
   </div>
-<!-- ******************************************************************************************* -->
+  <!-- CONTENIDOS******************************************************************************************* -->
   <div class="div-contenido" v-cloak>
-    <div  class="row" id="tituloModulo">
+    <!-- Titulo del contenido -->
+    <div class="row" id="tituloModulo">
       <div class="col">
-      <h1>{{tituloContenido}}</h1>
-    </div>
-    </div>
-    <div class="row">
-      <div class="col-sm-3">
-
+        <h1>{{tituloContenido}}</h1>
       </div>
+    </div>
+    <!-- Contenido ludico en tres columnas -->
+    <div class="row">
+      <!-- columna izquierda -->
+      <div class="col-sm-3">
+        <div class="row">
+          <div class="col-sm-7 indicaciones">
+            <div v-show="actividadFinaliza" class="alert fade show" role="alert">
+              Se acabó el tiempo <br> Has obtenido {{conteoAciertos}} aciertos de {{elementos.length}}
+            </div>
+            <h4 v-show="!actividadFinaliza">{{accion}} {{elementoTurno.toUpperCase()}} <br> Tienes {{tiempoSegundos}}
+              segundos</h4>
+          </div>
+          <div class="col-sm-4">
+            <img src="/images/myAvatar_adultoMayor.png" alt="Avatar adulto mayor">
+          </div>
+        </div>
+      </div>
+      <!-- Columna central -->
       <div class="col-sm-6">
         <svg id="lienzo-svg" enable-background="new" version="1.1" viewBox="0 0 600 660 "
           xmlns="http://www.w3.org/2000/svg">
@@ -206,27 +223,20 @@ fuente: https://stackoverflow.com/questions/34627271/understanding-how-data-dism
               d="m765.73 547.53c-4.1979-0.4589-7.2364 2.6851-10.642 4.2024-11.892 0.82127-25.768-1.5761-35.301 7.4401-4.3589 3.9853-11.715 9.3319-8.5367 16.145 4.2875 7.8706 11.85 13.922 19.471 18.131 12.361-11.585 28.735-17.493 43.36-25.617 5.0335-3.1952 11.498-4.7736 15.647-9.1344 0.35586-4.0084-5.5068-3.372-8.1141-4.072-3.1739-0.61989-7.871-0.45047-8.7378-4.3453-1.6435-2.152-4.5818-2.763-7.1464-2.7492z"
               style="fill:#b3b3b3" />
           </g>
-
         </svg>
       </div>
+      <!-- columna derecha -->
       <div class="col-sm-3">
-        <div class="indicaciones">
-          <div v-show="actividadFinaliza" class="alert alert-warning alert-dismissible fade show" role="alert">
-            Se acabó el tiempo <br> Has obtenido {{conteoAciertos}} aciertos de {{elementos.length}}
-          </div>
-          <h4 v-show="!actividadFinaliza">{{accion}} {{elementoTurno.toUpperCase()}} <br> Tienes {{tiempoSegundos}} segundos</h4>
+        <!-- el siguiente div puede estar en un container que reciba como parámetro el id del contenido anterior y establezca los href de anterior y siguiente -->
+        <div class="navegacion">
+          <nav>
+            <ul class="pagination ">
+              <li class="page-item"><a class="page-link previous" href="/m1-computadora"> Atrás</a></li>
+              <li class="page-item"><a class="page-link next" href="/m1-sistema-informatico">Siguiente</a></li>
+            </ul>
+          </nav>
         </div>
-
-      <!-- el siguiente div puede estar en un container que reciba como parámetro el id del contenido anterior y establezca los href de anterior y siguiente -->
-      <div class="navegacion">
-        <nav>
-          <ul class="pagination ">
-            <li class="page-item"><a class="page-link previous" href=""> Atrás</a></li>
-            <li class="page-item"><a class="page-link next" href="/m1-evaluacion">Siguiente</a></li>
-          </ul>
-        </nav>
       </div>
-    </div>
     </div>
     <!--  -->
   </div>

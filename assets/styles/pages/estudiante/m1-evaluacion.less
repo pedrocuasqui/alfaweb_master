@@ -28,12 +28,7 @@
     width:84%; //width y height son el viewport de el grafico svg
     height: 82%; //100% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
   }
-  .indicaciones{
-    background-color: rgb(207, 224, 107);
-    width: 80%;
-    border-radius: 10px;
 
-  }
   #tituloContenido{
     text-align: center;
   }
@@ -42,15 +37,29 @@
     height: 100%;
 
   }
-  // seleccionar todos los elementos div que tienen el atributo class="col-sm-..." que esta dentro de una clase row y que esta dentro de la clase div-contenido
-  .div-contenido .row div[class*="col-sm-"]{
+  .indicaciones{
+    background-color: rgb(207, 224, 107);
+    width: 80%;
+    border-radius: 10px;
+    margin-right: 0px !important;
+    margin-left: 15px;
 
+  }
+  // seleccionar todos los elementos div que tienen el atributo class="col-sm-..." que esta dentro de una clase row y que esta dentro de la clase div-contenido
+  .div-contenido .row div[class*="col"]{
     height: 100%;
+
   }
   .navegacion{
 
   ul{
     margin-bottom: 0 !important;
   }
+  }
+
+  img[src*="myAvatar"]{
+    height: auto;
+    width: 35%;
+    float: left;
   }
 }

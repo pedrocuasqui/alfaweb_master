@@ -45,13 +45,7 @@ module.exports = {
           descripcion: 'Descripcion submódulo',
           multimedia: 'http://...',
           temas: [
-            {
-              id:'11',
-              nombre: 'Hardware',
-              descripcion: 'El hardware ...',
-              multimedia: 'http://...'
-            },
-            {
+             {
               id:'12',
               nombre: 'Monitor',
               descripcion: 'El monitor ...',

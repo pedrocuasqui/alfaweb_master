@@ -15,7 +15,7 @@ module.exports = {
     success: {
       statusCode: 200,
       description: 'Requesting user is a guest, so show the public landing page.',
-      viewTemplatePath: 'pages/estudiante/m1-computadora'
+      viewTemplatePath: 'pages/estudiante/modulo-1/m-1-computadora'
     }
 
   },
@@ -24,6 +24,7 @@ module.exports = {
   fn: async function (inputs,exits) {
 
     // Respond with view.
+    
     return exits.success();
 
   }

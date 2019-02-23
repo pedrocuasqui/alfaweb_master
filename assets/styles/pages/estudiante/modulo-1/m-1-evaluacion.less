@@ -1,23 +1,6 @@
-#m1-evaluacion {
+#m-1-evaluacion {
 
-  height: 96vh; // el alto del contenedor será el 88.5% del viewport, este valor toman como referencia los demas elementos
-  position: relative; //para que el tooltip pueda funcionar con position: aboslute
-  nav:first-child ol{
-    margin: 0 !important;
-  
-  }
-  [v-cloak] * { display:none }
-  .div-header{
-      width: 100%;
-  }
-  .div-contenido{
-    display: inline-block;
-    text-align: center;
-    background-color: palevioletred;
-    width: 100%;
-    height: 100%;//para poder usar el porcentaje es necesario que un padre cualquiera ya tenga establecido un valor en pixeles
-    border-radius: 4px;
-  }
+ 
 
   #lienzo-svg{
     margin-left: auto;
@@ -25,8 +8,8 @@
     text-align: center;
     overflow: visible;/*permite que el tooltip se pueda ver sobre los márgenes*/
     // background-color:rgb(51, 192, 180);
-    width:84%; //width y height son el viewport de el grafico svg
-    height: 82%; //100% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+    width:65%; //width y height son el viewport de el grafico svg
+    height: auto; //100% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
   }
 
   #tituloContenido{

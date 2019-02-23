@@ -30,19 +30,32 @@ module.exports.routes = {
   // estudiante
   'GET /indice-estudiante': { action: 'estudiante/view-indice-estudiante' },
   'GET /m1-computadora': {
-    action: 'estudiante/view-m1-computadora',
+    action: 'estudiante/modulo-1/view-m-1-computadora',
     locals: {
       layout: "layouts/layout-modulos",
     }
   },
   'GET /m1-evaluacion': {
-    action: 'estudiante/view-m1-evaluacion',
+    action: 'estudiante/modulo-1/view-m-1-evaluacion',
     locals: {
       layout: "layouts/layout-modulos",
     }
   },
   'GET /m1-sistema-informatico': {
-    action: 'estudiante/view-m1-sistema-informatico',
+    action: 'estudiante/modulo-1/view-m-1-sistema-informatico',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  
+  'GET /m1-sistema-informatico-monitor': {
+    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-monitor',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  'GET /m1-sistema-informatico-cpu': {
+    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-cpu',
     locals: {
       layout: "layouts/layout-modulos",
     }

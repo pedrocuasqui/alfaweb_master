@@ -1,0 +1,24 @@
+#layout-modulos{
+   
+
+    [v-cloak] * { display:none } //ocultamos las expresiones vue mientras se cargan en la pagina los valores de los archivos js del cliente
+    // [v-cloak]::before { content: "loading…" } //usar esta etiqueta si se quiere usar loading mientras carga, solo sirve para vuejs, no para carga de imagenes o carga de base de datos
+    .div-header{ //ocupamos el 100% de espacio de ancho para la barra de navegacion
+      width: 100%;
+      nav ol{ //eliminamos el margen de los elementos ol de la barra de navegacion
+        margin: 0 !important;
+      
+      }
+    }
+    .div-contenido{ //todos los modulos tendrán un contenedor de contenido, va a continuacion de la barra de navegacion
+      height: 88.5vh; // el alto del contenedor será el 80% del viewport
+      width: 100%;
+    position: relative; //para que el tooltip pueda funcionar con position: aboslute
+      display: inline-block;
+      text-align: center;
+      background-color: palevioletred;
+      
+
+      border-radius: 4px;
+    }
+}

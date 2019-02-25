@@ -1,0 +1,35 @@
+parasails.registerComponent('modulo-modal-ini-actv',{
+    props:[
+        'tituloContenido',
+        'descripcionActividad',
+        'enlaceSiguienteActividad'
+
+    ],
+    data(){
+        return {};
+    },
+    template:`<div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle"
+    aria-hidden="true" data-keyboard="false" data-backdrop="static">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalCenterTitle">{{tituloContenido}}</h5>
+
+        </div>
+        <div class="modal-body">
+          {{descripcionActividad}}
+        </div>
+        <div class="modal-footer">
+          <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar/</button> -->
+          <a role="button" class="btn btn-secondary" :href="enlaceSiguienteActividad">Omitir actividad</a>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" @click="empezarEvaluacion">Empezar</button>
+        </div>
+      </div>
+    </div>
+  </div>`,
+    methods:{
+        empezarEvaluacion(){
+            this.$emit('empezar-evaluacion');
+        },
+    }
+});

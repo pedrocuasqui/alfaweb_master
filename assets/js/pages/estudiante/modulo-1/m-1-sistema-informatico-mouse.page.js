@@ -1,25 +1,26 @@
-parasails.registerPage('m-1-sistema-informatico-cpu', {
+parasails.registerPage('m-1-sistema-informatico-mouse', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    tituloContenido:'Sistema informático-Hardware-CPU',
-    descripcionObjeto:'Es el cerebro de la computadora, responsable de todo lo que la computadora hace.',
-    navegarAtras: '/m1-sistema-informatico-monitor',
-    navegarSiguiente: '/m1-sistema-informatico-mouse',
+    tituloContenido: "Sistema Informático-Hardware-Mouse",
+    descripcionObjeto: 'Dispositivo apuntador utilizado para facilitar el manejo del ambiente gráfico de una computadora.',
+    navegarAtras: '/m1-sistema-informatico-cpu',
+    navegarSiguiente: '/m1-sistema-informatico-teclado',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     { id: '', texto: 'La computadora', enlace: '/m1-computadora' }],
+
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function() {
+  beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
   },
-  mounted: async function() {
+  mounted: async function () {
     //…
   },
 

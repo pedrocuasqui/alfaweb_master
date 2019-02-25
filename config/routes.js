@@ -60,6 +60,12 @@ module.exports.routes = {
       layout: "layouts/layout-modulos",
     }
   },
+  'GET /m1-sistema-informatico-mouse': {
+    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-mouse',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
 
   /***************************************************************************
   *                                                                          *

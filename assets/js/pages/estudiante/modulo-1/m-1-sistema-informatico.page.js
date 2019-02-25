@@ -3,7 +3,13 @@ parasails.registerPage('m-1-sistema-informatico', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    tituloContenido:'Sistema informático'
+    tituloContenido:'Sistema informático',
+    descripcionObjeto: '',
+    navegarAtras: '/m1-evaluacion',
+    navegarSiguiente: '/m1-sistema-informatico-monitor',
+
+    breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
+    { id: '', texto: 'La computadora', enlace: '/m1-computadora' }],
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

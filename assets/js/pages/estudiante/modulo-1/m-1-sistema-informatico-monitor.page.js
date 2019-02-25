@@ -4,6 +4,12 @@ parasails.registerPage('m-1-sistema-informatico-monitor', {
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
     tituloContenido:"Sistema Informático-Hardware-Monitor",
+    descripcionObjeto: 'Dispositivo que muestra datos o información al usuario.',
+    navegarAtras: '/m1-sistema-informatico',
+    navegarSiguiente: '/m1-sistema-informatico-cpu',
+
+    breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
+    { id: '', texto: 'La computadora', enlace: '/m1-computadora' }],
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

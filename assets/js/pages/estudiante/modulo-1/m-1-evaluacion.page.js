@@ -5,6 +5,9 @@ parasails.registerPage('m-1-evaluacion', {
   data: {
     tituloContenido: 'Demuestra tus conocimientos',
     descripcionActividad: 'Tienes 12 segundos para seleccionar el objeto que se te indica. Si necesitas ayuda presiona el avatar... Suerte!',
+    descripcionObjeto:'',
+    navegarAtras: '/m1-computadora',
+    navegarSiguiente: '/m1-sistema-informatico',
     accion: 'Da clic sobre el: ',
     elementos: [],
     elementoTurno: '',
@@ -14,7 +17,10 @@ parasails.registerPage('m-1-evaluacion', {
     idElementoSeleccionado: null,
     // esCorrecto: false,
     conteoAciertos: 0,
-    actividadFinaliza: false
+    actividadFinaliza: false,
+    
+    breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
+    { id: '', texto: 'La computadora', enlace: '/m1-computadora' }],
 
   },
 

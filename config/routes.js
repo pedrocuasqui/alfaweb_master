@@ -147,8 +147,7 @@ module.exports.routes = {
     locals: {
       layout: "layouts/layout-modulos",
     }
-  },
-  
+  },  
   'GET /m1-raton': {
     action: 'estudiante/modulo-1/view-m-1-raton',
     locals: {

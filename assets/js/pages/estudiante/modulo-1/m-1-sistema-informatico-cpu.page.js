@@ -9,7 +9,9 @@ parasails.registerPage('m-1-sistema-informatico-cpu', {
     navegarSiguiente: '/m1-sistema-informatico-mouse',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
-    { id: '', texto: 'La computadora', enlace: '/m1-computadora' }],
+    { id: '', texto: 'La computadora', enlace: '/m1-computadora' },
+    { id: '', texto: 'Sistema informático', enlace: '/m1-sistema-informatico' },
+    { id: '', texto: 'Hardware-CPU', enlace: '/m1-sistema-informatico-cpu' }],
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

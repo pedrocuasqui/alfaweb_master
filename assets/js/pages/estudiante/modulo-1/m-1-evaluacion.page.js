@@ -20,7 +20,8 @@ parasails.registerPage('m-1-evaluacion', {
     actividadFinaliza: false,
     
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
-    { id: '', texto: 'La computadora', enlace: '/m1-computadora' }],
+    { id: '', texto: 'La computadora', enlace: '/m1-computadora' },
+    { id: '', texto: 'Evaluación', enlace: '/m1-evaluacion' }],
 
   },
 

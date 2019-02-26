@@ -72,6 +72,20 @@ module.exports.routes = {
       layout: "layouts/layout-modulos",
     }
   },
+  
+  'GET /m1-sistema-informatico-impresora': {
+    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-impresora',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  
+  'GET /m1-sistema-informatico-usb': {
+    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-usb',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

@@ -1,18 +1,18 @@
-parasails.registerPage('m-1-conexion-componentes', {
+parasails.registerPage('m-1-conexion-componentes-mouse', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    tituloContenido: "Conexión de componentes a la computadora",
+    tituloContenido: "Conexión del mouse al CPU",
     descripcionObjeto: '',
-    navegarAtras: '/m1-sistema-informatico-software',
-    navegarSiguiente: '/m1-conexion-componentes-monitor',
+    navegarAtras: '/m1-conexion-componentes-teclado',
+    navegarSiguiente: '/m1-conexion-componentes-cablepoder',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     { id: '', texto: 'La computadora', enlace: '/m1-computadora' },
     { id: '', texto: 'Conexion componentes a la computadora', enlace: '/m1-conexion-componentes' },
+    { id: '', texto: 'Conexion mouse-CPU', enlace: '/m1-conexion-componentes-mouse' },
   ],
-
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

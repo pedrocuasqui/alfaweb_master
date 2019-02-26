@@ -1,16 +1,16 @@
-parasails.registerPage('m-1-conexion-componentes', {
+parasails.registerPage('m-1-encender-apagar-computador', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    tituloContenido: "Conexión de componentes a la computadora",
-    descripcionObjeto: '',
-    navegarAtras: '/m1-sistema-informatico-software',
-    navegarSiguiente: '/m1-conexion-componentes-monitor',
+    tituloContenido: "Encender y apagar la computadora",
+    descripcionObjeto: 'MOSTRAR COMO ENCENDER Y APAGAR LA COMPUTADORA EN ESTA MISMA PÁGINA',
+    navegarAtras: '/m1-conexion-componentes-audio',
+    navegarSiguiente: '/m1-teclado',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     { id: '', texto: 'La computadora', enlace: '/m1-computadora' },
-    { id: '', texto: 'Conexion componentes a la computadora', enlace: '/m1-conexion-componentes' },
+    { id: '', texto: 'encender-apagar-computador', enlace: '/m1-encender-apagar-computador' },
   ],
 
   },

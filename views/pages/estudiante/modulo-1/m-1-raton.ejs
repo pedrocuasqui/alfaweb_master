@@ -1,7 +1,17 @@
-<div id="m-1-raton" v-cloak>
+<div id="m-1-raton" class="container-fluid" v-cloak>
 
-  <h1>TODO: Implement this page.</h1>
-  <p>(See also <em>assets/styles/pages/estudiante/m1-raton.less</em>, <em>assets/js/pages/estudiante/m1-raton.page.js</em>, and <em>api/controllers/estudiante/view-m-1-raton.js</em>.)</p>
 
+  <!-- MODALS******************************************************************************************* -->
+
+  <!--HEADER ******************************************************************************************* -->
+  <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
+
+  <!-- CONTENIDOS******************************************************************************************* -->
+  <modulo-contenedor :titulo-contenido="tituloContenido" :descripcion-objeto="descripcionObjeto" :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" >
+
+  </modulo-contenedor>
+  <!--  -->
 </div>
+
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
+    

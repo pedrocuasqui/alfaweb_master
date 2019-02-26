@@ -92,6 +92,69 @@ module.exports.routes = {
       layout: "layouts/layout-modulos",
     }
   },
+  
+  'GET /m1-conexion-componentes': {
+    action: 'estudiante/modulo-1/view-m-1-conexion-componentes',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  'GET /m1-conexion-componentes-monitor': {
+    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-monitor',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  'GET /m1-conexion-componentes-teclado': {
+    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-teclado',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  'GET /m1-conexion-componentes-mouse': {
+    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-mouse',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  'GET /m1-conexion-componentes-cablepoder': {
+    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-cablepoder',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  
+  'GET /m1-conexion-componentes-flashmemory': {
+    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-flashmemory',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  'GET /m1-conexion-componentes-audio': {
+    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-audio',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  'GET /m1-encender-apagar-computador': {
+    action: 'estudiante/modulo-1/view-m-1-encender-apagar-computador',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  'GET /m1-teclado': {
+    action: 'estudiante/modulo-1/view-m-1-teclado',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+  
+  'GET /m1-raton': {
+    action: 'estudiante/modulo-1/view-m-1-raton',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

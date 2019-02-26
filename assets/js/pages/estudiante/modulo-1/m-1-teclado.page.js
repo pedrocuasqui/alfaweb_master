@@ -1,18 +1,17 @@
-parasails.registerPage('m-1-conexion-componentes', {
+parasails.registerPage('m-1-teclado', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    tituloContenido: "Conexión de componentes a la computadora",
+    tituloContenido: "El teclado",
     descripcionObjeto: '',
-    navegarAtras: '/m1-sistema-informatico-software',
-    navegarSiguiente: '/m1-conexion-componentes-monitor',
+    navegarAtras: '/m1-encender-apagar-computador',
+    navegarSiguiente: '/m1-raton',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     { id: '', texto: 'La computadora', enlace: '/m1-computadora' },
-    { id: '', texto: 'Conexion componentes a la computadora', enlace: '/m1-conexion-componentes' },
+    { id: '', texto: 'El mouse', enlace: '/m1-teclado' },
   ],
-
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

@@ -1,19 +1,20 @@
 module.exports = {
 
 
-  friendlyName: 'View m 1 raton',
+  friendlyName: 'View m 1 teclado',
 
 
-  description: 'Display "M 1 raton" page.',
+  description: 'Display "M 1 teclado" page.',
 
 
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/estudiante/modulo-1/m-1-raton'
+      viewTemplatePath: 'pages/estudiante/modulo-1/m-1-teclado'
     }
 
   },
+
 
   fn: async function (inputs, exits) {
 
@@ -21,7 +22,6 @@ module.exports = {
     return exits.success();
 
   }
-
 
 
 };

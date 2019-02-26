@@ -1,16 +1,17 @@
-parasails.registerPage('m-1-conexion-componentes', {
+parasails.registerPage('m-1-conexion-componentes-flashmemory', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    tituloContenido: "Conexión de componentes a la computadora",
+    tituloContenido: "Conexión de una flash memory al CPU",
     descripcionObjeto: '',
-    navegarAtras: '/m1-sistema-informatico-software',
-    navegarSiguiente: '/m1-conexion-componentes-monitor',
+    navegarAtras: '/m1-conexion-componentes-cablepoder',
+    navegarSiguiente: '/m1-conexion-componentes-audio',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     { id: '', texto: 'La computadora', enlace: '/m1-computadora' },
     { id: '', texto: 'Conexion componentes a la computadora', enlace: '/m1-conexion-componentes' },
+    { id: '', texto: 'Conexion flash memory -CPU', enlace: '/m1-conexion-componentes-flashmemory' },
   ],
 
   },

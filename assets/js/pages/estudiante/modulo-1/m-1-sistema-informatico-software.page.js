@@ -18,18 +18,73 @@ parasails.registerPage('m-1-sistema-informatico-software', {
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function() {
+  beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
   },
-  mounted: async function() {
-    //…
+  mounted: async function () {
+    let objetosg = document.getElementById("lienzo-svg").getElementsByTagName("g")
+    for (i = 0; i < objetosg.length; i++) {
+      // this.elementos.push(objetosg[i].getAttribute('id'))
+      $("#" + objetosg[i].getAttribute('id')).hover(
+        //funcion que se lanza "onmouseenter"
+        function () {
+          $(this).css({
+            "transform": "scale(1.5,1.5)",
+            "transition-duration": "500ms",
+            "transform-box": "fill-box",
+            "transform-origin": "center",
+            "transition-timing-function": "ease-out"
+                      })
+                    }, 
+      //funcion que se ejecuta "onmouseleave"
+      function () {
+        $(this).css({
+          "transform": "scale(1,1)",
+          "transition-duration": "500ms",
+          "transform-box": "fill-box",
+          "transform-origin": "center",
+          "transition-timing-function": "ease-out"
+                    })
+                  }
+      );
+    }
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-    //…
+    //con mouseEnter no reconoce muy bien al elemento
+    mouseOver(event) {
+
+      let objetoSeleccionado = event.target.parentNode.id;
+console.log(objetoSeleccionado);
+      //selecciono al objeto sobre el cual se encuentra el mouse y le doy un estilo css
+      $("#" + objetoSeleccionado).hover(
+        //funcion que se lanza "onmouseenter"
+        function () {
+          $(this).css({
+            "transform": "scale(1.5,1.5)",
+            "transition-duration": "500ms",
+            "transform-box": "fill-box",
+            "transform-origin": "center",
+            "transition-timing-function": "ease-out"
+                      })
+                    }, 
+      //funcion que se ejecuta "onmouseleave"
+      function () {
+        $(this).css({
+          "transform": "scale(1,1)",
+          "transition-duration": "500ms",
+          "transform-box": "fill-box",
+          "transform-origin": "center",
+          "transition-timing-function": "ease-out"
+                    })
+                  }
+      );
+
+
+    },
   }
 });

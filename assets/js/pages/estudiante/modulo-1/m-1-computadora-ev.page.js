@@ -101,7 +101,7 @@ parasails.registerPage('m-1-computadora-ev', {
     empezarEvaluacion() {
       this.iniciaConteo();
     },
-    mouseClickPc(event) {
+    moseDownPc(event) {
       console.log(this.contadorTimer)
       if (this.contadorTimer < (this.elementos.length)) {
         // event.target funciona tal como document.getElementById() 

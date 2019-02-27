@@ -7,7 +7,7 @@ parasails.registerPage('m-1-raton', {
     tituloContenido: "El Mouse",
     descripcionObjeto: '',
     navegarAtras: '/m1-teclado',
-    navegarSiguiente: '/m2-navegacion-escritorio',
+    navegarSiguiente: '/m1-evaluacion',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     { id: '', texto: 'La computadora', enlace: '/m1-computadora' },

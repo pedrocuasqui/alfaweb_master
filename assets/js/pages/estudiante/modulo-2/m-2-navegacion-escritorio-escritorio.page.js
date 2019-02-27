@@ -1,17 +1,18 @@
-parasails.registerPage('m-1-teclado', {
+parasails.registerPage('m-2-navegacion-escritorio-escritorio', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    tituloContenido: "El teclado",
+    tituloContenido: "El Escritorio",
     descripcionObjeto: '',
-    navegarAtras: '/m1-encender-apagar-computador',
-    navegarSiguiente: '/m1-raton',
+    navegarAtras: '/m2-navegacion-escritorio',
+    navegarSiguiente: '/m2-navegacion-escritorio-escritorio',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
-    { id: '', texto: 'La computadora', enlace: '/m1-computadora' },
-    { id: '', texto: 'El teclado', enlace: '/m1-teclado' },
+    { id: '', texto: 'Navegación-escritorio', enlace: '/m2-navegacion-escritorio' },
+    { id: '', texto: 'Escritorio', enlace: '/m2-navegacion-escritorio-escritorio' },
   ],
+
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

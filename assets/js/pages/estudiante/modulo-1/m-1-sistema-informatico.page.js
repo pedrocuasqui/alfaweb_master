@@ -5,7 +5,7 @@ parasails.registerPage('m-1-sistema-informatico', {
   data: {
     tituloContenido:'Sistema informático',
     descripcionObjeto: '',
-    navegarAtras: '/m1-evaluacion',
+    navegarAtras: '/m1-computadora-ev',
     navegarSiguiente: '/m1-sistema-informatico-monitor',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },

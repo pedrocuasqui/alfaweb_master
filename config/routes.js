@@ -35,8 +35,8 @@ module.exports.routes = {
       layout: "layouts/layout-modulos",
     }
   },
-  'GET /m1-evaluacion': {
-    action: 'estudiante/modulo-1/view-m-1-evaluacion',
+  'GET /m1-computadora-ev': {
+    action: 'estudiante/modulo-1/view-m-1-computadora-ev',
     locals: {
       layout: "layouts/layout-modulos",
     }
@@ -150,6 +150,25 @@ module.exports.routes = {
   },  
   'GET /m1-raton': {
     action: 'estudiante/modulo-1/view-m-1-raton',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },  
+  'GET /m1-evaluacion': {
+    action: 'estudiante/modulo-1/view-m-1-evaluacion',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },  
+  'GET /m2-navegacion-escritorio': {
+    action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
+   
+  'GET /m2-navegacion-escritorio-escritorio': {
+    action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio-escritorio',
     locals: {
       layout: "layouts/layout-modulos",
     }

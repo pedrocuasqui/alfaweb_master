@@ -23,31 +23,11 @@ parasails.registerPage('m-1-sistema-informatico-software', {
     _.extend(this, SAILS_LOCALS);
   },
   mounted: async function () {
+    // al cargar la página se cargan los codigos de los objetos 'g' hijos de lienzo-svg
     let objetosg = document.getElementById("lienzo-svg").getElementsByTagName("g")
+    // se añade un estilo para cada objeto "g" que permita hacer el efecto de zoom con "transform: scale (1.5,1.5)"
     for (i = 0; i < objetosg.length; i++) {
-      // this.elementos.push(objetosg[i].getAttribute('id'))
-      $("#" + objetosg[i].getAttribute('id')).hover(
-        //funcion que se lanza "onmouseenter"
-        function () {
-          $(this).css({
-            "transform": "scale(1.5,1.5)",
-            "transition-duration": "500ms",
-            "transform-box": "fill-box",
-            "transform-origin": "center",
-            "transition-timing-function": "ease-out"
-                      })
-                    }, 
-      //funcion que se ejecuta "onmouseleave"
-      function () {
-        $(this).css({
-          "transform": "scale(1,1)",
-          "transition-duration": "500ms",
-          "transform-box": "fill-box",
-          "transform-origin": "center",
-          "transition-timing-function": "ease-out"
-                    })
-                  }
-      );
+      this.anadirEstiloObjeto(objetosg[i].getAttribute("id"));
     }
   },
 
@@ -57,34 +37,36 @@ parasails.registerPage('m-1-sistema-informatico-software', {
   methods: {
     //con mouseEnter no reconoce muy bien al elemento
     mouseOver(event) {
-
       let objetoSeleccionado = event.target.parentNode.id;
-console.log(objetoSeleccionado);
       //selecciono al objeto sobre el cual se encuentra el mouse y le doy un estilo css
-      $("#" + objetoSeleccionado).hover(
-        //funcion que se lanza "onmouseenter"
+      this.anadirEstiloObjeto(objetoSeleccionado);
+    },
+    anadirEstiloObjeto(id) {
+      // funcion para añadir un estilo css al objeto con "id" pasado por parametro, al pasar el mouse sobre él en la pagina
+      $("#" + id).hover(
+        //funcion que se lanza "onmouseenter" --> añade estilo
         function () {
           $(this).css({
             "transform": "scale(1.5,1.5)",
             "transition-duration": "500ms",
             "transform-box": "fill-box",
             "transform-origin": "center",
-            "transition-timing-function": "ease-out"
-                      })
-                    }, 
-      //funcion que se ejecuta "onmouseleave"
-      function () {
-        $(this).css({
-          "transform": "scale(1,1)",
-          "transition-duration": "500ms",
-          "transform-box": "fill-box",
-          "transform-origin": "center",
-          "transition-timing-function": "ease-out"
-                    })
-                  }
+            "transition-timing-function": "ease-out",
+            "fill":"chartreuse"
+          })
+        },
+        //funcion que se ejecuta "onmouseleave" --> vuelve a su estado original
+        function () {
+          $(this).css({
+            "transform": "scale(1,1)",
+            "transition-duration": "500ms",
+            "transform-box": "fill-box",
+            "transform-origin": "center",
+            "transition-timing-function": "ease-out",
+            "fill":""
+          })
+        }
       );
-
-
-    },
+    }
   }
 });

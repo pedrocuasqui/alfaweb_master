@@ -1,3 +1,7 @@
+// html {
+//   min-height: 100%;
+//   position: relative;
+// }
 #layout-modulos{
    
 
@@ -11,22 +15,49 @@
       }
     }
     .div-contenido{ //todos los modulos tendrán un contenedor de contenido, va a continuacion de la barra de navegacion
-      height: 88.5vh; // el alto del contenedor será el 80% del viewport
+      height: 88.5vh; // vh hace referencia a la centésima parte de la altura del viewport 
       width: 100%;
-    position: relative; //para que el tooltip pueda funcionar con position: aboslute
+      position: relative; //para que el tooltip pueda funcionar con position: aboslute
       display: inline-block;
       text-align: center;
       background-color: palevioletred;
-      
-
       border-radius: 4px;
+
+      #titulo-modulo{
+        height: 10%;
+        h2{
+            font-size: 3.5vw; 
+        }
+      }
     }
 
     #modalInicial{
-
       div.modal-content{
         background-color: darkorange;
       }
       
+    }
+
+    div.col-derecha{
+      background-color: blue;
+      display:  flex; // permite usar la propiedad align-items:
+      align-items: center; //coloco los elementos hijos en el centro del contenedor
+      font-size: 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
+      .navegacion{
+        margin-left: auto; //muevo este contenedor hacia la derecha del contenedor padre
+      }
+    }
+    div.col-izquierda{
+      background-color: aqua;
+      
+    }
+
+    div.col-central{
+      background-color: crimson;
+      
+    }
+    div.descripcion{
+      position: absolute;
+      bottom: 0;
     }
 }

@@ -1,4 +1,4 @@
-parasails.registerComponent('modulo-modal-ini-actv',{
+parasails.registerComponent('modulo-modal-inicio',{
     props:[
         'tituloContenido',
         'descripcionActividad',
@@ -22,14 +22,12 @@ parasails.registerComponent('modulo-modal-ini-actv',{
         <div class="modal-footer">
           <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar/</button> -->
           <a role="button" class="btn btn-secondary" :href="enlaceSiguienteActividad">Omitir actividad</a>
-          <button type="button" class="btn btn-primary" data-dismiss="modal" @click="empezarEvaluacion">Empezar</button>
+          <button type="button" class="btn btn-primary" data-dismiss="modal" >OK</button>
         </div>
       </div>
     </div>
   </div>`,
     methods:{
-        empezarEvaluacion(){
-            this.$emit('empezar-evaluacion');
-        },
+
     }
 });

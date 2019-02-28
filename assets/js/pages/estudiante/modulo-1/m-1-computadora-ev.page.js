@@ -33,7 +33,7 @@ parasails.registerPage('m-1-computadora-ev', {
 
   },
   created() {
-    // aqui se puede ejecutar código apenas la instancia ha sido creada, la propiedad "el" aun no estará disponible
+    // aqui se puede ejecutar código apenas la instancia vue ha sido creada, la propiedad "el" aun no estará disponible
     // mostramos el modal
     this.mostrarModal();
   },
@@ -67,7 +67,7 @@ parasails.registerPage('m-1-computadora-ev', {
       // para verficar que el DOM está listo se puede usar: $(fn)
       // fuente: https://es.stackoverflow.com/questions/51946/cu%C3%A1l-es-la-diferencia-entre-window-onload-y-document-ready
       $(function () {
-        $('#exampleModalCenter').modal('show');
+        $('#modalInicial').modal('show');
       });
     },
     iniciaConteo() {

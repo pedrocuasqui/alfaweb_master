@@ -13,12 +13,22 @@ parasails.registerPage('m-1-computadora', {
       default:"computador"
     },
     tituloContenido: 'Módulo 1 - La computadora',
+    descripcionActividad:"BIENVENIDO!!! \n Pasa el mouse sobre las imágenes para que puedas ver el nombre de los objetos.",
+    navegarSiguiente:'/m1-computadora-ev',
+    breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
+    { id: '', texto: 'Módulo 1 - La computadora', enlace: '/m1-computadora' } ],
 
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
+
+  created() {
+    // aqui se puede ejecutar código apenas la instancia vue ha sido creada, la propiedad "el" aun no estará disponible
+    // mostramos el modal
+    this.mostrarModal();
+  },
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
@@ -35,6 +45,13 @@ parasails.registerPage('m-1-computadora', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    mostrarModal() {
+      // para verficar que el DOM está listo se puede usar: $(fn)
+      // fuente: https://es.stackoverflow.com/questions/51946/cu%C3%A1l-es-la-diferencia-entre-window-onload-y-document-ready
+      $(function () {
+        $('#modalInicial').modal('show');
+      });
+    },
     mouseMovePc(event) {
       // clientX/Y obtiene las coordenadas del elemento con respecto al elemento padre, en este caso las coordenadas con respecto a <div id="m1-computadora"
 

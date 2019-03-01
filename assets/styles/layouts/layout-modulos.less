@@ -41,11 +41,13 @@
 
     div.col-derecha{
       // background-color: blue;
-      display:  flex; // permite usar la propiedad align-items:
-      align-items: center; //coloco los elementos hijos en el centro del contenedor
-      font-size: 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
+      // display:  flex; // permite usar la propiedad align-items:
+      // align-items: center; //coloco los elementos hijos en el centro del contenedor
+      position:relative;
       .navegacion{
         margin-left: auto; //muevo este contenedor hacia la derecha del contenedor padre
+        position: absolute;
+        font-size: 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
       }
     }
     div.col-izquierda{

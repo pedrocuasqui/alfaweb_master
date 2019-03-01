@@ -1,9 +1,6 @@
-// html {
-//   min-height: 100%;
-//   position: relative;
-// }
+
 #layout-modulos{
-   
+  
 
     [v-cloak] * { display:none } //ocultamos las expresiones vue mientras se cargan en la pagina los valores de los archivos js del cliente
     // [v-cloak]::before { content: "loading…" } //usar esta etiqueta si se quiere usar loading mientras carga, solo sirve para vuejs, no para carga de imagenes o carga de base de datos
@@ -17,19 +14,23 @@
     .div-contenido{ //todos los modulos tendrán un contenedor de contenido, va a continuacion de la barra de navegacion
       height: 88.5vh; // vh hace referencia a la centésima parte de la altura del viewport 
       width: 100%;
-      position: relative; //para que el tooltip pueda funcionar con position: aboslute
-      display: inline-block;
-      text-align: center;
+      display: inline-block; //para poder alinear todos los objetos al centro, especificamente el titulo
+      text-align: center;//alineacion del titulo al centro
       background-color: palevioletred;
       border-radius: 4px;
 
       #titulo-modulo{
         height: 10%;
         h2{
-            font-size: 3.5vw; 
+            font-size: 3.5vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
         }
       }
+      div:nth-child(2){//la fila numero dos, es decir la que contiene la imagen tiene el 75% del alto de su padre 
+        height: 77%; 
+        // background-color: chartreuse;
+      }
     }
+   
 
     #modalInicial{
       div.modal-content{
@@ -39,7 +40,7 @@
     }
 
     div.col-derecha{
-      background-color: blue;
+      // background-color: blue;
       display:  flex; // permite usar la propiedad align-items:
       align-items: center; //coloco los elementos hijos en el centro del contenedor
       font-size: 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
@@ -48,16 +49,40 @@
       }
     }
     div.col-izquierda{
-      background-color: aqua;
+      // background-color: aqua;
       
     }
 
     div.col-central{
-      background-color: crimson;
-      
+      // background-color: crimson;
+       
     }
-    div.descripcion{
+    .row:last-child{ //la ultima fila del contenedor --> avatar y descripcionObjeto
       position: absolute;
-      bottom: 0;
+      bottom: 3%;   
+      width:97%;   
+      
+      .avatar>img{
+        position: absolute;
+        height: 18vh;
+        width: 9vw;
+        bottom: 0;
+        left:0;
+        
+      }
+      .descripcion-objeto{
+        background-color: aliceblue;
+        border-radius:10px;
+        h6{
+          font-size: 1.5vw;
+        }
+      }
+
+
+      
+
     }
+
+
+   
 }

@@ -8,7 +8,7 @@
     text-align: center;
     overflow: visible;/*permite que el tooltip se pueda ver sobre los márgenes*/
     background-color:rgb(51, 192, 180);
-    width:55%; //width y height son el viewport de el grafico svg
+    width:75%; //width y height son el viewport de el grafico svg
     height: auto; //89% del 80vh del contenedor principal, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
   }
   //aplica estilo a los elementos de clase g con clase "contenedor", estos elementos contendrán el grupo de graficos svg sobre los cuales se moverá el mouse 
@@ -20,7 +20,7 @@
     pointer-events:none;//permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
     opacity:1;
     display: block;
-    position: absolute; // toma como referencia el inicio del padre que contenga la propiedad position:.. con cualquier valor
+    position: fixed; // el origen de coordenadas se toma de la ventana del navegador 
     border-radius: 3px;
     border:#d3d3d3 solid 1px;
     background: #fff;
@@ -29,13 +29,13 @@
     font-size: medium;
     padding: 8px;
     box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    max-height: 50px;
 }
 .breadcrumb>li+li:before { 
   color: rgb(53, 51, 51); 
   content: ">"; }
 
-  #navegacion{
-    margin-bottom: 0 !important
-  }
+
+
 }
 

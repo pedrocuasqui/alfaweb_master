@@ -77,15 +77,21 @@ parasails.registerPage('m-1-computadora-ev', {
       // Si el contador aun no ha llegado a cero, continua restando un numero cada segundo
       if (this.tiempoSegundos >= 1) {
         this.tiempoSegundos--;
+
+        this.descripcionObjeto=this.accion+" "+this.elementoTurno.toUpperCase()+ " Tienes " +this.tiempoSegundos+" segundos";
       } else {
         // si aún no se han recorrido todos los elementos del arreglo  se aumenta el contador de elementos y se obtiene un elemento "g" actual
         if (this.contadorTimer < (this.elementos.length - 1)) {
           this.contadorTimer++;
           this.elementoTurno = this.elementos[this.contadorTimer];
           this.nextTimer();
+
         }
+
+       
         // si se terminan de evaluar todos los objetos, se detiene la funcion setInterval
         else {
+
           this.actividadFinaliza = true;
           clearInterval(this.timer);
           this.mostrarModalFinalizacion();
@@ -120,6 +126,7 @@ parasails.registerPage('m-1-computadora-ev', {
           this.contadorTimer++;
           //si ya se aumenta un valor mas a la posicion final del arreglo, se termina la actividad
           if (this.contadorTimer == this.elementos.length) {
+            this.descripcionObjeto="Se acabó el tiempo \n Has obtenido "+ this.conteoAciertos+ " aciertos de"+ this.elementos.length;
             this.actividadFinaliza = true;
             clearInterval(this.timer);
             this.mostrarModalFinalizacion();

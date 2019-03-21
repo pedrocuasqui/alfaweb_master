@@ -42,18 +42,21 @@ module.exports = {
         submodulos: [{
           id:'c1',
           nombre: 'El sistema informático (Hardware y software)',
+          enlace:'/m1-sistema-informatico',
           descripcion: 'Descripcion submódulo',
-          multimedia: 'http://...',
+          multimedia: 'http://..',
           temas: [
              {
               id:'12',
               nombre: 'Monitor',
+              enlace:'/m1-sistema-informatico-monitor',
               descripcion: 'El monitor ...',
               multimedia: 'http://...'
             },
             {
               id:'13',
               nombre: 'Mouse',
+              enlace:'/m1-sistema-informatico-mouse',
               descripcion: 'El monitor ...',
               multimedia: 'http://...'
             }]
@@ -61,6 +64,7 @@ module.exports = {
         {
           id:'c2',
           nombre: 'Conexion de los distintos componentes de la computadora',
+          enlace:'/m1-conexion-componentes',
           descripcion: 'Descripcion submódulo',
           multimedia: 'http://...',
           temas: [

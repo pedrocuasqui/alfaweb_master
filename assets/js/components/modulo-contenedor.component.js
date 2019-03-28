@@ -17,7 +17,7 @@ parasails.registerComponent('modulo-contenedor',{
     <div class="row">
       <!-- columna izquierda -->
       <div class="col-sm-2 col-izquierda">
- 
+        <side-var-menu></side-var-menu>
       </div>
       
       <!-- Columna central -->

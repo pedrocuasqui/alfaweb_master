@@ -1,25 +1,26 @@
 
 #layout-modulos{
   
- 
+ position: relative;
+
     [v-cloak] * { display:none } //ocultamos las expresiones vue mientras se cargan en la pagina los valores de los archivos js del cliente
     // [v-cloak]::before { content: "loading…" } //usar esta etiqueta si se quiere usar loading mientras carga, solo sirve para vuejs, no para carga de imagenes o carga de base de datos
     .div-header{ //ocupamos el 100% de espacio de ancho para la barra de navegacion
       width: 100%;
-      font-size: 1.6vw;
+      height: 11.5vh;
+      font-size: 1.1rem;
       nav ol{ //eliminamos el margen de los elementos ol de la barra de navegacion
         margin: 0 !important;
-      
       }
     }
     .div-contenido{ //todos los modulos tendrán un contenedor de contenido, va a continuacion de la barra de navegacion
-      height: 88.5vh; // vh hace referencia a la centésima parte de la altura del viewport 
+      height: 88vh; // vh hace referencia a la centésima parte de la altura del viewport 
       width: 100%;
       display: inline-block; //para poder alinear todos los objetos al centro, especificamente el titulo
       text-align: center;//alineacion del titulo al centro
       background-color: palevioletred;
       border-radius: 4px;
-
+        
       #titulo-modulo{
         height: 10%;
         h2{
@@ -53,7 +54,9 @@
     }
     div.col-izquierda{
       // background-color: aqua;
-      
+      opacity: 1;
+      overflow: hidden;
+      padding-left: 0px ; // permite al sidebar menu apegarse al margen del contenedor izquierdo
     }
 
     div.col-central{
@@ -147,5 +150,48 @@
       border: solid white;
       border-width: 0 0.1rem;
   }
+
+
+  #toggle-menu{
+      position:absolute; //siempre se encontrará en el mismo lugar
+      background-color: #648379;
+      margin-top: 15%;
+      color: white;
+      cursor: pointer; //cambia el icono del puntero a la manito 
+      z-index: 1000;
+      font-size: 2rem;
+    //   opacity: 0;
+  }
+  #sidebar-menu{
+    z-index: 10000;
+    position: absolute;
+    width: 95%;
+    background-color: rgb(17,17,17,0.9);
+    overflow: hidden;
+    height: 100%; // esto estará contenido dentro de la columna izquierda
+    // max-height: 100%;
+    opacity: 1;
+    transition: all 0.3s ease-in-out;
+    
+    
+    
+  }
+  .oculta-sidebar{
+    background-color: #2EE3AD;
+    margin-left: -88%;
+}
+  .caret{
+    position: absolute;
+    right: 0;
+    color: white;
+    font-size: 2rem;
+    margin-top: 85%;
+    transition: all 0.3s ease-in-out;
+    cursor: pointer; //cambia el icono del puntero a la manito 
+}
+
+#menuContenidos li{
+    font-size:0.5rem;
+}
    
 }

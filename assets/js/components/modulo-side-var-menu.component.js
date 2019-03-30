@@ -1,4 +1,4 @@
-parasails.registerComponent('side-var-menu', {
+parasails.registerComponent('modulo-side-var-menu', {
     props: {
 
 
@@ -89,6 +89,13 @@ parasails.registerComponent('side-var-menu', {
                         descripcion: 'Descripcion submódulo',
                         multimedia: 'http://..',
                     },
+                    {
+                        id: 'e2',
+                        nombre: 'Redacción de un documento',
+                        enlace: '/',
+                        descripcion: 'Descripcion submódulo',
+                        multimedia: 'http://..',
+                    },
 
                     ]
                 },
@@ -97,23 +104,22 @@ parasails.registerComponent('side-var-menu', {
     },
     template: `  
     <div >
-    <div id="sidebar-menu" v-bind:class="{'sidebar-oculto':showSidebar}">
-        <a  href="#menuContenidos" data-toggle="collapse" class="d-md-none d-lg-none d-sm-block d-xs-block"><i class="fas fa-bars"></i>   </a>
- 
-        <div id="menuContenidos" class=" collapse d-sm-none d-xs-none d-md-block d-lg-block" >
+  
+    <div id="sidebar-menu" v-bind:class="{'sidebar-oculto':showSidebar}" >
+        <div id="menuContenidos" >
             <div v-for="modulo in contenidos" class="dropdown">
-                <button class="dropbtn">{{modulo.nombreModulo}}</button>
+                <a class="btn btn-primary dropbtn" :href="modulo.enlace" >{{modulo.nombreModulo}}</a>
                 <div class="dropdown-content ">
-                    <a v-for="submodulo in modulo.submodulos" href="#">{{submodulo.nombre}}</a>
+                    <a v-for="submodulo in modulo.submodulos" :href="submodulo.enlace">{{submodulo.nombre}}</a>
                 </div>
             </div>
     
         </div> 
 
                 
-        <div class="caret-container">
-          <i v-if="!showSidebar" @click="onClickLeftCaret" id="left-caret" class="caret fas fa-caret-left"></i>
-          <i v-else @click="onClickRightCaret" id="right-caret" class="caret fas fa-caret-right"></i>
+        <div class="caret-container ">
+          <i v-if="!showSidebar" @click="onClickLeftCaret" id="left-caret" class="caret fas fa-caret-left "></i>
+          <i v-else @click="onClickRightCaret" id="right-caret" class="caret fas fa-caret-right "></i>
         </div>
         
     </div>

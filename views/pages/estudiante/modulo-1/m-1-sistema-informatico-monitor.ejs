@@ -2,11 +2,11 @@
   <!-- v-cloak mantiene invisible las expresiones de vue que aun no han sido cargadas por el objeto Vue, pueesto que el codigo HTML se carga primero y las expresiones se ven mal sin datos -->
   <!-- en esta pantalla se pone a prueba el conocimiento adquirido en la página anterior, se pregunta al usuario por un elemento de la computadora y que el usuario seleccione el correcto -->
 
-  <!--HEADER ******************************************************************************************* -->
-  <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav>
+
   <!-- CONTENIDOS******************************************************************************************* -->
   <modulo-contenedor :titulo-contenido="tituloContenido" :descripcion-objeto="descripcionObjeto"
-    :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente">
+    :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente"
+    :breadcrumb="breadcrumb">
 
     <svg id="lienzo-svg"  version="1.0" viewBox="0 0 375 225" xmlns="http://www.w3.org/2000/svg">
       <g id="pantalla">

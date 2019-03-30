@@ -3,12 +3,10 @@
 
   <!-- MODALS******************************************************************************************* -->
 
-  <!--HEADER ******************************************************************************************* -->
-  <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav>
-
   <!-- CONTENIDOS******************************************************************************************* -->
   <modulo-contenedor :titulo-contenido="tituloContenido" :descripcion-objeto="descripcionObjeto"
-    :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente">
+    :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente"
+    :breadcrumb="breadcrumb">
     <svg id="lienzo-svg" style="enable-background:new" version="1.0" viewBox="0 0 375 225" xmlns="http://www.w3.org/2000/svg">
       <g id="adobe" @mouseover="mouseOver">
         <rect id="rect178" x="210.77" y="22.086" width="131.09" height="23.89" style="fill:#e6e6e6"/>

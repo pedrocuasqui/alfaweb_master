@@ -24,28 +24,32 @@
         #div-header {
             //ocupamos el 100% de espacio de ancho para la barra de navegacion
             width       : 100%;
-            height      : 10%;
-            font-size   : 1.6vw;
-            margin-right: 0 !important;
-
+            height      : 9vh; //10% del alto de .div-contenido
+            font-size   : 4vh;
+            // margin-right: 0 !important;
+            
+            display: block;
+            background-color: #ac30ac;
+            
+            nav {
+                height       : 100% !important;
+            }
             nav ol {
                 //eliminamos el margen de los elementos ol de la barra de navegacion
                 margin: 0 !important;
-
+                padding-top: 7px !important;
+                padding-bottom: 7px !important;
+        
             }
 
-            .col {
-                padding-left : 0;
-                padding-right: 0;
-                display      : inline-block; //para que se ajuste al contenido
-                height       : 100%;
-            }
+        }
+        .row.primera-fila>.col-sm-12{
+            padding: 0px !important;
         }
 
-
-
-        #div-body {
-            height     : 90%;
+        .row#div-body {
+            height     : 90vh;
+            background-color: #3e8e41;
             // position: absolute;
             // top     :0;
             // bottom  : 0; //para que se ajuste al fondo
@@ -58,6 +62,7 @@
             }
 
             div.col-izquierda {
+                height: 100%;
                 position           : relative;
                 // background-color: aqua;
                 overflow           : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
@@ -65,6 +70,7 @@
                 padding-right      : 0% !important; //que el contenido se encuentre apegado al margen derecho
 
                 #sidebar-menu {
+                    //todo el sidebar
                     z-index         : 10000;
                     position        : absolute;
                     width           : 100%;
@@ -98,32 +104,37 @@
                         }
                     }
 
-
                     #menuContenidos {
 
                         /*BLOQUE DEL CONTENIDO DEL MENÚ*/
+                        height    : 100%;
+                        float     : left;
+                        width     : 91%;
+                        overflow-y: auto;
 
                         .dropdown {
                             position: relative;
                             display : block;
-                            width: 91%;
+                            width   : 100%;
+                            float   : left;
                         }
 
                         .dropbtn {
-                            width: 100%;
-                            background-color: rgb(17, 17, 17, 0.9);;
-                            color           : white;
-                            padding         : 2px ;
-                            font-size       : 1vw;
-                            border          : none;
-                            text-align      : left;
+                            width           : 100%;
+                            background-color: rgb(17, 17, 17, 0.9);
+                            ;
+                            color        : white;
+                            padding      : 2px;
+                            font-size    : 1vw;
+                            border       : none;
+                            text-align   : left;
                             border-bottom: 1px solid rgb(138, 133, 133);
 
                         }
 
                         .dropdown-content {
-                            display : none;
-                            position: absolute;
+                            display         : none;
+                            // position        : absolute; //descomentar esta linea para mostrar el contenido sin mover las demas filas
                             background-color: #f1f1f1;
                             min-width       : 160px;
                             box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
@@ -135,7 +146,7 @@
                             padding        : 10px 16px;
                             text-decoration: none;
                             display        : block;
-                            font-size       : 1vw;
+                            font-size      : 1vw;
 
                         }
 
@@ -145,7 +156,7 @@
 
                         .dropdown:hover .dropdown-content {
                             display: block;
-                            width: 100%;
+                            width  : 100%;
                         }
 
                         .dropdown:hover .dropbtn {
@@ -153,24 +164,13 @@
                         }
 
                         /*FIN BLOQUE DEL CONTENIDO DEL MENU*/
-
-
-
                     }
-
-
-
-
                 }
 
                 .sidebar-oculto {
                     background-color: #2EE3AD;
-                    margin-left     : -91%; //oculta hacia la izquierda el 90% del andho
+                    margin-left     : -94%; //oculta hacia la izquierda el 90% del andho
                 }
-
-
-
-
 
             }
 
@@ -256,3 +256,5 @@
 
 
 }
+
+

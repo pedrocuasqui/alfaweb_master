@@ -22,14 +22,18 @@ parasails.registerComponent('modulo-contenedor',{
       },
     template:`  
     <div class="div-contenido container-fluid" v-cloak>
-    
-      <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
+      <div class="row primera-fila"  >
+        <div class="col-sm-12">
+            <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
+        </div>
+        
+      </div>
 
     <!-- Primera fila -Titulo del contenido -->
     <div class="row" id="div-body">
         <!-- columna izquierda -->
         <div class="col-sm-2 col-izquierda">
-            <side-var-menu></side-var-menu>
+            <modulo-side-var-menu></modulo-side-var-menu>
         </div>
 
         <!-- Columna central -->

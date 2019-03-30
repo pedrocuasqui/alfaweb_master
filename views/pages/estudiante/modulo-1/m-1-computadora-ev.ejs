@@ -7,12 +7,8 @@
   <modulo-modal-fin-actv :conteo-aciertos="conteoAciertos" :elementos="elementos" :actividad-finaliza="actividadFinaliza"></modulo-modal-fin-actv>
 
 
-  <!--HEADER ******************************************************************************************* -->
-  <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
-
-
   <!-- CONTENIDOS******************************************************************************************* -->
-  <modulo-contenedor :titulo-contenido="tituloContenido" :descripcion-objeto="descripcionObjeto" :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" >
+  <modulo-contenedor :titulo-contenido="tituloContenido" :descripcion-objeto="descripcionObjeto" :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb">
       
     <svg id="lienzo-svg" style="enable-background:new" version="1.0" viewBox="0 0 375 225" xmlns="http://www.w3.org/2000/svg">
       <g id="cpu" class="contenedor" @mousedown="moseDownPc">

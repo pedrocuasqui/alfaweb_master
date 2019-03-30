@@ -64,10 +64,11 @@ parasails.registerComponent('side-var-menu', {
         };
     },
     template: `  <div >
-    <div id="sidebar-menu" v-bind:class="{'oculta-sidebar':showSidebar}">
-      
+    <div id="sidebar-menu" v-bind:class="{'sidebar-oculto':showSidebar}">
+      <div class="caret-container">
         <i v-if="!showSidebar" @click="onClickLeftCaret" id="left-caret" class="caret fas fa-caret-left"></i>
         <i v-else @click="onClickRightCaret" id="right-caret" class="caret fas fa-caret-right"></i>
+       </div> 
         <div id="menuContenidos">
             <ul>
                 <li v-for="item in contenidos"> <a :href="item.enlace">{{item.nombreModulo}} </a></li>    

@@ -16,70 +16,83 @@ module.exports = {
   },
 
 
-  fn: async function (inputs,exits) {
+  fn: async function (inputs, exits) {
 
     var contenidos = [
       {
-        id:'a',
+        id: 'a',
         nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la intro',
-        enlace:'',
+        enlace: '',
         multimedia: 'http://...',
         submodulos: []
       },
       {
-        id:'b',
+        id: 'b',
         nombreModulo: 'antes de empezar', descripcion: 'descripcion antes de empezar',
-        enlace:'',
+        enlace: '',
         multimedia: 'http://...',
         submodulos: []
       },
       {
-        id:'c',
+        id: 'c',
         nombreModulo: 'Módulo 1- La computadora',
-        enlace:'/m1-computadora',
+        enlace: '/m1-computadora',
         descripcion: 'descripcion modulo',
         multimedia: 'http://...',
         submodulos: [{
-          id:'c1',
+          id: 'c1',
           nombre: 'El sistema informático (Hardware y software)',
-          enlace:'/m1-sistema-informatico',
+          enlace: '/m1-sistema-informatico',
           descripcion: 'Descripcion submódulo',
           multimedia: 'http://..',
-          temas: [
+          /* temas: [
+              {
+               id:'12',
+               nombre: 'Monitor',
+               enlace:'/m1-sistema-informatico-monitor',
+               descripcion: 'El monitor ...',
+               multimedia: 'http://...'
+             },
              {
-              id:'12',
-              nombre: 'Monitor',
-              enlace:'/m1-sistema-informatico-monitor',
-              descripcion: 'El monitor ...',
-              multimedia: 'http://...'
-            },
-            {
-              id:'13',
-              nombre: 'Mouse',
-              enlace:'/m1-sistema-informatico-mouse',
-              descripcion: 'El monitor ...',
-              multimedia: 'http://...'
-            }]
+               id:'13',
+               nombre: 'Mouse',
+               enlace:'/m1-sistema-informatico-mouse',
+               descripcion: 'El monitor ...',
+               multimedia: 'http://...'
+             }]*/
         },
         {
-          id:'c2',
+          id: 'c2',
           nombre: 'Conexion de los distintos componentes de la computadora',
-          enlace:'/m1-conexion-componentes',
+          enlace: '/m1-conexion-componentes',
           descripcion: 'Descripcion submódulo',
           multimedia: 'http://...',
-          temas: [
-            {}
-          ]
-        }
+
+        }]
+      },
+
+      {
+        id: 'd',
+        nombreModulo: 'Módulo 2- Navegacion en escritorio', descripcion: 'descripcion antes de empezar',
+        enlace: '/m2-navegacion-escritorio',
+        multimedia: 'http://...',
+        submodulos: [{
+          id: 'd1',
+          nombre: 'El escritorio',
+          enlace: '/m2-navegacion-escritorio-escritorio',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+         
         ]
-      }];
+      },];
 
     return exits.success({
       contenidos
       // cuando el nombre de la propiedad es igual al nombre del objeto que contiene la información, es posible enviar solo un dato es decir que, pasar, contenido: contenidos es igual que pasar contenidos
     });
-  
-  
+
+
   }
 
 

@@ -1,11 +1,25 @@
 parasails.registerComponent('modulo-contenedor',{
-    props:[
-        'tituloContenido',
-        'descripcionObjeto',
-        'navegarAtras',
-        'navegarSiguiente',
-        'breadcrumb',
-    ],
+    props:{
+        tituloContenido :String,
+        
+        descripcionObjeto: [String],
+        navegarAtras: {
+          type: String,
+          required: false,
+        },
+        navegarSiguiente: {
+          type: String,
+          required: false,
+        },
+        breadcrumb: {
+          type: Array,
+          required: false,
+        },
+        contenidos : {
+          type: Object,
+          required: false,
+        },
+      },
     template:`  
     <div class="div-contenido container-fluid" v-cloak>
     

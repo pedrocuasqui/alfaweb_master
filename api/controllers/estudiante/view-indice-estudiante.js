@@ -85,7 +85,8 @@ module.exports = {
         },
          
         ]
-      },];
+      },
+    ];
 
     return exits.success({
       contenidos

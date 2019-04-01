@@ -9,7 +9,7 @@ parasails.registerPage('m-2-navegacion-escritorio', {
     navegarSiguiente: '/m2-navegacion-escritorio-escritorio',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
-    { id: '', texto: 'Navegación-escritorio', enlace: '/m1-navegacion-escritorio' },
+    { id: '', texto: 'Navegación-escritorio', enlace: '/m2-navegacion-escritorio' },
   ],
   },
 

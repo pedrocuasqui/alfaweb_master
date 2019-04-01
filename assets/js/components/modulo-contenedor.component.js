@@ -1,33 +1,35 @@
-parasails.registerComponent('modulo-contenedor',{
-    props:{
-        tituloContenido :String,
-        
+parasails.registerComponent('modulo-contenedor', {
+    props: {
+        tituloContenido: String,
+
         descripcionObjeto: [String],
         navegarAtras: {
-          type: String,
-          required: false,
+            type: String,
+            required: false,
         },
         navegarSiguiente: {
-          type: String,
-          required: false,
+            type: String,
+            required: false,
         },
         breadcrumb: {
-          type: Array,
-          required: false,
+            type: Array,
+            required: false,
         },
-        contenidos : {
-          type: Object,
-          required: false,
+        contenidos: {
+            type: Object,
+            required: false,
         },
-      },
-    template:`  
-    <div class="div-contenido container-fluid" v-cloak>
-      <div class="row primera-fila"  >
-        <div class="col-sm-12">
+    },
+    template: `  
+<div class="div-contenido container-fluid" v-cloak>
+    <div class="row" id="div-cabecera"  >
+        <div class="col-sm-10">
             <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
         </div>
-        
-      </div>
+        <div class="col-sm-2">
+            <img src="images/svg/iconoPolhibou.svg" alt="Logo Polhibou"  />
+        </div>
+    </div>
 
     <!-- Primera fila -Titulo del contenido -->
     <div class="row" id="div-body">
@@ -37,7 +39,7 @@ parasails.registerComponent('modulo-contenedor',{
         </div>
 
         <!-- Columna central -->
-        <div class="col-sm-9 col-central">
+        <div class="col-sm-8 col-central">
             <div class="row">
     
             <div class="navegacion-siguiente">
@@ -70,21 +72,19 @@ parasails.registerComponent('modulo-contenedor',{
 
         </div>
         <!-- columna derecha -->
-        <div class="col-sm-1 col-derecha">
+        <div class="col-sm-2 col-derecha">
 
         </div>
-
         <!--fin row-->
-
     </div>
 </div>
 
     `,
 
-    data: function(){
+    data: function () {
         return {};
     },
-    methods:{
+    methods: {
 
     }
 });

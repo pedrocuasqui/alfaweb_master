@@ -1,7 +1,8 @@
 #layout-modulos {
     //es el body del layout principal
-    position: relative; //se usa para poder usar elementos con posicion absoluta dentro de este padre
-
+    //se usa para poder usar elementos con posicion absoluta dentro de este padre
+    height: 100vh; // vh hace referencia a la centésima parte de la altura del viewport 
+    width : 100vw; //vw hace referencia al la centésima parte del ancho del viewport
 
     [v-cloak] * {
         display: none
@@ -10,64 +11,91 @@
     //ocultamos las expresiones vue mientras se cargan en la pagina los valores de los archivos js del cliente
     // [v-cloak]::before { content: "loading…" } //usar esta etiqueta si se quiere usar loading mientras carga, solo sirve para vuejs, no para carga de imagenes o carga de base de datos
 
-    //pendiente decidir donde colocar el div del header --> breadcrumb
+
 
     .div-contenido {
         //el contenido abarca todo
-        height          : 100vh; // vh hace referencia a la centésima parte de la altura del viewport 
-        width           : 100%;
-        display         : inline-block; //para poder alinear todos los objetos al centro, especificamente el titulo
-        //    text-align: center;//alineacion del titulo al centro
-        background-color: palevioletred;
-        border-radius   : 4px;
+        position           : relative;
+        // background-color: palevioletred;
+        padding-left       : 0px;
+        padding-right      : 0px;
 
-        #div-header {
-            //ocupamos el 100% de espacio de ancho para la barra de navegacion
-            width       : 100%;
-            height      : 9vh; //10% del alto de .div-contenido
-            font-size   : 4vh;
-            // margin-right: 0 !important;
-            
-            display: block;
-            background-color: #ac30ac;
-            
-            nav {
-                height       : 100% !important;
+        .row#div-cabecera {
+            background-color: #0460a9;
+            width           : 100%;
+            height          : 9vh; //9% del alto de .div-contenido
+            margin          : 0px !important;
+            margin-right    : 0px !important;
+            margin-left     : 0px !important;
+
+            #breadcrumb {
+                //ocupamos el 100% de espacio de ancho para la barra de navegacion
+                width    : 100%;
+                height   : 100%;
+                font-size: 4vh;
+
+                nav ol {
+                    //eliminamos el margen de los elementos ol de la barra de navegacion
+                    margin          : 0 !important;
+                    padding-top     : 7px !important;
+                    padding-bottom  : 7px !important;
+                    background-color: #0460a9;
+
+                    a {
+                        color: aliceblue;
+                    }
+                }
+
             }
-            nav ol {
-                //eliminamos el margen de los elementos ol de la barra de navegacion
-                margin: 0 !important;
-                padding-top: 7px !important;
-                padding-bottom: 7px !important;
-        
-            }
+
+
 
         }
-        .row.primera-fila>.col-sm-12{
-            padding: 0px !important;
+
+        .row#div-cabecera> :first-child {
+            // columna que contiene el breadcrumb
+            height: 100%;
         }
+
+        .row#div-cabecera>:last-child {
+            //columna que contiene la imagen polhibou
+            height: 100%;
+
+            img {
+                //el ultimo hijo: columna con el logo polhibou
+                height          : 84%;
+                width           : 100%;
+            }
+        }
+
+
 
         .row#div-body {
-            height     : 90vh;
+            height          : 90vh;
             background-color: #3e8e41;
-            // position: absolute;
-            // top     :0;
-            // bottom  : 0; //para que se ajuste al fondo
+            position        : relative; //necesario para tomar como referencia de "position" hijo a este padre
+            margin-right    : 0px !important;
+            margin-left     : 0px !important;
+            width: 100%;
 
             div.col-derecha {
-                background-color: blue;
-                // display      :  flex; // permite usar la propiedad align-items:
-                // align-items  : center; //coloco los elementos hijos en el centro del contenedor
-
+                background-color: #b1cee6;
+                
             }
 
             div.col-izquierda {
                 height: 100%;
-                position           : relative;
-                // background-color: aqua;
-                overflow           : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
-                padding-left       : 0% !important; //que el contenido se encuentre apegado al margen izquierdo
-                padding-right      : 0% !important; //que el contenido se encuentre apegado al margen derecho
+                //ancho definido por col-sm-2
+                position     : relative;
+                overflow     : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
+                padding-left : 0% !important; //que el contenido se encuentre apegado al margen izquierdo
+                padding-right: 0% !important; //que el contenido se encuentre apegado al margen derecho
+                
+
+                .sidebar-oculto {
+                    background-color: #2EE3AD;
+                    margin-left     : -95%; //oculta hacia la izquierda el 90% del andho
+                }
 
                 #sidebar-menu {
                     //todo el sidebar
@@ -77,7 +105,6 @@
                     background-color: rgb(17, 17, 17, 0.9);
                     overflow        : hidden;
                     height          : 100%; // esto estará contenido dentro de la columna izquierda
-                    // max-height   : 100%;
                     opacity         : 1;
                     transition      : all 0.3s ease-in-out;
                     text-align      : left;
@@ -133,12 +160,12 @@
                         }
 
                         .dropdown-content {
-                            display         : none;
+                            display            : none;
                             // position        : absolute; //descomentar esta linea para mostrar el contenido sin mover las demas filas
-                            background-color: #f1f1f1;
-                            min-width       : 160px;
-                            box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-                            z-index         : 1;
+                            background-color   : #f1f1f1;
+                            min-width          : 160px;
+                            box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                            z-index            : 1;
                         }
 
                         .dropdown-content a {
@@ -167,10 +194,7 @@
                     }
                 }
 
-                .sidebar-oculto {
-                    background-color: #2EE3AD;
-                    margin-left     : -94%; //oculta hacia la izquierda el 90% del andho
-                }
+
 
             }
 
@@ -179,12 +203,12 @@
                 position           : relative; //para poder acomodar los botones en funcion de este padre
                 display            : inline-block;
                 text-align         : center;
-
+                
                 #titulo-modulo {
                     height: 8vw;
 
                     h2 {
-                        font-size: 3.5vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
+                        font-size: 2.5vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
 
                     }
                 }
@@ -257,4 +281,7 @@
 
 }
 
-
+#layout-modulos>div:first-child{
+    padding-left:1px !important; 
+    padding-right:1px !important; 
+}

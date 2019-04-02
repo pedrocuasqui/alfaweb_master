@@ -76,12 +76,9 @@
             position        : relative; //necesario para tomar como referencia de "position" hijo a este padre
             margin-right    : 0px !important;
             margin-left     : 0px !important;
-            width: 100%;
+            width           : 100%;
 
-            div.col-derecha {
-                background-color: #b1cee6;
-                
-            }
+
 
             div.col-izquierda {
                 height: 100%;
@@ -90,7 +87,7 @@
                 overflow     : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
                 padding-left : 0% !important; //que el contenido se encuentre apegado al margen izquierdo
                 padding-right: 0% !important; //que el contenido se encuentre apegado al margen derecho
-                
+
 
                 .sidebar-oculto {
                     background-color: #2EE3AD;
@@ -198,68 +195,81 @@
 
             }
 
-            div.col-central {
-                // background-color: chocolate;
-                position           : relative; //para poder acomodar los botones en funcion de este padre
-                display            : inline-block;
-                text-align         : center;
-                
-                #titulo-modulo {
-                    height: 8vw;
+            #columna-contenido-lateral>.fila-principal {
+                height: 100%;
+                position: relative;
+                div.col-central {
+                    // background-color: chocolate;
+                    position           : relative; //para poder acomodar los botones en funcion de este padre
+                    display            : inline-block;
+                    text-align         : center;
 
-                    h2 {
-                        font-size: 2.5vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
+                    #titulo-modulo {
+                        height: 8vw;
 
+                        h2 {
+                            font-size: 2.5vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
+
+                        }
                     }
-                }
 
-                .navegacion-siguiente {
-                    margin-top : 0;
-                    margin-left: 94%; //muevo este contenedor hacia la derecha del contenedor padre
-                    position   : absolute;
-                    z-index    : 1;
-                    font-size  : 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
-                }
+                    .navegacion-siguiente {
+                        margin-top : 0;
+                        margin-left: 94%; //muevo este contenedor hacia la derecha del contenedor padre
+                        position   : absolute;
+                        z-index    : 1;
+                        font-size  : 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
+                    }
 
-                .navegacion-atras {
-                    margin-top  : 0;
-                    margin-right: 94%; //muevo este contenedor hacia la izquierda del contenedor padre
-                    position    : absolute;
-                    font-size   : 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
-                    z-index     : 1;
-                }
+                    .navegacion-atras {
+                        margin-top  : 0;
+                        margin-right: 94%; //muevo este contenedor hacia la izquierda del contenedor padre
+                        position    : absolute;
+                        font-size   : 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
+                        z-index     : 1;
+                    }
 
-                .row:last-child {
-                    //la ultima fila del contenedor --> avatar y descripcionObjeto
-                    position: absolute;
-                    bottom  : 0.5%;
-                    width   : 100%;
-                    height  : 10%;
+                    .row:last-child {
+                        //la ultima fila del contenedor --> avatar y descripcionObjeto
+                        position: absolute;
+                        bottom  : 0.5%;
+                        width   : 100%;
+                        height  : 10%;
 
-                    #avatar {
-                        height  : 100%;
-                        width   : 10%;
-                        position: relative;
-
-                        img {
-                            position: absolute;
+                        #avatar {
                             height  : 100%;
-                            width   : 100%;
-                            bottom  : 0;
-                            left    : 0;
+                            width   : 10%;
+                            position: relative;
 
+                            img {
+                                position: absolute;
+                                height  : 100%;
+                                width   : 100%;
+                                bottom  : 0;
+                                left    : 0;
+
+                            }
+                        }
+
+                        #descripcion-objeto {
+                            background-color: aliceblue;
+                            width           : 85%;
+                            height          : 100%;
+                            border-radius   : 10px;
+
+                            h6 {
+                                font-size: 1.5vw;
+                            }
                         }
                     }
+                }
 
-                    #descripcion-objeto {
-                        background-color: aliceblue;
-                        width           : 85%;
-                        height          : 100%;
-                        border-radius   : 10px;
-
-                        h6 {
-                            font-size: 1.5vw;
-                        }
+                div.col-derecha {
+                    height: 100%;
+                    background-color: #b1cee6;
+                    .row.usuario{
+                        height: 25%;
+                        border-bottom:1px solid black;
                     }
                 }
             }
@@ -281,7 +291,7 @@
 
 }
 
-#layout-modulos>div:first-child{
-    padding-left:1px !important; 
-    padding-right:1px !important; 
+#layout-modulos>div:first-child {
+    padding-left : 1px !important;
+    padding-right: 1px !important;
 }

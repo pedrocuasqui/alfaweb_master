@@ -18,27 +18,27 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    var contenidos = [
+    var contenidos= [
       {
         id: 'a',
         nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la intro',
         enlace: '',
-        multimedia: 'http://...',
+        multimedia: 'images/svg/modulo1-portada.svg',
         submodulos: []
       },
       {
         id: 'b',
         nombreModulo: 'antes de empezar', descripcion: 'descripcion antes de empezar',
         enlace: '',
-        multimedia: 'http://...',
+        multimedia: 'images/svg/modulo1-portada.svg',
         submodulos: []
       },
       {
         id: 'c',
-        nombreModulo: 'Módulo 1- La computadora',
+        nombreModulo: 'Módulo 1- La computadora ',
         enlace: '/m1-computadora',
-        descripcion: 'descripcion modulo',
-        multimedia: 'http://...',
+        descripcion: 'descripcion la computadora',
+        multimedia: 'images/svg/modulo1-portada.svg',
         submodulos: [{
           id: 'c1',
           nombre: 'El sistema informático (Hardware y software)',
@@ -73,9 +73,10 @@ module.exports = {
 
       {
         id: 'd',
-        nombreModulo: 'Módulo 2- Navegacion en escritorio', descripcion: 'descripcion antes de empezar',
+        nombreModulo: 'Módulo 2- Navegacion en escritorio',
+        descripcion: 'descripcion Navegacion escritorio',
         enlace: '/m2-navegacion-escritorio',
-        multimedia: 'http://...',
+        multimedia: 'images/svg/buho_bebe.svg',
         submodulos: [{
           id: 'd1',
           nombre: 'El escritorio',
@@ -83,7 +84,59 @@ module.exports = {
           descripcion: 'Descripcion submódulo',
           multimedia: 'http://..',
         },
-         
+
+        ]
+      },
+      {
+        id: 'e',
+        nombreModulo: 'Módulo 3-Edición de documentos Word',
+        descripcion: 'Edición de documentos en word parte 1',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'e1',
+          nombre: 'Pantalla principal',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },  ],
+      },
+      {
+        id: 'f',
+        nombreModulo: 'Módulo 4-Edición de documentos Word',
+        descripcion: 'Edicion de documentos en word parte 2',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'f1',
+          nombre: 'Pantalla principal',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        }, ]
+      },
+
+      {
+        id: 'g',
+        nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
+        descripcion: 'descripcion edicion de documentos',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'g1',
+          nombre: 'Tablas',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+        {
+          id: 'g2',
+          nombre: 'Imágenes',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+
         ]
       },
     ];

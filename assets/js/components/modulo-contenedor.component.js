@@ -59,7 +59,7 @@ parasails.registerComponent('modulo-contenedor', {
                     </div>
 
 
-                    <div class="row">
+                    <div class="row pie-contenido">
                         <div class="col-sm-1" id="avatar">
                             <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
                         </div>

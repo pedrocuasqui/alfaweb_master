@@ -21,6 +21,11 @@
         padding-left       : 0px;
         padding-right      : 0px;
 
+        ////////////////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////////////
+        ////////////////////---CABECERA PRINCIPAL---////////////////////
         .row#div-cabecera {
             background-color: #0460a9;
             width           : 100%;
@@ -71,6 +76,11 @@
 
 
 
+        ////////////////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////////////
+        // /////////////////////////////////////////////////////////////
+        ////////////////////---CUERPO PRINCIPAL---////////////////////
         .row#div-body {
             height             : 90vh;
             // background-color: #3e8e41;
@@ -80,7 +90,8 @@
             width              : 100%;
 
 
-
+            // /////////////////////////////////////////////////////////////
+            //////////////////////---SIDE BAR MENU---///////////////////////
             div.col-izquierda {
                 height: 100%;
                 //ancho definido por col-sm-2
@@ -147,23 +158,24 @@
                         .dropbtn {
                             width           : 100%;
                             background-color: rgb(17, 17, 17, 0.9);
-                            ;
-                            color        : white;
-                            padding      : 2px;
-                            font-size    : 1vw;
-                            border       : none;
-                            text-align   : left;
-                            border-bottom: 1px solid rgb(138, 133, 133);
+                            color           : white;
+                            padding         : 2px;
+                            font-size       : 1vw;
+                            border          : none;
+                            text-align      : left;
+                            border-bottom   : 1px solid rgb(138, 133, 133);
 
                         }
 
                         .dropdown-content {
-                            display            : none;
-                            // position        : absolute; //descomentar esta linea para mostrar el contenido sin mover las demas filas
-                            background-color   : #f1f1f1;
-                            min-width          : 160px;
-                            box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-                            z-index            : 1;
+                            display         : none;
+                            position        : absolute; //descomentar esta linea para mostrar el contenido sin mover las demas filas
+                            background-color: #f1f1f1;
+                            min-width       : 160px;
+                            box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                            z-index         : 1;
+                            margin-left     : 20px;
+
                         }
 
                         .dropdown-content a {
@@ -180,12 +192,19 @@
                         }
 
                         .dropdown:hover .dropdown-content {
-                            display: block;
-                            width  : 100%;
+                            margin-top  : -2px;
+                            display     : block;
+                            width       : 100%;
+                            border-width: 0px 1px 1px 1px;
+                            border-style: solid;
+                            border-color: white;
                         }
 
                         .dropdown:hover .dropbtn {
-                            background-color: #3e8e41;
+                            background-color: #777575;
+                            border-width    : 1px 1px 2px 1px;
+                            border-style    : solid;
+                            border-color    : white;
                         }
 
                         /*FIN BLOQUE DEL CONTENIDO DEL MENU*/
@@ -196,6 +215,8 @@
 
             }
 
+            // /////////////////////////////////////////////////////////////
+            //////////---PARTE CENTRAL Y BARRA LATERAL DERECHA---///////////
             #columna-contenido-lateral>.fila-principal {
                 height  : 100%;
                 position: relative;
@@ -206,6 +227,7 @@
                     display            : inline-block;
                     text-align         : center;
 
+                    //Fila del titulo
                     #titulo-modulo {
                         height: 8vw;
 
@@ -231,7 +253,7 @@
                         z-index     : 1;
                     }
 
-                    .row:last-child {
+                    .row.pie-contenido {
                         //la ultima fila del contenedor --> avatar y descripcionObjeto
                         position: absolute;
                         bottom  : 0.5%;
@@ -254,10 +276,10 @@
                         }
 
                         #descripcion-objeto {
-                            background-color: aliceblue;
-                            width           : 85%;
-                            height          : 100%;
-                            border-radius   : 10px;
+                            width        : 85%;
+                            height       : 100%;
+                            border-radius: 50px;
+                            border       : 1px solid black;
 
                             h6 {
                                 font-size: 1.5vw;
@@ -271,7 +293,8 @@
                     background-color: #b1cee6;
 
                     .barra-lateral {
-                        height: 100%;
+                        height   : 100%;
+                        font-size: 1vw;
 
                         .row.usuario {
                             height       : 10%;
@@ -298,9 +321,9 @@
                             border-bottom: 1px solid black;
                             display      : flex;
                             align-items  : center;
-                            font-size: 1vw;
+
                             .col {
-                                
+
                                 padding-top   : 2%;
                                 padding-bottom: 2%;
                             }

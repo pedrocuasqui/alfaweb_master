@@ -3,7 +3,14 @@ parasails.registerPage('indice-estudiante', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    //…
+    tituloContenido: "ÍNDICE",
+    descripcionObjeto: '',
+    navegarAtras: '/',
+    navegarSiguiente: '/m1-computadora',
+
+    breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
+    ],
+    
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

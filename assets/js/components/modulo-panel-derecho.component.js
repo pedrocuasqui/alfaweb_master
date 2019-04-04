@@ -19,6 +19,24 @@ parasails.registerComponent('modulo-panel-derecho', {
         medallaActual: {
             type: String,
             default: "70"
+        },
+        usuariosConectados: {
+            type: Array,
+
+            default: function () { //comentar este bloque default cuando se pasen los datos como parámetro a este componente
+                return [
+                    {
+                        nombre: 'Pedro',
+                        apellido: 'Cuasqui',
+                        Nivel: '4',
+                    },
+                    {
+                        nombre: 'Estevan',
+                        apellido: 'Pérez',
+                        Nivel: '5',
+                    }
+                ]
+            }
         }
 
     },
@@ -102,12 +120,16 @@ parasails.registerComponent('modulo-panel-derecho', {
         </div>
         <div class="row usuarios-conectados">
             <div class="col">
-            usuarios-conectados
+                <div>Últimos usuarios conectados</div>
+                <ul>
+                    <li v-for="usuario in usuariosConectados">{{usuario.nombre}}</li>
+                 </ul>
             </div>
         </div>
         <div class="row soporte">
             <div class="col">
-            soporte
+            <div>soporte</div>
+                <i class="fas fa-question-circle fa-2x" title="pedro.cuasqui@epn.edu.ec">    </i>   
             </div>
         </div>
     </div>`,

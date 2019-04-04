@@ -28,7 +28,12 @@ module.exports.routes = {
   'GET /administrar': { action: 'administrador/view-administrar-contenidos' },
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
   // estudiante
-  'GET /indice-estudiante': { action: 'estudiante/view-indice-estudiante' },
+  'GET /indice-estudiante': {
+    action: 'estudiante/view-indice-estudiante',
+    locals: {
+      layout: "layouts/layout-modulos",
+    }
+  },
   'GET /m1-computadora': {
     action: 'estudiante/modulo-1/view-m-1-computadora',
     locals: {
@@ -47,7 +52,7 @@ module.exports.routes = {
       layout: "layouts/layout-modulos",
     }
   },
-  
+
   'GET /m1-sistema-informatico-monitor': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico-monitor',
     locals: {
@@ -72,14 +77,14 @@ module.exports.routes = {
       layout: "layouts/layout-modulos",
     }
   },
-  
+
   'GET /m1-sistema-informatico-impresora': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico-impresora',
     locals: {
       layout: "layouts/layout-modulos",
     }
   },
-  
+
   'GET /m1-sistema-informatico-usb': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico-usb',
     locals: {
@@ -92,7 +97,7 @@ module.exports.routes = {
       layout: "layouts/layout-modulos",
     }
   },
-  
+
   'GET /m1-conexion-componentes': {
     action: 'estudiante/modulo-1/view-m-1-conexion-componentes',
     locals: {
@@ -123,7 +128,7 @@ module.exports.routes = {
       layout: "layouts/layout-modulos",
     }
   },
-  
+
   'GET /m1-conexion-componentes-flashmemory': {
     action: 'estudiante/modulo-1/view-m-1-conexion-componentes-flashmemory',
     locals: {
@@ -147,26 +152,26 @@ module.exports.routes = {
     locals: {
       layout: "layouts/layout-modulos",
     }
-  },  
+  },
   'GET /m1-raton': {
     action: 'estudiante/modulo-1/view-m-1-raton',
     locals: {
       layout: "layouts/layout-modulos",
     }
-  },  
+  },
   'GET /m1-evaluacion': {
     action: 'estudiante/modulo-1/view-m-1-evaluacion',
     locals: {
       layout: "layouts/layout-modulos",
     }
-  },  
+  },
   'GET /m2-navegacion-escritorio': {
     action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio',
     locals: {
       layout: "layouts/layout-modulos",
     }
   },
-   
+
   'GET /m2-navegacion-escritorio-escritorio': {
     action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio-escritorio',
     locals: {

@@ -1,8 +1,9 @@
 #layout-modulos {
     //es el body del layout principal
     //se usa para poder usar elementos con posicion absoluta dentro de este padre
-    height: 100vh; // vh hace referencia a la centésima parte de la altura del viewport 
-    width : 100vw; //vw hace referencia al la centésima parte del ancho del viewport
+    height     : 100vh; // vh hace referencia a la centésima parte de la altura del viewport 
+    width      : 100vw; //vw hace referencia al la centésima parte del ancho del viewport
+    font-family: 'Roboto', sans-serif;
 
     [v-cloak] * {
         display: none
@@ -71,12 +72,12 @@
 
 
         .row#div-body {
-            height          : 90vh;
-            background-color: #3e8e41;
-            position        : relative; //necesario para tomar como referencia de "position" hijo a este padre
-            margin-right    : 0px !important;
-            margin-left     : 0px !important;
-            width           : 100%;
+            height             : 90vh;
+            // background-color: #3e8e41;
+            position           : relative; //necesario para tomar como referencia de "position" hijo a este padre
+            margin-right       : 0px !important;
+            margin-left        : 0px !important;
+            width              : 100%;
 
 
 
@@ -196,8 +197,9 @@
             }
 
             #columna-contenido-lateral>.fila-principal {
-                height: 100%;
+                height  : 100%;
                 position: relative;
+
                 div.col-central {
                     // background-color: chocolate;
                     position           : relative; //para poder acomodar los botones en funcion de este padre
@@ -265,12 +267,56 @@
                 }
 
                 div.col-derecha {
-                    height: 100%;
+                    height          : 100%;
                     background-color: #b1cee6;
-                    .row.usuario{
-                        height: 25%;
-                        border-bottom:1px solid black;
+
+                    .barra-lateral {
+                        height: 100%;
+
+                        .row.usuario {
+                            height       : 10%;
+                            border-bottom: 1px solid black;
+                        }
+
+                        .row.progreso {
+                            height       : 30%;
+                            border-bottom: 1px solid black;
+                            display      : flex;
+                            align-items  : center;
+                            overflow     : visible; //para el icono
+
+                            .col {
+                                height        : 100%;
+                                padding-top   : 2%;
+                                padding-bottom: 2%;
+                                overflow      : visible; //para el icono
+                            }
+                        }
+
+                        .row.enlaces {
+                            height       : 25%;
+                            border-bottom: 1px solid black;
+                            display      : flex;
+                            align-items  : center;
+                            font-size: 1vw;
+                            .col {
+                                
+                                padding-top   : 2%;
+                                padding-bottom: 2%;
+                            }
+                        }
+
+                        .row.usuarios-conectados {
+                            height       : 25%;
+                            border-bottom: 1px solid black;
+                        }
+
+                        .row.soporte {
+                            height             : 10%;
+                            // border-bottom   : 1px solid black;
+                        }
                     }
+
                 }
             }
 
@@ -294,4 +340,62 @@
 #layout-modulos>div:first-child {
     padding-left : 1px !important;
     padding-right: 1px !important;
+}
+
+
+@padding-superior: 5%;
+@padding-inferior: 5%;
+
+.nivel,
+.puntaje,
+.medallas {
+    padding-top   : @padding-superior;
+    padding-bottom: @padding-inferior;
+    overflow      : visible;
+    position      : relative;
+}
+
+.nivel>.progress>.progress-bar {
+    background-color: rgb(59, 219, 59);
+    //.progress.icono se define mas abajo en este documento
+}
+
+.puntaje>.progress>.progress-bar {
+    background-color: #0460a9;
+}
+
+.medallas>.progress>.progress-bar {
+    background-color: rgb(247, 0, 255);
+}
+
+.progress.icono {
+    background-color: #b1cee6;
+    overflow        : visible;
+
+    .progress-bar {
+        background-color: #b1cee6;
+    }
+
+    div.contenedor-icono {
+        overflow: visible;
+
+        i {
+            position   : absolute; //funciona para darle libertad de ubicacion al icono
+            margin-left: -18.5px;
+            margin-top : -8px;
+        }
+
+        span {
+            // position      : absolute; //funciona para darle libertad de ubicacion al icono
+            margin-left      : -18.5px;
+            margin-top       : -8px;
+            color            : white;
+        }
+
+        img {
+            height     : 150%;
+            margin-left: -16.5px;
+            margin-top : -8px;
+        }
+    }
 }

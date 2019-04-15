@@ -11,6 +11,7 @@ parasails.registerPage('indice-estudiante', {
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     ],
     
+    
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -19,9 +20,12 @@ parasails.registerPage('indice-estudiante', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
+ 
+
   },
   mounted: async function () {
     //…
+    
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

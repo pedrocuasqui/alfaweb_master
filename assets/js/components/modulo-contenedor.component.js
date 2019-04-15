@@ -49,7 +49,7 @@ parasails.registerComponent('modulo-contenedor', {
                             <a :href="navegarAtras"> <i class="fas fa-arrow-alt-circle-left fas-lg"></i> </a>
                         </div>
                         <div class="col" id="titulo-modulo">
-                            <h2>"{{tituloContenido}}"</h2>
+                            <h2>{{tituloContenido}}</h2>
                         </div>
                     </div>
 

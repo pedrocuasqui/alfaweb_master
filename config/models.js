@@ -53,8 +53,12 @@ module.exports.models = {
   * > https://sailsjs.com/docs/concepts/orm/model-settings#?migrate          *
   *                                                                          *
   ***************************************************************************/
-
-  migrate: 'alter',
+  //para problemas al llamar datos de mongo revisar : https://sailsjs.com/documentation/concepts/models-and-orm/model-settings#?migrate
+  migrate: 'alter', //usar alter para programar
+/*   
+safe	never auto-migrate my database(s). I will do it myself, by hand.
+alter	auto-migrate columns/fields, but attempt to keep my existing data (experimental)
+drop	wipe/drop ALL my data and rebuild models every time I lift Sails */
 
 
   /***************************************************************************
@@ -69,7 +73,7 @@ module.exports.models = {
   *                                                                          *
   ***************************************************************************/
 
-  attributes: {
+  attributes: {// atributos comunes para todos los modelos definidos en esta aplicacion
     createdAt: { type: 'number', autoCreatedAt: true, },
     updatedAt: { type: 'number', autoUpdatedAt: true, },
     id: { type: 'string', columnName: '_id'},

@@ -18,132 +18,33 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    var contenidos= [
-      {
-        id: 'a',
-        nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la intro',
-        enlace: '',
-        multimedia: 'images/svg/modulo1-portada.svg',
-        submodulos: []
-      },
-      {
-        id: 'b',
-        nombreModulo: 'antes de empezar', descripcion: 'descripcion antes de empezar',
-        enlace: '',
-        multimedia: 'images/svg/modulo1-portada.svg',
-        submodulos: []
-      },
-      {
-        id: 'c',
-        nombreModulo: 'Módulo 1- La computadora ',
-        enlace: '/m1-computadora',
-        descripcion: 'descripcion la computadora',
-        multimedia: 'images/svg/modulo1-portada.svg',
-        submodulos: [{
-          id: 'c1',
-          nombre: 'El sistema informático (Hardware y software)',
-          enlace: '/m1-sistema-informatico',
-          descripcion: 'Descripcion submódulo',
-          multimedia: 'http://..',
-          /* temas: [
-              {
-               id:'12',
-               nombre: 'Monitor',
-               enlace:'/m1-sistema-informatico-monitor',
-               descripcion: 'El monitor ...',
-               multimedia: 'http://...'
-             },
-             {
-               id:'13',
-               nombre: 'Mouse',
-               enlace:'/m1-sistema-informatico-mouse',
-               descripcion: 'El monitor ...',
-               multimedia: 'http://...'
-             }]*/
-        },
-        {
-          id: 'c2',
-          nombre: 'Conexion de los distintos componentes de la computadora',
-          enlace: '/m1-conexion-componentes',
-          descripcion: 'Descripcion submódulo',
-          multimedia: 'http://...',
+    // await ModuloLibro.create({
+    //   nombreModulo: 'Módulo 1- La computadora ',
+    //   enlace: '/m1-computadora',
+    //   descripcion: 'descripcion la computadora',
+    //   multimedia: 'images/svg/modulo1-portada.svg',
+    //   curso: '5cafa987620c201bf4a2aa2f',
+      
+    // });
 
-        }]
-      },
 
-      {
-        id: 'd',
-        nombreModulo: 'Módulo 2- Navegacion en escritorio',
-        descripcion: 'descripcion Navegacion escritorio',
-        enlace: '/m2-navegacion-escritorio',
-        multimedia: 'images/svg/buho_bebe.svg',
-        submodulos: [{
-          id: 'd1',
-          nombre: 'El escritorio',
-          enlace: '/m2-navegacion-escritorio-escritorio',
-          descripcion: 'Descripcion submódulo',
-          multimedia: 'http://..',
-        },
+    //   await Curso.create({
+    //     nombre:'reparación de computadoras'
+    // });
+    
+     var moduloLibro = await ModuloLibro.find(); //esta es una instancia de consulta --> es un intento aún no cumplido de obtener registros de la base de datos
+    //el resultado solo se observa cuando se usa la palabra await antes de la instancia y se asigna a una variable
+    console.log('metodo1:\n'+moduloLibro); //devuelve el arreglo completo --> [object Object]
+    console.log('metodo2:\n'+moduloLibro[0]);// devuelve el objeto JSON de la posision 0 --> [object Object]
+    console.log('metodo3:\n'+JSON.stringify(moduloLibro)); //usar JSON.stringify para ver el resultado en consola en formato JSON, JSON.parse muestra un error
 
-        ]
-      },
-      {
-        id: 'e',
-        nombreModulo: 'Módulo 3-Edición de documentos Word',
-        descripcion: 'Edición de documentos en word parte 1',
-        enlace: '/',
-        multimedia: 'images/svg/modulo1-portada.svg',
-        submodulos: [{
-          id: 'e1',
-          nombre: 'Pantalla principal',
-          enlace: '/',
-          descripcion: 'Descripcion submódulo',
-          multimedia: 'http://..',
-        },  ],
-      },
-      {
-        id: 'f',
-        nombreModulo: 'Módulo 4-Edición de documentos Word',
-        descripcion: 'Edicion de documentos en word parte 2',
-        enlace: '/',
-        multimedia: 'images/svg/modulo1-portada.svg',
-        submodulos: [{
-          id: 'f1',
-          nombre: 'Pantalla principal',
-          enlace: '/',
-          descripcion: 'Descripcion submódulo',
-          multimedia: 'http://..',
-        }, ]
-      },
-
-      {
-        id: 'g',
-        nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
-        descripcion: 'descripcion edicion de documentos',
-        enlace: '/',
-        multimedia: 'images/svg/modulo1-portada.svg',
-        submodulos: [{
-          id: 'g1',
-          nombre: 'Tablas',
-          enlace: '/',
-          descripcion: 'Descripcion submódulo',
-          multimedia: 'http://..',
-        },
-        {
-          id: 'g2',
-          nombre: 'Imágenes',
-          enlace: '/',
-          descripcion: 'Descripcion submódulo',
-          multimedia: 'http://..',
-        },
-
-        ]
-      },
-    ];
+    var curso= await Curso.find().populate('modulos');
+    console.log('curso\n'+ JSON.stringify(curso));
 
     return exits.success({
-      contenidos
-      // cuando el nombre de la propiedad es igual al nombre del objeto que contiene la información, es posible enviar solo un dato es decir que, pasar, contenido: contenidos es igual que pasar contenidos
+      contenidos: moduloLibro,
+      
+      // cuando el nombre de la propiedad es igual al nombre del objeto que contiene la información, es posible enviar solo un dato es decir que, pasar, contenidos: contenidos es igual que pasar contenidos
     });
 
 

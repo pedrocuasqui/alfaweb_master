@@ -2,6 +2,7 @@
 
   <div class="div-contenido container-fluid" v-cloak>
     <div class="row" id="div-cabecera">
+      <div class="mensaje-bienvenida">BIENVENIDO!!</div>
       <div class="col-sm-10">
         <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav>
       </div>
@@ -28,7 +29,7 @@
                 <a :href="navegarAtras"> <i class="fas fa-arrow-alt-circle-left fas-lg"></i> </a>
               </div>
               <div class="col" id="titulo-modulo">
-                <h2>"{{tituloContenido}}"</h2>
+                <h2>{{tituloContenido}}</h2>
               </div>
             </div>
 
@@ -36,8 +37,8 @@
               <div class="col">
                 <div class="row">
                   <div class="col-sm-3 item-modulo" v-for="contenido in contenidos">
-                    <img :src="contenido.multimedia" alt="La Computadora, Módulo 1">
-                    <span>{{contenido.nombreModulo}}</span>
+                    <a :href="contenido.enlace"> <img :src="contenido.multimedia" alt="La Computadora, Módulo 1"></a>
+                    <a :href="contenido.enlace">{{contenido.nombreModulo}}</a>
                   </div>
                 </div>
               </div>

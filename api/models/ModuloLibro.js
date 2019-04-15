@@ -13,7 +13,7 @@ json
 ref
  */
 module.exports = {
-  //datastore: 'legacyECommerceDb',
+  // datastore: 'alfabetizaweb',
   tableName: 'ModuloLibro',
   attributes: {
     nombreModulo: {
@@ -31,12 +31,25 @@ module.exports = {
       allowNull: true,
       columnName: 'descripcion'
     },
-    rutaMedios: {
+    enlace: {
+      type: 'string',
+      columnName: 'enlace',
+    },
+    multimedia: {
       type: 'string',
       required: true,
-      columnName: 'rutaMedios'
+      columnName: 'multimedia'
+    },
 
-    }
+    // submodulos:{ //aqui no van los submodulos, en los submodulos se agrega la referencia al documento de ModuloLibro
+    //   type:'ref',
+    //   // columnType:'array',
+    //   required: false,
+    //   // allowNull: true, //no se permite en tipos de datos json y ref
+    //   columnName:'submodulos',//modificar esta columna, se necesita una relacion de uno a muchos, cada tema puede tener mas de una sola imagen asociada
+
+
+    // }
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
@@ -45,7 +58,12 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-
+    curso: { //el nombre de esta propiedad es el definido en el modulo 'Curso'--> propiedad 'moduloLibro', propiedad 'via'
+      model:'curso',
+      // type: 'ref',
+      required: true,
+      // columnName: 'curso'
+    }
   }
 
 

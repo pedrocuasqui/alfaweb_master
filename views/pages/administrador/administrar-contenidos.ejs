@@ -1,31 +1,15 @@
 <div id="administrar-contenidos" class="container-fluid">
 
-  <div class="container-fluid">
+  <div class="container">
     <div class="row">
-      <div class="col-md-3">
-        <div id="MainMenu">
-          <!-- clase que engloba los elementos de la lista -->
-          <div class="list-group panel">
-            <!-- Item 1 que hace referencia al collapse "demo3" -->
-            <div v-for="modulo in contenidos">
-              <a :href="'#'+modulo.id" class="list-group-item list-group-item" data-toggle="collapse"
-                data-parent="#MainMenu">{{modulo.nombreModulo}}</a>
-              <div class="collapse" :id="modulo.id">
-                <div v-for="submodulo in modulo.submodulos">
-                  <a :href="'#'+submodulo.id" class="list-group-item" data-toggle="collapse"
-                    :data-parent="'#'+submodulo.id">{{">"+submodulo.nombre}} <span class="caret"></span></a>
-                  <div class="collapse list-group-submenu" :id="submodulo.id">
-                    <a v-for="tema in submodulo.temas" href="#" class="list-group-item"
-                      data-parent="#SubMenu1">{{">>"+tema.nombre}}</a>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+      <div class="col">
+          <a class="btn btn-primary" href="#" role="button">Estudiantes</a>
       </div>
+      <div class="col">
+          <a class="btn btn-primary" href="#" role="button">Contenidos</a>
+        </div>
     </div>
   </div>
-  <hr>
+
 </div>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

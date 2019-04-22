@@ -2,7 +2,7 @@
 
   <div class="div-contenido container-fluid" v-cloak>
     <div class="row" id="div-cabecera">
-      <div class="mensaje-bienvenida">BIENVENIDO!!</div>
+      
       <div class="col-sm-10">
         <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav>
       </div>
@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <!-- Primera fila -Titulo del contenido -->
+    <!-- Contenedor de contenido -->
     <div class="row" id="div-body">
       <!-- columna izquierda -->
       <div class="col-sm-2 col-izquierda">
@@ -23,12 +23,15 @@
           <div class="col-sm-10 col-central">
             <div class="row">
               <div class="navegacion-siguiente">
-                <a :href="navegarSiguiente"><i class="fas fa-arrow-alt-circle-right fas-3x"></i> </a>
+                <a :href="navegarSiguiente" data-toggle="tooltip" title="Pulsa para continuar"><i style="position: relative;-webkit-animation: mymove 2.5s 3; 
+                  animation: mymove 2.5s 3;" class="fas fa-arrow-alt-circle-right fas-3x"></i> </a>
               </div>
               <div class="navegacion-atras">
-                <a :href="navegarAtras"> <i class="fas fa-arrow-alt-circle-left fas-lg"></i> </a>
+                <a :href="navegarAtras" data-toggle="tooltip" title="Pulsa para regresar"> <i class="fas fa-arrow-alt-circle-left fas-lg"></i> </a>
               </div>
               <div class="col" id="titulo-modulo">
+                <!-- <h1 class="mensaje-bienvenida" >BIENVENIDO!!</h1> -->
+                <img class="mensaje-bienvenida" src="images/svg/bienvenido.svg" alt="Logo Polhibou" />
                 <h2>{{tituloContenido}}</h2>
               </div>
             </div>

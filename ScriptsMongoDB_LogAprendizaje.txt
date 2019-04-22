@@ -477,4 +477,56 @@ insertamos documentos con un id padre
 
 
     ** Guia para escoger una estrategia de modelado de la base de datos no relacional(embebida o relacional) en este caso en mogodb: https://www.beeva.com/beeva-view/desarrollo/mongobd-modelo-de-datos-y-buenas-practicas/
-    
+
+
+    15/04/2019
+
+    usando ModuloLibro.create llenamos varios módulos del curso 'Alfabetiacion informatica'
+
+    await ModuloLibro.create(
+      {
+        nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la introduccion',
+        enlace: '',
+        descripcion: '',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+      },
+      {
+        nombreModulo: 'Módulo 1- La computadora ',
+        enlace: '/m1-computadora',
+        descripcion: 'descripcion la computadora',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+        
+      },
+
+      {
+        nombreModulo: 'Módulo 2- Navegacion en escritorio',
+        descripcion: 'descripcion Navegacion escritorio',
+        enlace: '/m2-navegacion-escritorio',
+        multimedia: 'images/svg/buho_bebe.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+      },
+      {
+        nombreModulo: 'Módulo 3-Edición de documentos Word',
+        descripcion: 'Edición de documentos en word parte 1',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+      },
+      {
+        nombreModulo: 'Módulo 4-Edición de documentos Word',
+        descripcion: 'Edicion de documentos en word parte 2',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+      },
+
+      {
+        nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
+        descripcion: 'descripcion edicion de documentos',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+      }
+    );

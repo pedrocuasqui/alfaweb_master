@@ -107,6 +107,7 @@ parasails.registerComponent('modulo-side-var-menu', {
   
     <div id="sidebar-menu" v-bind:class="{'sidebar-oculto':showSidebar}" >
         <div id="menuContenidos" >
+            <h2>Contenidos</h2>
             <div v-for="modulo in contenidos" class="dropdown">
                 <a class="btn btn-primary dropbtn" :href="modulo.enlace" >{{modulo.nombreModulo}}</a>
                 <div class="dropdown-content ">

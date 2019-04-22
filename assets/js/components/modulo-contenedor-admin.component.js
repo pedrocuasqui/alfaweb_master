@@ -1,24 +1,11 @@
 parasails.registerComponent('modulo-contenedor-admin', {
     props: {
-        tituloContenido: String,
 
-        descripcionObjeto: [String],
-        navegarAtras: {
-            type: String,
-            required: false,
-        },
-        navegarSiguiente: {
-            type: String,
-            required: false,
-        },
         breadcrumb: {
             type: Array,
             required: false,
         },
-        contenidos: {
-            type: Object,
-            required: false,
-        },
+
     },
     template: `  
 <div class="div-contenido container-fluid" v-cloak>
@@ -33,9 +20,7 @@ parasails.registerComponent('modulo-contenedor-admin', {
 
     <!-- Primera fila -Titulo del contenido -->
     <div class="row" id="div-body">
-        
-        
-        
+        <slot></slot>     
     </div>
 </div>
 

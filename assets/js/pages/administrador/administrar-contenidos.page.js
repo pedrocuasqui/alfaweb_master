@@ -12,6 +12,7 @@ parasails.registerPage('administrar-contenidos', {
       descripcion: 'modulo nuevo'
     },
     contenidosFront: [],
+    breadcrumb: [{ id: '', texto: 'indice', enlace: '#' },  ]
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

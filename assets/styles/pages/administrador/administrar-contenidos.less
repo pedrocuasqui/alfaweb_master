@@ -11,8 +11,89 @@ de 768px a 992px */
 
 #administrar-contenidos {
 
-    //…
-    background-color: rgba(0, 204, 255, 0.294);
-  
+  //…
+  background-color: rgba(0, 204, 255, 0.294);
+  position        : relative;
+}
+
+
+.menu-contenedor {
+
+  transition: all 0.3s ease-in-out;
+  text-align: left;
+}
+
+#menuContenidos {
+
+  /*BLOQUE DEL CONTENIDO DEL MENÚ*/
+  height       : 100%;
+  // float     : left;
+  width        : 91%;
+  overflow-y   : auto;
+
+  h2 {
+    color    : white;
+    font-size: 2.5vw;
   }
-  
+
+  .dropdown {
+    position: relative;
+    display : block;
+    width   : 100%;
+    float   : left;
+  }
+
+  .dropbtn {
+    width           : 100%;
+    background-color: rgb(17, 17, 17, 0.9);
+    color           : white;
+    padding         : 2px;
+    font-size       : 1vw;
+    border          : none;
+    text-align      : left;
+    border-bottom   : 1px solid rgb(138, 133, 133);
+
+  }
+
+  .dropdown-content {
+    display         : none;
+    position        : absolute; //descomentar esta linea para mostrar el contenido sin mover las demas filas
+    background-color: #f1f1f1;
+    min-width       : 160px;
+    box-shadow      : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+    z-index         : 1;
+    margin-left     : 20px;
+
+  }
+
+  .dropdown-content a {
+    color          : black;
+    padding        : 10px 16px;
+    text-decoration: none;
+    display        : block;
+    font-size      : 1vw;
+
+  }
+
+  .dropdown-content a:hover {
+    background-color: #ddd;
+  }
+
+  .dropdown:hover .dropdown-content {
+    margin-top  : -2px;
+    display     : block;
+    width       : 100%;
+    border-width: 0px 1px 1px 1px;
+    border-style: solid;
+    border-color: white;
+  }
+
+  .dropdown:hover .dropbtn {
+    background-color: #777575;
+    border-width    : 1px 1px 2px 1px;
+    border-style    : solid;
+    border-color    : white;
+  }
+
+  /*FIN BLOQUE DEL CONTENIDO DEL MENU*/
+}

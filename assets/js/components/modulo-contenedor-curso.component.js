@@ -1,4 +1,4 @@
-parasails.registerComponent('modulo-contenedor', {
+parasails.registerComponent('modulo-contenedor-curso', {
     props: {
         tituloContenido: String,
 

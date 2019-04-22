@@ -1,15 +1,16 @@
 <div id="administrar-contenidos" class="container-fluid">
-
-  <div class="container">
-    <div class="row">
-      <div class="col">
-          <a class="btn btn-primary" href="#" role="button">Estudiantes</a>
-      </div>
-      <div class="col">
-          <a class="btn btn-primary" href="#" role="button">Contenidos</a>
+  <modulo-contenedor-admin :breadcrumb="breadcrumb">
+    <div class="menu-contenedor">
+      <div id="menuContenidos">
+        <h2>Contenidos</h2>
+        <div v-for="modulo in contenidos" class="dropdown">
+          <a class="btn btn-primary dropbtn" :href="modulo.enlace">{{modulo.nombreModulo}}</a>
+          <div class="dropdown-content ">
+            <a v-for="submodulo in modulo.submodulos" :href="submodulo.enlace">{{submodulo.nombre}}</a>
+          </div>
         </div>
+      </div>
     </div>
-  </div>
-
+  </modulo-contenedor-admin>
 </div>
 <%- /* Expose locals as `window.SAILS_LOCALS` :: */ exposeLocalsToBrowser() %>

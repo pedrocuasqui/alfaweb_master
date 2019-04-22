@@ -25,7 +25,18 @@ module.exports.routes = {
   ***************************************************************************/
 
   'GET /': { view: 'pages/homepage' },
-  'GET /administrar': { action: 'administrador/view-administrar-contenidos' },
+  'GET /administrar-home': {
+    action: 'administrador/view-administrar-home',
+    locals: {
+      layout: "layouts/layout-admin",
+    }
+  },
+  'GET /administrar-contenidos': {
+    action: 'administrador/view-administrar-contenidos',
+    locals: {
+      layout: "layouts/layout-admin",
+    }
+  },
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
   // estudiante
   'GET /indice-estudiante': {

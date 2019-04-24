@@ -6,7 +6,12 @@
             <a class="btn btn-primary" href="#" role="button">Estudiantes</a>
           </div>
           <div class="col">
-            <a class="btn btn-primary" href="/administrar-contenidos" role="button">Contenidos</a>
+            <h3>Cursos</h3>
+            <ul>
+              <li v-for="curso in cursos"><a :href="'/administrar-contenidos/?cursoId='+curso.id"> {{curso.nombre}}</a> </li>
+            </ul>
+            <a class="btn btn-primary" href="/crear-curso" role="button">Agregar</a>
+
           </div>
         </div>
       </div>

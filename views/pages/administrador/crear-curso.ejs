@@ -1,0 +1,16 @@
+<div id="crear-curso" v-cloak>
+
+<modulo-contenedor-admin >
+  <form method="post" action="/registrar-curso" >
+    <div class="form-group">
+        <label for="nombre">Nombre del curso</label>
+        <input name="nombreCurso" class="form-control" id="nombre" autofocus type="text" v-model.trim="formData.nombreCurso" placeholder="Ej: Alfabetización web">
+        <div class="invalid-feedback" v-if="formErrors.nombreCurso">Ingrese el nombre de un curso</div>
+      </div>
+      <input type="submit" value="Crear" class="btn btn-primary">
+  </form>
+  
+</modulo-contenedor-admin>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

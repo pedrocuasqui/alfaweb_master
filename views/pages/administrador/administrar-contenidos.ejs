@@ -1,15 +1,15 @@
 <div id="administrar-contenidos" class="container-fluid">
   <modulo-contenedor-admin :breadcrumb="breadcrumb">
-    <div class="menu-contenedor">
-      <div id="menuContenidos">
-        <h2>Contenidos</h2>
-        <div v-for="modulo in contenidos" class="dropdown">
-          <a class="btn btn-primary dropbtn" :href="modulo.enlace">{{modulo.nombreModulo}}</a>
-          <div class="dropdown-content ">
-            <a v-for="submodulo in modulo.submodulos" :href="submodulo.enlace">{{submodulo.nombre}}</a>
-          </div>
+
+    <div id="menuContenidos">
+      <h2>Curso: {{nombreCurso}}</h2>
+      <div v-for="modulo in contenidos" class="dropdown">
+        <a class="btn btn-primary dropbtn" :href="modulo.enlace">{{modulo.nombreModulo}}</a>
+        <div class="dropdown-content ">
+          <a v-for="submodulo in modulo.submodulos" :href="submodulo.enlace">{{submodulo.nombre}}</a>
         </div>
       </div>
+      <a class="btn btn-primary dropbtn" href="#">+ CREAR</a>
     </div>
   </modulo-contenedor-admin>
 </div>

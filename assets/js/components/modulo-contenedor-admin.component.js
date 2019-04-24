@@ -20,7 +20,9 @@ parasails.registerComponent('modulo-contenedor-admin', {
 
     <!-- Primera fila -Titulo del contenido -->
     <div class="row" id="div-body">
-        <slot></slot>     
+      <div class="col">
+        <slot></slot>  
+      </div>   
     </div>
 </div>
 

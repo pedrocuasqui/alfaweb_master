@@ -16,10 +16,12 @@ module.exports = {
   },
 
 
-  fn: async function () {
+  fn: async function (input, exits) {
 
-    // Respond with view.
-    return {};
+    var cursos= await Curso.find(); //devuelve un arreglo con los cursos encotrados
+    // sails.log('id'+ cursos[0].id);
+    return exits.success({
+      cursos});
 
   }
 

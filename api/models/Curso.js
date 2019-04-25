@@ -8,12 +8,19 @@
 module.exports = {
   tableName: 'Curso',
   attributes: {
-    
+
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    nombre:{
-      type:'string'
+    nombre: {
+      type: 'string',
+      required: true,
+      columnName: 'nombre'
+    },
+    descripcion: {
+      type: 'string',
+      defaultsTo: 'Curso básico',
+      columnName: 'descripcion'
     },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -24,10 +31,15 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    modulos:{
-      collection:'ModuloLibro',
-      via:'curso',
+    modulos: { //Un Curso tiene varios modulos     curso-->modulos
+      collection: 'ModuloLibro',
+      via: 'curso',
 
+    },
+
+    matriculado: { //un estudiante puede seguir varios cursos  estudiante -->curso
+      collection: 'estudiante',
+      via: 'curso',
     }
   },
 

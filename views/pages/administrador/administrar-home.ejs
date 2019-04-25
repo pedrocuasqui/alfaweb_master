@@ -1,20 +1,67 @@
-<div id="administrar-home" class="container-fluid" >
-    <modulo-contenedor-admin :breadcrumb="breadcrumb"> 
-      <div class="container">
-        <div class="row">
-          <div class="col">
-            <a class="btn btn-primary" href="#" role="button">Estudiantes</a>
-          </div>
-          <div class="col">
-            <h3>Cursos</h3>
-            <ul>
-              <li v-for="curso in cursos"><a :href="'/administrar-contenidos/?cursoId='+curso.id"> {{curso.nombre}}</a> </li>
-            </ul>
-            <a class="btn btn-primary" href="/crear-curso" role="button">Agregar</a>
+<div id="administrar-home" class="container-fluid">
 
-          </div>
+  <!-- Modal -->
+<div class="modal fade" id="modalConfirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar Curso </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <p>Quieres eliminar el curso: <strong>{{cursoEliminar.nombre}}</strong></p>
+          <p>Se eliminarán también sus módulos asociados</p>
+        </div>
+        <div class="modal-footer">
+          <a class="btn btn-primary" :href="'/eliminar-curso/?cursoId='+cursoEliminar.id" role="button">Aceptar</a>
+          <a class="btn btn-primary"  href="" data-dismiss="modal" role="button">Cancelar</a>
         </div>
       </div>
-    </modulo-contenedor-admin>
+    </div>
   </div>
+  <modulo-contenedor-admin :breadcrumb="breadcrumb">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h3>Estudiantes</h3>
+          <div class="list-group">
+            <a v-for="estudiante in estudiantes" href="#"
+              class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{estudiante.nombre}}</h5>
+                <span class="badge badge-primary badge-pill">puntos: </span>
+                <span class="badge badge-primary badge-pill">nivel: </span>
+              </div>
+              <p class="mb-1">Cursos tomados:</p>
+              <p v-for="curso in estudiante.curso" class="mb-1">{{curso.nombre}}</p>
+            </a>
+            <a class="list-group-item list-group-item-action" href="#"><i class="fas fa-plus"></i> Agregar
+              Estudiante</a>
+          </div>
+        </div>
+        <div class="col">
+          <h3>Cursos</h3>
+          <div class="list-group">
+            <li v-for="curso in cursos" class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{curso.nombre}}</h5>
+                <span>
+                  <a :href="'/administrar-contenidos/?cursoId='+curso.id"><i class="fas fa-edit"></i> </a>
+                  <a href="" data-toggle="modal" data-target="#modalConfirmaEliminar" @click="seleccionaCursoEliminar(curso)"><i class="fas fa-trash-alt" ></i></a>
+                </span>
+              </div>
+              <p class="mb-1">{{curso.descripcion}}</p>
+            </li>
+            <a class="list-group-item list-group-item-action" href="/view-crear-curso"><i class="fas fa-plus"></i> Agregar
+              Curso</a>
+          </div>
+
+
+        </div>
+      </div>
+    </div>
+  </modulo-contenedor-admin>
+</div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

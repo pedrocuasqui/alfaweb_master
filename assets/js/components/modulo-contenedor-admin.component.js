@@ -20,6 +20,7 @@ parasails.registerComponent('modulo-contenedor-admin', {
 
     <!-- Primera fila -Titulo del contenido -->
     <div class="row" id="div-body">
+      <div class="nombre-usuario"> Nombre de usuario <i class="fas fa-bars"></i></div>
       <div class="col">
         <slot></slot>  
       </div>   

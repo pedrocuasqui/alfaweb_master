@@ -2,7 +2,9 @@
   <modulo-contenedor-admin :breadcrumb="breadcrumb">
 
     <div id="menuContenidos">
-      <h2>Curso: {{nombreCurso}}</h2>
+      <h3>Curso: {{curso.nombre}} <h5><a :href="'/view-actualizar-curso/?cursoId='+curso.id"><i class="fas fa-edit"></i></a>  </h5></h3> <!--curso obtenido desde el servidor-->
+      <h4>Descripción: {{curso.descripcion}}</h4>
+
       <div v-for="modulo in contenidos" class="dropdown">
         <a class="btn btn-primary dropbtn" :href="modulo.enlace">{{modulo.nombreModulo}}</a>
         <div class="dropdown-content ">

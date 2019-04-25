@@ -25,7 +25,7 @@ module.exports.routes = {
   ***************************************************************************/
 
   'GET /': { view: 'pages/homepage' },
-  /* RUTAS DE ADMINISTRADOR*/ 
+  /* RUTAS DE ADMINISTRADOR*/
   'GET /administrar-home': {
     action: 'administrador/view-administrar-home',
     locals: {
@@ -39,16 +39,29 @@ module.exports.routes = {
     }
   },
 
-  'GET /crear-curso':{
+  'GET /view-crear-curso': {
     action: 'administrador/view-crear-curso',
-    locals:{
+    locals: {
       layout: "layouts/layout-admin"
     }
   },
 
-  'POST /registrar-curso':{
-    action:'administrador/registrar-curso',
+  'POST /crear-curso': {
+    action: 'administrador/crear-curso',
   },
+  'GET /eliminar-curso': {
+    action: 'administrador/eliminar-curso'
+  },
+  'GET /view-actualizar-curso': {
+    action: 'administrador/view-actualizar-curso',
+    locals: {
+      layout: "layouts/layout-admin"
+    }
+  },
+  'POST /actualizar-curso': {
+    action: 'administrador/actualizar-curso',
+  },
+
 
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante

@@ -6,14 +6,15 @@ parasails.registerPage('administrar-contenidos', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    nombreCurso:'',
-    nombreModulo: '',
     contenidoNuevo: {
       nombreModulo: '',
       descripcion: 'modulo nuevo'
     },
     contenidosFront: [],
-    breadcrumb: [{ id: '', texto: 'indice', enlace: '#' },  ]
+    breadcrumb: [{ id: '', texto: 'indice', enlace: '#' },  ],
+
+
+    curso:Object,
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -23,6 +24,7 @@ parasails.registerPage('administrar-contenidos', {
     // Vincula cualquier dato inicial pasado desde el servidor como parámetro en las páginas ejs por medio de <%- exposeLocalsToBrowser() %>
     _.extend(this, SAILS_LOCALS);
     // aqui se está extendiendo el contenido de la variable CONTENIDOS pasada desde la accion view-administrar-contenidos.js
+    this.curso=SAILS_LOCALS.curso;
   },
   mounted: async function () {
 

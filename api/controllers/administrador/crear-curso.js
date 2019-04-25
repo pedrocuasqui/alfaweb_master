@@ -11,6 +11,11 @@ module.exports = {
     nombreCurso:{
       type:'string',
       required:true,
+    },
+    descripcionCurso:{
+      type:'string',
+      required:false,
+      defaultsTo:'Curso Básico',
     }
   },
 
@@ -26,7 +31,7 @@ module.exports = {
 
   fn: async function (inputs,exits) {
 
-    await Curso.create({nombre:inputs.nombreCurso})
+    await Curso.create({nombre:inputs.nombreCurso, descripcion:inputs.descripcionCurso})
     .intercept('E_UNIQUE', (err)=> { //buscar documentacion de intercept de sails 
       return 'nombre ya en uso';
     })

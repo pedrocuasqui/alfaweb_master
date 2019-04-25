@@ -1,0 +1,25 @@
+<div id="actualizar-curso" v-cloak>
+
+
+    <modulo-contenedor-admin>
+        <div class="container">
+        <form  @submit="validarFormulario" action="/actualizar-curso" method="POST"> <!-- accion registrada en routes.js--> <!-- validarFormulario se enviar como funcion, vue la interpreta y no es necesario poner "return validarFormulario()" -->
+          <div class="form-group">
+            <label for="nombre">Nombre del curso</label>
+            <input name="nombreCurso" class="form-control" id="nombre" autofocus type="text" :class="[formErrors.nombreCurso ? 'is-invalid' : '']" v-model.trim="formData.nombreCurso" placeholder="Ej: Alfabetización web" v-model="curso.nombre">
+            <div class="invalid-feedback" v-if="formErrors.nombreCurso">Ingrese el nombre de un curso</div>
+          </div>
+    
+          <div class="form-group">
+            <label for="descripcionCurso">Descripción del curso</label>
+            <input name="descripcionCurso" class="form-control" id="descripcionCurso" autofocus type="text" placeholder="Ej: Curso de enseñaza de informática básica" v-model="curso.descripcion">
+            <!-- <div class="invalid-feedback" v-if="formErrors.nombreCurso">Ingrese La descripción del curso</div> -->
+          </div>
+          <input name="cursoId" v-model="curso.id" v-show="false">
+          <input type="submit" value="Actualizar" class="btn btn-primary">
+        </form>
+      </div>
+      </modulo-contenedor-admin>
+    
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

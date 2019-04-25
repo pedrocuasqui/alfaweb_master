@@ -37,10 +37,16 @@ module.exports = {
     */
     // var contenidos = await ModuloLibro.find();
 
-// llamada a un helper para cargar el contenido del libro
-    var contenidos = await sails.helpers.cargaContenidoCurso(inputs.cursoId);
+    
+    var cursoRecibido = await Curso.find({ id: inputs.cursoId }); //busca en la base de datos el curso segun su ID
+    // console.log(JSON.stringify(cursoRecibido));
+    // llamada a un helper para cargar el contenido del libro
+    var contenidos = await sails.helpers.cargaContenidoCurso(cursoRecibido[0].id);
+
     return exits.success({
-      contenidos
+      contenidos,
+      curso: cursoRecibido[0],
+
       // cuando el nombre de la propiedad es igual al nombre del objeto que contiene la información, es posible enviar solo un dato es decir que, pasar, contenido: contenidos es igual que pasar contenidos
     });
 

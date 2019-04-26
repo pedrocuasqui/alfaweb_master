@@ -48,8 +48,8 @@
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{curso.nombre}}</h5>
                 <span>
-                  <a :href="'/administrar-contenidos/?cursoId='+curso.id"><i class="fas fa-edit"></i> </a>
-                  <a href="" data-toggle="modal" data-target="#modalConfirmaEliminar" @click="seleccionaCursoEliminar(curso)"><i class="fas fa-trash-alt" ></i></a>
+                  <a :href="'/administrar-contenidos/?cursoId='+curso.id" data-toggle="tooltip" data-placement="top" title="Editar Curso"><i class="fas fa-edit"></i> </a>
+                  <a href="" data-toggle="modal tooltip" data-target="#modalConfirmaEliminar" @click="seleccionaCursoEliminar(curso)"  data-placement="top" title="Eliminar Curso"><i class="fas fa-trash-alt" ></i></a>
                 </span>
               </div>
               <p class="mb-1">{{curso.descripcion}}</p>

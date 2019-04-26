@@ -61,6 +61,9 @@ module.exports.routes = {
   'POST /actualizar-curso': {
     action: 'administrador/actualizar-curso',
   },
+  'GET /consulta-cursos': {
+    action: 'administrador/consulta-cursos'
+  },
 
 
   /** RUTAS DE ESTUDIANTE */

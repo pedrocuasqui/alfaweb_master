@@ -44,7 +44,26 @@ parasails.registerPage('administrar-contenidos', {
     }, */
     clickSeleccionarModulo: function (nombreContenido) {
       console.log('se ha seleccionado el elemento: ' + nombreContenido);
-    }
+    },
+    eliminarDocumento(){
+      var _this=this;
+      axios.get('/eliminar-curso', {
+        params: {
+          cursoId: _this.curso.id,
+        }
+      })
+      .then(function (response) {
+        // console.log("respuesta de eliminacion\n"+response);
+        _this.redirecAdminHome();
+      })
+      .catch(function (error) {
+        alert('Encontramos un error al tratar de eliminar su registro')
+      });
 
+    },
+
+    redirecAdminHome(){
+      window.location.replace("/administrar-home"); //replace() removes the URL of the current document from the document history, meaning that it is not possible to use the "back" button to navigate back to the original document
+    }
   }
 });

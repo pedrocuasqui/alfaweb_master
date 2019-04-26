@@ -15,6 +15,7 @@
           <p>Se eliminarán también sus módulos asociados</p>
         </div>
         <div class="modal-footer">
+            <button class="btn btn-primary" data-dismiss="modal" @click="eliminarDocumento()">Eliminar con Axios</button>
           <a class="btn btn-primary" :href="'/eliminar-curso/?cursoId='+curso.id" role="button">Aceptar</a>
           <a class="btn btn-primary"  href="" data-dismiss="modal" role="button">Cancelar</a>
         </div>

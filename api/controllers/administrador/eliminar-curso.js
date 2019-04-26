@@ -25,16 +25,20 @@ module.exports = {
   },
 
 
-  fn: async function (inputs, exits) {
+  fn: async function (inputs) { //si se pasa exits como parámetro deve ser usada
 
     try{
       await ModuloLibro.destroy({curso:inputs.cursoId});
       await Curso.destroyOne({id:inputs.cursoId});
+      // sails.log('documento eliminado');  
     }catch(e){
       sails.log('Error al intentar eliminar el registro:\n'+ e);
+      
     }
     // All done.
-    return exits.redirect('/administrar-home');
+    // return exits.redirect('/administrar-home');
+     
+    return 'documento eliminado correctamente';
 
   }
 

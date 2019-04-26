@@ -63,6 +63,7 @@ parasails.registerPage('administrar-contenidos', {
     },
 
     redirecAdminHome(){
+      // window.location.replace --> es la funcion de javascript que emula el click en un enlace
       window.location.replace("/administrar-home"); //replace() removes the URL of the current document from the document history, meaning that it is not possible to use the "back" button to navigate back to the original document
     }
   }

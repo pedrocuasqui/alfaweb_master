@@ -25,6 +25,14 @@ module.exports.routes = {
   ***************************************************************************/
 
   'GET /': { view: 'pages/homepage' },
+  /**AUTENTICACION */
+  'GET /view-registro-usuario' :{
+    action:'autenticacion/view-registro-usuario',
+    locals: {
+      layout: "layouts/layout-admin",
+    }
+  },
+  
   /* RUTAS DE ADMINISTRADOR*/
   'GET /administrar-home': {
     action: 'administrador/view-administrar-home',

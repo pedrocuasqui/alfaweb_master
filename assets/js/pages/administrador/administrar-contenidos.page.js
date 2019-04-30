@@ -59,7 +59,6 @@ parasails.registerPage('administrar-contenidos', {
       .catch(function (error) {
         alert('Encontramos un error al tratar de eliminar su registro')
       });
-
     },
 
     redirecAdminHome(){

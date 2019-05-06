@@ -91,6 +91,12 @@ module.exports.routes = {
     action: 'administrador/consulta-cursos'
   },
 
+  'GET /view-crear-modulo': {
+    action: 'administrador/view-crear-modulo',
+    locals: {
+      layout: "layouts/layout-admin"
+    }
+  },
 
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante

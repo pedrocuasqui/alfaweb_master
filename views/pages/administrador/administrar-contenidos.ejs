@@ -1,7 +1,8 @@
 <div id="administrar-contenidos" class="container-fluid">
-  
+
   <!-- Modal -->
-<div class="modal fade" id="modalConfirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal fade" id="modalConfirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
@@ -15,12 +16,13 @@
           <p>Se eliminarán también sus módulos asociados</p>
         </div>
         <div class="modal-footer">
-            <button class="btn btn-primary" data-dismiss="modal" @click="eliminarDocumento()">Aceptar</button>
-          <a class="btn btn-primary"  href="" data-dismiss="modal" role="button">Cancelar</a>
+          <button class="btn btn-primary" data-dismiss="modal" @click="eliminarDocumento()">Aceptar</button>
+          <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cancelar</a>
         </div>
       </div>
     </div>
   </div>
+
   <modulo-contenedor-admin :breadcrumb="breadcrumb">
 
     <div id="menuContenidos">
@@ -28,8 +30,8 @@
         <a :href="'/view-actualizar-curso/?cursoId='+curso.id">
           <i class="fas fa-edit"></i>
         </a>
-       <a href="" data-toggle="modal" data-target="#modalConfirmaEliminar"  data-placement="top" title="Eliminar Curso">
-         <i class="fas fa-trash-alt"></i>
+        <a href="" data-toggle="modal" data-target="#modalConfirmaEliminar" data-placement="top" title="Eliminar Curso">
+          <i class="fas fa-trash-alt"></i>
         </a>
       </h4>
       <!--curso obtenido desde el servidor-->
@@ -38,12 +40,12 @@
       <div v-for="modulo in contenidos" class="dropdown">
         <a class="btn btn-primary dropbtn" :href="modulo.enlace">{{modulo.nombreModulo}}
         </a>
-        
+
         <div class="dropdown-content ">
           <a v-for="submodulo in modulo.submodulos" :href="submodulo.enlace">{{submodulo.nombre}}</a>
         </div>
       </div>
-      <a class="btn btn-primary dropbtn" href="#">+ CREAR</a>
+      <a class="btn btn-primary dropbtn" :href="'/view-crear-modulo?cursoId='+curso.id">+ CREAR</a>
     </div>
   </modulo-contenedor-admin>
 </div>

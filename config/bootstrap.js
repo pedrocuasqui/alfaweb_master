@@ -16,7 +16,7 @@ module.exports.bootstrap = async function (done) {
   // For example:
   // ```
   // // Set up fake development data (or if we already have some, avast)
-  var cursoCreado ;
+  var cursoCreado;
   if (await Curso.count() == 0) {
 
     cursoCreado = await Curso.create(
@@ -75,13 +75,36 @@ module.exports.bootstrap = async function (done) {
   if (await Estudiante.count() == 0) {
     await Estudiante.create({
       nombre: 'Pedro Cuasqui',
-      usuario: 'Pedroc',
+      alias: 'Pedroc',
       email: 'pedro.cuasqui@gmail.com',
-      fechaNacimiento: '11/11/1111',
+      password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
       curso: cursoCreado.id,
     });
 
     sails.log('creacion de estudiante correcta!');
+  }
+
+  if (await UsuarioEjemplo.count() == 0) {
+    await UsuarioEjemplo.createEach([
+      {
+        nombre: 'pedro',
+        alias: 'pedro123',
+        email: 'pedro.cuasqui@gmail.com',
+        password: '$2y$05$PZQyo52Vv6uuDum4SziXKeqa9Au4sEGHCI/anpKapijAsXQLhg83a',
+        administrador: true,
+        tutor: false,
+        estudiante: false,
+      },
+      {
+        nombre: 'jose',
+        alias: 'jose1234',
+        email: 'josej@gmail.com',
+        password: '$2y$05$fIDENMKjmg4HyOz3Ssx1T.tM8B2uSyBo5/pYaSxhHEOcSn/eryWuG',
+        administrador: false,
+        tutor: false,
+        estudiante: true,
+      },
+    ]);
   }
   // ```
   // Don't forget to trigger `done()` when this bootstrap function's logic is finished.

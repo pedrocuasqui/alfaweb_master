@@ -5,10 +5,22 @@ parasails.registerComponent('modulo-contenedor-admin', {
             type: Array,
             required: false,
         },
+        // usuarioLogueado:{
+        //     type:Boolean,
+        //     required:false,
+        //     defaultsTo:false
+        // },
+        nombreUsuario: {
+            type: String,
+            required: false
+        }
 
     },
-    template: `  
+    // la definicion de clases css para este componente se encuentra en layout-admin.less
+    template: //html
+        `  
 <div class="div-contenido container-fluid" v-cloak>
+    <!-- Barra de navegacion en la parte superior-->
     <div class="row" id="div-cabecera"  >
         <div class="col-sm-10">
             <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
@@ -18,12 +30,13 @@ parasails.registerComponent('modulo-contenedor-admin', {
         </div>
     </div>
 
-    <!-- Primera fila -Titulo del contenido -->
+    <!--Contenido -->
     <div class="row" id="div-body">
-      <div class="nombre-usuario"> Nombre de usuario <i class="fas fa-bars"></i></div>
-      <div class="col">
-        <slot></slot>  
-      </div>   
+        <div v-if="nombreUsuario" class="nombre-usuario"> <i class="fas fa-user-circle"></i> {{nombreUsuario}} <i class="fas fa-bars"></i></div>
+        <div v-else class="nombre-usuario"> <a href="/view-login">Inicia Sesión</a> | <a href="/view-registro-usuario">Regístrate</a> </div>
+        <div class="col">
+            <slot></slot>  
+        </div>   
     </div>
 </div>
 

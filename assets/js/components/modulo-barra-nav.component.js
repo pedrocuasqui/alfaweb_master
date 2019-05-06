@@ -5,7 +5,8 @@ parasails.registerComponent('modulo-barra-nav',{
     data(){
         return {};
     },
-    template:`  
+    template://html
+    `  
     <div id="breadcrumb">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">

@@ -33,7 +33,7 @@ module.exports = {
 
     await Curso.create({nombre:inputs.nombreCurso, descripcion:inputs.descripcionCurso})
     .intercept('E_UNIQUE', (err)=> { //buscar documentacion de intercept de sails 
-      return 'nombre ya en uso';
+      return 'El nombre del curso ya está en uso';
     })
     // Some other kind of usage / validation error
     .intercept({name:'UsageError'}, (err)=> {

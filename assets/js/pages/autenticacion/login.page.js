@@ -1,12 +1,19 @@
-parasails.registerPage('registro-usuario', {
+parasails.registerPage('login', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    formData: {},
+    formData: {
+      alias: null,
+      email: null,
+      password: null
+    },
     // For tracking client-side validation errors in our form.
     // > Has property set to `true` for each invalid property in `formData`.
     formErrors: { /* … */ },
+    usuario: 'alias',
+    aliasIncorrecto: false,
+    passwordIncorrecto :false
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -18,6 +25,7 @@ parasails.registerPage('registro-usuario', {
 
   },
   mounted: async function () {
+    //…
 
   },
 
@@ -31,47 +39,67 @@ parasails.registerPage('registro-usuario', {
 
       var argins = this.formData;
 
-      // Valida que exista un nombre de usuario:
-      if (!argins.nombre) {
-        this.formErrors.nombre = true;
-      }
       // Valida que exista alias de usuario:
-      if (!argins.alias) {
+      if (this.usuario == 'alias' && !argins.alias) {
         this.formErrors.alias = true;
+      }
+      // Valida que exista correo de usuario:
+      if (this.usuario == 'email' && !argins.email) {
+        this.formErrors.email = true;
       }
       // Valida exista password:
       if (!argins.password) {
         this.formErrors.password = true;
       }
 
-      if (argins.email) {
-        if (!this.validEmail(argins.email)) {
-          this.formErrors.email = true
-        }
 
-      }
-      // Valida que exista un rol:
-      if (!argins.rol) {
-        this.formErrors.rol = true;
-      }
 
-      
       /*INSERTAR LA VALIDACION DE CORREO ELECTRONICO VALIDO */
       //  si el objeto que almacena errores se encuentra vacío, entonces continuar, caso contrario no recargar la página
       if (Object.keys(this.formErrors).length == 0) {
-        console.log('sin errores');
-        return true;
+        console.log('sin errores de validacion');
+        this.valor= 'hola';
+        // e.preventDefault();
+        
+        this.intentarEnvio();
         
       }
-      else { //si se encuentran errores no se recarga la página
-        e.preventDefault();
-        console.log("# de errores: "+Object.keys(this.formErrors).length);
-      }
+
 
     },
-    validEmail: function (email) {
-      var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-      return re.test(email);
+    intentarEnvio() {
+      console.log(JSON.stringify(this.formData));
+      this.aliasIncorrecto= false;
+      this.passwordIncorrecto=false;
+      axios.post('/login',
+        {
+          alias: this.formData.alias,
+          email: this.formData.email,
+          password: this.formData.password
+        })
+        .then(
+          (response) => {
+            // if (response.data.statusCode == 200){ console.log('LOGIN EXITOSO');}
+            // console.log('LOGIN EXITOSO');
+
+            // Simulate an HTTP redirect:
+            window.location.replace("/");
+          }
+        )
+        .catch(
+          err => {
+            console.log(err.response);
+            if (err.response.status == 401) {
+              this.aliasIncorrecto = true;
+              console.log('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+            }
+            else if (err.response.status == 409) {
+              this.passwordIncorrecto = true;
+              console.log('LA CONTRASEÑA ES INCORRECTA');
+            };
+          }
+        );
     }
-  }
+  },
+
 });

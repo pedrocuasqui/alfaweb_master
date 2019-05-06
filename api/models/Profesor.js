@@ -6,7 +6,7 @@
  */
 
 module.exports = {
- tableName:'Administrador',
+ tableName:'Profesor',
   attributes: {
 
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
@@ -14,24 +14,34 @@ module.exports = {
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
 nombre:{
   type:'string',
+  columnName:'nombre',
   required:true,
-  columnName:'nombre'
 },
 alias:{
   type:'string',
-  columnName:'usuario',
+  columnName:'alias',
+  required:true,
+  unique:true,
 },
 email:{
   type:'string',
-  columnName:'email'
+  columnName:'email',
+  unique:true,
 },
 password:{
   type:'string',
   columnName:'password',
+  required:true,
 },
-rol:{
-  type:'string',
-  columnName:'rol'
+administrador:{
+  type:'boolean',
+  columnName:'administrador',
+  required:true,
+},
+tutor:{
+  type:'boolean',
+  columnName:'tutor',
+  required:true,
 }
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

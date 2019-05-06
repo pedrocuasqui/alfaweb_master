@@ -24,15 +24,33 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-  'GET /': { view: 'pages/homepage' },
-  /**AUTENTICACION */
-  'GET /view-registro-usuario' :{
-    action:'autenticacion/view-registro-usuario',
+  'GET /': {
+    action: 'view-homepage',
     locals: {
       layout: "layouts/layout-admin",
     }
   },
-  
+  /**AUTENTICACION */
+  'GET /view-registro-usuario': {
+    action: 'autenticacion/view-registro-usuario',
+    locals: {
+      layout: "layouts/layout-admin",
+    }
+  },
+
+  'POST /registrar-usuario': {
+    action: 'autenticacion/registro-usuario',
+  },
+  'GET /view-login': {
+    action: 'autenticacion/view-login',
+    locals: {
+      layout: "layouts/layout-admin",
+    }
+  },
+  'POST /login': {
+    action: 'autenticacion/login',
+  },
+
   /* RUTAS DE ADMINISTRADOR*/
   'GET /administrar-home': {
     action: 'administrador/view-administrar-home',

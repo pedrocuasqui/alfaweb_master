@@ -28,16 +28,16 @@
           :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.password" placeholder="••••••••">
         <div class="invalid-feedback" v-if="formErrors.password">Ingrese un password.</div>
       </div>
-
+      <label>* Seleccione un tipo de usuario</label>
+      <br>
       <div  class="form-check form-check-inline"  >
-        <input class="form-check-input" id="rol-administrador" type="radio" name="rol"  v-model="formData.administrador" value="Administrador" checked >
+        <input name="rol" value="administrador" v-model="formData.rol" id="rol-administrador" type="radio" class="form-check-input" checked >
         <label for="rol-administrador" class="form-check-label">Administrador </label>
 
-        <input class="form-check-input" id="rol-tutor" type="radio" name="rol" v-model="formData.tutor" value="Tutor">
+        <input name="rol" value="tutor" v-model="formData.rol" id="rol-tutor" type="radio"  class="form-check-input" >
         <label for="rol-tutor" class="form-check-label">Tutor </label>
 
-        <input class="form-check-input" id="rol-estudiante" type="radio" name="rol" v-model="formData.estudiante"
-          value="Estudiante">
+        <input name="rol" value="estudiante" v-model="formData.rol" id="rol-estudiante" type="radio" class="form-check-input"   >
         <label for="rol-estudiante" class="form-check-label">Estudiante </label>
 
         <div class="invalid-feedback" v-if="formErrors.rol">Seleccione un rol.</div>

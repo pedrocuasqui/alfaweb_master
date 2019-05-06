@@ -4,12 +4,12 @@ For more information, see:
 • https://sailsjs.com/documentation/concepts/views
 • https://sailsjs.com/documentation/concepts/routes
 -->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
-
-<div>
-
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
+<div id="homepage" v-cloak>
+    <link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+<modulo-contenedor-admin :nombre-usuario="nombreUsuario">
   <div>
-    ROLES
+    ESCOGE UN USUARIO PARA INICIAR SESION (DESARROLLO)
     <ul>
       <li> <a href="/administrar-home">Administrador</a></li>
       <li>Tutor</li>
@@ -31,4 +31,5 @@ For more information, see:
     </p>
 
   </div>
+</modulo-contenedor-admin>
 </div>

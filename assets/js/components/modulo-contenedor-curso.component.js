@@ -6,21 +6,23 @@ parasails.registerComponent('modulo-contenedor-curso', {
         navegarAtras: {
             type: String,
             required: false,
+            description:'la ruta del modulo anterior',
         },
         navegarSiguiente: {
             type: String,
             required: false,
+            description:'la ruta del modulo siguiente',
         },
         breadcrumb: {
             type: Array,
             required: false,
         },
+        curso:{
+            type:Object,
+        },
         contenidos: {
             type: Array,
             required: false,
-        },
-        curso:{
-            type:Object,
         }
     },
     template: `  
@@ -38,7 +40,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
     <div class="row" id="div-body">
         <!-- columna izquierda -->
         <div class="col-sm-2 col-izquierda">
-            <modulo-side-var-menu :curso="curso" :contenidos="contenidos"></modulo-side-var-menu>
+            <modulo-side-var-menu :contenidos="contenidos"></modulo-side-var-menu>
         </div>
         <div class="col-sm-10" id="columna-contenido-lateral">
             <div class="row fila-principal">
@@ -52,7 +54,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                             <a :href="navegarAtras"> <i class="fas fa-arrow-alt-circle-left fas-lg"></i> </a>
                         </div>
                         <div class="col" id="titulo-modulo">
-                            <h2>{{tituloContenido}}</h2>
+                            <h2>{{ curso.nombre}}</h2>
                         </div>
                     </div>
 

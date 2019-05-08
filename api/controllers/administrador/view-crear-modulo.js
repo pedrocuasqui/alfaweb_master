@@ -20,6 +20,10 @@ module.exports = {
     },
     badRequest: {
       description: 'error al consultar en la base de datos'
+    },
+    serverError:{
+      statusCode: 500,
+      description:'no se encuentra el recurso'
     }
 
   },
@@ -27,8 +31,9 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-    var curso = await Curso.find({id:inputs.id}).intercept(err=>{
-      return exits.badRequest({ err })
+
+    var curso = await Curso.find({id:inputs.cursoId}).intercept(err=>{
+      return exits.serverError({ err })
     });
 
     var contenidos = await sails.helpers.cargaContenidoCurso(inputs.cursoId)

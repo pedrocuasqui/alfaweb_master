@@ -1,10 +1,10 @@
 parasails.registerComponent('modulo-side-var-menu', {
     props: {
-curso:{
-    type:Object,
-    required:false,
-    default:function (){ return {nombre:'Inserta un curso', descripcion:'Inserta una descripción'} }
-},
+// curso:{
+//     type:Object,
+//     required:false,
+//     default:function (){ return {nombre:'Inserta un curso', descripcion:'Inserta una descripción'} }
+// },
 contenidos:{
     type:Array,
 
@@ -117,7 +117,7 @@ contenidos:{
   
     <div id="sidebar-menu" v-bind:class="{'sidebar-oculto':showSidebar}" >
         <div id="menuContenidos" >
-            <h3>Contenidos {{curso.nombre}}</h3>
+            <h3>Contenidos </h3>
             <div v-for="modulo in contenidos" class="dropdown">
                 <a class="btn btn-primary dropbtn" :href="modulo.enlace" >{{modulo.nombreModulo}}</a>
                 <div class="dropdown-content ">

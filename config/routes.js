@@ -27,7 +27,7 @@ module.exports.routes = {
   'GET /': {
     action: 'view-homepage',
     locals: {
-      layout: "layouts/layout-admin",
+      layout: "layouts/layout-modulos",
     }
   },
   /**AUTENTICACION */
@@ -52,8 +52,15 @@ module.exports.routes = {
   },
 
   /* RUTAS DE ADMINISTRADOR*/
+  
   'GET /administrar-home': {
     action: 'administrador/view-administrar-home',
+    locals: {
+      layout: "layouts/layout-admin",
+    }
+  },
+  'GET /administrar-indice': {
+    action: 'administrador/view-administrar-indice',
     locals: {
       layout: "layouts/layout-admin",
     }

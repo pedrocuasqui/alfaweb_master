@@ -38,6 +38,7 @@ parasails.registerComponent('modulo-contenedor-admin', {
             <slot></slot>  
         </div>   
     </div>
+
 </div>
 
     `,

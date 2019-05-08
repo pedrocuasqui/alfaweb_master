@@ -25,7 +25,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
             required: false,
         }
     },
-    template: `  
+    template: //html
+    `  
 <div class="div-contenido container-fluid" v-cloak>
     <div class="row" id="div-cabecera"  >
         <div class="col-sm-10">

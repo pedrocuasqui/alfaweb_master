@@ -26,16 +26,10 @@ module.exports.routes = {
 
   'GET /': {
     action: 'view-homepage',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
   },
   /**AUTENTICACION */
   'GET /view-registro-usuario': {
     action: 'autenticacion/view-registro-usuario',
-    locals: {
-      layout: "layouts/layout-admin",
-    }
   },
 
   'POST /registrar-usuario': {
@@ -43,40 +37,26 @@ module.exports.routes = {
   },
   'GET /view-login': {
     action: 'autenticacion/view-login',
-    locals: {
-      layout: "layouts/layout-admin",
-    }
   },
   'POST /login': {
     action: 'autenticacion/login',
   },
 
   /* RUTAS DE ADMINISTRADOR*/
-  
+
   'GET /administrar-home': {
     action: 'administrador/view-administrar-home',
-    locals: {
-      layout: "layouts/layout-admin",
-    }
+
   },
   'GET /administrar-indice': {
     action: 'administrador/view-administrar-indice',
-    locals: {
-      layout: "layouts/layout-admin",
-    }
   },
   'GET /administrar-contenidos': {
     action: 'administrador/view-administrar-contenidos',
-    locals: {
-      layout: "layouts/layout-admin",
-    }
   },
 
   'GET /view-crear-curso': {
     action: 'administrador/view-crear-curso',
-    locals: {
-      layout: "layouts/layout-admin"
-    }
   },
 
   'POST /crear-curso': {
@@ -87,9 +67,6 @@ module.exports.routes = {
   },
   'GET /view-actualizar-curso': {
     action: 'administrador/view-actualizar-curso',
-    locals: {
-      layout: "layouts/layout-admin"
-    }
   },
   'POST /actualizar-curso': {
     action: 'administrador/actualizar-curso',
@@ -100,9 +77,7 @@ module.exports.routes = {
 
   'GET /view-crear-modulo': {
     action: 'administrador/view-crear-modulo',
-    locals: {
-      layout: "layouts/layout-admin"
-    }
+
   },
 
   /** RUTAS DE ESTUDIANTE */
@@ -110,153 +85,105 @@ module.exports.routes = {
   // estudiante
   'GET /indice-estudiante': {
     action: 'estudiante/view-indice-estudiante',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-computadora': {
     action: 'estudiante/modulo-1/view-m-1-computadora',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-computadora-ev': {
     action: 'estudiante/modulo-1/view-m-1-computadora-ev',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-sistema-informatico': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
 
   'GET /m1-sistema-informatico-monitor': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico-monitor',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-sistema-informatico-cpu': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico-cpu',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-sistema-informatico-mouse': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico-mouse',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-sistema-informatico-teclado': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico-teclado',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
 
   'GET /m1-sistema-informatico-impresora': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico-impresora',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
 
   'GET /m1-sistema-informatico-usb': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico-usb',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-sistema-informatico-software': {
     action: 'estudiante/modulo-1/view-m-1-sistema-informatico-software',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
 
   'GET /m1-conexion-componentes': {
     action: 'estudiante/modulo-1/view-m-1-conexion-componentes',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-conexion-componentes-monitor': {
     action: 'estudiante/modulo-1/view-m-1-conexion-componentes-monitor',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-conexion-componentes-teclado': {
     action: 'estudiante/modulo-1/view-m-1-conexion-componentes-teclado',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-conexion-componentes-mouse': {
     action: 'estudiante/modulo-1/view-m-1-conexion-componentes-mouse',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-conexion-componentes-cablepoder': {
     action: 'estudiante/modulo-1/view-m-1-conexion-componentes-cablepoder',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
 
   'GET /m1-conexion-componentes-flashmemory': {
     action: 'estudiante/modulo-1/view-m-1-conexion-componentes-flashmemory',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-conexion-componentes-audio': {
     action: 'estudiante/modulo-1/view-m-1-conexion-componentes-audio',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-encender-apagar-computador': {
     action: 'estudiante/modulo-1/view-m-1-encender-apagar-computador',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-teclado': {
     action: 'estudiante/modulo-1/view-m-1-teclado',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-raton': {
     action: 'estudiante/modulo-1/view-m-1-raton',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m1-evaluacion': {
     action: 'estudiante/modulo-1/view-m-1-evaluacion',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   'GET /m2-navegacion-escritorio': {
     action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
 
   'GET /m2-navegacion-escritorio-escritorio': {
     action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio-escritorio',
-    locals: {
-      layout: "layouts/layout-modulos",
-    }
+
   },
   /***************************************************************************
   *                                                                          *

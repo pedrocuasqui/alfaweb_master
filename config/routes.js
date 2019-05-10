@@ -24,6 +24,11 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
+/**LAYOUT GENERAL DE CONTENIDOS */
+'GET /interfaz-modulos' :{
+  action: 'view-interfaz-modulos'
+},
+
   'GET /': {
     action: 'view-homepage',
   },

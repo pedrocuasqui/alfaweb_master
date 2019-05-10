@@ -1,0 +1,10 @@
+<div id="interfaz-modulos" v-cloak>
+
+  <modulo-contenedor-curso :curso="curso" :modulo-seleccionado="modulo" >
+    <!-- CONTENIDO MULTIMEDIA -->
+    <!-- EJEMPLO CON IMAGEN ESTATICA -->
+    <!-- LA IMAGEN SE DESCARGA DEL SERVIDOR -->
+    <img src="/images/svg/bienvenido.svg" alt="Imagen de prueba">
+  </modulo-contenedor-curso>
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

@@ -6,27 +6,27 @@ parasails.registerComponent('modulo-contenedor-curso', {
         navegarAtras: {
             type: String,
             required: false,
-            description:'la ruta del modulo anterior',
+            description: 'la ruta del modulo anterior',
         },
         navegarSiguiente: {
             type: String,
             required: false,
-            description:'la ruta del modulo siguiente',
+            description: 'la ruta del modulo siguiente',
         },
         breadcrumb: {
             type: Array,
             required: false,
         },
-        curso:{
-            type:Object,
+        curso: {
+            type: Object,
         },
-        // contenidos: {
-        //     type: Array,
-        //     required: false,
-        // }
+        moduloSeleccionado: {
+            type: Object,
+            
+}
     },
     template: //html
-    `  
+        `  
 <div class="div-contenido container-fluid" v-cloak>
     <div class="row" id="div-cabecera"  >
         <div class="col-sm-10">
@@ -41,7 +41,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
     <div class="row" id="div-body">
         <!-- columna izquierda -->
         <div class="col-sm-2 col-izquierda">
-            <modulo-side-var-menu :curso="curso"></modulo-side-var-menu>
+            <modulo-side-var-menu :curso="curso" :modulo-seleccionado="moduloSeleccionado"></modulo-side-var-menu>
         </div>
         <div class="col-sm-10" id="columna-contenido-lateral">
             <div class="row fila-principal">

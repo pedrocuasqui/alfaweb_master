@@ -530,3 +530,10 @@ insertamos documentos con un id padre
         curso: '5cafa987620c201bf4a2aa2f'
       }
     );
+
+
+
+
+    Viernes 10-05-2019
+Problema para registrar components en parasails: https://github.com/balderdashy/sails/issues/4475
+PARASAILS NO ACEPTA NI REQUIRE NI IMPORT

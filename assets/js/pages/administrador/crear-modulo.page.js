@@ -18,7 +18,9 @@ parasails.registerPage('crear-modulo', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    this.curso=SAILS_LOCALS.curso;
+    // this.curso=SAILS_LOCALS.curso;
+    console.log(SAILS_LOCALS);
+    console.log(this.curso);
   },
   mounted: async function () {
     //…

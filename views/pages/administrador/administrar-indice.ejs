@@ -84,9 +84,9 @@
             <div class="row contenido-menu">
               <div class="col">
                 <div class="row">
-                  <div class="col-sm-3 item-modulo" v-for="contenido in curso.modulos">
-                    <a :href="contenido.enlace"> <img :src="contenido.multimedia" :alt="'Imagen de '+contenido.nombreModulo"></a>
-                    <a :href="contenido.enlace">{{contenido.nombreModulo}}</a>
+                  <div class="col-sm-3 item-modulo" v-for="modulo in curso.modulos">
+                    <a :href="'/interfaz-modulos/?moduloId='+modulo.id"> <img :src="modulo.multimedia" :alt="'Imagen de '+modulo.nombreModulo"></a>
+                    <a :href="'/interfaz-modulos/?moduloId='+modulo.id">{{modulo.nombreModulo}}</a>
                   </div>
                   <div class="col-sm-3 agregaModulo">
                     <a :href="'/view-crear-modulo/?cursoId='+curso.id" title="Añadir nuevo módulo"><i class="fas fa-plus-circle fa-2x"></i></a>

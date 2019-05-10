@@ -1,18 +1,13 @@
 parasails.registerComponent('modulo-side-var-menu', {
     props: {
-        // curso:{
-        //     type:Object,
-        //     required:false,
-        //     default:function (){ return {nombre:'Inserta un curso', descripcion:'Inserta una descripción'} }
-        // },
-        contenidos: {
-            type: Array,
 
-        },
+        curso: Object,
+
         usuario: {
             type: Object,
-            default: () => { return { nombre: "Pablo Neruda", rol: "Administrador" } }
-        }
+            default: () => { return { nombre: 'Pablo Neruda', rol: 'Administrador' } }
+        },
+        posicionSeleccionada:null
 
     },
     data() {
@@ -29,15 +24,16 @@ parasails.registerComponent('modulo-side-var-menu', {
     <div id="sidebar-menu" v-bind:class="{'sidebar-oculto':showSidebar}" >
         <div id="menuContenidos" >
             <h3>Contenidos </h3>
-            <div v-for="modulo in contenidos" class="dropdown">
+            <div v-for="modulo in curso.modulos" class="dropdown">
                 <a class="btn btn-primary dropbtn" :href="modulo.enlace" >{{modulo.nombreModulo}}</a>
-                <div class="dropdown-content ">
+                <div class="dropdown-content">
                     <a v-for="submodulo in modulo.submodulos" :href="submodulo.enlace">{{submodulo.nombre}}</a>
+                    <a v-if="usuario.rol=='Administrador'" href=""><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
                 </div>
             </div>
-            <div  class="dropdown">
-                <a class="btn btn-primary dropbtn" :href="" ><i class="fas fa-plus-circle"></i></a>
-            </div>
+          <div v-if="usuario.rol=='Administrador'" class="dropdown">
+                <a class="btn btn-primary dropbtn" :href="'/view-crear-modulo/?cursoId='+curso.id" ><i class="fas fa-plus-circle"></i> Agregar Módulo</a>
+            </div> 
         </div> 
 
                 

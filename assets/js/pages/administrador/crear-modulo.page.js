@@ -5,6 +5,7 @@ parasails.registerPage('crear-modulo', {
   data: {
     //…
     // contenidos:[],
+    curso:Object,
     formData: {
 
     },
@@ -17,7 +18,7 @@ parasails.registerPage('crear-modulo', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    // this.contenidos=SAILS_LOCALS.contenidos;
+    this.curso=SAILS_LOCALS.curso;
   },
   mounted: async function () {
     //…
@@ -40,6 +41,8 @@ parasails.registerPage('crear-modulo', {
         { 
           console.log(response)
           //PASAR COMO PARÁMETRO AL COMPONENTE SIDE-VAR-MENU EL MODULO CREADO
+          //pasar el objeto creado, 
+          this.curso.modulos.push({nombreModulo:this.formData.nombreModulo});
         }) 
         .catch((err) => {console.log(err) });
 

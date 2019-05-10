@@ -32,14 +32,9 @@ module.exports = {
   fn: async function (inputs, exits) {
 
 
-    var curso = await Curso.find({id:inputs.cursoId}).intercept(err=>{
-      return exits.serverError({ err })
-    });
+    var curso= await Curso.find({id:inputs.cursoId}).populate('modulos');
 
-    var contenidos = await sails.helpers.cargaContenidoCurso(inputs.cursoId)
-      .intercept(err => { return exits.badRequest({ err }) });
-
-    return exits.success({ curso:curso[0],contenidos  });
+    return exits.success({ curso:curso[0]  });
 
   }
 

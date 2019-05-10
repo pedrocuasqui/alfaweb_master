@@ -28,6 +28,14 @@
     padding-left       : 0px;
     padding-right      : 0px;
 
+    i.fas.fa-save,i.fas.fa-edit, i.fas.fa-trash-alt, i.fas.fa-plus-circle{
+        color: rgb(0, 132, 255);
+        cursor:pointer;
+    }
+    i.fas.fa-save:hover,i.fas.fa-edit:hover, i.fas.fa-trash-alt:hover, i.fas.fa-plus-circle:hover{
+        color: rgb(218, 217, 226);
+        
+    }
     ////////////////////////////////////////////////////////////////
     // /////////////////////////////////////////////////////////////
     // /////////////////////////////////////////////////////////////
@@ -236,16 +244,20 @@
             div.col-central {
                 // background-color: chocolate;
                 position           : relative; //para poder acomodar los botones en funcion de este padre
-                display            : inline-block;
+                display            : block;
                 text-align         : center;
 
                 //Fila del titulo
                 #titulo-modulo {
-                    height: 8vw;
 
+                    div.col.nombre-curso a,h1{
+                        display: inline-block;
+                    }
+                    h1 {
+                        font-size: 2vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
+                    }
                     h2 {
-                        font-size: 2.5vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
-
+                        font-size: 1.5vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
                     }
                 }
 
@@ -359,6 +371,11 @@
     }
 
 } 
+div.contenedor-slot-principal{
+    background-color: rgb(230, 225, 235) ;
+    display: block;
+}
+
 // COMPONENTE:modulo-contenedor-admin
 .nombre-usuario{
     border-radius: 0 0 5px 5px;
@@ -438,21 +455,26 @@
 }
 // COMPONENTE: modulo-panel-derecho -- lo anterior
 
-//COMPONENTE: modulo-indice ---en adelante
+//COMPONENTE: modulo-indice 
 .row.contenido-menu {
-    background-color: aqua;
+    background-color: rgb(255, 255, 255);
   
   
   }
   
   .item-modulo {
-    background-color: cadetblue;
+    background-color: rgb(255, 255, 255);
     padding         : 20px;
+
   }
-  
+  .agregaModulo{
+    display: flex; // centrar hijos
+    align-items: center; //centrar hijos
+  }
   .item-modulo>a {
     display         : block;
     background-color: white;
+
   }
   
   .item-modulo>a>img {

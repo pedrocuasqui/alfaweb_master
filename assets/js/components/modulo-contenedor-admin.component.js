@@ -26,7 +26,7 @@ parasails.registerComponent('modulo-contenedor-admin', {
             <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
         </div>
         <div class="col-sm-2">
-            <img src="images/svg/iconoPolhibou.svg" alt="Logo Polhibou"  />
+            <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou"  />
         </div>
     </div>
 

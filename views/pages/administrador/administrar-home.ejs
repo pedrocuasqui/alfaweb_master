@@ -1,6 +1,6 @@
 <div id="administrar-home" class="container-fluid">
 
-  <!-- Modal -->
+  <!-- Modal Eliminar-->
   <div class="modal fade" id="modalConfirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
     aria-hidden="true">
     <div class="modal-dialog" role="document">
@@ -49,7 +49,7 @@
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{curso.nombre}}</h5>
                 <span>
-                  <a :href="'/administrar-contenidos/?cursoId='+curso.id" data-toggle="tooltip" data-placement="top"
+                  <a :href="'/administrar-indice/?cursoId='+curso.id" data-toggle="tooltip" data-placement="top"
                     title="Editar Curso"><i class="fas fa-edit"></i> </a>
                   <a href="" data-toggle="modal" data-target="#modalConfirmaEliminar"
                     @click="seleccionaCursoEliminar(curso)" data-placement="top" title="Eliminar Curso"><i

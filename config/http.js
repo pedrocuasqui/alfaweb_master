@@ -48,7 +48,7 @@ module.exports.http = {
     * https://sailsjs.com/config/http#?customizing-the-body-parser             *
     *                                                                          *
     ***************************************************************************/
-
+/**En la documentacion oficial se menciona que se puede cambiar el body parser, la pregunta es: ?Si cambio a otro body parser, seguiran funcionando las demas peticiones que no requieran de parsear el body de la peticion */
     // bodyParser: (function _configureBodyParser(){
     //   var skipper = require('skipper');
     //   var middlewareFn = skipper({ strict: true });

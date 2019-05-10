@@ -1,8 +1,8 @@
 parasails.registerComponent('modulo-contenedor-curso', {
     props: {
-        tituloContenido: String,
+        // tituloContenido: String,
 
-        descripcionObjeto: [String],
+        // descripcionObjeto: [String],
         navegarAtras: {
             type: String,
             required: false,
@@ -20,10 +20,10 @@ parasails.registerComponent('modulo-contenedor-curso', {
         curso:{
             type:Object,
         },
-        contenidos: {
-            type: Array,
-            required: false,
-        }
+        // contenidos: {
+        //     type: Array,
+        //     required: false,
+        // }
     },
     template: //html
     `  
@@ -33,7 +33,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
             <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
         </div>
         <div class="col-sm-2">
-            <img src="images/svg/iconoPolhibou.svg" alt="Logo Polhibou"  />
+            <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou"  />
         </div>
     </div>
 
@@ -41,7 +41,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
     <div class="row" id="div-body">
         <!-- columna izquierda -->
         <div class="col-sm-2 col-izquierda">
-            <modulo-side-var-menu :contenidos="contenidos"></modulo-side-var-menu>
+            <modulo-side-var-menu :contenidos="curso.modulos"></modulo-side-var-menu>
         </div>
         <div class="col-sm-10" id="columna-contenido-lateral">
             <div class="row fila-principal">
@@ -61,7 +61,14 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                     <div class="row">
                         <!-- IMAGEN SVG -->
-                        <slot></slot>
+                        <div class="container contenedor-slot-principal">
+                            <div class="row">
+                                <div class="col">
+                                <slot></slot>
+                                </div>    
+                            </div>
+                        </div>
+                        
                     </div>
 
 
@@ -71,7 +78,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         </div>
 
                         <div class="col-sm-11" id="descripcion-objeto">
-                            <h6>{{descripcionObjeto}}</h6>
+                            <h6>{{curso.descripcion}}</h6>
                         </div>
                     </div>
 

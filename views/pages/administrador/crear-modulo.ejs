@@ -1,7 +1,23 @@
 <div id="crear-modulo" v-cloak>
 
-  
-    <modulo-contenedor-curso :curso="curso" :contenidos="contenidos">
+    <!-- no importa el contenedor que se use, después se puede editar -->
+    <modulo-contenedor-curso :curso="curso">
+        <!-- CONTENIDO DE LA VENTANA -->
+        <h2>Agregar Nuevo Módulo</h2>
+        <form @submit.prevent="validarFormulario" enctype="multipart/form-data">
+            <div class="form-group">
+                    <label for="nombreModulo">* Nombre del módulo</label>
+                    <input type="text" id="nombreModulo" name="nombreModulo" v-model="formData.nombreModulo" autofocus>        
+            </div>
+           <div class="form-group">
+                <label for="multimedia">* Imagen o Video </label>
+                <input type="file" id="multimedia" name="multimedia" @change="onFileSelected">
+                <!-- On change ejecuta un metodo cuando el valor de un elemento ha cambiado -->
+           </div>
+            
+
+            <input type="submit" value="Guardar">
+        </form>
 
     </modulo-contenedor-curso>
 

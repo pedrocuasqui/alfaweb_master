@@ -5,7 +5,12 @@ module.exports = {
 
 
   description: 'Display "Administrar indice" page.',
-
+  inputs:{
+    cursoId:{
+      type: 'string',
+      required:true
+    }
+  },
 
   exits: {
 
@@ -16,10 +21,14 @@ module.exports = {
   },
 
 
-  fn: async function () {
+  fn: async function (inputs) {
 
-    // Respond with view.
-    return {};
+    var curso= await Curso.find({id:inputs.cursoId}).populate('modulos');
+    // console.log('Curso\n'+ JSON.stringify(curso) );
+    // console.log('Curso:'+curso[0].nombre+'- modulos:\n'+ JSON.stringify(curso[0].modulos));
+
+
+    return {curso:curso[0]};
 
   }
 

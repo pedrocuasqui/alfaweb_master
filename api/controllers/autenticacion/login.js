@@ -46,7 +46,9 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
+    // sails.log(this.req.headers.authorization);
 
+    // REVISAR USO DE btoa y atoa de javascript para codificar y decodificar el password
     var usuario;
     // si se envia el alias
     if (inputs.alias) {

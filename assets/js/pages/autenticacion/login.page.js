@@ -13,7 +13,7 @@ parasails.registerPage('login', {
     formErrors: { /* … */ },
     usuario: 'alias',
     aliasIncorrecto: false,
-    passwordIncorrecto :false
+    passwordIncorrecto: false
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -58,25 +58,25 @@ parasails.registerPage('login', {
       //  si el objeto que almacena errores se encuentra vacío, entonces continuar, caso contrario no recargar la página
       if (Object.keys(this.formErrors).length == 0) {
         console.log('sin errores de validacion');
-        this.valor= 'hola';
+        this.valor = 'hola';
         // e.preventDefault();
-        
+
         this.intentarEnvio();
-        
+
       }
 
 
     },
     intentarEnvio() {
       console.log(JSON.stringify(this.formData));
-      this.aliasIncorrecto= false;
-      this.passwordIncorrecto=false;
-      axios.post('/login',
-        {
-          alias: this.formData.alias,
-          email: this.formData.email,
-          password: this.formData.password
-        })
+      this.aliasIncorrecto = false;
+      this.passwordIncorrecto = false;
+      // REVISAR USO DE btoa y atoa de javascript para codificar y decodificar el password
+      axios.post('/login', {
+        alias: this.formData.alias,
+        email: this.formData.email,
+        password: this.formData.password
+      })
         .then(
           (response) => {
             // if (response.data.statusCode == 200){ console.log('LOGIN EXITOSO');}

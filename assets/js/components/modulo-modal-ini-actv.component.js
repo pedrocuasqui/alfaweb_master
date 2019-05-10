@@ -8,7 +8,8 @@ parasails.registerComponent('modulo-modal-ini-actv',{
     data(){
         return {};
     },
-    template:`<div class="modal fade" id="modalInicial" tabindex="-1" role="dialog" aria-labelledby="tituloModalInicial"
+    template://html 
+    `<div class="modal fade" id="modalInicial" tabindex="-1" role="dialog" aria-labelledby="tituloModalInicial"
     aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">

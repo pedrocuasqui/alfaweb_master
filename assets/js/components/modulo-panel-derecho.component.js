@@ -1,8 +1,8 @@
 parasails.registerComponent('modulo-panel-derecho', {
     props: {
-        nombreUsuario: {
-            type: String,
-            default: "Pepito Pérez",
+        usuario: {
+            type: Object,
+            default: ()=>{return {nombre:'Pepe Pérez', rol:'Estudiante'}},
         },
         nivelActual: {
             type: String,
@@ -46,11 +46,12 @@ parasails.registerComponent('modulo-panel-derecho', {
         }
 
     },
-    template: `  
+    template: //html 
+    `  
     <div class="container-fluid barra-lateral">
         <div class="row usuario">
                 <div class="col">
-                {{nombreUsuario}}
+                {{usuario.nombre}}
                 </div>
         </div>
         <div class="row progreso">

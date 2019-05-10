@@ -25,6 +25,7 @@ module.exports.bootstrap = async function (done) {
         descripcion: 'Enseñanza de informática básica'
       }
     ).fetch();
+    
     await ModuloLibro.createEach([
       {
         nombreModulo: 'Introduccion al curso',
@@ -71,18 +72,20 @@ module.exports.bootstrap = async function (done) {
     ]);
 
     sails.log('creacion de curso y modulos correcta!');
-  }
-  if (await Estudiante.count() == 0) {
-    await Estudiante.create({
-      nombre: 'Pedro Cuasqui',
-      alias: 'Pedroc',
-      email: 'pedro.cuasqui@gmail.com',
-      password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
-      curso: cursoCreado.id,
-    });
 
-    sails.log('creacion de estudiante correcta!');
+    if (await Estudiante.count() == 0) {
+      await Estudiante.create({
+        nombre: 'Pedro Cuasqui',
+        alias: 'Pedroc',
+        email: 'pedro.cuasqui@gmail.com',
+        password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
+        curso: cursoCreado.id,
+      });
+  
+      sails.log('creacion de estudiante correcta!');
+    }
   }
+
 
   // if (await UsuarioEjemplo.count() == 0) {
   //   await UsuarioEjemplo.createEach([

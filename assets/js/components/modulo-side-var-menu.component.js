@@ -1,25 +1,29 @@
 parasails.registerComponent('modulo-side-var-menu', {
     props: {
-// curso:{
-//     type:Object,
-//     required:false,
-//     default:function (){ return {nombre:'Inserta un curso', descripcion:'Inserta una descripción'} }
-// },
-contenidos:{
-    type:Array,
+        // curso:{
+        //     type:Object,
+        //     required:false,
+        //     default:function (){ return {nombre:'Inserta un curso', descripcion:'Inserta una descripción'} }
+        // },
+        contenidos: {
+            type: Array,
 
-}
+        },
+        usuario: {
+            type: Object,
+            default: () => { return { nombre: "Pablo Neruda", rol: "Administrador" } }
+        }
 
     },
     data() {
         return {
-            
+
             showSidebar: false,
-        
+
         };
     },
     template: //html
-    `  
+        `  
     <div >
   
     <div id="sidebar-menu" v-bind:class="{'sidebar-oculto':showSidebar}" >
@@ -31,7 +35,9 @@ contenidos:{
                     <a v-for="submodulo in modulo.submodulos" :href="submodulo.enlace">{{submodulo.nombre}}</a>
                 </div>
             </div>
-    
+            <div  class="dropdown">
+                <a class="btn btn-primary dropbtn" :href="" ><i class="fas fa-plus-circle"></i></a>
+            </div>
         </div> 
 
                 

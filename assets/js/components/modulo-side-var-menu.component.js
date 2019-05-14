@@ -32,7 +32,7 @@ parasails.registerComponent('modulo-side-var-menu', {
                 
                 <div class="dropdown-content" :class="{'contenido-modulo-seleccionado':modulo.id==moduloSeleccionado.id}">
                     <a v-for="submodulo in modulo.submodulos" :href="submodulo.enlace" :key="submodulo.id">{{submodulo.nombre}}</a>
-                    <a v-if="usuario.rol=='Administrador'" href=""><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
+                    <a v-if="usuario.rol=='Administrador'" :href="'/view-crear-submodulo/?cursoId='+curso.id"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
                 </div>
             </div>
           <div v-if="usuario.rol=='Administrador'" class="dropdown" >

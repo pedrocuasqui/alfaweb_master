@@ -87,6 +87,14 @@ module.exports.routes = {
   'POST /crear-modulo': {
     action: 'administrador/crear-modulo',
   },
+  
+  'GET /view-crear-submodulo': {
+    action: 'administrador/view-crear-submodulo',
+
+  },
+  'POST /crear-submodulo': {
+    action: 'administrador/crear-submodulo',
+  },
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
   // estudiante

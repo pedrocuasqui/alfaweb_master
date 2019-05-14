@@ -60,15 +60,11 @@ parasails.registerComponent('modulo-contenedor-curso', {
                     </div>
 
                     <div class="row">
-                        <!-- IMAGEN SVG -->
-                        <div class="container contenedor-slot-principal">
-                            <div class="row">
-                                <div class="col">
-                                <slot></slot>
-                                </div>    
-                            </div>
-                        </div>
-                        
+                            
+                                <div class="contenedor-slot-principal">
+                                    <slot></slot>
+                                </div>
+                            
                     </div>
 
 

@@ -1,0 +1,182 @@
+<div id="crear-submodulo" v-cloak>
+
+  <!-- Modal -->
+  <div class="modal fade" id="modalSeleccionObjeto" tabindex="-1" role="dialog"
+    aria-labelledby="modalSeleccionObjetoLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-scrollable" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h6 class="modal-title" id="modalSeleccionObjetoLabel">Selección de Objeto</h6>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="container">
+            <div class="row">
+              <div class="col-sm-2">
+                <input type="file" name="multimedia" id="file" class="inputfile" @change="onFileSelected">
+                <label for="file" title="Seleccionar Multimedia"> <a> <i
+                      class="fas fa-plus-circle fa-2x"></i></a></label>
+              </div>
+              <div class="col-sm-10">
+                <div class="contenedor-imagen" v-if="nuevoArchivo.urlLocal">
+                  <img :src="nuevoArchivo.urlLocal" alt="Previsualización de imágen cargada">
+                  <a @click="onBorrarImagen()"><i class="fas fa-trash-alt"></i></a>
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-sm-8 mx-auto">
+                <div v-if="mapaCarrusel" class="form-group">
+                  <label for="descripcionImagen">* Descripción</label>
+                  <input type="text" id="descripcionImagen" name="descripcionImagen" v-model="selectedFileDescripcion">
+                </div>
+                <div class="form-group">
+                  <label for="tooltipImagen">toolTip de imágen</label>
+                  <input type="text" id="tooltipImagen" name="tooltipImagen" v-model="selectedFileTooltip">
+                </div>
+
+              </div>
+            </div>
+          </div>
+
+
+
+        </div>
+        <div class="modal-footer">
+          <button @click="guardarArchivo"  type="button" class="btn btn-primary" data-dismiss="modal">Guardar</button>
+          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+
+  <modulo-contenedor-curso :curso="curso">
+    <h4>Agregar Submódulo</h4>
+    <div class="contenedor-formulario">
+      <form @submit.prevent="validarFormulario">
+        <div :class="{'minimizar-campos': seleccionTipoAprendizaje}" class="form-group">
+          <label for="nombre">* Título del submódulo</label>
+          <input type="text" id="nombre" name="nombre">
+        </div>
+        <div :class="{'minimizar-campos': seleccionTipoAprendizaje}" class="form-group">
+          <label for="descripcion">* Descripción General/Específica</label>
+          <input type="text" id="descripcion" name="descripcion">
+        </div>
+        <div v-if="!seleccionTipoAprendizaje" class="form-group">
+          <!-- <div class="row"> -->
+          <!-- <div class="col-sm-4"> -->
+          <label for="tecnicasDeAprendizaje">* Técnicas de aprendizaje</label>
+          <div class="container" id="tecnicasDeAprendizaje">
+            <div class="row">
+              <div class="col-sm-4">
+                <button type="button" @click="onSeleccionMultimedia">Video, Animación, Imágen</button>
+              </div>
+              <div class="col-sm-8">
+                <span>Video, animación o imágen estática del alusivo al tema </span>
+              </div>
+
+            </div>
+            <div class="row">
+              <div class="col-sm-4">
+                <button type="button" @click="onSeleccionCarrusel">Carrusel</button>
+              </div>
+              <div class="col-sm-8">
+                <span>Serie de slides o láminas presentadas en un orden específico con su respectiva descripción, útil
+                  para
+                  presentar una serie de pasos a seguir. </span>
+              </div>
+
+            </div>
+
+            <div class="row">
+              <div class="col-sm-4">
+                <button type="button" @click="onSeleccionMapa">Mapa interactivo</button>
+              </div>
+              <div class="col-sm-8">
+                <span>Conjunto de imágenes que representan un solo objeto, cada una contiene su propio contenido</span>
+              </div>
+
+            </div>
+          </div>
+        </div>
+        <!-- INSERCION DE TECNICAS DE APRENDIZAJE -->
+        <div v-else class="row">
+          <div class="col-sm-1 contenido-izquierda">
+            <!-- Seleccionar archivo -->
+            <a data-toggle="modal" data-target="#modalSeleccionObjeto">
+              <i class="fas fa-plus-circle fa-2x"></i>
+            </a>
+            <!-- Cambiar técnica de aprendizaje -->
+            <a @click="onCambiarTecnicaAprendizaje" title="Cambiar de técnica de Aprendizaje"> <i
+                class="fas fa-exchange-alt fa-2x"></i></a>
+            <!-- Guardar fomrmulario -->
+            <input type="submit" id="submit" class="input-submit">
+            <label for="submit" title="Guardar Submódulo"> <a> <i class="fas fa-save fa-2x"></i></a></label>
+          </div>
+
+          <!-- INSERCIÓN DE MULTIMEDIA -->
+          <div v-if="seleccionMultimedia" class="col-sm-11 contenido-derecha">
+            multimedia
+            <div class="contenedor-imagen" v-for="(file, index) in selectedFiles" :key="file.lastModified">
+              <img :src="file.urlLocal" alt="Previsualización de imágen cargada">
+              <a @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a>
+            </div>
+          </div>
+
+          <!-- INSERCIÓN CARRUSEL -->
+          <div v-else-if="seleccionCarrusel" class="col-sm-11 contenido-derecha">
+            CARRUSEL
+            <div id="carouselImagenes" class="carousel slide" data-ride="carousel" data-interval="false">
+                <ol class="carousel-indicators carousel-indicators-numbers">
+                  <li v-for="(file, index) in selectedFiles" data-target="#carouselImagenes" :data-slide-to="index" :class="{active: index==0}">{{index + 1}}</li>
+                </ol>
+                <div class="carousel-inner">
+                  <div class="carousel-item" :class="{active: index==0}" v-for="(file, index) in selectedFiles" :key="file.lastModified">
+                    <img class="d-block w-100" :src="file.urlLocal" alt="First slide">
+                    <!-- <a class="" @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a> -->
+                  </div>
+                  
+                </div>
+                <a class="carousel-control-prev" href="#carouselImagenes" @click="obtenerIndice" role="button" data-slide="prev">
+                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Previous</span>
+                </a>
+                <a class="carousel-control-next" href="#carouselImagenes" @click="obtenerIndice" role="button" data-slide="next">
+                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                  <span class="sr-only">Next</span>
+                </a>
+              </div>
+            <!-- <div class="contenedor-imagen" v-for="(file, index) in selectedFiles"> -->
+              
+              <!--  -->
+              <!--  -->
+              <!--  -->
+              <!-- <img :src="urlLocal" alt="Previsualización de imágen cargada">
+              <a @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a> -->
+              <!--  -->
+              <!--  -->
+              
+            <!-- </div> -->
+          </div>
+
+          <!-- INSERCIÓN MAPA -->
+          <div v-else="seleccionMapa" class="col-sm-11 contenido-derecha">
+            MAPA
+            <div class="contenedor-imagen" v-for="(file, index) in selectedFiles">
+              <!-- <img :src="urlLocal" alt="Previsualización de imágen cargada">
+              <a @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a> -->
+            </div>
+          </div>
+
+
+
+        </div>
+      </form>
+    </div>
+  </modulo-contenedor-curso>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

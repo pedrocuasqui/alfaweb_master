@@ -1,0 +1,116 @@
+#crear-submodulo {
+
+  //…
+
+}
+
+div.contenedor-slot-principal {
+  width      : 100%;
+  margin     : 0%;
+  overflow-y : hidden;
+  height     : 70vh; //para poder usar el scroll
+  // position: absolute;
+
+}
+
+
+.modal-header, .modal-footer{
+  padding: 0.5rem 1rem !important; 
+}
+
+.modal-footer > button{
+  font-size: 0.8rem !important;
+}
+.contenedor-formulario {
+  height    : 100%;
+  width     : 100%;
+  overflow-y: auto;
+}
+
+.minimizar-campos>* {
+  //se aplica a todos los hijos de form-group
+  display         : inline-block; //permite aplicar los demás estilos
+  font-size       : xx-small; //tamaño pequeno con respecto al archivo html
+  background-color: aqua;
+  width           : 50% !important;
+  margin          : 0px !important;
+}
+
+.minimizar-campos {
+  margin : 0px !important;
+  display: inline-flex;
+}
+
+.form-group input {
+  //tener en cuenta que con importer, esta configuración prevalece para las siguiente páginas definidas en importes
+  width : 100%;
+  margin: 0 auto;
+}
+
+form {
+  padding: 0 15px;
+}
+
+input[type="file"] , input[type="submit"]  {
+  display: block;
+}
+
+.inputfile, .input-submit {
+  //no se oculta realmente, solo se hace muy pequeño con opacidad 0 para que no se lo vea
+  width   : 0.1px;
+  height  : 0.1px;
+  opacity : 0;
+  overflow: hidden;
+  position: absolute;
+  z-index : -1;
+}
+
+
+
+.contenido-izquierda {
+  background-color: green;
+  height          : 59vh;
+}
+
+.contenido-derecha {
+  background-color:  olivedrab;
+  position        : relative;
+  height          : 58vh;
+  
+}
+.contenedor-imagen{
+  position        : relative;
+  height          : 56vh;
+}
+
+img {
+  max-width : 95%;
+  max-height: 100%
+}
+
+.carousel .carousel-item img {
+  max-height: 54vh;
+  max-width: auto;
+}
+
+
+.carousel-indicators-numbers {
+  li {
+    text-indent: 0 !important;
+    margin: 0 2px !important;
+    width: 30px !important;
+    height: 30px !important;
+    border: none !important;
+    border-radius: 100% !important;
+    line-height: 30px !important;
+    color: #fff !important;
+    background-color: #999 !important;
+    transition: all 0.25s ease ;
+    &.active, &:hover {
+      margin: 0 2px !important;
+      width: 30px !important;
+      height: 30px !important;
+      background-color: #337ab7 !important;        
+    }
+  }
+}

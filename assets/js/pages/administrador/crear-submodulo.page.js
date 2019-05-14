@@ -111,8 +111,8 @@ parasails.registerPage('crear-submodulo', {
       // al pasar de carrusel o mapa a multimedia, solo se conservará el primer elemento del arreglo
     },
     obtenerIndice(){
-      this.indice=$('#carouselImagenes .active').index();
-      console.log("indice"+this.indice);
+      this.indice=$('.indicador.active').text();
+      
     }
   },
   computed: {

@@ -107,7 +107,7 @@
           <div class="col-sm-1 contenido-izquierda">
             <!-- Seleccionar archivo -->
             <a data-toggle="modal" data-target="#modalSeleccionObjeto">
-              <i class="fas fa-plus-circle fa-2x"></i>
+              <i class="fas fa-plus-circle fa-2x" title="Insertar Objeto"></i>
             </a>
             <!-- Cambiar técnica de aprendizaje -->
             <a @click="onCambiarTecnicaAprendizaje" title="Cambiar de técnica de Aprendizaje"> <i
@@ -131,7 +131,7 @@
             CARRUSEL
             <div id="carouselImagenes" class="carousel slide" data-ride="carousel" data-interval="false">
                 <ol class="carousel-indicators carousel-indicators-numbers">
-                  <li v-for="(file, index) in selectedFiles" data-target="#carouselImagenes" :data-slide-to="index" :class="{active: index==0}">{{index + 1}}</li>
+                  <li v-for="(file, index) in selectedFiles" data-target="#carouselImagenes" :data-slide-to="index" :class="{active: index==0}" class="indicador">{{index + 1}}</li>
                 </ol>
                 <div class="carousel-inner">
                   <div class="carousel-item" :class="{active: index==0}" v-for="(file, index) in selectedFiles" :key="file.lastModified">
@@ -149,25 +149,15 @@
                   <span class="sr-only">Next</span>
                 </a>
               </div>
-            <!-- <div class="contenedor-imagen" v-for="(file, index) in selectedFiles"> -->
-              
-              <!--  -->
-              <!--  -->
-              <!--  -->
-              <!-- <img :src="urlLocal" alt="Previsualización de imágen cargada">
-              <a @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a> -->
-              <!--  -->
-              <!--  -->
-              
-            <!-- </div> -->
+
           </div>
 
           <!-- INSERCIÓN MAPA -->
           <div v-else="seleccionMapa" class="col-sm-11 contenido-derecha">
             MAPA
-            <div class="contenedor-imagen" v-for="(file, index) in selectedFiles">
-              <!-- <img :src="urlLocal" alt="Previsualización de imágen cargada">
-              <a @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a> -->
+            <div class="contenedor-imagen-mapa" v-for="(file, index) in selectedFiles">
+              <img :src="file.urlLocal" alt="Previsualización de imágen cargada">
+              <a @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a>
             </div>
           </div>
 

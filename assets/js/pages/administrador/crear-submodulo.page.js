@@ -19,7 +19,11 @@ parasails.registerPage('crear-submodulo', {
     nuevoArchivo: {
       urlLocal: null,
     },
-    indice:null
+    indice:null,
+
+    // ancho:null,
+    // alto:null,
+    // imagenSeleccionada:null
 
   },
 
@@ -113,7 +117,25 @@ parasails.registerPage('crear-submodulo', {
     obtenerIndice(){
       this.indice=$('.indicador.active').text();
       
-    }
+    },
+  ////METODOS PARA CAMBIAR EL TAMANIO DE LA IMAGEN (USADO PARA EL MAPA INTERACTIVO)
+  ////Aplicar la siguiente línea al contenedor de la imagen ==> :style="{width:ancho, height:alto}"
+  //   initialiseResize(urlLocal,e) {
+  //     this.imagenSeleccionada=urlLocal;
+  //     window.addEventListener('mousemove', this.startResizing, false);
+  //     window.addEventListener('mouseup', this.stopResizing, false);
+  //     console.log('se ejecuta una vez al pulsar el mouse sin soltar');
+  //   },
+  //   startResizing(e) {
+  //     var boxPosition = $("[src='"+this.imagenSeleccionada+"']").offset();
+  //     this.ancho= (e.pageX-boxPosition.left) + 'px';
+  //     this.alto = (e.pageY -boxPosition.top) + 'px';
+  //  },
+  //  stopResizing(e) {
+  //    console.log('stop resizing');
+  //      window.removeEventListener('mousemove', this.startResizing, false);
+  //      window.removeEventListener('mouseup', this.stopResizing, false);
+  //  }
   },
   computed: {
     mapaCarrusel() {

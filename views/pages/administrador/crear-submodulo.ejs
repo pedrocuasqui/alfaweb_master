@@ -155,8 +155,10 @@
           <!-- INSERCIÓN MAPA -->
           <div v-else="seleccionMapa" class="col-sm-11 contenido-derecha">
             MAPA
-            <div class="contenedor-imagen-mapa" v-for="(file, index) in selectedFiles">
+                      
+            <div class="contenedor-imagen-mapa" v-for="(file, index) in selectedFiles" :key="file.lastModified" >
               <img :src="file.urlLocal" alt="Previsualización de imágen cargada">
+              <!-- <div class="handle" @mousedown="initialiseResize(file.urlLocal)" ></div> -->
               <a @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a>
             </div>
           </div>

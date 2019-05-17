@@ -6,13 +6,20 @@
         <h2>Agregar Nuevo Módulo</h2>
         <form @submit.prevent="validarFormulario" enctype="multipart/form-data">
             <div class="form-group">
-                    <label for="nombreModulo">* Nombre del módulo</label>
-                    <input type="text" id="nombreModulo" name="nombreModulo" v-model="formData.nombreModulo" autofocus>        
+                <label for="nombreModulo">* Titutlo del módulo</label>
+                <input type="text" id="nombreModulo" name="nombreModulo" v-model="nombreModulo" placeholder="Ej: Modulo 1: la computadora"  :class="[formErrors.nombreModulo ? 'is-invalid' : '']" autofocus>      <div class="invalid-feedback" v-if="formErrors.nombreModulo">Ingrese un nombre para el módulo.</div>
             </div>
            <div class="form-group">
-                <label for="multimedia">* Imagen o Video </label>
-                <input type="file" id="multimedia" name="multimedia" @change="onFileSelected">
+                <label for="multimedia">* Seleccionar multimedia</label>
+                <input type="file" id="multimedia" name="multimedia" @change="onFileSelected" accept="image/*, video/*" :class="[errorselectedFile ? 'is-invalid':'']">
                 <!-- On change ejecuta un metodo cuando el valor de un elemento ha cambiado -->
+                <div class="invalid-feedback" v-if="formErrors.selectedFile">Seleccione un archivo de imagen o video.</div>
+                <div class="invalid-feedback" v-else-if="formErrors.typeFile">FORMATOS PERMITIDOS: Image/*, Video/*. </div>
+                
+           </div>
+           <div class="contenedor-imagen" v-if="url">
+                <img :src="url" alt="Imágen cargada">
+                <a @click="onBorrarImagen"><i class="fas fa-trash-alt"></i></a>
            </div>
             
 

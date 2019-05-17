@@ -5,7 +5,7 @@
     <form @submit="validarFormulario" action="/registrar-usuario" method="post">
       <div class="form-group">
         <label for="nombre">* Nombre de usuario</label>
-        <input name="nombre" class="form-control" id="nombre" autofocus type="text"
+        <input name="nombre" class="form-control" id="nombre"  type="text" autofocus
           :class="[formErrors.nombre ? 'is-invalid' : '']" v-model.trim="formData.nombre"
           placeholder="Ej. Pepito Pérez">
         <div class="invalid-feedback" v-if="formErrors.nombre">Ingrese un nombre de usuario.</div>

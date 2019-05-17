@@ -25,15 +25,14 @@ module.exports = {
   fn: async function (inputs) {
 
     var path = require('path');
-var appDir = path.dirname(require.main.filename);
-
-sails.log(__dirname);
-    sails.log(inputs.nombreModulo);
+    var appDir = path.dirname(require.main.filename);
+    sails.log(__dirname); // imprime la ruta completa del archivo actual "crear-modulo"
+    sails.log(inputs.nombreModulo+"hola");
     this.req.file('multimedia').upload({
       dirname:appDir+'/assets/images/img-cargadas',
       // don't allow the total upload size to exceed ~10MB
       maxBytes: 1024*1024*10 //10MB
-    },function whenDone(err, uploadedFiles) {
+    },function whenDone(err, uploadedFiles){
       sails.log('exito al recibir');
       //  `fd` (file descriptor)
       sails.log(uploadedFiles[0].fd);

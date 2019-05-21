@@ -1,3 +1,4 @@
+
 parasails.registerPage('crear-modulo', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
@@ -7,6 +8,7 @@ parasails.registerPage('crear-modulo', {
     // contenidos:[],
     curso: Object,
     nombreModulo: '',
+    descripcionModulo:'',
     formErrors: {},
     selectedFile: null,
     url: null
@@ -19,7 +21,8 @@ parasails.registerPage('crear-modulo', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    // this.curso=SAILS_LOCALS.curso;
+    this.curso=SAILS_LOCALS.curso;
+
 
   },
   mounted: async function () {
@@ -37,7 +40,9 @@ parasails.registerPage('crear-modulo', {
       if (!this.nombreModulo) {
         this.formErrors.nombreModulo = true;
       }
-
+      if (!this.descripcionModulo){
+        this.formErrors.descripcionModulo= true;
+      }
       if (!this.selectedFile) {
         this.formErrors.selectedFile = true;
         this.formErrors.typeFile=false;
@@ -48,9 +53,6 @@ parasails.registerPage('crear-modulo', {
       var regExpVideo = new RegExp('video\.\w*');
       
       if ( !regExpImage.exec(this.selectedFile.type) && !regExpVideo.exec(this.selectedFile.type) ){
-        console.log(regExpImage);
-        console.log(regExpImage.test(this.selectedFile.type)+ "valor"+ this.selectedFile.type)
-        console.log(regExpVideo.test(this.selectedFile.type)+ "valor"+ this.selectedFile.type);
         this.formErrors.typeFile=true;
       }
       }
@@ -71,18 +73,36 @@ parasails.registerPage('crear-modulo', {
       const formData = new FormData();//crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es implicitamente declarado con este objeto
       formData.append('multimedia', this.selectedFile, this.selectedFile.name);
       formData.append('nombreModulo', this.nombreModulo); //Se puede usar Set en lugar de append, para agregar valores, SET reemplaza el nombre del campo cuando ya existe en formData
+      formData.append('descripcionModulo', this.descripcionModulo);
+      formData.append('cursoId', this.curso.id);
       axios({
         method: 'post',
         url: '/crear-modulo',
         data: formData,
       })
         .then((response) => {
-          console.log(response)
+          console.log('corecto');
+          console.log(response.data)
           //PASAR COMO PARÁMETRO AL COMPONENTE SIDE-VAR-MENU EL MODULO CREADO
           //pasar el objeto creado, 
-          this.curso.modulos.push({ nombreModulo: this.nombreModulo });
+          alert ('Módulo creado correctamente');
+          // window.replace('');
+          // this.curso.modulos.push({ nombreModulo: this.nombreModulo, descripcion:this.descripcionModulo});
         })
-        .catch((err) => { console.log(err) });
+        .catch((err) => { //la respuesta de sails this.res
+
+          if(err.response.status == 409){
+            alert('ya existe un modulo con el mismo nombre');
+            console.log(err);
+          }else if(err.response.status == 400){
+            alert('Existen errores en la información suministrada');
+            console.log(err);
+          }else {
+            alert('Error en el servidor');
+            console.log(err);
+          }
+        }
+          );
     },
     onFileSelected(event) { //obtener el event 
       //captura del elemento seleccionado que se almacena en event.target.files en la primera posicion

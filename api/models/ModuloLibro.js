@@ -36,7 +36,7 @@ module.exports = {
       columnName: 'enlace',
     },
     multimedia: {
-      type: 'string',
+      type: 'json',
       required: true,
       columnName: 'multimedia'
     },

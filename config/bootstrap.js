@@ -30,62 +30,90 @@ module.exports.bootstrap = async function (done) {
       {
         nombreModulo: 'Introduccion al curso',
         descripcion: 'descripcion de la introduccion',
-        enlace: '',
-        multimedia: 'images/svg/modulo1-portada.svg',
+        multimedia: {},
         curso: cursoCreado.id
       },
       {
         nombreModulo: 'Módulo 1- La computadora ',
         descripcion: 'descripcion la computadora',
-        enlace: '/m1-computadora',
-        multimedia: 'images/svg/modulo1-portada.svg',
+        multimedia: {},
         curso: cursoCreado.id
       },
       {
         nombreModulo: 'Módulo 2- Navegacion en escritorio',
         descripcion: 'descripcion Navegacion escritorio',
-        enlace: '/m2-navegacion-escritorio',
-        multimedia: 'images/svg/buho_bebe.svg',
+        multimedia: {},
         curso: cursoCreado.id
       },
       {
         nombreModulo: 'Módulo 3-Edición de documentos Word',
         descripcion: 'Edición de documentos en word parte 1',
-        enlace: '/',
-        multimedia: 'images/svg/modulo1-portada.svg',
+        multimedia: {},
         curso: cursoCreado.id
       },
       {
         nombreModulo: 'Módulo 4-Edición de documentos Word',
         descripcion: 'Edicion de documentos en word parte 2',
-        enlace: '/',
-        multimedia: 'images/svg/modulo1-portada.svg',
+        multimedia: {},
         curso: cursoCreado.id
       },
       {
         nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
         descripcion: 'descripcion edicion de documentos',
-        enlace: '/',
-        multimedia: 'images/svg/modulo1-portada.svg',
+        multimedia: {},
         curso: cursoCreado.id
       }
     ]);
 
     sails.log('creacion de curso y modulos correcta!');
 
-    if (await Estudiante.count() == 0) {
-      await Estudiante.create({
+    if (await Estudiante.count() == 0 && cursoCreado) {
+      await Estudiante.createEach([
+        {
         nombre: 'Pedro Cuasqui',
         alias: 'Pedroc',
         email: 'pedro.cuasqui@gmail.com',
         password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
         curso: cursoCreado.id,
-      });
+        ultimoAcceso:'2019-05-20'
+      },
+      {
+        nombre: 'Elsa Pito',
+        alias: 'esita',
+        email: 'elsa.pita@gmail.com',
+        password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
+        curso: cursoCreado.id,
+        ultimoAcceso:'2019-04-20'
+      },
+    ]);
   
       sails.log('creacion de estudiante correcta!');
     }
   }
+  
 
+//   if (await Estudiante.count() == 0) {
+//     await Estudiante.createEach([
+//       {
+//       nombre: 'Pedro Cuasqui',
+//       alias: 'Pedroc',
+//       email: 'pedro.cuasqui@gmail.com',
+//       password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
+//       ultimoAcceso:'2019-17-05',
+//       curso: "5cdecec02898dc1ebc36885c",
+      
+//     },
+//     {
+//       nombre: 'Elsa Pito',
+//       alias: 'esita',
+//       email: 'elsa.pita@gmail.com',
+//       password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
+//       ultimoAcceso:'2019-10-01',
+//       curso: "5cdecec02898dc1ebc36885c",
+      
+//     },
+//   ]);
+// }
 
   // if (await UsuarioEjemplo.count() == 0) {
   //   await UsuarioEjemplo.createEach([

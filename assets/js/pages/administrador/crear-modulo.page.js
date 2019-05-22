@@ -72,6 +72,7 @@ parasails.registerPage('crear-modulo', {
 
       const formData = new FormData();//crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es implicitamente declarado con este objeto
       formData.append('multimedia', this.selectedFile, this.selectedFile.name);
+      //en primer lugar va el nombre del campo que acepta el servidor, segundo va el archivo y tecero va el nombre del archivo
       formData.append('nombreModulo', this.nombreModulo); //Se puede usar Set en lugar de append, para agregar valores, SET reemplaza el nombre del campo cuando ya existe en formData
       formData.append('descripcionModulo', this.descripcionModulo);
       formData.append('cursoId', this.curso.id);

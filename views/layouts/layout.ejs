@@ -21,13 +21,58 @@
   <!-- FUENTE ROBOTO -->
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <!--  -->
+
+
 </head>
 
 <body id="layout-general">
   <%- body %>
 
-  <!-- AXIOS -->
-  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+    <!-- AXIOS -->
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+  <!-- tiny mcs -->
+  <script
+    src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=kjkditphnen1av2wynuz72xcpf4kkxlyj0o0qpn1b82j48oh"></script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea',
+      plugins: 'image code',
+      toolbar: 'image code',
+      // images_upload_url: '127.0.0.1:1337/crear-modulo',
+      /* we override default upload handler to simulate successful upload*/
+      images_upload_handler: function (blobInfo, success, failure) {
+        const formData= new FormData();
+        var _success= success;
+        var _failure= failure;
+        var json;
+        console.log('INFORMACION DEL BLOB');
+        console.log(blobInfo);
+        console.log(blobInfo.blob());
+        console.log(blobInfo.blob().name);
+        formData.append('multimedia',blobInfo.blob(),blobInfo.blob().name);
+        axios({
+         method:'post',
+         url:'/cargar-imagen',
+         data: formData
+       })
+       .then(
+         (response)=>{
+           console.log(response.data);
+           json= response.data;
+           _success(json.location);
+         }
+       )
+       .catch(
+         (err)=>{
+          console.log('Error encontrado:\n'+err);
+          _failure('Error encontrado'+ err);
+         }
+       );
+      }
+    });
+  </script>
 
   <!-- SCRIPTS BOOTSTRAP: JS, Popper.js, and jQuery-->
   <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"

@@ -10,15 +10,18 @@ module.exports = {
   inputs: {
     nombreModulo: {
       type: 'string',
-      required: false
+      required: false,
+      defaults:'kasjd;flka'
     },
     descripcionModulo: {
       type: 'string',
-      required: true
+      required: true,
+      defaults:'kasjd;flka'
     },
     cursoId: {
       type: 'string',
-      required: true
+      required: true,
+      defaults:'5ce41c123a98c713b4e60c82'
     }
   },
 

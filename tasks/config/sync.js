@@ -10,6 +10,8 @@
  *   https://sailsjs.com/anatomy/tasks/config/sync.js
  *
  */
+
+//  MODIFICADO EL 22-05- 2019  LINEAS 23-28
 module.exports = function(grunt) {
 
   grunt.config.set('sync', {

@@ -40,6 +40,11 @@ module.exports = {
       required: true,
       columnName: 'multimedia'
     },
+    contenidoTiny:{
+      type:"string",
+      required:false,
+      columnName: 'contenidoTiny',
+    },
 
     // submodulos:{ //aqui no van los submodulos, en los submodulos se agrega la referencia al documento de ModuloLibro
     //   type:'ref',

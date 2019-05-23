@@ -29,8 +29,8 @@
   <%- body %>
 
 
-    <!-- AXIOS -->
-    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+  <!-- AXIOS -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
 
   <!-- tiny mcs -->
   <script
@@ -39,37 +39,53 @@
     tinymce.init({
       selector: '#mytextarea',
       plugins: 'image code',
-      toolbar: 'image code',
+      toolbar: "insertfile undo redo |image code| bold italic | forecolor backcolor | template codesample | alignleft aligncenter alignright alignjustify | bullist numlist",
       // images_upload_url: '127.0.0.1:1337/crear-modulo',
       /* we override default upload handler to simulate successful upload*/
+      init_instance_callback: function (editor) {
+        window.contenidoTiny = null;
+        
+        editor.on('keyup', function (e) {
+          console.log('editor heyup:');
+          window.contenidoTiny=tinymce.get("mytextarea").getContent()
+          $('.contenido-tiny').html(window.contenidoTiny);          
+          
+        });
+        editor.on('Change', function (e) {
+          console.log('editor changed:');
+          window.contenidoTiny=tinymce.get("mytextarea").getContent()
+          $('.contenido-tiny').html(window.contenidoTiny);          
+        });
+
+      },
       images_upload_handler: function (blobInfo, success, failure) {
-        const formData= new FormData();
-        var _success= success;
-        var _failure= failure;
+        const formData = new FormData();
+        var _success = success;
+        var _failure = failure;
         var json;
         console.log('INFORMACION DEL BLOB');
         console.log(blobInfo);
         console.log(blobInfo.blob());
         console.log(blobInfo.blob().name);
-        formData.append('multimedia',blobInfo.blob(),blobInfo.blob().name);
+        formData.append('multimedia', blobInfo.blob(), blobInfo.blob().name);
         axios({
-         method:'post',
-         url:'/cargar-imagen',
-         data: formData
-       })
-       .then(
-         (response)=>{
-           console.log(response.data);
-           json= response.data;
-           _success(json.location);
-         }
-       )
-       .catch(
-         (err)=>{
-          console.log('Error encontrado:\n'+err);
-          _failure('Error encontrado'+ err);
-         }
-       );
+          method: 'post',
+          url: '/cargar-imagen',
+          data: formData
+        })
+          .then(
+            (response) => {
+              console.log(response.data);
+              json = response.data;
+              _success(json.location);
+            }
+          )
+          .catch(
+            (err) => {
+              console.log('Error encontrado:\n' + err);
+              _failure('Error encontrado' + err);
+            }
+          );
       }
     });
   </script>

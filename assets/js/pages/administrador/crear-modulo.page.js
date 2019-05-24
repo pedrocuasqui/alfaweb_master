@@ -13,7 +13,7 @@ parasails.registerPage('crear-modulo', {
       type:Object
     },
     tituloTemporal:'Agregar Nuevo Módulo',
-
+    tipoContenido:'Modulo'
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -80,9 +80,10 @@ parasails.registerPage('crear-modulo', {
           alert('Módulo creado correctamente');
           // window.replace('');
           // se guarda el modulo creado en el arreglo de modulos
-
-          this.curso.modulos.push(response.data); //AUN NO SE VALIDA 23-05-2019
           this.moduloSeleccionado=response.data;
+          window.location.replace('/administrar-contenido/?objetoId='+moduloSeleccionado.id+'&tipoContenido='+this.tipoContenido);
+          // this.curso.modulos.push(response.data); //AUN NO SE VALIDA 23-05-2019
+          
         })
         .catch((err) => { //la respuesta de sails this.res
 

@@ -56,8 +56,8 @@ module.exports.routes = {
   'GET /administrar-indice': {
     action: 'administrador/view-administrar-indice',
   },
-  'GET /administrar-contenidos': {
-    action: 'administrador/view-administrar-contenidos',
+  'GET /administrar-contenido': {
+    action: 'administrador/view-administrar-contenido',
   },
 
   'GET /view-crear-curso': {

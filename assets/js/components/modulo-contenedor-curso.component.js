@@ -20,7 +20,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
         curso: {
             type: Object,
         },
-        moduloSeleccionado: {
+        objetoSeleccionado: {
             type: Object,
 
         },
@@ -29,6 +29,17 @@ parasails.registerComponent('modulo-contenedor-curso', {
             required:false,
             default: ()=>{return ''}
         }
+    },
+    data: function () {
+        return {
+        campoNombre:null,
+        nombre:null,
+        };
+    },
+    mounted(){
+        
+        this.campoNombre=Object.keys(this.objetoSeleccionado)[0];
+        this.nombre=this.objetoSeleccionado[this.campoNombre];
     },
     template: //html
         `  
@@ -46,7 +57,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
     <div class="row" id="div-body">
         <!-- columna izquierda -->
         <div class="col-sm-2 col-izquierda">
-            <modulo-side-var-menu :curso="curso" :modulo-seleccionado="moduloSeleccionado"></modulo-side-var-menu>
+            <modulo-side-var-menu :curso="curso" :objeto-seleccionado="objetoSeleccionado"></modulo-side-var-menu>
         </div>
         <div class="col-sm-10" id="columna-contenido-lateral">
             <div class="row fila-principal">
@@ -61,7 +72,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         </div>
                         <div class="col" id="titulo-modulo">
                             <h2 v-if="tituloTemporal!=''">{{ tituloTemporal}}</h2>
-                            <h2 v-else>{{ curso.nombre}}</h2>
+                            <h2 v-else>{{ nombre}}</h2>
                         </div>
                     </div>
 
@@ -80,7 +91,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         </div>
 
                         <div class="col-sm-11" id="descripcion-objeto">
-                            <!--<h6>{{moduloSeleccionado.descripcion}}</h6>-->
+                            <!--<h6>{{objetoSeleccionado.descripcion}}</h6>-->
                         </div>
                     </div>
 
@@ -98,9 +109,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
     `,
 
-    data: function () {
-        return {};
-    },
+
     methods: {
 
     }

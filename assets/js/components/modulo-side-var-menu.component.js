@@ -1,6 +1,6 @@
 parasails.registerComponent('modulo-side-var-menu', {
     props: {
-        moduloSeleccionado: {
+        objetoSeleccionado: {
             type: Object,
             default: () => { return { id: '1', nombreModulo: 'crearModulo', rol: 'Administrador' } }
         },
@@ -32,9 +32,9 @@ parasails.registerComponent('modulo-side-var-menu', {
             <!--dropbtn-modulo      : el boton que contiene el nombre del modulo -->
             <!--dropdown-submodulo  : contenedor individual del submodulo -->
             <div v-for="(modulo, index) in curso.modulos" class="dropdownModulo" :key="modulo.id" >
-                <a class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':modulo.id==moduloSeleccionado.id}" :href="modulo.enlace" >{{modulo.nombreModulo}}</a>
+                <a class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="modulo.enlace" >{{modulo.nombreModulo}}</a>
                 
-                <div :class="[modulo.id==moduloSeleccionado.id? 'dropdown-submodulo':'dropdown-submodulo-deselect' ]">
+                <div :class="[modulo.id==objetoSeleccionado.id? 'dropdown-submodulo':'dropdown-submodulo-deselect' ]">
                     <a v-for="submodulo in modulo.submodulos" :href="submodulo.enlace" :key="submodulo.id">{{submodulo.nombreSubmodulo}}</a>
                     <a v-if="usuario.rol=='Administrador'" :href="'/view-crear-submodulo/?moduloId='+modulo.id"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
                 </div>
@@ -58,11 +58,18 @@ parasails.registerComponent('modulo-side-var-menu', {
         },
         onClickRightCaret() {
             this.showSidebar = false;
+        },
+        perteneceObjeto(moduloId) {
+            var pertenece = null;
+            if (this.objetoSeleccionado.id == moduloId || this.objetoSeleccionado.modulo == moduloId) {
+                pertenece = true;
+            }
+            return pertenece;
         }
 
     },
     computed: {
-
+       
     }
 
 });

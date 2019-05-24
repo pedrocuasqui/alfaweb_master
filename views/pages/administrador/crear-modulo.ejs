@@ -1,7 +1,7 @@
 <div id="crear-modulo" v-cloak>
 
     <!-- no importa el contenedor que se use, después se puede editar -->
-    <modulo-contenedor-curso :curso.sync="curso" :titulo-temporal="tituloTemporal" :modulo-seleccionado.sync="moduloSeleccionado">
+    <modulo-contenedor-curso :curso.sync="curso" :titulo-temporal="tituloTemporal" :objeto-seleccionado.sync="moduloSeleccionado">
         <!-- CONTENIDO DE LA VENTANA -->
         <!-- <h2>Agregar Nuevo Módulo</h2> -->
         <div class="contenedor-formulario">
@@ -29,11 +29,6 @@
                     <div class="invalid-feedback" v-if="formErrors.descripcionModulo">Ingrese una descripción para el
                         módulo.</div>
                 </div>
-
-                <!-- <div class="contenedor-imagen" v-if="url">
-                    <img :src="url" alt="Imágen cargada">
-                    <a @click="onBorrarImagen"><i class="fas fa-trash-alt"></i></a>
-                </div> -->
 
 
                 <!-- Se conserva method="post" de tiny por defecto  -->

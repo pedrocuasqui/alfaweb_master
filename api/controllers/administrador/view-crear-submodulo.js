@@ -7,9 +7,9 @@ module.exports = {
   description: 'Display "Crear submodulo" page.',
 
   inputs: {
-    cursoId: {
+    moduloId:{
       type: 'string',
-      required: true,
+      required: true
     }
   },
   exits: {
@@ -23,8 +23,18 @@ module.exports = {
 
   fn: async function (inputs,exits) {
 
-    var curso= await Curso.findOne({id:inputs.cursoId}).populate('modulos').intercept((err)=>{console.log(err)});
-    return exits.success({curso});
+    var modulo = await ModuloLibro.findOne({id: inputs.moduloId})
+    .intercept((err)=>{sails.log('ERROR MODULO NO ENCONTRADO',err)});
+    var modulos = await ModuloLibro.find({curso:modulo.curso}).populate('submodulos');
+    var curso= await Curso.findOne({id:modulo.curso})
+    .intercept((err)=>{console.log('ERROR doble populate: '+err)});
+    
+    curso.modulos = modulos;
+    sails.log('modulos');
+    sails.log(JSON.stringify(modulos));
+    sails.log('curso');
+    sails.log(JSON.stringify(curso));
+    return exits.success({curso, moduloSeleccionado:modulo});
 
   }
 

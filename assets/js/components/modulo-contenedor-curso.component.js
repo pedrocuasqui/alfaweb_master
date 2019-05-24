@@ -22,8 +22,13 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         moduloSeleccionado: {
             type: Object,
-            
-}
+
+        },
+        tituloTemporal: {
+            type: String,
+            required:false,
+            default: ()=>{return ''}
+        }
     },
     template: //html
         `  
@@ -55,7 +60,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
                             <a :href="navegarAtras"> <i class="fas fa-arrow-alt-circle-left fas-lg"></i> </a>
                         </div>
                         <div class="col" id="titulo-modulo">
-                            <h2>{{ curso.nombre}}</h2>
+                            <h2 v-if="tituloTemporal!=''">{{ tituloTemporal}}</h2>
+                            <h2 v-else>{{ curso.nombre}}</h2>
                         </div>
                     </div>
 
@@ -74,7 +80,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         </div>
 
                         <div class="col-sm-11" id="descripcion-objeto">
-                            <h6>{{curso.descripcion}}</h6>
+                            <!--<h6>{{moduloSeleccionado.descripcion}}</h6>-->
                         </div>
                     </div>
 

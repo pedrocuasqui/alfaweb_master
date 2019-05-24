@@ -14,12 +14,12 @@ ref
  */
 module.exports = {
   // datastore: 'alfabetizaweb',
-  tableName: 'ModuloLibro',
+  tableName: 'SubmoduloLibro',
   attributes: {
-    nombreModulo: {
+    nombreSubmodulo: {
       type: 'string',
       required: true,
-      columnName: 'nombreModulo', //sirve para cuando existe una conexion a diferentes bases de datos
+      columnName: 'nombreSubmodulo', //sirve para cuando existe una conexion a diferentes bases de datos
       unique: true
       //defaulsTo:'', establece un valor por defecto
       //columnType: '' //define el tipo de columna del campo de la base de datos
@@ -31,13 +31,10 @@ module.exports = {
       allowNull: true,
       columnName: 'descripcion'
     },
-    enlace: {
-      type: 'string',
-      columnName: 'enlace',
-    },
+    
     multimedia: {
       type: 'json',
-      required: true,
+      required: false,
       columnName: 'multimedia'
     },
     contenidoTiny:{
@@ -63,14 +60,9 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    curso: { //el nombre de esta propiedad es el definido en el modulo 'Curso'--> propiedad 'moduloLibro', propiedad 'via'    un curso puede tener varios ModulosLibro curso -->ModulosLibro
-      model:'curso',
+    modulo: { //el nombre de esta propiedad es el definido en el modulo 'Curso'--> propiedad 'moduloLibro', propiedad 'via'    un curso puede tener varios ModulosLibro curso -->ModulosLibro
+      model:'modulolibro', //en minusculas
       required: true,
-    },
-    submodulos: { //Un modulo tiene varios submodulos     modulo-->submodulos
-      collection: 'SubmoduloLibro',
-      via: 'modulo', //el nombre de l apropiedad que enlazará al modelo SubmoduloLibro con el ModuloLibro
-
     }
   }
 

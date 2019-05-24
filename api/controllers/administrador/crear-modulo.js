@@ -10,31 +10,31 @@ module.exports = {
   inputs: {
     nombreModulo: {
       type: 'string',
-      required: false,
-      
+      required: true,
+
     },
     descripcionModulo: {
       type: 'string',
       required: true,
-      
+
     },
     cursoId: {
       type: 'string',
       required: true,
-      
+
     },
-    contenidoTiny:{
-      type:"string",
-      required:false
+    contenidoTiny: {
+      type: "string",
+      required: false
     }
   },
 
 
   exits: {
 
-    redirect:{
-      description:'Redirecciona a otra página despues de crear el curso',
-      responseType:'redirect' // Los diferentes tipos de response buscar en la siguiente página https://sailsjs.com/documentation/reference/response-res
+    redirect: {
+      description: 'Redirecciona a otra página despues de crear el curso',
+      responseType: 'redirect' // Los diferentes tipos de response buscar en la siguiente página https://sailsjs.com/documentation/reference/response-res
       //ejemplos: responseType:'ok'  responseType:'view'
     }
     //solo se envian los codigos
@@ -50,65 +50,42 @@ module.exports = {
 
   fn: async function (inputs) {
 
-    var path = require('path'); // 
-    var appDir = path.dirname(require.main.filename);// retorna el path del proyecto
-    console.log(appDir);
-    // sails.log(__dirname); // imprime la ruta completa del archivo actual "crear-modulo"
-    // sails.log(inputs.nombreModulo+"hola");
-    var nuevoArchivo = {};
-    //CARGA IMAGEN
-    this.req.file('multimedia').upload({ //por defecto sails usa SKEEPER para recibir archivos y texto, se puede cambiar si es necesario ir a congif/http.js
-      dirname: '../../assets/images/img-cargadas',
-      // don't allow the total upload size to exceed ~20MB
-      maxBytes: 1024 * 1024 * 20 //10MB
-    }, (err, uploadedFiles) => {
-      sails.log('exito al recibir');
-      //  `fd` (file descriptor)
-      nuevoArchivo = uploadedFiles[0];
-      // sails.log(uploadedFiles[0]);
-      if (err) {
-        return this.res.statusCode = 500; //respuesta para axios ERROR DEL SERVIDOR
-      }
-
-      // If no files were uploaded, respond with an error.
-      if (uploadedFiles.length == 0) {
-        return this.res.status = 400; //Respuesta para axios ERROR EN EL CLIENTE
-      }
-      // console.log('se debe imprime primero');
-      crearmodulo();
-    });
-  
-
-  // si no existe ningun error guarda en la base de datos
+    
     var res = this.res;
-    async function crearmodulo(){
-      // console.log('se debe imprime segundo');
-      var moduloCreado = await ModuloLibro.create({
-        nombreModulo: inputs.nombreModulo,
-        descripcion: inputs.descripcionModulo,
-        multimedia: nuevoArchivo,
-        curso: inputs.cursoId,
-        contenidoTiny: inputs.contenidoTiny
-      })
-        .fetch()
-        .intercept('E_UNIQUE', (err) => {
-          res.statusCode = 409;
-          return res;
-
-        })
-        // Some other kind of usage / validation error
-        .intercept({ name: 'UsageError' }, (err) => {
-          res.statusCode = 400;
-          return res;
-        })
-        .intercept((err) => { return res.statusCode = 500 });
-      // If something completely unexpected happened, the error will be thrown as-is.
-
-      console.log('modulo creado' + JSON.stringify(moduloCreado));
-      
-      return res.ok(moduloCreado);
+    var archivoMultimediaIndependiente = {};
+    var objetoError = {};
+    
+    var nuevoModulo = {
+      nombreModulo: inputs.nombreModulo,
+      descripcion: inputs.descripcionModulo,
+      multimedia: archivoMultimediaIndependiente,
+      curso: inputs.cursoId,
+      contenidoTiny: inputs.contenidoTiny
     }
 
+    var moduloCreado = await sails.helpers.crearModulo(nuevoModulo)
+      .catch(
+        (err) => {
+          if (err.code == 'E_UNIQUE') {
+            objetoError.statusCode = 409;
+            objetoError.error = err;
+          } else if (err.name = 'UsageError') {
+            objetoError.statusCode = 400;
+            objetoError.error = err;
+          } else {
+            objetoError.statusCode = 500;
+            objetoError.error = err;
+          }
+        }
+      );
+
+    if (Object.keys(objetoError).length > 0) {// si existe un error responde con el codigo de error correspondiente y el mensaje de erro
+      console.log('error encontrado');
+      return res.status(objetoError.statusCode).send({ error: objetoError.error });
+
+    } else {
+      return res.ok(moduloCreado);
+    }
     // return this.res.ok;
   }
 };

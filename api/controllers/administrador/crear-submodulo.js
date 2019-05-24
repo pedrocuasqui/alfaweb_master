@@ -8,7 +8,25 @@ module.exports = {
 
 
   inputs: {
+    nombreSubmodulo: {
+      type: 'string',
+      required: true,
 
+    },
+    descripcionSubmodulo: {
+      type: 'string',
+      required: true,
+
+    },
+    moduloId: {
+      type: 'string',
+      required: true,
+
+    },
+    contenidoTiny: {
+      type: "string",
+      required: false
+    }
   },
 
 
@@ -19,10 +37,92 @@ module.exports = {
 
   fn: async function (inputs) {
 
-    // All done.
-    return;
+    var res = this.res;
+    var req = this.req;
+    var respuestaCargaImagen = true;
+    var nuevoArchivo = {};
+    // var statusCode = null;
+    // var filaParaGuardarSubmodulo = crearSubmodulo(); //la funcion está en estado pendiente
+    // var errores = false;
+    var submoduloCreado = {};
+    var  objetoError={};
 
-  }
+    var nuevoSubmodulo= {   //se resuelve esta promesa y se mantiene su resultado sin presentarlos aun en la funcion crearSubmodulo()
+      nombreSubmodulo: inputs.nombreSubmodulo,
+      descripcion: inputs.descripcionSubmodulo,
+      multimedia: nuevoArchivo,
+      modulo: inputs.moduloId,
+      contenidoTiny: inputs.contenidoTiny
+      
+    }
+    
+    // console.log(req.allParams());
+    if (req.param('multimedia')) { // si exise el parametro 'multimedia' invoca a la funcion cargaImagen
+      console.log('existe el parametro multimedia');
+      respuestaCargaImagen = cargaImagen();
+    }
+
+
+    if (respuestaCargaImagen) { // si no hubo problema en procesar la imagen entonces se crea el modulo
+      submoduloCreado = await sails.helpers.crearSubmodulo(nuevoSubmodulo)
+      .catch(
+        (err)=>{
+          if(err.code=='E_UNIQUE'){
+            objetoError.statusCode=409;
+            objetoError.error= err;
+          }else if(err.name='UsageError'){
+            objetoError.statusCode=400;
+            objetoError.error= err;
+          }else{
+            objetoError.statusCode=500;
+            objetoError.error= err;
+          }
+        }
+        )
+
+    } else {
+      return res.status(500);
+    }
+
+    if (Object.keys(objetoError).length > 0) {// si existe un error responde con el codigo de error correspondiente y el mensaje de erro
+      console.log('error encontrado');
+      return res.status(objetoError.statusCode).send({ error: objetoError.error});
+
+    } else {
+      return res.ok(submoduloCreado);
+    }
+
+
+
+
+    ////////////////////////////////////////////////////////
+    //////////////////FUNCION CARGA IMAGEN//////////////////
+    ////////////////////////////////////////////////////////
+
+    function cargaImagen() {
+      this.req.file('multimedia').upload({ //por defecto sails usa SKEEPER para recibir archivos y texto, se puede cambiar si es necesario ir a congif/http.js
+        dirname: '../../assets/images/img-cargadas',
+        // don't allow the total upload size to exceed ~20MB
+        maxBytes: 1024 * 1024 * 20 //10MB
+      }, (err, uploadedFiles) => {
+        sails.log('exito al recibir');
+        //  `fd` (file descriptor)
+        nuevoArchivo = uploadedFiles[0];
+        // sails.log(uploadedFiles[0]);
+
+        // If no files were uploaded, respond with an error.
+        if (uploadedFiles.length != 0 && err) {
+          return false; //Respuesta para axios ERROR EN EL SERVIDOR
+        }
+
+        console.log('se debe imprimir primero  en carga imagen');
+        return true;
+      });
+
+    }
+
+
+  } //fn async
 
 
 };

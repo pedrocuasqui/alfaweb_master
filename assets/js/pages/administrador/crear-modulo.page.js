@@ -5,13 +5,14 @@ parasails.registerPage('crear-modulo', {
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
     //…
-    // contenidos:[],
     curso: Object,
     nombreModulo: '',
     descripcionModulo: '',
     formErrors: {},
-    selectedFile: null,
-    url: null,
+    moduloSeleccionado:{
+      type:Object
+    },
+    tituloTemporal:'Agregar Nuevo Módulo',
 
   },
 
@@ -22,7 +23,7 @@ parasails.registerPage('crear-modulo', {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
     this.curso = SAILS_LOCALS.curso;
-
+//this.moduloSeleccionado= SAILS_LOCALS.moduloSeleccionado;// no se remite porque en la vista_crear_modulo no se ha seleccionado un modulo
 
   },
   mounted: async function () {
@@ -47,21 +48,6 @@ parasails.registerPage('crear-modulo', {
       if (!this.descripcionModulo) {
         this.formErrors.descripcionModulo = true;
       }
-      if (!this.selectedFile) {
-        this.formErrors.selectedFile = true;
-        this.formErrors.typeFile = false;
-      } else {
-        // Expresion regular que evalua si la imagen tiene cualquier tipo
-
-        var regExpImage = new RegExp('image\.\w*');
-        var regExpVideo = new RegExp('video\.\w*');
-
-        if (!regExpImage.exec(this.selectedFile.type) && !regExpVideo.exec(this.selectedFile.type)) {
-          this.formErrors.typeFile = true;
-        }
-      }
-
-
       // SI EXISTE ALGUN ERROR SE RETORNA FALSE Y LA PAGINA SE REFRESCA SIN QUE SEA PERCEPTIBLE
       if (Object.keys(this.formErrors).length > 0) {
         return false;
@@ -75,7 +61,7 @@ parasails.registerPage('crear-modulo', {
 
 
       const formData = new FormData();//crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es implicitamente declarado con este objeto
-      formData.append('multimedia', this.selectedFile, this.selectedFile.name);
+      // formData.append('multimedia', this.selectedFile, this.selectedFile.name);
       //en primer lugar va el nombre del campo que acepta el servidor, segundo va el archivo y tecero va el nombre del archivo
       formData.append('nombreModulo', this.nombreModulo); //Se puede usar Set en lugar de append, para agregar valores, SET reemplaza el nombre del campo cuando ya existe en formData
       formData.append('descripcionModulo', this.descripcionModulo);
@@ -93,7 +79,10 @@ parasails.registerPage('crear-modulo', {
           //pasar el objeto creado, 
           alert('Módulo creado correctamente');
           // window.replace('');
-          // this.curso.modulos.push({ nombreModulo: this.nombreModulo, descripcion:this.descripcionModulo});
+          // se guarda el modulo creado en el arreglo de modulos
+
+          this.curso.modulos.push(response.data); //AUN NO SE VALIDA 23-05-2019
+          this.moduloSeleccionado=response.data;
         })
         .catch((err) => { //la respuesta de sails this.res
 
@@ -110,29 +99,9 @@ parasails.registerPage('crear-modulo', {
         }
         );
     },
-    onFileSelected(event) { //obtener el event 
-      //captura del elemento seleccionado que se almacena en event.target.files en la primera posicion
-      this.selectedFile = event.target.files[0];
-      if (this.selectedFile) {
-        this.url = URL.createObjectURL(this.selectedFile);
-      }
 
-      console.log(this.selectedFile);
-      this.formErrors.selectedFile = false;
-      this.formErrors.typeFile = false;
-
-
-    },
-    onBorrarImagen() {
-      this.selectedFile = null;
-      this.url = null;
-    }
   },
   computed: {
-    errorselectedFile() {
-      let error = this.formErrors.selectedFile || this.formErrors.typeFile;
-      // console.log(error+ " " +this.formErrors.selectedFile+ " "+this.formErrors.typeFile);
-      return error;
-    }
+
   }
 });

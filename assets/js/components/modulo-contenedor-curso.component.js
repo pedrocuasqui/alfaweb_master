@@ -26,20 +26,24 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         tituloTemporal: {
             type: String,
-            required:false,
-            default: ()=>{return ''}
-        }
+            required: false,
+            default: () => { return '' }
+        },
+        usuario: {
+            type: Object,
+            default: () => { return { nombre: 'Admin', rol: 'Administrador' } }
+        },
     },
     data: function () {
         return {
-        campoNombre:null,
-        nombre:null,
+            campoNombre: null,
+            nombre: null,
         };
     },
-    mounted(){
-        
-        this.campoNombre=Object.keys(this.objetoSeleccionado)[0];
-        this.nombre=this.objetoSeleccionado[this.campoNombre];
+    mounted() {
+
+        this.campoNombre = Object.keys(this.objetoSeleccionado)[0];
+        this.nombre = this.objetoSeleccionado[this.campoNombre];
     },
     template: //html
         `  
@@ -71,7 +75,31 @@ parasails.registerComponent('modulo-contenedor-curso', {
                             <a :href="navegarAtras"> <i class="fas fa-arrow-alt-circle-left fas-lg"></i> </a>
                         </div>
                         <div class="col" id="titulo-modulo">
-                            <h2 v-if="tituloTemporal!=''">{{ tituloTemporal}}</h2>
+                            <div v-if="permisoDeAdministrador">
+                                <h2 v-if="tituloTemporal!=''">{{ tituloTemporal}}</h2>
+                            
+                                <div v-else class="form-group">
+                                <!-- <label for="nombreModulo">* Título del módulo</label> -->
+                                    <div class="row">
+                                        <div class="col">
+                                            <input v-if="editarNombre"  
+                                            type="text" 
+                                            id="nombreModulo" 
+                                            name="nombreModulo" 
+                                            v-model="nombreModulo"
+                                            placeholder="Ej: Modulo 1: la computadora"
+                                            :class="[formErrors.nombreModulo ? 'is-invalid' : '']" 
+                                            autofocus>
+                                            <a v-if="editarNombre" @click="actualizarContenido" title="Guardar Nombre"><i class="fas fa-save"></i></a>
+                                            <a v-else @click="mostrarEditarNombre" ><i class="fas fa-edit"></i></a>
+                                            <a data-toggle="modal" data-target="#modalConfirmaEliminar"  data-placement="top" title="Eliminar Módulo"><i class="fas fa-trash-alt"></i></a>
+                                        </div> <!--col-->
+                                    </div><!--row-->
+                                    
+                                    <div class="invalid-feedback" v-if="formErrors.nombreModulo">Ingrese un nombre para el módulo.</div>
+                                </div>
+                            </div>                    
+                         
                             <h2 v-else>{{ nombre}}</h2>
                         </div>
                     </div>
@@ -91,7 +119,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         </div>
 
                         <div class="col-sm-11" id="descripcion-objeto">
-                            <!--<h6>{{objetoSeleccionado.descripcion}}</h6>-->
+                            <h6 v-if="objetoSeleccionado.descripcion">{{objetoSeleccionado.descripcion}}</h6>
                         </div>
                     </div>
 
@@ -112,5 +140,11 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
     methods: {
 
+    },
+    computed: {
+        permisoDeAdministrador() {
+            let usuarioTienePermiso = this.usuario.rol == 'Administrador';
+            return usuarioTienePermiso;
+        }
     }
 });

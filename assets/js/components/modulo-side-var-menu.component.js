@@ -8,7 +8,7 @@ parasails.registerComponent('modulo-side-var-menu', {
 
         usuario: {
             type: Object,
-            default: () => { return { nombre: 'Pablo Neruda', rol: 'Administrador' } }
+            default: () => { return { nombre: 'Admin', rol: 'Administrador' } }
         },
         posicionSeleccionada: null
 

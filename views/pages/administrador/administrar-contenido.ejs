@@ -2,14 +2,12 @@
 
 
     <!-- no importa el contenedor que se use, después se puede editar -->
-    <modulo-contenedor-curso :curso.sync="curso" :titulo-temporal="tituloTemporal"
+    <!-- se usa el contenedor solo para editar, es exclusivo para la edici'on -->
+    <modulo-contenedor-curso-edit :curso.sync="curso" :titulo-temporal="tituloTemporal"
         :objeto-seleccionado.sync="objetoSeleccionado">
         <!-- CONTENIDO DE LA VENTANA -->
         <!-- <h2>Agregar Nuevo Módulo</h2> -->
         <div class="contenedor-formulario">
-
-            <form id="formulario">
-
 
 
                 <!-- Se conserva method="post" de tiny por defecto  -->
@@ -26,12 +24,8 @@
                 <button type="button" id="enviarModulo" @click="validarFormulario"> Guardar Módulo</button>
 
 
-                <br>
-                <br>
-                <br>
-            </form>
         </div>
-    </modulo-contenedor-curso>
+    </modulo-contenedor-curso-edit>
 
 
 </div>

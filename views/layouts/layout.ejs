@@ -40,10 +40,10 @@
       selector: '#mytextarea',
       plugins: 'image code',
       toolbar: "insertfile undo redo |image code| bold italic | forecolor backcolor | template codesample | alignleft aligncenter alignright alignjustify | bullist numlist",
-      // inline: true,
+      inline: true,
       // images_upload_url: '127.0.0.1:1337/crear-modulo',
       /* we override default upload handler to simulate successful upload*/
-      init_instance_callback: function (editor) {
+      /* init_instance_callback: function (editor) {
         window.contenidoTiny = null;
         
         editor.on('keyup', function (e) {
@@ -59,6 +59,7 @@
         });
 
       },
+       */
       images_upload_handler: function (blobInfo, success, failure) {
         const formData = new FormData();
         var _success = success;
@@ -110,6 +111,7 @@
   <script src="/js/libs/vue-sidebar-menu.js"></script>
   <script src="/js/components/modulo-barra-nav.component.js"></script>
   <script src="/js/components/modulo-contenedor-admin.component.js"></script>
+  <script src="/js/components/modulo-contenedor-curso-edit.component.js"></script>
   <script src="/js/components/modulo-contenedor-curso.component.js"></script>
   <script src="/js/components/modulo-modal-fin-actv.component.js"></script>
   <script src="/js/components/modulo-modal-ini-actv.component.js"></script>

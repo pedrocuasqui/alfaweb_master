@@ -1,5 +1,35 @@
 <div id="administrar-contenido" v-cloak>
 
+    <!-- Modal -->
+    <div class="modal fade" id="modalConfirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Curso </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <p>Quieres eliminar el curso: <strong>{{curso.nombre}}</strong></p>
+                    <p>Se eliminarán también sus módulos asociados</p>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal" @click="eliminarDocumento()">Aceptar</button>
+                    <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cancelar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+    <!--Pagina estatica-->
+
+
     <div class="div-contenido container-fluid" v-cloak>
         <!--CABECERA DE LA VENTANA-->
         <div class="row" id="div-cabecera">
@@ -34,14 +64,14 @@
                             </div>
                             <!--titulo-->
                             <div class="col" id="titulo-modulo">
-                                <div v-else class="form-group">
+                                <div class="form-group">
                                     <!-- <label for="nombreModulo">* Título del módulo</label> -->
                                     <div class="row">
                                         <div class="col">
                                             <input v-if="editarNombre" type="text" id="nombreModulo" name="nombreModulo"
                                                 v-model="nombreModulo" placeholder="Ej: Modulo 1: la computadora"
                                                 :class="[formErrors.nombreModulo ? 'is-invalid' : '']" autofocus>
-                                            <h2 v-else>{{ nombre}}</h2>
+                                            <h2 v-else>{{objetoSeleccionado.nombre}}</h2>
                                             <a v-if="editarNombre" @click="actualizarContenido"
                                                 title="Guardar Nombre"><i class="fas fa-save"></i></a>
                                             <a v-else @click="mostrarEditarNombre"><i class="fas fa-edit"></i></a>
@@ -64,24 +94,17 @@
                             <div class="contenedor-slot-principal">
 
                                 <form method="post">
-                                    <textarea id="mytextarea">Escriba aquí el texto</textarea>
+                                    <!-- <textarea id="mytextarea">Escriba aquí el texto</textarea> -->
                                     <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                     <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
-
-
-                                    <div class="contenido-tiny">
+                                    <div id="mytextarea" class="contenido-tiny">
                                         <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                     </div>
 
                                     <button type="button" id="enviarModulo" @click="validarFormulario"> Guardar
                                         Módulo</button>
-                                    </form>
-
-
-
-
+                                </form>
                             </div>
-
                         </div>
 
                         <!--Contenido pie de página-->

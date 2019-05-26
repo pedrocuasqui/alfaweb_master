@@ -9,6 +9,27 @@ parasails.registerPage('administrar-contenido', {
     editarDescripcion:false,
     nombreModulo:'',
     descripcionModulo:'',
+    navegarAtras: {
+      type: String,
+      required: false,
+      description: 'la ruta del modulo anterior',
+  },
+  navegarSiguiente: {
+      type: String,
+      required: false,
+      description: 'la ruta del modulo siguiente',
+  },
+  breadcrumb: {
+      type: Array,
+      required: false,
+  },
+  curso: {
+      type: Object,
+  },
+  usuario: {
+      type: Object,
+      default: { nombre: 'Admin', rol: 'Administrador' } 
+  },
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -21,13 +42,16 @@ parasails.registerPage('administrar-contenido', {
     this.curso= SAILS_LOCALS.curso;
   },
   mounted: async function() {
-    //…
+$('.contenido-tiny').html(this.objetoSeleccionado.contenidoTiny);
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    validarFormulario(){
+
+    },
     actualizarContenido(){
       // enviar la solicitud post a la ruta /actualizar-contenido pasandole como parámetro todo el objeto
 

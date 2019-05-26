@@ -33,14 +33,11 @@
 
                 <!-- Se conserva method="post" de tiny por defecto  -->
                 <form method="post">
-                    <textarea id="mytextarea">Escriba aquí el texto</textarea>
+                    <div id="mytextarea">Escriba aquí el texto</div>
                     <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                     <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
                 </form>
 
-                <div class="contenido-tiny">
-                    <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
-                </div>
 
                 <button type="button" id="enviarModulo" @click="validarFormulario"> Guardar Módulo</button>
 

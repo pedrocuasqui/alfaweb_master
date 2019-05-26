@@ -32,10 +32,10 @@ parasails.registerComponent('modulo-side-var-menu', {
             <!--dropbtn-modulo      : el boton que contiene el nombre del modulo -->
             <!--dropdown-submodulo  : contenedor individual del submodulo -->
             <div v-for="(modulo, index) in curso.modulos" class="dropdownModulo" :key="modulo.id" >
-                <a class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="modulo.enlace" >{{modulo.nombreModulo}}</a>
+                <a class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" >{{modulo.nombreModulo}}</a>
                 
                 <div :class="[modulo.id==objetoSeleccionado.id? 'dropdown-submodulo':'dropdown-submodulo-deselect' ]">
-                    <a v-for="submodulo in modulo.submodulos" :href="submodulo.enlace" :key="submodulo.id">{{submodulo.nombreSubmodulo}}</a>
+                    <a v-for="submodulo in modulo.submodulos" :href="'/administrar-contenido/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id">{{submodulo.nombreSubmodulo}}</a>
                     <a v-if="usuario.rol=='Administrador'" :href="'/view-crear-submodulo/?moduloId='+modulo.id"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
                 </div>
             </div>

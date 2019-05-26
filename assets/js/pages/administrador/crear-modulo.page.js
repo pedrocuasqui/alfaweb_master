@@ -9,11 +9,12 @@ parasails.registerPage('crear-modulo', {
     nombreModulo: '',
     descripcionModulo: '',
     formErrors: {},
-    moduloSeleccionado:{
-      type:Object
+    moduloSeleccionado: {
+      type: Object
     },
-    tituloTemporal:'Agregar Nuevo Módulo',
-    tipoContenido:'Modulo'
+    tituloTemporal: 'Agregar Nuevo Módulo',
+    tipoContenido: 'Modulo',
+    
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -23,12 +24,14 @@ parasails.registerPage('crear-modulo', {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
     this.curso = SAILS_LOCALS.curso;
-//this.moduloSeleccionado= SAILS_LOCALS.moduloSeleccionado;// no se remite porque en la vista_crear_modulo no se ha seleccionado un modulo
+    //this.moduloSeleccionado= SAILS_LOCALS.moduloSeleccionado;// no se remite porque en la vista_crear_modulo no se ha seleccionado un modulo
 
   },
   mounted: async function () {
     //…
 
+
+    
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -78,12 +81,15 @@ parasails.registerPage('crear-modulo', {
           //PASAR COMO PARÁMETRO AL COMPONENTE SIDE-VAR-MENU EL MODULO CREADO
           //pasar el objeto creado, 
           alert('Módulo creado correctamente');
+          console.log('Módulo creado correctamente');
           // window.replace('');
           // se guarda el modulo creado en el arreglo de modulos
-          this.moduloSeleccionado=response.data;
-          window.location.replace('/administrar-contenido/?objetoId='+moduloSeleccionado.id+'&tipoContenido='+this.tipoContenido);
+          this.moduloSeleccionado = response.data;
+          // console.log(this.moduloSeleccionado);
+
+          window.location.replace('/administrar-contenido/?objetoId=' + this.moduloSeleccionado.id + '&tipoContenido=' + this.tipoContenido);
           // this.curso.modulos.push(response.data); //AUN NO SE VALIDA 23-05-2019
-          
+
         })
         .catch((err) => { //la respuesta de sails this.res
 

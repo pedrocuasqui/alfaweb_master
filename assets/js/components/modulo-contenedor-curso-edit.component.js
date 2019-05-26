@@ -47,6 +47,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
         return {
             campoNombre: null,
             nombre: null,
+            editarNombre:false,
         };
     },
     mounted() {
@@ -149,6 +150,10 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
 
     methods: {
+        actualizarContenido(){
+            //llamar a axios y pasarle como parámetro los valores a editar, 
+            this.editarNombre=true;
+        }
 
     },
     computed: {

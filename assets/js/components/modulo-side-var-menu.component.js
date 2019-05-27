@@ -10,7 +10,8 @@ parasails.registerComponent('modulo-side-var-menu', {
             type: Object,
             default: () => { return { nombre: 'Admin', rol: 'Administrador' } }
         },
-        posicionSeleccionada: null
+        posicionSeleccionada: null,
+        crearSubmodulo:false
 
     },
     data() {
@@ -34,9 +35,9 @@ parasails.registerComponent('modulo-side-var-menu', {
             <div v-for="(modulo, index) in curso.modulos" class="dropdownModulo" :key="modulo.id" >
                 <a class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" >{{modulo.nombreModulo}}</a>
                 
-                <div :class="[modulo.id==objetoSeleccionado.id? 'dropdown-submodulo':'dropdown-submodulo-deselect' ]">
-                    <a v-for="submodulo in modulo.submodulos" :href="'/administrar-contenido/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id">{{submodulo.nombreSubmodulo}}</a>
-                    <a v-if="usuario.rol=='Administrador'" :href="'/view-crear-submodulo/?moduloId='+modulo.id"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
+                <div :class="[perteneceObjeto(modulo.id) ? 'dropdown-submodulo':'dropdown-submodulo-deselect' ]">
+                    <a v-for="submodulo in modulo.submodulos" :href="'/administrar-contenido/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                    <a v-if="usuario.rol=='Administrador'" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
                 </div>
             </div>
           <div v-if="usuario.rol=='Administrador'" class="dropdownModulo" >
@@ -60,16 +61,29 @@ parasails.registerComponent('modulo-side-var-menu', {
             this.showSidebar = false;
         },
         perteneceObjeto(moduloId) {
-            var pertenece = null;
+            var pertenece = false;
+            console.log('modulo.id:'+moduloId+ 'vs Submodulo.modulo'+ this.objetoSeleccionado.modulo);
             if (this.objetoSeleccionado.id == moduloId || this.objetoSeleccionado.modulo == moduloId) {
                 pertenece = true;
             }
             return pertenece;
-        }
+        },
+        objetoPerteneceModulo(moduloId){
+            let valor=    false;
+            //primera parte, se evalua que el objeto seleccionado sea un modulo y que sea el modulo del arreglo
+            //la segunda parte se evalua si el objetoSeleccionado es un submodulo y su propiedad modulo corresponda con el modulo actual
+            if(this.moduloId==this.objetoSeleccionado.id || this.moduloId==this.objetoSeleccionado.modulo ){
+                valor= true;
+            }
+            
+
+            return valor;
+           }
+
 
     },
     computed: {
-       
+
     }
 
 });

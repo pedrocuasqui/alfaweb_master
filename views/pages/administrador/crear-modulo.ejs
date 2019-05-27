@@ -1,7 +1,7 @@
 <div id="crear-modulo" v-cloak>
 
     <!-- no importa el contenedor que se use, después se puede editar -->
-    <modulo-contenedor-curso :curso.sync="curso" :titulo-temporal="tituloTemporal" :objeto-seleccionado.sync="moduloSeleccionado">
+    <modulo-contenedor-curso :curso.sync="curso" :titulo-temporal="tituloTemporal" >
         <!-- CONTENIDO DE LA VENTANA -->
         <!-- <h2>Agregar Nuevo Módulo</h2> -->
         <div class="contenedor-formulario">
@@ -31,9 +31,10 @@
                 </div>
 
 
+                <label for="tinyMce">* Contenido </label>
                 <!-- Se conserva method="post" de tiny por defecto  -->
-                <form method="post">
-                    <div id="mytextarea">Escriba aquí el texto</div>
+                <form method="post" id="tinyMce">
+                    <div id="mytextarea">Pulse para editar</div>
                     <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                     <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
                 </form>

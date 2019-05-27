@@ -23,10 +23,14 @@ parasails.registerPage('crear-submodulo', {
       multimedia: false,
       multimediaGeneral: false
     },
-    moduloSeleccionado:null
+    moduloSeleccionado:null,
+    tituloTemporal:'Crear submódulo',
     // ancho:null,
     // alto:null,
     // imagenSeleccionada:null
+    submoduloCreado:null,
+    crearSubmodulo:true,
+    tipoContenido:'Submodulo'
 
   },
 
@@ -62,6 +66,9 @@ parasails.registerPage('crear-submodulo', {
       if(this.selectedFiles.length ==0  &&  !window.contenidoTiny){
         this.formErrors.multimediaGeneral= true;
       }
+      if(!window.contenidoTiny){
+        this.formErrors.contenidoTiny= true;
+      }
 
        // SI EXISTE ALGUN ERROR SE RETORNA FALSE Y LA PAGINA SE REFRESCA SIN QUE SEA PERCEPTIBLE
        if (Object.keys(this.formErrors).length > 0) {
@@ -96,9 +103,10 @@ parasails.registerPage('crear-submodulo', {
           //PASAR COMO PARÁMETRO AL COMPONENTE SIDE-VAR-MENU EL MODULO CREADO
           //pasar el objeto creado, 
           alert('Submodulo creado correctamente');
-          $('#contenido-recibido').html(response.data.contenidoTiny);
-          // window.replace('');
-          // this.curso.modulos.push({ nombreModulo: this.nombreModulo, descripcion:this.descripcionModulo});
+          this.submoduloCreado = response.data;
+          // console.log(this.submoduloCreado);
+
+          window.location.replace('/administrar-contenido/?objetoId=' + this.submoduloCreado.id + '&tipoContenido=' + this.tipoContenido);
         })
         .catch((err) => { //la respuesta de sails this.res
 

@@ -22,6 +22,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         objetoSeleccionado: {
             type: Object,
+            default: () => { return { id: '1', nombreModulo: 'crearModulo', rol: 'Administrador' } }
 
         },
         tituloTemporal: {
@@ -33,6 +34,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
             type: Object,
             default: () => { return { nombre: 'Admin', rol: 'Administrador' } }
         },
+        crearSubmodulo:false,
     },
     data: function () {
         return {
@@ -42,8 +44,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
     },
     mounted() {
 
-        this.campoNombre = Object.keys(this.objetoSeleccionado)[0];
-        this.nombre = this.objetoSeleccionado[this.campoNombre];
+        // this.campoNombre = Object.keys(this.objetoSeleccionado)[0];
+        // this.nombre = this.objetoSeleccionado[this.campoNombre];
     },
     template: //html
         `  
@@ -61,7 +63,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
     <div class="row" id="div-body">
         <!-- columna izquierda -->
         <div class="col-sm-2 col-izquierda">
-            <modulo-side-var-menu :curso="curso" :objeto-seleccionado="objetoSeleccionado"></modulo-side-var-menu>
+            <modulo-side-var-menu :curso="curso" :objeto-seleccionado="objetoSeleccionado" :crear-submodulo="crearSubmodulo"></modulo-side-var-menu>
         </div>
         <div class="col-sm-10" id="columna-contenido-lateral">
             <div class="row fila-principal">
@@ -97,7 +99,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         </div>
 
                         <div class="col-sm-11" id="descripcion-objeto">
-                            <h6 v-if="objetoSeleccionado.descripcion">{{objetoSeleccionado.descripcion}}</h6>
+                            <h6 v-if="existeDescripcion  && tituloTemporal==''">{{objetoSeleccionado.descripcion}}</h6>
                         </div>
                     </div>
 
@@ -120,6 +122,12 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
     },
     computed: {
+        existeDescripcion() {
+            var existe = false;
+            if (this.objetoSeleccionado.descripcion)
+                existe = true;
 
+            return existe;
+        }
     }
 });

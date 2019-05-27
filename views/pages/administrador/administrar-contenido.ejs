@@ -67,11 +67,11 @@
                                 <div class="form-group">
                                     <!-- <label for="nombreModulo">* Título del módulo</label> -->
                                     <div class="row">
-                                        <div class="col">
+                                        <div class="col tituloObjeto" >
                                             <input v-if="editarNombre" type="text" id="nombreModulo" name="nombreModulo"
                                                 v-model="nombreModulo" placeholder="Ej: Modulo 1: la computadora"
                                                 :class="[formErrors.nombreModulo ? 'is-invalid' : '']" autofocus>
-                                            <h2 v-else>{{objetoSeleccionado.nombre}}</h2>
+                                            <h2 v-else >{{objetoSeleccionado.nombre}}</h2>
                                             <a v-if="editarNombre" @click="actualizarContenido"
                                                 title="Guardar Nombre"><i class="fas fa-save"></i></a>
                                             <a v-else @click="mostrarEditarNombre"><i class="fas fa-edit"></i></a>

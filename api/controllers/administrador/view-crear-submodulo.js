@@ -23,8 +23,11 @@ module.exports = {
 
   fn: async function (inputs,exits) {
 
+    sails.log('CODIO DE MODULO'+inputs.moduloId);
     var modulo = await ModuloLibro.findOne({id: inputs.moduloId})
     .intercept((err)=>{sails.log('ERROR MODULO NO ENCONTRADO',err)});
+    
+    sails.log('MODULO'+JSON.stringify(modulo));
     var modulos = await ModuloLibro.find({curso:modulo.curso}).populate('submodulos');
     var curso= await Curso.findOne({id:modulo.curso})
     .intercept((err)=>{console.log('ERROR doble populate: '+err)});

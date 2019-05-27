@@ -43,23 +43,23 @@
       inline: true,
       // images_upload_url: '127.0.0.1:1337/crear-modulo',
       /* we override default upload handler to simulate successful upload*/
-      /* init_instance_callback: function (editor) {
-        window.contenidoTiny = null;
+      init_instance_callback: function (editor) {
+       window.contenidoTiny =null;
         
-        editor.on('keyup', function (e) {
+        editor.on('keyup', function (e) { // no reconoce los clicks
           console.log('editor heyup:');
           window.contenidoTiny=tinymce.get("mytextarea").getContent()
-          $('.contenido-tiny').html(window.contenidoTiny);          
+          // $('.contenido-tiny').html(window.contenidoTiny);          
           
-        });
-        editor.on('Change', function (e) {
+        }); 
+        editor.on('Change', function (e) { //reconoce los clicks sobre el objeto iframe
           console.log('editor changed:');
           window.contenidoTiny=tinymce.get("mytextarea").getContent()
-          $('.contenido-tiny').html(window.contenidoTiny);          
+          // $('.contenido-tiny').html(window.contenidoTiny);          
         });
 
       },
-       */
+      
       images_upload_handler: function (blobInfo, success, failure) {
         const formData = new FormData();
         var _success = success;

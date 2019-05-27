@@ -53,8 +53,8 @@
   </div>
 
 
-  <modulo-contenedor-curso :curso="curso" :modulo-seleccionado="moduloSeleccionado">
-    <h4>Agregar Submódulo</h4>
+  <modulo-contenedor-curso :curso="curso" :objeto-seleccionado="moduloSeleccionado" :titulo-temporal="tituloTemporal" :crear-submodulo="crearSubmodulo">
+    
     <div class="contenedor-formulario">
       <form >
         <div :class="{'minimizar-campos': seleccionTipoAprendizaje, }" class="form-group">
@@ -182,9 +182,10 @@
 
 
         <!-- EDITOR DE CONTENIDOS TINYMCE -->
-        <form method="post">
+        <label for="tinyMce">* Contenido dinámico</label>
+        <form method="post" id="tinyMce">
           <!-- post para que las imágenes se carguen con la funcionalidad por defecto de tinymce-->
-          <div id="mytextarea"> Escriba aquí el texto</div>
+          <div id="mytextarea"> Pulse aquí para editar</div>
         </form>
         <div class="contenido-tiny"></div>
        <div id="contenido-recibido"></div>

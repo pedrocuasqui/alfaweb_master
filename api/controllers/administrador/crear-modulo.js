@@ -60,7 +60,8 @@ module.exports = {
       descripcion: inputs.descripcionModulo,
       multimedia: archivoMultimediaIndependiente,
       curso: inputs.cursoId,
-      contenidoTiny: inputs.contenidoTiny
+      contenidoTiny: inputs.contenidoTiny,
+      submodulos:[]
     }
 
     var moduloCreado = await sails.helpers.crearModulo(nuevoModulo)

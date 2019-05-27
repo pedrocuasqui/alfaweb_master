@@ -31,37 +31,44 @@ module.exports.bootstrap = async function (done) {
         nombreModulo: 'Introduccion al curso',
         descripcion: 'descripcion de la introduccion',
         multimedia: {},
-        curso: cursoCreado.id
+        curso: cursoCreado.id,
+        contenidoTiny:'<p>Pulse para editar</p>',
+        
       },
       {
         nombreModulo: 'Módulo 1- La computadora ',
         descripcion: 'descripcion la computadora',
         multimedia: {},
-        curso: cursoCreado.id
+        curso: cursoCreado.id,
+        contenidoTiny:'<p>Pulse para editar</p>',
       },
       {
         nombreModulo: 'Módulo 2- Navegacion en escritorio',
         descripcion: 'descripcion Navegacion escritorio',
         multimedia: {},
-        curso: cursoCreado.id
+        curso: cursoCreado.id,
+        contenidoTiny:'<p>Pulse para editar</p>',
       },
       {
         nombreModulo: 'Módulo 3-Edición de documentos Word',
         descripcion: 'Edición de documentos en word parte 1',
         multimedia: {},
-        curso: cursoCreado.id
+        curso: cursoCreado.id,
+        contenidoTiny:'<p>Pulse para editar</p>',
       },
       {
         nombreModulo: 'Módulo 4-Edición de documentos Word',
         descripcion: 'Edicion de documentos en word parte 2',
         multimedia: {},
-        curso: cursoCreado.id
+        curso: cursoCreado.id,
+        contenidoTiny:'<p>Pulse para editar</p>',
       },
       {
         nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
         descripcion: 'descripcion edicion de documentos',
         multimedia: {},
-        curso: cursoCreado.id
+        curso: cursoCreado.id,
+        contenidoTiny:'<p>Pulse para editar</p>',
       }
     ]);
 

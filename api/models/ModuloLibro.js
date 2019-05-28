@@ -20,7 +20,7 @@ module.exports = {
       type: 'string',
       required: true,
       columnName: 'nombreModulo', //sirve para cuando existe una conexion a diferentes bases de datos
-      unique: true
+      // unique: true
       //defaulsTo:'', establece un valor por defecto
       //columnType: '' //define el tipo de columna del campo de la base de datos
       //allowNull: true //Los tipos de datos string, numbery boolean, no se aceptan nullcomo un valor al crear o actualizar registros.

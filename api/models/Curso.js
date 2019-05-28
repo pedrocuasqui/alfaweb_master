@@ -15,7 +15,8 @@ module.exports = {
     nombre: {
       type: 'string',
       required: true,
-      columnName: 'nombre'
+      columnName: 'nombre',
+      unique:true
     },
     descripcion: {
       type: 'string',

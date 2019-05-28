@@ -22,6 +22,9 @@
       </div>
     </div>
   </div>
+
+
+  <!-- Pagina principal -->
   <modulo-contenedor-admin :breadcrumb="breadcrumb">
     <div class="container">
       <div class="row">
@@ -35,8 +38,8 @@
                 <span class="badge badge-primary badge-pill">puntos: </span>
                 <span class="badge badge-primary badge-pill">nivel: </span>
               </div>
-              <p class="mb-1">ultimo Acceso: {{estudiante.ultimoAcceso}}</p>  
-              <p class="mb-1">Cursos tomados:</p> 
+              <p class="mb-1">ultimo Acceso: {{estudiante.ultimoAcceso}}</p>
+              <p class="mb-1">Cursos tomados:</p>
               <p v-for="curso in estudiante.curso" class="mb-1">{{curso.nombre}}</p>
             </a>
             <!-- <a class="list-group-item list-group-item-action" href="#"><i class="fas fa-plus"></i> Agregar
@@ -46,19 +49,27 @@
         <div class="col">
           <h3>Cursos</h3>
           <div class="list-group">
-            <li v-for="curso in cursos" class="list-group-item list-group-item-action flex-column align-items-start">
+            <button :id="curso.id" type="button" v-for="curso in cursos" :key="curso.id"
+              class="btnCurso list-group-item list-group-item-action flex-column align-items-start">
+              <!-- @click="abrirCurso(curso.id)"> -->
               <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{curso.nombre}}</h5>
+                <input :id="'input'+curso.id" v-if="inputSeleccionado" type="text" v-model="curso.nombre" :class="[formErrors.nombre ? 'is-invalid' : '']">
+                <h5 v-else class="mb-1">{{curso.nombre}}</h5>
+                <div class="invalid-feedback" v-if="formErrors.nombre">El campo no puede estar vacío</div>
+                <!--span hace que los contenidos se presenten en linea-->
                 <span>
-                  <a :href="'/administrar-indice/?cursoId='+curso.id" data-toggle="tooltip" data-placement="top"
-                    title="Editar Curso"><i class="fas fa-edit"></i> </a>
-                  <a href="" data-toggle="modal" data-target="#modalConfirmaEliminar"
-                    @click="seleccionaCursoEliminar(curso)" data-placement="top" title="Eliminar Curso"><i
+                  <a v-if="editarCurso" @click.stop="validarCampos(curso)" title="Editar Curso"><i
+                      class="fas fa-save"></i></a>
+                  <a v-else @click.stop="mostrarEditarCurso(curso.id)" data-placement="top" title="Editar Curso"> <i
+                      class="fas fa-edit"></i> </a>
+                  <a data-toggle="modal" data-target="#modalConfirmaEliminar"
+                    @click.stop="seleccionaCursoEliminar(curso)" data-placement="top" title="Eliminar Curso"><i
                       class="fas fa-trash-alt"></i></a>
                 </span>
               </div>
-              <p class="mb-1">{{curso.descripcion}}</p>
-            </li>
+              <input v-if="editarCurso" type="text" v-model="curso.descripcion">
+              <p v-else class="mb-1">{{curso.descripcion}}</p>
+            </button>
             <a class="list-group-item list-group-item-action" href="/view-crear-curso"><i class="fas fa-plus"></i>
               Agregar
               Curso</a>

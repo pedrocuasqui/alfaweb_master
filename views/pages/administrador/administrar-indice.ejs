@@ -60,11 +60,11 @@
                 <img class="mensaje-bienvenida" src="/images/svg/bienvenido.svg" alt="mensaje de bienvenida" />
                 <div class="row">
                   <div class="col nombre-curso">
-                    <input v-if="editarNombre" type="text" name="nombreCurso" v-model="curso.nombre" autofocus>
-                    <h1 v-else>{{curso.nombre}}</h1>
+                    <!-- <input v-if="editarNombre" type="text" name="nombreCurso" v-model="curso.nombre" autofocus> -->
+                    <h1 >{{curso.nombre}}</h1>
 
-                    <a v-if="editarNombre" @click="guardarNombre" title="Editar Curso"><i class="fas fa-save"></i></a>
-                    <a v-else @click="mostrarCajaEditar" ><i class="fas fa-edit"></i></a>
+                    <!-- <a v-if="editarNombre" @click="guardarNombre" title="Editar Curso"><i class="fas fa-save"></i></a>
+                    <a v-else @click="mostrarCajaEditar" ><i class="fas fa-edit"></i></a> -->
                     <a data-toggle="modal" data-target="#modalConfirmaEliminar"  data-placement="top" title="Eliminar Curso"><i
                       class="fas fa-trash-alt"></i></a>
 

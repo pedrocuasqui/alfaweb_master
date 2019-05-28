@@ -31,13 +31,7 @@ parasails.registerPage('administrar-indice', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
     
-    mostrarCajaEditar(){
-      this.editarNombre=true;
-    },
-    guardarNombre(){
-      this.editarNombre=false;
-    },
- 
+
     eliminarDocumento(){
       var _this=this;
       axios.get('/eliminar-curso', {

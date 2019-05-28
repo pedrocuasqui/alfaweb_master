@@ -49,27 +49,11 @@
         <div class="col">
           <h3>Cursos</h3>
           <div class="list-group">
-            <button :id="curso.id" type="button" v-for="curso in cursos" :key="curso.id"
-              class="btnCurso list-group-item list-group-item-action flex-column align-items-start">
-              <!-- @click="abrirCurso(curso.id)"> -->
-              <div class="d-flex w-100 justify-content-between">
-                <input :id="'input'+curso.id" v-if="inputSeleccionado" type="text" v-model="curso.nombre" :class="[formErrors.nombre ? 'is-invalid' : '']">
-                <h5 v-else class="mb-1">{{curso.nombre}}</h5>
-                <div class="invalid-feedback" v-if="formErrors.nombre">El campo no puede estar vacío</div>
-                <!--span hace que los contenidos se presenten en linea-->
-                <span>
-                  <a v-if="editarCurso" @click.stop="validarCampos(curso)" title="Editar Curso"><i
-                      class="fas fa-save"></i></a>
-                  <a v-else @click.stop="mostrarEditarCurso(curso.id)" data-placement="top" title="Editar Curso"> <i
-                      class="fas fa-edit"></i> </a>
-                  <a data-toggle="modal" data-target="#modalConfirmaEliminar"
-                    @click.stop="seleccionaCursoEliminar(curso)" data-placement="top" title="Eliminar Curso"><i
-                      class="fas fa-trash-alt"></i></a>
-                </span>
-              </div>
-              <input v-if="editarCurso" type="text" v-model="curso.descripcion">
-              <p v-else class="mb-1">{{curso.descripcion}}</p>
-            </button>
+
+            <boton-curso v-for="(curso,index) in cursos" :key="curso.id" :curso="curso" @guardar-curso="guardarCurso" @selecciona-curso-eliminar="seleccionaCursoEliminar">
+
+            </boton-curso>
+
             <a class="list-group-item list-group-item-action" href="/view-crear-curso"><i class="fas fa-plus"></i>
               Agregar
               Curso</a>

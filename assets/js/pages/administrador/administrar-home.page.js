@@ -25,7 +25,7 @@ parasails.registerPage('administrar-home', {
   },
   mounted: async function() {
 
-    this.asignarEventoClick();
+    // this.asignarEventoClick();
 
     
     
@@ -50,6 +50,7 @@ parasails.registerPage('administrar-home', {
       
     },
     seleccionaCursoEliminar(curso){
+      console.log('seleccionaCursoEliminar');
       this.cursoEliminar=curso;
       $(function () {
         $('#modalConfirmaEliminar').modal('show');
@@ -92,13 +93,7 @@ parasails.registerPage('administrar-home', {
       // event.cancelBubble = true;
       // if(event.stopPropagation) event.stopPropagation();
    
-      var _this= this;
-      console.log(cursoId);
-      this.editarCurso = true;
-      // var abrir= function(){};
-      console.log(document.getElementById(cursoId));
-      document.getElementById(cursoId).removeEventListener("click", abrir,false);
-      
+    
 
     },
     validarCampos(curso){
@@ -151,6 +146,10 @@ parasails.registerPage('administrar-home', {
       document.getElementById(curso.id).addEventListener("click",abrir=function(){_this.abrirCurso(curso.id)},false);
     },
 
+
+
+  },
+  computed:{
 
   }
 });

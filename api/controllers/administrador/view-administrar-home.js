@@ -23,7 +23,7 @@ module.exports = {
     // if(this.req.session.)
     var cursos = await Curso.find(); //devuelve un arreglo con los cursos encotrados
     // sails.log('id'+ cursos[0].id);
-    var estudiantes = await Estudiante.find({}).populate('curso').sort('ultimoAcceso DESC');//buscar los estudiantes que pertenecen a un curso 
+    var estudiantes = await Estudiante.find({}).populate('cursos').sort('ultimoAcceso DESC');//buscar los estudiantes que pertenecen a un curso 
     // console.log(JSON.stringify(estudiantes));
 
 

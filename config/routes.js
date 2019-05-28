@@ -98,6 +98,8 @@ module.exports.routes = {
   'POST /cargar-imagen': {
     action: 'administrador/cargar-imagen',
   },
+
+  
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
   // estudiante
@@ -201,6 +203,10 @@ module.exports.routes = {
 
   'GET /m2-navegacion-escritorio-escritorio': {
     action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio-escritorio',
+
+  },
+  'GET /m2-navegacion-escritorio': {
+    action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio',
 
   },
   /***************************************************************************

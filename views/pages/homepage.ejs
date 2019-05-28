@@ -8,16 +8,24 @@ For more information, see:
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
 <div id="homepage" v-cloak>
 
-<modulo-contenedor-admin :nombre-usuario="nombreUsuario">
+<modulo-contenedor-admin :nombre-usuario="usuario.nombre">
   <div>
     ESCOGE UN USUARIO PARA INICIAR SESION (DESARROLLO)
     <ul>
       <li> <a href="/administrar-home">Administrador</a></li>
       <li>Tutor</li>
-      <li><a href="/indice-estudiante">Estudiante</a></li>
+      <li><a href="">Estudiante</a></li>
 
     </ul>
+    <div class="dropdown">
+        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
+          Seleccione un curso
+        </button>
+        <div class="dropdown-menu">
+          <a class="dropdown-item"  v-for="curso in usuario.cursos" :href="'/indice-estudiante/?usuarioId='+usuario.id+'&cursoId='+curso.id">{{curso.nombre}}</a>
 
+        </div>
+      </div>
 
   </div>
   <div class="jumbotron">

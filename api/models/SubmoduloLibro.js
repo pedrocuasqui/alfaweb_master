@@ -26,12 +26,16 @@ module.exports = {
       //allowNull: true //Los tipos de datos string, numbery boolean, no se aceptan nullcomo un valor al crear o actualizar registros.
       //isIn: ['boring', 'too many emails', 'recipes too difficult', 'other'], //la regla isIn  verifica que cualquier nuevo valor almacenado para este atributo debe coincidir exactamente con una de las pocas constantes de código diferente
     },
+
     descripcion: {
       type: 'string',
       allowNull: true,
       columnName: 'descripcion'
     },
-    
+    enlace: {
+      type: 'string',
+      columnName: 'enlace',
+    },
     multimedia: {
       type: 'json',
       required: false,
@@ -42,6 +46,7 @@ module.exports = {
       required:false,
       columnName: 'contenidoTiny',
     },
+    
 
     // submodulos:{ //aqui no van los submodulos, en los submodulos se agrega la referencia al documento de ModuloLibro
     //   type:'ref',

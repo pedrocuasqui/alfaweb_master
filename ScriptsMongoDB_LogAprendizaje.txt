@@ -537,3 +537,10 @@ insertamos documentos con un id padre
     Viernes 10-05-2019
 Problema para registrar components en parasails: https://github.com/balderdashy/sails/issues/4475
 PARASAILS NO ACEPTA NI REQUIRE NI IMPORT
+
+
+
+Miercoles 29-05-2019
+Se usan las siguientes fuentes para cargar el contenido del curso alfabetizacion basica
+* https://conceptodefinicion.de/
+* https://emtic.educarex.es/pildoras/pub/cont/archivos/Elementos_basicos_de_Word.pdf

@@ -40,7 +40,7 @@ module.exports = {
 
     //relacion muchos a muchos waterline
     //un curso puede tener varios estudiante matriculados y un estudiante puede estar matriculado en varios cursos 
-    matriculado: { //un estudiante puede seguir varios cursos  estudiante -->curso
+    matriculados: { //un estudiante puede seguir varios cursos  estudiante -->curso
       collection: 'estudiante',
       via: 'cursos',
     }

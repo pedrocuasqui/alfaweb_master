@@ -36,14 +36,17 @@ parasails.registerComponent('modulo-contenedor-curso', {
             type: Object,
             default: () => { return { nombre: 'Admin', rol: 'Administrador' } }
         },
-        crearSubmodulo:false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
-        mostrarIconoRepetir:false,
+        crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
+        mostrarIconoRepetir: false,
+
+
 
     },
     data: function () {
         return {
             campoNombre: null,
             nombre: null,
+            evIndividual: false,
         };
     },
     mounted() {
@@ -87,13 +90,19 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                         <!--REPETIR LA EVALUACION-->
                         <div v-if="mostrarIconoRepetir" class="col-auto">
-                            <a  @click="intentarNuevamente"><i class="fas fa-redo-alt fa-3x"></i> </a>
+                            <a  @click="intentarNuevamente" title="Repetir reto"><i class="fas fa-redo-alt fa-3x"></i> </a>
                         </div>
 
-                        <!--navegacion-siguiente-->
-                        <div class="col-auto">
-                            <a :href="'/contenido-alfaweb/?enlace='+navegarSiguiente"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                                             
+                                              
+                         <div  class="col-auto">
+                            <!--navegacion-siguiente-->
+                            <a v-if="evIndividual" key="siguiente"  :href="'/contenido-alfaweb/?enlace='+navegarSiguiente"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                            <!--navegacion-evaluacion-->
+                            <a v-else key="evaluacion" title="Evaluación" @click.stop="evaluacionIndividual"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a> <!--por defecto se muestra este boton-->                  
                         </div>
+                                          
+ 
 
 
                     </div>
@@ -120,7 +129,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 </div>
                 <!-- columna derecha -->
                 <div class="col-sm-2 col-derecha">
-                    <modulo-panel-derecho></modulo-panel-derecho>
+                    <modulo-panel-derecho :usuario="usuario"></modulo-panel-derecho>
                 </div>
             </div> <!-- fin fila de contenido central y barra lateral derecha -->
         </div> <!--fin columna contenido central y barra lateral derecha-->
@@ -133,8 +142,13 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
 
     methods: {
-        intentarNuevamente(){
+        intentarNuevamente() {
             this.$emit('intentar-nuevamente');
+        },
+        evaluacionIndividual() {
+
+            this.$emit('evaluacion-individual');
+            this.evIndividual = true;
         }
     },
     computed: {

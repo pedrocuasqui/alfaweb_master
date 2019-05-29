@@ -6,23 +6,25 @@ parasails.registerPage('m-1-computadora', {
     mouseX: 0,
     mouseY: 0,
     mostrarToolTip: false,
+    descripcionActividad: "BIENVENIDO!!! \n Pasa el mouse sobre las imágenes para que puedas ver el nombre de los objetos.",
     textoToolTip: {
       type: String,
       default: "computador"
     },
-    modulo:{
-      nombreModulo: 'Módulo 1- La computadora ',
-      descripcion: 'La computadora es una máquina electrónica capaz de recibir un conjunto de órdenes y ejecutarlas realizando cálculos complejos, o agrupando y correlacionando otro tipo de información. Es también conocida como ordenador o computador.',
-    },
-    descripcionActividad: "BIENVENIDO!!! \n Pasa el mouse sobre las imágenes para que puedas ver el nombre de los objetos.",
-
-    navegarAtras: '/',
-    navegarSiguiente: '/m1-computadora-ev',
-    
-
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     { id: '', texto: 'Módulo 1 - La computadora', enlace: '/m1-computadora' }],
 
+    // modulo:{
+    //   nombreModulo: 'Módulo 1- La computadora ',
+    //   descripcion: 'La computadora es una máquina electrónica capaz de recibir un conjunto de órdenes y ejecutarlas realizando cálculos complejos, o agrupando y correlacionando otro tipo de información. Es también conocida como ordenador o computador.',
+    // },
+    usuario:Object,
+    navegarSiguiente:'',
+    navegarAtras:'',
+    tituloEvaluacion:'',
+    evIndividual:false,
+    objetoSeleccionado:'',
+    
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -37,6 +39,11 @@ parasails.registerPage('m-1-computadora', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
+    
+    this.objetoSeleccionado=SAILS_LOCALS.objetoSeleccionado;
+    this.usuario= SAILS_LOCALS.usuario;
+    this.navegarAtras= '/indice-estudiante/?usuarioId='+this.usuario.id+'&cursoId='+this.curso.id,
+    this.navegarSiguiente=this.objetoSeleccionado.submodulos[0].enlace;
   },
   mounted: async function () {
     //…
@@ -85,8 +92,8 @@ parasails.registerPage('m-1-computadora', {
 
 
       // El text del tooltip se basa en valor de la propiedad ""id"" de cada elemento ""
-      let objetoSeleccionado = event.target.parentNode.id;
-      this.textoToolTip = objetoSeleccionado.toString().toUpperCase();
+      let elementoSeleccionado = event.target.parentNode.id;
+      this.textoToolTip = elementoSeleccionado.toString().toUpperCase();
 
       //una vez que los valores para x y y del texto del tooltip han sido establecidos, se muestra en la pantalla
       this.mostrarToolTip = true;
@@ -94,6 +101,11 @@ parasails.registerPage('m-1-computadora', {
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
     },
+    evaluacionIndividual(){ //funcion recibida del componente modulo-contenedor-curso
+      this.tituloEvaluacion=this.objetoSeleccionado.nombreModulo;
+      console.log(this.objetoSeleccionado.nombreModulo);
+      this.evIndividual=true;
+    }
   },
   computed: {
     styleToolTip() {

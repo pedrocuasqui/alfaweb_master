@@ -28,7 +28,9 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
-
+    //solo para pruebas se usa la Colecion estudiante 
+    var usuario = {};
+    usuario = await Estudiante.findOne({ id: inputs.usuarioId });
     /*      var moduloLibro = await ModuloLibro.find(); //esta es una instancia de consulta --> es un intento aún no cumplido de obtener registros de la base de datos
         //el resultado solo se observa cuando se usa la palabra await antes de la instancia y se asigna a una variable
         console.log('metodo1:\n'+moduloLibro); //devuelve el arreglo completo --> [object Object]
@@ -43,7 +45,7 @@ module.exports = {
     sails.log(moduloLibro);
     return exits.success({
       contenidos: moduloLibro,
-
+      usuario
       // cuando el nombre de la propiedad es igual al nombre del objeto que contiene la información, es posible enviar solo un dato es decir que, pasar, contenidos: contenidos es igual que pasar contenidos
     });
 

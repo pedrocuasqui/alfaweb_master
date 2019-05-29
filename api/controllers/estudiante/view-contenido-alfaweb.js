@@ -25,14 +25,24 @@ module.exports = {
 
   fn: async function (inputs) {
 
+
     var curso = await Curso.findOne({nombre:'Alfabetizacion informática'}).populate('modulos');
-    
+    let modulos= await ModuloLibro.find({curso:curso.id}).populate('submodulos',{sort: 'createdAt ASC'});
+    curso.modulos=modulos;
+
+
+    //USUARIO PARA PRUEBAS, REEMPLAZAR EN PRODUCCION POR UNA SESION
+    var usuario= await Estudiante.findOne({alias: 'Pedroc'});
+
     if (inputs.enlace == '/m1-computadora') {
-      let objetoSeleccionado= await ModuloLibro.findOne({enlace:'/m1-computadora'})
-      return this.res.view('pages/estudiante/modulo-1/m-1-computadora',{curso, objetoSeleccionado});
+      let objetoSeleccionado= await ModuloLibro.findOne({enlace:'/m1-computadora'}).populate('submodulos',{sort: 'createdAt ASC'});
+      return this.res.view('pages/estudiante/modulo-1/m-1-computadora',{usuario,curso, objetoSeleccionado});
     } 
-    else if(inputs.enlace=='/m1-computadora-ev'){
-      return this.res.view('pages/estudiante/modulo-1/m-1-computadora-ev',{curso})
+    else if(inputs.enlace=='/m1-hardware'){
+      let objetoSeleccionado= await SubmoduloLibro.findOne({enlace:'/m1-hardware'});
+      let siguientes        = await SubmoduloLibro.find({modulo:objetoSeleccionado.modulo, createdAt:{'>':objetoSeleccionado.createdAt}}).sort('createdAt');
+      let siguiente=siguientes[0];
+      return this.res.view('pages/estudiante/modulo-1/m-1-hardware',{usuario,curso,objetoSeleccionado, siguiente})
     }
     
     else if (inputs.enlace == '/m2-navegacion-escritorio') {

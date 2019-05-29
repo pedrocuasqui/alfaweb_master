@@ -10,7 +10,7 @@ parasails.registerPage('indice-estudiante', {
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     ],
-    
+    usuario:{},
     
   },
 
@@ -20,6 +20,7 @@ parasails.registerPage('indice-estudiante', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
+    this.usuario=SAILS_LOCALS.usuario;
  
 
   },

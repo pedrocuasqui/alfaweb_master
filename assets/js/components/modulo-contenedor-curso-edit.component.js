@@ -5,7 +5,7 @@
 // //////////////////////////////////////////////////
 // //////////////////////////////////////////////////
 // //////////////////////////////////////////////////
-// ESTE COMPONENTE SE USA SOLO PARA LA EDICION DE UN OBJETO,(MODULO, SUBMODULO )
+// ESTE COMPONENTE SE USA SOLO COMO ADMINISTRADOR PARA LA EDICION DE UN OBJETO,(MODULO, SUBMODULO, EVALUACION)
 
 parasails.registerComponent('modulo-contenedor-curso', {
     props: {

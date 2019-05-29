@@ -40,7 +40,7 @@ module.exports = {
     // console.log('Curso:'+curso[0].nombre+'- modulos:\n'+ JSON.stringify(curso[0].modulos));
 
     let moduloLibro = curso.modulos;
-    // sails.log(moduloLibro);
+    sails.log(moduloLibro);
     return exits.success({
       contenidos: moduloLibro,
 

@@ -40,8 +40,8 @@
               <div class="col">
                 <div class="row">
                   <div class="col-sm-3 item-modulo" v-for="contenido in contenidos">
-                    <a :href="contenido.enlace"> <img :src="contenido.multimedia" alt="La Computadora, Módulo 1"></a>
-                    <a :href="contenido.enlace">{{contenido.nombreModulo}}</a>
+                    <a :href="'/contenido-alfaweb/?enlace='+contenido.enlace"> <img :src="contenido.multimedia" alt="La Computadora, Módulo 1"></a>
+                    <a :href="'/contenido-alfaweb/?enlace='+contenido.enlace">{{contenido.nombreModulo}}</a>
                   </div>
                 </div>
               </div>

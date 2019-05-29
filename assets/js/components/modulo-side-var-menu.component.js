@@ -4,14 +4,16 @@ parasails.registerComponent('modulo-side-var-menu', {
             type: Object,
             default: () => { return { id: '1', nombreModulo: 'crearModulo', rol: 'Administrador' } }
         },
-        curso: Object,
-
+        curso: {
+            type: Object,
+            required: true
+        },
         usuario: {
             type: Object,
             default: () => { return { nombre: 'Admin', rol: 'Administrador' } }
         },
         posicionSeleccionada: null,
-        crearSubmodulo:false
+        crearSubmodulo: false
 
     },
     data() {
@@ -62,23 +64,23 @@ parasails.registerComponent('modulo-side-var-menu', {
         },
         perteneceObjeto(moduloId) {
             var pertenece = false;
-            console.log('modulo.id:'+moduloId+ 'vs Submodulo.modulo'+ this.objetoSeleccionado.modulo);
+            console.log('modulo.id:' + moduloId + 'vs Submodulo.modulo' + this.objetoSeleccionado.modulo);
             if (this.objetoSeleccionado.id == moduloId || this.objetoSeleccionado.modulo == moduloId) {
                 pertenece = true;
             }
             return pertenece;
         },
-        objetoPerteneceModulo(moduloId){
-            let valor=    false;
+        objetoPerteneceModulo(moduloId) {
+            let valor = false;
             //primera parte, se evalua que el objeto seleccionado sea un modulo y que sea el modulo del arreglo
             //la segunda parte se evalua si el objetoSeleccionado es un submodulo y su propiedad modulo corresponda con el modulo actual
-            if(this.moduloId==this.objetoSeleccionado.id || this.moduloId==this.objetoSeleccionado.modulo ){
-                valor= true;
+            if (this.moduloId == this.objetoSeleccionado.id || this.moduloId == this.objetoSeleccionado.modulo) {
+                valor = true;
             }
-            
+
 
             return valor;
-           }
+        }
 
 
     },

@@ -103,112 +103,117 @@ module.exports.routes = {
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
   // estudiante
+  
+  'GET /contenido-alfaweb': {
+    action: 'estudiante/view-contenido-alfaweb',
+
+  },
   'GET /indice-estudiante': {
     action: 'estudiante/view-indice-estudiante',
 
   },
-  'GET /m1-computadora': {
-    action: 'estudiante/modulo-1/view-m-1-computadora',
+  // 'GET /m1-computadora': {
+  //   action: 'estudiante/modulo-1/view-m-1-computadora',
 
-  },
-  'GET /m1-computadora-ev': {
-    action: 'estudiante/modulo-1/view-m-1-computadora-ev',
+  // },
+  // 'GET /m1-computadora-ev': {
+  //   action: 'estudiante/modulo-1/view-m-1-computadora-ev',
 
-  },
-  'GET /m1-sistema-informatico': {
-    action: 'estudiante/modulo-1/view-m-1-sistema-informatico',
+  // },
+  // 'GET /m1-sistema-informatico': {
+  //   action: 'estudiante/modulo-1/view-m-1-sistema-informatico',
 
-  },
+  // },
 
-  'GET /m1-sistema-informatico-monitor': {
-    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-monitor',
+  // 'GET /m1-sistema-informatico-monitor': {
+  //   action: 'estudiante/modulo-1/view-m-1-sistema-informatico-monitor',
 
-  },
-  'GET /m1-sistema-informatico-cpu': {
-    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-cpu',
+  // },
+  // 'GET /m1-sistema-informatico-cpu': {
+  //   action: 'estudiante/modulo-1/view-m-1-sistema-informatico-cpu',
 
-  },
-  'GET /m1-sistema-informatico-mouse': {
-    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-mouse',
+  // },
+  // 'GET /m1-sistema-informatico-mouse': {
+  //   action: 'estudiante/modulo-1/view-m-1-sistema-informatico-mouse',
 
-  },
-  'GET /m1-sistema-informatico-teclado': {
-    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-teclado',
+  // },
+  // 'GET /m1-sistema-informatico-teclado': {
+  //   action: 'estudiante/modulo-1/view-m-1-sistema-informatico-teclado',
 
-  },
+  // },
 
-  'GET /m1-sistema-informatico-impresora': {
-    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-impresora',
+  // 'GET /m1-sistema-informatico-impresora': {
+  //   action: 'estudiante/modulo-1/view-m-1-sistema-informatico-impresora',
 
-  },
+  // },
 
-  'GET /m1-sistema-informatico-usb': {
-    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-usb',
+  // 'GET /m1-sistema-informatico-usb': {
+  //   action: 'estudiante/modulo-1/view-m-1-sistema-informatico-usb',
 
-  },
-  'GET /m1-sistema-informatico-software': {
-    action: 'estudiante/modulo-1/view-m-1-sistema-informatico-software',
+  // },
+  // 'GET /m1-sistema-informatico-software': {
+  //   action: 'estudiante/modulo-1/view-m-1-sistema-informatico-software',
 
-  },
+  // },
 
-  'GET /m1-conexion-componentes': {
-    action: 'estudiante/modulo-1/view-m-1-conexion-componentes',
+  // 'GET /m1-conexion-componentes': {
+  //   action: 'estudiante/modulo-1/view-m-1-conexion-componentes',
 
-  },
-  'GET /m1-conexion-componentes-monitor': {
-    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-monitor',
+  // },
+  // 'GET /m1-conexion-componentes-monitor': {
+  //   action: 'estudiante/modulo-1/view-m-1-conexion-componentes-monitor',
 
-  },
-  'GET /m1-conexion-componentes-teclado': {
-    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-teclado',
+  // },
+  // 'GET /m1-conexion-componentes-teclado': {
+  //   action: 'estudiante/modulo-1/view-m-1-conexion-componentes-teclado',
 
-  },
-  'GET /m1-conexion-componentes-mouse': {
-    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-mouse',
+  // },
+  // 'GET /m1-conexion-componentes-mouse': {
+  //   action: 'estudiante/modulo-1/view-m-1-conexion-componentes-mouse',
 
-  },
-  'GET /m1-conexion-componentes-cablepoder': {
-    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-cablepoder',
+  // },
+  // 'GET /m1-conexion-componentes-cablepoder': {
+  //   action: 'estudiante/modulo-1/view-m-1-conexion-componentes-cablepoder',
 
-  },
+  // },
 
-  'GET /m1-conexion-componentes-flashmemory': {
-    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-flashmemory',
+  // 'GET /m1-conexion-componentes-flashmemory': {
+  //   action: 'estudiante/modulo-1/view-m-1-conexion-componentes-flashmemory',
 
-  },
-  'GET /m1-conexion-componentes-audio': {
-    action: 'estudiante/modulo-1/view-m-1-conexion-componentes-audio',
+  // },
+  // 'GET /m1-conexion-componentes-audio': {
+  //   action: 'estudiante/modulo-1/view-m-1-conexion-componentes-audio',
 
-  },
-  'GET /m1-encender-apagar-computador': {
-    action: 'estudiante/modulo-1/view-m-1-encender-apagar-computador',
+  // },
+  // 'GET /m1-encender-apagar-computador': {
+  //   action: 'estudiante/modulo-1/view-m-1-encender-apagar-computador',
 
-  },
-  'GET /m1-teclado': {
-    action: 'estudiante/modulo-1/view-m-1-teclado',
+  // },
+  // 'GET /m1-teclado': {
+  //   action: 'estudiante/modulo-1/view-m-1-teclado',
 
-  },
-  'GET /m1-raton': {
-    action: 'estudiante/modulo-1/view-m-1-raton',
+  // },
+  // 'GET /m1-raton': {
+  //   action: 'estudiante/modulo-1/view-m-1-raton',
 
-  },
-  'GET /m1-evaluacion': {
-    action: 'estudiante/modulo-1/view-m-1-evaluacion',
+  // },
+  // 'GET /m1-evaluacion': {
+  //   action: 'estudiante/modulo-1/view-m-1-evaluacion',
 
-  },
-  'GET /m2-navegacion-escritorio': {
-    action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio',
+  // },
+  // 'GET /m2-navegacion-escritorio': {
+  //   action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio',
 
-  },
+  // },
 
-  'GET /m2-navegacion-escritorio-escritorio': {
-    action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio-escritorio',
+  // 'GET /m2-navegacion-escritorio-escritorio': {
+  //   action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio-escritorio',
 
-  },
-  'GET /m2-navegacion-escritorio': {
-    action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio',
+  // },
+  // 'GET /m2-navegacion-escritorio': {
+  //   action: 'estudiante/modulo-2/view-m-2-navegacion-escritorio',
 
-  },
+  // },
   /***************************************************************************
   *                                                                          *
   * More custom routes here...                                               *

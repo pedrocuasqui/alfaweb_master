@@ -10,11 +10,15 @@ parasails.registerPage('m-1-computadora', {
       type: String,
       default: "computador"
     },
-    tituloContenido: 'Módulo 1 - La computadora',
-    descripcionObjeto: '',
+    modulo:{
+      nombreModulo: 'Módulo 1- La computadora ',
+      descripcion: 'La computadora es una máquina electrónica capaz de recibir un conjunto de órdenes y ejecutarlas realizando cálculos complejos, o agrupando y correlacionando otro tipo de información. Es también conocida como ordenador o computador.',
+    },
+    descripcionActividad: "BIENVENIDO!!! \n Pasa el mouse sobre las imágenes para que puedas ver el nombre de los objetos.",
+
     navegarAtras: '/',
     navegarSiguiente: '/m1-computadora-ev',
-    descripcionActividad: "BIENVENIDO!!! \n Pasa el mouse sobre las imágenes para que puedas ver el nombre de los objetos.",
+    
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     { id: '', texto: 'Módulo 1 - La computadora', enlace: '/m1-computadora' }],
@@ -36,6 +40,7 @@ parasails.registerPage('m-1-computadora', {
   },
   mounted: async function () {
     //…
+    console.log(SAILS_LOCALS);
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -48,6 +53,29 @@ parasails.registerPage('m-1-computadora', {
       $(function () {
         $('#modalInicial').modal('show');
       });
+    },
+    infoObjeto(idObjeto){
+      if(idObjeto=='cpu'){
+        console.log('cpu aslkdjfa;lk');
+        $(function(){
+          $('#modalCpu').modal('show');
+        });
+
+      }else if(idObjeto=='teclado'){
+        $(function(){
+          $('#modalTeclado').modal('show');
+        });
+
+      }else if(idObjeto=='mouse'){
+        
+        $(function(){
+          $('#modalMouse').modal('show');
+        });
+      }else {
+        $(function(){
+          $('#modalMonitor').modal('show');
+        });
+      }
     },
     mouseMovePc(event) {
       // clientX/Y obtiene las coordenadas del elemento con respecto al elemento padre, en este caso las coordenadas con respecto a <div id="m1-computadora"

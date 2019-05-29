@@ -83,7 +83,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                     <div class="row">
                         <!--siguiente-->
                         <div class="navegacion-siguiente">
-                            <a :href="navegarSiguiente"><i class="fas fa-arrow-alt-circle-right fas-3x"></i> </a>
+                            <a :href="'/contenido-alfaweb/?enlace='+navegarSiguiente"><i class="fas fa-arrow-alt-circle-right fas-3x"></i> </a>
                         </div>
                         <!--atras-->
                         <div class="navegacion-atras">

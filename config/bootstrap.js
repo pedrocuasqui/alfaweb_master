@@ -18,8 +18,8 @@ module.exports.bootstrap = async function (done) {
   // // Set up fake development data (or if we already have some, avast)
  
 
+ 
 
-/* 
   var cursoCreado;
   if (await Curso.count() == 0 ) {
 
@@ -43,7 +43,7 @@ module.exports.bootstrap = async function (done) {
       },
       {
         nombreModulo: 'Módulo 1- La computadora ',
-        descripcion: 'descripcion la computadora',
+        descripcion: 'La computadora es una máquina electrónica capaz de recibir un conjunto de órdenes y ejecutarlas realizando cálculos complejos, o agrupando y correlacionando otro tipo de información. Es también conocida como ordenador o computador.',
         enlace:'/m1-computadora',
         multimedia: {},
         curso: cursoCreado.id,
@@ -67,7 +67,7 @@ module.exports.bootstrap = async function (done) {
       },
       {
         nombreModulo: 'Módulo 4-Edición de documentos Word',
-        descripcion: 'Edicion de documentos en word parte 2',
+        descripcion: 'Edición de documentos en word parte 2',
         enlace:'/m4-edicion-documentos-2',
         multimedia: {},
         curso: cursoCreado.id,
@@ -75,7 +75,7 @@ module.exports.bootstrap = async function (done) {
       },
       {
         nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
-        descripcion: 'descripcion edicion de documentos',
+        descripcion: 'descripcion Modulo 5',
         enlace:'/m5-insercion-imagenes',
         multimedia: {},
         curso: cursoCreado.id,
@@ -83,7 +83,7 @@ module.exports.bootstrap = async function (done) {
       },
       {
         nombreModulo: 'Módulo 6 - Navegar en Internet',
-        descripcion: 'descripcion edicion de documentos',
+        descripcion: 'descripcion Modulo 6',
         enlace:'/m6-navegar-internet',
         multimedia: {},
         curso: cursoCreado.id,
@@ -91,7 +91,7 @@ module.exports.bootstrap = async function (done) {
       },
       {
         nombreModulo: 'Módulo 7 - Correo Electrónico y Skype',
-        descripcion: 'descripcion edicion de documentos',
+        descripcion: 'descripcion Modulo 7',
         enlace:'/m7-redes-sociales',
         multimedia: {},
         curso: cursoCreado.id,
@@ -99,7 +99,7 @@ module.exports.bootstrap = async function (done) {
       },
        {
         nombreModulo: 'Módulo 8 - Páginas de Interne',
-        descripcion: 'descripcion edicion de documentos',
+        descripcion: 'descripcion Modulo8',
         enlace:'/m8-paginas-internet',
         multimedia: {},
         curso: cursoCreado.id,
@@ -107,7 +107,7 @@ module.exports.bootstrap = async function (done) {
       },
       {
         nombreModulo: 'Módulo 9. Dispositivos Móviles',
-        descripcion: 'descripcion edicion de documentos',
+        descripcion: 'descripcion Modulo 9',
         enlace:'/m9-dispositivos-moviles',
         multimedia: {},
         curso: cursoCreado.id,
@@ -128,8 +128,9 @@ module.exports.bootstrap = async function (done) {
   }
 
   var estudianteCreado;
-
-  if (await Estudiante.count() == 0 && cursoCreado ) {
+var cursos= await Curso.find({});
+var curso= cursos[0];
+  if (await Estudiante.count() == 0 && Object.keys(curso).length>0 ) {
     estudianteCreado= await Estudiante.create(
       {
       nombre: 'Pedro Cuasqui',
@@ -137,7 +138,7 @@ module.exports.bootstrap = async function (done) {
       email: 'pedro.cuasqui@gmail.com',
       password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
       ultimoAcceso:'2019-05-20',
-      cursos:cursoCreado.id
+      cursos:curso.id
     }).fetch();
 
     await Estudiante.create({
@@ -146,15 +147,15 @@ module.exports.bootstrap = async function (done) {
       email: 'elsa.pita@gmail.com',
       password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
       ultimoAcceso:'2019-04-20',
-      cursos:cursoCreado.id
+      cursos:curso.id
     });
   
     sails.log('creacion de estudiante correcta!');
   }
- */
+ 
 
   
-
+ 
   // ```
   // Don't forget to trigger `done()` when this bootstrap function's logic is finished.
   // (otherwise your server will never lift, since it's waiting on the bootstrap)

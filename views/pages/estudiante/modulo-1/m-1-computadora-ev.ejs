@@ -3,12 +3,12 @@
   <!-- en esta pantalla se pone a prueba el conocimiento adquirido en la página anterior, se pregunta al usuario por un elemento de la computadora y que el usuario seleccione el correcto -->
  
   <!-- MODALS******************************************************************************************* -->
-  <modulo-modal-ini-actv :titulo-contenido="tituloContenido" :descripcion-actividad="descripcionActividad" :enlace-siguiente-actividad="navegarSiguiente"  @empezar-evaluacion="empezarEvaluacion"></modulo-modal-ini-actv>
+  <modulo-modal-ini-actv :titulo-contenido="objetoSeleccionado.nombreModulo" :descripcion-actividad="descripcionActividad" :enlace-siguiente-actividad="navegarSiguiente"  @empezar-evaluacion="empezarEvaluacion"></modulo-modal-ini-actv>
   <modulo-modal-fin-actv :conteo-aciertos="conteoAciertos" :elementos="elementos" :actividad-finaliza="actividadFinaliza"></modulo-modal-fin-actv>
 
 
   <!-- CONTENIDOS******************************************************************************************* -->
-  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb">
+  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb" :curso="curso" :objeto-seleccionado.sync="objetoSeleccionado" :mostrar-icono-repetir.sync="mostrarIconoRepetir" @intentar-nuevamente="intentarNuevamente">
       
     <svg id="lienzo-svg" style="enable-background:new" version="1.0" viewBox="0 0 375 225" xmlns="http://www.w3.org/2000/svg">
       <g id="cpu" class="contenedor" @mousedown="moseDownPc">

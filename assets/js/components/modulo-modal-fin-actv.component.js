@@ -19,7 +19,7 @@ parasails.registerComponent('modulo-modal-fin-actv',{
             </button>
           </div>
           <div class="modal-body">
-            Se acabó el tiempo, has obtenido {{conteoAciertos}} aciertos de {{elementos.length}}
+            Has finalizado, has obtenido {{conteoAciertos}} aciertos de {{elementos.length}}
           </div>
           <div class="modal-footer">
             <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Cancelar/</button> -->

@@ -3,9 +3,14 @@ parasails.registerPage('m-1-computadora-ev', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    tituloContenido: 'Demuestra tus conocimientos',
+    // tituloContenido: 'Demuestra tus conocimientos',
+    objetoSeleccionado:{
+      id:'1',
+      nombreModulo:'Módulo 1- La computadora- Evaluación',
+      descripcion:'',
+    },
     descripcionActividad: 'Tienes 12 segundos para seleccionar el objeto que se te indica. Si necesitas ayuda presiona el avatar... Suerte!',
-    descripcionObjeto:'',
+    
     navegarAtras: '/m1-computadora',
     navegarSiguiente: '/m1-sistema-informatico',
     accion: 'Da clic sobre el: ',
@@ -20,7 +25,8 @@ parasails.registerPage('m-1-computadora-ev', {
     actividadFinaliza: false,
     
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
-    { id: '', texto: 'La computadora - evaluacion', enlace: '/m1-computadora' },]
+    { id: '', texto: 'La computadora - evaluacion', enlace: '/m1-computadora' },],
+    mostrarIconoRepetir:false,
     
 
   },
@@ -71,14 +77,16 @@ parasails.registerPage('m-1-computadora-ev', {
       });
     },
     iniciaConteo() {
+      
       this.timer = setInterval(this.cuentaRegresiva, 1000);
+      
     },
     cuentaRegresiva() {
       // Si el contador aun no ha llegado a cero, continua restando un numero cada segundo
       if (this.tiempoSegundos >= 1) {
         this.tiempoSegundos--;
 
-        this.descripcionObjeto=this.accion+" "+this.elementoTurno.toUpperCase()+ " Tienes " +this.tiempoSegundos+" segundos";
+        this.objetoSeleccionado.descripcion=this.accion+" "+this.elementoTurno.toUpperCase()+ ", Tienes " +this.tiempoSegundos+" segundos";
       } else {
         // si aún no se han recorrido todos los elementos del arreglo  se aumenta el contador de elementos y se obtiene un elemento "g" actual
         if (this.contadorTimer < (this.elementos.length - 1)) {
@@ -103,6 +111,11 @@ parasails.registerPage('m-1-computadora-ev', {
     mostrarModalFinalizacion() {
       // no funciona el modal si se hace un v-show
       $('#actividadFinalizada').modal('show');
+      this.mostrarIconoRepetir=true;
+      this.guardarEvaluacion();
+    },
+    guardarEvaluacion(){
+
     },
     empezarEvaluacion() {
       this.iniciaConteo();
@@ -126,7 +139,7 @@ parasails.registerPage('m-1-computadora-ev', {
           this.contadorTimer++;
           //si ya se aumenta un valor mas a la posicion final del arreglo, se termina la actividad
           if (this.contadorTimer == this.elementos.length) {
-            this.descripcionObjeto="Se acabó el tiempo \n Has obtenido "+ this.conteoAciertos+ " aciertos de"+ this.elementos.length;
+            this.objetoSeleccionado.descripcion="Se acabó el tiempo \n Has obtenido "+ this.conteoAciertos+ " aciertos de"+ this.elementos.length;
             this.actividadFinaliza = true;
             clearInterval(this.timer);
             this.mostrarModalFinalizacion();
@@ -150,6 +163,10 @@ parasails.registerPage('m-1-computadora-ev', {
     },
     omitirActividad(){
       return res.view("/");
+    },
+    intentarNuevamente(){
+      this.mostrarModal();
+      //volver los colores como al inicio
     }
   },
   computed: {

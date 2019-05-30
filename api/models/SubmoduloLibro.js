@@ -46,7 +46,11 @@ module.exports = {
       required:false,
       columnName: 'contenidoTiny',
     },
-    
+    ordenNavegacion:{
+      type:"Number",
+      required: false,
+      columnName:'ordenNavegacion'
+    },
 
     // submodulos:{ //aqui no van los submodulos, en los submodulos se agrega la referencia al documento de ModuloLibro
     //   type:'ref',

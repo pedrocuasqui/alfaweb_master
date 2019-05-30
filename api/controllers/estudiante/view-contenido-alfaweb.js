@@ -40,11 +40,26 @@ module.exports = {
     } 
     else if(inputs.enlace=='/m1-hardware'){
       let objetoSeleccionado= await SubmoduloLibro.findOne({enlace:'/m1-hardware'});
-      let siguientes        = await SubmoduloLibro.find({modulo:objetoSeleccionado.modulo, createdAt:{'>':objetoSeleccionado.createdAt}}).sort('createdAt');
-      let siguiente=siguientes[0];
+      let siguiente       = await SubmoduloLibro.findOne(
+        { 
+        where:{
+          ordenNavegacion:objetoSeleccionado.ordenNavegacion+1,
+          modulo:objetoSeleccionado.modulo
+        }
+      });//.sort('createdAt');
       return this.res.view('pages/estudiante/modulo-1/m-1-hardware',{usuario,curso,objetoSeleccionado, siguiente})
     }
-    
+    else if(inputs.enlace=='/m1-software'){
+      let objetoSeleccionado= await SubmoduloLibro.findOne({enlace:'/m1-hardware'});
+      let siguiente       = await SubmoduloLibro.findOne(
+        { 
+        where:{
+          ordenNavegacion:objetoSeleccionado.ordenNavegacion+1,
+          modulo:objetoSeleccionado.modulo
+        }
+      });//.sort('createdAt');
+      return this.res.view('pages/estudiante/modulo-1/m-1-software',{usuario,curso,objetoSeleccionado, siguiente})
+    }
     else if (inputs.enlace == '/m2-navegacion-escritorio') {
       return this.res.view('pages/estudiante/modulo-2/m-2-navegacion-escritorio',{curso:curso});
     }

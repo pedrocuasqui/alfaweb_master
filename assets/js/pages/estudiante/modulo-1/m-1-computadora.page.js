@@ -6,11 +6,11 @@ parasails.registerPage('m-1-computadora', {
     mouseX: 0,
     mouseY: 0,
     mostrarToolTip: false,
-    descripcionActividad: "BIENVENIDO!!! \n Pasa el mouse sobre las imágenes para que puedas ver el nombre de los objetos.",
     textoToolTip: {
       type: String,
       default: "computador"
     },
+    descripcionActividad: "BIENVENIDO!!! \n Pasa el mouse sobre las imágenes para que puedas ver el nombre de los objetos.",
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     { id: '', texto: 'Módulo 1 - La computadora', enlace: '/m1-computadora' }],
 

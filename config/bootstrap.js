@@ -100,6 +100,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar </p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:1
       },
       {
         nombreSubmodulo: 'Software',
@@ -108,6 +109,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:2
       },
       {
         nombreSubmodulo: 'Conexión de los componentes a la computadora',
@@ -116,6 +118,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:3
       },
       {
         nombreSubmodulo: 'Encender y apagar la computadora',
@@ -124,6 +127,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:4
       },
       {
         nombreSubmodulo: 'El Teclado',
@@ -132,6 +136,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:5
       },
       {
         nombreSubmodulo: 'Mouse',
@@ -140,6 +145,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:6
       }
   
 
@@ -147,7 +153,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
 
     moduloCreado = await ModuloLibro.create({
       nombreModulo: 'Módulo 2- Navegacion en escritorio',
-      descripcion: 'descripcion Navegacion escritorio',
+      descripcion: 'En este módulo aprenderás a reconocer las partes del escritorio de la computadora y de forma básica aprender a usar sus aplicaciones.',
       enlace: '/m2-navegacion-escritorio',
       multimedia: {},
       curso: cursoCreado.id,
@@ -155,14 +161,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
     }).fetch();
 
     await SubmoduloLibro.createEach([
-      {
-        nombreSubmodulo: 'Módulo 2 - Navegación en el escritorio',
-        descripcion: 'En este módulo aprenderás a reconocer las partes del escritorio de la computadora y de forma básica aprender a usar sus aplicaciones.',
-        enlace:'/m2-navegacion-escritorio',
-        multimedia: {},
-        contenidoTiny: '<p>Pulse para editar</p>',
-        modulo: moduloCreado.id,
-      },
+ 
       {
         nombreSubmodulo: 'Aplicaciones informáticas',
         descripcion: 'Una aplicación informática es un software que les posibilita a los usuarios interesados en la tecnología realizar diferentes tipos de trabajos a través de este. Como por ejemplo podemos mencionar los diferentes procesadores de textos, las hojas de cálculos entre otros. ',
@@ -170,6 +169,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:1
       },
       {
         nombreSubmodulo: 'Gestión de archivos',
@@ -178,6 +178,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:2
       },
       {
         nombreSubmodulo: 'La papelera de reciclaje',
@@ -186,6 +187,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:3
       },
      
     
@@ -213,6 +215,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:1
       },
       {
         nombreSubmodulo: 'Área de trabajo',
@@ -221,6 +224,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:2
       },
       {
         nombreSubmodulo: 'Barra de título',
@@ -229,6 +233,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:3
       },
       {
         nombreSubmodulo: 'Barra de herramientas de acceso rápido',
@@ -237,6 +242,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:4,
       },
       {
         nombreSubmodulo: 'Barra o cinta de opciones',
@@ -245,6 +251,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:5
       },
       {
         nombreSubmodulo: 'Iniciar sesión',
@@ -253,6 +260,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:6
       },
       {
         nombreSubmodulo: 'Barra de estado',
@@ -261,6 +269,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:7
       },
 
       {
@@ -270,6 +279,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:8
       }
       ]);
 
@@ -293,6 +303,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:1
       },
       // {
       //   nombreSubmodulo: '',
@@ -344,6 +355,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:1
       },
       {
         nombreSubmodulo: 'Nombres de dominio',
@@ -352,6 +364,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:2
       },
       {
         nombreSubmodulo: 'Navegador web',
@@ -360,6 +373,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:3
       },
       {
         nombreSubmodulo: 'Motores de navegación',
@@ -368,6 +382,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:4
       }
       
       ]);
@@ -387,6 +402,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:1
       },
       {
         nombreSubmodulo: 'Envío de correo electrónico',
@@ -395,6 +411,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:2
       },
       {
         nombreSubmodulo: 'Creación de una cuenta SKYPE',
@@ -403,6 +420,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:3
       },
       {
         nombreSubmodulo: 'Realizar videollamadas',
@@ -411,6 +429,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:4
       }
      
       ]);
@@ -430,6 +449,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:1
       },
       {
         nombreSubmodulo: 'Como usar Youtube',
@@ -438,6 +458,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:2
       },
       
       ]);
@@ -457,6 +478,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:1
       },
       {
         nombreSubmodulo: 'Instalación de una app(aplicación)',
@@ -465,6 +487,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
+        ordenNavegacion:2
       }
       ]);
 

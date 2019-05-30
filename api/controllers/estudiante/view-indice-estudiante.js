@@ -30,7 +30,7 @@ module.exports = {
 
     //solo para pruebas se usa la Colecion estudiante 
     var usuario = {};
-    usuario = await Estudiante.findOne({ id: inputs.usuarioId });
+    usuario = await Estudiante.findOne({ alias: 'Pedroc' });
     /*      var moduloLibro = await ModuloLibro.find(); //esta es una instancia de consulta --> es un intento aún no cumplido de obtener registros de la base de datos
         //el resultado solo se observa cuando se usa la palabra await antes de la instancia y se asigna a una variable
         console.log('metodo1:\n'+moduloLibro); //devuelve el arreglo completo --> [object Object]

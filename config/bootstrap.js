@@ -103,40 +103,13 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         ordenNavegacion:1
       },
       {
-        nombreSubmodulo: 'Software',
-        descripcion: 'El software es un conjunto de números binarios (bits), que tiene algún sentido para la computadora, y es almacenado en algún soporte físico (hardware), desde donde el procesador puede acceder, para ejecutarlo o mostrarlo. ',
-        enlace:'/m1-software',
-        multimedia: {},
-        contenidoTiny: '<p>Pulse para editar</p>',
-        modulo: moduloCreado.id,
-        ordenNavegacion:2
-      },
-      {
-        nombreSubmodulo: 'Conexión de los componentes a la computadora',
-        descripcion: 'La forma en que el hardware opera es por medio de energía, el hardware externo se conecta a la computadora por medio de cables o inalambricamente, en este módulo aprenderás a conectar los principales componentes a la computadora',
-        enlace:'/m1-conexion-componentes',
-        multimedia: {},
-        contenidoTiny: '<p>Pulse para editar</p>',
-        modulo: moduloCreado.id,
-        ordenNavegacion:3
-      },
-      {
-        nombreSubmodulo: 'Encender y apagar la computadora',
-        descripcion: 'En este módulo aprenderás a encender y apagar la computadora ',
-        enlace:'/m1-encender-computadora',
-        multimedia: {},
-        contenidoTiny: '<p>Pulse para editar</p>',
-        modulo: moduloCreado.id,
-        ordenNavegacion:4
-      },
-      {
         nombreSubmodulo: 'El Teclado',
         descripcion: 'El teclado es un instrumento externo que está representado por un conjunto de teclas, que se encargan de ingresar una información a una computadora o dispositivo por medio de caracteres (letras, números y símbolos).',
         enlace:'/m1-teclado',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:5
+        ordenNavegacion:2
       },
       {
         nombreSubmodulo: 'Mouse',
@@ -145,9 +118,37 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:6
-      }
+        ordenNavegacion:3
+      },
   
+      {
+        nombreSubmodulo: 'Software',
+        descripcion: 'El software es un conjunto de números binarios (bits), que tiene algún sentido para la computadora, y es almacenado en algún soporte físico (hardware), desde donde el procesador puede acceder, para ejecutarlo o mostrarlo. ',
+        enlace:'/m1-software',
+        multimedia: {},
+        contenidoTiny: '<p>Pulse para editar</p>',
+        modulo: moduloCreado.id,
+        ordenNavegacion:4
+      },
+      {
+        nombreSubmodulo: 'Conexión de los componentes a la computadora',
+        descripcion: 'La forma en que el hardware opera es por medio de energía, el hardware externo se conecta a la computadora por medio de cables o inalambricamente, en este módulo aprenderás a conectar los principales componentes a la computadora',
+        enlace:'/m1-conexion-componentes',
+        multimedia: {},
+        contenidoTiny: '<p>Pulse para editar</p>',
+        modulo: moduloCreado.id,
+        ordenNavegacion:5
+      },
+      {
+        nombreSubmodulo: 'Encender y apagar la computadora',
+        descripcion: 'En este módulo aprenderás a encender y apagar la computadora ',
+        enlace:'/m1-encender-computadora',
+        multimedia: {},
+        contenidoTiny: '<p>Pulse para editar</p>',
+        modulo: moduloCreado.id,
+        ordenNavegacion:6
+      },
+      
 
     ]);
 

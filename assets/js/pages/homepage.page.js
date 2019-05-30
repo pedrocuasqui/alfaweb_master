@@ -17,7 +17,8 @@ parasails.registerPage('homepage', {
         estudiante: false,
 
       }
-    }
+    },
+    breadcrumb:[]
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

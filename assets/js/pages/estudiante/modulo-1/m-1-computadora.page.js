@@ -3,16 +3,9 @@ parasails.registerPage('m-1-computadora', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    mouseX: 0,
-    mouseY: 0,
-    mostrarToolTip: false,
-    textoToolTip: {
-      type: String,
-      default: "computador"
-    },
+    
     descripcionActividad: "BIENVENIDO!!! \n Pasa el mouse sobre las imágenes para que puedas ver el nombre de los objetos.",
-    breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
-    { id: '', texto: 'Módulo 1 - La computadora', enlace: '/m1-computadora' }],
+    breadcrumb: [],
 
     // modulo:{
     //   nombreModulo: 'Módulo 1- La computadora ',
@@ -24,6 +17,14 @@ parasails.registerPage('m-1-computadora', {
     tituloEvaluacion:'',
     evIndividual:false,
     objetoSeleccionado:'',
+
+    mouseX: 0,
+    mouseY: 0,
+    mostrarToolTip: false,
+    textoToolTip: {
+      type: String,
+      default: "computador"
+    },
     
   },
 
@@ -44,10 +45,13 @@ parasails.registerPage('m-1-computadora', {
     this.usuario= SAILS_LOCALS.usuario;
     this.navegarAtras= '/indice-estudiante/?usuarioId='+this.usuario.id+'&cursoId='+this.curso.id,
     this.navegarSiguiente=this.objetoSeleccionado.submodulos[0].enlace;
+    this.breadcrumb.push(SAILS_LOCALS.curso);
+    this.breadcrumb.push(SAILS_LOCALS.modulo);
+  
   },
   mounted: async function () {
     //…
-    console.log(SAILS_LOCALS);
+
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

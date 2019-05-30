@@ -4,6 +4,7 @@ parasails.registerComponent('modulo-contenedor-admin', {
         breadcrumb: {
             type: Array,
             required: false,
+            default:()=>{return [{nombreModulo:'',id:1,enlace:''}]}
         },
         // usuarioLogueado:{
         //     type:Boolean,

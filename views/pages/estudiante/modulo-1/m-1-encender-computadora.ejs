@@ -1,27 +1,29 @@
-<div id="m-1-conexion-componentes" class="container-fluid" v-cloak>
+<div id="m-1-encender-computadora" class="container-fluid" v-cloak>
 
 
   <!-- MODALS******************************************************************************************* -->
   <modal-detalle-elemento > <!--:info-element="scroll" -->
     
-    </modal-detalle-elemento>
+  </modal-detalle-elemento>
 <!-- CONTENIDOS******************************************************************************************* -->
 
 <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
-  :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
-  @evaluacion-individual="evaluacionIndividual">
-  <modulo-ev-individual v-if="evIndividual">
-     
-  </modulo-ev-individual>
-  <div v-else>
-      <iframe width="560" height="315" src="https://www.youtube.com/embed/7p8gLBgQt5I" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
-  </div>
+:usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
+@evaluacion-individual="evaluacionIndividual">
+<modulo-ev-individual v-if="evIndividual">
+   
+</modulo-ev-individual>
+<div v-else>
+<!-- contenido -->
+</div>
 
-  </modulo-contenedor-curso>
-  <!--  -->
+</modulo-contenedor-curso>
+<!--  -->
+
 </div>
 
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
+    
 <!--  class="contenedor" @click="infoObjeto('clic-derecho')" @mousemove="mouseMovePc" @mouseout="mouseOutPc" -->
 <!-- <div v-cloak v-show="mostrarToolTip" class="tooltip1" :style="styleToolTip">
         

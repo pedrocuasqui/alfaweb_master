@@ -24,7 +24,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         breadcrumb: {
             type: Array,
-            required: false,
+            required: true,
         },
         curso: {
             type: Object,

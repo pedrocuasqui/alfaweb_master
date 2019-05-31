@@ -48,13 +48,13 @@ parasails.registerComponent('modulo-contenedor-curso', {
             campoNombre: null,
             nombre: null,
             evIndividual: false,
-            silenciar:true,
-            sonido:null,
+            silenciar: true,
+            sonido: null,
         };
     },
     mounted() {
-        
-        this.sonido=window.speechSynthesis;
+
+        this.sonido = window.speechSynthesis;
     },
     template: //html
         `  
@@ -82,7 +82,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         
                         <!--"navegacion-atras"-->
                         <div class="col-auto">
-                        <a :href="'/contenido-alfaweb/?enlace='+navegarAtras" @click="clickSilenciar"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                            <a v-if="!evIndividual" key="link" :href="'/contenido-alfaweb/?enlace='+navegarAtras" @click="clickSilenciar" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                            <a v-else  key="ev" title="Ver Contenido" @click.stop="evaluacionIndividual('contenido')"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
                         </div>
                        
                        
@@ -101,7 +102,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                                               
                          <div  class="col-auto">
                             <!--navegacion-siguiente-->
-                            <a v-if="evIndividual" key="siguiente"  :href="'/contenido-alfaweb/?enlace='+navegarSiguiente"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                            <a v-if="evIndividual" key="siguiente"  :href="'/contenido-alfaweb/?enlace='+navegarSiguiente" title="Siguiente tema" @click="clickSilenciar" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
                             <!--navegacion-evaluacion-->
                             <a v-else key="evaluacion" title="Evaluación" @click.stop="evaluacionIndividual"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a> <!--por defecto se muestra este boton-->                  
                         </div>
@@ -153,26 +154,35 @@ parasails.registerComponent('modulo-contenedor-curso', {
         intentarNuevamente() {
             this.$emit('intentar-nuevamente');
         },
-        evaluacionIndividual() {
+        evaluacionIndividual(contenido) {
 
-            this.$emit('evaluacion-individual');
-            this.evIndividual = true;
+            if (contenido == 'contenido') {
+                //si se envia algo como par'ametro, entonces se retorna
+                this.evIndividual = false;
+                console.log('muestra el contenido, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
+            } else {
+                //si no se pasa nada como parametro se muestra la evaluacion
+                this.evIndividual = true;
+                console.log('muestra evaluacion, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
+            }
+            this.$emit('evaluacion-individual',contenido);
             this.clickSilenciar();
 
         },
-        clickSilenciar(){
+
+        clickSilenciar() {
             this.sonido.cancel();
-            this.silenciar=true;
+            this.silenciar = true;
         },
-        clickReproducir(){
-            this.silenciar=false;
-                   // var voices = window.speechSynthesis.getVoices();
-        var msg = new SpeechSynthesisUtterance(this.objetoSeleccionado.descripcion);
-        // msg.voice = voices[10]; // Note: some voices don't support altering params
-        this.sonido.speak(msg);
+        clickReproducir() {
+            this.silenciar = false;
+            // var voices = window.speechSynthesis.getVoices();
+            var msg = new SpeechSynthesisUtterance(this.objetoSeleccionado.descripcion);
+            // msg.voice = voices[10]; // Note: some voices don't support altering params
+            this.sonido.speak(msg);
         },
 
-        
+
     },
     computed: {
         existeDescripcion() {

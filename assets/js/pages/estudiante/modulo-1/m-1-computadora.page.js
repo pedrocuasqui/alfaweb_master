@@ -105,11 +105,16 @@ parasails.registerPage('m-1-computadora', {
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
     },
-    evaluacionIndividual(){ //funcion recibida del componente modulo-contenedor-curso
-      this.tituloEvaluacion=this.objetoSeleccionado.nombreModulo;
-      console.log(this.objetoSeleccionado.nombreModulo);
-      this.evIndividual=true;
-    }
+    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
+      if(contenido=='contenido'){
+        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
+        this.evIndividual = false;
+      }else{
+        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
+        this.evIndividual = true;
+      }
+    },
+
   },
   computed: {
     styleToolTip() {

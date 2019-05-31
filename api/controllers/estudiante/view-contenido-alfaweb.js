@@ -150,14 +150,13 @@ module.exports = {
       });
       return this.res.view('pages/estudiante/modulo-1/m-1-encender-computadora',{usuario,curso,objetoSeleccionado, siguiente, anterior,modulo:modulo})
     }
+    else if(inputs.enlace=='/m2-navegacion-escritorio'){
+      
+      let objetoSeleccionado= await ModuloLibro.findOne({enlace:'/m2-navegacion-escritorio'});
+      let siguiente         = await SubmoduloLibro.findOne({ enlace: '/m2-aplicaciones'});
+      let anterior          = await SubmoduloLibro.findOne({enlace:'/m1-encender-computadora'});
 
-
-
-
-
-
-    else if (inputs.enlace == '/m2-navegacion-escritorio') {
-      return this.res.view('pages/estudiante/modulo-2/m-2-navegacion-escritorio',{curso:curso});
+      return this.res.view('pages/estudiante/modulo-2/m-2-navegacion-escritorio',{usuario,curso,objetoSeleccionado, siguiente, anterior,modulo:objetoSeleccionado})
     }
 
     return this.res.ok({});

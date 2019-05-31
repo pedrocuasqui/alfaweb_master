@@ -78,27 +78,27 @@ parasails.registerPage('m-1-encender-computadora', {
       this.evIndividual = true;
     },
 
-    infoObjeto(idObjeto) {
-      if (idObjeto == 'clic-izquierdo') {
-        console.log('funciones');
-        $(function () {
-          $('#modalClicIzquierdo').modal('show');
-        });
+    // infoObjeto(idObjeto) {
+    //   if (idObjeto == 'clic-izquierdo') {
+    //     console.log('funciones');
+    //     $(function () {
+    //       $('#modalClicIzquierdo').modal('show');
+    //     });
 
-      } else if (idObjeto == 'clic-derecho') {
-        $(function () {
-          $('#modalClicDerecho').modal('show');
-        });
+    //   } else if (idObjeto == 'clic-derecho') {
+    //     $(function () {
+    //       $('#modalClicDerecho').modal('show');
+    //     });
 
-      } else if (idObjeto == 'scroll') {
+    //   } else if (idObjeto == 'scroll') {
 
-        $(function () {
-          $('#modalScroll').modal('show');
-        })
-      }
+    //     $(function () {
+    //       $('#modalScroll').modal('show');
+    //     })
+    //   }
 
 
-    },
+    // },
     mouseMovePc(event) {
       // clientX/Y obtiene las coordenadas del elemento con respecto al elemento padre, en este caso las coordenadas con respecto a <div id="m1-computadora"
 

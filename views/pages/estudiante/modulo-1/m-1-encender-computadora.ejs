@@ -9,8 +9,8 @@
   <!-- CONTENIDOS******************************************************************************************* -->
 
   <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
-    :usuario="usuario" :curso="curso" :objeto-seleccionado.sync="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
-    @evaluacion-individual="evaluacionIndividual" ref="curso">
+    :usuario="usuario" :curso="curso" :objeto-seleccionado.sync="objetoSeleccionado"
+    :titulo-temporal.sync="tituloEvaluacion" @evaluacion-individual="evaluacionIndividual" ref="curso">
     <modulo-ev-individual v-if="evIndividual">
 
     </modulo-ev-individual>
@@ -18,11 +18,11 @@
 
       <div id="carouseEncendido" class="carousel slide" data-ride="carousel" data-interval="false">
         <ol class="carousel-indicators carousel-indicators-numbers">
-          <li data-target="#carouseEncendido" data-slide-to="0" class="indicador active">1</li>
-          <li data-target="#carouseEncendido" data-slide-to="1" class="indicador">2</li>
-          <li data-target="#carouseEncendido" data-slide-to="2" class="indicador">3</li>
-          <li data-target="#carouseEncendido" data-slide-to="3" class="indicador">4</li>
-          <li data-target="#carouseEncendido" data-slide-to="4" class="indicador">5</li>
+          <li data-target="#carouseEncendido" data-slide-to="0" class="indicador active" @click="obtenerIndice">1</li>
+          <li data-target="#carouseEncendido" data-slide-to="1" class="indicador" @click="obtenerIndice">2</li>
+          <li data-target="#carouseEncendido" data-slide-to="2" class="indicador" @click="obtenerIndice">3</li>
+          <li data-target="#carouseEncendido" data-slide-to="3" class="indicador" @click="obtenerIndice">4</li>
+          <li data-target="#carouseEncendido" data-slide-to="4" class="indicador" @click="obtenerIndice">5</li>
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
@@ -42,11 +42,13 @@
           </div>
 
         </div>
-        <a class="carousel-control-prev" href="#carouseEncendido" role="button" data-slide="prev" @click="obtenerIndice">
+        <a class="carousel-control-prev" href="#carouseEncendido" role="button" data-slide="prev"
+          @click="obtenerIndice">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouseEncendido" role="button" data-slide="next" @click="obtenerIndice">
+        <a class="carousel-control-next" href="#carouseEncendido" role="button" data-slide="next"
+          @click="obtenerIndice">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>
@@ -67,4 +69,3 @@
         <span>{{textoToolTip}}</span>
       </div> 
     -->
-

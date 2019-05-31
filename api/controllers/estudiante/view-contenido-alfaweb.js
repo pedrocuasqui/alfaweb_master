@@ -135,11 +135,10 @@ module.exports = {
       
       let objetoSeleccionado= await SubmoduloLibro.findOne({enlace:'/m1-encender-computadora'});
       let modulo            = await ModuloLibro.findOne({ id:objetoSeleccionado.modulo});
-      let siguiente         = await SubmoduloLibro.findOne(
+      let siguiente         = await ModuloLibro.findOne(
         { 
         where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion+1,
-          modulo:objetoSeleccionado.modulo
+          enlace: '/m2-navegacion-escritorio'
         }
       });
       let anterior       = await SubmoduloLibro.findOne(

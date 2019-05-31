@@ -38,6 +38,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
         mostrarIconoRepetir: false,
+        // silenciar:true
 
 
 
@@ -47,14 +48,17 @@ parasails.registerComponent('modulo-contenedor-curso', {
             campoNombre: null,
             nombre: null,
             evIndividual: false,
+            silenciar:true,
+            sonido:null,
         };
     },
     mounted() {
-
+        
+        this.sonido=window.speechSynthesis;
     },
     template: //html
         `  
-<div class="div-contenido container-fluid" v-cloak>
+<div class="div-contenido container-fluid"  v-cloak>
     <div class="row" id="div-cabecera"  >
         <div class="col-sm-10">
             <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
@@ -78,7 +82,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         
                         <!--"navegacion-atras"-->
                         <div class="col-auto">
-                        <a :href="'/contenido-alfaweb/?enlace='+navegarAtras"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                        <a :href="'/contenido-alfaweb/?enlace='+navegarAtras" @click="clickSilenciar"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
                         </div>
                        
                        
@@ -119,7 +123,11 @@ parasails.registerComponent('modulo-contenedor-curso', {
                     <div class="row pie-contenido">
                         <div class="col-sm-1" id="avatar">
                             <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+                            <a v-if="silenciar" @click="clickReproducir" title="Reproducir"><i class="fas fa-volume-mute"></i></a>
+                            <a v-else @click="clickSilenciar" title="Silenciar"><i class="fas fa-volume-up"></i></a>
                         </div>
+                      
+
 
                         <div class="col-sm-11" id="descripcion-objeto">
                             <h6 v-if="existeDescripcion  && tituloTemporal==''">{{objetoSeleccionado.descripcion}}</h6>
@@ -149,7 +157,22 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
             this.$emit('evaluacion-individual');
             this.evIndividual = true;
-        }
+            this.clickSilenciar();
+
+        },
+        clickSilenciar(){
+            this.sonido.cancel();
+            this.silenciar=true;
+        },
+        clickReproducir(){
+            this.silenciar=false;
+                   // var voices = window.speechSynthesis.getVoices();
+        var msg = new SpeechSynthesisUtterance(this.objetoSeleccionado.descripcion);
+        // msg.voice = voices[10]; // Note: some voices don't support altering params
+        this.sonido.speak(msg);
+        },
+
+        
     },
     computed: {
         existeDescripcion() {

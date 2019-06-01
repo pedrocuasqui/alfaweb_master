@@ -1,31 +1,36 @@
 parasails.registerComponent('modal-detalle-elemento', {
-    props: {
-        infoElement: {
-            type: Object,
-            default: () => {return {
-                id:'ComponenteVacio', 
-                titulo:'Componente Vacío',
-                detalle:'No se encontró detalle para este componente', 
-                leerMas:'', 
-                imgs:[{
-                    src:'',
-                    alt:'No existe imagen '
-                }]} 
-            },
+  props: {
+    infoElement: {
+      type: Object,
+      default: () => {
+        return {
+          id: 'ComponenteVacio',
+          titulo: 'Componente Vacío',
+          detalle: 'No se encontró detalle para este componente',
+          leerMas: '',
+          imgs: [{
+            src: '',
+            alt: 'No existe imagen '
+          }]
         }
-    },
-    data() {
-        return {};
-    },
-    mounted(){
+      },
+    }
+  },
+  data() {
+    return {
+      imagen: true,
+    };
+  },
+  mounted() {
+    if (this.infoElement.imgs[0].src == '')
+      this.imagen = false;
+  },
 
-    },
-
-    template://html
-        `
+  template://html
+    `
         <div class="modal fade" :id="'modal'+infoElement.id" tabindex="-1" role="dialog" aria-labelledby="modalComponente"
         aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
             <div class="modal-header">
               <h5 class="modal-title" :id="'exampleModalLongTitle'+infoElement.id">{{infoElement.titulo}}</h5>
@@ -35,8 +40,8 @@ parasails.registerComponent('modal-detalle-elemento', {
             </div>
             <div class="modal-body">
             {{infoElement.detalle}}
-              <a :href="infoElement.leerMas" target="_blank">Leer más</a>
-              <img v-for="img in infoElement.imgs" :src="img.src" :title="img.alt">
+              <a v-if="infoElement.leerMas!=''" :href="infoElement.leerMas" target="_blank">Leer más</a>
+              <img v-if="imagen" v-for="img in infoElement.imgs" :src="img.src" :title="img.alt">
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
@@ -47,7 +52,7 @@ parasails.registerComponent('modal-detalle-elemento', {
       </div>
   
   `,
-    methods: {
+  methods: {
 
-    }
+  }
 });

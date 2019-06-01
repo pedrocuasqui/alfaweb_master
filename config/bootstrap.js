@@ -220,7 +220,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       },
       {
         nombreSubmodulo: 'Área de trabajo',
-        descripcion: 'Situada en la parte central, muestra el documento que estamos editando.',
+        descripcion: 'El área de trabajo se encuentra situada en la parte central de la pantalla de word, muestra el documento que estamos editando en una hoja digital en blanco .',
         enlace:'/m3-area-trabajo',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
@@ -255,33 +255,33 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         ordenNavegacion:5
       },
       {
-        nombreSubmodulo: 'Iniciar sesión',
-        descripcion: 'A la derecha de la cinta de opciones o barra de herramientas encontramos el botón que nos permite registrarnos y darnos de alta para Iniciar la sesión con nuestro usuario, y la posibilidad de Compartir nuestro documento en la nube con otros usuarios en tiempo real, a través de OneDrive.',
-        enlace:'/m3-iniciar-sesion',
+        nombreSubmodulo: 'Otras Opciones',
+        descripcion: 'Otras opciones de la ventana principal de word son: la barra de desplazamiento en la parte lateral derecha, la barra de estado en la parte inferior, y un botón par iniciar sesión con una cuenta de Mcrosoft.' ,
+        enlace:'/m3-otras-opciones',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
         ordenNavegacion:6
       },
-      {
-        nombreSubmodulo: 'Barra de estado',
-        descripcion: ' Situada en la parte inferior, es la que nos informa sobre el estado de nuestro documento: cuántas palabras hemos escrito, en qué página estamos. Además, nos da acceso a la revisión ortográfica y gramatical, a diferentes vistas del documento o al zoom ',
-        enlace:'/m3-barra-estado',
-        multimedia: {},
-        contenidoTiny: '<p>Pulse para editar</p>',
-        modulo: moduloCreado.id,
-        ordenNavegacion:7
-      },
+      // {
+      //   nombreSubmodulo: 'Barra de estado',
+      //   descripcion: ' Situada en la parte inferior, es la que nos informa sobre el estado de nuestro documento: cuántas palabras hemos escrito, en qué página estamos. Además, nos da acceso a la revisión ortográfica y gramatical, a diferentes vistas del documento o al zoom ',
+      //   enlace:'/m3-barra-estado',
+      //   multimedia: {},
+      //   contenidoTiny: '<p>Pulse para editar</p>',
+      //   modulo: moduloCreado.id,
+      //   ordenNavegacion:7
+      // },
 
-      {
-        nombreSubmodulo: 'Barra de desplazamiento',
-        descripcion: 'Situada en el lateral derecho, nos permite movernos por todo el documento y por sus distintas páginas, según las vayamos incorporando. ',
-        enlace:'/m3-barra-desplazamiento',
-        multimedia: {},
-        contenidoTiny: '<p>Pulse para editar</p>',
-        modulo: moduloCreado.id,
-        ordenNavegacion:8
-      }
+      // {
+      //   nombreSubmodulo: 'Barra de desplazamiento',
+      //   descripcion: 'La barra de desplazamiento está situada en la parte lateral derecha, nos permite movernos por todo el documento  y por sus distintas páginas hacia abajo, según las vayamos incorporando. ',
+      //   enlace:'/m3-barra-desplazamiento',
+      //   multimedia: {},
+      //   contenidoTiny: '<p>Pulse para editar</p>',
+      //   modulo: moduloCreado.id,
+      //   ordenNavegacion:8
+      // }
       ]);
 
 

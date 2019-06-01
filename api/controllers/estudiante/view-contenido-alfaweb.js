@@ -209,6 +209,13 @@ module.exports = {
         });
       return this.res.view('pages/estudiante/modulo-2/m-2-papelera', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////MODULO 3////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
     else if (inputs.enlace == '/m3-documento-word') {
 
       let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m3-documento-word' });
@@ -216,7 +223,9 @@ module.exports = {
       let anterior = await SubmoduloLibro.findOne({ enlace: '/m2-papelera' });
 
       return this.res.view('pages/estudiante/modulo-3/m-3-documento-word', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
-    }else if (inputs.enlace == '/m3-pantalla-word') {
+    }
+    // ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m3-pantalla-word') {
       let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-pantalla-word' });
       let siguiente = await SubmoduloLibro.findOne(
         {
@@ -227,7 +236,9 @@ module.exports = {
         });//.sort('createdAt');
       let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
       return this.res.view('pages/estudiante/modulo-3/m-3-pantalla-word', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
-    }    else if (inputs.enlace == '/m3-area-trabajo') {
+    }   
+    // ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m3-area-trabajo') {
 
       let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-area-trabajo' });
       let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
@@ -246,7 +257,96 @@ module.exports = {
           }
         });
       return this.res.view('pages/estudiante/modulo-3/m-3-area-trabajo', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    } 
+    // ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m3-barra-titulo') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-barra-titulo' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-3/m-3-barra-titulo', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
+
+    // ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m3-barra-acceso-rapido') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-barra-acceso-rapido' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-3/m-3-barra-acceso-rapido', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+
+// ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m3-barra-opciones') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-barra-opciones' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-3/m-3-barra-opciones', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+    // ///////////////////////////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m3-otras-opciones') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-otras-opciones' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await ModuloLibro.findOne({enlace: '/m4-edicion-word' });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-3/m-3-otras-opciones', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+   
+
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////MODULO 4////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
 
 
 
@@ -256,3 +356,12 @@ module.exports = {
 
 
 };
+
+/*class="contenedor1" @click="infoObjeto('papelera')" @mousemove="mouseMovePc" @mouseout="mouseOutPc" */
+/**
+ * 
+ * 
+      <div v-cloak v-show="mostrarToolTip" class="tooltip1" :style="styleToolTip">
+        <span>{{textoToolTip}}</span>
+      </div>
+ */

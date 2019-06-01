@@ -155,7 +155,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
             this.$emit('intentar-nuevamente');
         },
         evaluacionIndividual(contenido) {
-
+this.objetoSeleccionado.descripcion='';
             if (contenido == 'contenido') {
                 //si se envia algo como par'ametro, entonces se retorna
                 this.evIndividual = false;

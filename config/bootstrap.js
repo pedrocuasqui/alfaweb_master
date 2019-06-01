@@ -202,7 +202,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
 
     moduloCreado = await ModuloLibro.create({
       nombreModulo: 'Módulo 3- Documento Word',
-      descripcion: 'En este módulo aprenderás las partes principales de la ventana de word',
+      descripcion: 'Microsof Office Word 2016 es una de las aplicaciones que acompañan a Windows 10. Se trata de un procesador de textos, un software para la creación, edición, modificación y procesamiento de  documentos de texto con formato: tipo y tamaño de la tipografía, colores, tipos de párrafos, efectos artísticos, adición de gráficos, etc.',
       enlace: '/m3-documento-word',
       multimedia: {},
       curso: cursoCreado.id,

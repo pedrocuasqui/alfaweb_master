@@ -22,29 +22,29 @@ parasails.registerPage('m-3-documento-word', {
     
 
     word: {
-      id: '',
-      titulo: '',
-      detalle: ''  ,
-      leerMas: '',
+      id: 'Word',
+      titulo: 'Microsoft Word',
+      detalle: 'Microsoft Word es un programa informático orientado al procesamiento de textos. Fue creado por la empresa Microsoft, y viene integrado predeterminadamente en el paquete ofimático denominado Microsoft Office.'  ,
+      leerMas: 'https://es.wikipedia.org/wiki/Microsoft_Word',
       imgs: [
 
         {
-          src: '',
-          alt: ''
+          src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/7/76/Microsoft_Office_Word_%282018%E2%80%93present%29.svg/245px-Microsoft_Office_Word_%282018%E2%80%93present%29.svg.png',
+          alt: 'Microsoft word'
         },
 
       ]
     },
     microsoft: {
-      id: '',
-      titulo: '',
-      detalle: ''  ,
-      leerMas: '',
+      id: 'Microsoft',
+      titulo: 'Microsoft',
+      detalle: 'Microsoft Corporation es una compañía tecnológica multinacional con sede en Redmond, Washington, EE.UU. Sus productos más conocidos son el sistema operativo Microsoft Windows, la suite ofimática Microsoft Office y los navegadores de Internet, Internet Explorer y Edge. '  ,
+      leerMas: 'https://es.wikipedia.org/wiki/Microsoft',
       imgs: [
 
         {
-          src: '',
-          alt: ''
+          src: 'https://tecnologia-facil.com/wp-content/uploads/2014/12/que-es-microsoft-1.jpg',
+          alt: 'Microsoft'
         },
 
       ]

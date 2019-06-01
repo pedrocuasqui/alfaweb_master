@@ -216,7 +216,38 @@ module.exports = {
       let anterior = await SubmoduloLibro.findOne({ enlace: '/m2-papelera' });
 
       return this.res.view('pages/estudiante/modulo-3/m-3-documento-word', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+    }else if (inputs.enlace == '/m3-pantalla-word') {
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-pantalla-word' });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });//.sort('createdAt');
+      let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      return this.res.view('pages/estudiante/modulo-3/m-3-pantalla-word', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+    }    else if (inputs.enlace == '/m3-area-trabajo') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-area-trabajo' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-3/m-3-area-trabajo', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
+
 
 
     return this.res.ok({});

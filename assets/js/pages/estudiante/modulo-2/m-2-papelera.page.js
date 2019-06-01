@@ -1,9 +1,10 @@
-parasails.registerPage('m-1-encender-computadora', {
+parasails.registerPage('m-2-papelera', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    breadcrumb:[],
+    breadcrumb: [],
+
     usuario: Object,
     navegarSiguiente: '',
     navegarAtras: '',
@@ -18,54 +19,52 @@ parasails.registerPage('m-1-encender-computadora', {
       type: String,
       default: "software"
     },
-
-
-    indice:null,
-    indicaciones:[
-      {descripcion:'Para encender el equipo siga los siguientes pasos. Paso 1: Encender el CPU, para ello diríjase al botón de encendido del equipo, por lo general es un circulo con una línea en el centro '},
-      {descripcion:'Paso 2: Encender el monitor, para ello diríjase hacia la parte inferior derecha de la pantalla que es donde generalmente se encuentra el botón de encendido, presiónelo una sola vez y suéltelo, espere hasta que encienda '},
-      {descripcion:'Paso 3: Seleccionar un usuario, la computadora require que cada persona se identifique como usuario, por ello debe seleccionar un usuario para poder acceder y esperar a que inicie el computador'},
-      {descripcion:'Paso 4: Pantalla de inicio, una vez que la computadora se enciende, carga los programas y muestra accesos directos en el escritorio'},
-      {descripcion:'Para apagar el computador, ir al botón de inicio y seleccionar la opción apagar. Recuerde que esta acción tambien cierra todos los programas abiertos'},
-    ],
-    silenciar:true
-
-
     
-   // elemento:{
-    //   nombre:'', 
-    //   detalle:'', 
-    //   leerMas:'', 
-    //   imgs:[
+    
+    papeleraVacia: {
+      id: 'PapeleraVacia',
+      titulo: 'Papelera de reciclaje vacía',
+      detalle: 'La papelera de reciclaje se encuentra vacía cuando no se ha borrado ningún archivo'  ,
+      leerMas: 'https://recoverit.wondershare.com/es/deleted-recovery/recycle-bin-recovery.html',
+      imgs: [
 
-    //       {
-    //         src:'',
-    //         alt:''
-    //         } ,
+        {
+          src: 'http://images.gofreedownload.net/empty-recycle-27191.jpg',
+          alt: 'Papelera de reciclaje vacia'
+        },
 
-    //       ]
-    // } 
-
-
+      ]
+    },
+    papeleraLlena: {
+      id: 'PapeleraLlena',
+      titulo: 'Papelera de reciclaje llena',
+      detalle: 'Cuando Windows se da cuenta de que el usuario envía un nuevo archivo a la papelera de reciclaje que haría la carpeta "reciclado" más grande de lo que se le permite ser, reacciona eliminando suficientes archivos para que la carpeta no se llene en exceso. Para ello, determina qué archivos son más viejos, y luego calcula el espacio para borrar. Los archivos más antiguos siempre se eliminan primero. El usuario puede ayudar a evitar esta circunstancia mediante la inspección regular del contenido de la Papelera de reciclaje en busca de los artículos que le gustaría guardar y luego hacer clic en la opción "Vaciar la papelera de reciclaje".' ,
+      leerMas: 'https://techlandia.com/sucede-papelera-reciclaje-computadora-llena-info_303933/',
+      imgs: [
+        {
+          src: 'https://www.softzone.es/app/uploads/2017/02/papelera-reciclaje.jpg?',
+          alt: 'Papelera de reciclaje llena'
+        },
+      ]
+    }
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function() {
+  beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    this.objetoSeleccionado.descripcion=this.indicaciones[0].descripcion;
 
     this.usuario = SAILS_LOCALS.usuario;
     this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado,
-    this.navegarSiguiente = SAILS_LOCALS.siguiente.enlace;
+      this.navegarSiguiente = SAILS_LOCALS.siguiente.enlace;
     this.navegarAtras = SAILS_LOCALS.anterior.enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
   },
-  mounted: async function() {
+  mounted: async function () {
     //…
   },
 
@@ -83,28 +82,26 @@ parasails.registerPage('m-1-encender-computadora', {
       }
     },
 
+    infoObjeto(idObjeto) {
+      if (idObjeto == 'papelera-llena') {
+        $(function () {
+          $('#modalPapeleraLlena').modal('show');
+        });
 
-    // infoObjeto(idObjeto) {
-    //   if (idObjeto == 'clic-izquierdo') {
-    //     console.log('funciones');
-    //     $(function () {
-    //       $('#modalClicIzquierdo').modal('show');
-    //     });
+      } else if (idObjeto == 'papelera-vacia') {
 
-    //   } else if (idObjeto == 'clic-derecho') {
-    //     $(function () {
-    //       $('#modalClicDerecho').modal('show');
-    //     });
-
-    //   } else if (idObjeto == 'scroll') {
-
-    //     $(function () {
-    //       $('#modalScroll').modal('show');
-    //     })
-    //   }
+        $(function () {
+          $('#modalPapeleraVacia').modal('show');
+        });
+      }
 
 
-    // },
+
+
+
+
+
+    },
     mouseMovePc(event) {
       // clientX/Y obtiene las coordenadas del elemento con respecto al elemento padre, en este caso las coordenadas con respecto a <div id="m1-computadora"
 
@@ -121,20 +118,6 @@ parasails.registerPage('m-1-encender-computadora', {
     },
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
-    },
-    obtenerIndice(){
-      var _this= this;
-      this.$refs.curso.clickSilenciar();
-    //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
-    //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
-      $('#carouseEncendido').on('slid.bs.carousel', function () {
-        this.indice=$('.indicador.active').text(); //obtiene el indice del indicador actual
-        let posicion= parseInt(this.indice)-1;
-
-        _this.objetoSeleccionado.descripcion=_this.indicaciones[posicion].descripcion;
-        })
-   
-
     },
   },
   computed: {

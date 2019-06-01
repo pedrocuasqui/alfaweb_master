@@ -26,144 +26,200 @@ module.exports = {
   fn: async function (inputs) {
 
 
-    var curso = await Curso.findOne({nombre:'Alfabetizacion informática'}).populate('modulos');
-    let modulos= await ModuloLibro.find({curso:curso.id}).populate('submodulos',{sort: 'createdAt ASC'});
-    curso.modulos=modulos;
-    
+    var curso = await Curso.findOne({ nombre: 'Alfabetizacion informática' }).populate('modulos');
+    let modulos = await ModuloLibro.find({ curso: curso.id }).populate('submodulos', { sort: 'createdAt ASC' });
+    curso.modulos = modulos;
+
 
 
     //USUARIO PARA PRUEBAS, REEMPLAZAR EN PRODUCCION POR UNA SESION
-    var usuario= await Estudiante.findOne({alias: 'Pedroc'});
-
+    var usuario = await Estudiante.findOne({ alias: 'Pedroc' });
+    usuario.rol = 'Estudiante'
     if (inputs.enlace == '/m1-computadora') {
-      let objetoSeleccionado= await ModuloLibro.findOne({enlace:'/m1-computadora'}).populate('submodulos',{sort: 'createdAt ASC'});
-      return this.res.view('pages/estudiante/modulo-1/m-1-computadora',{usuario,curso, objetoSeleccionado, modulo:objetoSeleccionado});
-    } 
-    else if(inputs.enlace=='/m1-hardware'){
-      let objetoSeleccionado= await SubmoduloLibro.findOne({enlace:'/m1-hardware'});
-      let siguiente       = await SubmoduloLibro.findOne(
-        { 
-        where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion+1,
-          modulo:objetoSeleccionado.modulo
-        }
-      });//.sort('createdAt');
-      let anterior       = await ModuloLibro.findOne({ id:objetoSeleccionado.modulo});
-      return this.res.view('pages/estudiante/modulo-1/m-1-hardware',{usuario,curso,objetoSeleccionado, siguiente,anterior,modulo:anterior})
+      let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m1-computadora' }).populate('submodulos', { sort: 'createdAt ASC' });
+      return this.res.view('pages/estudiante/modulo-1/m-1-computadora', { usuario, curso, objetoSeleccionado, modulo: objetoSeleccionado });
     }
-    else if(inputs.enlace=='/m1-software'){
-      
-      let objetoSeleccionado= await SubmoduloLibro.findOne({enlace:'/m1-software'});
-      let modulo       = await ModuloLibro.findOne({ id:objetoSeleccionado.modulo});
-      let siguiente       = await SubmoduloLibro.findOne(
-        { 
-        where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion+1,
-          modulo:objetoSeleccionado.modulo
-        }
-      });
-      let anterior       = await SubmoduloLibro.findOne(
-        { 
-        where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion-1,
-          modulo:objetoSeleccionado.modulo
-        }
-      });
-      return this.res.view('pages/estudiante/modulo-1/m-1-software',{usuario,curso,objetoSeleccionado, siguiente, anterior,modulo:modulo})
+    else if (inputs.enlace == '/m1-hardware') {
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m1-hardware' });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });//.sort('createdAt');
+      let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      return this.res.view('pages/estudiante/modulo-1/m-1-hardware', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
     }
-    else if(inputs.enlace=='/m1-teclado'){
-      
-      let objetoSeleccionado= await SubmoduloLibro.findOne({enlace:'/m1-teclado'});
-      let modulo            = await ModuloLibro.findOne({ id:objetoSeleccionado.modulo});
-      let siguiente         = await SubmoduloLibro.findOne(
-        { 
-        where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion+1,
-          modulo:objetoSeleccionado.modulo
-        }
-      });
-      let anterior       = await SubmoduloLibro.findOne(
-        { 
-        where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion-1,
-          modulo:objetoSeleccionado.modulo
-        }
-      });
-      return this.res.view('pages/estudiante/modulo-1/m-1-hardware-teclado',{usuario,curso,objetoSeleccionado, siguiente, anterior,modulo:modulo})
-    }
-    else if(inputs.enlace=='/m1-mouse'){
-      
-      let objetoSeleccionado= await SubmoduloLibro.findOne({enlace:'/m1-mouse'});
-      let modulo            = await ModuloLibro.findOne({ id:objetoSeleccionado.modulo});
-      let siguiente         = await SubmoduloLibro.findOne(
-        { 
-        where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion+1,
-          modulo:objetoSeleccionado.modulo
-        }
-      });
-      let anterior       = await SubmoduloLibro.findOne(
-        { 
-        where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion-1,
-          modulo:objetoSeleccionado.modulo
-        }
-      });
-      return this.res.view('pages/estudiante/modulo-1/m-1-hardware-mouse',{usuario,curso,objetoSeleccionado, siguiente, anterior,modulo:modulo})
-    }
-    else if(inputs.enlace=='/m1-conexion-componentes'){
-      
-      let objetoSeleccionado= await SubmoduloLibro.findOne({enlace:'/m1-conexion-componentes'});
-      let modulo            = await ModuloLibro.findOne({ id:objetoSeleccionado.modulo});
-      let siguiente         = await SubmoduloLibro.findOne(
-        { 
-        where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion+1,
-          modulo:objetoSeleccionado.modulo
-        }
-      });
-      let anterior       = await SubmoduloLibro.findOne(
-        { 
-        where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion-1,
-          modulo:objetoSeleccionado.modulo
-        }
-      });
-      return this.res.view('pages/estudiante/modulo-1/m-1-conexion-componentes',{usuario,curso,objetoSeleccionado, siguiente, anterior,modulo:modulo})
-    }
-    else if(inputs.enlace=='/m1-encender-computadora'){
-      
-      let objetoSeleccionado= await SubmoduloLibro.findOne({enlace:'/m1-encender-computadora'});
-      let modulo            = await ModuloLibro.findOne({ id:objetoSeleccionado.modulo});
-      let siguiente         = await ModuloLibro.findOne(
-        { 
-        where:{
-          enlace: '/m2-navegacion-escritorio'
-        }
-      });
-      let anterior       = await SubmoduloLibro.findOne(
-        { 
-        where:{
-          ordenNavegacion:objetoSeleccionado.ordenNavegacion-1,
-          modulo:objetoSeleccionado.modulo
-        }
-      });
-      return this.res.view('pages/estudiante/modulo-1/m-1-encender-computadora',{usuario,curso,objetoSeleccionado, siguiente, anterior,modulo:modulo})
-    }
-    else if(inputs.enlace=='/m2-navegacion-escritorio'){
-      
-      let objetoSeleccionado= await ModuloLibro.findOne({enlace:'/m2-navegacion-escritorio'});
-      let siguiente         = await SubmoduloLibro.findOne({ enlace: '/m2-aplicaciones'});
-      let anterior          = await SubmoduloLibro.findOne({enlace:'/m1-encender-computadora'});
+    else if (inputs.enlace == '/m1-software') {
 
-      return this.res.view('pages/estudiante/modulo-2/m-2-navegacion-escritorio',{usuario,curso,objetoSeleccionado, siguiente, anterior,modulo:objetoSeleccionado})
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m1-software' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-1/m-1-software', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
+    else if (inputs.enlace == '/m1-teclado') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m1-teclado' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-1/m-1-hardware-teclado', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+    else if (inputs.enlace == '/m1-mouse') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m1-mouse' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-1/m-1-hardware-mouse', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+    else if (inputs.enlace == '/m1-conexion-componentes') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m1-conexion-componentes' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-1/m-1-conexion-componentes', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+    else if (inputs.enlace == '/m1-encender-computadora') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m1-encender-computadora' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await ModuloLibro.findOne(
+        {
+          where: {
+            enlace: '/m2-navegacion-escritorio'
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-1/m-1-encender-computadora', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+    else if (inputs.enlace == '/m2-navegacion-escritorio') {
+
+      let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m2-navegacion-escritorio' });
+      let siguiente = await SubmoduloLibro.findOne({ enlace: '/m2-aplicaciones' });
+      let anterior = await SubmoduloLibro.findOne({ enlace: '/m1-encender-computadora' });
+
+      return this.res.view('pages/estudiante/modulo-2/m-2-navegacion-escritorio', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+    }
+    else if (inputs.enlace == '/m2-aplicaciones') {
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m2-aplicaciones' });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });//.sort('createdAt');
+      let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      return this.res.view('pages/estudiante/modulo-2/m-2-aplicaciones', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+    }
+    else if (inputs.enlace == '/m2-gestion-archivos') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m2-gestion-archivos' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-2/m-2-gestion-archivos', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+    else if (inputs.enlace == '/m2-papelera') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m2-papelera' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await ModuloLibro.findOne(
+        {
+          where: {
+            enlace: '/m3-documento-word'
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-2/m-2-papelera', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+    else if (inputs.enlace == '/m3-documento-word') {
+
+      let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m3-documento-word' });
+      let siguiente = await SubmoduloLibro.findOne({ enlace: '/m3-pantalla-word' });
+      let anterior = await SubmoduloLibro.findOne({ enlace: '/m2-papelera' });
+
+      return this.res.view('pages/estudiante/modulo-3/m-3-documento-word', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+    }
+
 
     return this.res.ok({});
-
-
-
-
 
   }
 

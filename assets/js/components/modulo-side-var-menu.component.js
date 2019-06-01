@@ -35,14 +35,20 @@ parasails.registerComponent('modulo-side-var-menu', {
             <!--dropbtn-modulo      : el boton que contiene el nombre del modulo -->
             <!--dropdown-submodulo  : contenedor individual del submodulo -->
             <div v-for="(modulo, index) in curso.modulos" class="dropdownModulo" :key="modulo.id" >
-                <a class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" >{{modulo.nombreModulo}}</a>
-                
+                <a v-if="esAdmin" key="admin" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" >{{modulo.nombreModulo}}</a>
+                <a v-else key="estudiante" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/contenido-alfaweb/?enlace='+modulo.enlace" >{{modulo.nombreModulo}}</a>
+
                 <div :class="[perteneceObjeto(modulo.id) ? 'dropdown-submodulo':'dropdown-submodulo-deselect' ]">
-                    <a v-for="submodulo in modulo.submodulos" :href="'/administrar-contenido/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
-                    <a v-if="usuario.rol=='Administrador'" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
+                    <template v-if="esAdmin">
+                         <a  v-for="submodulo in modulo.submodulos" :href="'/administrar-contenido/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                    </template>
+                    <template v-else>
+                         <a  v-for="submodulo in modulo.submodulos" :href="'/contenido-alfaweb/?enlace='+submodulo.enlace" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                    </template>
+                    <a v-if="esAdmin" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
                 </div>
             </div>
-          <div v-if="usuario.rol=='Administrador'" class="dropdownModulo" >
+          <div v-if="esAdmin" class="dropdownModulo" >
                 <a class="btn btn-primary dropbtn-modulo" :href="'/view-crear-modulo/?cursoId='+curso.id" ><i class="fas fa-plus-circle" ></i> Agregar Módulo</a>
             </div> 
         </div> 
@@ -85,7 +91,16 @@ parasails.registerComponent('modulo-side-var-menu', {
 
     },
     computed: {
+        esAdmin(){
+            let esadmin=false;
+            if(this.usuario.rol=='Administrador')
+            esadmin=true;
 
+            if(this.usuario.rol=='Estudiante')
+            esadmin=false;
+
+            return esadmin;
+        }
     }
 
 });

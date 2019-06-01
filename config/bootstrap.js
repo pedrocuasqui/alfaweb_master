@@ -174,7 +174,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       },
       {
         nombreSubmodulo: 'Gestión de archivos',
-        descripcion: 'Los archivos son como carpetas, en los cuales se pueden almacenar: documentos, imágenes, música, videos, etc. ',
+        descripcion: 'Un archivo o fichero informático es un conjunto de bits almacenados en un dispositivo. Un archivo es identificado por un nombre y la descripción de la carpeta o directorio que lo contiene. A los archivos informáticos se les llama así porque son los equivalentes digitales de los archivos escritos en expedientes, tarjetas, libretas, papel o microfichas del entorno de oficina tradicional.',
         enlace:'/m2-gestion-archivos',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',

@@ -21,7 +21,8 @@ parasails.registerPage('m-1-hardware-mouse', {
     },
 
    clic_derecho:{
-      nombre:'ClicDerecho', 
+      id:'ClicDerecho', 
+      titulo:'Clic derecho',
       detalle:'El clic derecho del ratón o mouse es la acción de presionar (hacer clic) sobre el botón derecho del mouse.'+
 
       'Esta acción suele utilizarse para abrir el menú contextual del elemento donde se posa el cursor del ratón en ese momento. Si el mouse está configurado para zurdos, el clic derecho será en ese caso el botón de la izquierda.'+
@@ -38,7 +39,8 @@ parasails.registerPage('m-1-hardware-mouse', {
           ]
     } ,
     clic_izquierdo:{
-      nombre:'ClicIzquierdo', 
+      id:'ClicIzquierdo', 
+      titulo:'Clic izquierdo',
       detalle:'Onomatopeya en español del sonido de la pulsación de un botón del ratón. Cuando se dice que "se debe hacer clic", se hace referencia a la acción de presionar un botón del mouse (ratón) que suele ser el botón izquierdo en configuración para diestros. Esto vale también para su correspondiente en otros dispositivos con puntero como el trackball o el touchpad. Es "click" en inglés. En tanto en español suele usarse en frases como: hacer clic, dar clic, clicar o cliquear, sin "k" según la Real Academia Española.', 
       leerMas:'http://www.alegsa.com.ar/Dic/clic.php', 
       imgs:[
@@ -51,7 +53,8 @@ parasails.registerPage('m-1-hardware-mouse', {
           ]
     },
     scroll:{
-      nombre:'Scroll', 
+      id:'Scroll', 
+      titulo:'Scroll',
       detalle:'La rueda de desplazamiento (scroll wheel) o rueda del ratón (mouse wheel) de computadora, es el disco de plástico duro o goma dura, perpendicular a la superficie del ratón de computadora. Normalmente está ubicada entre medio de los botones izquierdo y derecho del ratón.', 
       leerMas:'https://es.wikipedia.org/wiki/Rueda_de_desplazamiento', 
       imgs:[
@@ -67,7 +70,7 @@ parasails.registerPage('m-1-hardware-mouse', {
 
 
    // elemento:{
-    //   nombre:'', 
+    //   id:'', 
     //   detalle:'', 
     //   leerMas:'', 
     //   imgs:[

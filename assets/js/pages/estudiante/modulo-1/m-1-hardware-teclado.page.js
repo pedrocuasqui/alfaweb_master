@@ -22,7 +22,8 @@ parasails.registerPage('m-1-hardware-teclado', {
 
 
     funcion: {
-      nombre: 'TeclasDeFuncion',
+      id: 'TeclasDeFuncion',
+      titulo:'Teclas de función',
       detalle: 'Estas teclas, de F1 a F12, sirven como atajos para acceder más rápidamente a determinadas funciones que le asignan los distintos programas. Los siguientes son solo algunos ejemplos de aplicaciones predeterminadas que corren las teclas de función bajo distintos programas: existe una tendencia a la normalización de aplicaciones en determinadas teclas. En general, la tecla F1 está asociada a la ayuda que ofrecen los distintos programas, es decir que, pulsándola se abre la pantalla de ayuda del programa que se esté usando en este momento.   F1: menús y rutinas de ayuda en la mayoría de los programas, por ejemplo AutoCAD, Microsoft Word, Microsoft Excel. En Firefox lleva a una página de ayuda en línea de Mozilla.1​'+
       "F2: renombra el archivo, acceso directo o carpeta seleccionada. Cambiar a opción de búsqueda, también para maximizar los juegos en red. En AutoCAD entra o sale del modo ortogonal."+
       "F3: inicia una búsqueda en el directorio donde se encuentra el usuario."+
@@ -46,7 +47,8 @@ parasails.registerPage('m-1-hardware-teclado', {
       ]
     },
     alfanumerico: {
-      nombre: 'TeclasAlfanuméricas',
+      id: 'TeclasAlfanuméricas',
+      titulo:'Teclas Alfanuméricas',
       detalle: 'Estas teclas sirven para escribir porque incluyen las letras del alfabeto, números, signos de puntuación y símbolos que se encuentran en las máquinas de escribir tradicionales.',
       leerMas: 'https://sites.google.com/site/tecnocecprimaria/home/grado-cuarto/tercer-periodo/el-teclado',
       imgs: [
@@ -59,7 +61,8 @@ parasails.registerPage('m-1-hardware-teclado', {
       ]
     },
     posicion: {
-      nombre: 'TeclasDePosición',
+      id: 'TeclasDePosición',
+      titulo:'Teclas de posición',
       detalle: 'Este teclado también recibe el nombre de direccional o navegación. Estas teclas se utilizan para desplazarse por documentos o páginas web y editar texto. Incluyen teclas de dirección, Inicio, Fin, Re Pág, Av Pág, Supr e Insert.',
       leerMas: 'https://sites.google.com/site/tecnocecprimaria/home/grado-cuarto/tercer-periodo/el-teclado',
       imgs: [
@@ -72,7 +75,8 @@ parasails.registerPage('m-1-hardware-teclado', {
       ]
     },
     numerico: {
-      nombre: 'TeclasNuméricas',
+      id: 'TeclasNuméricas',
+      titulo:'Teclas numéricas',
       detalle: 'Estas teclas se agrupan en un bloque al igual que una calculadora, ubicadas a la derecha del teclado. Sirven para escribir los números en forma más rápida.',
       leerMas: 'https://sites.google.com/site/tecnocecprimaria/home/grado-cuarto/tercer-periodo/el-teclado',
       imgs: [
@@ -85,7 +89,8 @@ parasails.registerPage('m-1-hardware-teclado', {
       ]
     },
     otras: {
-      nombre: 'OtrasTeclas',
+      id: 'OtrasTeclas',
+      titulo:'Otras teclas',
       detalle: 'Son tres teclas que tienen funcionalidades especiales, "impr pant", "bloq desbloq", "pause" ',
       leerMas: 'https://www.areatecnologia.com/TECNOLOGIA%20EN%20IMAGENES/EL%20TECLADO%20DEL%20ORDENADOR.htm',
       imgs: [
@@ -98,7 +103,8 @@ parasails.registerPage('m-1-hardware-teclado', {
       ]
     },
     especiales: {
-      nombre: 'TeclasEspeciales',
+      id: 'TeclasEspeciales',
+      titulo:'Teclas especiales',
       detalle: 'Estas teclas se utilizan por sí solas o en combinación con otras teclas para realizar determinadas acciones. Las teclas que se usan con más frecuencia son Bloq Mayús, Barra espaciadora, Ctrl, Alt, la tecla del logotipo de Windows y Esc.',
       leerMas: 'https://sites.google.com/site/tecnocecprimaria/home/grado-cuarto/tercer-periodo/el-teclado',
       imgs: [
@@ -112,7 +118,7 @@ parasails.registerPage('m-1-hardware-teclado', {
     }
 
     // elemento:{
-    //   nombre:'', 
+    //   id:'', 
     //   detalle:'', 
     //   leerMas:'', 
     //   imgs:[

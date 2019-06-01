@@ -20,8 +20,103 @@ parasails.registerPage('m-2-navegacion-escritorio', {
     },
 
 
+    escritorio: {
+      id:'EscritorioVacio',
+      titulo: 'Escritorio Vacío',  //este nombre debe corresponder con el id del modulo de la funcion infoObjeto()
+      detalle: 'El escritorio vacío es la parte del escritorio que no ha sido usada por un icono o acceso directo, la imágen que se ve al fondo se llama FONDO DE ESCRITORIO',
+      leerMas: 'https://es.answers.acer.com/app/answers/detail/a_id/37320/~/windows-10%3A-cambiar-el-fondo-de-la-pantalla-de-inicio',
+      imgs: [
+
+        {
+          src: 'https://i.blogs.es/3ec1b1/slideshow_wallpaper_windows10/450_1000.jpg',
+          alt: 'Fondo de escritorio de windows 10'
+        },
+
+      ]
+    },
+
+
+    iconos: {
+      id: 'Iconos',
+      titulo:'Iconos',
+      detalle: 'Los íconos son aquellas imágenes que representan a las aplicaciones, y son visibles aún cuando no se encuentre activa la aplicación.',
+      leerMas: 'https://www.softzone.es/2018/04/15/trucos-personalizar-iconos-escritorio-windows-10/',
+      imgs: [
+
+        {
+          src: 'https://i.ytimg.com/vi/MqQKlDVSLgE/maxresdefault.jpg',
+          alt: 'Iconos en el escritorio de windows 10'
+        },
+
+      ]
+    },
+
+
+    inicio: {
+      id: 'BotonDeInicio',
+      titulo: 'Botón de inicio',
+      detalle: 'El botón de inicio de forma general permite: abrir programas y carpetas; buscar archivos, carpetas y aplicaciones; obtener ayuda sobre el sistema operativo; apagar el equipo y cerrar la sesión en Windows',
+      leerMas: 'https://definicion.de/boton-de-inicio/',
+      imgs: [
+
+        {
+          src: 'https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/i/216e3f66-13a3-454c-8127-f8e07d8898c6/d5wpw84-c63ac8dd-5020-43d9-9dad-8fac90cdca4f.png',
+          alt: 'Botón de inicio'
+        },
+
+      ]
+    },
+
+
+    inicio_rapido: {
+      id: 'BarraDeInicioRapido',
+      titulo:'Barra de inicio rápido',
+      detalle: 'La barra de acceso rápido facilita el acceso a aplicaciones o carpetas preferidas, el usuario puede configurar que iconos se deben mostrar',
+      leerMas: 'https://www.softzone.es/2017/02/28/como-recuperar-la-barra-de-inicio-rapido-en-windows-10/',
+      imgs: [
+
+        {
+          src: 'https://www.softzone.es/app/uploads/2017/02/barrainicio.jpg?x=634&y=309',
+          alt: 'Barra de acceso rapido'
+        },
+
+      ]
+    },
+
+
+    barra_tareas: {
+      id: 'BarraDeTareas',
+      titulo:'Barra de tareas',
+      detalle: 'La barra de tareas se encuentra en la parte inferior de la pantalla, en esta barra se encuentra el botón de inicio  , la barra de inicio rápido y la barra de notificaciones, muestra además las aplicaciones que se encuentran activas,',
+      leerMas: 'https://www.downloadsource.es/como-aumentar-el-tamano-de-los-iconos-de-la-barra-de-tareas-de-windows-10/n/7210/',
+      imgs: [
+
+        {
+          src: 'https://www.downloadsource.es/upload/News%20July%202015/Windows%2010%20iconos%20grandes/Windows%2010%20icono%20grandes%20en%20barra%20de%20tareas.png',
+          alt: 'Barra de tareas de windows 10'
+        },
+
+      ]
+    },
+
+
+    notificacion: {
+      id: 'BarraDeNotificacion',
+      titulo:'Barra de notificación',
+      detalle: 'En esta sección se muestran programas que son ejecutados automáticamente al iniciar el computador como: el reloj, el sonido y notificacions. El reloj muestra la hora y fecha actual del computador y puede ser configurado por le usuario.',
+      leerMas: 'https://support.microsoft.com/es-ec/help/30031/windows-10-customize-taskbar-notification-area',
+      imgs: [
+
+        {
+          src: 'https://www.softzone.es/app/uploads/2017/06/sinorganizar-655x215.png',
+          alt: 'Área de notificación de windows 10'
+        },
+
+      ]
+    }
     // elemento:{
-    //   nombre:'', 
+    //   id:'', 
+    //   titulo:'',
     //   detalle:'', 
     //   leerMas:'', 
     //   imgs:[
@@ -71,24 +166,40 @@ parasails.registerPage('m-2-navegacion-escritorio', {
     },
 
     infoObjeto(idObjeto) {
-      if (idObjeto == 'clic-izquierdo') {
-        console.log('funciones');
+      if (idObjeto == 'escritorio') {
         $(function () {
-          $('#modalClicIzquierdo').modal('show');
+          $('#modalEscritorioVacio').modal('show');
         });
 
-      } else if (idObjeto == 'clic-derecho') {
+      } else if (idObjeto == 'notificacion') {
         $(function () {
-          $('#modalClicDerecho').modal('show');
+          $('#modalBarraDeNotificacion').modal('show');
         });
 
-      } else if (idObjeto == 'scroll') {
+      } else if (idObjeto == 'iconos') {
 
         $(function () {
-          $('#modalScroll').modal('show');
+          $('#modalIconos').modal('show');
         })
       }
+      else if (idObjeto == 'barra_tareas') {
 
+        $(function () {
+          $('#modalBarraDeTareas').modal('show');
+        })
+      }
+      else if (idObjeto == 'inicio') {
+
+        $(function () {
+          $('#modalBotonDeInicio').modal('show');
+        })
+      }
+      else if (idObjeto == 'inicio_rapido') {
+
+        $(function () {
+          $('#modalBarraDeInicioRapido').modal('show');
+        })
+      }
 
     },
     mouseMovePc(event) {

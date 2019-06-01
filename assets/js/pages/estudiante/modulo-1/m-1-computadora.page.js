@@ -41,6 +41,7 @@ parasails.registerPage('m-1-computadora', {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
     
+
     this.objetoSeleccionado=SAILS_LOCALS.objetoSeleccionado;
     this.usuario= SAILS_LOCALS.usuario;
     this.navegarAtras= '/indice-estudiante/?usuarioId='+this.usuario.id+'&cursoId='+this.curso.id,
@@ -48,6 +49,7 @@ parasails.registerPage('m-1-computadora', {
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
   
+    console.log(this.usuario);
   },
   mounted: async function () {
     //…

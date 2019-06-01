@@ -72,7 +72,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
     <div class="row" id="div-body">
         <!-- columna izquierda -->
         <div class="col-sm-2 col-izquierda">
-            <modulo-side-var-menu :curso="curso" :objeto-seleccionado="objetoSeleccionado" :crear-submodulo="crearSubmodulo"></modulo-side-var-menu>
+            <modulo-side-var-menu :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :crear-submodulo="crearSubmodulo"></modulo-side-var-menu>
         </div>
         <div class="col-sm-10" id="columna-contenido-lateral">
             <div class="row fila-principal">

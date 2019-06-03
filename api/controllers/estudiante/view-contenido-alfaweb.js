@@ -467,11 +467,100 @@ else if (inputs.enlace == '/m6-medios-comunicacion') {
 
   return this.res.view('pages/estudiante/modulo-6/m-6-medios-comunicacion', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
 }
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+else if (inputs.enlace == '/m6-creacion-cuenta') {
+  let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m6-creacion-cuenta' });
+  let siguiente = await SubmoduloLibro.findOne(
+    {
+      where: {
+        ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+        modulo: objetoSeleccionado.modulo
+      }
+    });//.sort('createdAt');
+  let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+  return this.res.view('pages/estudiante/modulo-6/m-6-creacion-cuenta', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+}
+   // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+else if (inputs.enlace == '/m6-envio-correo') {
 
+  let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m6-envio-correo' });
+  let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+  let siguiente = await SubmoduloLibro.findOne(
+    {
+      where: {
+        ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+        modulo: objetoSeleccionado.modulo
+      }
+    });
+  let anterior = await SubmoduloLibro.findOne(
+    {
+      where: {
+        ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+        modulo: objetoSeleccionado.modulo
+      }
+    });
+  return this.res.view('pages/estudiante/modulo-6/m-6-envio-correo', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+}
 
+   // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m6-cuenta-skype') {
 
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m6-cuenta-skype' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-6/m-6-cuenta-skype', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+        
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m6-realizar-videollamada') {
 
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m6-realizar-videollamada' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await ModuloLibro.findOne({enlace: '/m7-paginas-internet' });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-6/m-6-realizar-videollamada', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
 
+        
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////MODULO 7////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+
+    else if (inputs.enlace == '/m7-paginas-internet') {
+
+      let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m7-paginas-internet' });
+      let siguiente = await SubmoduloLibro.findOne({ enlace: '/m7-facebook' });
+      let anterior = await SubmoduloLibro.findOne({ enlace: '/m6-realizar-videollamada' });
+    
+      return this.res.view('pages/estudiante/modulo-7/m-7-paginas-internet', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+    }
 
 
 
@@ -550,3 +639,13 @@ g.contenedor1:hover * {
   },
  
    */
+
+
+   /**
+    * 
+  sails generate page estudiante/modulo-6/m-6-medios-comunicacion
+  sails generate page estudiante/modulo-6/m-6-creacion-cuenta
+  sails generate page estudiante/modulo-6/m-6-envio-correo
+  sails generate page estudiante/modulo-6/m-6-cuenta-skype
+  sails generate page estudiante/modulo-6/m-6-realizar-videollamada
+    */

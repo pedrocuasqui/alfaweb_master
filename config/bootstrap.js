@@ -342,8 +342,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
     //   ]);
     moduloCreado = await ModuloLibro.create({
       nombreModulo: 'Módulo 5 - Navegar en Internet',
-      descripcion: 'En este módulo aprenderás a navegar por internet en una computadora',
-      enlace: '/m6-navegar-internet',
+      descripcion: 'Llamamos navegar por la red, a la acción de visitar o pedir páginas del tipo web en nuestro ordenador. Al navegar, el usuario pasa de una página web a otra, lo que supone una especie de recorrido. El software que permite este proceso se conoce como navegador.',
+      enlace: '/m5-navegar-internet',
       multimedia: {},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
@@ -351,7 +351,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
     await SubmoduloLibro.createEach([
       {
         nombreSubmodulo: 'Dirección web',
-        descripcion: 'La Web es un nuevo mundo donde se encuentran varios sitios web, unos más conocidos que otros, pero todos tienen una dirección única, que permite su acceso desde un navegador. ',
+        descripcion: 'La dirección web es una línea de texto que permite ubicar una página o un sitio web en internet, por medio de un navegador',
         enlace:'/m5-direccion-web',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
@@ -360,7 +360,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       },
       {
         nombreSubmodulo: 'Nombres de dominio',
-        descripcion: 'Un nombre de dominio es la "dirección en la red" que posee una página web determinada. Ejemplo, www.clomputech.com.',
+        descripcion: 'Un nombre de dominio es la "dirección en la red" que posee una página o sitio web determinada. Ejemplo, www.clomputech.com.',
         enlace:'/m5-nombres-dominio',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
@@ -437,7 +437,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
     moduloCreado = await ModuloLibro.create({
       nombreModulo: 'Módulo 7 - Páginas de Internet',
       descripcion: 'Una Página Web es conocida como un documento de tipo electrónico, contiene información digital, la cual puede venir dada por datos visuales y/o sonoros, o una mezcla de ambos, a través de textos, imágenes, gráficos, audio o vídeos y otros tantos elementos dinámicos o estáticos.',
-      enlace: '/m8-paginas-internet',
+      enlace: '/m7-paginas-internet',
       multimedia: {},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
@@ -466,7 +466,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
     moduloCreado = await ModuloLibro.create({
       nombreModulo: 'Módulo 8. Dispositivos Móviles',
       descripcion: 'Un dispositivo móvil es una computadora de bolsillo con memoria limitada y que permite la conexión a internet de forma inalámbrica. Se caracterizan por que pueden ser fáciles de transportar y permiten ejecutar varias aplicaciones.',
-      enlace: '/m9-dispositivos-moviles',
+      enlace: '/m8-dispositivos-moviles',
       multimedia: {},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',

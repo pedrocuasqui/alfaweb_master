@@ -328,7 +328,7 @@ module.exports = {
 
       let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-otras-opciones' });
       let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      let siguiente = await ModuloLibro.findOne({enlace: '/m4-edicion-word' });
+      let siguiente = await ModuloLibro.findOne({enlace: '/m5-navegar-internet' });
       let anterior = await SubmoduloLibro.findOne(
         {
           where: {
@@ -338,18 +338,125 @@ module.exports = {
         });
       return this.res.view('pages/estudiante/modulo-3/m-3-otras-opciones', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
-   
-
+    
     // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
     // ///////////////////MODULO 4////////////////////////////
-    // ///////////////////////////////////////////////////////
+    // //////////EDITAR UN DOCUMENTO WORD/////////////////////
     // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
 
 
 
+
+
+
+
+
+    
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////MODULO 5////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+
+    else if (inputs.enlace == '/m5-navegar-internet') {
+
+      let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m5-navegar-internet' });
+      let siguiente = await SubmoduloLibro.findOne({ enlace: '/m5-direccion-web' });
+      let anterior = await SubmoduloLibro.findOne({ enlace: '/m3-otras-opciones' });
+
+      return this.res.view('pages/estudiante/modulo-5/m-5-navegar-internet', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+    }
+    //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m5-direccion-web') {
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m5-direccion-web' });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });//.sort('createdAt');
+      let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      return this.res.view('pages/estudiante/modulo-5/m-5-direccion-web', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+    } 
+    //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m5-nombres-dominio') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m5-nombres-dominio' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-5/m-5-nombres-dominio', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+   //////////////////////////////////////////////////////////////////
+    //////////////////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m5-navegador-web') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m5-navegador-web' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-5/m-5-navegador-web', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+    
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m5-motores-navegacion') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m5-motores-navegacion' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await ModuloLibro.findOne({enlace: '/m6-medios-comunicacion' });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-5/m-5-motores-navegacion', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+
+
+
+    
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////MODULO 6////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
     return this.res.ok({});
 
   }
@@ -365,3 +472,62 @@ module.exports = {
         <span>{{textoToolTip}}</span>
       </div>
  */
+
+ /**
+  * 
+  * 
+  * 
+#lienzo-svg{
+  margin-left: auto;
+  margin-right:auto;
+  text-align: center;
+  overflow: visible;//permite que el tooltip se pueda ver sobre los márgenes
+  // background-color:rgb(51, 192, 180);
+  width:75%; //width y height son el viewport de el grafico svg
+  height: auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+}
+
+g.contenedor1:hover * {
+  stroke-width:1.5px !important; 
+  stroke:#58da28 !important;
+  stroke-opacity: 1;
+}
+.tooltip1 {
+  pointer-events:none;//permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
+  opacity:1;
+  display: block;
+  position: fixed; // el origen de coordenadas se toma de la ventana del navegador 
+  border-radius: 3px;
+  border:#d3d3d3 solid 1px;
+  background: #fff;
+  color: red;
+  font-family: Comfortaa, Verdana;
+  font-size: medium;
+  padding: 8px;
+  box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+  max-height: 50px;
+}
+
+  */
+
+
+
+
+  /***
+   * 
+   *   elemento: {
+    id: '',
+    titulo: '',
+    detalle: '',
+    leerMas:'',
+    imgs: [
+
+      {
+        src: '',
+        alt: '',
+      },
+
+    ]
+  },
+ 
+   */

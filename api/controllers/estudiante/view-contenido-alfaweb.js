@@ -457,6 +457,25 @@ module.exports = {
     // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
+
+
+else if (inputs.enlace == '/m6-medios-comunicacion') {
+
+  let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m6-medios-comunicacion' });
+  let siguiente = await SubmoduloLibro.findOne({ enlace: '/m6-creacion-cuenta' });
+  let anterior = await SubmoduloLibro.findOne({ enlace: '/m5-motores-navegacion' });
+
+  return this.res.view('pages/estudiante/modulo-6/m-6-medios-comunicacion', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+}
+
+
+
+
+
+
+
+
+
     return this.res.ok({});
 
   }

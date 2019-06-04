@@ -1,4 +1,4 @@
-parasails.registerPage('m-7-paginas-internet', {
+parasails.registerPage('m-7-youtube', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
@@ -20,130 +20,116 @@ parasails.registerPage('m-7-paginas-internet', {
       default: "software"
     },
  
-    qqcom: {
-      id: 'qqcom',
-      titulo: 'QQ.com',
-      detalle: 'El portal de servicios de Internet más grande y usado de China, propiedad de Tencent, Inc., fundado en noviembre de 1998.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
-      imgs: [
-  
-        {
-          src: '',
-          alt: '',
-        },
-  
-      ]
-    },
     youtube: {
       id: 'youtube',
-      titulo: 'Youtube',
-      detalle: 'Vídeos de todo tipo publicados por sus usuarios con clasificación y comentarios',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
-      imgs: [
-  
-        {
-          src: '',
-          alt: '',
-        },
-  
-      ]
-    },
-    facebook: {
-      id: 'facebook',
-      titulo: 'Facebook',
-      detalle: 'Red social que conecta a la gente, para mantenerse al tanto de amigos, subir fotos, compartir enlaces, noticias, eventos y videos.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
-      imgs: [
-  
-        {
-          src: '',
-          alt: '',
-        },
-  
-      ]
-    },
-    reddit: {
-      id: 'reddit',
-      titulo: 'Reddit',
-      detalle: 'Enlaces de noticias generados por el usuario. Los votos promueven las historias más populares a la portada.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
-      imgs: [
-  
-        {
-          src: '',
-          alt: '',
-        },
-  
-      ]
-    },
-    google: {
-      id: 'google',
-      titulo: 'Google',
-      detalle: 'Permite a sus usuarios buscar toda la información del mundo, incluidas páginas web, imágenes, noticias y vídeos. Ofrece características únicas en tecnología de búsqueda.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
-      imgs: [
-  
-        {
-          src: '',
-          alt: '',
-        },
-  
-      ]
-    },
-    wikipedia: {
-      id: 'wikipedia',
-      titulo: 'Wikipedia',
-      detalle: 'Una enciclopedia libre construida colaborativamente usando software wiki.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
-      imgs: [
-  
-        {
-          src: '',
-          alt: '',
-        },
-  
-      ]
-    },
-    yahoo: {
-      id: 'yahoo',
-      titulo: 'Yahoo',
-      detalle: 'Portal de Internet y proveedor de servicios que ofrece resultados de búsqueda, contenido personalizable, salas de chat, correo electrónico gratuito y noticias entre otros servicios.',
+      titulo: '¿Qué es Youtube?',
+      detalle: 'Es un sitio web que permite compartir videos, estos pueden ser: películas, videoclips musicales, documentales. También permite transmisiones en directo.',
       leerMas:'',
       imgs: [
   
         {
-          src: '',
-          alt: '',
+          src: 'https://3.bp.blogspot.com/-OrZ_4P_rtdw/WsOcEM7Yj1I/AAAAAAADa-4/kqBc-Zl9hQ4futahVQn1QS9vbmr9QWUoACLcBGAs/s1600/pub.gif',
+          alt: 'Youtube',
         },
   
       ]
     },
-    baidu: {
-      id: 'baidu',
-      titulo: 'Baidu',
-      detalle: 'Es el motor de búsqueda mas utilizado en China. Incluye búsquedas en chino de contenido multi-media (mp3 y películas).',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
+    paso1: {
+      id: 'paso1',
+      titulo: 'Paso 1: Abrir el sitio Youtube en el navegador',
+      detalle: 'Abrir una nueva pestaña en el navegador y escribir la dirección: www.youtube.com.',
+      leerMas:'',
       imgs: [
   
         {
-          src: '',
-          alt: '',
+          src: '/images/youtube/y1.png',
+          alt: 'Abrir youtube',
         },
   
       ]
     },
-    taobao: {
-      id: 'taobao',
-      titulo: 'Taobao',
-      detalle: 'Lanzado en mayo de 2003, Taobao es el mayor marketplace onLine de China habiendo desplazado a Amazon de esta exclusiva lista de las 10 páginas web más visitadas del mundo.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
+    paso2: {
+      id: 'paso2',
+      titulo: 'Paso 2: Página principal de Youtube',
+      detalle: 'Se abre la página principal que de antemano ya nos presenta una lista de videos y varias opciones en la parte derecha e izquierda de la pantalla',
+      leerMas:'',
       imgs: [
   
         {
-          src: '',
-          alt: '',
+          src: '/images/youtube/y2.png',
+          alt: 'Abrir youtube',
         },
   
+      ]
+    },
+    paso3: {
+      id: 'paso3',
+      titulo: 'Paso 3: Revisar videos',
+      detalle: 'En la página principal de Youtube se presentan los videos que son tendencia, recomendaciones en función del número de visitas que han tenido estos videos desde que fueron subidos',
+      leerMas:'',
+      imgs: [
+  
+        {
+          src: '/images/youtube/y3.png',
+          alt: 'Tendencias y recomendaciones en youtube',
+        },
+       
+  
+      ]
+    },
+    paso4: {
+      id: 'paso4',
+      titulo: 'Paso 4: buscar videos',
+      detalle: 'Dirigirse a la barra BUSCAR, aquí se puede escribir palabras claves del video que se busca. Mientras escribe se presentan sugerencias para el video',
+      leerMas:'',
+      imgs: [
+  
+        {
+          src: '/images/youtube/y4.png',
+          alt: 'buscar videos',
+        },
+  
+      ]
+    },
+    paso5: {
+      id: 'paso5',
+      titulo: 'Paso 5: Resultados de la búsqueda',
+      detalle: 'Al presionar ENTER, aparecerán los resultados de la búsqueda. ordenados por relevancia, el usuario puede hacer búsquedas personalizas en función de la fecha de subida, el tipo de video, la duración, etc.',
+      leerMas:'',
+      imgs: [
+  
+        {
+          src: '/images/youtube/y5.png',
+          alt: 'Resultados de la búsqueda',
+        },
+  
+      ]
+    },
+    paso6: {
+      id: 'paso6',
+      titulo: 'Paso 6: Seleccionar un video ',
+      detalle: 'Dar clic sobre el video que le interesa ',
+      leerMas:'',
+      imgs: [
+  
+        {
+          src: '/images/youtube/y6.png',
+          alt: 'ver video',
+        },
+  
+      ]
+    },
+    paso7: {
+      id: 'paso7',
+      titulo: 'Paso 7: Disfrutar del video',
+      detalle: 'El video se empieza a reproducir automáticamente y el usuario puede pausar, retroceder, avanzar e video a su gusto',
+      leerMas:'',
+      imgs: [
+  
+        {
+          src: '/images/youtube/y7.png',
+          alt: 'Controlar la reproduccción del video',
+        },
       ]
     },
 
@@ -183,59 +169,55 @@ parasails.registerPage('m-7-paginas-internet', {
     },
 
     infoObjeto(idObjeto) {
-      if (idObjeto == 'qqcom') {
-        $(function () {
-          $('#modalqqcom').modal('show');
-        });
-
-      } else if (idObjeto == 'youtube') {
+       if (idObjeto == 'youtube') {
 
         $(function () {
           $('#modalyoutube').modal('show');
         });
       }
-      else if (idObjeto == 'facebook') {
+      else if (idObjeto == 'paso1') {
+        $(function () {
+          $('#modalpaso1').modal('show');
+        });
+
+      } else if (idObjeto == 'paso2') {
 
         $(function () {
-          $('#modalfacebook').modal('show');
+          $('#modalpaso2').modal('show');
         });
       }
-      else if (idObjeto == 'reddit') {
+    
+      else if (idObjeto == 'paso3') {
 
         $(function () {
-          $('#modalreddit').modal('show');
+          $('#modalpaso3').modal('show');
         });
       }
-      else if (idObjeto == 'google') {
+      else if (idObjeto == 'paso4') {
 
         $(function () {
-          $('#modalgoogle').modal('show');
+          $('#modalpaso4').modal('show');
         });
       }
-      else if (idObjeto == 'wikipedia') {
+      else if (idObjeto == 'paso5') {
 
         $(function () {
-          $('#modalwikipedia').modal('show');
+          $('#modalpaso5').modal('show');
         });
       }
-      else if (idObjeto == 'yahoo') {
+      else if (idObjeto == 'paso6') {
 
         $(function () {
-          $('#modalyahoo').modal('show');
+          $('#modalpaso6').modal('show');
         });
       }
-      else if (idObjeto == 'baidu') {
+      else if (idObjeto == 'paso7') {
 
         $(function () {
-          $('#modalbaidu').modal('show');
+          $('#modalpaso7').modal('show');
         });
       }
-      else if (idObjeto == 'taobao') {
-
-        $(function () {
-          $('#modaltaobao').modal('show');
-        });
-      }
+   
 
 
 

@@ -1,0 +1,88 @@
+<div id="m-7-youtube" v-cloak>
+  <modal-detalle-elemento :info-element="youtube">
+
+  </modal-detalle-elemento>
+  <!--------------------------------------------->
+  <modal-detalle-elemento :info-element="paso1">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso2">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso3">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso4">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso5">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso6">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso7">
+
+  </modal-detalle-elemento>
+
+
+  <!-- CONTENIDOS******************************************************************************************* -->
+
+  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
+    :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
+    @evaluacion-individual="evaluacionIndividual">
+    <modulo-ev-individual v-if="evIndividual">
+
+    </modulo-ev-individual>
+    <div v-else>
+      <svg id="lienzo-svg"  version="1.1" viewBox="0 0 132.29 79.375" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="espiral">
+          <path id="path21" transform="matrix(1.1556 0 0 1.1426 -13.309 -257.8)" d="m70.136 253.87c1.6033-1.9218 4.4393-0.17685 5.2856 1.5626 1.7481 3.5928-1.0146 7.5621-4.4741 8.6973-5.3693 1.7619-10.771-2.2082-12.109-7.3856-1.8376-7.1108 3.401-14.009 10.297-15.521 8.8423-1.9383 17.26 4.5928 18.932 13.209 2.0512 10.57-5.7838 20.519-16.12 22.344-12.295 2.171-23.782-6.9744-25.756-19.032-2.295-14.02 8.1646-27.048 21.943-29.167 15.744-2.4219 30.316 9.3546 32.579 24.855 2.5506 17.467-10.544 33.585-27.766 35.991-19.19 2.6808-36.855-11.734-39.402-30.678-0.16085-1.1963-0.26281-2.4005-0.30569-3.6068" style="fill:none;stroke-width:.26458;stroke:#000"/>
+        </g>
+        <g id="imagen">
+          <image id="image1003" x="48.882" y="16.431" width="43.868" height="34.052" preserveAspectRatio="none" xlink:href="data:image/jpeg;base64,/9j/4AAQSkZJRgABAQAAAQABAAD/2wCEAAkGBxASEBISDxMQEg4VEBAPDxAPERIQEhEQFxYYFhUR FRUdHSggGBolGxUXITYhJSktLi4uFx8zOD8vNygtLisBCgoKDg0OGxAQGi0lICItLy4vLy0rLS0t Li0tLTErLS0tLi0tLS0tLysvLSstLS0uLS8tKy0vLi0tLTctLS0vLf/AABEIAL0BCwMBEQACEQED EQH/xAAcAAEAAQUBAQAAAAAAAAAAAAAABwMEBQYIAQL/xABQEAABAwIBBQoHDAcGBwAAAAABAAID BBESBQYHITETJEFRYXF0gZGzFDQ1UnOSwSIlQlNUY3KhsbLC0hYyM0OCk9EVI2J1oqMXRIOUtOHw /8QAGwEBAAIDAQEAAAAAAAAAAAAAAAQFAgMGAQf/xAA6EQEAAQICBAwFAwQCAwAAAAAAAQIDBBEF MlFxEhQhMTM0QWFykbHBExWBodFSU+EiYqLwI0IkkvH/2gAMAwEAAhEDEQA/AJxQEBAQEBAQEBAQ EBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ EBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ EBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQ EBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEFKpqGRsc+Rwaxou5zjYALyZiIzl lRRVXVFNMZzLSMo6RQHEU0OJvnyuLb8zAL25yOZRKsV+mHQWNAzMZ3a8p2Ry/djZNIdZ8FlMOdkj vxhYcar2QlRoLD9tVXnH4UXZ+1x+IHNGfa5ecZrZxoTC/wB3n/Ck7PivP7xg5o2e1ecYuM40NhI/ 6z5ypOzzyh8fbmih/KvOMXNrONEYP9H3n8vg535Q+UO/lw/kXnx7m178qwf7f3q/Lz9LcofKHepF +VPj3Nr35XhP2/vP5P0tyh8of6kX5U+Pc2nyvCftx5z+X0M7MofKH+pF+VPj3Nrz5XhP2485/Koz OrKHyl38qE/hTjFzaxnRmE/b+9X5XEedOUPlHbDD+Ve8YubWudG4T9v/ACn8rqLOav8Ajozzwt9i 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 rpyyRsLoujD3YuRVM5Z/eMmq4loWjb82c/5qSEQOibPG2+5kyGNzATfCThdccWyy32780xllmqcX omi/X8SKuDM8/Jn7ws85c9amsGA4YYLgmKMk4yDcY36sQ5LAfUvK71Ve5twujbWH5eerbPtDMnSl UfEQeu9Z8ZnYifI7f658oaPk6cwyQyNs4xSRSNB2OLHBwB57KPTOUxK5u0/EoqpntiY824ZR0kTz QywughDZIpInEOeSA9paSO1b6sRMxlkqrWhrduuK4rnkmJ8nmQtI9TBGI5mNqWtFmvdIY5AOJzrO xc5F+MlKMRVTGU8r3EaHtXauFRPB+mce2TGZ153TV2FrmtihYcTYmuLrvtbE51hcgE21DaVhcuzW kYLR9vC5zE5zPb+Ia8Tx7FqT8235C0hVdOwRyBtRG0AN3RxZIBxbpY3HOCeVb6MRVTGXOqsRoizd q4VM8Ge7m8uT1X9fpSnc0iGCOJ3nvkM1uZuFovz3WU4meyGi3oO3E511zP0y95aNU1L5Huklc58j jie9xuXH/wC1W2ACwUeZmZzldUUU0UxTTGUQu83oN0q4GfOtceZvuz91Z2ozrhGx1z4eGrq7svPk 93QEDbNaOQKycS+0BAQEBAQEBAQEBAQEBAQCEEQ6S8huZLu7B7k2bJbgt+q/s1dQUTEW/wDtDodD YuMvgVb4949/No11FdAYkDEgYkDEgYkDEgYkDEgYkDEgYkDEgYkC6CQNGGQ3F/hDxYEYY7+btLuu wt/7UvD0Zf1S5zTOLiqYsU9nLO/Z9O3+ErqUoRAQEBAQEBAQEBAQEBAQEBBZ5Sye2Zpa4DZbX9hQ icuWEd5U0dtxEx42DibYt6gdnUVoqw9M83It7Omb9EZVRFW/nYqTR9JwSnriv+JYcW7/ALJMad22 /wDL+FB2YU/xjf5bh7V5xadrONO0dtE+f8KbsxqjgfH1h49i84tVtZRpy120z9lI5k1fAYfWePwL zi9fczjTeH2VeUfl8HMyr+Z9d/5E4vX3MvnWG2VeUfl8/odV/Neu78qcXrPnWG/u8o/J+h1XxReu 78qcXr7j5zhv7vKPyfodV/Neu78qcXrPnWG2VeUfl9DMur+Z9d/5E4vX3HzrDbKvKPy+xmTVcJh9 Z5/AnF6u5jOm8P8Apq8o/Kq3Mao4Xs6g8+xe8Wq2sJ05a7KJ+yq3MKb4wdUbj7V7xadrGdO0dlE+ f8K0ej2ThkPVFb8S94t3sJ07st/5fwzGSNHjA4GTE+3A+wb2Db13WdNimOflRb+mL9yMqcqd3P5/ hIdBRNibhb1lb1SukBAQEBAQEBAQEBAQEBAQEBAQEHlkHmAcQ7EHm5N4h2BB5uLfNHYEA07PNHYg 88GZ5rexA8HZ5o7EDwZnmt7EHogZ5o7EDcW+aOwIPdybxDsCD3AOIdiD2yD1AQEBAQEBAQEBAQEB AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEB AQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBAQEBB//Z "/>
+        </g>
+        <g id="paso1" class="contenedor" @click="infoObjeto('paso1')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 1" x="12.409039" y="36.644302" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan28" x="12.409039" y="36.644302" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;stroke-width:.26458">Paso 1</tspan></text>
+        </g>
+        <g id="paso2" class="contenedor" @click="infoObjeto('paso2')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 2" x="25.557295" y="65.830986" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan943" x="25.557295" y="65.830986">Paso 2</tspan></text>
+        </g>
+        <g id="paso3" class="contenedor" @click="infoObjeto('paso3')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 3" x="60.898067" y="76.414322" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan945" x="60.898067" y="76.414322">Paso 3</tspan></text>
+        </g>
+        <g id="paso4" class="contenedor" @click="infoObjeto('paso4')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 4" x="93.781998" y="65.453011" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan947" x="93.781998" y="65.453011">Paso 4</tspan></text>
+        </g>
+        <g id="paso5" class="contenedor" @click="infoObjeto('paso5')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 5" x="103.79836" y="33.703011" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan949" x="103.79836" y="33.703011">Paso 5</tspan></text>
+        </g>
+        <g id="paso6" class="contenedor" @click="infoObjeto('paso6')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 6" x="92.837051" y="10.835451" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan951" x="92.837051" y="10.835451">Paso 6</tspan></text>
+        </g>
+        <g id="paso7" class="contenedor" @click="infoObjeto('paso7')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 7" x="35.951637" y="9.512537" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan953" x="35.951637" y="9.512537">Paso 7</tspan></text>
+        </g>
+        <g id="g1025">
+          <text id="text30-2-0-8" x="9.77847" y="18.983242" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan1008" x="9.77847" y="18.983242">¿Como usar </tspan><tspan id="tspan1010" x="9.77847" y="23.833937">Youtube?</tspan></text>
+        </g>
+        <g id="g1028">
+          <path id="path134" d="m19.043 27.558 0.06682 2.5725-1.3698-0.03341 1.9043 2.1716s2.2384-2.1382 1.9377-2.1382c-0.30068 0-1.2027-3e-6 -1.2027-3e-6l0.06682-2.5725z" style="fill:#ff4000;stroke-width:0"/>
+        </g>
+        <g id="youtube" class="contenedor1" @click="infoObjeto('youtube')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <rect id="rect955" x="46.318" y="23.447" width="46.215" height="21.549" style="fill-opacity:0;paint-order:normal;stroke-width:0"/>
+        </g>
+      </svg>
+      
+
+      <div v-cloak v-show="mostrarToolTip" class="tooltip1" :style="styleToolTip">
+        <span>{{textoToolTip}}</span>
+      </div>
+
+    </div>
+
+  </modulo-contenedor-curso>
+  <!--  -->
+</div>
+
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

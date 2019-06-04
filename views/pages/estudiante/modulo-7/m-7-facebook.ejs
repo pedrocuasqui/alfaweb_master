@@ -1,0 +1,86 @@
+<div id="m-7-facebook" v-cloak>
+  <modal-detalle-elemento :info-element="facebook">
+
+  </modal-detalle-elemento>
+  <!--------------------------------------------->
+  <modal-detalle-elemento :info-element="paso1">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso2">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso3">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso4">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso5">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso6">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="paso7">
+
+  </modal-detalle-elemento>
+
+
+  <!-- CONTENIDOS******************************************************************************************* -->
+
+  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
+    :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
+    @evaluacion-individual="evaluacionIndividual">
+    <modulo-ev-individual v-if="evIndividual">
+
+    </modulo-ev-individual>
+    <div v-else>
+
+      <svg id="lienzo-svg"  version="1.1" viewBox="0 0 132.29 79.375" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+        <g id="espiral">
+          <path id="path21" transform="matrix(1.1556 0 0 1.1426 -13.309 -257.8)" d="m70.292 255.84c-1.6617-0.93803 0.44465-2.7027 1.5591-2.7618 3.02-0.16018 4.4913 3.3557 3.9645 5.8799-0.94237 4.5153-6.1139 6.453-10.201 5.1672-5.9977-1.887-8.4592-8.9045-6.3699-14.522 2.7847-7.4868 11.706-10.483 18.843-7.5726 8.9805 3.663 12.517 14.513 8.7753 23.163-4.5315 10.477-17.322 14.556-27.484 9.978-11.976-5.3945-16.598-20.133-11.181-31.805 6.254-13.476 22.945-18.642 36.126-12.383 14.977 7.1113 20.688 25.758 13.586 40.447-7.9669 16.478-28.572 22.735-44.768 14.789-11.795-5.7869-19.437-18.002-19.902-31.08" style="fill:none;stroke-width:.26458;stroke:#000"/>
+        </g>
+        <g id="imagen">
+          <image id="image18" x="64.272" y="30.062" width="12.575" height="11.533" preserveAspectRatio="none" xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAUUAAAFFCAMAAABMqg9vAAACH1BMVEUAAABGaLlCaLJDZ7REabNV gNVCaLJDaLJDZ7NDaLL///9CaLNDZ7NEabRDabJCZ7JJbbZDaLNDZ7VDaLNDaLNDZ7JFabNcfL1M b7b////6+/2esdivv99lg8Cfstj9/v/e5fK/zOX5+v1ohcL3+fxGarSSp9PP2OzP2eykttrv8vlU dbl3kshEabNLbrZPcrh6lMlFarSBmsysvd79/f6PpdLa4fCqutxQcrj+/v9yjsZ7lclae7yKodD8 /f7V3u7Dz+fj6fRohsJvi8X09vvO2OtRc7nu8fjs8Pi1w+FwjMX3+Px9l8qxwN9jgsCrvN2hs9mH n8+8yeTk6fS0w+FtisROcLfF0OhTdblKbbZzjsbZ4fCHns5OcbesvN1Zery3xeJxjcbp7fZRc7iI oM+2xOJhgL/J0+lefr7K1epYebv2+PzN1+uYrdZkgsBUdrrf5fLI0+l/mMtnhcH19/vd4/HE0OeU qdR8lspNcLfy9fp5lMmnudxff77V3e6No9F0j8fq7ve6x+OitNmKoc+4xuK7yeSXq9V8lcru8vlt icRCZ7Lp7vaYrNVWd7pJbbW4xuPx9PlXeLvS2+1DaLPn7PawwN/R2uzj6PTc4/HY4O+EnM2brtb7 /P7CzubX3+/H0ul4ksiNpNHg5vPr7/eCm8xigb+VqtS9yuTh5/Pt8fhsicPM1uuyweCoudzJ1OnA zebm6/Xo7PZIbLWgs9m0EJVeAAAAFnRSTlMAFttjWgbE/fXOAaXDRJzBFd1Fwp3eQRdNjQAABPlJ REFUeF7s01VqBGEQReHb6jKz7HGfuLvrAgOBhB8iJF2v51vAfThUyeUFReOng98h9Zsi8PStPIyT Pw8hicNcX1TZP2eQVXJJUd1iBXUkR6dsNYKy40TsthxB9zNj1P4SUX48dW0YQa13lWkElSTlmWkD WS4pNI4glBQbNxBLXmLcQOIpMI8gUGHeQKHGvIFGvnkDvlLzBlIN7OBUBBWpSEVQkYpUpCKoSEUq UhFUpCIVqQgqUpGKVAQVqUhFUJGKVKQiqEhFKlIRVFyO+zu7d/sPG9snq96sd306fH662jpY3B4+ Ttf3r6Pjs6P++XxCxZ+83Fxcbu69tXNfP1YVQACHz93eAAXc5WxBel9qL/bee++99957y9VodDeW BBAlWJ6E9Q8UcQPsXRO5Z+bBkO/3J3wP8zDJTHlSDV66YMXC4fk/7Vq8eoziMcFdV209u6zUIMWj rbvu3CVl9SjW6xs2XrS5DEXx1qEDZSyKIx/vCQpS/PqrHUE/ivNWLoryUTxrVRSP4sW3hO0o7r8k KkdxYjgMR/GBc8JuFAfOC7NRPP+zsBrF/UvCaBQvGAybUTx4YZiM4uPx/Q3F7b+FwSiOPRkHo/hU 3Ivi4j0Uw932XZyL4mVxLYqXx7Eojt1BMd6dcSuKXx6gGG8oTkXxrisoxvsiLkVxdJxivCvLeBSX U4x3dRmP4jUUEzpEMd5IGY/itRQT+p5ivN1lPIrLKCZ0PcWEbqAYb3sMaNG+G3/ZeNPA6psn+vtH GxqbrH7qK64JEI5vu32p++i/+7Oy4fL1o5MAFJ+raHjo0+MAFD+vhrh33nEAihvOrIR494kAFO+p hHjvFACK91VBvH8txSk9WEVx/VQAivMrIP7RAEDxoQqKD1Ns6JHmERc0AlD8tnnFIYqN/dC84qMU G/u5acTD0wAojjet+BjFaTV/xruJ4rSeaFpxC8VpNb+M2ElxWmXTPZ2ARHEgAYniMwlIFDOW3BT7 E5Ao1k81RYoUKVKkSJEiRYoUKVKkSJEiRYoUKVKkSJEiRYoUKVKkSJEiRYoUKVKkSLH8P/UsxYR+ pJjQMMWEPqGY0PMUE3qBYkLrKMZ7sU4x3ksUE3qZYkKbKCb0CsWEXqWY0AjFhF6jGO/1OsV4Wykm tJdiQtsoJrSMYkJvUEzoIMWE1lKMt6pOMd4+igktpJjQmxQT2kIxoTUUE3qLYkITFOP9XqcY722K Cf1KMaGVFBN6h2JC71JMaIBivB1LKcZ7r04x3jcUE3qfYkIfUEzoQ4oJ7aSY0G6K8Tb3U4x3uE4x 3gqKCX3k44GPB01EkSJFihQpUqRIkSJFihQpUqRIkSJFihQpUqRIkSJFihQpUqRIkSJFihQpUqRI kSJFihQpUqRIkSJFihQpUqRIkSJFihQpUqRIkSJFihQpUqRIkSJFihQpUqRIkSJFihQpUqRIkSJF ihQpUqRIkSJFihQpUqRIkSJFihQpUqRIkSJFihQpUqRIkSJFihQpUqRIkSJFil0Uw3UVLRTDtRSz KIabVfRSDNdbtFIM11rUOikG66wVRQfFYB1FUbRRDNZ2RLGnm2Ko7p7iSLMphppRHG0uxUAzi39q 76NYub72YrLaGRQrdvppxbFqfRQr1VcrTqh9LsUKzWwvpja7m2KTdc8optXT1tFJ8aTr7GjrKf61 WmvvnJYuiv9RV8uc3tYpA/EvV2zqGrDuJHYAAAAASUVORK5CYII= "/>
+        </g>
+        <g id="paso1" class="contenedor" @click="infoObjeto('paso1')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 1" x="12.409039" y="36.644302" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan28" x="12.409039" y="36.644302" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;stroke-width:.26458">Paso 1</tspan></text>
+        </g>
+        <g id="paso2" class="contenedor" @click="infoObjeto('paso2')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 2" x="25.557295" y="65.830986" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan943" x="25.557295" y="65.830986">Paso 2</tspan></text>
+        </g>
+        <g id="paso3" class="contenedor" @click="infoObjeto('paso3')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 3" x="60.898067" y="76.414322" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan945" x="60.898067" y="76.414322">Paso 3</tspan></text>
+        </g>
+        <g id="paso4" class="contenedor" @click="infoObjeto('paso4')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 4" x="93.781998" y="65.453011" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan947" x="93.781998" y="65.453011">Paso 4</tspan></text>
+        </g>
+        <g id="paso5" class="contenedor" @click="infoObjeto('paso5')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 5" x="103.79836" y="33.703011" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan949" x="103.79836" y="33.703011">Paso 5</tspan></text>
+        </g>
+        <g id="paso6" class="contenedor" @click="infoObjeto('paso6')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 6" x="92.837051" y="10.835451" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan951" x="92.837051" y="10.835451">Paso 6</tspan></text>
+        </g>
+        <g id="paso7" class="contenedor" @click="infoObjeto('paso7')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <text id="paso 7" x="35.951637" y="9.512537" style="fill:#ff4000;font-family:sans-serif;font-feature-settings:normal;font-size:3.8806px;font-variant-caps:normal;font-variant-ligatures:normal;font-variant-numeric:normal;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan953" x="35.951637" y="9.512537">Paso 7</tspan></text>
+        </g>
+        <text id="text30-2-0-8" x="7.6403141" y="13.103312" style="fill:#ff4000;font-family:sans-serif;font-size:10.583px;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px" xml:space="preserve"><tspan id="tspan28-4-4-95" x="7.6403141" y="13.103312" dy="7.6500001" style="fill:#ff4000;font-size:3.5278px;letter-spacing:.17462px;stroke-width:.26458">C<tspan id="tspan128" dx="-0.0099999998" dy="-0.0099999998" style="fill:#ff4000;letter-spacing:.17462px;word-spacing:-.0026458px">omo unirse </tspan></tspan><tspan id="tspan124" x="7.6403141" y="26.332478" style="fill:#ff4000;font-size:3.5278px;letter-spacing:.17462px;stroke-width:.26458;word-spacing:-.0026458px">a Facebook?</tspan></text>
+        <path id="path134" d="m19.043 27.558 0.06682 2.5725-1.3698-0.03341 1.9043 2.1716s2.2384-2.1382 1.9377-2.1382c-0.30068 0-1.2027-3e-6 -1.2027-3e-6l0.06682-2.5725z" style="fill:#ff4000;stroke-width:0"/>
+        <g id="Qué es Facebook" class="contenedor1" @click="infoObjeto('facebook')" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
+          <rect id="rect955" x="64.272" y="30.062" width="12.575" height="11.533" style="fill-opacity:0;paint-order:normal;stroke-width:0"/>
+        </g>
+      </svg>
+      
+  
+
+      <div v-cloak v-show="mostrarToolTip" class="tooltip1" :style="styleToolTip">
+        <span>{{textoToolTip}}</span>
+      </div>
+
+    </div>
+
+  </modulo-contenedor-curso>
+  <!--  -->
+</div>
+
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

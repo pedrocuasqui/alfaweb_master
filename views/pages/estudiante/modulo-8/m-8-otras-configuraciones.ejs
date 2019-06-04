@@ -1,0 +1,20 @@
+<div id="m-8-otras-configuraciones" v-cloak>
+
+    <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
+    :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
+    @evaluacion-individual="evaluacionIndividual">
+    <modulo-ev-individual v-if="evIndividual">
+
+    </modulo-ev-individual>
+    <div v-else>
+        <!-- <video width="520" height="250" controls>
+        <source src="/images/dispositivo/cambiar_fondo.flv" type="video/flv">
+        Tu navegador no soporta los vídeos de HTML5
+    </video> -->
+    <video src="/images/dispositivo/cambiar_fondo.flv"> ;lkaksjdf;klasd</video>
+    </div>
+
+  </modulo-contenedor-curso>
+  <!--  -->
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

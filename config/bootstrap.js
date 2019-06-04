@@ -482,13 +482,22 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         ordenNavegacion:1
       },
       {
+        nombreSubmodulo: 'Otras configuraciones',
+        descripcion: 'El dispositivo móvil permite personalizar varias opciones .',
+        enlace:'/m8-otras-configuraciones',
+        multimedia: {},
+        contenidoTiny: '<p>Pulse para editar</p>',
+        modulo: moduloCreado.id,
+        ordenNavegacion:2
+      },
+      {
         nombreSubmodulo: 'Instalación de una app(aplicación)',
         descripcion: 'Una app es una aplicación informática diseñada para ser ejecutada en teléfonos inteligentes, tabletas y otros dispositivos móviles. En internet existen varias aplicaciones de software que permiten al dispositivo móvil ejecutar nuevas tareas',
         enlace:'/m8-app-movil',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:2
+        ordenNavegacion:3
       }
       ]);
 

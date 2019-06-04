@@ -561,7 +561,107 @@ else if (inputs.enlace == '/m6-envio-correo') {
     
       return this.res.view('pages/estudiante/modulo-7/m-7-paginas-internet', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
     }
+       // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
 
+    else if (inputs.enlace == '/m7-facebook') {
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m7-facebook' });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });//.sort('createdAt');
+      let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      return this.res.view('pages/estudiante/modulo-7/m-7-facebook', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+    }
+  // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m7-youtube') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m7-youtube' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await ModuloLibro.findOne({enlace: '/m8-dispositivos-moviles' });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-7/m-7-youtube', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////MODULO 7////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////\
+
+
+
+    else if (inputs.enlace == '/m8-dispositivos-moviles') {
+
+      let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m8-dispositivos-moviles' });
+      let siguiente = await SubmoduloLibro.findOne({ enlace: '/m8-configuracion-basica' });
+      let anterior = await SubmoduloLibro.findOne({ enlace: '/m7-youtube' });
+    
+      return this.res.view('pages/estudiante/modulo-8/m-8-dispositivos-moviles', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+    }
+          // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+
+    else if (inputs.enlace == '/m8-configuracion-basica') {
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m8-configuracion-basica' });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });//.sort('createdAt');
+      let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      return this.res.view('pages/estudiante/modulo-8/m-8-configuracion-basica', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+    }
+       // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+else if (inputs.enlace == '/m8-otras-configuraciones') {
+
+  let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m8-otras-configuraciones' });
+  let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+  let siguiente = await SubmoduloLibro.findOne(
+    {
+      where: {
+        ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+        modulo: objetoSeleccionado.modulo
+      }
+    });
+  let anterior = await SubmoduloLibro.findOne(
+    {
+      where: {
+        ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+        modulo: objetoSeleccionado.modulo
+      }
+    });
+  return this.res.view('pages/estudiante/modulo-8/m-8-otras-configuraciones', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+}
+        // ///////////////////////////////////////////////////////
+    // ///////////////////////////////////////////////////////
+
+    else if (inputs.enlace == '/m8-app-movil') {
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m8-app-movil' });
+      let siguiente = {}
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-8/m-8-instalar-app', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+    }
 
 
 
@@ -648,4 +748,11 @@ g.contenedor1:hover * {
   sails generate page estudiante/modulo-6/m-6-envio-correo
   sails generate page estudiante/modulo-6/m-6-cuenta-skype
   sails generate page estudiante/modulo-6/m-6-realizar-videollamada
+  sails generate page estudiante/modulo-7/m-7-paginas-internet
+  sails generate page estudiante/modulo-7/m-7-facebook
+  sails generate page estudiante/modulo-7/m-7-youtube
+  sails generate page estudiante/modulo-8/m-8-dispositivos-moviles
+  sails generate page estudiante/modulo-8/m-8-configuracion-basica
+  sails generate page estudiante/modulo-8/m-8-otras-configuraciones
+  sails generate page estudiante/modulo-8/m-8-instalar-app
     */

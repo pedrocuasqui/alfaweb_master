@@ -328,7 +328,7 @@ module.exports = {
 
       let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-otras-opciones' });
       let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      let siguiente = await ModuloLibro.findOne({enlace: '/m5-navegar-internet' });
+      let siguiente = await ModuloLibro.findOne({enlace: '/m4-edicion-word' });
       let anterior = await SubmoduloLibro.findOne(
         {
           where: {
@@ -347,7 +347,84 @@ module.exports = {
     // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
 
+    else if (inputs.enlace == '/m4-edicion-word') {
 
+      let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m4-edicion-word' });
+      let siguiente = await SubmoduloLibro.findOne({ enlace: '/m4-portapapeles' });
+      let anterior = await SubmoduloLibro.findOne({ enlace: '/m3-otras-opciones' });
+
+      return this.res.view('pages/estudiante/modulo-4/m-4-edicion-word', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+    }
+    // ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m4-portapapeles') {
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m4-portapapeles' });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });//.sort('createdAt');
+      let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      return this.res.view('pages/estudiante/modulo-4/m-4-portapapeles', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+    }   
+    // ///////////////////////////////////////////////////////
+    else if (inputs.enlace == '/m4-ortografia') {
+
+      let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m4-ortografia' });
+      let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      let siguiente = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      let anterior = await SubmoduloLibro.findOne(
+        {
+          where: {
+            ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+            modulo: objetoSeleccionado.modulo
+          }
+        });
+      return this.res.view('pages/estudiante/modulo-4/m-4-ortografia', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+    }
+       // ///////////////////////////////////////////////////////
+       else if (inputs.enlace == '/m4-guardar') {
+
+        let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m4-guardar' });
+        let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+        let siguiente = await SubmoduloLibro.findOne(
+          {
+            where: {
+              ordenNavegacion: objetoSeleccionado.ordenNavegacion + 1,
+              modulo: objetoSeleccionado.modulo
+            }
+          });
+        let anterior = await SubmoduloLibro.findOne(
+          {
+            where: {
+              ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+              modulo: objetoSeleccionado.modulo
+            }
+          });
+        return this.res.view('pages/estudiante/modulo-4/m-4-guardar', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      }
+        // ///////////////////////////////////////////////////////////////////////////
+        else if (inputs.enlace == '/m4-disenio') {
+
+          let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m4-disenio' });
+          let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+          let siguiente = await ModuloLibro.findOne({enlace: '/m5-navegar-internet' });
+          let anterior = await SubmoduloLibro.findOne(
+            {
+              where: {
+                ordenNavegacion: objetoSeleccionado.ordenNavegacion - 1,
+                modulo: objetoSeleccionado.modulo
+              }
+            });
+          return this.res.view('pages/estudiante/modulo-4/m-4-disenio', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+        }
 
 
 
@@ -367,7 +444,7 @@ module.exports = {
 
       let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m5-navegar-internet' });
       let siguiente = await SubmoduloLibro.findOne({ enlace: '/m5-direccion-web' });
-      let anterior = await SubmoduloLibro.findOne({ enlace: '/m3-otras-opciones' });
+      let anterior = await SubmoduloLibro.findOne({ enlace: '/m4-disenio' });
 
       return this.res.view('pages/estudiante/modulo-5/m-5-navegar-internet', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
     }
@@ -672,7 +749,9 @@ else if (inputs.enlace == '/m8-otras-configuraciones') {
 
 };
 
-/*class="contenedor1" @click="infoObjeto('papelera')" @mousemove="mouseMovePc" @mouseout="mouseOutPc" */
+/*
+class="contenedor1" @click="infoObjeto('papelera')" @mousemove="mouseMovePc" @mouseout="mouseOutPc" 
+*/
 /**
  * 
  * 
@@ -723,20 +802,22 @@ g.contenedor1:hover * {
 
   /***
    * 
-   *   elemento: {
-    id: '',
-    titulo: '',
-    detalle: '',
-    leerMas:'',
-    imgs: [
-
-      {
-        src: '',
-        alt: '',
-      },
-
-    ]
-  },
+   *   
+   elemento: {
+      id: '',
+      titulo: '',
+      detalle: '',
+      leerMas:'',
+      imgs: [
+  
+        {
+          src: '',
+          alt: '',
+        },
+  
+      ],
+      html:''
+    },
  
    */
 
@@ -755,4 +836,11 @@ g.contenedor1:hover * {
   sails generate page estudiante/modulo-8/m-8-configuracion-basica
   sails generate page estudiante/modulo-8/m-8-otras-configuraciones
   sails generate page estudiante/modulo-8/m-8-instalar-app
+  
+  
+  sails generate page estudiante/modulo-4/m-4-edicion-word
+  sails generate page estudiante/modulo-4/m-4-portapapeles
+  sails generate page estudiante/modulo-4/m-4-ortografia
+  sails generate page estudiante/modulo-4/m-4-guardar
+  sails generate page estudiante/modulo-4/m-4-disenio
     */

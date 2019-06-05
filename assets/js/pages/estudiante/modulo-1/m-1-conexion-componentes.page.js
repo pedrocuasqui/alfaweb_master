@@ -71,55 +71,8 @@ parasails.registerPage('m-1-conexion-componentes', {
     },
 
 
-    infoObjeto(idObjeto) {
-      // if (idObjeto == 'clic-izquierdo') {
-      //   console.log('funciones');
-      //   $(function () {
-      //     $('#modalClicIzquierdo').modal('show');
-      //   });
-
-      // } else if (idObjeto == 'clic-derecho') {
-      //   $(function () {
-      //     $('#modalClicDerecho').modal('show');
-      //   });
-
-      // } else if (idObjeto == 'scroll') {
-
-      //   $(function () {
-      //     $('#modalScroll').modal('show');
-      //   })
-      // }
-
-
-    },
-    mouseMovePc(event) {
-      // clientX/Y obtiene las coordenadas del elemento con respecto al elemento padre, en este caso las coordenadas con respecto a <div id="m1-computadora"
-
-      this.mouseX = event.clientX;
-      this.mouseY = event.clientY;
-
-
-      // El text del tooltip se basa en valor de la propiedad ""id"" de cada elemento ""
-      let elementoSeleccionado = event.target.parentNode.id;
-      this.textoToolTip = elementoSeleccionado.toString().toUpperCase();
-
-      //una vez que los valores para x y y del texto del tooltip han sido establecidos, se muestra en la pantalla
-      this.mostrarToolTip = true;
-    },
-    mouseOutPc(evet) {
-      this.mostrarToolTip = false;
-    },
   },
   computed: {
-    styleToolTip() {
-      // translate define cuanto se moverá el objeto a partir de su posicion original
-      // funciona solo con comillas dobles
-      //{ transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
-      let estilo = {
-        top: this.mouseY + 'px',
-        left: this.mouseX + 'px'
-      }
-      return estilo;
-    }
+
   }
 });

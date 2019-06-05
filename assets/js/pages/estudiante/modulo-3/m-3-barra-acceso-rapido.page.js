@@ -46,7 +46,8 @@ parasails.registerPage('m-3-barra-acceso-rapido', {
           alt: ''
         },
 
-      ]
+      ],
+      html:'<img src="/images/portapapeles/pes_inicio_1.PNG" alt="Imagen">'
     },
     guardar: {
       id: 'guardar',
@@ -97,14 +98,15 @@ parasails.registerPage('m-3-barra-acceso-rapido', {
       titulo: 'Personalizar',
       detalle: 'Personalizar la barra de herramientas de acceso rápido',
       leerMas: 'https://support.office.com/es-es/article/personalizar-la-barra-de-herramientas-de-acceso-r%C3%A1pido-43fff1c9-ebc4-4963-bdbd-c2b6b0739e52',
-      imgs: [
+      // imgs: [
 
-        {
-          src: 'https://support.content.office.net/es-es/media/a93355d7-6b01-45a7-909a-5c53dcae7aee.jpg',
-          alt: 'Personalizar la barra de herramientas'
-        },
+      //   {
+      //     src: '',
+      //     alt: ' '
+      //   },
 
-      ]
+      // ],
+      html: '<p>Para personalizar la barra de herramientas, hay que dar clic sobre la flecha hacia abajo en la barra de acceso rápido.</p><img src="/images/word/acceso_rapido/personalizar1.png"></img><p>Puede seleccionar las herramientas que se deseen dando clic izquierdo sobre la opción: </p> <img src="/images/word/acceso_rapido/personalizar2.png"></img><p>Al final todas las opciones escogidas, se verán agregadas en la barra de acceso rápido:</p><img src="/images/word/acceso_rapido/personalizar2.png"></img>'
     },
 
   },

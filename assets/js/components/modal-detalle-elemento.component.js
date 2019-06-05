@@ -11,7 +11,8 @@ parasails.registerComponent('modal-detalle-elemento', {
           imgs: [{
             src: '',
             alt: 'No existe imagen '
-          }]
+          }],
+          html: '',
         }
       },
     }
@@ -19,11 +20,23 @@ parasails.registerComponent('modal-detalle-elemento', {
   data() {
     return {
       imagen: true,
+      html: false
     };
   },
+
   mounted() {
-    if (this.infoElement.imgs[0].src == '')
+    if(this.infoElement.imgs){ // en caso de existir 
+      if (this.infoElement.imgs[0].src == '')
       this.imagen = false;
+    }else{
+      this.imagen = false;
+    }
+  
+
+    if (this.infoElement.html) {
+      this.html = true;
+
+    }
   },
 
   template://html
@@ -42,6 +55,7 @@ parasails.registerComponent('modal-detalle-elemento', {
             {{infoElement.detalle}}
               <a v-if="infoElement.leerMas!=''" :href="infoElement.leerMas" target="_blank">Leer más</a>
               <img v-if="imagen" v-for="img in infoElement.imgs" :src="img.src" :title="img.alt">
+              <div v-if="html" id="htmlContent" v-html="infoElement.html"></div>
             </div>
             <div class="modal-footer">
               <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>

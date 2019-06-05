@@ -25,14 +25,27 @@ parasails.registerPage('m-3-barra-opciones', {
       titulo: 'Archivo',
       detalle: ' Es la pestaña que nos da acceso al backstage (o zona de administración) en la que encontraremos acciones como las de Guardar el documento, Abrir otro existente, crear uno Nuevo, Imprimir, Compartir, Exportar…',
       leerMas: 'https://emtic.educarex.es/pildoras/pub/cont/archivos/Elementos_basicos_de_Word.pdf',
-      imgs: [
-
-        {
-          src: 'https://www.aulaclic.es/word-2016/graficos/abrir_recientes.png',
-          alt: 'Pestaña Archivo'
-        },
-
-      ]
+         html:''+
+      '<img src="/images/word/p_archivo/0.png" alt="Boton office">'+
+      '<p>Este Botón ofrece las opciones principales para trabajar en Word, como son:</p>'+
+      '<h3>Información del documento </h3>'+
+      '<img src="/images/word/p_archivo/1.png" alt="">'+
+      '<p>Muestra una visión general de toda la información del documento en el que se esté trabajando.</p>'+
+     '<h3>Reciente </h3>'+
+      '<img src="/images/word/p_archivo/2.png" alt="">'+
+      '<p>Permite ver los archivos más recientes que han sido abiertos y poder abrirlos nuevamente en otra ventana de Word.</p>'+
+      '<h3>Nuevo </h3>'+
+      '<img src="/images/word/p_archivo/3.png" alt="">'+
+      '<p>Permite editar un nuevo documento acorde a lo necesario.</p>'+
+      '<h3>Imprimir </h3>'+
+      '<img src="/images/word/p_archivo/4.png" alt="">'+
+      '<p>Permite imprimir un nuevo documento mediante un dispositivo de impresión.</p>'+
+      '<h3>Guardar y enviar </h3>'+
+      '<img src="/images/word/p_archivo/5.png" alt="">'+
+      '<p>Permite imprimir un nuevo documento mediante un dispositivo de impresión.</p>'+
+      '<h3>Ayuda</h3>'+
+      '<img src="/images/word/p_archivo/6.png" alt="">'+
+      '<p>Muestra opciones de ayuda para configurar el documento y Soporte técnico</p>'
     },
     
     inicio: {
@@ -47,7 +60,8 @@ parasails.registerPage('m-3-barra-opciones', {
           alt: 'Pestaña Inicio'
         },
 
-      ]
+      ],
+      html:''//pagina 69 a pagina 100 del folleto, imagenes en la ruta /images/word/p_inicio/0.png
     },
     
     insertar: {

@@ -1,0 +1,37 @@
+<div id="m-4-disenio" v-cloak>
+  <modal-detalle-elemento :info-element="temas">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="colores">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="fuentes">
+
+  </modal-detalle-elemento>
+  <modal-detalle-elemento :info-element="efectos">
+
+  </modal-detalle-elemento>
+  <!-- CONTENIDOS******************************************************************************************* -->
+
+  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
+    :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
+    @evaluacion-individual="evaluacionIndividual">
+    <modulo-ev-individual v-if="evIndividual">
+
+    </modulo-ev-individual>
+    <div v-else>
+
+
+
+
+      <div v-cloak v-show="mostrarToolTip" class="tooltip1" :style="styleToolTip">
+        <span>{{textoToolTip}}</span>
+      </div>
+
+    </div>
+
+  </modulo-contenedor-curso>
+  <!--  -->
+</div>
+
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

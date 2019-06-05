@@ -1,0 +1,23 @@
+<div id="m-4-edicion-word" v-cloak>
+
+    <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
+    :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
+    @evaluacion-individual="evaluacionIndividual">
+    <modulo-ev-individual v-if="evIndividual">
+       
+    </modulo-ev-individual>
+    <div v-else>
+        <img src="/images/word/edicion_documentos.gif" alt="Edición de documentos">
+    </div>
+  
+    </modulo-contenedor-curso>
+    <!--  -->
+  </div>
+  
+  <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
+  <!--  class="contenedor" @click="infoObjeto('clic-derecho')" @mousemove="mouseMovePc" @mouseout="mouseOutPc" -->
+  <!-- <div v-cloak v-show="mostrarToolTip" class="tooltip1" :style="styleToolTip">
+          
+          <span>{{textoToolTip}}</span>
+        </div> 
+      -->

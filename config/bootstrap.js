@@ -297,15 +297,44 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       contenidoTiny: '<p>Pulse para editar</p>',
     }).fetch();
     await SubmoduloLibro.createEach([
+
       {
-        nombreSubmodulo: 'Redactar un documento',
-        descripcion: 'Para redactar un documento primero se debe abrir la aplicación MICROSOFT WORD, después y por medio del teclado se insertan letra a letra las oraciones que queremos guardar ',
-        enlace:'/m4-redactar-documento',
+        nombreSubmodulo: 'El portapapeles',
+        descripcion: 'La opción portapapeles muestra opciones para copiar y pegar ya sea, texto, imágenes o un formato existente',
+        enlace:'/m4-portapapeles',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
         ordenNavegacion:1
       },
+      {
+        nombreSubmodulo: 'Ortografía y gramática',
+        descripcion: 'Las opciones Ortografía y gramática permite principalmente corregir los errores ortográficos generados al redactar un documento. ',
+        enlace:'/m4-ortografia',
+        multimedia: {},
+        contenidoTiny: '<p>Pulse para editar</p>',
+        modulo: moduloCreado.id,
+        ordenNavegacion:2
+      },
+      {
+        nombreSubmodulo: 'Guardar e imprimir un documento',
+        descripcion: 'Como guardar e imprimir un documento de word. ',
+        enlace:'/m4-guardar',
+        multimedia: {},
+        contenidoTiny: '<p>Pulse para editar</p>',
+        modulo: moduloCreado.id,
+        ordenNavegacion:3
+      },
+      {
+        nombreSubmodulo: 'Diseño de página',
+        descripcion: 'Permite modificar principalmente la forma de visualización del documento y su contenido, por ejemplo, crear una hoja de forma horizontal, crear dos columnas de texto, etx. ',
+        enlace:'/m4-disenio',
+        multimedia: {},
+        contenidoTiny: '<p>Pulse para editar</p>',
+        modulo: moduloCreado.id,
+        ordenNavegacion:4
+      },
+      
       // {
       //   nombreSubmodulo: '',
       //   descripcion: '',
@@ -313,6 +342,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       //   multimedia: {},
       //   contenidoTiny: '<p>Pulse para editar</p>',
       //   modulo: moduloCreado.id,
+      //   ordenNavegacion:1
       // }
       ]);
 
@@ -491,7 +521,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         ordenNavegacion:2
       },
       {
-        nombreSubmodulo: 'Instalación de una app(aplicación)',
+        nombreSubmodulo: 'Instalación de una aplicación móvil',
         descripcion: 'Una app es una aplicación informática diseñada para ser ejecutada en teléfonos inteligentes, tabletas y otros dispositivos móviles. En internet existen varias aplicaciones de software que permiten al dispositivo móvil ejecutar nuevas tareas',
         enlace:'/m8-app-movil',
         multimedia: {},

@@ -54,7 +54,7 @@ parasails.registerComponent('modal-detalle-elemento', {
             <div class="modal-body">
             {{infoElement.detalle}}
               <a v-if="infoElement.leerMas!=''" :href="infoElement.leerMas" target="_blank">Leer más</a>
-              <img v-if="imagen" v-for="img in infoElement.imgs" :src="img.src" :title="img.alt">
+              <div class="d-flex justify-content-center"><img v-if="imagen" v-for="img in infoElement.imgs" :src="img.src" :title="img.alt"></div>
               <div v-if="html" id="htmlContent" v-html="infoElement.html"></div>
             </div>
             <div class="modal-footer">

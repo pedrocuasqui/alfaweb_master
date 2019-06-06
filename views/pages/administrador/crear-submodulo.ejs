@@ -53,7 +53,7 @@
   </div>
 
 
-  <modulo-contenedor-curso :curso="curso" :objeto-seleccionado="moduloSeleccionado" :titulo-temporal="tituloTemporal" :crear-submodulo="crearSubmodulo">
+  <modulo-contenedor-curso :curso="curso" :objeto-seleccionado="moduloSeleccionado" :titulo-temporal="tituloTemporal" :crear-submodulo="crearSubmodulo" :breadcrumb="breadcrumb">
     
     <div class="contenedor-formulario">
       <form >
@@ -79,106 +79,62 @@
           autofocus>
       <div class="invalid-feedback" v-if="formErrors.descripcionSubmodulo">Ingrese una descripción general para el Submódulo.</div>
         </div>
-        <div v-if="!seleccionTipoAprendizaje" class="form-group">
-          <!-- <div class="row"> -->
-          <!-- <div class="col-sm-4"> -->
-          <label for="tecnicasDeAprendizaje"> Técnicas de aprendizaje</label>
-          <div class="container" id="tecnicasDeAprendizaje">
-            <div class="row">
-              <div class="col-sm-4">
-                <button class="botonTecnica" type="button" @click="onSeleccionMultimedia">Video, Animación, Imágen</button>
-              </div>
-              <div class="col-sm-8 text-justify">
-                <span>Video, animación o imágen estática del alusivo al tema </span>
-              </div>
 
-            </div>
-            <div class="row">
-              <div class="col-sm-4">
-                <button class="botonTecnica" type="button" @click="onSeleccionCarrusel">Carrusel</button>
-              </div>
-              <div class="col-sm-8 text-justify">
-                <span>Serie de slides o láminas presentadas en un orden específico con su respectiva descripción, útil para presentar una serie de pasos a seguir. </span>
-              </div>
 
-            </div>
 
-            <div class="row">
-              <div class="col-sm-4">
-                <button class="botonTecnica" type="button" @click="onSeleccionMapa">Mapa interactivo</button>
-              </div>
-              <div class="col-sm-8 text-justify">
-                <span>Conjunto de imágenes que representan un solo objeto, cada una contiene su propio contenido</span>
-              </div>
 
-            </div>
-          </div>
-        </div>
-        <!-- INSERCION DE TECNICAS DE APRENDIZAJE -->
-        <div v-else class="row">
-          <div class="col-sm-1 contenido-izquierda">
-            <!-- Seleccionar archivo -->
-            <a data-toggle="modal" data-target="#modalSeleccionObjeto">
-              <i class="fas fa-plus-circle fa-2x" title="Insertar Objeto"></i>
-            </a>
-            <!-- Cambiar técnica de aprendizaje -->
-            <a @click="onCambiarTecnicaAprendizaje" title="Cambiar de técnica de Aprendizaje"> <i
-                class="fas fa-exchange-alt fa-2x"></i></a>
-            <!-- Guardar fomrmulario -->
-             <a @click="validarFormulario" title="Guardar submódulo"> <i
-              class="fas fa-save fa-2x"></i></a>
-          </div>
 
-          <!-- INSERCIÓN DE MULTIMEDIA -->
-          <div v-if="seleccionMultimedia" class="col-sm-11 contenido-derecha">
-            multimedia
-            <div class="contenedor-imagen" v-for="(file, index) in selectedFiles" :key="file.lastModified">
-              <img :src="file.urlLocal" alt="Previsualización de imágen cargada">
-              <a @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a>
-            </div>
-          </div>
 
-          <!-- INSERCIÓN CARRUSEL -->
-          <div v-else-if="seleccionCarrusel" class="col-sm-11 contenido-derecha">
-            CARRUSEL
-            <div id="carouselImagenes" class="carousel slide" data-ride="carousel" data-interval="false">
-              <ol class="carousel-indicators carousel-indicators-numbers">
-                <li v-for="(file, index) in selectedFiles" data-target="#carouselImagenes" :data-slide-to="index"
-                  :class="{active: index==0}" class="indicador">{{index + 1}}</li>
-              </ol>
-              <div class="carousel-inner">
-                <div class="carousel-item" :class="{active: index==0}" v-for="(file, index) in selectedFiles"
-                  :key="file.lastModified">
-                  <img class="d-block w-100" :src="file.urlLocal" alt="First slide">
-                  <!-- <a class="" @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a> -->
-                </div>
 
-              </div>
-              <a class="carousel-control-prev" href="#carouselImagenes" @click="obtenerIndice" role="button"
-                data-slide="prev">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" href="#carouselImagenes" @click="obtenerIndice" role="button"
-                data-slide="next">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
-            </div>
 
-          </div>
 
-          <!-- INSERCIÓN MAPA -->
-          <div v-else="seleccionMapa" class="col-sm-11 contenido-derecha">
-            MAPA
 
-            <div class="contenedor-imagen-mapa" v-for="(file, index) in selectedFiles" :key="file.lastModified">
-              <img :src="file.urlLocal" alt="Previsualización de imágen cargada">
-              <!-- <div class="handle" @mousedown="initialiseResize(file.urlLocal)" ></div> -->
-              <a @click="onBorrarImagen(index)"><i class="fas fa-trash-alt"></i></a>
-            </div>
-          </div>
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
         <!-- EDITOR DE CONTENIDOS TINYMCE -->
@@ -189,6 +145,11 @@
         </form>
         <div class="contenido-tiny"></div>
        <div id="contenido-recibido"></div>
+
+
+
+       <a @click="validarFormulario" title="Guardar submódulo"> <i
+        class="fas fa-save fa-2x"></i></a>
         <br>
         <br>
       </form>

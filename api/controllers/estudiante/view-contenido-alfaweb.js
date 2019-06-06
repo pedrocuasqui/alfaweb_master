@@ -751,6 +751,9 @@ else if (inputs.enlace == '/m8-otras-configuraciones') {
 
 /*
 class="contenedor1" @click="infoObjeto('papelera')" @mousemove="mouseMovePc" @mouseout="mouseOutPc" 
+
+
+class="contenedor1" @click="clickSelectorPestania('configurar')" @mousemove="mouseMovePc" @mouseout="mouseOutPc" 
 */
 /**
  * 

@@ -19,10 +19,11 @@ parasails.registerPage('administrar-contenido', {
       required: false,
       description: 'la ruta del modulo siguiente',
   },
-  breadcrumb: {
-      type: Array,
-      required: false,
-  },
+  // breadcrumb: {
+  //     type: Array,
+  //     required: false,
+  // },
+  breadcrumb: [],
   curso: {
       type: Object,
   },
@@ -40,6 +41,7 @@ parasails.registerPage('administrar-contenido', {
     _.extend(this, SAILS_LOCALS);
     this.objetoSeleccionado=SAILS_LOCALS.objetoSeleccionado;
     this.curso= SAILS_LOCALS.curso;
+    this.breadcrumb.push(SAILS_LOCALS.curso);
   },
   mounted: async function() {
 $('.contenido-tiny').html(this.objetoSeleccionado.contenidoTiny);

@@ -30,7 +30,8 @@ parasails.registerPage('crear-submodulo', {
     // imagenSeleccionada:null
     submoduloCreado:null,
     crearSubmodulo:true,
-    tipoContenido:'Submodulo'
+    tipoContenido:'Submodulo',
+    breadcrumb:[]
 
   },
 
@@ -42,6 +43,7 @@ parasails.registerPage('crear-submodulo', {
     _.extend(this, SAILS_LOCALS);
     this.curso= SAILS_LOCALS.curso;
     this.moduloSeleccionado= SAILS_LOCALS.moduloSeleccionado
+    this.breadcrumb.push(SAILS_LOCALS.curso);
   },
   mounted: async function () {
     //…

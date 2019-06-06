@@ -14,7 +14,7 @@ parasails.registerPage('crear-modulo', {
     },
     tituloTemporal: 'Agregar Nuevo Módulo',
     tipoContenido: 'Modulo',
-    
+    breadcrumb: [],
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -24,6 +24,7 @@ parasails.registerPage('crear-modulo', {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
     this.curso = SAILS_LOCALS.curso;
+    this.breadcrumb.push(SAILS_LOCALS.curso);
     //this.moduloCreado= SAILS_LOCALS.moduloCreado;// no se remite porque en la vista_crear_modulo no se ha seleccionado un modulo
 
   },

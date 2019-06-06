@@ -88,7 +88,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       nombreModulo: 'Módulo 1- La computadora ',
       descripcion: 'La computadora es una máquina electrónica capaz de recibir un conjunto de órdenes y ejecutarlas realizando cálculos complejos, o agrupando y correlacionando otro tipo de información. Es también conocida como ordenador o computador.',
       enlace: '/m1-computadora',
-      multimedia: {},
+      multimedia: {imagen:'/images/portadas_modulos/m1.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
     }).fetch();
@@ -156,7 +156,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       nombreModulo: 'Módulo 2- Navegacion en escritorio',
       descripcion: 'En este módulo aprenderás a reconocer las partes del escritorio de la computadora y de forma básica aprender a usar sus aplicaciones.',
       enlace: '/m2-navegacion-escritorio',
-      multimedia: {},
+      multimedia: {imagen:'/images/portadas_modulos/m2.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
     }).fetch();
@@ -204,7 +204,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       nombreModulo: 'Módulo 3- Documento Word',
       descripcion: 'Microsof Office Word 2016 es una de las aplicaciones que acompañan a Windows 10. Se trata de un procesador de textos, un software para la creación, edición, modificación y procesamiento de  documentos de texto con formato: tipo y tamaño de la tipografía, colores, tipos de párrafos, efectos artísticos, adición de gráficos, etc.',
       enlace: '/m3-documento-word',
-      multimedia: {},
+      multimedia: {imagen:'/images/portadas_modulos/m3.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
     }).fetch();
@@ -292,7 +292,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       nombreModulo: 'Módulo 4-Edición de documentos Word',
       descripcion: 'En este módulo aprenderás como editar un documento de word con ejemplos',
       enlace: '/m4-edicion-word',
-      multimedia: {},
+      multimedia: {imagen:'/images/portadas_modulos/m4.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
     }).fetch();
@@ -374,7 +374,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       nombreModulo: 'Módulo 5 - Navegar en Internet',
       descripcion: 'Llamamos navegar por la red, a la acción de visitar o pedir páginas del tipo web en nuestro ordenador. Al navegar, el usuario pasa de una página web a otra, lo que supone una especie de recorrido. El software que permite este proceso se conoce como navegador.',
       enlace: '/m5-navegar-internet',
-      multimedia: {},
+      multimedia: {imagen:'/images/portadas_modulos/m5.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
     }).fetch();
@@ -421,7 +421,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       nombreModulo: 'Módulo 6 - Correo Electrónico y Skype',
       descripcion: 'En este módulo aprenderás a usar medios de comunicación en línea principalmente lo referente a correo electrónico y videollamadas',
       enlace: '/m6-medios-comunicacion',
-      multimedia: {},
+      multimedia: {imagen:'/images/portadas_modulos/m6.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
     }).fetch();
@@ -468,7 +468,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       nombreModulo: 'Módulo 7 - Páginas de Internet',
       descripcion: 'Una Página Web es conocida como un documento de tipo electrónico, contiene información digital, la cual puede venir dada por datos visuales y/o sonoros, o una mezcla de ambos, a través de textos, imágenes, gráficos, audio o vídeos y otros tantos elementos dinámicos o estáticos.',
       enlace: '/m7-paginas-internet',
-      multimedia: {},
+      multimedia:{imagen:'/images/portadas_modulos/m7.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
     }).fetch();
@@ -496,8 +496,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
     moduloCreado = await ModuloLibro.create({
       nombreModulo: 'Módulo 8. Dispositivos Móviles',
       descripcion: 'Un dispositivo móvil es una computadora de bolsillo con memoria limitada y que permite la conexión a internet de forma inalámbrica. Se caracterizan por que pueden ser fáciles de transportar y permiten ejecutar varias aplicaciones.',
-      enlace: '/m8-dispositivos-moviles',
-      multimedia: {},
+      enlace: '/m8-app-movil',
+      multimedia: {imagen:'/images/portadas_modulos/m8.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
     }).fetch();

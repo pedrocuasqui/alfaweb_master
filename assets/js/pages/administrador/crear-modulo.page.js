@@ -64,21 +64,21 @@ parasails.registerPage('crear-modulo', {
       if (!this.descripcionModulo) {
         this.formErrors.descripcionModulo = true;
       }
-      
+
       if (!this.imagenPortada) {
         this.formErrors.imagenPortada = true;
-        this.formErrors.typeFile=false;
-      }else{
-      // Expresion regular que evalua si la imagen tiene cualquier tipo
+        this.formErrors.typeFile = false;
+      } else {
+        // Expresion regular que evalua si la imagen tiene cualquier tipo
 
-      var regExpImage = new RegExp('image\.(jpg)|image\.(png)');
-     
-      if ( !regExpImage.exec(this.imagenPortada.type) ){
-        this.formErrors.typeFile=true;
+        var regExpImage = new RegExp('image\.(jpg)|image\.(png)');
+
+        if (!regExpImage.exec(this.imagenPortada.type)) {
+          this.formErrors.typeFile = true;
+        }
       }
-      }
-	  
-	  
+
+
       // SI EXISTE ALGUN ERROR SE RETORNA FALSE Y LA PAGINA SE REFRESCA SIN QUE SEA PERCEPTIBLE
       if (Object.keys(this.formErrors).length > 0) {
         return false;
@@ -194,6 +194,6 @@ parasails.registerPage('crear-modulo', {
 
   },
   computed: {
- 
+
   },
 });

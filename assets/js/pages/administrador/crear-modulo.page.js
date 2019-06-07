@@ -72,8 +72,7 @@ parasails.registerPage('crear-modulo', {
       // Expresion regular que evalua si la imagen tiene cualquier tipo
 
       var regExpImage = new RegExp('image\.(jpg)|image\.(png)');
-  
-      
+     
       if ( !regExpImage.exec(this.imagenPortada.type) ){
         this.formErrors.typeFile=true;
       }

@@ -21,6 +21,7 @@ inputs:{
  
     var nuevoArchivo= {};
     sails.log('ingreso a action: cargar-imagen');
+    // console.log(this.req.allParams('multimedia')); //undefined
     this.req.file('multimedia').upload({ //por defecto sails usa SKEEPER para recibir archivos y texto, se puede cambiar si es necesario ir a congif/http.js
       dirname: '../../assets/images/uploaded',
       // don't allow the total upload size to exceed ~20MB

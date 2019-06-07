@@ -15,6 +15,18 @@ parasails.registerPage('crear-modulo', {
     tituloTemporal: 'Agregar Nuevo Módulo',
     tipoContenido: 'Modulo',
     breadcrumb: [],
+
+
+
+
+
+
+
+
+    seleccionMultimedia: true,
+    imagenPortada: {
+      // urlLocal: null,
+    },
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -32,7 +44,7 @@ parasails.registerPage('crear-modulo', {
     //…
 
 
-    
+
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -52,29 +64,64 @@ parasails.registerPage('crear-modulo', {
       if (!this.descripcionModulo) {
         this.formErrors.descripcionModulo = true;
       }
+      if (!this.imagenPortada) {
+        this.formErrors.imagenPortada = true;
+      }
       // SI EXISTE ALGUN ERROR SE RETORNA FALSE Y LA PAGINA SE REFRESCA SIN QUE SEA PERCEPTIBLE
       if (Object.keys(this.formErrors).length > 0) {
         return false;
       }
       //SI LOS VALORES INGRESADOS SON CORRECTOS SE ENVIA AL SERVIDOR
-      this.enviarModulo();
+      this.guardarImagenPortada()
+
 
 
     },
-    enviarModulo() {
+    guardarImagenPortada() {
+      const formData = new FormData();
+      formData.append('multimedia', this.imagenPortada, this.imagenPortada.name);
+      axios({
+        method: 'post',
+        url: '/cargar-imagen',
+        data: formData
+      })
+        .then(
+          (response) => {
+            console.log(response.data);
+            imagenCargada = response.data;
+            this.enviarModulo(imagenCargada.location);
+            _success(imagenCargada.location);
+          }
+        )
+        .catch(
+          (err) => {
+            console.log('Error encontrado:\n' + err);
+            _failure('Error encontrado' + err);
+          }
+        );
+    },
+    enviarModulo(rutaImagenPortada) {
+      console.log(this.imagenPortada);
 
-
-      const formData = new FormData();//crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es implicitamente declarado con este objeto
-      // formData.append('multimedia', this.selectedFile, this.selectedFile.name);
+      const formData = new FormData();//crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es impliscitamente declarado con este objeto
+      // this.imagenPortada.urlLocal=null;
       //en primer lugar va el nombre del campo que acepta el servidor, segundo va el archivo y tecero va el nombre del archivo
       formData.append('nombreModulo', this.nombreModulo); //Se puede usar Set en lugar de append, para agregar valores, SET reemplaza el nombre del campo cuando ya existe en formData
       formData.append('descripcionModulo', this.descripcionModulo);
       formData.append('cursoId', this.curso.id);
       formData.append('contenidoTiny', window.contenidoTiny); //window.contenidoTiny se establece en el archivo layout.ejs, en el script de inicializacion de tinyMCE
+      formData.append('rutaPortada', rutaImagenPortada);
+
+
+      //   const config = {
+      //     headers: { 'content-type': 'multipart/form-data' }
+      // }
+      console.log('se intenta enviar al servidor');
       axios({
         method: 'post',
         url: '/crear-modulo',
         data: formData,
+        // config
       })
         .then((response) => {
           console.log('corecto');
@@ -108,8 +155,42 @@ parasails.registerPage('crear-modulo', {
         );
     },
 
+    onFileSelected(event) {//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
+
+      //Añadir las propiedades del objeto seleccionado a la variable imagenPortada
+      console.log('evento');
+      console.log(event);
+      console.log('objeto imagen original');
+      console.log(event.target.files[0]);
+      this.imagenPortada = event.target.files[0];
+      console.log('objeto imagen parasails');
+      console.log(this.imagenPortada);
+
+      var url = URL.createObjectURL(this.imagenPortada);//Visualizar en el navegador la imagen seleccionada
+      this.imagenPortada.rutaLocal = url;
+      setTimeout(function () { URL.revokeObjectURL(url); }, 3000);
+      // URL.revokeObjectURL(url); //Cada vez que se llama a createObjectURL(), un nuevo objeto URL es creado, incluso si ya creaste uno para el mismo objeto. Cada uno de estos objetos puede ser liberado usando URL.revokeObjectURL() cuándo ya no lo necesitas. Los navegadores liberan estos objetos cuando el documento es cerrado
+      console.log('objeto imagen final');
+      console.log(this.imagenPortada);
+    },
+    /**
+     * 
+     */
+    onBorrarImagen() {
+      this.imagenPortada = {};
+    },
+
   },
   computed: {
+    // ultimaUrlLocal() {
+    //   if (this.selectedFiles.length > 0) {
+    //     let ultimaPosicion = this.selectedFiles.length - 1;
+    //     let file = this.selectedFiles[ultimaPosicion];
+    //     return file.urlLocal;
+    //   }
 
-  }
+    //   return '';
+
+    // }
+  },
 });

@@ -88,7 +88,7 @@
               <div class="col">
                 <div class="row">
                   <div class="col-sm-3 item-modulo" v-for="modulo in curso.modulos">
-                    <a :href="'/interfaz-modulos/?moduloId='+modulo.id"> <img :src="modulo.multimedia" :alt="'Imagen de '+modulo.nombreModulo"></a>
+                    <a :href="'/interfaz-modulos/?moduloId='+modulo.id"> <img :src="modulo.multimedia.imagen" :alt="'Imagen de '+modulo.nombreModulo"></a>
                     <a :href="'/interfaz-modulos/?moduloId='+modulo.id">{{modulo.nombreModulo}}</a>
                   </div>
                   <div class="col-sm-3 agregaModulo">

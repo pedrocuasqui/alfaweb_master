@@ -39,7 +39,7 @@ module.exports = {
 
     var res = this.res;
     var req = this.req;
-    var respuestaCargaImagen = true;
+    var respuestaCargaImagen = true; //se establece en true porque ya no se recibe la entrada 'multimedia' para esta accion
     var nuevoArchivo = {};
     // var statusCode = null;
     // var filaParaGuardarSubmodulo = crearSubmodulo(); //la funcion está en estado pendiente
@@ -101,7 +101,7 @@ module.exports = {
 
     function cargaImagen() {
       this.req.file('multimedia').upload({ //por defecto sails usa SKEEPER para recibir archivos y texto, se puede cambiar si es necesario ir a congif/http.js
-        dirname: '../../assets/images/img-cargadas',
+        dirname: '../../assets/images/uploaded',
         // don't allow the total upload size to exceed ~20MB
         maxBytes: 1024 * 1024 * 20 //10MB
       }, (err, uploadedFiles) => {

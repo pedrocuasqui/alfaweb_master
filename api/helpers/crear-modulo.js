@@ -26,6 +26,7 @@ module.exports = {
 
   fn: async function (inputs) {
 
+    console.log('HELPERS: modulo a crear:');
     // console.log('se debe imprime segundo');
     var moduloCreado = await ModuloLibro.create(inputs.nuevoModulo)
       .intercept('E_UNIQUE', (err) => {
@@ -39,7 +40,7 @@ module.exports = {
       .fetch();
     // If something completely unexpected happened, the error will be thrown as-is.
 
-    console.log('modulo creado' + JSON.stringify(moduloCreado));
+    console.log('HELPERS: modulo creado: \n' + JSON.stringify(moduloCreado));
 
     return moduloCreado;
   }

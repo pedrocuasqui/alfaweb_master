@@ -1,6 +1,10 @@
 <div id="crear-submodulo" v-cloak>
-
+  <!-- ////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////// -->
   <!-- Modal -->
+  <!-- ////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////// -->
   <div class="modal fade" id="modalSeleccionObjeto" tabindex="-1" role="dialog"
     aria-labelledby="modalSeleccionObjetoLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable" role="document">
@@ -52,81 +56,32 @@
     </div>
   </div>
 
+  <!-- ////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////// -->
+  <!-- ////////////////////CONTENIDOS//////////////////////// -->
+  <!-- ////////////////////////////////////////////////////// -->
+  <!-- ////////////////////////////////////////////////////// -->
+  <modulo-contenedor-curso :curso="curso" :objeto-seleccionado="moduloSeleccionado" :titulo-temporal="tituloTemporal"
+    :crear-submodulo="crearSubmodulo" :breadcrumb="breadcrumb">
 
-  <modulo-contenedor-curso :curso="curso" :objeto-seleccionado="moduloSeleccionado" :titulo-temporal="tituloTemporal" :crear-submodulo="crearSubmodulo" :breadcrumb="breadcrumb">
-    
     <div class="contenedor-formulario">
-      <form >
+      <form>
+
         <div :class="{'minimizar-campos': seleccionTipoAprendizaje, }" class="form-group">
           <label for="nombreSubmodulo">* Título del submódulo</label>
-          <input 
-          type="text" 
-          id="nombreSubmodulo" 
-          v-model="nombreSubmodulo" 
-          placeholder="Ej: Partes de la computadora "
-          :class="[formErrors.nombreSubmodulo ? 'is-invalid' : '']" 
-          autofocus>
+          <input type="text" id="nombreSubmodulo" v-model="nombreSubmodulo" placeholder="Ej: Partes de la computadora "
+            :class="[formErrors.nombreSubmodulo ? 'is-invalid' : '']" autofocus>
           <div class="invalid-feedback" v-if="formErrors.nombreSubmodulo">Ingrese un nombre para el submódulo.</div>
         </div>
+
         <div :class="{'minimizar-campos': seleccionTipoAprendizaje}" class="form-group">
           <label for="descripcionSubmodulo">* Descripción General/Específica</label>
-          <input 
-          type="text" 
-          id="descripcionSubmodulo" 
-          v-model="descripcionSubmodulo" 
-          placeholder="Ej: Las partes de la computadora son todos los accesorios que se conectan a ella"
-          :class="[formErrors.descripcionSubmodulo ? 'is-invalid' : '']" 
-          autofocus>
-      <div class="invalid-feedback" v-if="formErrors.descripcionSubmodulo">Ingrese una descripción general para el Submódulo.</div>
+          <input type="text" id="descripcionSubmodulo" v-model="descripcionSubmodulo"
+            placeholder="Ej: Las partes de la computadora son todos los accesorios que se conectan a ella"
+            :class="[formErrors.descripcionSubmodulo ? 'is-invalid' : '']" autofocus>
+          <div class="invalid-feedback" v-if="formErrors.descripcionSubmodulo">Ingrese una descripción general para el
+            Submódulo.</div>
         </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-
-
-
-
-
-
 
 
 
@@ -144,12 +99,11 @@
           <div id="mytextarea"> Pulse aquí para editar</div>
         </form>
         <div class="contenido-tiny"></div>
-       <div id="contenido-recibido"></div>
+        <div id="contenido-recibido"></div>
 
 
 
-       <a @click="validarFormulario" title="Guardar submódulo"> <i
-        class="fas fa-save fa-2x"></i></a>
+        <a @click="validarFormulario" title="Guardar submódulo"> <i class="fas fa-save fa-2x"></i></a>
         <br>
         <br>
       </form>

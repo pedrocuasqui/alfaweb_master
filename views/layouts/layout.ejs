@@ -79,6 +79,8 @@
             (response) => {
               console.log(response.data);
               json = response.data;
+              console.log('respuesta de cargar-imagen aplicado en tinymce:');
+              console.log(json);
               _success(json.location);
             }
           )

@@ -1,7 +1,7 @@
 <div id="crear-modulo" v-cloak>
 
     <!-- no importa el contenedor que se use, después se puede editar -->
-    <modulo-contenedor-curso :curso.sync="curso" :titulo-temporal="tituloTemporal" :breadcrumb="breadcrumb" >
+    <modulo-contenedor-curso :curso.sync="curso" :titulo-temporal="tituloTemporal" :breadcrumb="breadcrumb">
         <!-- CONTENIDO DE LA VENTANA -->
         <!-- <h2>Agregar Nuevo Módulo</h2> -->
         <div class="contenedor-formulario">
@@ -11,14 +11,9 @@
 
                 <div class="form-group">
                     <label for="nombreModulo">* Título del módulo</label>
-                    <input 
-                    type="text" 
-                    id="nombreModulo" 
-                    name="nombreModulo" 
-                    v-model="nombreModulo"
-                    placeholder="Ej: Modulo 1: la computadora"
-                    :class="[formErrors.nombreModulo ? 'is-invalid' : '']" 
-                    autofocus>
+                    <input type="text" id="nombreModulo" name="nombreModulo" v-model="nombreModulo"
+                        placeholder="Ej: Modulo 1: la computadora"
+                        :class="[formErrors.nombreModulo ? 'is-invalid' : '']" autofocus>
                     <div class="invalid-feedback" v-if="formErrors.nombreModulo">Ingrese un nombre para el módulo.</div>
                 </div>
                 <div class="form-group">
@@ -31,13 +26,50 @@
                 </div>
 
 
-                <label for="tinyMce">* Contenido </label>
-                <!-- Se conserva method="post" de tiny por defecto  -->
-                <form method="post" id="tinyMce">
-                    <div id="mytextarea">Pulse para editar</div>
-                    <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
-                    <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
-                </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                <!-- CARGAR IMAGEN -->
+                <div class="row">
+                        <div class="col-sm-2">
+                            <input type="file" name="multimedia" id="file" class="inputfile" @change="onFileSelected">
+                            <label for="file" title="Imágen de portada"> <a> <i class="fas fa-plus-circle fa-2x"></i></a></label>
+                        </div>
+                        <div class="col-sm-10">
+                            <div class="contenedor-imagen" v-if="imagenPortada.rutaLocal">
+                                <img :src="imagenPortada.rutaLocal" alt="Previsualización de imágen cargada">
+                                <a @click="onBorrarImagen()"><i class="fas fa-trash-alt"></i></a>
+                            </div>
+                            <div class="invalid-feedback" v-if="formErrors.imagenPortada">Imagen de portada obligatoria, solo se permiten archivos en formato JPG y PNG</div>
+                        </div>
+                    </div>
+    
+    
+    
+
+
+
+
+                    <label for="tinyMce">* Contenido </label>
+                    <!-- Se conserva method="post" de tiny por defecto  -->
+                    <form method="post" id="tinyMce">
+                        <div id="mytextarea">Pulse para editar</div>
+                        <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                        <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
+                    </form>
 
 
                 <button type="button" id="enviarModulo" @click="validarFormulario"> Guardar Módulo</button>

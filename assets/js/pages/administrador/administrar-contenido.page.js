@@ -44,7 +44,7 @@ parasails.registerPage('administrar-contenido', {
     this.breadcrumb.push(SAILS_LOCALS.curso);
   },
   mounted: async function() {
-$('.contenido-tiny').html(this.objetoSeleccionado.contenidoTiny);
+// $('.contenido-tiny').html(this.objetoSeleccionado.contenidoTiny);
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

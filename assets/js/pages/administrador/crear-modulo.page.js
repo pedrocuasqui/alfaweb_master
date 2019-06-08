@@ -24,9 +24,9 @@ parasails.registerPage('crear-modulo', {
 
 
     seleccionMultimedia: true,
-    imagenPortada: {
-      // urlLocal: null,
-    },
+    imagenPortada: {},
+    imagenTemporal:{},
+    rutaTemporal:''
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -64,18 +64,23 @@ parasails.registerPage('crear-modulo', {
       if (!this.descripcionModulo) {
         this.formErrors.descripcionModulo = true;
       }
-
-      if (!this.imagenPortada) {
+      console.log('IMAGENPORTADA EN EN VALIDACION');
+console.log(this.imagenPortada);
+      if (Object.keys(this.imagenPortada).length == 0) {
         this.formErrors.imagenPortada = true;
         this.formErrors.typeFile = false;
       } else {
         // Expresion regular que evalua si la imagen tiene cualquier tipo
 
-        var regExpImage = new RegExp('image\.(jpg)|image\.(png)');
+        var regExpImage = new RegExp('image\.(jpg)|image\.(png)|image\.(jpeg)');
 
         if (!regExpImage.exec(this.imagenPortada.type)) {
           this.formErrors.typeFile = true;
         }
+      }
+
+      if (!window.contenidoTiny) {
+        this.formErrors.contenidoTiny = true;
       }
 
 
@@ -83,15 +88,35 @@ parasails.registerPage('crear-modulo', {
       if (Object.keys(this.formErrors).length > 0) {
         return false;
       }
-      //SI LOS VALORES INGRESADOS SON CORRECTOS SE ENVIA AL SERVIDOR
-      this.guardarImagenPortada()
-
+      //SI LOS VALORES INGRESADOS SON CORRECTOS SE carga la imagen, en then se carga el resto de campos
+    this.enviarModulo();
 
 
     },
+    onFileSelected(event) {//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
+
+      //Añadir las propiedades del objeto seleccionado a la variable imagenPortada
+
+      this.imagenTemporal = event.target.files[0];
+
+
+      this.imagenTemporal.rutaLocal = URL.createObjectURL(this.imagenTemporal);//Visualizar en el navegador la imagen seleccionada
+      
+      
+      // setTimeout(function () { URL.revokeObjectURL(url); }, 3000);
+      // URL.revokeObjectURL(url); //Cada vez que se llama a createObjectURL(), un nuevo objeto URL es creado, incluso si ya creaste uno para el mismo objeto. Cada uno de estos objetos puede ser liberado usando URL.revokeObjectURL() cuándo ya no lo necesitas. Los navegadores liberan estos objetos cuando el documento es cerrado
+
+      this.formErrors.imagenPortada=false;
+      this.formErrors.typeFile=false;
+
+
+      this.guardarImagenPortada()
+
+    },
     guardarImagenPortada() {
+      var _this=this;
       const formData = new FormData();
-      formData.append('multimedia', this.imagenPortada, this.imagenPortada.name);
+      formData.append('multimedia', this.imagenTemporal, this.imagenTemporal.name);
       axios({
         method: 'post',
         url: '/cargar-imagen',
@@ -99,20 +124,41 @@ parasails.registerPage('crear-modulo', {
       })
         .then(
           (response) => {
+            console.log('RESPONSE');
             console.log(response.data);
-            imagenCargada = response.data;
-            this.enviarModulo(imagenCargada.location);
-            _success(imagenCargada.location);
+            this.asignaObjetoRespuesta(response);            
+            
           }
         )
         .catch(
           (err) => {
             console.log('Error encontrado:\n' + err);
-            _failure('Error encontrado' + err);
+            
           }
         );
     },
-    enviarModulo(rutaImagenPortada) {
+   asignaObjetoRespuesta(response){
+     console.log('LLEGO A METODO DE ADIGNACION DE RESPUESTA');
+    this.imagenPortada=response.data;
+    console.log(this.imagenPortada);
+    var i= response.data.location;
+    
+    setTimeout(() => {
+      console.log('asigna ruta');
+      this.rutaTemporal="http://localhost:1337/images/uploaded/91463fc6-397e-42c9-aaf1-ddd1f1d196c7.jpg";
+      
+    }, 3000);
+    
+    // this.rutaTemporal='https://www.imagen.com.mx/assets/img/imagen_share.png';
+    // this.rutaTemporal='http://localhost:1337/images/uploaded/91463fc6-397e-42c9-aaf1-ddd1f1d196c7.jpg';
+    
+    // console.log('objeto devuelti por el servidor ');
+    // console.log(response.data);
+    //Libera el objeto imagen para que se pueda reusar en el textarea de tinymce
+    // URL.revokeObjectURL(this.imagenTemporal);    
+   },
+    enviarModulo() {
+      console.log('thi.imagenPortada');
       console.log(this.imagenPortada);
 
       const formData = new FormData();//crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es impliscitamente declarado con este objeto
@@ -122,7 +168,7 @@ parasails.registerPage('crear-modulo', {
       formData.append('descripcionModulo', this.descripcionModulo);
       formData.append('cursoId', this.curso.id);
       formData.append('contenidoTiny', window.contenidoTiny); //window.contenidoTiny se establece en el archivo layout.ejs, en el script de inicializacion de tinyMCE
-      formData.append('rutaPortada', rutaImagenPortada);
+      formData.append('rutaPortada', this.imagenPortada.rutaLocal);
 
 
       //   const config = {
@@ -166,25 +212,8 @@ parasails.registerPage('crear-modulo', {
         }
         );
     },
-
-    onFileSelected(event) {//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
-
-      //Añadir las propiedades del objeto seleccionado a la variable imagenPortada
-      console.log('evento');
-      console.log(event);
-      console.log('objeto imagen original');
-      console.log(event.target.files[0]);
-      this.imagenPortada = event.target.files[0];
-      console.log('objeto imagen parasails');
-      console.log(this.imagenPortada);
-
-      var url = URL.createObjectURL(this.imagenPortada);//Visualizar en el navegador la imagen seleccionada
-      this.imagenPortada.rutaLocal = url;
-      setTimeout(function () { URL.revokeObjectURL(url); }, 3000);
-      // URL.revokeObjectURL(url); //Cada vez que se llama a createObjectURL(), un nuevo objeto URL es creado, incluso si ya creaste uno para el mismo objeto. Cada uno de estos objetos puede ser liberado usando URL.revokeObjectURL() cuándo ya no lo necesitas. Los navegadores liberan estos objetos cuando el documento es cerrado
-      console.log('objeto imagen final');
-      console.log(this.imagenPortada);
-    },
+  
+   
     /**
      * 
      */
@@ -194,6 +223,11 @@ parasails.registerPage('crear-modulo', {
 
   },
   computed: {
+    computedErrorImagen(){
+      let error =    this.formErrors.imagenPortada ||  this.formErrors.typeFile;
+      return error
+    },
 
+  
   },
 });

@@ -98,7 +98,9 @@ module.exports.routes = {
   'POST /cargar-imagen': {
     action: 'administrador/cargar-imagen',
   },
-
+  'POST /actualizar-modulo': {
+    action: 'administrador/actualizar-modulo',
+  },
   
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante

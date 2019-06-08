@@ -49,19 +49,21 @@
             </div>
             <!-- columna central y lateral derecha del cuerpo -->
             <div class="col-sm-10" id="columna-contenido-lateral">
+
+
+
+
                 <div class="row fila-principal">
                     <!-- Columna central del cuerpo-->
                     <div class="col-sm-10 col-central">
                         <!--botones de navegacion y Titulo-->
                         <div class="row">
-                            <!--siguiente-->
-                            <div class="navegacion-siguiente">
-                                <a :href="navegarSiguiente"><i class="fas fa-arrow-alt-circle-right fas-3x"></i> </a>
-                            </div>
+
                             <!--atras-->
-                            <div class="navegacion-atras">
-                                <a :href="navegarAtras"> <i class="fas fa-arrow-alt-circle-left fas-lg"></i> </a>
+                            <div class="col-auto">
+                                <a :href="navegarAtras"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
                             </div>
+
                             <!--titulo-->
                             <div class="col" id="titulo-modulo">
                                 <div class="form-group">
@@ -91,6 +93,12 @@
                                         el módulo.</div>
                                 </div>
                             </div>
+
+
+                            <!--siguiente-->
+                            <div class="col-auto">
+                                <a :href="navegarSiguiente"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                            </div>
                         </div>
                         <!--contenido principal-->
                         <div class="row">
@@ -101,7 +109,7 @@
                                     <!-- <textarea id="mytextarea">Escriba aquí el texto</textarea> -->
                                     <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                     <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
-                                    <div id="mytextarea" class="contenidoTiny"
+                                    <div id="mytextarea" class="contenidoTiny" 
                                         v-html="objetoSeleccionado.contenidoTiny">
                                         <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                     </div>
@@ -122,15 +130,16 @@
 
 
                                 <input v-if="editarDescripcion" type="text" id="descripcion" name="descripcion"
-                                    v-model="objetoSeleccionado.descripcion" placeholder="Ej: En este módulo aprenderás a manejar un computador"
+                                    v-model="objetoSeleccionado.descripcion"
+                                    placeholder="Ej: En este módulo aprenderás a manejar un computador"
                                     :class="[formErrors.descripcion ? 'is-invalid' : '']"
                                     v-on:keyup.enter="editarDescripcion=false" autofocus>
                                 <h6 v-else>{{objetoSeleccionado.descripcion}}</h6>
 
 
 
-                                <a v-if="editarDescripcion" @click="actualizarDescripcion" title="Guardar descripcion"><i
-                                        class="fas fa-save"></i></a>
+                                <a v-if="editarDescripcion" @click="actualizarDescripcion"
+                                    title="Guardar descripcion"><i class="fas fa-save"></i></a>
                                 <a v-else @click="mostrarEditarDescripcion"><i class="fas fa-edit"></i></a>
                             </div>
                         </div>
@@ -141,6 +150,29 @@
                         <modulo-panel-derecho></modulo-panel-derecho>
                     </div>
                 </div> <!-- fin fila de contenido central y barra lateral derecha -->
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
             </div>
             <!--fin columna contenido central y barra lateral derecha-->
         </div>

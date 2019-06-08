@@ -25,8 +25,8 @@ parasails.registerPage('crear-modulo', {
 
     seleccionMultimedia: true,
     imagenPortada: {},
-    imagenTemporal:{},
-    rutaTemporal:''
+    imagenTemporal: {},
+    rutaTemporal: ''
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -65,7 +65,7 @@ parasails.registerPage('crear-modulo', {
         this.formErrors.descripcionModulo = true;
       }
       console.log('IMAGENPORTADA EN EN VALIDACION');
-console.log(this.imagenPortada);
+      console.log(this.imagenPortada);
       if (Object.keys(this.imagenPortada).length == 0) {
         this.formErrors.imagenPortada = true;
         this.formErrors.typeFile = false;
@@ -89,7 +89,7 @@ console.log(this.imagenPortada);
         return false;
       }
       //SI LOS VALORES INGRESADOS SON CORRECTOS SE carga la imagen, en then se carga el resto de campos
-    this.enviarModulo();
+      this.enviarModulo();
 
 
     },
@@ -101,20 +101,20 @@ console.log(this.imagenPortada);
 
 
       this.imagenTemporal.rutaLocal = URL.createObjectURL(this.imagenTemporal);//Visualizar en el navegador la imagen seleccionada
-      
-      
+
+
       // setTimeout(function () { URL.revokeObjectURL(url); }, 3000);
       // URL.revokeObjectURL(url); //Cada vez que se llama a createObjectURL(), un nuevo objeto URL es creado, incluso si ya creaste uno para el mismo objeto. Cada uno de estos objetos puede ser liberado usando URL.revokeObjectURL() cuándo ya no lo necesitas. Los navegadores liberan estos objetos cuando el documento es cerrado
 
-      this.formErrors.imagenPortada=false;
-      this.formErrors.typeFile=false;
+      this.formErrors.imagenPortada = false;
+      this.formErrors.typeFile = false;
 
 
       this.guardarImagenPortada()
 
     },
     guardarImagenPortada() {
-      var _this=this;
+      
       const formData = new FormData();
       formData.append('multimedia', this.imagenTemporal, this.imagenTemporal.name);
       axios({
@@ -126,37 +126,37 @@ console.log(this.imagenPortada);
           (response) => {
             console.log('RESPONSE');
             console.log(response.data);
-            this.asignaObjetoRespuesta(response);            
-            
+            this.asignaObjetoRespuesta(response);
+
           }
         )
         .catch(
           (err) => {
             console.log('Error encontrado:\n' + err);
-            
+
           }
         );
     },
-   asignaObjetoRespuesta(response){
-     console.log('LLEGO A METODO DE ADIGNACION DE RESPUESTA');
-    this.imagenPortada=response.data;
-    console.log(this.imagenPortada);
-    var i= response.data.location;
-    
-    setTimeout(() => {
-      console.log('asigna ruta');
-      this.rutaTemporal="http://localhost:1337/images/uploaded/91463fc6-397e-42c9-aaf1-ddd1f1d196c7.jpg";
-      
-    }, 3000);
-    
-    // this.rutaTemporal='https://www.imagen.com.mx/assets/img/imagen_share.png';
-    // this.rutaTemporal='http://localhost:1337/images/uploaded/91463fc6-397e-42c9-aaf1-ddd1f1d196c7.jpg';
-    
-    // console.log('objeto devuelti por el servidor ');
-    // console.log(response.data);
-    //Libera el objeto imagen para que se pueda reusar en el textarea de tinymce
-    // URL.revokeObjectURL(this.imagenTemporal);    
-   },
+    asignaObjetoRespuesta(response) {
+      console.log('LLEGO A METODO DE ADIGNACION DE RESPUESTA');
+      this.imagenPortada = response.data;
+      console.log(this.imagenPortada);
+      var i = response.data.location;
+      //SE ASIGNA LA URL DE LA IMAGEN
+      //nota: al cargar en la etiqueta src se presenta un error al hacer la peticion get,
+      //funciona con rutas quemadas como las lineas debajo
+      this.rutaTemporal = i;
+
+
+
+      // this.rutaTemporal='https://www.imagen.com.mx/assets/img/imagen_share.png';
+      // this.rutaTemporal='http://localhost:1337/images/uploaded/91463fc6-397e-42c9-aaf1-ddd1f1d196c7.jpg';
+
+      // console.log('objeto devuelti por el servidor ');
+      // console.log(response.data);
+      //Libera el objeto imagen para que se pueda reusar en el textarea de tinymce
+      // URL.revokeObjectURL(this.imagenTemporal);    
+    },
     enviarModulo() {
       console.log('thi.imagenPortada');
       console.log(this.imagenPortada);
@@ -212,8 +212,8 @@ console.log(this.imagenPortada);
         }
         );
     },
-  
-   
+
+
     /**
      * 
      */
@@ -223,11 +223,11 @@ console.log(this.imagenPortada);
 
   },
   computed: {
-    computedErrorImagen(){
-      let error =    this.formErrors.imagenPortada ||  this.formErrors.typeFile;
+    computedErrorImagen() {
+      let error = this.formErrors.imagenPortada || this.formErrors.typeFile;
       return error
     },
 
-  
+
   },
 });

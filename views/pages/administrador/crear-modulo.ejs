@@ -68,8 +68,9 @@
 
                         <!-- </div>
                         <div class="col-sm-10"> -->
-                        <div class="imagen-portada-modulo" v-if="rutaTemporal!=''">
-                            <img :src="rutaTemporal" alt="Previsualización de imágen cargada">
+                        <div class="imagen-portada-modulo" >
+                            <!-- error GET al tratar de obtener la imagen obtenido del servidor -->
+                            <img v-if="rutaTemporal!=''" :src="rutaTemporal" alt="Previsualización de imágen cargada">
                             <a @click="onBorrarImagen()"><i class="fas fa-trash-alt"></i></a>
                         </div>
 

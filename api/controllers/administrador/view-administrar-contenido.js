@@ -33,15 +33,17 @@ module.exports = {
     if (inputs.tipoContenido == 'Modulo') {
       objetoSeleccionado = await ModuloLibro.findOne({ id: inputs.objetoId });
       curso= await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err)=>{ sails.log('ERROR EN HELPERS: '+err)});
+      //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre=objetoSeleccionado.nombreModulo;
     } else if (inputs.tipoContenido == 'Submodulo') {
       // console.log('Objeto id submodulos'+inputs.objetoId);
       objetoSeleccionado = await SubmoduloLibro.findOne({ id: inputs.objetoId });
       curso= await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err)=>{ sails.log('ERROR EN HELPERS: '+err)});
       // console.log('CURSOO:'+ JSON.stringify(curso));
+      //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre= objetoSeleccionado.nombreSubmodulo;
     } else {
-      return res.status(500).send({problema: 'no encontro el tipo de contenido'})
+      return res.status(500).send({problema: 'no se encontró el tipo de contenido'})
     }
 
     if(!objetoSeleccionado){ //si no se ha encontrado un modulo o submodulo con el id entregado se devuelve un mensaje de error

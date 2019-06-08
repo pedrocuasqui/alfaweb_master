@@ -158,7 +158,7 @@ parasails.registerPage('crear-modulo', {
       // URL.revokeObjectURL(this.imagenTemporal);    
     },
     enviarModulo() {
-      console.log('thi.imagenPortada');
+      console.log('this.imagenPortada');
       console.log(this.imagenPortada);
 
       const formData = new FormData();//crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es impliscitamente declarado con este objeto

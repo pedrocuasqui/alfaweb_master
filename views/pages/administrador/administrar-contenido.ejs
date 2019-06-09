@@ -75,7 +75,7 @@
                                                 v-model="objetoSeleccionado.nombre"
                                                 placeholder="Ej: Modulo 1: la computadora"
                                                 :class="[formErrors.nombre ? 'is-invalid' : '']"
-                                                v-on:keyup.enter="editarNombre=false" autofocus>
+                                                v-on:keyup.enter="editarNombre=false" maxlength="100" autofocus>
                                             <h2 v-else>{{objetoSeleccionado.nombre}}</h2>
                                             <a v-if="editarNombre" @click="actualizarNombre" title="Guardar Nombre"><i
                                                     class="fas fa-save"></i></a>
@@ -133,7 +133,7 @@
                                     v-model="objetoSeleccionado.descripcion"
                                     placeholder="Ej: En este módulo aprenderás a manejar un computador"
                                     :class="[formErrors.descripcion ? 'is-invalid' : '']"
-                                    v-on:keyup.enter="editarDescripcion=false" autofocus>
+                                    v-on:keyup.enter="editarDescripcion=false" maxlength="400">
                                 <h6 v-else>{{objetoSeleccionado.descripcion}}</h6>
 
 

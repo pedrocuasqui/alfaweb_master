@@ -202,7 +202,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
 
     moduloCreado = await ModuloLibro.create({
       nombreModulo: 'Módulo 3- Documento Word',
-      descripcion: 'Microsof Office Word 2016 es una de las aplicaciones que acompañan a Windows 10. Se trata de un procesador de textos, un software para la creación, edición, modificación y procesamiento de  documentos de texto con formato: tipo y tamaño de la tipografía, colores, tipos de párrafos, efectos artísticos, adición de gráficos, etc.',
+      descripcion: 'Microsof Office Word 2016 es un procesador de textos, un software para la creación, edición, modificación y procesamiento de  documentos de texto con formato: tipo y tamaño de la tipografía, colores, tipos de párrafos, efectos artísticos, adición de gráficos, etc.',
       enlace: '/m3-documento-word',
       multimedia: {imagen:'/images/portadas_modulos/m3.png'},
       curso: cursoCreado.id,
@@ -230,7 +230,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       {
         nombreSubmodulo: 'Barra de título',
         descripcion: 'Situada en el extremo superior. En ella aparecerá el título de nuestro trabajo que, en un principio, será denominado “Documento 1”, pero que al guardar podemos renombrar asignándole el título que consideremos oportuno',
-        enlace:'/m3-barra-titulo',
+        enlace:'/m3-barra-titulo.',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
@@ -248,7 +248,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       {
         nombreSubmodulo: 'Barra o cinta de opciones',
         descripcion: 'Esta barra de herramientas es la más importante, ya que contiene todas las acciones para trabajar sobre nuestro documento. Se compone de una serie de pestañas con sus correspondientes comandos, situados en la parte inferior.',
-        enlace:'/m3-barra-opciones',
+        enlace:'/m3-barra-opciones.',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,

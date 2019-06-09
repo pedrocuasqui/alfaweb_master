@@ -34,11 +34,11 @@
               <div class="col-sm-8 mx-auto">
                 <div v-if="mapaCarrusel" class="form-group">
                   <label for="descripcionImagen">* Descripción</label>
-                  <input type="text" id="descripcionImagen" name="descripcionImagen" v-model="selectedFileDescripcion">
+                  <input type="text" id="descripcionImagen" name="descripcionImagen" v-model="selectedFileDescripcion" maxlength="200">
                 </div>
                 <div class="form-group">
                   <label for="tooltipImagen">toolTip de imágen</label>
-                  <input type="text" id="tooltipImagen" name="tooltipImagen" v-model="selectedFileTooltip">
+                  <input type="text" id="tooltipImagen" name="tooltipImagen" v-model="selectedFileTooltip" maxlength="100">
                 </div>
 
               </div>
@@ -70,7 +70,7 @@
         <div :class="{'minimizar-campos': seleccionTipoAprendizaje, }" class="form-group">
           <label for="nombreSubmodulo">* Título del submódulo</label>
           <input type="text" id="nombreSubmodulo" v-model="nombreSubmodulo" placeholder="Ej: Partes de la computadora "
-            :class="[formErrors.nombreSubmodulo ? 'is-invalid' : '']" autofocus>
+            :class="[formErrors.nombreSubmodulo ? 'is-invalid' : '']" maxlength="100" autofocus>
           <div class="invalid-feedback" v-if="formErrors.nombreSubmodulo">Ingrese un nombre para el submódulo.</div>
         </div>
 
@@ -78,7 +78,7 @@
           <label for="descripcionSubmodulo">* Descripción General/Específica</label>
           <input type="text" id="descripcionSubmodulo" v-model="descripcionSubmodulo"
             placeholder="Ej: Las partes de la computadora son todos los accesorios que se conectan a ella"
-            :class="[formErrors.descripcionSubmodulo ? 'is-invalid' : '']" autofocus>
+            :class="[formErrors.descripcionSubmodulo ? 'is-invalid' : '']" maxlength="400">
           <div class="invalid-feedback" v-if="formErrors.descripcionSubmodulo">Ingrese una descripción general para el
             Submódulo.</div>
         </div>

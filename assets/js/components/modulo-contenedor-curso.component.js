@@ -155,7 +155,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
             this.$emit('intentar-nuevamente');
         },
         evaluacionIndividual(contenido) {
-this.objetoSeleccionado.descripcion='';
+            this.objetoSeleccionado.descripcion = '';
             if (contenido == 'contenido') {
                 //si se envia algo como par'ametro, entonces se retorna
                 this.evIndividual = false;
@@ -165,7 +165,7 @@ this.objetoSeleccionado.descripcion='';
                 this.evIndividual = true;
                 console.log('muestra evaluacion, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
             }
-            this.$emit('evaluacion-individual',contenido);
+            this.$emit('evaluacion-individual', contenido);
             this.clickSilenciar();
 
         },

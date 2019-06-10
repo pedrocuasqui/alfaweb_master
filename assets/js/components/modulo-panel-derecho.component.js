@@ -110,7 +110,7 @@ parasails.registerComponent('modulo-panel-derecho', {
 
                 <div class="evaluacion">
                     <i class="fas fa-clipboard-check"></i>
-                    <span> Evaluación</span>
+                    <a @click="evaluacionIndividual()"><span> Evaluación</span></a>
                 </div>
 
                 <div class="tabla-puntuacion">
@@ -135,7 +135,10 @@ parasails.registerComponent('modulo-panel-derecho', {
         </div>
     </div>`,
     methods: {
-
+        evaluacionIndividual(contenido){
+            // alert('evaluacion indiidual');
+            this.$emit('evaluacion-individual',contenido);
+        }
 
     },
     computed: {

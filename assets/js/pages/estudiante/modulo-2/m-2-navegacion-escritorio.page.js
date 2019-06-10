@@ -168,12 +168,12 @@ parasails.registerPage('m-2-navegacion-escritorio', {
     infoObjeto(idObjeto) {
       if (idObjeto == 'escritorio') {
         $(function () {
-          $('#modalEscritorioVacio').modal('show');
+          $('#modalEscritorioVacio').modal('show'); //codigo de bootstrap
         });
 
       } else if (idObjeto == 'notificacion') {
         $(function () {
-          $('#modalBarraDeNotificacion').modal('show');
+          $('#modalBarraDeNotificacion').modal('show'); 
         });
 
       } else if (idObjeto == 'iconos') {

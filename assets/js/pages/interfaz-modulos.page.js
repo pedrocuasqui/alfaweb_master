@@ -3,7 +3,7 @@ parasails.registerPage('interfaz-modulos', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    //…
+    breadcrumb:[],
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -12,6 +12,9 @@ parasails.registerPage('interfaz-modulos', {
   beforeMount: function() {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
+    this.breadcrumb.push(SAILS_LOCALS.curso);
+    this.breadcrumb.push(SAILS_LOCALS.modulo);
+    this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
   },
   mounted: async function() {
     //…

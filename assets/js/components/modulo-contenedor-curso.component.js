@@ -138,7 +138,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 </div>
                 <!-- columna derecha -->
                 <div class="col-sm-2 col-derecha">
-                    <modulo-panel-derecho :usuario="usuario"></modulo-panel-derecho>
+                    <modulo-panel-derecho :usuario="usuario" @evaluacion-individual="evaluacionIndividual"></modulo-panel-derecho>
                 </div>
             </div> <!-- fin fila de contenido central y barra lateral derecha -->
         </div> <!--fin columna contenido central y barra lateral derecha-->

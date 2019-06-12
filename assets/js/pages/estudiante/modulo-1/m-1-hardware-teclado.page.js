@@ -24,26 +24,99 @@ parasails.registerPage('m-1-hardware-teclado', {
     funcion: {
       id: 'TeclasDeFuncion',
       titulo:'Teclas de función',
-      detalle: 'Estas teclas, de F1 a F12, sirven como atajos para acceder más rápidamente a determinadas funciones que le asignan los distintos programas. Los siguientes son solo algunos ejemplos de aplicaciones predeterminadas que corren las teclas de función bajo distintos programas: existe una tendencia a la normalización de aplicaciones en determinadas teclas. En general, la tecla F1 está asociada a la ayuda que ofrecen los distintos programas, es decir que, pulsándola se abre la pantalla de ayuda del programa que se esté usando en este momento.   F1: menús y rutinas de ayuda en la mayoría de los programas, por ejemplo AutoCAD, Microsoft Word, Microsoft Excel. En Firefox lleva a una página de ayuda en línea de Mozilla.1​'+
-      "F2: renombra el archivo, acceso directo o carpeta seleccionada. Cambiar a opción de búsqueda, también para maximizar los juegos en red. En AutoCAD entra o sale del modo ortogonal."+
-      "F3: inicia una búsqueda en el directorio donde se encuentra el usuario."+
-      "F4: despliega el menú «Ir a» una carpeta diferente desde la barra de herramientas de una carpeta, buscar la lista de la barra de direcciones en el Explorador de Windows y en otros administradores de archivos."+
-      "F5: actualiza el contenido de la ventana seleccionada. «Buscar y reemplazar» en Microsoft Word. «Ir a» en Microsoft Excel. Cambia el plano de referencia en AutoCAD."+
-      "F6: desplazarse por los elementos de la pantalla de una ventana o del escritorio. En AutoCAD modifica el estado del sistema de coordenadas."+
-      "F7: en Microsoft Word y Excel lanza el revisor gramatical y ortográfico de textos. En AutoCAD pone o quita la grilla de referencia. En Firefox habilita la navegación con cursor o «caret browsing»."+
-      "F8: para arrancar la computadora en modo a prueba de fallos."+
-      "F9: en Microsoft Word recalcula los códigos de campo. En Excel recalcula fórmulas. En Corel Draw abre una presentación como en Microsoft PowerPoint. En AutoCAD habilita o deshabilita el modo snap."+
-      "F10: activar la barra de menús en el programa activo. En AutoCAD entra o sale del modo de coordenadas polares."+
-      "F11: habilitar el modo a pantalla completa de diversos navegadores web, juegos y aplicaciones. En Microsoft Excel abre la ventana de inserción de gráficos."+
-      "F12: en Microsoft Word y Excel abre la ventana de «Guardar como». En Chrome abre las herramientas para desarrolladores'",
+      detalle: '',
       leerMas: 'https://es.wikipedia.org/wiki/Tecla_de_funci%C3%B3n',
-      imgs: [
-
+      carousel: [
         {
-          src: 'https://sites.google.com/site/tecnocecprimaria/_/rsrc/1472862108403/home/grado-cuarto/tercer-periodo/el-teclado/teclado%20funcion.png',
-          alt: 'Teclado de función'
-        },
+          posicion: '1', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Las teclas de función sirven como atajos para acceder rápidamente a determinadas funciones en los distintos programas. Los siguientes son solo algunos ejemplos de aplicaciones predeterminadas que realizan las teclas de función bajo distintos programas. En general, la tecla F1 está asociada a la ayuda que ofrecen los distintos programas, es decir que, pulsándola se abre la pantalla de ayuda del programa que se esté usando en este momento. ',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f1.png',
+          alt: 'Tecla de función f1',
 
+        },
+        {
+          posicion: '2', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F2: renombra el archivo, acceso directo o carpeta seleccionada. Cambiar a opción de búsqueda, también para maximizar los juegos en red',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f2.png',
+          alt: 'Tecla de función f2',
+
+        },
+        {
+          posicion: '3', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F3: inicia una búsqueda en el directorio donde se encuentra el usuario.',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f3.png',
+          alt: 'Tecla de función f3',
+
+        },
+        {
+          posicion: '4', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F4: despliega el menú «Ir a» una carpeta diferente desde la barra de herramientas de una carpeta, buscar la lista de la barra de direcciones en el Explorador de Windows y en otros administradores de archivos.',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f4.png',
+          alt: 'Tecla de función f4',
+
+        },
+        {
+          posicion: '5', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F5: actualiza el contenido de la ventana seleccionada. «Buscar y reemplazar» en Microsoft Word. «Ir a» en Microsoft Excel. Cambia el plano de referencia en AutoCAD.',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f5.png',
+          alt: 'Tecla de función f5',
+
+        },
+        {
+          posicion: '6', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F6: desplazarse por los elementos de la pantalla de una ventana o del escritorio. En AutoCAD modifica el estado del sistema de coordenadas. ',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f6.png',
+          alt: 'Tecla de función f6',
+
+        },
+        {
+          posicion: '7', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F7:en Microsoft Word y Excel lanza el revisor gramatical y ortográfico de textos. En AutoCAD pone o quita la grilla de referencia. En Firefox habilita la navegación con cursor o «caret browsing».',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f7.png',
+          alt: 'Tecla de función f7',
+
+        },
+        {
+          posicion: '8', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F8: para arrancar la computadora en modo a prueba de fallos.',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f8.png',
+          alt: 'Tecla de función f8',
+
+        },
+        {
+          posicion: '9', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F9: en Microsoft Word recalcula los códigos de campo. En Excel recalcula fórmulas. En Corel Draw abre una presentación como en Microsoft PowerPoint. En AutoCAD habilita o deshabilita el modo snap.',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f9.png',
+          alt: 'Tecla de función f9',
+
+        },
+        {
+          posicion: '10', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F10:activar la barra de menús en el programa activo. En AutoCAD entra o sale del modo de coordenadas polares.',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f10.png',
+          alt: 'Tecla de función f10',
+
+        },
+        {
+          posicion: '11', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F11:habilitar el modo a pantalla completa de diversos navegadores web, juegos y aplicaciones. En Microsoft Excel abre la ventana de inserción de gráficos.',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f11.png',
+          alt: 'Tecla de función f11',
+
+        },
+        {
+          posicion: '12', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'F12: en Microsoft Word y Excel abre la ventana de «Guardar como». En Chrome abre las herramientas para desarrolladores.',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/f12.png',
+          alt: 'Tecla de función f12',
+
+        },
+        {
+          posicion: '13', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'ESC: La tecla de escape generalmente sirve para salir de la pantalla temporal que se muestra en pantalla. Si presiona en este momento la tecla escape, esta ventana se cerrará  .',
+          imagen: '/images/informaticabasica/modulo1/computadora/teclado/esc.png',
+          alt: 'Tecla de ESC',
+        }
       ]
     },
     alfanumerico: {

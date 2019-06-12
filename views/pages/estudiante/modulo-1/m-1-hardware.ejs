@@ -3,170 +3,31 @@
   <!-- en esta pantalla se pone a prueba el conocimiento adquirido en la página anterior, se pregunta al usuario por un elemento de la computadora y que el usuario seleccione elp correcto -->
 
   <!-- MODALS******************************************************************************************* -->
+   
+  <modal-detalle-elemento :info-element="cpu">
 
-  <!------------------- MODAL CPU --------------->
-  <div class="modal fade" id="modalCpu" tabindex="-1" role="dialog" aria-labelledby="modalComponente"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitleCpu">CPU</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          CPU son las siglas en ingles de Central Processing Unit (Unidad de Proceso Central), El CPU es el cerebro del
-          ordenador, referimos a la parte de la computadora en la que se controlan y originan comandos directos que
-          generan las diferentes funciones de la CPU. En el CPU se hacen todos los cálculos del código binario de la
-          computadora. En general, es la parte más importante del sistema.
-          <a href="https://conceptodefinicion.de/cpu/" target="_blank">Leer más</a>
-          <img src="https://www.gjszlin.cz/ivt/esf/ostatni-sin/images/case-tower-2.jpg" alt="Teclado">
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <!-- <button type="button" class="btn btn-primary">Aceptar</button> -->
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--------------------------------------------->
-  <!------------------- MODAL TECLADO --------------->
-  <div class="modal fade" id="modalTeclado" tabindex="-1" role="dialog" aria-labelledby="modalComponente"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitleTeclado">Teclado</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          El teclado es un instrumento externo que está representado por un conjunto de teclas, que se encargan de
-          ingresar una información a una computadora o dispositivo por medio de caracteres (letras, números y símbolos).
-          <a href="https://conceptodefinicion.de/teclado/" target="_blank">Leer más</a>
-          <img
-            src="https://store-images.s-microsoft.com/image/apps.45987.13510798885202450.fa37ac85-50b7-40bf-94be-f7c318f9764a.99d963b7-7b48-481e-b0a6-3d01efab7b7c?w=672&h=378&q=80&mode=letterbox&background=%23FFE4E4E4&format=jpg"
-            alt="Teclado">
+  </modal-detalle-elemento>
+     
+  <modal-detalle-elemento :info-element="teclado">
 
+  </modal-detalle-elemento>
+     
+  <modal-detalle-elemento :info-element="mouse">
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <!-- <button type="button" class="btn btn-primary">Aceptar</button> -->
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--------------------------------------------->
-  <!------------------- MODAL MOUSE --------------->
-  <div class="modal fade" id="modalMouse" tabindex="-1" role="dialog" aria-labelledby="modalComponente"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitleMouse">Mouse</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          El mouse es uno de los periféricos de entrada que forman parte de un computador, a través de él se puede
-          interactuar directamente con la computadora mediante un puntero (indicador) que se muestra en la pantalla.
-          Básicamente es un dispositivo de hardware cuya función principal es controlar las funciones que le ordena el
-          usuario, debido a que gracias al complemento de su puntero en la pantalla puede desplazarse a través de ella y
-          por medio de un botón puede seleccionar cualquiera de las aplicaciones que estén contenidas en el ordenador.
-          <a href="https://conceptodefinicion.de/mouse/" target="_blank">Leer más</a>
-          <img
-            src="https://image.slidesharecdn.com/presentationcomputeers-120213062438-phpapp02/95/presentation-computeers-8-728.jpg?cb=1329114528"
-            alt="Mouse">
+  </modal-detalle-elemento>
+     
+  <modal-detalle-elemento :info-element="monitor">
 
+  </modal-detalle-elemento>
+     
+  <modal-detalle-elemento :info-element="impresora">
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
-          <!-- <button type="button" class="btn btn-primary">Aceptar</button> -->
-        </div>
-      </div>
-    </div>
-  </div>
-  <!--------------------------------------------->
-  <!------------------- MODAL MONITOR --------------->
-  <div class="modal fade" id="modalMonitor" tabindex="-1" role="dialog" aria-labelledby="modalComponente"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitleMonitor">Monitor</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-          El monitor es un dispositivo electrónico de salida de la computadora en el que se muestran las imágenes y
-          textos generados por medio de un adaptador gráfico o de video de ésta. El término monitor se refiere
-          normalmente a la pantalla de vídeo, y su función principal y única es la de permitir al usuario interactuar
-          con la computadora.
-          <a href="https://conceptodefinicion.de/monitor/" target="_blank">Leer más</a>
-          <img src="https://blog.benq-latam.com/hubfs/monitorestipo-pantallas-benq.png" alt="Monitores">
+  </modal-detalle-elemento>
+     
+  <modal-detalle-elemento :info-element="usb">
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary">Aceptar</button> -->
-        </div>
-      </div>
-    </div>
-  </div>
-    <!------------------- MODAL IMPRESORA --------------->
-    <div class="modal fade" id="modalImpresora" tabindex="-1" role="dialog" aria-labelledby="modalComponente"
-    aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h5 class="modal-title" id="exampleModalLongTitleImpresota">Impresora</h5>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-          </button>
-        </div>
-        <div class="modal-body">
-            La impresora es un objeto auxiliar, que está conectado a una unidad central de procesamiento de una computadora, su función es hacer hacer una copia de aquellos documentos que han sido almacenados en un formato electrónico. Estos documentos pueden ser textos o imágenes que son impresos en una hoja o transparencia utilizando cartuchos de tintas o tecnología láser.
-          <a href="https://conceptodefinicion.de/impresora/" target="_blank">Leer más</a>
-          <img src="https://www.tiposde.com/wp-content/uploads/tipo-de-impresora.jpg" alt="Tipos de impresoras">
+  </modal-detalle-elemento>
 
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-          <!-- <button type="button" class="btn btn-primary">Aceptar</button> -->
-        </div>
-      </div>
-    </div>
-  </div>
-  <!------------------- MODAL USB --------------->
-  <div class="modal fade" id="modalUsb" tabindex="-1" role="dialog" aria-labelledby="modalComponente"
-  aria-hidden="true">
-  <div class="modal-dialog modal-dialog-centered" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitleUsb">Usb o Memoria Usb</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-        </button>
-      </div>
-      <div class="modal-body">
-          Es un tipo de dispositivo de almacenamiento de datos que utiliza circuitos de estado sólido para guardar datos e información.1
-        <a href="https://es.wikipedia.org/wiki/Memoria_USB" target="_blank">Leer más</a>
-        <img src="https://userscontent2.emaze.com/images/1396c703-d396-4136-a1a2-080acfff0b48/2b9cad36-bcd9-4445-8e3b-1d85112da0d7image3.jpeg" alt="Ejemplo de memorias usb">
-
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-        <!-- <button type="button" class="btn btn-primary">Aceptar</button> -->
-      </div>
-    </div>
-  </div>
-</div>
   <!-- CONTENIDOS******************************************************************************************* -->
   <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
     :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"

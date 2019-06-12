@@ -54,6 +54,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
         this.campoNombre = Object.keys(this.objetoSeleccionado)[0];
         this.nombre = this.objetoSeleccionado[this.campoNombre];// EL campo objetoSeleccionado.nombreModulo o nombreSubmodulo, según lo envíado
+
+        alert(this.objetoSeleccionado.color);
     },
     template: //html
         `  
@@ -136,7 +138,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                 </div>
                 <!-- columna derecha -->
-                <div class="col-sm-2 col-derecha">
+                <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
                     <modulo-panel-derecho></modulo-panel-derecho>
                 </div>
             </div> <!-- fin fila de contenido central y barra lateral derecha -->

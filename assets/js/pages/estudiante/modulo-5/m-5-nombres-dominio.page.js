@@ -36,15 +36,28 @@ parasails.registerPage('m-5-nombres-dominio', {
       ]
     },
     tipo: {
+      // id: 'tipo',
+      // titulo: 'Extensión de dominio',
+      // detalle: '¿Cómo funcionan los dominios? Los nombres de dominio funcionan actuando como un acceso directo al servidor que aloja su sitio web.Sin un nombre de dominio, cualquiera que desee visitar un sitio web deberá ingresar la dirección IP completa. Pero el problema es que una dirección IP es difícil de memorizar, y ni hablar de ser incluída en los materiales publicitarios. ¿Te imaginás un afiche en la calle que diga “ofertas en celulares te esperan en 192.168.345.2”? Difícil de imaginar, ¿verdad? Los dominios también permiten usar redireccionamientos, lo que esencialmente implica la posibilidad de que un usuario, al entrar a un sitio, sea redirigido automáticamente a otro (pasa incluso sin que nos demos cuenta). Redireccionar puede ser útil para campañas y micrositios, o para reenviar personas a páginas especiales en su sitio principal. En un afiche publicitario, una dirección corta del tipo www.celulares.com/sorteo es más fácil de recordar que www.celulares.com/novedades/2019/galaxy/sorteo.html. Entonces, se crea una URL fácil que, al ingresarla, nos redirige automáticamente al contenido que el dueño o empresa de página realmente desea que veamos. También son útiles los redireccionamientos para evitar confusión con la ortografía. Por ejemplo, si visitas www.fb.com, serás reenviado a www.facebook.com.Diferentes tipos de dominios No todos los nombres de dominio siguen la misma fórmula, y si bien los dominios .com constituyen el 46.5% de todos los sitios web globales, eso deja mucho espacio para otros tipos de nombres de dominio como .org y .net.',
+      // leerMas:'https://duplika.com/blog/que-es-un-nombre-de-dominio/',
+      // imgs: [
+
+      //   {
+      //     src: 'https://i2.wp.com/www.miappmovil.info/wp-content/uploads/2017/05/nombres-dominio-internet-disponibles1.jpeg',
+      //     alt: 'extensión de dominio'
+      //   },
+
+      // ]
       id: 'tipo',
       titulo: 'Extensión de dominio',
-      detalle: '¿Cómo funcionan los dominios? Los nombres de dominio funcionan actuando como un acceso directo al servidor que aloja su sitio web.Sin un nombre de dominio, cualquiera que desee visitar un sitio web deberá ingresar la dirección IP completa. Pero el problema es que una dirección IP es difícil de memorizar, y ni hablar de ser incluída en los materiales publicitarios. ¿Te imaginás un afiche en la calle que diga “ofertas en celulares te esperan en 192.168.345.2”? Difícil de imaginar, ¿verdad? Los dominios también permiten usar redireccionamientos, lo que esencialmente implica la posibilidad de que un usuario, al entrar a un sitio, sea redirigido automáticamente a otro (pasa incluso sin que nos demos cuenta). Redireccionar puede ser útil para campañas y micrositios, o para reenviar personas a páginas especiales en su sitio principal. En un afiche publicitario, una dirección corta del tipo www.celulares.com/sorteo es más fácil de recordar que www.celulares.com/novedades/2019/galaxy/sorteo.html. Entonces, se crea una URL fácil que, al ingresarla, nos redirige automáticamente al contenido que el dueño o empresa de página realmente desea que veamos. También son útiles los redireccionamientos para evitar confusión con la ortografía. Por ejemplo, si visitas www.fb.com, serás reenviado a www.facebook.com.Diferentes tipos de dominios No todos los nombres de dominio siguen la misma fórmula, y si bien los dominios .com constituyen el 46.5% de todos los sitios web globales, eso deja mucho espacio para otros tipos de nombres de dominio como .org y .net.',
-      leerMas:'https://duplika.com/blog/que-es-un-nombre-de-dominio/',
+      detalle: 'La extensión de dominio, por ejemplo .com, permite identificar el tipo de sitio, además del país de procedencia. Existen dos tipos de dominios: Dominios Genéricos: Se aplican según la actividad que se realicen. por ejemplo, punto com es comercial, punto edu se refiera a educación, punto org representa entidades gubernamentales o sin fines de lucro. '+
+      'Dominios Geográficos o territoriales: Como su nombre indica se refiera al territorio donde se encuentra la dirección web.Por ejemplo: punto ec pertenece a Ecuador , punto ar pertenece a Argentina, punto es pertenece a España, punto co pertenece a Colombia.',
+      leerMas:'https://www.proyectoautodidacta.com/comics/anatoma-de-una-direccin-web/',
       imgs: [
 
         {
-          src: 'https://i2.wp.com/www.miappmovil.info/wp-content/uploads/2017/05/nombres-dominio-internet-disponibles1.jpeg',
-          alt: 'extensión de dominio'
+          src: 'https://www.coaching-tecnologico.com/wp-content/uploads/2012/04/dominis2.jpg',
+          alt: 'tipo de organización'
         },
 
       ]

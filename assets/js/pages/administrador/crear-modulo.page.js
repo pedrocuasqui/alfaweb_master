@@ -26,7 +26,8 @@ parasails.registerPage('crear-modulo', {
     seleccionMultimedia: true,
     imagenPortada: {},
     imagenTemporal: {},
-    rutaTemporal: ''
+    rutaTemporal: '',
+    color:'#F73294'
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -169,6 +170,7 @@ parasails.registerPage('crear-modulo', {
       formData.append('cursoId', this.curso.id);
       formData.append('contenidoTiny', window.contenidoTiny); //window.contenidoTiny se establece en el archivo layout.ejs, en el script de inicializacion de tinyMCE
       formData.append('rutaPortada', this.imagenPortada.rutaLocal);
+      formData.append('color', this.color);
 
 
       //   const config = {

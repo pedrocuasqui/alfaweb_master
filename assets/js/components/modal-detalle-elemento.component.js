@@ -13,23 +13,41 @@ parasails.registerComponent('modal-detalle-elemento', {
             alt: 'No existe imagen '
           }],
           html: '',
+          carousel: [
+            {
+              posicion: '1', //siempre empezar en uno para poder identificar a los elementos
+              detalle: '',
+              imagen: '',
+              alt: '',
+
+            }
+          ]
         }
       },
     }
   },
   data() {
     return {
+      leerMas: false,
       imagen: true,
       html: false,
+      ecarousel: false,
       animarBuho: true,
       // sonido: null, //objeto window.speechSynthesis
       // silenciar: true, //el lector de texto empieza en silencio,
       reproduciendo: false,
-      msg:null,
+      msg: null,
     };
   },
 
   mounted() {
+    if (this.infoElement.leerMas) {
+      if (this.infoElement.leerMas != '') {
+        this.leerMas = true;
+      }
+
+    }
+
     if (this.infoElement.imgs) { // en caso de existir la propiedad imágenes
       if (this.infoElement.imgs[0].src == '')
         this.imagen = false;
@@ -42,10 +60,15 @@ parasails.registerComponent('modal-detalle-elemento', {
       this.html = true;
 
     }
+    //si existe la propiedad carousel en el objeto recbido entonces se despliega el carousel bootstrap
+    if (this.infoElement.carousel) {
+      this.ecarousel = true;
+      this.infoElement.detalle = this.infoElement.carousel[0].detalle;
+    }
+
+
     //se invoca al objeto speedchSynthesis de la ventana
     this.sonido = window.speechSynthesis;
-    this.msg = new SpeechSynthesisUtterance(this.infoElement.detalle);
-
 
     var _this = this;
     // setTimeout(()=>{ _this.animarBuho=false}, 2000);
@@ -54,7 +77,6 @@ parasails.registerComponent('modal-detalle-elemento', {
 
     })
 
-    
   },
 
   template://html
@@ -63,73 +85,51 @@ parasails.registerComponent('modal-detalle-elemento', {
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
+            
+          
+            <!--HEADER --> 
             <div class="modal-header">
               <h5 class="modal-title" :id="'exampleModalLongTitle'+infoElement.id">{{infoElement.titulo}}</h5>
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clickSilenciar">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
+
+
+            <!--BODY -->
             <div class="modal-body">
-
-
-
-              <div class="d-print-inline-flex">
-              <img @click="clickReproducirParar" @mouseover="onOverReproducirParar" :class="{avatarModalInicio : animarBuho }" id="avatarModal" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-              {{infoElement.detalle}}
+              <div class="d-print-inline-flex text-justify" >
+                <img @click="onReproducirParar" @mouseover="onReproducirParar" :class="{avatarModalInicio : animarBuho }" id="avatarModal" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+                {{infoElement.detalle}}
               </div>
-              <a v-if="infoElement.leerMas!=''" :href="infoElement.leerMas" target="_blank">Leer más</a>
+              <a v-if="leerMas" :href="infoElement.leerMas" target="_blank">Leer más</a>
+              
+              <!--IMAGENES-->
               <div class="d-flex justify-content-center"><img v-if="imagen" v-for="img in infoElement.imgs" :src="img.src" :title="img.alt"></div>
-              <div v-if="html" id="htmlContent" v-html="infoElement.html"></div>
 
+              <!-- HTML-->
+              <div v-if="html" :id="'htmlContent'+infoElement.id" v-html="infoElement.html"></div>
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-              <div id="carouseEncendido" class="carousel slide" data-ride="carousel" data-interval="false">
+              <!--CAROUSEL-->
+              <div v-if="ecarousel" :id="idCarousel" class="carousel slide modalDetalle" data-ride="carousel" data-interval="false">
               <ol class="carousel-indicators carousel-indicators-numbers">
-                <li data-target="#carouseEncendido" data-slide-to="0" class="indicador active" @click="obtenerIndice">1</li>
-                <li data-target="#carouseEncendido" data-slide-to="1" class="indicador" @click="obtenerIndice">2</li>
-                <li data-target="#carouseEncendido" data-slide-to="2" class="indicador" @click="obtenerIndice">3</li>
-                <li data-target="#carouseEncendido" data-slide-to="3" class="indicador" @click="obtenerIndice">4</li>
-                <li data-target="#carouseEncendido" data-slide-to="4" class="indicador" @click="obtenerIndice">5</li>
+
+                <li v-for="(elemento,index) in infoElement.carousel"  :key="index" :data-target="'#'+idCarousel" :data-slide-to="index" class="indicador" :class="{active: elemento.posicion==1}" @click="obtenerIndice">{{elemento.posicion}}</li>
+
               </ol>
               <div class="carousel-inner">
-                <div class="carousel-item active">
-                  <img class="d-block w-100" src="/images/image29_encender_cpu.png" alt="Encender el CPu">
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="/images/encenderMonitor.jpg" alt="Encender el Monitor">
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="/images/inicioSesionWindows.png" alt="Seleccionar un Usuario">
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="/images/patanllaInicioWindows.jpg" alt="Pantalla inicial de Windows">
-                </div>
-                <div class="carousel-item">
-                  <img class="d-block w-100" src="/images/apagar-computadora.png" alt="Apagar la computadora">
-                </div>
+
+                <div v-for="(elemento, index) in infoElement.carousel" class="carousel-item" :class="{active: elemento.posicion==1}" >
+                  <img class="d-block w-100" :src="elemento.imagen" :alt="elemento.alt">
+                </div> 
       
               </div>
-              <a class="carousel-control-prev" href="#carouseEncendido" role="button" data-slide="prev"
+              <a class="carousel-control-prev" :href="'#'+idCarousel" role="button" data-slide="prev"
                 @click="obtenerIndice">
                 <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                 <span class="sr-only">Previous</span>
               </a>
-              <a class="carousel-control-next" href="#carouseEncendido" role="button" data-slide="next"
+              <a class="carousel-control-next" :href="'#'+idCarousel" role="button" data-slide="next"
                 @click="obtenerIndice">
                 <span class="carousel-control-next-icon" aria-hidden="true"></span>
                 <span class="sr-only">Next</span>
@@ -156,7 +156,7 @@ parasails.registerComponent('modal-detalle-elemento', {
   methods: {
     clickReestablecerModal() {
       this.animarBuho = true;
-      this.clickReproducirParar();
+      this.onReproducirParar();
     },
     clickLimitarTiempoAnimacion() {
 
@@ -166,51 +166,58 @@ parasails.registerComponent('modal-detalle-elemento', {
 
     clickSilenciar() {
       this.sonido.cancel();
-      // this.silenciar = true;
-  },
-    clickReproducirParar() {
-      if (this.reproduciendo) {
-        this.reproduciendo = false;
-        this.sonido.cancel();
-      }
-      else if (this.reproduciendo == false) {
-        this.reproduciendo = true;
-        
-        // msg.voice = voices[10]; // Note: some voices don't support altering params
-        this.sonido.speak(this.msg);
-      }
-
+      this.reproduciendo = false;
 
     },
     /**
-     * Reproduce un el mensaje del string infoElement.detalle
-     */
-    onOverReproducirParar(){
+ * Reproduce un el mensaje del string infoElement.detalle
+ */
+    onReproducirParar() {
+
+      var textoHtml = $('#htmlContent' + this.infoElement.id).contents().filter('h1, h2,h3, h4, h5, h6, p').text();
+
+      var textoLectura = this.infoElement.detalle + " " + textoHtml;
       if (this.reproduciendo) {
-        this.reproduciendo = false;
-        this.sonido.cancel();
+        this.clickSilenciar();
       }
       else if (this.reproduciendo == false) {
         this.reproduciendo = true;
-        
+        this.msg = new SpeechSynthesisUtterance(textoLectura);
         // msg.voice = voices[10]; // Note: some voices don't support altering params
         this.sonido.speak(this.msg);
       }
+
+
     },
-    obtenerIndice(){
-      var _this= this;
+    obtenerIndice() {
+      var _this = this;
+      this.clickSilenciar()
+      console.log(this.infoElement);
       // this.$refs.curso.clickSilenciar();
-    //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
-    //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
-      $('#carouseEncendido').on('slid.bs.carousel', function () {
-        let indice=$('.indicador.active').text(); //obtiene el indice del indicador actual
-        let posicion= parseInt(indice)-1;
+      //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
+      //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
 
-        // _this.objetoSeleccionado.descripcion=_this.indicaciones[posicion].descripcion;
-        alert('cambia a posicion: '+ indice);
-        })
-   
+
+
+
+      $('#carousel' + _this.infoElement.id).on('slid.bs.carousel', function () {
+        //se hace la selaccion con el nombre del carousel porque cuando hay mas de un carousel, puesto que habrian  mas de un objeto .indicador.active
+        let indice = $('#carousel' + _this.infoElement.id + ' .indicador.active').text(); //obtiene el indice del indicador actual 
+
+        let posicion = parseInt(indice) - 1;
+
+        _this.infoElement.detalle = _this.infoElement.carousel[posicion].detalle;
+        console.log('cambia a posicion: ' + indice);
+      })
+
+      console.log('sfhalskjdhfalkjsdh');
 
     },
+  },
+  computed: {
+    idCarousel() {
+      let carouselId = 'carousel' + this.infoElement.id;
+      return carouselId;
+    }
   }
 });

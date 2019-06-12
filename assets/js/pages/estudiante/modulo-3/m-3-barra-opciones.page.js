@@ -23,31 +23,62 @@ parasails.registerPage('m-3-barra-opciones', {
     archivo: {
       id: 'archivo',
       titulo: 'Archivo',
-      detalle: ' Es la pestaña que nos da acceso al backstage (o zona de administración) en la que encontraremos acciones como las de Guardar el documento, Abrir otro existente, crear uno Nuevo, Imprimir, Compartir, Exportar…',
+      detalle: '',
       leerMas: 'https://emtic.educarex.es/pildoras/pub/cont/archivos/Elementos_basicos_de_Word.pdf',
-         html:''+
-      '<img src="/images/word/p_archivo/0.png" alt="Boton office">'+
-      '<p>Este Botón ofrece las opciones principales para trabajar en Word, como son:</p>'+
-      '<h3>Información del documento </h3>'+
-      '<img src="/images/word/p_archivo/1.png" alt="">'+
-      '<p>Muestra una visión general de toda la información del documento en el que se esté trabajando.</p>'+
-     '<h3>Reciente </h3>'+
-      '<img src="/images/word/p_archivo/2.png" alt="">'+
-      '<p>Permite ver los archivos más recientes que han sido abiertos y poder abrirlos nuevamente en otra ventana de Word.</p>'+
-      '<h3>Nuevo </h3>'+
-      '<img src="/images/word/p_archivo/3.png" alt="">'+
-      '<p>Permite editar un nuevo documento acorde a lo necesario.</p>'+
-      '<h3>Imprimir </h3>'+
-      '<img src="/images/word/p_archivo/4.png" alt="">'+
-      '<p>Permite imprimir un nuevo documento mediante un dispositivo de impresión.</p>'+
-      '<h3>Guardar y enviar </h3>'+
-      '<img src="/images/word/p_archivo/5.png" alt="">'+
-      '<p>Permite imprimir un nuevo documento mediante un dispositivo de impresión.</p>'+
-      '<h3>Ayuda</h3>'+
-      '<img src="/images/word/p_archivo/6.png" alt="">'+
-      '<p>Muestra opciones de ayuda para configurar el documento y Soporte técnico</p>'
+  
+      carousel: [
+        {
+          posicion: '1', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Archivo, Es la pestaña que nos da acceso al backstage (o zona de administración) en la que encontraremos acciones como las de Guardar el documento, Abrir otro existente, crear uno Nuevo, Imprimir, Compartir o Exportar. Dependiendo de la función se puede encontrar un boton de INICIO o la pestaña ARCHIVO.',
+          imagen: '/images/word/p_archivo/0.png',
+          alt: 'Pestaña Archivo o botón Inicio',
+
+        },
+        {
+          posicion: '2', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Opción Información del documento: Muestra una visión general de toda la información del documento en el que se esté trabajando.',
+          imagen: '/images/word/p_archivo/1.png',
+          alt: 'Información del documento',
+
+        },
+        {
+          posicion: '3', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Opción Reciente: Permite ver los archivos más recientes que han sido abiertos y poder abrirlos nuevamente en otra ventana de Word.',
+          imagen: '/images/word/p_archivo/2.png',
+          alt: 'Opción reciente',
+
+        },
+        {
+          posicion: '4', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Opción Nuevo: Permite editar un nuevo documento acorde a lo necesario.',
+          imagen: '/images/word/p_archivo/3.png',
+          alt: 'Opción nuevo',
+
+        },
+        {
+          posicion: '5', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Opción Imprimir: Permite imprimir un nuevo documento mediante un dispositivo de impresión.',
+          imagen: '/images/word/p_archivo/4.png',
+          alt: 'Opción imprimir',
+
+        },
+        {
+          posicion: '6', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Opción Guardar y enviar: Permite imprimir un nuevo documento mediante un dispositivo de impresión.',
+          imagen: '/images/word/p_archivo/5.png',
+          alt: 'Opción guardar y enviar',
+
+        },
+        {
+          posicion: '7', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Opción Ayuda: Muestra opciones de ayuda para configurar el documento y Soporte técnico.',
+          imagen: '/images/word/p_archivo/6.png',
+          alt: 'Opción ayuda',
+
+        }
+      ]
     },
-    
+
     inicio: {
       id: 'inicio',
       titulo: 'Inicio',
@@ -61,9 +92,9 @@ parasails.registerPage('m-3-barra-opciones', {
         },
 
       ],
-      html:''//pagina 69 a pagina 100 del folleto, imagenes en la ruta /images/word/p_inicio/0.png
+      html: ''//pagina 69 a pagina 100 del folleto, imagenes en la ruta /images/word/p_inicio/0.png
     },
-    
+
     insertar: {
       id: 'insertar',
       titulo: 'Insertar',
@@ -78,7 +109,7 @@ parasails.registerPage('m-3-barra-opciones', {
 
       ]
     },
-    
+
     disenio: {
       id: 'disenio',
       titulo: 'Diseño',
@@ -93,7 +124,7 @@ parasails.registerPage('m-3-barra-opciones', {
 
       ]
     },
-    
+
     disposicion: {
       id: 'disposicion',
       titulo: 'Disposición',
@@ -108,7 +139,7 @@ parasails.registerPage('m-3-barra-opciones', {
 
       ]
     },
-    
+
     referencias: {
       id: 'referencias',
       titulo: 'Referencias',
@@ -123,7 +154,7 @@ parasails.registerPage('m-3-barra-opciones', {
 
       ]
     },
-    
+
     correspondencia: {
       id: 'correspondencia',
       titulo: 'Correspondencia',
@@ -138,7 +169,7 @@ parasails.registerPage('m-3-barra-opciones', {
 
       ]
     },
-    
+
     revisar: {
       id: 'revisar',
       titulo: 'Revisar',
@@ -153,7 +184,7 @@ parasails.registerPage('m-3-barra-opciones', {
 
       ]
     },
-    
+
     vista: {
       id: 'vista',
       titulo: 'Vista',
@@ -168,7 +199,7 @@ parasails.registerPage('m-3-barra-opciones', {
 
       ]
     },
-    
+
     ayuda: {
       id: 'ayuda',
       titulo: 'Ayuda',
@@ -197,7 +228,7 @@ parasails.registerPage('m-3-barra-opciones', {
 
       ]
     },
-    
+
 
   },
 

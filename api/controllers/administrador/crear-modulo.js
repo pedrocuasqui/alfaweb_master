@@ -30,6 +30,10 @@ module.exports = {
     contenidoTiny: {
       type: "string",
       required: false
+    },
+    color:{
+      type:'string',
+      required:false,
     }
   },
 
@@ -96,7 +100,8 @@ module.exports = {
       multimedia: { imagen: inputs.rutaPortada },
       curso: inputs.cursoId,
       contenidoTiny: inputs.contenidoTiny,
-      submodulos: []
+      submodulos: [],
+      color:inputs.color,
     }
 
 

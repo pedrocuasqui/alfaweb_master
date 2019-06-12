@@ -37,7 +37,7 @@ parasails.registerPage('m-3-pantalla-word', {
     barra_titulo: {
       id: 'BarraTitulo',
       titulo: 'Barra de título',
-      detalle: ' Situada en el extremo superior. En ella aparecerá el título de nuestro trabajo que, en un principio, será enominado “Documento 1”, pero que al guardar podemos renombrar asignándole el título que consideremos oportuno. Como es habitual, guardaremos el documento pulsando en el icono Guardar de la barra de acceso rápido o en Archivo > Guardar de la Barra de opciones, lo que nos permitirá alojar el archivo en el lugar que deseemos de nuestro equipo.',
+      detalle: ' Situada en el extremo superior, en ella aparecerá el título de nuestro trabajo que, en un principio, será denominado “Documento 1”, pero que al guardar podemos renombrar asignándole el título que consideremos oportuno. Como es habitual, guardaremos el documento pulsando en el icono Guardar de la barra de acceso rápido o en la pulsando la pestaña: "Archivo"  y pulsando la opción "Guardar" de la Barra de opciones, lo que nos permitirá alojar el archivo en el lugar que deseemos de nuestro equipo.',
       leerMas: 'https://emtic.educarex.es/pildoras/pub/cont/archivos/Elementos_basicos_de_Word.pdf',
       imgs: [
         {

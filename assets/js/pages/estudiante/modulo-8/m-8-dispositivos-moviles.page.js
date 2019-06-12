@@ -24,7 +24,7 @@ parasails.registerPage('m-8-dispositivos-moviles', {
     dispositivo: {
       id: 'dispositivo',
       titulo: '¿Qué es un dispositivo móvil?',
-      detalle: 'Es una computadora de bolsillo con capacidad de procesamiento y memoria limitada, con conexión a internet y que puede realizar varias funciones. Se caracterizan por que pueden ser fáciles de transportar.',
+      detalle: 'Un dispositivo móvil es una computadora de bolsillo con capacidad de procesamiento y memoria limitada, con conexión a internet y que puede realizar varias funciones. Se caracterizan por que pueden ser fáciles de transportar.',
       leerMas:'https://es.wikipedia.org/wiki/Dispositivo_m%C3%B3vil',
       imgs: [
   
@@ -38,7 +38,7 @@ parasails.registerPage('m-8-dispositivos-moviles', {
     app: {
       id: 'app',
       titulo: '¿Qué es una aplicación móvil?',
-      detalle: 'Son Software diseñado para dispositivos móviles que permiten al usuario realizar un conjunto de tareas de cualquier tipo como: educativas, acceso a servicios, ocio, entre otras, de manera rápida, sencilla y segura. ',
+      detalle: 'Una aplicación móvil es un tipo de software diseñado para dispositivos móviles que permiten al usuario realizar un conjunto de tareas de cualquier tipo como: educativas, acceso a servicios y ocio, de manera rápida sencilla y segura. ',
       leerMas:'https://es.wikipedia.org/wiki/Aplicaci%C3%B3n_m%C3%B3vil',
       imgs: [
   

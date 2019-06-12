@@ -1,10 +1,7 @@
 <div id="m-2-gestion-archivos" v-cloak>
 
   <!-- MODALS******************************************************************************************* -->
-  <modal-detalle-elemento>
-    <!--:info-element="scroll" -->
 
-  </modal-detalle-elemento>
   <!-- CONTENIDOS******************************************************************************************* -->
 
   <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
@@ -18,17 +15,18 @@
 
       <div class="row">
         <div class="col-2">
+          <!-- CONTROLES -->
           <div class="list-group" id="list-tab" role="tablist">
             <a class="list-group-item list-group-item-action active" id="list-crear-list" data-toggle="list"
-              href="#list-crear" role="tab" aria-controls="crear">Crear</a>
+              href="#list-crear" role="tab" aria-controls="crear" @click="clickReestablecerCarousel('Crear')">Crear</a>
             <a class="list-group-item list-group-item-action" id="list-renombrar-list" data-toggle="list"
-              href="#list-renombrar" role="tab" aria-controls="renombrar">Cambiar nombre</a>
+              href="#list-renombrar" role="tab" aria-controls="renombrar" @click="clickReestablecerCarousel('Renombrar')">Cambiar nombre</a>
             <a class="list-group-item list-group-item-action" id="list-copiar-listt" data-toggle="list"
-              href="#list-copiar" role="tab" aria-controls="copiar">Copiar</a>
+              href="#list-copiar" role="tab" aria-controls="copiar" @click="clickReestablecerCarousel('Copiar')">Copiar</a>
             <!-- <a class="list-group-item list-group-item-action" id="list-mover-list" data-toggle="list" href="#list-mover"
               role="tab" aria-controls="mover">Mover</a> -->
             <a class="list-group-item list-group-item-action" id="list-eliminar-list" data-toggle="list"
-              href="#list-eliminar" role="tab" aria-controls="eliminar">Eliminar</a>
+              href="#list-eliminar" role="tab" aria-controls="eliminar" @click="clickReestablecerCarousel('Eliminar')">Eliminar</a>
           </div>
         </div>
         <div class="col-10">

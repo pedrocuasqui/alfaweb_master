@@ -102,7 +102,7 @@ parasails.registerPage('m-7-facebook', {
       imgs: [
   
         {
-          src: '/images/fb/paso5.png',
+          src: '/images/fb/paso5.jpeg',
           alt: 'Subir tu foto',
         },
   

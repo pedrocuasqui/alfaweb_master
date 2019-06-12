@@ -50,6 +50,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
             evIndividual: false,
             silenciar: true,
             sonido: null,
+            
         };
     },
     mounted() {
@@ -72,7 +73,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
     <div class="row" id="div-body">
         <!-- columna izquierda -->
         <div class="col-sm-2 col-izquierda">
-            <modulo-side-var-menu :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :crear-submodulo="crearSubmodulo"></modulo-side-var-menu>
+            <modulo-side-var-menu :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :crear-submodulo="crearSubmodulo" ></modulo-side-var-menu>
         </div>
         <div class="col-sm-10" id="columna-contenido-lateral">
             <div class="row fila-principal">
@@ -137,7 +138,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                 </div>
                 <!-- columna derecha -->
-                <div class="col-sm-2 col-derecha">
+                <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
                     <modulo-panel-derecho :usuario="usuario" @evaluacion-individual="evaluacionIndividual"></modulo-panel-derecho>
                 </div>
             </div> <!-- fin fila de contenido central y barra lateral derecha -->

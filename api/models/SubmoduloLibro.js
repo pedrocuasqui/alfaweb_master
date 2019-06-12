@@ -51,7 +51,11 @@ module.exports = {
       required: false,
       columnName:'ordenNavegacion'
     },
-
+    color:{
+      type:'string',
+      required: false,
+      columnName: 'color',
+    },
     // submodulos:{ //aqui no van los submodulos, en los submodulos se agrega la referencia al documento de ModuloLibro
     //   type:'ref',
     //   // columnType:'array',

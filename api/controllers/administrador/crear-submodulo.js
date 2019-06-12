@@ -26,6 +26,10 @@ module.exports = {
     contenidoTiny: {
       type: "string",
       required: false
+    },
+    color:{
+      type:'string',
+      required:false,
     }
   },
 
@@ -52,7 +56,8 @@ module.exports = {
       descripcion: inputs.descripcionSubmodulo,
       multimedia: nuevoArchivo,
       modulo: inputs.moduloId,
-      contenidoTiny: inputs.contenidoTiny
+      contenidoTiny: inputs.contenidoTiny,
+      color:inputs.color
       
     }
     

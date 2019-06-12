@@ -30,6 +30,10 @@ module.exports = {
     moduloId: {
       type: 'string',
       required: true,
+    },
+    color:{
+      type:'string',
+      required:false,
     }
   },
 
@@ -54,6 +58,7 @@ module.exports = {
           descripcion: inputs.descripcionModulo,
           // multimedia:{imagen:inputs.rutaPortada},
           contenidoTiny: inputs.contenidoTiny,
+          color:inputs.color,
 
         });
     } catch (e) {

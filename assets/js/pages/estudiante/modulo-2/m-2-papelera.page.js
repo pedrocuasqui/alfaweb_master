@@ -29,7 +29,7 @@ parasails.registerPage('m-2-papelera', {
       imgs: [
 
         {
-          src: 'http://images.gofreedownload.net/empty-recycle-27191.jpg',
+          src: 'https://es.seaicons.com/wp-content/uploads/2016/10/System-Recycle-Bin-Empty-icon.png',
           alt: 'Papelera de reciclaje vacia'
         },
 
@@ -38,7 +38,7 @@ parasails.registerPage('m-2-papelera', {
     papeleraLlena: {
       id: 'PapeleraLlena',
       titulo: 'Papelera de reciclaje llena',
-      detalle: 'Cuando Windows se da cuenta de que el usuario envía un nuevo archivo a la papelera de reciclaje que haría la carpeta "reciclado" más grande de lo que se le permite ser, reacciona eliminando suficientes archivos para que la carpeta no se llene en exceso. Para ello, determina qué archivos son más viejos, y luego calcula el espacio para borrar. Los archivos más antiguos siempre se eliminan primero. El usuario puede ayudar a evitar esta circunstancia mediante la inspección regular del contenido de la Papelera de reciclaje en busca de los artículos que le gustaría guardar y luego hacer clic en la opción "Vaciar la papelera de reciclaje".' ,
+      detalle: 'Si el usuario elimina un nuevo archivo y la papelera está por llenarse, reacciona eliminando suficientes archivos para que la carpeta no se llene en exceso. Por tanto el usuario siempre podrá eliminar archivos sin temor a sobrecargar la papelera.' ,
       leerMas: 'https://techlandia.com/sucede-papelera-reciclaje-computadora-llena-info_303933/',
       imgs: [
         {

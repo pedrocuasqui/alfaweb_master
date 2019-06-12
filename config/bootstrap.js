@@ -91,6 +91,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       multimedia: {imagen:'/images/portadas_modulos/m1.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
+      color:'#92E512',
     }).fetch();
     await SubmoduloLibro.createEach([
       {
@@ -100,7 +101,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar </p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:1
+        ordenNavegacion:1,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'El Teclado',
@@ -109,7 +111,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:2
+        ordenNavegacion:2,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Mouse',
@@ -118,7 +121,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:3
+        ordenNavegacion:3,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
   
       {
@@ -128,16 +132,18 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:4
+        ordenNavegacion:4,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Conexión de los componentes a la computadora',
-        descripcion: 'La forma en que el hardware opera es por medio de energía, el hardware externo se conecta a la computadora por medio de cables o inalambricamente, en este módulo aprenderás a conectar los principales componentes a la computadora',
+        descripcion: 'La forma en que el hardware opera es por medio de energía, el hardware externo se conecta a la computadora por medio de cables o inalámbricamente, en este módulo aprenderás a conectar los principales componentes a la computadora',
         enlace:'/m1-conexion-componentes',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:5
+        ordenNavegacion:5,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Encender y apagar la computadora',
@@ -146,7 +152,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:6
+        ordenNavegacion:6,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       
 
@@ -159,6 +166,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       multimedia: {imagen:'/images/portadas_modulos/m2.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
+      color:'#467895',
     }).fetch();
 
     await SubmoduloLibro.createEach([
@@ -170,7 +178,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:1
+        ordenNavegacion:1,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Gestión de archivos',
@@ -179,7 +188,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:2
+        ordenNavegacion:2,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'La papelera de reciclaje',
@@ -188,7 +198,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:3
+        ordenNavegacion:3,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
      
     
@@ -207,6 +218,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       multimedia: {imagen:'/images/portadas_modulos/m3.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
+      color:'#456892',
     }).fetch();
     await SubmoduloLibro.createEach([
       {
@@ -216,7 +228,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:1
+        ordenNavegacion:1,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Área de trabajo',
@@ -225,16 +238,18 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:2
+        ordenNavegacion:2,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Barra de título',
         descripcion: 'Situada en el extremo superior. En ella aparecerá el título de nuestro trabajo que, en un principio, será denominado “Documento 1”, pero que al guardar podemos renombrar asignándole el título que consideremos oportuno',
-        enlace:'/m3-barra-titulo.',
+        enlace:'/m3-barra-titulo',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:3
+        ordenNavegacion:3,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Barra de herramientas de acceso rápido',
@@ -244,15 +259,17 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
         ordenNavegacion:4,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Barra o cinta de opciones',
         descripcion: 'Esta barra de herramientas es la más importante, ya que contiene todas las acciones para trabajar sobre nuestro documento. Se compone de una serie de pestañas con sus correspondientes comandos, situados en la parte inferior.',
-        enlace:'/m3-barra-opciones.',
+        enlace:'/m3-barra-opciones',
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:5
+        ordenNavegacion:5,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Otras Opciones',
@@ -261,7 +278,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:6
+        ordenNavegacion:6,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       // {
       //   nombreSubmodulo: 'Barra de estado',
@@ -295,6 +313,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       multimedia: {imagen:'/images/portadas_modulos/m4.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
+      color:'#223458',
     }).fetch();
     await SubmoduloLibro.createEach([
 
@@ -305,7 +324,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:1
+        ordenNavegacion:1,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Ortografía y gramática',
@@ -314,7 +334,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:2
+        ordenNavegacion:2,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Guardar e imprimir un documento',
@@ -323,7 +344,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:3
+        ordenNavegacion:3,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Diseño de página',
@@ -332,7 +354,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:4
+        ordenNavegacion:4,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       
       // {
@@ -377,6 +400,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       multimedia: {imagen:'/images/portadas_modulos/m5.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
+      color:'#92E512',
     }).fetch();
     await SubmoduloLibro.createEach([
       {
@@ -386,7 +410,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:1
+        ordenNavegacion:1,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Nombres de dominio',
@@ -395,7 +420,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:2
+        ordenNavegacion:2,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Navegador web',
@@ -404,7 +430,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:3
+        ordenNavegacion:3,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Motores de navegación',
@@ -413,7 +440,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:4
+        ordenNavegacion:4,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       }
       
       ]);
@@ -424,6 +452,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       multimedia: {imagen:'/images/portadas_modulos/m6.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
+      color:'#321654',
     }).fetch();
     await SubmoduloLibro.createEach([
       {
@@ -433,7 +462,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:1
+        ordenNavegacion:1,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Envío de correo electrónico',
@@ -442,7 +472,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:2
+        ordenNavegacion:2,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Creación de una cuenta SKYPE',
@@ -451,7 +482,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:3
+        ordenNavegacion:3,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Realizar videollamadas',
@@ -460,7 +492,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:4
+        ordenNavegacion:4,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       }
      
       ]);
@@ -471,6 +504,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       multimedia:{imagen:'/images/portadas_modulos/m7.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
+      color:'#589741',
     }).fetch();
     await SubmoduloLibro.createEach([
       {
@@ -480,7 +514,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:1
+        ordenNavegacion:1,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Como usar Youtube',
@@ -489,17 +524,19 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:2
+        ordenNavegacion:2,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       
       ]);
     moduloCreado = await ModuloLibro.create({
       nombreModulo: 'Módulo 8. Dispositivos Móviles',
       descripcion: 'Un dispositivo móvil es una computadora de bolsillo con memoria limitada y que permite la conexión a internet de forma inalámbrica. Se caracterizan por que pueden ser fáciles de transportar y permiten ejecutar varias aplicaciones.',
-      enlace: '/m8-app-movil',
+      enlace: '/m8-dispositivos-moviles',
       multimedia: {imagen:'/images/portadas_modulos/m8.png'},
       curso: cursoCreado.id,
       contenidoTiny: '<p>Pulse para editar</p>',
+      color:'#865412',
     }).fetch();
     await SubmoduloLibro.createEach([
       {
@@ -509,7 +546,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:1
+        ordenNavegacion:1,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Otras configuraciones',
@@ -518,7 +556,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:2
+        ordenNavegacion:2,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       },
       {
         nombreSubmodulo: 'Instalación de una aplicación móvil',
@@ -527,7 +566,8 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         multimedia: {},
         contenidoTiny: '<p>Pulse para editar</p>',
         modulo: moduloCreado.id,
-        ordenNavegacion:3
+        ordenNavegacion:3,
+        color:moduloCreado.color, //el color del padre se hereda a los hijos
       }
       ]);
 

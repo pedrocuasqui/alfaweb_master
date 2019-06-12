@@ -25,6 +25,78 @@ parasails.registerPage('m-1-computadora', {
       type: String,
       default: "computador"
     },
+
+
+    cpu:{
+      id: 'Cpu',
+      titulo: 'CPU (Unidad Central de Procesamiento)',
+      detalle: 'CPU son las siglas en ingles de Central Processing Unit (Unidad de Proceso Central), El CPU es el cerebro del'+
+      'ordenador ya que procesa toda la información que le suministramos y nos muestra un resultado por pantalla.  En general, es la parte más importante del sistema.',
+      leerMas: 'https://conceptodefinicion.de/cpu/',
+      imgs: [{
+        src: 'https://http2.mlstatic.com/cpucore-i3-8100-octava-generacion-4gb-ssd-120gb-case-halion-D_NQ_NP_955885-MPE29189916004_012019-Q.jpg',
+        alt: 'CPU'
+      }],
+     
+    },
+    teclado:{
+      id: 'Teclado',
+      titulo: 'Teclado',
+      detalle: 'El teclado es un instrumento externo que está representado por un conjunto de teclas, que se encargan de'+
+      'ingresar una información a una computadora o dispositivo por medio de caracteres (letras, números y símbolos).',
+      leerMas: 'https://es.wikipedia.org/wiki/Teclado_(inform%C3%A1tica)',
+      imgs: [{
+        src: 'https://store-images.s-microsoft.com/image/apps.45987.13510798885202450.fa37ac85-50b7-40bf-94be-f7c318f9764a.99d963b7-7b48-481e-b0a6-3d01efab7b7c?w=672&h=378&q=80&mode=letterbox&background=%23FFE4E4E4&format=jpg',
+        alt: 'El teclado'
+      }],
+     
+    },
+    mouse:{
+      id: 'Mouse',
+      titulo: 'Mouse',
+      detalle: 'El mouse es uno de los periféricos de entrada que forman parte de un computador, a través de él se puede'+
+      'interactuar directamente con la computadora mediante un puntero (indicador) que se muestra en la pantalla.',
+      leerMas: 'https://es.wikipedia.org/wiki/Rat%C3%B3n_(inform%C3%A1tica) ',
+      imgs: [{
+        src: 'https://image.slidesharecdn.com/presentationcomputeers-120213062438-phpapp02/95/presentation-computeers-8-728.jpg',
+        alt: 'Mouse'
+      }],
+
+    },
+    monitor:{
+      id: 'Monitor',
+      titulo: 'Monitor',
+      detalle: 'El monitor es un dispositivo electrónico de salida de la computadora en el que se muestran las imágenes y'+
+      'textos generados por medio de un adaptador gráfico o de video de ésta. El término monitor se refiere'+
+      'normalmente a la pantalla de vídeo, y su función principal y única es la de permitir al usuario interactuar'+
+      'con la computadora.',
+      leerMas: 'https://es.wikipedia.org/wiki/Monitor_de_computadora',
+
+      carousel: [
+        {
+          posicion: '1', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'El término monitor se refiere normalmente a la pantalla de vídeo, y su función principal y única es la de permitir al usuario interactuar'+
+          'con la computadora.',
+          imagen: 'https://www.asus.com/media/global/products/Em0Dz3MjS9JKYM88/P_setting_fff_1_90_end_500.png',
+          alt: 'Monitor',
+
+        },
+        {
+          posicion: '2', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Los monitores han cambiado su forma desde que fueron inventados, Inicialmente los monitores usaban un Tubo de Rayos Catódicos para proyectar la imágen en la pantalla, por tanto eran muy grandes como los monitores que se ven a la izquierda de la imágen. Actualmente los monitores son planos gracias a la tecnología que utilizan, ésta puede ser: plasma, LCD o LED como los monitores que se ven a la derecha. ',
+          imagen: 'https://aticser.files.wordpress.com/2011/06/monitor1.jpg',
+          alt: 'Historia de los monitores',
+
+        },
+        {
+          posicion: '3', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Las partes más importantes del monitor son: 1) Pantalla: es la zona donde se despliegan las imágenes. 2) Panel de controles: se encargan de modificar la posición de la pantalla, el brillo, etcétera. 3) Botón de encendido: prende y apaga el monitor de manera digital',
+          imagen: '/images/informaticabasica/modulo1/computadora/monitor.png',
+          alt: '',
+
+        }
+      ]
+    }
     
   },
 
@@ -69,7 +141,6 @@ parasails.registerPage('m-1-computadora', {
     },
     infoObjeto(idObjeto){
       if(idObjeto=='cpu'){
-        console.log('cpu aslkdjfa;lk');
         $(function(){
           $('#modalCpu').modal('show');
         });
@@ -84,7 +155,7 @@ parasails.registerPage('m-1-computadora', {
         $(function(){
           $('#modalMouse').modal('show');
         });
-      }else {
+      }else if(idObjeto=='monitor'){
         $(function(){
           $('#modalMonitor').modal('show');
         });

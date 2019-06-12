@@ -51,8 +51,8 @@ parasails.registerPage('m-5-direccion-web', {
     tipo: {
       id: 'tipo',
       titulo: 'Extensión de dominio',
-      detalle: '.Com Esta parte de la dirección web permite identificar el tipo de sitio, además del país de procedencia. Existen dos tipos de dominios: Geográficos o genéricos. Siendo el más común y más utilizado el genérico .com Genéricos: Este dominio se aplica según la actividad que se realicen. .com es comercial, .edu se refiera a educación, .org representa entidades gubernamentales o sin fines de lucro.'+
-      'Geográficos o territoriales: Como su nombre indica se refiera al territorio donde se encuentra la dirección web. Algunos sitios son: .ec (Ecuador), .ar (Argentina), .es (España), .co (Colombia), entre otros. Sin embargo, en ocasiones se registran con dominios genéricos.',
+      detalle: 'La extensión de dominio, por ejemplo .com, permite identificar el tipo de sitio, además del país de procedencia. Existen dos tipos de dominios: Dominios Genéricos: Se aplican según la actividad que se realicen. por ejemplo, punto com es comercial, punto edu se refiera a educación, punto org representa entidades gubernamentales o sin fines de lucro. '+
+      'Dominios Geográficos o territoriales: Como su nombre indica se refiera al territorio donde se encuentra la dirección web.Por ejemplo: punto ec pertenece a Ecuador , punto ar pertenece a Argentina, punto es pertenece a España, punto co pertenece a Colombia.',
       leerMas:'https://www.proyectoautodidacta.com/comics/anatoma-de-una-direccin-web/',
       imgs: [
 

@@ -20,8 +20,15 @@ parasails.registerComponent('modulo-side-var-menu', {
         return {
 
             showSidebar: false,
+            cursoInformatica: false,
 
         };
+    },
+    mounted() {
+
+        if (this.curso.nombre == 'Alfabetizacion informática') {
+            this.cursoInformatica = true;
+        }
     },
     template: //html
         `  
@@ -35,8 +42,12 @@ parasails.registerComponent('modulo-side-var-menu', {
             <!--dropbtn-modulo      : el boton que contiene el nombre del modulo -->
             <!--dropdown-submodulo  : contenedor individual del submodulo -->
             <div v-for="(modulo, index) in curso.modulos" class="dropdownModulo" :key="modulo.id" >
-                <a v-if="esAdmin" key="admin" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" >{{modulo.nombreModulo}}</a>
-                <a v-else key="estudiante" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/contenido-alfaweb/?enlace='+modulo.enlace" >{{modulo.nombreModulo}}</a>
+                <!--ES ADMIN, PUEDE CREAR CURSO Y MODIFICARLOS, EXCEPTO EL CURSO INFORMATICA BASICA-->
+                <a v-if="esAdmin" key="admin" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" :style="{backgroundColor: objetoSeleccionado.color}">{{modulo.nombreModulo}}</a>
+                <!--ES CURSO INFORMATICA, TODOS PUEDEN ACCEDER A EL PERO NADIE, NI EL ADMINISTRADOR ni ESTUDIANTE PUEDEn EDITARLO-->
+                <a v-else-if="cursoInformatica" key="informatica" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/contenido-alfaweb/?enlace='+modulo.enlace" :style="colorModulo(modulo.id)" >{{modulo.nombreModulo}}</a>
+                <!--ES ESTUDIANTE Y HA INGRESADO A OTRO CURSO QUE NO SEA INFORMATICA BASICA-->
+                <a v-else key="estudiante" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/interfaz-modulos/?moduloId='+modulo.id" :style="{backgroundColor: objetoSeleccionado.color}">{{modulo.nombreModulo}}</a>
 
                 <div :class="[perteneceObjeto(modulo.id) ? 'dropdown-submodulo':'dropdown-submodulo-deselect' ]">
                     <template v-if="esAdmin">
@@ -76,6 +87,17 @@ parasails.registerComponent('modulo-side-var-menu', {
             }
             return pertenece;
         },
+        colorModulo(moduloId){
+
+            var estilo = {};
+            console.log('modulo.id:' + moduloId + 'vs Submodulo.modulo' + this.objetoSeleccionado.modulo);
+            if (this.objetoSeleccionado.id == moduloId || this.objetoSeleccionado.modulo == moduloId) {
+                estilo = {backgroundColor: this.objetoSeleccionado.color};
+
+            }
+            return estilo;
+            
+        },
         objetoPerteneceModulo(moduloId) {
             let valor = false;
             //primera parte, se evalua que el objeto seleccionado sea un modulo y que sea el modulo del arreglo
@@ -91,13 +113,19 @@ parasails.registerComponent('modulo-side-var-menu', {
 
     },
     computed: {
-        esAdmin(){
-            let esadmin=false;
-            if(this.usuario.rol=='Administrador')
-            esadmin=true;
+        esAdmin() {
+            let esadmin = false;
+            //si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
+            if (this.usuario.rol == 'Administrador' && this.cursoInformatica == false) {
+                esadmin = true;
+            }
+            // si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones 
+            //1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
+            //2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
+            else if (this.usuario.rol == 'Estudiante') {
+                esadmin = false;
+            }
 
-            if(this.usuario.rol=='Estudiante')
-            esadmin=false;
 
             return esadmin;
         }

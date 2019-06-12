@@ -22,7 +22,6 @@ parasails.registerPage('m-2-gestion-archivos', {
     //atributos propios
     silenciar: true,
 
-    indice: null,
 
 
     indicacionesCrear: [
@@ -134,6 +133,10 @@ parasails.registerPage('m-2-gestion-archivos', {
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
     },
+    /**
+     * 
+     * @param {String} accion palabra clave que indica que carousel envía la solicitud, en funcion de ello se establece la descripcion
+     */
     obtenerIndice(accion) {
 
       var _this = this;
@@ -146,33 +149,33 @@ parasails.registerPage('m-2-gestion-archivos', {
       if (accion == 'crear') {
 
         $('#carouselCrear').on('slid.bs.carousel', function () {
-          this.indice = $('#carouselCrear .indicador.active').text(); //obtiene el indice del indicador actual
-          let posicion = parseInt(this.indice) - 1;
+          let indice = $('#carouselCrear .indicador.active').text(); //obtiene el indice del indicador actual
+          let posicion = parseInt(indice) - 1;
           _this.objetoSeleccionado.descripcion = _this.indicacionesCrear[posicion].descripcion;
         })
       }
 
       else if (accion == 'renombrar') {
 
-        $('#carouselCrear').on('slid.bs.carousel', function () {
-          this.indice = $('#carouselRenombrar .indicador.active').text(); //obtiene el indice del indicador actual
-          let posicion = parseInt(this.indice) - 1;
+        $('#carouselRenombrar').on('slid.bs.carousel', function () {
+          let indice = $('#carouselRenombrar .indicador.active').text(); //obtiene el indice del indicador actual
+          let posicion = parseInt(indice) - 1;
 
           _this.objetoSeleccionado.descripcion = _this.indicacionesRenombrar[posicion].descripcion;
         })
       } else if (accion == 'copiar') {
 
-        $('#carouselCrear').on('slid.bs.carousel', function () {
-          this.indice = $('#carouselCopiar .indicador.active').text(); //obtiene el indice del indicador actual
-          let posicion = parseInt(this.indice) - 1;
+        $('#carouselCopiar').on('slid.bs.carousel', function () {
+          let indice = $('#carouselCopiar .indicador.active').text(); //obtiene el indice del indicador actual
+          let posicion = parseInt(indice) - 1;
 
           _this.objetoSeleccionado.descripcion = _this.indicacionesCopiar[posicion].descripcion;
         })
       } else if (accion == 'eliminar') {
 
-        $('#carouselCrear').on('slid.bs.carousel', function () {
-          this.indice = $('#carouselEliminar .indicador.active').text(); //obtiene el indice del indicador actual
-          let posicion = parseInt(this.indice) - 1;
+        $('#carouselEliminar').on('slid.bs.carousel', function () {
+          let indice = $('#carouselEliminar .indicador.active').text(); //obtiene el indice del indicador actual
+          let posicion = parseInt(indice) - 1;
 
           _this.objetoSeleccionado.descripcion = _this.indicacionesEliminar[posicion].descripcion;
         })
@@ -181,6 +184,30 @@ parasails.registerPage('m-2-gestion-archivos', {
 
 
     },
+    /**
+     * 
+     * @param {String} accion palabra clave que indica que carousel envía la solicitud, se debe enviar con la primera letra en mayuscula
+     */
+    clickReestablecerCarousel(accion) {
+      var _this = this;
+      // $('#carousel'+accion)
+      $('#carousel' + accion).carousel(0);
+
+
+      if (accion == 'Crear') {
+        _this.objetoSeleccionado.descripcion = _this.indicacionesCrear[0].descripcion;
+      }
+      else if (accion == 'Renombrar') {
+        _this.objetoSeleccionado.descripcion = _this.indicacionesRenombrar[0].descripcion;
+      }
+      else if (accion == 'Copiar') {
+        _this.objetoSeleccionado.descripcion = _this.indicacionesCopiar[0].descripcion;
+      }
+      else if (accion == 'Eliminar') {
+        _this.objetoSeleccionado.descripcion = _this.indicacionesEliminar[0].descripcion;
+      }
+
+    }
   },
   computed: {
     styleToolTip() {

@@ -94,6 +94,7 @@ parasails.registerPage('crear-submodulo', {
       formData.append('descripcionSubmodulo', this.descripcionSubmodulo);
       formData.append('moduloId', this.moduloSeleccionado.id);
       formData.append('contenidoTiny', window.contenidoTiny); //window.contenidoTiny se establece en el archivo layout.ejs, en el script de inicializacion de tinyMCE
+      formData.append('color', this.moduloSeleccionado.color); 
       axios({
         method: 'post',
         url: '/crear-submodulo',

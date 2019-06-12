@@ -42,17 +42,17 @@ parasails.registerPage('m-3-barra-acceso-rapido', {
       imgs: [
 
         {
-          src: '',
-          alt: ''
+          src: 'https://i.blogs.es/56707b/autoguardado-off/1366_2000.jpg',
+          alt: 'Botón de autoguardado'
         },
 
       ],
-      html:'<img src="/images/portapapeles/pes_inicio_1.PNG" alt="Imagen">'
+      
     },
     guardar: {
       id: 'guardar',
       titulo: 'Guardar',
-      detalle: 'Permite guardar el documento en una carpeta del computador',
+      detalle: 'Permite guardar el documento en una carpeta del computador, la imágen debajo muestra la ventana que aparece al pulsar el botón guardar',
       leerMas: 'https://www.aulaclic.es/word-2016/t_4_1.htm',
       imgs: [
 
@@ -66,7 +66,7 @@ parasails.registerPage('m-3-barra-acceso-rapido', {
     deshacer: {
       id: 'deshacer',
       titulo: 'Deshacer',
-      detalle: 'Para deshacer una acción, presione Ctrl+Z. Si prefiere el mouse, haga clic en Deshacer en la barra de herramientas de acceso rápido. Puede presionar Deshacer (o CTRL + Z) varias veces para deshacer varios pasos.' +
+      detalle: 'Sirve para deshacer una acción, al presionar Ctrl+Z se obtiene el mismo resultado. Puede presionar Deshacer (o CTRL + Z) varias veces para deshacer varios pasos. ' +
         'Hay acciones que no se pueden deshacer, tal como hacer clic en la pestaña Archivo o guardar un archivo. Si una acción no se puede deshacer, el comando Deshacer cambia a No se puede Deshacer.' +
         'Para deshacer varias acciones al mismo tiempo, haga clic en la flecha situada junto a Deshacer  Botón Deshacer , seleccione las acciones en la lista que quiere deshacer y, después, haga clic en la lista. ',
       leerMas: 'https://support.office.com/es-es/article/deshacer-rehacer-o-repetir-una-acci%C3%B3n-84bdb9bc-4e23-4f06-ba78-f7b893eb2d28',
@@ -98,15 +98,29 @@ parasails.registerPage('m-3-barra-acceso-rapido', {
       titulo: 'Personalizar',
       detalle: 'Personalizar la barra de herramientas de acceso rápido',
       leerMas: 'https://support.office.com/es-es/article/personalizar-la-barra-de-herramientas-de-acceso-r%C3%A1pido-43fff1c9-ebc4-4963-bdbd-c2b6b0739e52',
-      // imgs: [
+      carousel: [
+        {
+          posicion: '1', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Para personalizar la barra de herramientas, hay que dar clic sobre la flecha hacia abajo en la barra de acceso rápido.',
+          imagen: '/images/word/acceso_rapido/personalizar1.png',
+          alt: 'Opción personalizar de la barra de acceso rápido',
 
-      //   {
-      //     src: '',
-      //     alt: ' '
-      //   },
+        },
+        {
+          posicion: '2', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Puede seleccionar las herramientas que se deseen dando clic izquierdo sobre la opción:',
+          imagen: '/images/word/acceso_rapido/personalizar2.png',
+          alt: 'Opciones de personalización',
 
-      // ],
-      html: '<p>Para personalizar la barra de herramientas, hay que dar clic sobre la flecha hacia abajo en la barra de acceso rápido.</p><img src="/images/word/acceso_rapido/personalizar1.png"></img><p>Puede seleccionar las herramientas que se deseen dando clic izquierdo sobre la opción: </p> <img src="/images/word/acceso_rapido/personalizar2.png"></img><p>Al final todas las opciones escogidas, se verán agregadas en la barra de acceso rápido:</p><img src="/images/word/acceso_rapido/personalizar2.png"></img>'
+        },
+        {
+          posicion: '3', //siempre empezar en uno para poder identificar a los elementos
+          detalle: 'Al final todas las opciones escogidas, se verán agregadas en la barra de acceso rápido:',
+          imagen: '/images/word/acceso_rapido/personalizar2.png',
+          alt: 'Opciones personalizadas en la barra de acceso rápido',
+
+        }
+      ]
     },
 
   },

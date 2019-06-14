@@ -1,0 +1,6 @@
+WARNING: Something seems to be wrong with this function.
+It is trying to signal that it has finished AGAIN, after
+already resolving/rejecting once.
+(silently ignoring this...)
+
+SOLUCION: LAS ACCIONES QUE SON REQUERIDAS POR MEDIO DEL METODO GET, DEBEN TENER ALGO DENTRO DEL OBJETO EXITS, INCLUSO SI NO SE OCUPA ESA PROPIEDAD.

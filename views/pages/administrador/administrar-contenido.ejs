@@ -6,17 +6,18 @@
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Curso </h5>
+                    <h5 class="modal-title" id="exampleModalLabel">Eliminar Objeto </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-                    <p>Quieres eliminar el curso: <strong>{{curso.nombre}}</strong></p>
-                    <p>Se eliminarán también sus módulos asociados</p>
+                    <p>Quieres eliminar el objeto: <strong>{{objetoSeleccionado.nombre}}</strong></p>
+                    <p>Se eliminarán también sus objetos asociados</p>
                 </div>
                 <div class="modal-footer">
-                    <button class="btn btn-primary" data-dismiss="modal" @click="eliminarDocumento()">Aceptar</button>
+                    <button class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="eliminarDocumento()">Aceptar</button>
                     <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cancelar</a>
                 </div>
             </div>
@@ -27,11 +28,11 @@
 
 
 
-    <!--Pagina estatica-->
+    <!--Pagina contenido-->
 
 
     <div class="div-contenido container-fluid" v-cloak>
-        <!--CABECERA DE LA VENTANA-->
+        <!--CABECERA-->
         <div class="row" id="div-cabecera">
             <div class="col-sm-10">
                 <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav>
@@ -41,16 +42,15 @@
             </div>
         </div>
 
-        <!--CUERPO DE LA VENTANA-->
+        <!--CUERPO-->
         <div class="row" id="div-body">
-            <!-- columna barra de navegacion-->
+            <!-- breadcrumb-->
             <div class="col-sm-2 col-izquierda">
-                <modulo-side-var-menu :curso="curso" :objeto-seleccionado="objetoSeleccionado"></modulo-side-var-menu>
+                <modulo-side-var-menu :curso.sync="curso" :objeto-seleccionado="objetoSeleccionado">
+                </modulo-side-var-menu>
             </div>
             <!-- columna central y lateral derecha del cuerpo -->
             <div class="col-sm-10" id="columna-contenido-lateral">
-
-
 
 
                 <div class="row fila-principal">
@@ -81,7 +81,7 @@
                                                     class="fas fa-save"></i></a>
                                             <a v-else @click="mostrarEditarNombre"><i class="fas fa-edit"></i></a>
                                             <a data-toggle="modal" data-target="#modalConfirmaEliminar"
-                                                data-placement="top" title="Eliminar Módulo"><i
+                                                data-placement="top" title="Eliminar Objeto"><i
                                                     class="fas fa-trash-alt"></i></a>
 
                                         </div>
@@ -109,12 +109,41 @@
                                     <!-- <textarea id="mytextarea">Escriba aquí el texto</textarea> -->
                                     <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                     <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
-                                    <div id="mytextarea" class="contenidoTiny" 
+                                    <div id="mytextarea" class="contenidoTiny"
                                         v-html="objetoSeleccionado.contenidoTiny">
                                         <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                     </div>
 
-                                    <button type="button" id="enviarModulo" @click="validarFormulario"> Guardar
+                                    <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
+                                        <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
+                                        <input id="colorModulo" type="color" name="color"
+                                            v-model="objetoSeleccionado.color" />
+
+
+
+                                        <input type="file" name="multimedia" id="file" class="inputfile"
+                                            @change="onFileSelected" accept="image/*"
+                                            :class="[computedErrorImagen ? 'is-invalid' : '']">
+                                        <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
+                                                    class="fas fa-plus-circle fa-2x"></i></a></label>
+                                        <div v-if="mostrarSpinner" class="spinner-border m-5" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
+                                            archivo de
+                                            imagen para la portada max:20MB.</div>
+                                        <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
+                                            permitidos:
+                                            jpg,/png. max:20MB. </div>
+                                        <div class="imagen-portada-modulo">
+                                            <img :src="objetoSeleccionado.multimedia.imagen" alt="Imágen de portada">
+                                        </div>
+
+                                    </div>
+
+
+
+                                    <button type="button" id="enviarModulo" @click.stop="validarFormulario"> Guardar
                                         Módulo</button>
                                 </form>
                             </div>

@@ -27,7 +27,9 @@ parasails.registerPage('crear-modulo', {
     imagenPortada: {},
     imagenTemporal: {},
     rutaTemporal: '',
-    color:'#F73294'
+    color: null,
+    mostrarSpinner: false,
+
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -42,8 +44,8 @@ parasails.registerPage('crear-modulo', {
 
   },
   mounted: async function () {
-    //…
-
+    //se crea la variable contenidoTiny para poder guardar el contenido del textarea de contendio 
+    window.contenidoTiny = null;// se establece el contenido
 
 
   },
@@ -99,9 +101,9 @@ parasails.registerPage('crear-modulo', {
       //Añadir las propiedades del objeto seleccionado a la variable imagenPortada
 
       this.imagenTemporal = event.target.files[0];
-
-
-      this.imagenTemporal.rutaLocal = URL.createObjectURL(this.imagenTemporal);//Visualizar en el navegador la imagen seleccionada
+      this.mostrarSpinner = true;
+      //no se usa directamente URL.createObjectURL porque tinymce necesita usar url.create para mostrar las imágenes
+      // this.imagenTemporal.rutaLocal = URL.createObjectURL(this.imagenTemporal);//Visualizar en el navegador la imagen seleccionada
 
 
       // setTimeout(function () { URL.revokeObjectURL(url); }, 3000);
@@ -115,7 +117,7 @@ parasails.registerPage('crear-modulo', {
 
     },
     guardarImagenPortada() {
-      
+      var _this = this;
       const formData = new FormData();
       formData.append('multimedia', this.imagenTemporal, this.imagenTemporal.name);
       axios({
@@ -125,10 +127,12 @@ parasails.registerPage('crear-modulo', {
       })
         .then(
           (response) => {
-            console.log('RESPONSE');
             console.log(response.data);
-            this.asignaObjetoRespuesta(response);
-
+            _this.imagenPortada = response.data;
+            setTimeout(() => {
+              _this.rutaTemporal = response.data.location;
+              _this.mostrarSpinner = false;
+            }, 7000);
           }
         )
         .catch(
@@ -138,26 +142,31 @@ parasails.registerPage('crear-modulo', {
           }
         );
     },
-    asignaObjetoRespuesta(response) {
-      console.log('LLEGO A METODO DE ADIGNACION DE RESPUESTA');
-      this.imagenPortada = response.data;
-      console.log(this.imagenPortada);
-      var i = response.data.location;
-      //SE ASIGNA LA URL DE LA IMAGEN
-      //nota: al cargar en la etiqueta src se presenta un error al hacer la peticion get,
-      //funciona con rutas quemadas como las lineas debajo
-      this.rutaTemporal = i;
+    // asignaObjetoRespuesta(response) {
+
+    //   this.imagenPortada = this.response.data;
+    //   console.log('LOCATION:');
+    //   setTimeout(()=>{ 
+    //     console.log(this.imagenPortada.location);
+    //     this.rutaTemporal = this.response.data.location;
+    //   },7000);
+
+
+    //   //SE ASIGNA LA URL DE LA IMAGEN
+    //   //nota: al cargar en la etiqueta src se presenta un error al hacer la peticion get,
+    //   //funciona con rutas quemadas como las lineas debajo
 
 
 
-      // this.rutaTemporal='https://www.imagen.com.mx/assets/img/imagen_share.png';
-      // this.rutaTemporal='http://localhost:1337/images/uploaded/91463fc6-397e-42c9-aaf1-ddd1f1d196c7.jpg';
 
-      // console.log('objeto devuelti por el servidor ');
-      // console.log(response.data);
-      //Libera el objeto imagen para que se pueda reusar en el textarea de tinymce
-      // URL.revokeObjectURL(this.imagenTemporal);    
-    },
+    //   // this.rutaTemporal='https://www.imagen.com.mx/assets/img/imagen_share.png';
+    //   // this.rutaTemporal='http://localhost:1337/images/uploaded/91463fc6-397e-42c9-aaf1-ddd1f1d196c7.jpg';
+
+    //   // console.log('objeto devuelti por el servidor ');
+    //   // console.log(response.data);
+    //   //Libera el objeto imagen para que se pueda reusar en el textarea de tinymce
+    //   // URL.revokeObjectURL(this.imagenTemporal);    
+    // },
     enviarModulo() {
       console.log('this.imagenPortada');
       console.log(this.imagenPortada);
@@ -169,7 +178,7 @@ parasails.registerPage('crear-modulo', {
       formData.append('descripcionModulo', this.descripcionModulo);
       formData.append('cursoId', this.curso.id);
       formData.append('contenidoTiny', window.contenidoTiny); //window.contenidoTiny se establece en el archivo layout.ejs, en el script de inicializacion de tinyMCE
-      formData.append('rutaPortada', this.imagenPortada.rutaLocal);
+      formData.append('rutaPortada', this.imagenPortada.location);
       formData.append('color', this.color);
 
 
@@ -222,6 +231,7 @@ parasails.registerPage('crear-modulo', {
     onBorrarImagen() {
       this.imagenPortada = {};
     },
+
 
   },
   computed: {

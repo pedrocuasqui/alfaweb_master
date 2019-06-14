@@ -1,33 +1,29 @@
 module.exports = {
 
 
-  friendlyName: 'Actualizar modulo',
+  friendlyName: 'Actualizar submodulo',
 
 
   description: '',
 
 
   inputs: {
-    nombreModulo: {
+    nombreSubmodulo: {
       type: 'string',
       required: true,
 
     },
-    descripcionModulo: {
+    descripcionSubmodulo: {
       type: 'string',
       required: true,
 
-    },
-    rutaPortada: {
-      type: 'string',
-      required: false,
     },
 
     contenidoTiny: {
       type: "string",
       required: false
     },
-    moduloId: {
+    submoduloId: {
       type: 'string',
       required: true,
     },
@@ -47,29 +43,31 @@ module.exports = {
 
     var res = this.res;
     // var cursoRecibido = JSON.parse(inputs.curso);
-
+console.log('ENTRA A SUBMODULO');
     try {
-      await ModuloLibro
+      await SubmoduloLibro
         .update({
-          id: inputs.moduloId
+          id: inputs.submoduloId
         })
         .set({
-          nombreModulo: inputs.nombreModulo,
-          descripcion: inputs.descripcionModulo,
-          multimedia:{imagen:inputs.rutaPortada},
+          nombreSubmodulo: inputs.nombreSubmodulo,
+          descripcion: inputs.descripcionSubmodulo,
+          // multimedia:{imagen:inputs.rutaPortada},
           contenidoTiny: inputs.contenidoTiny,
           color:inputs.color,
 
         });
     } catch (e) {
-      console.log('Error al intentar actualizar el modulo:' + inputs.nombreModulo + '\n' + e)
+      console.log('Error al intentar actualizar el submodulo:' + inputs.nombreSubmodulo + '\n' + e)
       if (e.CODE == 'E_UNIQUE') {
         return res.status(409).send({ error: e });
       }
       if (e.name == 'UsageError') {
         return res.status(400).send({ error: e });
       } else {
+        console.log('ERROR EN SUBMODULO: '+ e)
         return res.status(500).send({ err: e });
+        
       }
 
     }

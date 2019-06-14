@@ -46,7 +46,8 @@ parasails.registerPage('crear-submodulo', {
     this.breadcrumb.push(SAILS_LOCALS.curso);
   },
   mounted: async function () {
-    //…
+    //se crea la variable contenidoTiny para poder guardar el contenido del textarea de contendio 
+    window.contenidoTiny =null;// se establece el contenido
 
   },
 

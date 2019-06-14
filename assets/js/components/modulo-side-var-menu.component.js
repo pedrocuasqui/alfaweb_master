@@ -43,11 +43,11 @@ parasails.registerComponent('modulo-side-var-menu', {
             <!--dropdown-submodulo  : contenedor individual del submodulo -->
             <div v-for="(modulo, index) in curso.modulos" class="dropdownModulo" :key="modulo.id" >
                 <!--ES ADMIN, PUEDE CREAR CURSO Y MODIFICARLOS, EXCEPTO EL CURSO INFORMATICA BASICA-->
-                <a v-if="esAdmin" key="admin" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" :style="{backgroundColor: objetoSeleccionado.color}">{{modulo.nombreModulo}}</a>
+                <a v-if="esAdmin" key="admin" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" :style="colorModulo(modulo.id)">{{modulo.nombreModulo}}</a>
                 <!--ES CURSO INFORMATICA, TODOS PUEDEN ACCEDER A EL PERO NADIE, NI EL ADMINISTRADOR ni ESTUDIANTE PUEDEn EDITARLO-->
                 <a v-else-if="cursoInformatica" key="informatica" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/contenido-alfaweb/?enlace='+modulo.enlace" :style="colorModulo(modulo.id)" >{{modulo.nombreModulo}}</a>
                 <!--ES ESTUDIANTE Y HA INGRESADO A OTRO CURSO QUE NO SEA INFORMATICA BASICA-->
-                <a v-else key="estudiante" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/interfaz-modulos/?moduloId='+modulo.id" :style="{backgroundColor: objetoSeleccionado.color}">{{modulo.nombreModulo}}</a>
+                <a v-else key="estudiante" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/interfaz-modulos/?moduloId='+modulo.id" :style="colorModulo(modulo.id)">{{modulo.nombreModulo}}</a>
 
                 <div :class="[perteneceObjeto(modulo.id) ? 'dropdown-submodulo':'dropdown-submodulo-deselect' ]">
                     <template v-if="esAdmin">
@@ -87,16 +87,16 @@ parasails.registerComponent('modulo-side-var-menu', {
             }
             return pertenece;
         },
-        colorModulo(moduloId){
+        colorModulo(moduloId) {
 
             var estilo = {};
             console.log('modulo.id:' + moduloId + 'vs Submodulo.modulo' + this.objetoSeleccionado.modulo);
             if (this.objetoSeleccionado.id == moduloId || this.objetoSeleccionado.modulo == moduloId) {
-                estilo = {backgroundColor: this.objetoSeleccionado.color};
+                estilo = { backgroundColor: this.objetoSeleccionado.color };
 
             }
             return estilo;
-            
+
         },
         objetoPerteneceModulo(moduloId) {
             let valor = false;

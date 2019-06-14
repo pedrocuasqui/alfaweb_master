@@ -40,11 +40,12 @@
 
 
                 <div class="form-group">
-                    
-                    <label >* Imágen de portada </label>
+
+                    <label>* Imágen de portada </label>
                     <input type="file" name="multimedia" id="file" class="inputfile" @change="onFileSelected"
                         accept="image/*" :class="[computedErrorImagen ? 'is-invalid' : '']">
-                    <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i class="fas fa-plus-circle fa-2x"></i></a></label>
+                    <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
+                                class="fas fa-plus-circle fa-2x"></i></a></label>
                     <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un archivo de
                         imagen para la portada max:20MB.</div>
                     <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen permitidos:
@@ -68,9 +69,13 @@
 
                         <!-- </div>
                         <div class="col-sm-10"> -->
-                        <div class="imagen-portada-modulo" >
+                        <div class="imagen-portada-modulo">
                             <!-- error GET al tratar de obtener la imagen obtenido del servidor -->
+                            <div v-if="mostrarSpinner" class="spinner-border m-5" role="status">
+                                <span class="sr-only">Loading...</span>
+                            </div>
                             <img v-if="rutaTemporal!=''" :src="rutaTemporal" alt="Previsualización de imágen cargada">
+
                             <a @click="onBorrarImagen()"><i class="fas fa-trash-alt"></i></a>
                         </div>
 
@@ -92,8 +97,11 @@
                     <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                     <div class="invalid-feedback" v-if="formErrors.contenidoTiny">Debe ingresar algún contenido </div>
                 </form>
-
-
+                <div class="form-group">
+                    <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán
+                        colores por defecto) </label>
+                    <input id="colorModulo" type="color" name="color" v-model="color" />
+                </div>
                 <button type="button" id="enviarModulo" @click="validarFormulario"> Guardar Módulo</button>
 
 

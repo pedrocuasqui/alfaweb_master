@@ -101,7 +101,14 @@ module.exports.routes = {
   'POST /actualizar-modulo': {
     action: 'administrador/actualizar-modulo',
   },
-  
+  'POST /actualizar-submodulo': {
+    action: 'administrador/actualizar-submodulo',
+  },
+  'GET /eliminar-contenido': { 
+    action: 'administrador/eliminar-contenido' 
+  },
+
+
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
   // estudiante
@@ -231,8 +238,6 @@ module.exports.routes = {
   //  ╔═╗╔═╗╦  ╔═╗╔╗╔╔╦╗╔═╗╔═╗╦╔╗╔╔╦╗╔═╗
   //  ╠═╣╠═╝║  ║╣ ║║║ ║║╠═╝║ ║║║║║ ║ ╚═╗
   //  ╩ ╩╩  ╩  ╚═╝╝╚╝═╩╝╩  ╚═╝╩╝╚╝ ╩ ╚═╝
-  'DELETE /api/v1/admiminstrador/eliminar-contenido': { action: 'administrador/eliminar-contenido' },
-
 
   //  ╦ ╦╔═╗╔╗ ╦ ╦╔═╗╔═╗╦╔═╔═╗
   //  ║║║║╣ ╠╩╗╠═╣║ ║║ ║╠╩╗╚═╗

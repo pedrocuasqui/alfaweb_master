@@ -107,7 +107,9 @@ module.exports.routes = {
   'GET /eliminar-contenido': { 
     action: 'administrador/eliminar-contenido' 
   },
-
+  'PUT /publicar-curso/:cursoId': {
+    action: 'administrador/publicar-curso',
+  },
 
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante

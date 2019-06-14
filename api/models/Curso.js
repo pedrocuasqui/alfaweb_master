@@ -23,6 +23,11 @@ module.exports = {
       defaultsTo: 'Curso básico',
       columnName: 'descripcion'
     },
+    publicado:{
+      type:'boolean',
+      defaultsTo:false,
+      columnName: 'publicado'
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗

@@ -76,8 +76,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       {
         nombre: 'Alfabetizacion informática',
         descripcion: 'Enseñanza de informática básica',
-
-
+        publicado: true
       }
     ).fetch();
 

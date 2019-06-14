@@ -6,7 +6,7 @@ parasails.registerComponent('boton-curso', {
     data() {
         return {
             editarCurso: false,
-            formErrors:{},
+            formErrors: {},
         };
     },
     mounted() {
@@ -24,10 +24,15 @@ parasails.registerComponent('boton-curso', {
       <div class="invalid-feedback" v-if="formErrors.nombre">El campo no puede estar vacío</div>
       <!--span hace que los contenidos se presenten en linea-->
       <span>
+        <!--EDITAR CURSO-->
         <a v-if="editarCurso" @click.stop="validarCampos()" title="Editar Curso"><i
             class="fas fa-save"></i></a>
         <a v-else @click.stop="mostrarEditarCurso(curso.id)" data-placement="top" title="Editar Curso"> <i
             class="fas fa-edit"></i> </a>
+        <!--PUBLICAR Y OCULTAR CURSO-->
+        <a v-if="curso.publicado" @click.stop="ocultarCurso(curso.id)" data-placement="top" title="Ocultar Curso"> <i class="fas fa-lock-open"></i> </a>
+        <a v-else @click.stop="publicarCurso(curso.id)" data-placement="top" title="Publicar Curso"> <i class="fas fa-lock"></i> </a>
+       <!--ELIMINAR CURSO-->
         <a data-toggle="modal" data-target="#modalConfirmaEliminar"
           @click.stop="$emit('selecciona-curso-eliminar',curso)" data-placement="top" title="Eliminar Curso"><i
             class="fas fa-trash-alt"></i></a>
@@ -63,7 +68,7 @@ parasails.registerComponent('boton-curso', {
                 return false;
             } else {
                 //   this.guardarCurso(curso);  
-                this.editarCurso=false;
+                this.editarCurso = false;
                 this.$emit('guardar-curso', this.curso);
             }
 
@@ -74,8 +79,43 @@ parasails.registerComponent('boton-curso', {
             window.location.href = '/administrar-indice/?cursoId=' + cursoId;
 
         },
-        seleccionaCursoEliminar(curso){
+        seleccionaCursoEliminar(curso) {
             this.$emit('selecciona-curso-eliminar', curso);
+        },
+        publicarCurso(cursoId) {
+
+            axios({
+                url: `/publicar-curso/${cursoId}`,
+                method: 'PUT',
+                data:{publicar:true}
+            }).then(response => {
+                alert('curso publicado');
+                console.log(response);
+                console.log(response.data);
+                this.curso.publicado = true;
+            }).catch(err => {
+                alert('error, no se ha podido publicar el curso');
+                console.log(err);
+            });
+
+
+        },
+        ocultarCurso(cursoId) {
+            this.curso.publicado = false;
+            axios({
+                url: `/publicar-curso/${cursoId}`,
+                method: 'PUT',
+                data:{publicar: false}
+            }).then(response => {
+                alert('curso ocultado');
+                console.log(response);
+                console.log(response.data);
+                this.curso.publicado = false;
+            }).catch(err => {
+                alert('error, revisar la consola');
+                console.log(err);
+            });
+
         }
 
     }

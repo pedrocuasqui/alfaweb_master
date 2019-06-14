@@ -31,6 +31,7 @@ module.exports = {
 
   fn: async function (inputs,exits) {
 
+    //la propiedad PUBLICADO tiene el valor predeterminado de FALSE
     await Curso.create({nombre:inputs.nombreCurso, descripcion:inputs.descripcionCurso})
     .intercept('E_UNIQUE', (err)=> { //buscar documentacion de intercept de sails 
       return 'El nombre del curso ya está en uso';

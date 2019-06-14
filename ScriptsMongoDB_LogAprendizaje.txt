@@ -544,3 +544,24 @@ Miercoles 29-05-2019
 Se usan las siguientes fuentes para cargar el contenido del curso alfabetizacion basica
 * https://conceptodefinicion.de/
 * https://emtic.educarex.es/pildoras/pub/cont/archivos/Elementos_basicos_de_Word.pdf
+
+
+
+
+
+
+
+
+
+Viernes 14-06-2019
+Fuente: https://en.ryte.com/wiki/GET_Parameter
+
+GET request
+When the GET request method is used, if a client uses the HTTP protocol on a web server to request a certain resource, the client sends the server certain GET parameters through the requested URL. These parameters are pairs of names and their corresponding values, so-called name-value pairs. These are added to the URL with a “?” sign and tell the server which resources are meant. The name and value are always separated using a “=” sign.
+
+The syntax is as follows:
+
+http://www.domain.com/index.html*?name1=value1
+Multiple parameters, as well as entire lists, can be transmitted to the server. Here, the various parameters are separated using a “&” sign.
+
+http://www.domain.com/index.html*?name1=value1&name2=value2

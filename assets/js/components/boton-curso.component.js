@@ -33,7 +33,7 @@ parasails.registerComponent('boton-curso', {
         <a v-if="curso.publicado" @click.stop="ocultarCurso(curso.id)" data-placement="top" title="Ocultar Curso"> <i class="fas fa-lock-open"></i> </a>
         <a v-else @click.stop="publicarCurso(curso.id)" data-placement="top" title="Publicar Curso"> <i class="fas fa-lock"></i> </a>
        <!--ELIMINAR CURSO-->
-        <a data-toggle="modal" data-target="#modalConfirmaEliminar"
+        <a v-if="noEsInforBasica" data-toggle="modal" data-target="#modalConfirmaEliminar"
           @click.stop="$emit('selecciona-curso-eliminar',curso)" data-placement="top" title="Eliminar Curso"><i
             class="fas fa-trash-alt"></i></a>
       </span>
@@ -87,7 +87,7 @@ parasails.registerComponent('boton-curso', {
             axios({
                 url: `/publicar-curso/${cursoId}`,
                 method: 'PUT',
-                data:{publicar:true}
+                data: { publicar: true }
             }).then(response => {
                 alert('curso publicado');
                 console.log(response);
@@ -105,7 +105,7 @@ parasails.registerComponent('boton-curso', {
             axios({
                 url: `/publicar-curso/${cursoId}`,
                 method: 'PUT',
-                data:{publicar: false}
+                data: { publicar: false }
             }).then(response => {
                 alert('curso ocultado');
                 console.log(response);
@@ -116,6 +116,14 @@ parasails.registerComponent('boton-curso', {
                 console.log(err);
             });
 
+        }
+
+    },
+    computed: {
+        noEsInforBasica() {
+            //si el nombre del curso es "Alfabetizacion informática" entonces no se mostrará el botón eliminar, no se debe por ninguna razón eliminar el curso, en caso de hacerlo, se debe reiniciar el servidor para que se vuelva a crear el curso por defecto, aunque las páginas  html del contenido permanecerán siempre intactas
+            let respuesta = this.curso.nombre != 'Alfabetizacion informática';
+            return respuesta;
         }
 
     }

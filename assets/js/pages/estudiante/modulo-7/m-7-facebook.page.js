@@ -42,7 +42,7 @@ parasails.registerPage('m-7-facebook', {
       imgs: [
   
         {
-          src: '/images/fb/paso1.png',
+          src: '/images/informaticabasica/modulo7/fb/paso1.png',
           alt: 'Llenar datos personales',
         },
   
@@ -56,7 +56,7 @@ parasails.registerPage('m-7-facebook', {
       imgs: [
   
         {
-          src: '/images/fb/paso2.png',
+          src: '/images/informaticabasica/modulo7/fb/paso2.png',
           alt: 'Confirmar correo electrónico',
         },
   
@@ -70,11 +70,11 @@ parasails.registerPage('m-7-facebook', {
       imgs: [
   
         {
-          src: '/images/fb/paso3.jpeg',
+          src: '/images/informaticabasica/modulo7/fb/paso3.jpeg',
           alt: 'Ingresa correo electrónico para buscar amigos',
         },
         {
-          src: '/images/fb/paso3_1.jpeg',
+          src: '/images/informaticabasica/modulo7/fb/paso3_1.jpeg',
           alt: 'Dar permisos a facebook para buscar contactos en nuestro correo',
         },
   
@@ -88,7 +88,7 @@ parasails.registerPage('m-7-facebook', {
       imgs: [
   
         {
-          src: '/images/fb/paso4.png',
+          src: '/images/informaticabasica/modulo7/fb/paso4.png',
           alt: 'Configurar la privacidad',
         },
   
@@ -102,7 +102,7 @@ parasails.registerPage('m-7-facebook', {
       imgs: [
   
         {
-          src: '/images/fb/paso5.jpeg',
+          src: '/images/informaticabasica/modulo7/fb/paso5.jpeg',
           alt: 'Subir tu foto',
         },
   
@@ -116,7 +116,7 @@ parasails.registerPage('m-7-facebook', {
       imgs: [
   
         {
-          src: '/images/fb/paso6.png',
+          src: '/images/informaticabasica/modulo7/fb/paso6.png',
           alt: 'Encontrar amigos',
         },
   
@@ -130,11 +130,11 @@ parasails.registerPage('m-7-facebook', {
       imgs: [
   
         {
-          src: '/images/fb/paso7.png',
+          src: '/images/informaticabasica/modulo7/fb/paso7.png',
           alt: 'Dar clic en el nombre',
         },
         {
-          src: '/images/fb/paso8.png',
+          src: '/images/informaticabasica/modulo7/fb/paso8.png',
           alt: 'Completar datos para que fb pueda encontrar a personas de la misma ciudad',
         },
       ]

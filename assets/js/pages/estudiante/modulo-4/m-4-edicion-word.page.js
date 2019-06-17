@@ -49,7 +49,7 @@ parasails.registerPage('m-4-edicion-word', {
       this.navegarSiguiente = SAILS_LOCALS.siguiente.enlace;
     this.navegarAtras = SAILS_LOCALS.anterior.enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
-    this.breadcrumb.push(SAILS_LOCALS.modulo);
+    
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
   },
   mounted: async function() {

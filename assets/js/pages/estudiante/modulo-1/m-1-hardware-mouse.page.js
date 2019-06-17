@@ -28,13 +28,13 @@ parasails.registerPage('m-1-hardware-mouse', {
       carousel: [
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'El clic derecho del ratón o mouse es la acción de presionar (hacer clic) sobre el botón derecho del mouse. Esta acción suele utilizarse para abrir el menú contextual del elemento donde se posa el cursor del ratón en ese momento. Si el mouse está configurado para zurdos, el clic derecho será en ese caso el botón de la izquierda.',
+          detalle: 'El clic derecho del ratón o mouse es la acción de presionar (hacer clic) sobre el botón derecho del mouse. Esta acción suele utilizarse para abrir el menú de opciones, este será diferente dependiendo de donde se posa el cursor del mouse en ese momento. Si el mouse está configurado para zurdos, el clic derecho será en ese caso el botón de la izquierda. La animación de abajo muestra la acción "clic derecho".',
           imagen: 'https://4.bp.blogspot.com/-bUIk7H52CJg/WvIgCwe00cI/AAAAAAAAAC4/FK9bXoH0yAgLBzFlZOeZppZ5vt9TEuRLwCLcBGAs/s400/mouse.gif',
           alt: 'Clic derecho',
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'Algunos usos concretos del clic derecho del ratón:- En un programa editor de texto, como bloc de notas o Microsoft Word, se puede seleccionar una porción del texto. Se presiona clic derecho sobre la selección y se abrirá un menú con distintas opciones que podemos hacer con ese texto: copiar, cortar, reemplazar, buscarinónimos, etc. También aparecerán funciones relacionadas al documento y no necesariamente para el texto seleccionado.',
+          detalle: 'Algunos usos concretos del clic derecho del ratón:- En un programa editor de texto, como bloc de notas o Microsoft Word, se puede seleccionar una porción del texto, después se presiona clic derecho sobre la selección y se abrirá un menú con distintas opciones que podemos hacer con ese texto: copiar, cortar, reemplazar, buscar sinónimos, etcétera. También aparecerán funciones relacionadas al documento y no necesariamente para el texto seleccionado. Vea la animación debajo como ejemplo.',
           imagen: 'https://i.stack.imgur.com/dtS3o.gif',
           alt: 'Clic derecho sobre word',
         }
@@ -44,12 +44,12 @@ parasails.registerPage('m-1-hardware-mouse', {
     clic_izquierdo: {
       id: 'ClicIzquierdo',
       titulo: 'Clic izquierdo',
-      detalle: 'Onomatopeya en español del sonido de la pulsación de un botón del ratón. Cuando se dice que "se debe hacer clic", se hace referencia a la acción de presionar un botón del mouse (ratón) que suele ser el botón izquierdo en configuración para diestros. Esto vale también para su correspondiente en otros dispositivos con puntero como el trackball o el touchpad. Es "click" en inglés. En tanto en español suele usarse en frases como: hacer clic, dar clic, clicar o cliquear, sin "k" según la Real Academia Española.',
+      detalle: 'Cuando se dice que "se debe hacer clic", se hace referencia a la acción de presionar un botón del mouse o ratón, generalmente el izquierdo. Esto vale también para su correspondiente en otros dispositivos con puntero como el trackball o el touchpad. Se escribe "click" con K en inglés. En tanto en español suele usarse en frases como: hacer clic, dar clic, clicar o cliquear, sin "k" según la Real Academia Española. Vea la animación debajo como ejemplo.',
       leerMas: 'http://www.alegsa.com.ar/Dic/clic.php',
       imgs: [
 
         {
-          src: 'http://www.alegsa.com.ar/Imagen/clic_izquierdo.png',
+          src: 'https://media1.tenor.com/images/b5e07d01440eb593dcb28f01116d7ec8/tenor.gif',
           alt: 'Clic izquierdo'
         },
 
@@ -58,12 +58,12 @@ parasails.registerPage('m-1-hardware-mouse', {
     scroll: {
       id: 'Scroll',
       titulo: 'Scroll',
-      detalle: 'La rueda de desplazamiento (scroll wheel) o rueda del ratón (mouse wheel) de computadora, es el disco de plástico duro o goma dura, perpendicular a la superficie del ratón de computadora. Normalmente está ubicada entre medio de los botones izquierdo y derecho del ratón.',
+      detalle: 'La rueda de desplazamiento (scroll wheel) o rueda del ratón (mouse wheel) de computadora, es el disco de plástico duro o goma dura, perpendicular a la superficie del ratón de computadora. Normalmente está ubicada en el medio de los botones izquierdo y derecho del ratón. Generalmente sirve para desplazar el contenido de la pantalla hacia arriba o hacia abajo',
       leerMas: 'https://es.wikipedia.org/wiki/Rueda_de_desplazamiento',
       imgs: [
 
         {
-          src: 'https://media.giphy.com/media/l0HlQXlQ3nHyLMvte/giphy.gif',
+          src: 'https://i.imgur.com/MlbJHpi.gif',
           alt: 'Scroll'
         },
 
@@ -77,13 +77,13 @@ parasails.registerPage('m-1-hardware-mouse', {
       carousel: [
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'El mouse es un elemento que permite controlar al ordenador usando las manos por medio de un puntero',
-          imagen: 'https://media1.tenor.com/images/b5e07d01440eb593dcb28f01116d7ec8/tenor.gif',
+          detalle: 'El mouse es un elemento que permite controlar al ordenador usando una mano por medio de un puntero',
+          imagen: 'https://media.giphy.com/media/l0HlQXlQ3nHyLMvte/giphy.gif',
           alt: 'Mouse en movimiento',
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'Existen diferentes tipos de mouse, los más comunes son: 1) El mouse mecánico, funciona con una esfera que al moverse indica la posición del puntero en la pantalla. 2) El mouse Óptico, funciona con una luz en lugar de una esfera. 3)El mouse láser, es el más usado actualmente y funciona con una haz de luz parecido al mouse óptico. 4) Trackball, es un mouse espcial usado para juegos. 5) Touch, es un mouse sensible al tacto, se usa generalmente en los computadores portátiles.',
+          detalle: 'Existen diferentes tipos de mouse, los más comunes son: 1) El mouse mecánico, funciona con una esfera que al moverse indica la posición del puntero en la pantalla, actualmente ya no se usan. 2) El mouse Óptico, funciona con una luz en lugar de una esfera. 3)El mouse láser, es el más usado actualmente y funciona con una haz de luz parecido al mouse óptico. 4) Trackball, es un mouse especial que se utilizan en una variedad de campos, desde el control del tráfico aéreo, el trabajo de diseño o juegos. 5) Touch, es un mouse sensible al tacto, se usa generalmente en los computadores portátiles.',
           imagen: 'https://image.slidesharecdn.com/innovacionestecnolgicas-151108234626-lva1-app6891/95/innovaciones-tecnolgicas-3-638.jpg',
           alt: 'Diferentes tipos de mouse',
         }

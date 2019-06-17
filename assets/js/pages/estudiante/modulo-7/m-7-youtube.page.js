@@ -42,7 +42,7 @@ parasails.registerPage('m-7-youtube', {
       imgs: [
   
         {
-          src: '/images/youtube/y1.png',
+          src: '/images/informaticabasica/modulo7/youtube/y1.png',
           alt: 'Abrir youtube',
         },
   
@@ -56,7 +56,7 @@ parasails.registerPage('m-7-youtube', {
       imgs: [
   
         {
-          src: '/images/youtube/y2.png',
+          src: '/images/informaticabasica/modulo7/youtube/y2.png',
           alt: 'Abrir youtube',
         },
   
@@ -70,7 +70,7 @@ parasails.registerPage('m-7-youtube', {
       imgs: [
   
         {
-          src: '/images/youtube/y3.png',
+          src: '/images/informaticabasica/modulo7/youtube/y3.png',
           alt: 'Tendencias y recomendaciones en youtube',
         },
        
@@ -85,7 +85,7 @@ parasails.registerPage('m-7-youtube', {
       imgs: [
   
         {
-          src: '/images/youtube/y4.png',
+          src: '/images/informaticabasica/modulo7/youtube/y4.png',
           alt: 'buscar videos',
         },
   
@@ -99,7 +99,7 @@ parasails.registerPage('m-7-youtube', {
       imgs: [
   
         {
-          src: '/images/youtube/y5.png',
+          src: '/images/informaticabasica/modulo7/youtube/y5.png',
           alt: 'Resultados de la búsqueda',
         },
   
@@ -113,7 +113,7 @@ parasails.registerPage('m-7-youtube', {
       imgs: [
   
         {
-          src: '/images/youtube/y6.png',
+          src: '/images/informaticabasica/modulo7/youtube/y6.png',
           alt: 'ver video',
         },
   
@@ -127,7 +127,7 @@ parasails.registerPage('m-7-youtube', {
       imgs: [
   
         {
-          src: '/images/youtube/y7.png',
+          src: '/images/informaticabasica/modulo7/youtube/y7.png',
           alt: 'Controlar la reproduccción del video',
         },
       ]

@@ -20,7 +20,7 @@ parasails.registerPage('m-4-portapapeles', {
       default: "software"
     },
 
-    /// /images/word/p_inicio/portapapeles/0.png
+    /// /images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/0.png
     pegar: {
       id: 'pegar',
       titulo: 'Pegar',
@@ -31,14 +31,14 @@ parasails.registerPage('m-4-portapapeles', {
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Con	esta opción se puede pegar el primer elemento contenido en el portapapeles. Para ello ir a portapapeles y dar click en pegar',
-          imagen: '/images/word/p_inicio/portapapeles/2.png',
+          imagen: '/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/2.png',
           alt: 'Dar clic en pegar',
 
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'La imágen o texto aparecerá en el área de trabajo ',
-          imagen: '/images/word/p_inicio/portapapeles/3.png',
+          imagen: '/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/3.png',
           alt: 'Objeto agregado',
 
         }
@@ -53,14 +53,14 @@ parasails.registerPage('m-4-portapapeles', {
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Para cortar una imágen o un texto. Primero seleccionar el contenido que se desea cortar y dar clic en "cortar"',
-          imagen: '/images/word/p_inicio/portapapeles/4.png',
+          imagen: '/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/4.png',
           alt: 'Selección de texto a cortar',
 
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'El texto o imágen aparece en la primera posición del portapapeles',
-          imagen: '/images/word/p_inicio/portapapeles/5.png',
+          imagen: '/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/5.png',
           alt: 'Texto cortado',
 
         }
@@ -75,14 +75,14 @@ parasails.registerPage('m-4-portapapeles', {
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Seleccionar el contenido que se desea copiar, y luego hacer clic en "Copiar". ',
-          imagen: '/images/word/p_inicio/portapapeles/6.png',
+          imagen: '/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/6.png',
           alt: 'Selección de texto a copiar',
 
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'La opción copiar, envía el contenido al portapapeles sin eliminarlo del documento.',
-          imagen: '/images/word/p_inicio/portapapeles/7.png',
+          imagen: '/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/7.png',
           alt: 'Texto copiado',
 
         }
@@ -96,27 +96,27 @@ parasails.registerPage('m-4-portapapeles', {
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Seleccionar el texto con el formato a copiar y dar clic izquierdo en "Portapapeles".',
-          imagen: '/images/word/p_inicio/portapapeles/8.png',
+          imagen: '/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/8.png',
           alt: 'Selección de texto con el formato a copiar',
 
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Seleccionar el texto en el cuál aplicará el formato copiado.',
-          imagen: '/images/word/p_inicio/portapapeles/9.png',
+          imagen: '/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/9.png',
           alt: 'seleccionar el texto la que se desea aplicar el formato',
 
         },
         {
           posicion: '3', //siempre empezar en uno para poder identificar a los elementos
           detalle: ' El texto adquirirá el formato copiado.',
-          imagen: '/images/word/p_inicio/portapapeles/10.png',
+          imagen: '/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/10.png',
           alt: 'El texto seleccionado adquirirá el formato copiado',
 
         }
       ]
     },
-    //images/word/p_inicio/portapapeles/0.png
+    //images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/0.png
     portapapeles: {
       id: 'portapapeles',
       titulo: 'Portapapeles',
@@ -125,7 +125,7 @@ parasails.registerPage('m-4-portapapeles', {
       imgs: [
   
         {
-          src: '/images/word/p_inicio/portapapeles/1.png',
+          src: '/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/1.png',
           alt: 'El portapapeles muestra varias opciones',
         },
   

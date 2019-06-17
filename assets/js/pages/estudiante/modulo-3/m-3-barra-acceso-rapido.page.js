@@ -102,21 +102,21 @@ parasails.registerPage('m-3-barra-acceso-rapido', {
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Para personalizar la barra de herramientas, hay que dar clic sobre la flecha hacia abajo en la barra de acceso rápido.',
-          imagen: '/images/word/acceso_rapido/personalizar1.png',
+          imagen: '/images/informaticabasica/modulo3/barra_acceso_rapido/acceso_rapido/personalizar1.png',
           alt: 'Opción personalizar de la barra de acceso rápido',
 
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Puede seleccionar las herramientas que se deseen dando clic izquierdo sobre la opción:',
-          imagen: '/images/word/acceso_rapido/personalizar2.png',
+          imagen: '/images/informaticabasica/modulo3/barra_acceso_rapido/acceso_rapido/personalizar2.png',
           alt: 'Opciones de personalización',
 
         },
         {
           posicion: '3', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Al final todas las opciones escogidas, se verán agregadas en la barra de acceso rápido:',
-          imagen: '/images/word/acceso_rapido/personalizar2.png',
+          imagen: '/images/informaticabasica/modulo3/barra_acceso_rapido/acceso_rapido/personalizar2.png',
           alt: 'Opciones personalizadas en la barra de acceso rápido',
 
         }

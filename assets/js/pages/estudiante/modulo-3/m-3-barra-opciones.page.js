@@ -30,49 +30,49 @@ parasails.registerPage('m-3-barra-opciones', {
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Archivo, Es la pestaña que nos da acceso al backstage (o zona de administración) en la que encontraremos acciones como las de Guardar el documento, Abrir otro existente, crear uno Nuevo, Imprimir, Compartir o Exportar. Dependiendo de la función se puede encontrar un boton de INICIO o la pestaña ARCHIVO.',
-          imagen: '/images/word/p_archivo/0.png',
+          imagen: '/images/informaticabasica/modulo3/barra_opciones/p_archivo/0.png',
           alt: 'Pestaña Archivo o botón Inicio',
 
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Opción Información del documento: Muestra una visión general de toda la información del documento en el que se esté trabajando.',
-          imagen: '/images/word/p_archivo/1.png',
+          imagen: '/images/informaticabasica/modulo3/barra_opciones/p_archivo/1.png',
           alt: 'Información del documento',
 
         },
         {
           posicion: '3', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Opción Reciente: Permite ver los archivos más recientes que han sido abiertos y poder abrirlos nuevamente en otra ventana de Word.',
-          imagen: '/images/word/p_archivo/2.png',
+          imagen: '/images/informaticabasica/modulo3/barra_opciones/p_archivo/2.png',
           alt: 'Opción reciente',
 
         },
         {
           posicion: '4', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Opción Nuevo: Permite editar un nuevo documento acorde a lo necesario.',
-          imagen: '/images/word/p_archivo/3.png',
+          imagen: '/images/informaticabasica/modulo3/barra_opciones/p_archivo/3.png',
           alt: 'Opción nuevo',
 
         },
         {
           posicion: '5', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Opción Imprimir: Permite imprimir un nuevo documento mediante un dispositivo de impresión.',
-          imagen: '/images/word/p_archivo/4.png',
+          imagen: '/images/informaticabasica/modulo3/barra_opciones/p_archivo/4.png',
           alt: 'Opción imprimir',
 
         },
         {
           posicion: '6', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Opción Guardar y enviar: Permite imprimir un nuevo documento mediante un dispositivo de impresión.',
-          imagen: '/images/word/p_archivo/5.png',
+          imagen: '/images/informaticabasica/modulo3/barra_opciones/p_archivo/5.png',
           alt: 'Opción guardar y enviar',
 
         },
         {
           posicion: '7', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Opción Ayuda: Muestra opciones de ayuda para configurar el documento y Soporte técnico.',
-          imagen: '/images/word/p_archivo/6.png',
+          imagen: '/images/informaticabasica/modulo3/barra_opciones/p_archivo/6.png',
           alt: 'Opción ayuda',
 
         }
@@ -92,7 +92,7 @@ parasails.registerPage('m-3-barra-opciones', {
         },
 
       ],
-      html: ''//pagina 69 a pagina 100 del folleto, imagenes en la ruta /images/word/p_inicio/0.png
+      html: ''//pagina 69 a pagina 100 del folleto, imagenes en la ruta /images/informaticabasica/modulo3/barra_opciones/p_inicio/0.png
     },
 
     insertar: {
@@ -208,7 +208,7 @@ parasails.registerPage('m-3-barra-opciones', {
       imgs: [
 
         {
-          src: '/images/pestania-ayuda-office.png',
+          src: '/images/informaticabasica/modulo3/barra_opciones/pestania-ayuda-office.png',
           alt: 'Pestaña Ayuda'
         },
 

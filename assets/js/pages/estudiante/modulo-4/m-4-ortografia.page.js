@@ -20,7 +20,7 @@ parasails.registerPage('m-4-ortografia', {
       default: "software"
     },
 
-    /// /images/word/revisar/0.png
+    /// /images/informaticabasica/modulo4/revisar/revisar/0.png
     ortografia: {
       id: 'ortografia',
       titulo: 'Ortografia',
@@ -31,21 +31,21 @@ parasails.registerPage('m-4-ortografia', {
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Al hacer clic sobre Ortografía y gramática aparecerá la siguiente pantalla. Esta interfaz permite paso a paso revisar las faltas ortográficas del documento.',
-          imagen: '/images/word/p_revisar/1.png',
+          imagen: '/images/informaticabasica/modulo4/revisar/p_revisar/1.png',
           alt: 'Opciones de ortografía',
 
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Dar clic derecho sobre la palabra subrayada en rojo o verde, se mostrará diferentes opciones de escritura correcta.',
-          imagen: '/images/word/p_revisar/2.png',
+          imagen: '/images/informaticabasica/modulo4/revisar/p_revisar/2.png',
           alt: 'Opciones para corregir la palabra',
 
         },
         {
           posicion: '3', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Finalmente, los errores ortográficos se encuentran corregidos.',
-          imagen: '/images/word/p_revisar/3.png',
+          imagen: '/images/informaticabasica/modulo4/revisar/p_revisar/3.png',
           alt: 'Errores Corregidos',
 
         }

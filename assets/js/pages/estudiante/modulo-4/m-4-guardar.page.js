@@ -20,7 +20,7 @@ parasails.registerPage('m-4-guardar', {
       default: "software"
     },
 
-    /// /images/word/revisar/0.png
+    /// /images/informaticabasica/modulo4/guardar/revisar/0.png
     guardar: {
       id: 'guardar',
       titulo: 'Guardar documento',
@@ -30,42 +30,42 @@ parasails.registerPage('m-4-guardar', {
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Para guardar un documento siga los siguientes pasos: 1.Terminar de escribir el documento.',
-          imagen: '/images/word/guardar_imprimir/1.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/1.png',
           alt: 'Terminar de redactar el documento',
 
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
           detalle: '2.	Se puede guardar un documento de 3 maneras diferentes: a)	En la parte superior de la pantalla de windows con el icono en forma de disquete ',
-          imagen: '/images/word/guardar_imprimir/2.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/2.png',
           alt: 'Botón guardar',
 
         },
         {
           posicion: '3', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'a) Dar clic izquierdo en el ícono disquete y aparecerá la siguiente interfaz, que pide el nombre del documento a guardar.',
-          imagen: '/images/word/guardar_imprimir/3.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/3.png',
           alt: 'Seleccionar la ruta para guardar el documento',
 
         },
         {
           posicion: '4', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'b)	Utilizando en acceso desde “Archivo”, clic en guardar o guardar como',
-          imagen: '/images/word/guardar_imprimir/4.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/4.png',
           alt: 'Opción archivo',
 
         },
         {
           posicion: '5', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'b)	Seleccionar el lugar para guardar y darle un nombre al archivo',
-          imagen: '/images/word/guardar_imprimir/5.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/5.png',
           alt: 'Seleccionar la ruta para guardar el documento',
 
         },
         {
           posicion: '6', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'c)	Utilizando conmandos del teclado',
-          imagen: '/images/word/guardar_imprimir/6.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/6.png',
           alt: 'Atajo de teclado para guardar un documento ',
 
         }
@@ -80,35 +80,35 @@ parasails.registerPage('m-4-guardar', {
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
           detalle: '1. Terminar de escribir el documento',
-          imagen: '/images/word/guardar_imprimir/7.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/7.png',
           alt: 'Terminar de redactar',
 
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
           detalle: '2. Podemos imprimir un documento de 2 maneras diferentes: a)	Clic en Archivo',
-          imagen: '/images/word/guardar_imprimir/8.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/8.png',
           alt: 'Clic en archivo',
 
         },
         {
           posicion: '3', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Luego aparecerá la siguiente interfaz que permite la impresión del documento, eligiendo en primer lugar ciertas características a tomar en cuenta para el documento:',
-          imagen: '/images/word/guardar_imprimir/9.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/9.png',
           alt: 'Opciones de impresión',
 
         },
         {
           posicion: '4', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'b)	Utilizando comandos del teclado',
-          imagen: '/images/word/guardar_imprimir/10.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/10.png',
           alt: 'tajo de teclado para imprimir un documento',
 
         },
         {
           posicion: '5', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'A continuación, se muestra la siguiente interfaz que permite trabajar la configuración del documento:',
-          imagen: '/images/word/guardar_imprimir/11.png',
+          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/11.png',
           alt: 'Opciones de impresión',
 
         }

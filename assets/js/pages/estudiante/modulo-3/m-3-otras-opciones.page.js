@@ -28,7 +28,7 @@ parasails.registerPage('m-3-otras-opciones', {
       imgs: [
 
         {
-          src: '/images/inicio_sesion_office.png',
+          src: '/images/informaticabasica/modulo3/otras_opciones/inicio_sesion_office.png',
           alt: 'Iniciar sesión en Microsoft Office '
         },
 
@@ -42,7 +42,7 @@ parasails.registerPage('m-3-otras-opciones', {
       imgs: [
 
         {
-          src: '/images/barra_desplazamiento.png',
+          src: '/images/informaticabasica/modulo3/otras_opciones/barra_desplazamiento.png',
           alt: ' Barra de desplazamiento'
         },
 
@@ -56,7 +56,7 @@ parasails.registerPage('m-3-otras-opciones', {
       imgs: [
 
         {
-          src: '/images/barra_estado.png',
+          src: '/images/informaticabasica/modulo3/otras_opciones/barra_estado.png',
           alt: ' Barra de estado'
         },
 

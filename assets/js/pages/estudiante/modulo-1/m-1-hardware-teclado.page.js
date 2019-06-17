@@ -122,7 +122,7 @@ parasails.registerPage('m-1-hardware-teclado', {
     alfanumerico: {
       id: 'TeclasAlfanuméricas',
       titulo:'Teclas Alfanuméricas',
-      detalle: 'Estas teclas sirven para escribir porque incluyen las letras del alfabeto, números, signos de puntuación y símbolos que se encuentran en las máquinas de escribir tradicionales.',
+      detalle: 'Las Teclas alfanuméricas sirven para escribir porque incluyen las letras del alfabeto, números, signos de puntuación y símbolos que se encuentran en las máquinas de escribir tradicionales.',
       leerMas: 'https://sites.google.com/site/tecnocecprimaria/home/grado-cuarto/tercer-periodo/el-teclado',
       imgs: [
 
@@ -136,7 +136,7 @@ parasails.registerPage('m-1-hardware-teclado', {
     posicion: {
       id: 'TeclasDePosición',
       titulo:'Teclas de posición',
-      detalle: 'Este teclado también recibe el nombre de direccional o navegación. Estas teclas se utilizan para desplazarse por documentos o páginas web y editar texto. Incluyen teclas de dirección, Inicio, Fin, Re Pág, Av Pág, Supr e Insert.',
+      detalle: 'Las Teclas de posición también reciben el nombre de teclado direccional o de navegación. Estas teclas se utilizan para desplazarse por documentos o páginas web y editar texto. Incluyen teclas de dirección, Inicio, Fin, Re Pág (Regresar Página) , Av Pág (Avanzar Página), Supr (Suprimir) e Insert (Insertar).',
       leerMas: 'https://sites.google.com/site/tecnocecprimaria/home/grado-cuarto/tercer-periodo/el-teclado',
       imgs: [
 
@@ -150,7 +150,7 @@ parasails.registerPage('m-1-hardware-teclado', {
     numerico: {
       id: 'TeclasNuméricas',
       titulo:'Teclas numéricas',
-      detalle: 'Estas teclas se agrupan en un bloque al igual que una calculadora, ubicadas a la derecha del teclado. Sirven para escribir los números en forma más rápida.',
+      detalle: 'Las Teclas numéricas se agrupan en un bloque al igual que una calculadora, ubicadas a la derecha del teclado. Sirven para escribir los números en forma más rápida.',
       leerMas: 'https://sites.google.com/site/tecnocecprimaria/home/grado-cuarto/tercer-periodo/el-teclado',
       imgs: [
 
@@ -164,21 +164,14 @@ parasails.registerPage('m-1-hardware-teclado', {
     otras: {
       id: 'OtrasTeclas',
       titulo:'Otras teclas',
-      detalle: 'Son tres teclas que tienen funcionalidades especiales, "impr pant", "bloq desbloq", "pause" ',
+      detalle: 'Existen otras teclas que tienen funcionalidades especiales, estas son: "impr pant", "bloq despl" y "pause" ',
       leerMas: 'https://www.areatecnologia.com/TECNOLOGIA%20EN%20IMAGENES/EL%20TECLADO%20DEL%20ORDENADOR.htm',
-      imgs: [
-
-        {
-          src: '',
-          alt: ''
-        },
-
-      ]
+      html:'<h5> Impr Pant o PRTSC: </h5> <p>Son las abreviaturas de "Imprimir pantalla" o en inglés: "Print Screen": al pulsar esta tecla la computadora captura una imágen del estado actual del escritorio del computador, esta imágen se almacena temporalmente en el portapapeles, y puede ser usada en paint o word o cualquier otra aplicación que tenga acceso al portapapeles. </p> <h5> Bloq Despl: </h5><p> Es la abreviatura de "Bloquear desplazamiento", sirve para cambiar la funcionalidad de las teclas "arriba" y "abajo", se usa en un editor de texto y alterna las funciones entre "desplazar el cursor para escribir", y "desplazar la pantalla hacia abajo", actualmente se usa el mouse para estas funciones. </p><h5> Pause: </h5><p> Esta tecla es usada para realizar tareas técnicas como desarrollador o help desk  </p>'
     },
     especiales: {
       id: 'TeclasEspeciales',
       titulo:'Teclas especiales',
-      detalle: 'Estas teclas se utilizan por sí solas o en combinación con otras teclas para realizar determinadas acciones. Las teclas que se usan con más frecuencia son Bloq Mayús, Barra espaciadora, Ctrl, Alt, la tecla del logotipo de Windows y Esc.',
+      detalle: 'Las Teclas especiales se utilizan por sí solas o en combinación con otras teclas para realizar determinadas acciones. Las teclas que se usan con más frecuencia son Bloq Mayús, Barra espaciadora, Ctrl, Alt, la tecla del logotipo de Windows y Esc.',
       leerMas: 'https://sites.google.com/site/tecnocecprimaria/home/grado-cuarto/tercer-periodo/el-teclado',
       imgs: [
 

@@ -2,7 +2,7 @@ parasails.registerPage('administrar-contenido', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
-  data: {
+  data: { 
     formErrors: {},
     objetoSeleccionado: Object,
     editarNombre: false,
@@ -131,7 +131,8 @@ parasails.registerPage('administrar-contenido', {
       ).then(
         (response) => {
           alert('Modificacion Exitosa');
-
+          this.editarNombre = false;
+          this.editarDescripcion = false;
         }
       ).catch((err) => {
         alert(err);
@@ -155,7 +156,8 @@ parasails.registerPage('administrar-contenido', {
       ).then(
         (response) => {
           alert('Modificacion Exitosa');
-
+          this.editarNombre = false;
+          this.editarDescripcion = false;
         }
       ).catch((err) => {
         alert(err);

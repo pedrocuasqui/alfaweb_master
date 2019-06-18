@@ -85,6 +85,7 @@ parasails.registerPage('m-3-area-trabajo', {
     // },
     // mouseOutPc(evet) {
     //   this.mostrarToolTip = false;
+    
     // },
   },
   computed: {

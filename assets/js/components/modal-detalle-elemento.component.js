@@ -34,7 +34,7 @@ parasails.registerComponent('modal-detalle-elemento', {
       ecarousel: false,
       animarBuho: true,
       // sonido: null, //objeto window.speechSynthesis
-      // silenciar: true, //el lector de texto empieza en silencio,
+      silenciar: true, //el lector de texto empieza en silencio,
       reproduciendo: false,
       msg: null,
     };
@@ -75,12 +75,27 @@ parasails.registerComponent('modal-detalle-elemento', {
     $('#modal' + this.infoElement.id).on('show.bs.modal', function (e) {
       _this.clickLimitarTiempoAnimacion();
 
-    })
+    });
 
+    $('#modal' + this.infoElement.id).on('show.bs.modal', function (e) {
+      // do something...
+      let audioModal = document.getElementById("audioModalAbrir");
+      audioModal.volume = 0.2;
+      audioModal.load(); //carga el archivo, esto implica detener la reproduccion actual
+      audioModal.play(); //reproduce el archivo de audio
+    });
+    $('#modal' + this.infoElement.id).on('hide.bs.modal', function (e) {
+      // do something...
+      let audioModal = document.getElementById("audioModalCerrar");
+      audioModal.volume = 0.2;
+      audioModal.load(); //carga el archivo, esto implica detener la reproduccion actual
+      audioModal.play(); //reproduce el archivo de audio
+    });
   },
 
   template://html
     `
+    
         <div class="modal fade" :id="'modal'+infoElement.id" tabindex="-1" role="dialog" aria-labelledby="modalComponente"
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
@@ -98,8 +113,21 @@ parasails.registerComponent('modal-detalle-elemento', {
 
             <!--BODY -->
             <div class="modal-body">
-              <div class="d-print-inline-flex text-justify" >
-                <img @click="onReproducirParar" @mouseover="onReproducirParar" :class="{avatarModalInicio : animarBuho }" id="avatarModal" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+            <audio id="audioModalAbrir" src="/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3"></audio>
+            <audio id="audioModalCerrar" src="/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3"></audio>
+              
+            
+            <div class="d-print-inline-flex text-justify" >
+                <!--<img @click="onReproducirParar" @mouseover="onReproducirParar" :class="{avatarModalInicio : animarBuho }" id="avatarModal" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+-->
+                <!-- <div class="col-sm-1" id="avatar">-->
+                <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+                <a v-if="silenciar" @click="onReproducirParar" title="Reproducir" class="iconoAudio" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-volume-mute"></i></a>
+                <a v-else @click="onReproducirParar" title="Silenciar"  class="iconoAudio" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-volume-up"></i></a>
+           <!--  </div>-->
+
+
+
                 {{infoElement.detalle}}
               </div>
               <a v-if="leerMas" :href="infoElement.leerMas" target="_blank">Leer más</a>
@@ -167,6 +195,7 @@ parasails.registerComponent('modal-detalle-elemento', {
     clickSilenciar() {
       this.sonido.cancel();
       this.reproduciendo = false;
+      this.silenciar = true;
 
     },
     /**
@@ -175,15 +204,24 @@ parasails.registerComponent('modal-detalle-elemento', {
     onReproducirParar() {
 
       var textoHtml = $('#htmlContent' + this.infoElement.id).contents().filter('h1, h2,h3, h4, h5, h6, p').text();
-
       var textoLectura = this.infoElement.detalle + " " + textoHtml;
+
+
       if (this.reproduciendo) {
         this.clickSilenciar();
+
       }
       else if (this.reproduciendo == false) {
+        this.silenciar = false;
+        // var synth = window.speechSynthesis;
+
+        //  var voices = synth.getVoices();
+
+
+
         this.reproduciendo = true;
         this.msg = new SpeechSynthesisUtterance(textoLectura);
-        // msg.voice = voices[10]; // Note: some voices don't support altering params
+        // this.msg.voice = voices[2]; // Note: some voices don't support altering params
         this.sonido.speak(this.msg);
       }
 
@@ -210,9 +248,10 @@ parasails.registerComponent('modal-detalle-elemento', {
         console.log('cambia a posicion: ' + indice);
       })
 
-      console.log('sfhalskjdhfalkjsdh');
+
 
     },
+
   },
   computed: {
     idCarousel() {

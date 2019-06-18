@@ -3,7 +3,7 @@ parasails.registerPage('m-1-computadora', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    
+
     descripcionActividad: "BIENVENIDO!!! \n Pasa el mouse sobre las imágenes para que puedas ver el nombre de los objetos.",
     breadcrumb: [],
 
@@ -11,12 +11,12 @@ parasails.registerPage('m-1-computadora', {
     //   nombreModulo: 'Módulo 1- La computadora ',
     //   descripcion: 'La computadora es una máquina electrónica capaz de recibir un conjunto de órdenes y ejecutarlas realizando cálculos complejos, o agrupando y correlacionando otro tipo de información. Es también conocida como ordenador o computador.',
     // },
-    usuario:Object,
-    navegarSiguiente:'',
-    navegarAtras:'',
-    tituloEvaluacion:'',
-    evIndividual:false,
-    objetoSeleccionado:'',
+    usuario: Object,
+    navegarSiguiente: '',
+    navegarAtras: '',
+    tituloEvaluacion: '',
+    evIndividual: false,
+    objetoSeleccionado: '',
 
     mouseX: 0,
     mouseY: 0,
@@ -27,35 +27,35 @@ parasails.registerPage('m-1-computadora', {
     },
 
 
-    cpu:{
+    cpu: {
       id: 'Cpu',
       titulo: 'CPU (Unidad Central de Procesamiento)',
-      detalle: 'CPU son las siglas en ingles de Central Processing Unit (Unidad de Proceso Central), El CPU es el cerebro del'+
-      'ordenador ya que procesa toda la información que le suministramos y nos muestra un resultado por pantalla.  En general, es la parte más importante del sistema.',
+      detalle: 'CPU son las siglas en ingles de Central Processing Unit (Unidad de Proceso Central), El CPU es el cerebro del' +
+        'ordenador ya que procesa toda la información que le suministramos y nos muestra un resultado por pantalla.  En general, es la parte más importante del sistema.',
       leerMas: 'https://conceptodefinicion.de/cpu/',
       imgs: [{
         src: 'https://http2.mlstatic.com/cpucore-i3-8100-octava-generacion-4gb-ssd-120gb-case-halion-D_NQ_NP_955885-MPE29189916004_012019-Q.jpg',
         alt: 'CPU'
       }],
-     
+
     },
-    teclado:{
+    teclado: {
       id: 'Teclado',
       titulo: 'Teclado',
-      detalle: 'El teclado es un instrumento externo que está representado por un conjunto de teclas, que se encargan de'+
-      'ingresar una información a una computadora o dispositivo por medio de caracteres (letras, números y símbolos).',
+      detalle: 'El teclado es un instrumento externo que está representado por un conjunto de teclas, que se encargan de' +
+        'ingresar una información a una computadora o dispositivo por medio de caracteres (letras, números y símbolos).',
       leerMas: 'https://es.wikipedia.org/wiki/Teclado_(inform%C3%A1tica)',
       imgs: [{
         src: 'https://store-images.s-microsoft.com/image/apps.45987.13510798885202450.fa37ac85-50b7-40bf-94be-f7c318f9764a.99d963b7-7b48-481e-b0a6-3d01efab7b7c?w=672&h=378&q=80&mode=letterbox&background=%23FFE4E4E4&format=jpg',
         alt: 'El teclado'
       }],
-     
+
     },
-    mouse:{
+    mouse: {
       id: 'Mouse',
       titulo: 'Mouse',
-      detalle: 'El mouse es uno de los periféricos de entrada que forman parte de un computador, a través de él se puede'+
-      'interactuar directamente con la computadora mediante un puntero (indicador) que se muestra en la pantalla.',
+      detalle: 'El mouse es uno de los periféricos de entrada que forman parte de un computador, a través de él se puede' +
+        'interactuar directamente con la computadora mediante un puntero (indicador) que se muestra en la pantalla.',
       leerMas: 'https://es.wikipedia.org/wiki/Rat%C3%B3n_(inform%C3%A1tica) ',
       imgs: [{
         src: 'https://image.slidesharecdn.com/presentationcomputeers-120213062438-phpapp02/95/presentation-computeers-8-728.jpg',
@@ -63,20 +63,20 @@ parasails.registerPage('m-1-computadora', {
       }],
 
     },
-    monitor:{
+    monitor: {
       id: 'Monitor',
       titulo: 'Monitor',
-      detalle: 'El monitor es un dispositivo electrónico de salida de la computadora en el que se muestran las imágenes y'+
-      'textos generados por medio de un adaptador gráfico o de video de ésta. El término monitor se refiere'+
-      'normalmente a la pantalla de vídeo, y su función principal y única es la de permitir al usuario interactuar'+
-      'con la computadora.',
+      detalle: 'El monitor es un dispositivo electrónico de salida de la computadora en el que se muestran las imágenes y' +
+        'textos generados por medio de un adaptador gráfico o de video de ésta. El término monitor se refiere' +
+        'normalmente a la pantalla de vídeo, y su función principal y única es la de permitir al usuario interactuar' +
+        'con la computadora.',
       leerMas: 'https://es.wikipedia.org/wiki/Monitor_de_computadora',
 
       carousel: [
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'El término monitor se refiere normalmente a la pantalla de vídeo, y su función principal y única es la de permitir al usuario interactuar'+
-          'con la computadora.',
+          detalle: 'El término monitor se refiere normalmente a la pantalla de vídeo, y su función principal y única es la de permitir al usuario interactuar' +
+            'con la computadora.',
           imagen: 'https://www.asus.com/media/global/products/Em0Dz3MjS9JKYM88/P_setting_fff_1_90_end_500.png',
           alt: 'Monitor',
 
@@ -97,7 +97,7 @@ parasails.registerPage('m-1-computadora', {
         }
       ]
     }
-    
+
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -112,15 +112,15 @@ parasails.registerPage('m-1-computadora', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    
 
-    this.objetoSeleccionado=SAILS_LOCALS.objetoSeleccionado;
-    this.usuario= SAILS_LOCALS.usuario;
-    this.navegarAtras= '/indice-estudiante/?usuarioId='+this.usuario.id+'&cursoId='+this.curso.id,
-    this.navegarSiguiente=this.objetoSeleccionado.submodulos[0].enlace;
+
+    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
+    this.usuario = SAILS_LOCALS.usuario;
+    this.navegarAtras = '/indice-estudiante/?usuarioId=' + this.usuario.id + '&cursoId=' + this.curso.id,
+      this.navegarSiguiente = this.objetoSeleccionado.submodulos[0].enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
-  
+
     console.log(this.usuario);
   },
   mounted: async function () {
@@ -139,30 +139,35 @@ parasails.registerPage('m-1-computadora', {
         $('#modalInicial').modal('show');
       });
     },
-    infoObjeto(idObjeto){
-      if(idObjeto=='cpu'){
-        $(function(){
+    infoObjeto(idObjeto) {
+
+      if (idObjeto == 'cpu') {
+        $(function () {
           $('#modalCpu').modal('show');
         });
 
-      }else if(idObjeto=='teclado'){
-        $(function(){
+      } else if (idObjeto == 'teclado') {
+        $(function () {
           $('#modalTeclado').modal('show');
         });
 
-      }else if(idObjeto=='mouse'){
-        
-        $(function(){
+      } else if (idObjeto == 'mouse') {
+
+        $(function () {
           $('#modalMouse').modal('show');
         });
-      }else if(idObjeto=='monitor'){
-        $(function(){
+      } else if (idObjeto == 'monitor') {
+        $(function () {
           $('#modalMonitor').modal('show');
         });
       }
+
     },
     mouseMovePc(event) {
       // clientX/Y obtiene las coordenadas del elemento con respecto al elemento padre, en este caso las coordenadas con respecto a <div id="m1-computadora"
+      //
+
+
 
       this.mouseX = event.clientX;
       this.mouseY = event.clientY;
@@ -177,12 +182,19 @@ parasails.registerPage('m-1-computadora', {
     },
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
+
+      // El audio se encuentra en el componente modulo-contenedor-curso.component
+      let audioMouseOver = document.getElementById("audioMouseOver");
+      audioMouseOver.volume = 0.2;
+      // audioMouseOver.load(); //carga el archivo, esto implica detener la reproduccion actual
+      audioMouseOver.play(); //reproduce el archivo de audio
+
     },
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-      if(contenido=='contenido'){
+      if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
         this.evIndividual = false;
-      }else{
+      } else {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
         this.evIndividual = true;
       }

@@ -116,6 +116,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
                     <div class="row">
                             
                                 <div class="contenedor-slot-principal">
+                                    <!--El javascript que reproduce el siguiente audio se encuentra en cada documento javascript de cada modulo y submodulo del curso informaticaBasica, tambien se puede invocar desde cuanlquier contenido dentro de este componente-->
+                                    <audio id="audioMouseOver" src="/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3"></audio>
                                     <slot></slot>
                                 </div>
                             

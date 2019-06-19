@@ -77,6 +77,7 @@ parasails.registerComponent('modal-detalle-elemento', {
 
     });
 
+    //efecto de sonido de ABRIR
     $('#modal' + this.infoElement.id).on('show.bs.modal', function (e) {
       // do something...
       let audioModal = document.getElementById("audioModalAbrir");
@@ -84,8 +85,11 @@ parasails.registerComponent('modal-detalle-elemento', {
       audioModal.load(); //carga el archivo, esto implica detener la reproduccion actual
       audioModal.play(); //reproduce el archivo de audio
     });
+    //efecto de sonido de CERRAR
     $('#modal' + this.infoElement.id).on('hide.bs.modal', function (e) {
-      // do something...
+      window.sonido.cancel();
+
+
       let audioModal = document.getElementById("audioModalCerrar");
       audioModal.volume = 0.2;
       audioModal.load(); //carga el archivo, esto implica detener la reproduccion actual
@@ -122,8 +126,8 @@ parasails.registerComponent('modal-detalle-elemento', {
 -->
                 <!-- <div class="col-sm-1" id="avatar">-->
                 <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-                <a v-if="silenciar" @click="onReproducirParar" title="Reproducir" class="iconoAudio" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-volume-mute"></i></a>
-                <a v-else @click="onReproducirParar" title="Silenciar"  class="iconoAudio" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-volume-up"></i></a>
+                <a v-if="silenciar" @click="onReproducirParar" title="Reproducir" class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-volume-mute"></i></a>
+                <a v-else @click="onReproducirParar" title="Silenciar"  class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-volume-up"></i></a>
            <!--  </div>-->
 
 

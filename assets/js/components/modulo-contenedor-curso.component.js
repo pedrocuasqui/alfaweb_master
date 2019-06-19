@@ -50,6 +50,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
             evIndividual: false,
             silenciar: true,
             sonido: null,
+            silenciarGeneral: false, //el audio est'a activado
 
         };
     },
@@ -127,11 +128,10 @@ parasails.registerComponent('modulo-contenedor-curso', {
                     <div class="row pie-contenido">
                         <div class="col-sm-1" id="avatar">
                             <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-                            <a v-if="silenciar" @click="clickReproducir" title="Reproducir"><i class="fas fa-volume-mute"></i></a>
-                            <a v-else @click="clickSilenciar" title="Silenciar"><i class="fas fa-volume-up"></i></a>
+                            <a v-if="silenciar" @click="clickReproducir" title="Reproducir" class="audioTag"><i class="fas fa-volume-mute"></i></a>
+                            <a v-else @click="clickSilenciar" title="Silenciar" class="audioTag"><i class="fas fa-volume-up"></i></a>
                         </div>
                       
-
 
                         <div class="col-sm-11" id="descripcion-objeto">
                             <h6 v-if="existeDescripcion  && tituloTemporal==''">{{objetoSeleccionado.descripcion}}</h6>
@@ -144,9 +144,12 @@ parasails.registerComponent('modulo-contenedor-curso', {
                     <modulo-panel-derecho :usuario="usuario" @evaluacion-individual="evaluacionIndividual"> 
                         <template v-slot:audio_general>
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
-                            <a v-if="silenciarGeneral" @click="clickReproducir" title="Reproducir"><i class="fas fa-volume-mute"></i></a>
-                            <a v-else @click="clickSilenciar" title="Silenciar"><i class="fas fa-volume-up"></i></a>
+                            <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
+                            <a v-else @click="clickSilenciarGeneral" title="Silenciar" ><i class="fas fa-volume-up"></i></a>
+                            <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
+                            <button v-print="'#descripcion-objeto'">Imprimir cabecera</button>
                         </template>
+
                     </modulo-panel-derecho>
                 </div>
             </div> <!-- fin fila de contenido central y barra lateral derecha -->
@@ -190,6 +193,24 @@ parasails.registerComponent('modulo-contenedor-curso', {
             // msg.voice = voices[10]; // Note: some voices don't support altering params
             window.sonido.speak(msg);
         },
+        clickReproducirGeneral(){
+            this.silenciarGeneral=false;
+            $('.audioTag').show();
+            $('.audioTag').show();
+            $("#audioMouseOver").attr("src","/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3");
+            $("#audioModalAbrir").attr("src","/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3");
+            $("#audioModalCerrar").attr("src","/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3");
+        },
+        clickSilenciarGeneral(){
+            this.silenciarGeneral=true;
+            $('.audioTag').hide();
+            $('.audioTag').hide();
+            $('audio').hide();
+            $("audio").attr("src","");
+        },
+        clickImprimir(){
+            window.print();
+        }
 
 
     },

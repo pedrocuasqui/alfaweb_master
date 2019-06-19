@@ -53,7 +53,10 @@ parasails.registerComponent('modulo-panel-derecho', {
                 <div class="col">
                 {{usuario.nombre}}
                 </div>
+                <slot name="audio_general"></slot>
         </div>
+        
+        <slot ></slot>
         <div class="row progreso">
                 <div class="col">
                     <div class="nivel">
@@ -138,7 +141,8 @@ parasails.registerComponent('modulo-panel-derecho', {
         evaluacionIndividual(contenido){
             // alert('evaluacion indiidual');
             this.$emit('evaluacion-individual',contenido);
-        }
+        },
+
 
     },
     computed: {

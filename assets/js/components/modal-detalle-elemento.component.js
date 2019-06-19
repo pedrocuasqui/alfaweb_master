@@ -129,21 +129,23 @@ parasails.registerComponent('modal-detalle-elemento', {
                 <a v-if="silenciar" @click="onReproducirParar" title="Reproducir" class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-volume-mute"></i></a>
                 <a v-else @click="onReproducirParar" title="Silenciar"  class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-volume-up"></i></a>
            <!--  </div>-->
+              <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
 
-
-
+                <div ref="printTexto">
                 {{infoElement.detalle}}
+                </div>
+                                
               </div>
               <a v-if="leerMas" :href="infoElement.leerMas" target="_blank">Leer más</a>
               
               <!--IMAGENES-->
-              <div class="d-flex justify-content-center"><img v-if="imagen" v-for="img in infoElement.imgs" :src="img.src" :title="img.alt"></div>
+              <div ref="printImagenes" class="d-flex justify-content-center"><img v-if="imagen" v-for="img in infoElement.imgs" :src="img.src" :title="img.alt"></div>
 
               <!-- HTML-->
-              <div v-if="html" :id="'htmlContent'+infoElement.id" v-html="infoElement.html"></div>
+              <div  ref="printHtml" v-if="html" :id="'htmlContent'+infoElement.id" v-html="infoElement.html"></div>
 
               <!--CAROUSEL-->
-              <div v-if="ecarousel" :id="idCarousel" class="carousel slide modalDetalle" data-ride="carousel" data-interval="false">
+              <div ref="printCarousel" v-if="ecarousel" :id="idCarousel" class="carousel slide modalDetalle" data-ride="carousel" data-interval="false">
               <ol class="carousel-indicators carousel-indicators-numbers">
 
                 <li v-for="(elemento,index) in infoElement.carousel"  :key="index" :data-target="'#'+idCarousel" :data-slide-to="index" class="indicador" :class="{active: elemento.posicion==1}" @click="obtenerIndice">{{elemento.posicion}}</li>
@@ -255,6 +257,36 @@ parasails.registerComponent('modal-detalle-elemento', {
 
 
     },
+    clickImprimir() {
+      // window.print();
+      //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
+      // var contenidoBreadcrumb = this.$refs.printBreadcrumb;
+      var contenidoTexto = this.$refs.printTexto;
+      var contenidoImagenes = this.$refs.printImagenes;
+      var contenidoHtml = this.$refs.printHtml;
+      var contenidoCarousel = this.$refs.printCarousel;
+
+      newWin = window.open(""); //abre una variable para escribir sobre ella
+      // console.log(contenidoImprimir.outerHTML)
+      newWin.document.write('<h2>Contenido: ' + this.infoElement.titulo + '</h2>');
+      // newWin.document.write(contenidoBreadcrumb.outerHTML);
+      newWin.document.write(contenidoTexto.outerHTML);
+      if (this.html) {
+        newWin.document.write(contenidoHtml.outerHTML);
+      }
+      if (this.imagen) {
+        newWin.document.write(contenidoImagenes.outerHTML);
+      }
+      if (this.ecarousel) {
+        newWin.document.write(contenidoCarousel.outerHTML);
+      }
+
+
+
+
+      newWin.print();
+      newWin.close();
+    }
 
   },
   computed: {

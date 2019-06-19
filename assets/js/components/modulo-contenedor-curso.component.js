@@ -61,7 +61,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
     template: //html
         `  
 <div class="div-contenido container-fluid"  v-cloak>
-    <div class="row" id="div-cabecera"  >
+    <div class="row" id="div-cabecera" ref="printBreadcrumb" >
         <div class="col-sm-10">
             <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
         </div>
@@ -116,7 +116,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                     <div class="row">
                             
-                                <div class="contenedor-slot-principal">
+                                <div class="contenedor-slot-principal" ref="printContenidoCentral">
                                     <!--El javascript que reproduce el siguiente audio se encuentra en cada documento javascript de cada modulo y submodulo del curso informaticaBasica, tambien se puede invocar desde cuanlquier contenido dentro de este componente-->
                                     <audio id="audioMouseOver" src="/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3"></audio>
                                     <slot></slot>
@@ -125,7 +125,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                     </div>
 
 
-                    <div class="row pie-contenido">
+                    <div class="row pie-contenido" >
                         <div class="col-sm-1" id="avatar">
                             <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
                             <a v-if="silenciar" @click="clickReproducir" title="Reproducir" class="audioTag"><i class="fas fa-volume-mute"></i></a>
@@ -133,7 +133,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         </div>
                       
 
-                        <div class="col-sm-11" id="descripcion-objeto">
+                        <div class="col-sm-11" id="descripcion-objeto" ref="printContenidoDescripcion">
                             <h6 v-if="existeDescripcion  && tituloTemporal==''">{{objetoSeleccionado.descripcion}}</h6>
                         </div>
                     </div>
@@ -147,7 +147,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                             <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
                             <a v-else @click="clickSilenciarGeneral" title="Silenciar" ><i class="fas fa-volume-up"></i></a>
                             <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
-                            <button v-print="'#descripcion-objeto'">Imprimir cabecera</button>
+                            
                         </template>
 
                     </modulo-panel-derecho>
@@ -193,23 +193,37 @@ parasails.registerComponent('modulo-contenedor-curso', {
             // msg.voice = voices[10]; // Note: some voices don't support altering params
             window.sonido.speak(msg);
         },
-        clickReproducirGeneral(){
-            this.silenciarGeneral=false;
+        clickReproducirGeneral() {
+            this.silenciarGeneral = false;
             $('.audioTag').show();
             $('.audioTag').show();
-            $("#audioMouseOver").attr("src","/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3");
-            $("#audioModalAbrir").attr("src","/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3");
-            $("#audioModalCerrar").attr("src","/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3");
+            $("#audioMouseOver").attr("src", "/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3");
+            $("#audioModalAbrir").attr("src", "/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3");
+            $("#audioModalCerrar").attr("src", "/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3");
         },
-        clickSilenciarGeneral(){
-            this.silenciarGeneral=true;
+        clickSilenciarGeneral() {
+            this.silenciarGeneral = true;
             $('.audioTag').hide();
             $('.audioTag').hide();
             $('audio').hide();
-            $("audio").attr("src","");
+            $("audio").attr("src", "");
         },
-        clickImprimir(){
-            window.print();
+        clickImprimir() {
+            // window.print();
+            //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
+            var contenidoBreadcrumb = this.$refs.printBreadcrumb;
+            var contenidoCentral = this.$refs.printContenidoCentral;
+            var contenidoDescripcion = this.$refs.printContenidoDescripcion;
+            newWin = window.open(""); //abre una variable para escribir sobre ella
+            // console.log(contenidoImprimir.outerHTML)
+            newWin.document.write('<h2>Contenido</h2>');
+            newWin.document.write(contenidoBreadcrumb.outerHTML);
+            newWin.document.write(contenidoCentral.outerHTML);
+            newWin.document.write('<h2>Descripción</h2>');
+            newWin.document.write(contenidoDescripcion.outerHTML);
+            newWin.document.write('<h5>Sistema "alfaweb" http://www.epn.edu.ec autor: EPN-FIS-Pedro Cuasqui</h5>');
+            newWin.print();
+            newWin.close();
         }
 
 

@@ -50,12 +50,12 @@ parasails.registerComponent('modulo-contenedor-curso', {
             evIndividual: false,
             silenciar: true,
             sonido: null,
-            
+
         };
     },
     mounted() {
-
-        this.sonido = window.speechSynthesis;
+        window.sonido = null;
+        window.sonido = window.speechSynthesis;
     },
     template: //html
         `  
@@ -141,7 +141,13 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 </div>
                 <!-- columna derecha -->
                 <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
-                    <modulo-panel-derecho :usuario="usuario" @evaluacion-individual="evaluacionIndividual"></modulo-panel-derecho>
+                    <modulo-panel-derecho :usuario="usuario" @evaluacion-individual="evaluacionIndividual"> 
+                        <template v-slot:audio_general>
+                        <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
+                            <a v-if="silenciarGeneral" @click="clickReproducir" title="Reproducir"><i class="fas fa-volume-mute"></i></a>
+                            <a v-else @click="clickSilenciar" title="Silenciar"><i class="fas fa-volume-up"></i></a>
+                        </template>
+                    </modulo-panel-derecho>
                 </div>
             </div> <!-- fin fila de contenido central y barra lateral derecha -->
         </div> <!--fin columna contenido central y barra lateral derecha-->
@@ -174,15 +180,15 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
 
         clickSilenciar() {
-            this.sonido.cancel();
-            this.silenciar = true;
+            window.sonido.cancel();
+            window.silenciar = true;
         },
         clickReproducir() {
             this.silenciar = false;
             // var voices = window.speechSynthesis.getVoices();
             var msg = new SpeechSynthesisUtterance(this.objetoSeleccionado.descripcion);
             // msg.voice = voices[10]; // Note: some voices don't support altering params
-            this.sonido.speak(msg);
+            window.sonido.speak(msg);
         },
 
 

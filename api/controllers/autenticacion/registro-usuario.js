@@ -94,7 +94,7 @@ module.exports = {
         sails.log('PROFESOR CREADO CORRECTAMENTE');
     }
 
-    return exits.redirect('/');
+    return exits.redirect('/view-login');
 
   }
 

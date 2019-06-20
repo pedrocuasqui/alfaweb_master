@@ -27,6 +27,7 @@ email:{
   type:'string',
   columnName:'email',
   unique:true,
+  unique:false
 },
 password:{
   type:'string',

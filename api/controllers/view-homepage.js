@@ -7,8 +7,8 @@ module.exports = {
   description: 'Display "homepage" page.',
   inputs: {
     usuarioId: {
-      type: 'string'
-
+      type: 'string',
+      required: false
     }
   },
 
@@ -24,6 +24,7 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
+    var req = this.req;
     // this.req.session.userId="123456789";
     // Evaluar el tipo de usuario que está realizando la petición
     // if (this.req.session.userId) {
@@ -33,9 +34,29 @@ module.exports = {
     // } else
     //   return exits.success({ nombreUsuario: null });
 
-    //valor quemado, en su lugar buscar por el id de sesion
-    var usuario = await Estudiante.findOne({ alias: 'Pedroc' }).populate('cursos');
-    // console.log(usuario);
+
+    var usuario;
+    //si se encuentra el usuario, se remite la información del usuario logueado para poder mostrar su nombre y validar su rol
+    if (req.me) {
+      usuario = await Profesor.findOne({ id: req.session.userId })
+      if (!usuario) {
+        usuario = await Estudiante.findOne({ id: req.session.userId })
+      }
+
+    }
+    else { // si el usuario no se encuentra registrado, se visualizará la página con datos de visitante, no se guardará su avance pero puede usar la aplicación
+      usuario = {
+        id: 1,
+        nombre: 'Visitante',
+        rol: 'Estudiante'
+
+      }
+      var cursos = await Curso.find();
+      usuario.cursos = cursos;
+      req.session.userId = usuario.id;
+      req.session.usuario = usuario;
+
+    }
 
 
     exits.success({ usuario });

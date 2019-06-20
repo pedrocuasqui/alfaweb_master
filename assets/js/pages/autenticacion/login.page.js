@@ -55,7 +55,7 @@ parasails.registerPage('login', {
 
 
       /*INSERTAR LA VALIDACION DE CORREO ELECTRONICO VALIDO */
-      //  si el objeto que almacena errores se encuentra vacío, entonces continuar, caso contrario no recargar la página
+      //  si el objeto formErrors se encuentra vacío, entonces continuar, caso contrario no recargar la página
       if (Object.keys(this.formErrors).length == 0) {
         console.log('sin errores de validacion');
         this.valor = 'hola';
@@ -69,10 +69,11 @@ parasails.registerPage('login', {
     },
     intentarEnvio() {
       console.log(JSON.stringify(this.formData));
+      //establezco los sigueintes valores en false para que se oculten los mensajes de error en la vista
       this.aliasIncorrecto = false;
       this.passwordIncorrecto = false;
       // REVISAR USO DE btoa y atoa de javascript para codificar y decodificar el password
-      axios.post('/login', {
+      axios.post('/login', { //por defecto esto se manda en el body del request http
         alias: this.formData.alias,
         email: this.formData.email,
         password: this.formData.password
@@ -83,6 +84,8 @@ parasails.registerPage('login', {
             // console.log('LOGIN EXITOSO');
 
             // Simulate an HTTP redirect:
+            console.log('LOGUEADO CON EXITOS');
+            console.log(response);
             window.location.replace("/");
           }
         )

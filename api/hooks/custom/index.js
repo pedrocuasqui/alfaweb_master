@@ -87,9 +87,22 @@ module.exports = function defineCustomHook(sails) {// toma como parámetro la in
             if (!req.session.userId) { return next(); }
 
             // Otherwise, look up the logged-in user.
-            var loggedInUser = await User.findOne({
-              id: req.session.userId
-            });
+            //establecer el usuario de la session como loggedInUser
+            var loggedInUser;
+            loggedInUser = req.session.usuario;
+            // if(req.session.tipoUsuario=='Admin'){
+            //    // Otherwise, look up the logged-in user.
+            //  loggedInUser = await Profesor.findOne({
+            //   id: req.session.userId
+            // });
+            // }
+
+
+            //BLOQUE COMENTADO
+            // var loggedInUser = await User.findOne({
+            //   id: req.session.userId
+            // });
+            //CIERRE BLOQUE COMENTADO
 
             // If the logged-in user has gone missing, log a warning,
             // wipe the user id from the requesting user agent's session,
@@ -117,21 +130,29 @@ module.exports = function defineCustomHook(sails) {// toma como parámetro la in
             // to the current timestamp.
             //
             // (Note: As an optimization, this is run behind the scenes to avoid adding needless latency.)
-            var MS_TO_BUFFER = 60 * 1000;
-            var now = Date.now();
-            if (loggedInUser.lastSeenAt < now - MS_TO_BUFFER) {
-              User.update({ id: loggedInUser.id })
-                .set({ lastSeenAt: now })
-                .exec((err) => {
-                  if (err) {
-                    sails.log.error('Background task failed: Could not update user (`' + loggedInUser.id + '`) with a new `lastSeenAt` timestamp.  Error details: ' + err.stack);
-                    return;
-                  }//•
-                  sails.log.verbose('Updated the `lastSeenAt` timestamp for user `' + loggedInUser.id + '`.');
-                  // Nothing else to do here.
-                });//_∏_  (Meanwhile...)
-            }//ﬁ
 
+
+
+
+
+
+
+            //BLOQUE COMENTADO
+            // var MS_TO_BUFFER = 60 * 1000;
+            // var now = Date.now();
+            // if (loggedInUser.lastSeenAt < now - MS_TO_BUFFER) {
+            //   User.update({ id: loggedInUser.id })
+            //     .set({ lastSeenAt: now })
+            //     .exec((err) => {
+            //       if (err) {
+            //         sails.log.error('Background task failed: Could not update user (`' + loggedInUser.id + '`) with a new `lastSeenAt` timestamp.  Error details: ' + err.stack);
+            //         return;
+            //       }//•
+            //       sails.log.verbose('Updated the `lastSeenAt` timestamp for user `' + loggedInUser.id + '`.');
+            //       // Nothing else to do here.
+            //     });//_∏_  (Meanwhile...)
+            // }//ﬁ
+            //CIERRE BLOQUE COMENTADO
 
             // If this is a GET request, then also expose an extra view local (`<%= me %>`).
             // > Note that we make sure a local named `me` doesn't already exist first.
@@ -142,12 +163,29 @@ module.exports = function defineCustomHook(sails) {// toma como parámetro la in
               }
 
               // Exclude any fields corresponding with attributes that have `protect: true`.
+              //ESTA APLCACION NO CONTENDRA CAMPOS protect
               var sanitizedUser = _.extend({}, loggedInUser);
-              for (let attrName in User.attributes) {
-                if (User.attributes[attrName].protect) {
-                  delete sanitizedUser[attrName];
-                }
-              }//∞
+              //BLOQUE COMENTADO
+              if(loggedInUser.administrador){ //contiene la propiedad administrador
+                for (let attrName in Profesor.attributes) {
+                  if (Profesor.attributes[attrName].protect) {
+                    delete sanitizedUser[attrName];
+                  }
+                }//∞
+              }
+              else{
+                for (let attrName in Estudiante.attributes) {
+                  if (Estudiante.attributes[attrName].protect) {
+                    delete sanitizedUser[attrName];
+                  }
+                }//∞
+              }
+              
+              //CIERRE BLOQUE COMENTADO
+
+
+
+
 
               // If there is still a "password" in sanitized user data, then delete it just to be safe.
               // (But also log a warning so this isn't hopelessly confusing.)

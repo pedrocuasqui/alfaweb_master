@@ -93,8 +93,9 @@ module.exports = {
     // sails.log('ESTAS LOGUEADO');
     
     req.session.userId = usuario.id;
+    req.session.usuario= usuario;
     req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
-    return exits.success();
+    return res.status(200).send();
 
   }
 

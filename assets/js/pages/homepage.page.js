@@ -5,7 +5,7 @@ parasails.registerPage('homepage', {
   data: {
     // nombreUsuario: 'Pedro',
     usuario: {
-      type: 'string',
+      type: 'json',
       default: {
         id:'ejemplo',
         nombre: 'pedro',
@@ -27,11 +27,11 @@ parasails.registerPage('homepage', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    // this.nombreUsuario = SAILS_LOCALS.nombreUsuario;
+    this.usuario = SAILS_LOCALS.usuario;
   },
   mounted: async function () {
     //…
-    console.log(this.nombreUsuario);
+    console.log(this.usuario);
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

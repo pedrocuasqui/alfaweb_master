@@ -45,7 +45,9 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
-
+    var res= this.res;
+    var req= this.req;
+    var objetoError = new Error();
     // sails.log(this.req.headers.authorization);
 
     // REVISAR USO DE btoa y atoa de javascript para codificar y decodificar el password
@@ -58,6 +60,7 @@ module.exports = {
       if (!usuario) {
         usuario = await Profesor.findOne({ alias: inputs.alias });
       }
+   
     }
     // si se envia un correo
     if (inputs.email) {
@@ -70,9 +73,13 @@ module.exports = {
     }
 
     // si no se encuentra el usuario se remite el mensaje noAutorizado con el código 401
-    if (!usuario) {
+
+    if(!usuario){//si no se 
       sails.log('no se encuentra el usuario');
-      return exits.noAutorizado();
+      objetoError.code= 401;
+      objetoError.message=  'No se encuentra el usuario recibido'
+      return res.status(objetoError.code).send({error: objetoError});
+      // return exits.noAutorizado();
     }
 
     //si se encuentra el usuario se verifca que el password sea correcto
@@ -85,7 +92,8 @@ module.exports = {
     //si se encuentra el usuario y el password coincide se remite el mensaje
     // sails.log('ESTAS LOGUEADO');
     
-    // this.req.session.userId = usuario.id;
+    req.session.userId = usuario.id;
+    req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
     return exits.success();
 
   }

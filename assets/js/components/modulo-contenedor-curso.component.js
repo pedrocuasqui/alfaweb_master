@@ -61,8 +61,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
     template: //html
         `  
 <div class="div-contenido container-fluid"  v-cloak>
-    <div class="row" id="div-cabecera" ref="printBreadcrumb" >
-        <div class="col-sm-10">
+    <div class="row" id="div-cabecera"  >
+        <div class="col-sm-10" id="breadcrumbText" ref="printBreadcrumb">
             <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
         </div>
         <div class="col-sm-2">
@@ -216,6 +216,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
             var contenidoDescripcion = this.$refs.printContenidoDescripcion;
             newWin = window.open(""); //abre una variable para escribir sobre ella
             // console.log(contenidoImprimir.outerHTML)
+            newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>');
             newWin.document.write('<h2>Contenido</h2>');
             newWin.document.write(contenidoBreadcrumb.outerHTML);
             newWin.document.write(contenidoCentral.outerHTML);
@@ -224,6 +225,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
             newWin.document.write('<h5>Sistema "alfaweb" http://www.epn.edu.ec autor: EPN-FIS-Pedro Cuasqui</h5>');
             newWin.print();
             newWin.close();
+            newWin.document.write('<h6>http://www.epn.edu.ec </h6>');
         }
 
 

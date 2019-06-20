@@ -260,7 +260,8 @@ parasails.registerComponent('modal-detalle-elemento', {
     clickImprimir() {
       // window.print();
       //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
-      // var contenidoBreadcrumb = this.$refs.printBreadcrumb;
+      var contenidoBreadcrumb1= document.getElementById('breadcrumbText');
+
       var contenidoTexto = this.$refs.printTexto;
       var contenidoImagenes = this.$refs.printImagenes;
       var contenidoHtml = this.$refs.printHtml;
@@ -268,8 +269,10 @@ parasails.registerComponent('modal-detalle-elemento', {
 
       newWin = window.open(""); //abre una variable para escribir sobre ella
       // console.log(contenidoImprimir.outerHTML)
+      newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>');
+
       newWin.document.write('<h2>Contenido: ' + this.infoElement.titulo + '</h2>');
-      // newWin.document.write(contenidoBreadcrumb.outerHTML);
+      newWin.document.write(contenidoBreadcrumb1.outerHTML);
       newWin.document.write(contenidoTexto.outerHTML);
       if (this.html) {
         newWin.document.write(contenidoHtml.outerHTML);
@@ -280,8 +283,8 @@ parasails.registerComponent('modal-detalle-elemento', {
       if (this.ecarousel) {
         newWin.document.write(contenidoCarousel.outerHTML);
       }
-
-
+      newWin.document.write('<h6>http://www.epn.edu.ec </h6>');
+  
 
 
       newWin.print();

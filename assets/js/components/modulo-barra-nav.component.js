@@ -32,7 +32,7 @@ parasails.registerComponent('modulo-barra-nav', {
     <div id="breadcrumb">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-          <li class="breadcrumb-item"><a href="/"><i class="fas fa-home"> </i></a></li>
+          <li class="breadcrumb-item"><a href="/" title="Home"><a class="textoOculto"  href="/">home</a><i class="fas fa-home" > </i></a></li>
           
           <li v-if="isAlfaWeb"  key="rutaAlfaweb" class="breadcrumb-item"> <a :href="'/indice-estudiante/?usuarioId=nada&cursoId='+cursoAlfaWeb.id"> {{cursoAlfaWeb.nombre}}</a></li>
           <li class="breadcrumb-item" v-for="item in breadcrumb">

@@ -40,7 +40,9 @@ module.exports = {
     if (req.session.userId) {
       usuario = await Estudiante.findOne({ id: req.session.userId });
       if (!usuario) {
-        exits.serverError();
+        exits.ok({error:`no se encuentra el usuario con id ${req.session.userId}`});
+        
+        
 
       }
     }

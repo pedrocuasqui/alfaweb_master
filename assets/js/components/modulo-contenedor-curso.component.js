@@ -19,12 +19,12 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         curso: {
             type: Object,
-            required:true, //es necesario para poder cargar el menu lateral
+            required: true, //es necesario para poder cargar el menu lateral
             // description:'parametro de barra de navegacion lateral'
         },
         objetoSeleccionado: {
             type: Object,
-            required: true,//necesario para señalar el modulo o submodulo seleccionado en el menu lateral
+            // required: true,//no necesario para señalar el modulo o submodulo seleccionado en el menu lateral porque el menu ya contiene su definicion por defecto
             default: () => { return { id: '1', nombreModulo: 'crearModulo', rol: 'Administrador' } },
             // description:'parametro de barra de navegacion, tambien se usa la descripcion cuando el objeto seleccionado es un modulo o submodulo'
         },
@@ -36,7 +36,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         usuario: {
             type: Object,
-            default: () => { return { nombre: 'Admin', rol: 'Administrador' } }
+            // default: () => { return { nombre: 'Admin', rol: 'Administrador' } }
         },
         crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
         mostrarIconoRepetir: false,
@@ -59,6 +59,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
     mounted() {
         window.sonido = null;
         window.sonido = window.speechSynthesis;
+
     },
     template: //html
         `  
@@ -76,7 +77,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
     <div class="row" id="div-body">
         <!-- columna izquierda -->
         <div class="col-sm-2 col-izquierda">
-            <modulo-side-var-menu :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :crear-submodulo="crearSubmodulo" ></modulo-side-var-menu>
+            <modulo-side-var-menu :usuario="usuarioRecibido" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :crear-submodulo="crearSubmodulo" ></modulo-side-var-menu>
         </div>
         <div class="col-sm-10" id="columna-contenido-lateral">
             <div class="row fila-principal">
@@ -143,7 +144,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 </div>
                 <!-- columna derecha -->
                 <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
-                    <modulo-panel-derecho :usuario="usuario" @evaluacion-individual="evaluacionIndividual"> 
+                    <modulo-panel-derecho :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual"> 
                         <template v-slot:audio_general>
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                             <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
@@ -239,6 +240,15 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 existe = true;
 
             return existe;
+        },
+        usuarioRecibido() {
+
+            var usuarioR = this.usuario;
+            if (!this.usuario) { //si el usuario es null o undefined
+                console.log('USUARIO DENTRO DE CONTENEDOR-CURSO es null');
+                usuarioR = { nombre: 'Visitante', rol: 'Estudiante' }
+            }
+            return usuarioR;
         }
     }
 });

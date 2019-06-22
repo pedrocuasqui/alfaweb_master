@@ -44,11 +44,20 @@ parasails.registerComponent('modulo-barra-nav', {
         <ol class="breadcrumb">
           <li class="breadcrumb-item"><a href="/" title="Home"><a class="textoOculto"  href="/">home</a><i class="fas fa-home" > </i></a></li>
           
-          <li v-if="isAlfaWeb"  key="rutaAlfaweb" class="breadcrumb-item"> <a :href="'/indice-estudiante/?cursoId='+cursoAlfaWeb.id"> {{cursoAlfaWeb.nombre}}</a></li>
+          <template v-if="isAlfaWeb" > <!-- el curso es alfaweb -->
+            <li  key="rutaAlfaweb" class="breadcrumb-item"> <a :href="'/indice-estudiante/?cursoId='+cursoAlfaWeb.id"> {{cursoAlfaWeb.nombre}}</a></li>
+            <li v-if="breadcrumbTieneValores" class="breadcrumb-item" v-for="item in breadcrumb">
+              <a v-if="item.nombreModulo"  key="modulo" :href="'/contenido-alfaweb/?enlace='+item.enlace">{{item.nombreModulo}}</a>
+              <a v-if="item.nombreSubmodulo" key="submodulo" :href="'/contenido-alfaweb/?enlace='+item.enlace">{{item.nombreSubmodulo}}</a>
+            </li>
+          </template>
+          <template v-else> <!--el curso es cualquier otro curso -->
           <li v-if="breadcrumbTieneValores" class="breadcrumb-item" v-for="item in breadcrumb">
-          <a v-if="item.nombreModulo"  key="modulo" :href="'/contenido-alfaweb/?enlace='+item.enlace">{{item.nombreModulo}}</a>
-          <a v-if="item.nombreSubmodulo" key="submodulo" :href="'/contenido-alfaweb/?enlace='+item.enlace">{{item.nombreSubmodulo}}</a>
-          </li>
+              <a v-if="item.nombreCurso"  key="curso" :href="'/indice-estudiante/?cursoId='+item.id">{{item.nombreCurso}}</a>
+              <a v-if="item.nombreModulo"  key="modulo" :href="'/interfaz-modulos/?objetoId='+item.id+'&tipoContenido=Modulo'">{{item.nombreModulo}}</a>
+              <a v-if="item.nombreSubmodulo" key="submodulo" :href="'/interfaz-modulos/?objetoId='+item.id+'&tipoContenido=Submodulo'">{{item.nombreSubmodulo}}</a>
+            </li>
+          </template>
         </ol>
       </nav>
     </div>`,

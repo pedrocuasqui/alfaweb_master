@@ -27,19 +27,20 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     var res = this.res;
+    var req= this.req;
     var objetoSeleccionado;
     var curso = Object;
-    var usuario;
+    var usuario=null;
 
 
 
-
+console.log('INGRESO A VIEW-INTERFAZ-MODULO');
     
     // usuario = await Estudiante.findOne({ alias: 'Pedroc' });
     if (req.session.userId) {
       usuario = await Estudiante.findOne({ id: req.session.userId });
       if (!usuario) {
-        exits.serverError();
+        exits.ok({error:`no se encuentra el usuario con id ${req.session.userId}`});
 
       }
     }
@@ -74,8 +75,8 @@ module.exports = {
       return res.status(500).send({ error: err });
     }
 
-    sails.log('ERROR curso: ' + JSON.stringify(curso));
-    sails.log('ERROR:  objetoSeleccionado' + JSON.stringify(objetoSeleccionado));
+    sails.log('curso: ' + JSON.stringify(curso));
+    sails.log(' objetoSeleccionado' + JSON.stringify(objetoSeleccionado));
 
 
 

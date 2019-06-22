@@ -19,10 +19,12 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         curso: {
             type: Object,
+            required:true, //es necesario para poder cargar el menu lateral
             // description:'parametro de barra de navegacion lateral'
         },
         objetoSeleccionado: {
             type: Object,
+            required: true,//necesario para señalar el modulo o submodulo seleccionado en el menu lateral
             default: () => { return { id: '1', nombreModulo: 'crearModulo', rol: 'Administrador' } },
             // description:'parametro de barra de navegacion, tambien se usa la descripcion cuando el objeto seleccionado es un modulo o submodulo'
         },

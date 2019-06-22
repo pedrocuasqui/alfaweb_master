@@ -10,8 +10,10 @@ parasails.registerPage('indice-estudiante', {
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     ],
-    usuario:{},
-    
+    usuario: {},
+    contenidos: null,
+    isAlfaWeb: false,
+
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -20,13 +22,18 @@ parasails.registerPage('indice-estudiante', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    this.usuario=SAILS_LOCALS.usuario;
- 
+    this.usuario = SAILS_LOCALS.usuario;
+    this.contenidos = SAILS_LOCALS.contenidos;
+    this.curso = SAILS_LOCALS.curso;
+
 
   },
   mounted: async function () {
-    //…
-    
+    if (this.curso.nombre == 'Alfabetizacion informática') {
+      //el primer elemento siempre sera el curso, por tanto se verifica si el curso es alfabetizacion informatica
+      this.isAlfaWeb = true;
+    }
+
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -36,6 +43,14 @@ parasails.registerPage('indice-estudiante', {
     //…
   },
   computed: {
+    contenidoVacio() {
+      let contenidoEsVacio = false;
+      if (this.contenidos.length == 0) {
+        contenidoEsVacio = true;
+      }
+      console.log(this.contenidos.length);
+      return contenidoEsVacio;
+    }
 
   }
 });

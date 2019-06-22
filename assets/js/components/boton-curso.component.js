@@ -11,6 +11,7 @@ parasails.registerComponent('boton-curso', {
     },
     mounted() {
         var _this = this;
+        //se aniade el evento mediante javascript porque el evento @click no permite diferenciar a que boton se le dio click 
         document.getElementById(this.curso.id).addEventListener("click", abrir = function () { _this.abrirCurso(_this.curso.id); }, false);
     },
     template://html

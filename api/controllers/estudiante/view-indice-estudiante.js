@@ -7,10 +7,10 @@ module.exports = {
   description: 'Display "Indice estudiante" page.',
 
   inputs: {
-    usuarioId: {
-      type: 'string',
-      required: true
-    },
+    // usuarioId: { //el usuario ya no es necesario porque se usa el valor de req.session.userId
+    //   type: 'string',
+    //   required: true
+    // }, 
     cursoId: {
       type: 'string',
       required: true
@@ -21,6 +21,10 @@ module.exports = {
 
     success: {
       viewTemplatePath: 'pages/estudiante/indice-estudiante'
+    },
+    serverError: {
+      statusCode: 400,
+      description: 'El usuario ha sido eliminado de la base de datos'
     }
 
   },
@@ -28,10 +32,22 @@ module.exports = {
 
   fn: async function (inputs, exits) {
 
+    var req = this.req;
+    var res = this.res;
     //solo para pruebas se usa la Colecion estudiante 
-    var usuario = {};
-    usuario = await Estudiante.findOne({ alias: 'Pedroc' });
-    /*      var moduloLibro = await ModuloLibro.find(); //esta es una instancia de consulta --> es un intento aún no cumplido de obtener registros de la base de datos
+    var usuario;
+    // usuario = await Estudiante.findOne({ alias: 'Pedroc' });
+    if (req.session.userId) {
+      usuario = await Estudiante.findOne({ id: req.session.userId });
+      if (!usuario) {
+        exits.serverError();
+
+      }
+    }
+
+
+
+    /* var moduloLibro = await ModuloLibro.find(); //esta es una instancia de consulta --> es un intento aún no cumplido de obtener registros de la base de datos
         //el resultado solo se observa cuando se usa la palabra await antes de la instancia y se asigna a una variable
         console.log('metodo1:\n'+moduloLibro); //devuelve el arreglo completo --> [object Object]
         console.log('metodo2:\n'+moduloLibro[0]);// devuelve el objeto JSON de la posision 0 --> [object Object]
@@ -41,11 +57,12 @@ module.exports = {
     // console.log('Curso\n'+ JSON.stringify(curso) );
     // console.log('Curso:'+curso[0].nombre+'- modulos:\n'+ JSON.stringify(curso[0].modulos));
 
-    let moduloLibro = curso.modulos;
-    sails.log(moduloLibro);
+    var contenidos = curso.modulos;
+    
     return exits.success({
-      contenidos: moduloLibro,
-      usuario
+      contenidos,
+      usuario,
+      curso
       // cuando el nombre de la propiedad es igual al nombre del objeto que contiene la información, es posible enviar solo un dato es decir que, pasar, contenidos: contenidos es igual que pasar contenidos
     });
 

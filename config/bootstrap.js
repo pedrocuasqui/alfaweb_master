@@ -585,7 +585,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
         nombre: 'Pedro Cuasqui',
         alias: 'Pedroc',
         email: 'pedro.cuasqui@gmail.com',
-        password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
+        password: '$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie',
         ultimoAcceso: '2019-05-20',
         cursos: curso.id
       });
@@ -594,7 +594,7 @@ var cursoAlfa= await Curso.findOne({nombre:'Alfabetizacion informática'});
       nombre: 'Elsa Pito',
       alias: 'esita',
       email: 'elsa.pita@gmail.com',
-      password: '$2y$05$WuVNU5BVtpYDLeiN9kZdkOTYRlmf9wQe42JPbkcfneOlsvJe1ZRnS',
+      password: '$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie',
       ultimoAcceso: '2019-04-20',
       cursos: curso.id
     });

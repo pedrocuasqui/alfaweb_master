@@ -7,7 +7,7 @@ parasails.registerPage('homepage', {
     usuario: {
       type: 'json',
       default: {
-        id:'ejemplo',
+        id: 'ejemplo',
         nombre: 'pedro',
         alias: 'pedro123',
         email: 'pedro.cuasqui@gmail.com',
@@ -18,7 +18,7 @@ parasails.registerPage('homepage', {
 
       }
     },
-    breadcrumb:[]
+    breadcrumb: [{ nombre: '' }] //se envia un nombre vacio para evaluar si es o no un breadcrumb valido y  segun eso mostrar o no el bredadcrumb
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -31,6 +31,7 @@ parasails.registerPage('homepage', {
   },
   mounted: async function () {
     //…
+    console.log('USUARIO ....');
     console.log(this.usuario);
   },
 
@@ -40,6 +41,13 @@ parasails.registerPage('homepage', {
   methods: {
     redireccionar() {
 
-    }
+    },
+    abrirCurso(cursoId) {
+      window.location.href = '/indice-estudiante/?cursoId=' + cursoId;
+
+    },
+  },
+  computed: {
+  
   }
 });

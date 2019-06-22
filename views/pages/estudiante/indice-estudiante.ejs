@@ -2,7 +2,7 @@
 
   <div class="div-contenido container-fluid" v-cloak>
     <div class="row" id="div-cabecera">
-      
+
       <div class="col-sm-10">
         <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav>
       </div>
@@ -27,7 +27,8 @@
                   animation: mymove 2.5s 3;" class="fas fa-arrow-alt-circle-right fas-3x"></i> </a>
               </div>
               <div class="navegacion-atras">
-                <a :href="navegarAtras" data-toggle="tooltip" title="Pulsa para regresar"> <i class="fas fa-arrow-alt-circle-left fas-lg"></i> </a>
+                <a :href="navegarAtras" data-toggle="tooltip" title="Pulsa para regresar"> <i
+                    class="fas fa-arrow-alt-circle-left fas-lg"></i> </a>
               </div>
               <div class="col" id="titulo-modulo">
                 <!-- <h1 class="mensaje-bienvenida" >BIENVENIDO!!</h1> -->
@@ -40,11 +41,25 @@
               <div class="col">
                 <div class="row">
                   <div class="col-sm-3 item-modulo" v-for="contenido in contenidos">
-                    <a :href="'/contenido-alfaweb/?enlace='+contenido.enlace"> <img :src="contenido.multimedia.imagen" alt="La Computadora, Módulo 1"></a>
-                    <a :href="'/contenido-alfaweb/?enlace='+contenido.enlace">{{contenido.nombreModulo}}</a>
+                    <template v-if="isAlfaWeb">
+                      <a key="modImage" :href="'/contenido-alfaweb/?enlace='+contenido.enlace"> <img :src="contenido.multimedia.imagen"
+                          alt="La Computadora, Módulo 1"></a>
+                      <a key="modText" :href="'/contenido-alfaweb/?enlace='+contenido.enlace">{{contenido.nombreModulo}}</a>
+                    </template>
+                    <template v-else>
+                      <!-- la propiedad key es necesaria porque vue reutiliza los elementos, y podria no cambiar el atributo href -->
+                        <a key="modImage1" :href="'/interfaz-modulos/?objetoId='+contenido.id+'&tipoContenido=Modulo'"> <img :src="contenido.multimedia.imagen"
+                          alt="La Computadora, Módulo 1"></a>
+                      <a key="modTexto1" :href="'/interfaz-modulos/?objetoId='+contenido.id+'&tipoContenido=Modulo'">{{contenido.nombreModulo}}</a>
+                    </template>
+
                   </div>
+
                 </div>
               </div>
+            </div>
+            <div v-if="contenidoVacio" class="d-flex justify-content-center">
+              <p>NO EXISTEN MÓDULOS REGISTRADOS EN ESTE CURSO</p>
             </div>
           </div>
           <!-- columna derecha -->

@@ -13,11 +13,13 @@ parasails.registerPage('interfaz-modulos', {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
     this.breadcrumb.push(SAILS_LOCALS.curso);
-    this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
   },
   mounted: async function() {
-    //…
+    //… definir el breadcrumb en este lugar o recibir desde la accion del servidor
+    console.log('CURSO y  OBJETO SELECCIONADO');
+    console.log(SAILS_LOCALS.curso);
+    console.log(SAILS_LOCALS.objetoSeleccionado);
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

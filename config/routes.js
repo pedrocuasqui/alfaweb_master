@@ -26,7 +26,7 @@ module.exports.routes = {
 
 /**LAYOUT GENERAL DE CONTENIDOS */
 'GET /interfaz-modulos' :{
-  action: 'view-interfaz-modulos'
+  action: 'estudiante/view-interfaz-modulos'
 },
 
   'GET /': {

@@ -27,20 +27,28 @@ module.exports = {
 
   fn: async function (inputs, exits) {
     var res = this.res;
-    var req= this.req;
+    var req = this.req;
     var objetoSeleccionado;
     var curso = Object;
-    var usuario=null;
+    var usuario = null;
 
 
 
-console.log('INGRESO A VIEW-INTERFAZ-MODULO');
-    
+    console.log('INGRESO A VIEW-INTERFAZ-MODULO');
+
     // usuario = await Estudiante.findOne({ alias: 'Pedroc' });
     if (req.session.userId) {
       usuario = await Estudiante.findOne({ id: req.session.userId });
+      sails.log(usuario);
       if (!usuario) {
-        exits.ok({error:`no se encuentra el usuario con id ${req.session.userId}`});
+        // exits.ok({ error: `no se encuentra el usuario con id ${req.session.userId}` });
+        res.status(401).send({message:'su sesión ha expirado'});
+
+      } else {
+        
+        let fechaUltimoAcceso = Date.now();
+        let avanceContenido = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId }
+        await Estudiante.update({ id: usuario.id }).set({ ultimoAcceso: fechaUltimoAcceso, avance: avanceContenido })
 
       }
     }
@@ -80,7 +88,7 @@ console.log('INGRESO A VIEW-INTERFAZ-MODULO');
 
 
 
-    return exits.success({ curso, objetoSeleccionado , usuario});
+    return exits.success({ curso, objetoSeleccionado, usuario });
 
 
   }

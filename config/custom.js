@@ -21,4 +21,5 @@ module.exports.custom = {
   // …
   baseUrl: 'http://localhost:1337',
   imageBaseUrl: 'http://localhost:1337/images/uploaded/',
+  rememberMeCookieMaxAge: 30*24*60*60*1000, // 30 days
 };

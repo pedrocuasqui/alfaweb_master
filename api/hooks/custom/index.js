@@ -166,21 +166,21 @@ module.exports = function defineCustomHook(sails) {// toma como parámetro la in
               //ESTA APLCACION NO CONTENDRA CAMPOS protect
               var sanitizedUser = _.extend({}, loggedInUser);
               //BLOQUE COMENTADO
-              if(loggedInUser.administrador){ //contiene la propiedad administrador
+              if (loggedInUser.administrador) { //contiene la propiedad administrador
                 for (let attrName in Profesor.attributes) {
                   if (Profesor.attributes[attrName].protect) {
                     delete sanitizedUser[attrName];
                   }
                 }//∞
               }
-              else{
+              else {
                 for (let attrName in Estudiante.attributes) {
                   if (Estudiante.attributes[attrName].protect) {
                     delete sanitizedUser[attrName];
                   }
                 }//∞
               }
-              
+
               //CIERRE BLOQUE COMENTADO
 
 

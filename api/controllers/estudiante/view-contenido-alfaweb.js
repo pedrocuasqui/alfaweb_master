@@ -24,17 +24,41 @@ module.exports = {
 
 
   fn: async function (inputs) {
+    var req=this.req;
+    var res= this.res;
+    var usuario=null;
+
 
 
     var curso = await Curso.findOne({ nombre: 'Alfabetizacion informática' }).populate('modulos');
     let modulos = await ModuloLibro.find({ curso: curso.id }).populate('submodulos', { sort: 'createdAt ASC' });
     curso.modulos = modulos;
 
+      if (req.session.userId) {
+        usuario = await Estudiante.findOne({ id: req.session.userId });
+        sails.log(usuario);
+        if (!usuario) {
+          // exits.ok({ error: `no se encuentra el usuario con id ${req.session.userId}` });
+          res.status(401).send({message:'su sesión ha expirado'});
+      //si el usuario no tiene pareja en la collection CursoEstudiante, registrar al curso en el usuario
+        } else {
+          usuario.rol = 'Estudiante';
+          let fechaUltimoAcceso = Date.now();
+          let avanceContenido = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId };
+          await Estudiante.updateOne({ id: usuario.id }).set({ ultimoAcceso: fechaUltimoAcceso, avance: avanceContenido });
+          //actualizo la tabla de rompimiento, que guardará la información del curso que ha tomado el usuario
+          await CursoEstudiantes.updateOne({curso_matriculados:curso.id,estudiante_cursos:usuario.id}).set({avance: avanceContenido});
+
+        }
+      }
+    // var curso = await Curso.findOne({ nombre: 'Alfabetizacion informática' }).populate('modulos');
+
+
 
 
     //USUARIO PARA PRUEBAS, REEMPLAZAR EN PRODUCCION POR UNA SESION
-    var usuario = await Estudiante.findOne({ alias: 'Pedroc' });
-    usuario.rol = 'Estudiante'
+    // var usuario = await Estudiante.findOne({ alias: 'Pedroc' });
+    // usuario.rol = 'Estudiante'
     if (inputs.enlace == '/m1-computadora') {
       let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m1-computadora' }).populate('submodulos', { sort: 'createdAt ASC' });
       return this.res.view('pages/estudiante/modulo-1/m-1-computadora', { usuario, curso, objetoSeleccionado, modulo: objetoSeleccionado });

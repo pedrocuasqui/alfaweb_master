@@ -21,5 +21,6 @@ module.exports.policies = {
    * Las politicas se evaluan ANTES de ejecutar cada ACCION o CONTROLADOR
    */
 
+  //'administrador/*': 'isAdmin', //deberia funcionar
   //'*': true,
 };

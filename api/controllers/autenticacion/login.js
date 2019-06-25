@@ -11,12 +11,12 @@ module.exports = {
 
     alias: {
       type: 'string',
-      allowNull:true,
+      allowNull: true,
 
     },
     email: {
       type: 'string',
-      allowNull:true,
+      allowNull: true,
     },
     password: {
       type: 'string',
@@ -45,8 +45,8 @@ module.exports = {
 
 
   fn: async function (inputs, exits) {
-    var res= this.res;
-    var req= this.req;
+    var res = this.res;
+    var req = this.req;
     var objetoError = new Error();
     // sails.log(this.req.headers.authorization);
 
@@ -59,8 +59,11 @@ module.exports = {
       usuario = await Estudiante.findOne({ alias: inputs.alias });
       if (!usuario) {
         usuario = await Profesor.findOne({ alias: inputs.alias });
+      } else {
+        let fechaUltimoAcceso = Date.now();
+        await Estudiante.updateOne({ id: usuario.id }).set({ ultimoAcceso: fechaUltimoAcceso })
       }
-   
+
     }
     // si se envia un correo
     if (inputs.email) {
@@ -74,16 +77,18 @@ module.exports = {
 
     // si no se encuentra el usuario se remite el mensaje noAutorizado con el código 401
 
-    if(!usuario){//si no se 
+    if (!usuario) {//si no se
+      // console.log('no existe usuario'); 
       sails.log('no se encuentra el usuario');
-      objetoError.code= 401;
-      objetoError.message=  'No se encuentra el usuario recibido'
-      return res.status(objetoError.code).send({error: objetoError});
+      objetoError.code = 401;
+      objetoError.message = 'No se encuentra el usuario recibido'
+      return res.status(objetoError.code).send({ error: objetoError });
       // return exits.noAutorizado();
     }
 
     //si se encuentra el usuario se verifca que el password sea correcto
     var passwordCorrecto = await sails.helpers.compararPassword(usuario, inputs.password);
+
     if (!passwordCorrecto) {
       sails.log('existe el usuario pero el password es incorrecto');
       return exits.passwordIncorrecto();
@@ -91,11 +96,12 @@ module.exports = {
 
     //si se encuentra el usuario y el password coincide se remite el mensaje
     // sails.log('ESTAS LOGUEADO');
-    
+
     req.session.userId = usuario.id;
-    req.session.usuario= usuario;
+    req.session.usuario = usuario;
     req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
-    return res.status(200).send();
+    console.log('antes de remitir 200');
+    return res.status(200).send({ usuario: usuario });
 
   }
 

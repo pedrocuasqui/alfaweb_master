@@ -82,11 +82,14 @@ parasails.registerPage('login', {
           (response) => {
             // if (response.data.statusCode == 200){ console.log('LOGIN EXITOSO');}
             // console.log('LOGIN EXITOSO');
-
-            // Simulate an HTTP redirect:
-            console.log('LOGUEADO CON EXITOS');
-            console.log(response);
-            window.location.replace("/");
+// console.log('response :');
+            if(response.data.usuario.Administrador || response.data.usuario.Tutor){
+              // window.location.replace("/administrar-home");
+              alert ('es admin');
+            }else{
+              window.location.replace("/");
+            }
+            
           }
         )
         .catch(

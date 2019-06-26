@@ -48,34 +48,23 @@ module.exports = {
         }
 
         if (!usuario) {
-          res.status(200).send({ message: 'EL USUARIO NO SE ENCUENTRA EN LA BASE DE DATOS' });
+          // res.status(200).send({ message: 'EL USUARIO NO SE ENCUENTRA EN LA BASE DE DATOS' });
+          //respuesta pendiente de modificacion
         }
-      } else { //si el usuario es el usuario Visitante se remite su información
+      } else { //si el usuario es el usuario Visitante se remite su información, se crea porque no existe este usuario en la base de datos
         usuario = {
           id: 1,
           nombre: 'Visitante',
           rol: 'Estudiante'
 
         }
-        var cursos = await Curso.find();
-        usuario.cursos = cursos;
+        // var cursos = await Curso.find();
+        // usuario.cursos = cursos;
       }
 
 
-    }
-    // else { // si el usuario no se encuentra registrado, se visualizará la página con datos de visitante, no se guardará su avance pero puede usar la aplicación
-    //   usuario = {
-    //     id: 1,
-    //     nombre: 'Visitante',
-    //     rol: 'Estudiante'
+    } //SI NO EXISTE EL USUARIO SE REMITE NULL, DEL LADO DEL CLIENTE SE USA EL NOMBRE DE USUARIO VISITANTE, NADA MAS
 
-    //   }
-    //   var cursos = await Curso.find();
-    //   usuario.cursos = cursos;
-    //   req.session.userId = usuario.id;
-    //   req.session.usuario = usuario;
-
-    // }
     var cursosPublicados = await Curso.find({where:{publicado:true}});
 
 

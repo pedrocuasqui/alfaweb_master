@@ -26,41 +26,15 @@ For more information, see:
       <div v-else class="nombre-usuario"> <a href="/view-login">Inicia Sesión</a> | <a
           href="/view-registro-usuario">Regístrate</a> </div>
       <div class="col">
-        <!-- <div>
-          ESCOGE UN USUARIO PARA INICIAR SESION (DESARROLLO)
-          <ul>
-            <li> <a href="/administrar-home">Administrador</a></li>
-            <li>Tutor</li>
-            <li><a href="">Estudiante: {{usuario.nombre}}</a></li>
 
-          </ul>
-          <div class="dropdown">
-            <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown">
-              Seleccione un curso
-            </button>
-            <div v-if="usuario.cursos" class="dropdown-menu">
-              <a class="dropdown-item" v-for="curso in usuario.cursos"
-                :href="'/indice-estudiante/?usuarioId='+usuario.id+'&cursoId='+curso.id">{{curso.nombre}}</a>
-
-            </div>
-          </div>
-
-        </div> -->
         <div class="jumbotron">
-    
+
           <h1>CURSOS ABIERTOS</h1>
-          <!-- <div class="list-group">
-            <ul class="list-group" v-for="curso in cursosPublicados">
-              <li  class="list-group-item d-flex justify-content-between align-items-center">
-                <h5>{{curso.nombre}}</h5>
-                <span>{{curso.descripcion}}</span>
-              </li>
-            </ul>
-          </div> -->
-  
+
           <template v-for="curso in cursosPublicados">
             <button :id="curso.id" type="button"
-              class="btnCurso list-group-item list-group-item-action flex-column align-items-start" @click="abrirCurso(curso.id)"> 
+              class="btnCurso list-group-item list-group-item-action flex-column align-items-start"
+              @click="abrirCurso(curso.id)">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{curso.nombre}}</h5>
                 <!--span hace que los contenidos se presenten en linea-->
@@ -72,7 +46,7 @@ For more information, see:
           </template>
         </div>
       </div>
-  
+
     </div>
 
   </div>

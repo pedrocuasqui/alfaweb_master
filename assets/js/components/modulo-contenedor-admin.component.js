@@ -11,9 +11,9 @@ parasails.registerComponent('modulo-contenedor-admin', {
         //     required:false,
         //     defaultsTo:false
         // },
-        nombreUsuario: {
-            type: String,
-            required: false
+        usuario: {
+            type: Object,
+            required: false // required false implica que se acepten nulos, desde contenedor-admin se puede enviar un usuario null
         }
 
     },
@@ -33,7 +33,7 @@ parasails.registerComponent('modulo-contenedor-admin', {
 
     <!--Contenido -->
     <div class="row" id="div-body">
-        <div v-if="nombreUsuario" class="nombre-usuario"> <i class="fas fa-user-circle"></i> {{nombreUsuario}} <i class="fas fa-bars"></i></div>
+        <div v-if="usuario" class="nombre-usuario"> <i class="fas fa-user-circle"></i> {{usuario.nombre}} <i class="fas fa-bars"></i></div>
         <div v-else class="nombre-usuario"> <a href="/view-login">Inicia Sesión</a> | <a href="/view-registro-usuario">Regístrate</a> </div>
         <div class="col">
             <slot></slot>  

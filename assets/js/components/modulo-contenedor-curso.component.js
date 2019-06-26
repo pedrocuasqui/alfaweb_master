@@ -241,6 +241,9 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
             return existe;
         },
+        /**
+         * Se establece el tipo de usuario en caso de ser null
+         */
         usuarioRecibido() {
 
             var usuarioR = this.usuario;

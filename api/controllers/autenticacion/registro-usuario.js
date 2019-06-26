@@ -55,8 +55,8 @@ module.exports = {
         alias: inputs.alias,
         email: inputs.email.toLowerCase(),
         password: passwordEncriptada,
-        ultimoAcceso:Date.now(), //solo para crear
-        avance:{} //inicia vacio
+        // ultimoAcceso:Date.now(), //solo para crear
+        // avance:{} //inicia vacio
 
       })
       //1) buscar la forma de retornar cual es el campo repetido

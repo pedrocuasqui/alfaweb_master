@@ -42,14 +42,20 @@ module.exports = {
           res.status(401).send({message:'su sesión ha expirado'});
       //si el usuario no tiene pareja en la collection CursoEstudiante, registrar al curso en el usuario
         } else {
-          usuario.rol = 'Estudiante';
-          let fechaUltimoAcceso = Date.now();
-          let avanceContenido = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId };
-          await Estudiante.updateOne({ id: usuario.id }).set({ ultimoAcceso: fechaUltimoAcceso, avance: avanceContenido });
-          //actualizo la tabla de rompimiento, que guardará la información del curso que ha tomado el usuario
-          await CursoEstudiantes.updateOne({curso_matriculados:curso.id,estudiante_cursos:usuario.id}).set({avance: avanceContenido});
-
+          usuario.rol = 'Estudiante'; // cualquier valor, se buscará este campo en el cliente
+          let credenciales = { cursoId: inputs.cursoId, usuarioId: usuario.id }
+          let avance = { enlace:inputs.enlace };         
+          await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
         }
+      }else { //si el usuario es el usuario Visitante se remite su información
+        usuario = {
+          id: 1,
+          nombre: 'Visitante',
+          rol: 'Estudiante'
+  
+        }
+        // var cursos = await Curso.find();
+        // usuario.cursos = cursos;
       }
     // var curso = await Curso.findOne({ nombre: 'Alfabetizacion informática' }).populate('modulos');
 

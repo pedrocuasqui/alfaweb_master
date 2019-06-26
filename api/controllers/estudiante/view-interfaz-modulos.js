@@ -39,19 +39,31 @@ module.exports = {
     // usuario = await Estudiante.findOne({ alias: 'Pedroc' });
     if (req.session.userId) {
       usuario = await Estudiante.findOne({ id: req.session.userId });
-      sails.log(usuario);
+
       if (!usuario) {
         // exits.ok({ error: `no se encuentra el usuario con id ${req.session.userId}` });
-        res.status(401).send({message:'su sesión ha expirado'});
+        res.status(401).send({ message: 'su sesión ha expirado' });
 
       } else {
-        
-        let fechaUltimoAcceso = Date.now();
-        let avanceContenido = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId }
-        await Estudiante.update({ id: usuario.id }).set({ ultimoAcceso: fechaUltimoAcceso, avance: avanceContenido })
+
+
+        let avance = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId }
+        let credenciales = { cursoId: inputs.cursoId, usuarioId: usuario.id }
+
+        await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
 
       }
+    } else { //si el usuario es el usuario Visitante se remite su información
+      usuario = {
+        id: 1,
+        nombre: 'Visitante',
+        rol: 'Estudiante'
+
+      }
+      // var cursos = await Curso.find();
+      // usuario.cursos = cursos;
     }
+
 
 
 

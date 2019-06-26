@@ -9,9 +9,12 @@ parasails.registerPage('administrar-home', {
       nombre:'',
       id:''
     },
-    cursos: Object,
+    
     editarCurso:false,
     formErrors:{},
+    cursos: Object,
+    estudiantes:null,
+    usuario:null,
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -22,6 +25,8 @@ parasails.registerPage('administrar-home', {
     _.extend(this, SAILS_LOCALS);
     // console.log(window.SAILS_LOCALS);
     this.cursos=SAILS_LOCALS.cursos;
+    this.estudiantes= SAILS_LOCALS.estudiantes;
+    this.usuario=SAILS_LOCALS.usuario;
   },
   mounted: async function() {
 

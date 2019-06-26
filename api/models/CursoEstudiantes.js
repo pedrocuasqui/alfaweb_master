@@ -15,15 +15,24 @@ module.exports = {
     curso_matriculados: {
       type: 'string',
       columnName: 'curso_matriculados',
-      unique:false
+      unique: false
     },
     estudiante_cursos: {
       type: 'string',
       columnName: 'estudiante_cursos',
-      unique:false
+      unique: false
     },
-    avance:{type:'json', columnName: 'avance', required:false},
-  
+    ultimoAcceso: {
+      type: 'string',
+      columnName: 'ultimoAcceso',
+      required: true
+    }, //fecha de ultimo acceso
+    avance: {
+      type: 'json',
+      columnName: 'avance',
+      required: false
+    },
+
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -33,7 +42,7 @@ module.exports = {
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-  
+
   },
 
 };

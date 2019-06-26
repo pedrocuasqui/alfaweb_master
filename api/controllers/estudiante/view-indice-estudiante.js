@@ -36,14 +36,17 @@ module.exports = {
     var res = this.res;
     //solo para pruebas se usa la Colecion estudiante 
     var usuario;
-    // usuario = await Estudiante.findOne({ alias: 'Pedroc' });
+    
+    //Evaluación si existe usuario logueado 
     if (req.session.userId) {
       usuario = await Estudiante.findOne({ id: req.session.userId });
       if (!usuario) {
-        exits.ok({error:`no se encuentra el usuario con id ${req.session.userId}`});
-        
-        
+        // exits.unauthorized(); //respuesta pendiente de modificación
 
+      } else { // existe usuario,entonces registrar el avance
+        let credenciales = { cursoId: inputs.cursoId, usuarioId: usuario.id }
+        let avance = null //el avance se coloca en null en lugar de {} porque es mas facil gestionar desde el lado cliente
+        await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
       }
     }
 
@@ -60,7 +63,7 @@ module.exports = {
     // console.log('Curso:'+curso[0].nombre+'- modulos:\n'+ JSON.stringify(curso[0].modulos));
 
     var contenidos = curso.modulos;
-    
+
     return exits.success({
       contenidos,
       usuario,

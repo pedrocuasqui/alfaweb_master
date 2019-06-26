@@ -43,11 +43,19 @@ parasails.registerPage('homepage', {
 
     },
     abrirCurso(cursoId) {
+      if (this.usuario) {
+        if (this.usuario.administrador || this.usuario.tutor) {
+          window.location.href = '/administrar-indice/?cursoId=' + cursoId;
+        }
+      }
+
+      //else implicito
       window.location.href = '/indice-estudiante/?cursoId=' + cursoId;
+
 
     },
   },
   computed: {
-  
+
   }
 });

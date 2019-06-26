@@ -59,9 +59,6 @@ module.exports = {
       usuario = await Estudiante.findOne({ alias: inputs.alias });
       if (!usuario) {
         usuario = await Profesor.findOne({ alias: inputs.alias });
-      } else {
-        let fechaUltimoAcceso = Date.now();
-        await Estudiante.updateOne({ id: usuario.id }).set({ ultimoAcceso: fechaUltimoAcceso })
       }
 
     }

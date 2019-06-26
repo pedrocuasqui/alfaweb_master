@@ -578,26 +578,35 @@ module.exports.bootstrap = async function (done) {
 
   var cursos = await Curso.find({});
   var curso = cursos[0];
-
+  var estudiante = null;
+  var credenciales = null;
+  var avance = null
   if (await Estudiante.count() == 0 && Object.keys(curso).length > 0) {
-    await Estudiante.create(
+    estudiante = await Estudiante.create(
       {
         nombre: 'Pedro Cuasqui',
         alias: 'Pedroc',
         email: 'pedro.cuasqui@gmail.com',
         password: '$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie',
-        ultimoAcceso: '2019-05-20',
-        cursos: curso.id
-      });
 
-    await Estudiante.create({
+      }).fetch();
+
+    credenciales = { cursoId: curso.id, usuarioId: estudiante.id }
+    //el avance se coloca en null en lugar de {} porque es mas facil gestionar desde el lado cliente
+    await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
+
+
+    estudiante = await Estudiante.create({
       nombre: 'Elsa Pito',
       alias: 'esita',
       email: 'elsa.pita@gmail.com',
       password: '$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie',
-      ultimoAcceso: '2019-04-20',
-      cursos: curso.id
-    });
+
+    }).fetch();
+
+    credenciales = { cursoId: curso.id, usuarioId: estudiante.id }
+    //el avance se coloca en null en lugar de {} porque es mas facil gestionar desde el lado cliente
+    await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
 
     sails.log('creacion de estudiante correcta!');
   }

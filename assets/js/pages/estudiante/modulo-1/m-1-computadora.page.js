@@ -96,7 +96,8 @@ parasails.registerPage('m-1-computadora', {
 
         }
       ]
-    }
+    },
+    usuario:null,
 
   },
 
@@ -116,8 +117,8 @@ parasails.registerPage('m-1-computadora', {
 
     this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
     this.usuario = SAILS_LOCALS.usuario;
-    this.navegarAtras = '/indice-estudiante/?usuarioId=' + this.usuario.id + '&cursoId=' + this.curso.id,
-      this.navegarSiguiente = this.objetoSeleccionado.submodulos[0].enlace;
+    this.navegarAtras = '/indice-estudiante/?usuarioId=' + this.usuario.id + '&cursoId=' + this.curso.id;
+    this.navegarSiguiente = this.objetoSeleccionado.submodulos[0].enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
 

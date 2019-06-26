@@ -16,8 +16,8 @@ module.exports = {
     alias: { type: 'string', columnName: 'alias', required: true, unique: true },
     email: { type: 'string', columnName: 'email', unique:true },
     password: { type: 'string', columnName: 'password', required: true , unique:false},
-    ultimoAcceso: { type: 'string', columnName: 'ultimoAcceso', required: true }, //fecha de ultimo acceso
-    avance:{type:'json', columnName: 'avance', required:false},
+    // ultimoAcceso: { type: 'string', columnName: 'ultimoAcceso', required: true }, //fecha de ultimo acceso
+    // avance:{type:'json', columnName: 'avance', required:false},
     // fechaNacimiento: { type: 'string', columnName: 'fechaNacimiento' },
 
 

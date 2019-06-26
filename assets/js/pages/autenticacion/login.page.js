@@ -83,9 +83,9 @@ parasails.registerPage('login', {
             // if (response.data.statusCode == 200){ console.log('LOGIN EXITOSO');}
             // console.log('LOGIN EXITOSO');
 // console.log('response :');
-            if(response.data.usuario.Administrador || response.data.usuario.Tutor){
-              // window.location.replace("/administrar-home");
-              alert ('es admin');
+            if(response.data.usuario.administrador || response.data.usuario.tutor){
+              window.location.replace("/administrar-home");
+              
             }else{
               window.location.replace("/");
             }

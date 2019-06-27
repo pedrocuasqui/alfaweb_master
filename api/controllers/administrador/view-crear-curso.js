@@ -16,10 +16,28 @@ module.exports = {
   },
 
 
-  fn: async function (inputs,exits) {
+  fn: async function (inputs, exits) {
 
-    // Respond with view.
-    return exits.success({});
+    var res = this.res;
+    var req = this.req;
+    var usuario = null;
+
+    if (!req.session.userId) { //no está logueado
+      res.status(401).send({ mensaje: 'Su sesion ha expirado' })
+    } else {
+      usuario = await Profesor.findOne({ id: req.session.userId });// deberá encontrar un Profesor
+      sails.log('USUARIO LOGUEADO');
+      sails.log(usuario);
+
+      if (!usuario) {
+        res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+      }
+
+      return exits.success({
+        usuario
+      });
+
+    }
 
   }
 

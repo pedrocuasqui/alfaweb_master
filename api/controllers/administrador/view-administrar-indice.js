@@ -5,10 +5,10 @@ module.exports = {
 
 
   description: 'Display "Administrar indice" page.',
-  inputs:{
-    cursoId:{
+  inputs: {
+    cursoId: {
       type: 'string',
-      required:true
+      required: true
     }
   },
 
@@ -21,16 +21,40 @@ module.exports = {
   },
 
 
-  fn: async function (inputs) {
-
-    var curso= await Curso.find({id:inputs.cursoId}).populate('modulos');
-    // console.log('Curso\n'+ JSON.stringify(curso) );
-    // console.log('Curso:'+curso[0].nombre+'- modulos:\n'+ JSON.stringify(curso[0].modulos));
+  fn: async function (inputs,exits) {
 
 
-    return {curso:curso[0]};
+
+
+
+    var res = this.res;
+    var req = this.req;
+    var usuario = null;
+
+    if (!req.session.userId) { //no está logueado
+      res.status(401).send({ mensaje: 'Su sesion ha expirado' })
+    } else {
+      usuario = await Profesor.findOne({ id: req.session.userId });// deberá encontrar un Profesor
+      sails.log('USUARIO LOGUEADO');
+      sails.log(usuario);
+
+      if (!usuario) {
+        res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+      }
+
+      var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos');
+      if (!curso) { //no existe el objeto como tal
+        return this.res.serverError('NO SE HA ENCONTRADO EL CURSO SOLICITADO');
+      }
+
+      return exits.success({
+        curso,
+
+        usuario
+      });
+
+    }
 
   }
-
 
 };

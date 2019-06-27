@@ -36,23 +36,44 @@ module.exports = {
   fn: async function (inputs, exits) {
 
 
-    var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos')
-      .intercept(
-        (err) => {
-          if (err && err.code === 'E_UNIQUE') {
-            return this.res.statusCode=409;
-          } else if (err && err.name === 'UsageError') {
-            
-            return this.res.badRequest(); //statusCode 400
-          } else if (err) {
-            
-            return this.res.serverError(); //statusCode 500
-          }
-        }
-      );
-    if (!curso) { //no existe el objeto como tal
-      return this.res.serverError('NO SE HA ENCONTRADO EL CURSO SOLICITADO');
+
+
+
+    var res = this.res;
+    var req = this.req;
+    var usuario = null;
+
+    if (!req.session.userId) { //no está logueado
+      res.status(401).send({ mensaje: 'Su sesion ha expirado' })
+    } else {
+      usuario = await Profesor.findOne({ id: req.session.userId });// deberá encontrar un Profesor
+      sails.log('USUARIO LOGUEADO');
+      sails.log(usuario);
+
+      if (!usuario) {
+        res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+      }
+
+      var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos');
+
+      if (!curso) { //no existe el objeto como tal
+        return this.res.serverError('NO SE HA ENCONTRADO EL CURSO SOLICITADO');
+      }
+      return exits.success({
+        curso,
+
+        usuario
+      });
+
     }
+
+
+
+
+
+    var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos');
+
+
 
     return exits.success({ curso: curso });
 

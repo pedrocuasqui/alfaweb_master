@@ -35,7 +35,7 @@
         <!--CABECERA-->
         <div class="row" id="div-cabecera">
             <div class="col-sm-10">
-                <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav>
+                <modulo-barra-nav :breadcrumb="breadcrumb" :usuario="usuario"></modulo-barra-nav>
             </div>
             <div class="col-sm-2">
                 <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
@@ -46,7 +46,7 @@
         <div class="row" id="div-body">
             <!-- breadcrumb-->
             <div class="col-sm-2 col-izquierda">
-                <modulo-side-var-menu :curso.sync="curso" :objeto-seleccionado="objetoSeleccionado">
+                <modulo-side-var-menu :curso.sync="curso" :objeto-seleccionado="objetoSeleccionado" :usuario="usuario">
                 </modulo-side-var-menu>
             </div>
             <!-- columna central y lateral derecha del cuerpo -->
@@ -176,7 +176,7 @@
                     </div>
                     <!-- columna derecha -->
                     <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
-                        <modulo-panel-derecho></modulo-panel-derecho>
+                        <modulo-panel-derecho :usuario="usuario"></modulo-panel-derecho>
                     </div>
                 </div> <!-- fin fila de contenido central y barra lateral derecha -->
 

@@ -608,6 +608,22 @@ module.exports.bootstrap = async function (done) {
     //el avance se coloca en null en lugar de {} porque es mas facil gestionar desde el lado cliente
     await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
 
+
+    await Profesor.create({
+      nombre: 'j',
+      alias: 'j',
+      email: '',
+      password: '$2b$10$dnUGZGpto1RdygwQ2bWDdeLRceCbCuU8Q2vz4RmZD8eXOyg.qrVqe',
+      administrador:true,
+      tutor:false
+      
+    });
+
+
+    
+
+
+
     sails.log('creacion de estudiante correcta!');
   }
 

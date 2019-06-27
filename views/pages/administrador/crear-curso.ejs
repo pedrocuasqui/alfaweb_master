@@ -1,6 +1,6 @@
 <div id="crear-curso" v-cloak>
 
-  <modulo-contenedor-admin>
+  <modulo-contenedor-admin :usuario="usuario">
     <div class="container">
     <form  @submit="validarFormulario" action="/crear-curso" method="post"> <!-- accion registrada en routes.js--> <!-- validarFormulario se enviar como funcion, vue la interpreta y no es necesario poner "return validarFormulario()" -->
       <div class="form-group">

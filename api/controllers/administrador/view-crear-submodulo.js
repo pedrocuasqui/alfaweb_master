@@ -23,6 +23,27 @@ module.exports = {
 
   fn: async function (inputs,exits) {
 
+
+
+    var req = this.req;
+    var res = this.res;
+ 
+    var usuario = null;
+    //si se encuentra el usuario, se remite la información del usuario logueado para poder mostrar su nombre y validar su rol
+
+    if (req.session.userId) {
+      usuario = await Profesor.findOne({ id: req.session.userId })
+      if (!usuario) {
+        res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+      }
+
+    }else{
+      res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+    }
+
+
+
+
     sails.log('CODIO DE MODULO'+inputs.moduloId);
     var modulo = await ModuloLibro.findOne({id: inputs.moduloId})
     .intercept((err)=>{sails.log('ERROR MODULO NO ENCONTRADO',err)});
@@ -37,7 +58,7 @@ module.exports = {
     sails.log(JSON.stringify(modulos));
     sails.log('curso');
     sails.log(JSON.stringify(curso));
-    return exits.success({curso, moduloSeleccionado:modulo});
+    return exits.success({curso, moduloSeleccionado:modulo, usuario});
 
   }
 

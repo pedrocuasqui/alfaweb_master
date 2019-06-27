@@ -119,13 +119,15 @@ parasails.registerComponent('modulo-side-var-menu', {
         esAdmin() {
             let esadmin = false;
             //si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
-            if (this.usuario.rol == 'Administrador' && this.cursoInformatica == false) {
+            if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false) {
                 esadmin = true;
             }
             // si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones 
             //1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
             //2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
             else if (this.usuario.rol == 'Estudiante') {
+                esadmin = false;
+            }else{
                 esadmin = false;
             }
 

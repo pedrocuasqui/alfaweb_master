@@ -36,7 +36,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         usuario: {
             type: Object,
-            // default: () => { return { nombre: 'Admin', rol: 'Administrador' } }
+            default: () => { return { nombre: 'Visitante', rol: 'Estudiante', id:'1' } }
         },
         crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
         mostrarIconoRepetir: false,
@@ -66,7 +66,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
 <div class="div-contenido container-fluid"  v-cloak>
     <div class="row" id="div-cabecera"  >
         <div class="col-sm-10" id="breadcrumbText" ref="printBreadcrumb">
-            <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
+            <modulo-barra-nav :breadcrumb="breadcrumb" :usuario="usuario"></modulo-barra-nav> 
         </div>
         <div class="col-sm-2">
             <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou"  />

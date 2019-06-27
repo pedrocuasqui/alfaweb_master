@@ -37,7 +37,7 @@ module.exports.routes = {
     action: 'autenticacion/view-registro-usuario',
   },
 
-  'POST /registrar-usuario': {
+  'POST /registro-usuario': {
     action: 'autenticacion/registro-usuario',
   },
   'GET /view-login': {

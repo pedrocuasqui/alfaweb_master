@@ -50,23 +50,67 @@ parasails.registerPage('registro-usuario', {
         }
 
       }
+      // else {
+      //   this.formData.email = null;
+      // }
       // Valida que exista un rol:
       if (!argins.rol) {
         this.formErrors.rol = true;
       }
 
-      
+
       /*INSERTAR LA VALIDACION DE CORREO ELECTRONICO VALIDO */
       //  si el objeto que almacena errores se encuentra vacío, entonces continuar, caso contrario no recargar la página
       if (Object.keys(this.formErrors).length == 0) {
-        console.log('sin errores');
-        return true;
-        
+        this.registrarUsuario();
+
       }
       else { //si se encuentran errores no se recarga la página
-        e.preventDefault();
-        console.log("# de errores: "+Object.keys(this.formErrors).length);
+        return false;
+        // e.preventDefault();
+        // console.log("# de errores: "+Object.keys(this.formErrors).length);
       }
+
+    },
+    registrarUsuario() {
+      // var _this=this;
+      var formData = new FormData();
+      formData.append('nombre', this.formData.alias);
+      formData.append('alias', this.formData.alias);
+      formData.append('email', this.formData.email);
+      formData.append('password', this.formData.password);
+      formData.append('rol', this.formData.rol);
+
+      axios({
+        url: '/registro-usuario',
+        method: 'post',
+        data: formData
+      }).
+        then((response) => {
+          console.log(response);
+          window.location.replace('/view-login');
+        })
+        .catch((err) => {
+
+          if (err.response.status == 409) {
+            alert('ERROR: EL USUARIO YA SE ENCUENTRA CREADO');
+            // if (_this.formData.alias) {
+            //   _this.formErrors.alias = true;
+            // }
+
+            // if (_this.formData.email) {
+            //   if (!_this.validEmail(argins.email)) {
+            //     _this.formErrors.email = true
+            //   }
+
+            // }
+          } else {
+            alert('NO SE PUEDE REGISTRAR EN ESTE MOMENTO, INTENTE MÁS TARDE');
+          }
+
+          // return false;
+        });
+
 
     },
     validEmail: function (email) {

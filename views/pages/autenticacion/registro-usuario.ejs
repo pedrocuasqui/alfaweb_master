@@ -2,7 +2,7 @@
 
   <modulo-contenedor-admin>
 
-    <form @submit="validarFormulario" action="/registrar-usuario" method="post">
+    <form @submit.prevent="validarFormulario" >
       <div class="form-group">
         <label for="nombre">* Nombre de usuario</label>
         <input name="nombre" class="form-control" id="nombre"  type="text" autofocus
@@ -14,7 +14,7 @@
         <label for="alias">* Alias de usuario</label>
         <input name="alias" class="form-control" id="alias" autofocus type="text"
           :class="[formErrors.alias ? 'is-invalid' : '']" v-model.trim="formData.alias" placeholder="Ej. pepito123">
-        <div class="invalid-feedback" v-if="formErrors.alias">Ingrese un alias de usuario.</div>
+        <div class="invalid-feedback" v-if="formErrors.alias">Ingrese un alias de usuario válido.</div>
       </div>
       <div class="form-group">
         <label for="email">Correo electrónico (opcional)</label>

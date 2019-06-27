@@ -1,6 +1,34 @@
+/***********************************/
 WARNING: Something seems to be wrong with this function.
 It is trying to signal that it has finished AGAIN, after
 already resolving/rejecting once.
 (silently ignoring this...)
 
 SOLUCION: LAS ACCIONES QUE SON REQUERIDAS POR MEDIO DEL METODO GET, DEBEN TENER ALGO DENTRO DEL OBJETO EXITS, INCLUSO SI NO SE OCUPA ESA PROPIEDAD.
+
+/*************************************/
+error: Sending 500 ("Server Error") response:
+ Error [ERR_STREAM_CANNOT_PIPE]: Encountered error during file download:  Cannot pipe, not readable
+ .
+ .
+ .
+ error: Handled a `POST` request to  `/registro-usuario`, by running an action, which called its `success` exit.  But then an error occurred: TypeError: Cannot read property 'pipe'
+of undefined
+
+SOLUCION: LAS ACCIONES QUE SON REQUERIDAD POR EL METODO POST, DEBEN DECLARAR EL VALOR EXITS EN LA FUNCION PRINCIPAL DE LA ACCION DE LA SIGUIETNE MANERA:
+fn: async function (inputs,exits) {
+    .
+    .
+}
+FUNCIONA AUN SI NO EXISTEN VALORES DENTRO DE EXITS
+ejemplo: archivo registro-usuario.js
+/***************************************/error: Handled a `POST` request to  `/registro-usuario`, by running an action, which called its `error` exit.  But then an error occurred: Error [ERR_HTTP_HEADERS_SENT]: Cannot set headers after they are sent to the client
+
+SOLUCION: EN EL CLIENTE SE AGREGA @SUBMIT.PREVENT, PARA QUE EL FORMULARIO NO SE ENVIE ANTES DE VALIDAR
+/***************************************/
+WARNING: Something seems to be wrong with this function.
+It is trying to signal that it has finished AGAIN, after
+already resolving/rejecting once.
+(silently ignoring this...)
+
+SOLUCION: NO SE REVISA NINGUNA SOLUCION, PERO SE PRODUCE EN LA ACCION QUE GENERÓ EL ERROR ANTERIOR

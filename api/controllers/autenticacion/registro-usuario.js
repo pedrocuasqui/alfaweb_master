@@ -23,7 +23,7 @@ module.exports = {
       type: 'string',
       required: true,
     },
-    rol:{
+    rol: {
       type: 'string',
       required: true
     }
@@ -31,11 +31,14 @@ module.exports = {
 
 
   exits: {
-    redirect:{
-      description:'Redirecciona a otra página despues de registrar al usuario',
-      responseType:'redirect' // Los diferentes tipos de response buscar en la siguiente página https://sailsjs.com/documentation/reference/response-res
-      //ejemplos: responseType:'ok'  responseType:'view'
+    success: {
+      description: 'exito'
     },
+    // redirect: {
+    //   description: 'Redirecciona a otra página despues de registrar al usuario',
+    //   responseType: 'redirect' // Los diferentes tipos de response buscar en la siguiente página https://sailsjs.com/documentation/reference/response-res
+    //   //ejemplos: responseType:'ok'  responseType:'view'
+    // },
     aliasoEmailYaEnUso: {
       statusCode: 409,
       description: 'alias  o email ya en uso.',
@@ -43,12 +46,13 @@ module.exports = {
   },
 
 
-  fn: async function (inputs,exits) {
+  fn: async function (inputs, exits) {
 
-    
+    var res = this.res;
     var passwordEncriptada = await sails.helpers.hashPassword(inputs.password);
     // All done.
-    if (inputs.rol=='estudiante') {
+
+    if (inputs.rol == 'estudiante') {
       //registra al usuario en la tabla estudiante
       await Estudiante.create({
         nombre: inputs.nombre,
@@ -59,14 +63,16 @@ module.exports = {
         // avance:{} //inicia vacio
 
       })
-      //1) buscar la forma de retornar cual es el campo repetido
-      //2) en la funcion validarCampos() con axios consumir esta api y retornar el error encontrado, usar preventDefault para evitar que se recargue la página, en caso de que todo funcione correctamente, esta API registro-usuario.js debe retornar un codigo 200 para redirigir manualmente a otra página con   'window.location.replace("/administrar-home")'
-      //3) si existen errores, vue verifica el tipo de error y muestra en la vista
-        .intercept('E_UNIQUE', 'aliasoEmailYaEnUso')
+
+        .intercept('E_UNIQUE', () => {
+          var errores = new Error();
+          errores.message = 'Ya existe el usuario con el alias o email provistos';
+          return res.status(409).send({ error: errores })
+        })
         .intercept((err) => { sails.log('ERROR GENERAL\n' + err) });
 
-        sails.log('ESTUDIANTE CREADO CORRECTAMENTE');
-    } else if (inputs.rol== 'administrador' ) {
+      sails.log('ESTUDIANTE CREADO CORRECTAMENTE');
+    } else if (inputs.rol == 'administrador') {
       //registra al usuario en la coleccion profesor
       await Profesor.create({
         nombre: inputs.nombre,
@@ -76,27 +82,39 @@ module.exports = {
         administrador: true,
         tutor: false,
       })
-      .intercept('E_UNIQUE', 'aliasoEmailYaEnUso')
-        .intercept((err) => { sails.log('ERROR GENERAL\n' + err) });
-      
-        sails.log('PROFESOR CREADO CORRECTAMENTE');
-    } else if (inputs.rol=='tutor') {
+
+        .intercept('E_UNIQUE', () => {
+          //LAS TRES sentencias siguientes son iguales,
+          // la primera toma mas tiempo que la segunda y la tercera
+          // return res.status(409).send();
+          //  return exits.aliasoEmailYaEnUso()
+          return "aliasoEmailYaEnUso";
+        })
+        .intercept((err) => { sails.log('ERROR GENERAL\n' + err + "\n FIN ERROR GENERAL") });
+
+      sails.log('ADMIN CREADO CORRECTAMENTE');
+    } else if (inputs.rol == 'tutor') {
       //registra al usuario en la coleccion profesor
       await Profesor.create({
         nombre: inputs.nombre,
         alias: inputs.alias,
         email: inputs.email.toLowerCase(),
         password: passwordEncriptada,
-        administrador:false,
+        administrador: false,
         tutor: true,
       })
-      .intercept('E_UNIQUE', 'aliasoEmailYaEnUso')
+        .intercept('E_UNIQUE', () => {
+          var errores = new Error();
+          errores.message = 'Ya existe el usuario con el alias o email provistos';
+          return res.status(409).send({ error: errores })
+        })
         .intercept((err) => { sails.log('ERROR GENERAL\n' + err) });
-      
-        sails.log('PROFESOR CREADO CORRECTAMENTE');
+
+      sails.log('TUTOR CREADO CORRECTAMENTE');
     }
 
-    return exits.redirect('/view-login');
+    // return exits.redirect('/view-login');
+    return res.status(200).send();// es necesario retornar algo para que axios sepa que realizar
 
   }
 

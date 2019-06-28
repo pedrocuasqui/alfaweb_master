@@ -565,3 +565,11 @@ http://www.domain.com/index.html*?name1=value1
 Multiple parameters, as well as entire lists, can be transmitted to the server. Here, the various parameters are separated using a “&” sign.
 
 http://www.domain.com/index.html*?name1=value1&name2=value2
+
+
+
+28-06-2019
+
+SESSIONS
+por que la sesion expira
+https://stackoverflow.com/questions/36525830/executing-code-when-a-session-ends-in-sails-js

@@ -36,12 +36,15 @@ module.exports = {
     var res = this.res;
     //solo para pruebas se usa la Colecion estudiante 
     var usuario;
-    
+
     //Evaluación si existe usuario logueado 
-    if (req.session.userId) {
+    if (req.session.userId) { //CUANDO EXPIRA LA SESION YA NO INGRESA AQUI
+      
       usuario = await Estudiante.findOne({ id: req.session.userId });
       if (!usuario) {
-        // exits.unauthorized(); //respuesta pendiente de modificación
+
+        // res.status(401).send({ 'Error': 'SU SESIÓN HA EXPIRADO' });
+        res.status(401).send({ 'error':'NO SE ENCUENTRA EL USUARIO' });
 
       } else { // existe usuario,entonces registrar el avance
         let credenciales = { cursoId: inputs.cursoId, usuarioId: usuario.id }

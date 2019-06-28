@@ -40,10 +40,10 @@ module.exports = {
     // buscar un registro que contenfa al id del curso y el id del usurio logueado
 
 
-    let registroCurosEstudiante = await CursoEstudiantes.findOne({
+    let registroCurosEstudiante = await CursoEstudiantes.findOne({where:{
       curso_matriculados: inputs.credenciales.cursoId,
       estudiante_cursos: inputs.credenciales.usuarioId
-    })
+    }})
 
     if (!registroCurosEstudiante) {// no existe el registro en la tabla de rompimiento entonces se crea uno
       registroCreadoModificado = await CursoEstudiantes

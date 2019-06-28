@@ -2,7 +2,7 @@ parasails.registerComponent('modulo-panel-derecho', {
     props: {
         usuario: {
             type: Object,
-            default: ()=>{return {nombre:'Pepe Pérez', rol:'Estudiante'}},
+            default: ()=>{return {nombre:'Visitante', rol:'Estudiante',id:'1'}},
         },
         nivelActual: {
             type: String,

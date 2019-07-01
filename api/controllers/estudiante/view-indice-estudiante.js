@@ -35,25 +35,58 @@ module.exports = {
     var req = this.req;
     var res = this.res;
     //solo para pruebas se usa la Colecion estudiante 
-    var usuario;
+    var usuario = null;
+    var cursoEstudiante = null;
+
 
     //Evaluación si existe usuario logueado 
     if (req.session.userId) { //CUANDO EXPIRA LA SESION YA NO INGRESA AQUI
-      
+
       usuario = await Estudiante.findOne({ id: req.session.userId });
       if (!usuario) {
 
         // res.status(401).send({ 'Error': 'SU SESIÓN HA EXPIRADO' });
-        res.status(401).send({ 'error':'NO SE ENCUENTRA EL USUARIO' });
+        res.status(401).send({ 'error': 'NO SE ENCUENTRA EL USUARIO' });
 
-      } else { // existe usuario,entonces registrar el avance
-        let credenciales = { cursoId: inputs.cursoId, usuarioId: usuario.id }
-        let avance = null //el avance se coloca en null en lugar de {} porque es mas facil gestionar desde el lado cliente
-        await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
       }
+
+
+
+      cursoEstudiante = await CursoEstudiantes.findOne({ curso_matriculados: inputs.cursoId, estudiante_cursos: usuario.id });
+      if (cursoEstudiante) {
+        console.log('existe curso Estudiante');
+        console.log(cursoEstudiante);
+        if (cursoEstudiante.avance) {
+          var ultimoTema = null; //para almacenar el nombre del ultimo tema
+          if (cursoEstudiante.avance.enlace) { //es alfaweb, entonces busco por enlace
+
+            ultimoTema = await ModuloLibro.findOne({ enlace: cursoEstudiante.avance.enlace });
+            if (!ultimoTema) {
+              ultimoTema = await SubmoduloLibro.findOne({ enlace: cursoEstudiante.avance.enlace });
+            }
+
+          } else {// es otro curso , entonces busco por id
+
+            ultimoTema = await ModuloLibro.findOne({ id: cursoEstudiante.avance.objetoId });
+            if (!ultimoTema) {
+              ultimoTema = await SubmoduloLibro.findOne({ id: cursoEstudiante.avance.objetoId });
+            }
+
+          }
+          if(ultimoTema.nombreModulo){
+            cursoEstudiante.nombre = ultimoTema.nombreModulo;
+          }else {
+            cursoEstudiante.nombre = ultimoTema.nombreSubmodulo;
+          }
+          
+
+        }
+
+
+      }
+ 
+
     }
-
-
 
     /* var moduloLibro = await ModuloLibro.find(); //esta es una instancia de consulta --> es un intento aún no cumplido de obtener registros de la base de datos
         //el resultado solo se observa cuando se usa la palabra await antes de la instancia y se asigna a una variable
@@ -70,7 +103,8 @@ module.exports = {
     return exits.success({
       contenidos,
       usuario,
-      curso
+      curso,
+      cursoEstudiante
       // cuando el nombre de la propiedad es igual al nombre del objeto que contiene la información, es posible enviar solo un dato es decir que, pasar, contenidos: contenidos es igual que pasar contenidos
     });
 

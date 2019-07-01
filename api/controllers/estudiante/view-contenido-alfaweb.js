@@ -43,7 +43,7 @@ module.exports = {
       //si el usuario no tiene pareja en la collection CursoEstudiante, registrar al curso en el usuario
         } else {
           usuario.rol = 'Estudiante'; // cualquier valor, se buscará este campo en el cliente
-          let credenciales = { cursoId: inputs.cursoId, usuarioId: usuario.id }
+          let credenciales = { cursoId: curso.id, usuarioId: usuario.id }
           let avance = { enlace:inputs.enlace };         
           await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
         }

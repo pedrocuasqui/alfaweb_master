@@ -96,7 +96,11 @@
         <label for="tinyMce">* Contenido dinámico</label>
         <form method="post" id="tinyMce">
           <!-- post para que las imágenes se carguen con la funcionalidad por defecto de tinymce-->
-          <div id="mytextarea"> Pulse aquí para editar</div>
+          <div id="mytextarea" class="contenidoTiny"> Pulse aquí para editar</div>
+
+       
+                    <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                    <div class="invalid-feedback" v-if="formErrors.contenidoTiny">Debe ingresar algún contenido </div>
         </form>
         <div class="contenido-tiny"></div>
         <div id="contenido-recibido"></div>

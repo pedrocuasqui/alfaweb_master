@@ -144,7 +144,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 </div>
                 <!-- columna derecha -->
                 <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
-                    <modulo-panel-derecho :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual"> 
+                    <modulo-panel-derecho :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" > 
                         <template v-slot:audio_general>
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                             <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>

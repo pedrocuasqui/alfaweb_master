@@ -36,37 +36,6 @@ module.exports = {
 
     console.log('INGRESO A VIEW-INTERFAZ-MODULO');
 
-    // usuario = await Estudiante.findOne({ alias: 'Pedroc' });
-    if (req.session.userId) {
-      usuario = await Estudiante.findOne({ id: req.session.userId });
-
-      if (!usuario) {
-        // exits.ok({ error: `no se encuentra el usuario con id ${req.session.userId}` });
-        res.status(401).send({ message: 'su sesión ha expirado' });
-
-      } else {
-
-
-        let avance = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId }
-        let credenciales = { cursoId: inputs.cursoId, usuarioId: usuario.id }
-
-        await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
-
-      }
-    } else { //si el usuario es el usuario Visitante se remite su información
-      usuario = {
-        id: 1,
-        nombre: 'Visitante',
-        rol: 'Estudiante'
-
-      }
-      // var cursos = await Curso.find();
-      // usuario.cursos = cursos;
-    }
-
-
-
-
 
 
 
@@ -97,6 +66,40 @@ module.exports = {
 
     sails.log('curso: ' + JSON.stringify(curso));
     sails.log(' objetoSeleccionado' + JSON.stringify(objetoSeleccionado));
+
+
+
+
+    // usuario = await Estudiante.findOne({ alias: 'Pedroc' });
+    if (req.session.userId) {
+      usuario = await Estudiante.findOne({ id: req.session.userId });
+
+      if (!usuario) {
+        // exits.ok({ error: `no se encuentra el usuario con id ${req.session.userId}` });
+        res.status(401).send({ message: 'su sesión ha expirado' });
+
+      } else {  
+        console.log('CURSO ID: '+ curso.id);
+        let credenciales = { cursoId: curso.id, usuarioId: usuario.id }
+        let avance = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId }
+
+        await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
+
+
+
+      }
+    } else { //si el usuario es el usuario Visitante se remite su información
+      usuario = {
+        id: 1,
+        nombre: 'Visitante',
+        rol: 'Estudiante'
+
+      }
+      // var cursos = await Curso.find();
+      // usuario.cursos = cursos;
+    }
+
+
 
 
 

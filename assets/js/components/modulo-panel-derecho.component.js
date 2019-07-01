@@ -2,7 +2,12 @@ parasails.registerComponent('modulo-panel-derecho', {
     props: {
         usuario: {
             type: Object,
-            default: ()=>{return {nombre:'Visitante', rol:'Estudiante',id:'1'}},
+            default: () => { return { nombre: 'Visitante', rol: 'Estudiante', id: '1' } },
+        },
+        cursoEstudiante: {
+            type: Object,
+            required: false,
+            default: () => { return null; }
         },
         nivelActual: {
             type: String,
@@ -46,14 +51,24 @@ parasails.registerComponent('modulo-panel-derecho', {
         }
 
     },
+    mounted(){
+        console.log('ENTRA A PANEL DERECHO');
+        console.log(this.cursoEstudiante);
+    },
     template: //html 
-    `  
+        `  
     <div class="container-fluid barra-lateral">
         <div class="row usuario">
                 <div class="col">
-                {{usuario.nombre}}
+                    {{usuario.nombre}}
+
+                    <slot name="audio_general"></slot>
+                    <div v-if="existeAvance" >
+                        <a v-if="cursoEstudiante.avance.enlace" :href="'/contenido-alfaweb/?enlace='+cursoEstudiante.avance.enlace" >ultimo tema revisado:{{cursoEstudiante.nombre}}</a>
+                        <a v-else :href="'/interfaz-modulos/?objetoId='+cursoEstudiante.avance.objetoId+'&tipoContenido='+cursoEstudiante.avance.tipoContenido">ultimo tema revisado:{{cursoEstudiante.nombre}}</a>
+                    </div>
                 </div>
-                <slot name="audio_general"></slot>
+                
         </div>
         
         <slot ></slot>
@@ -138,9 +153,9 @@ parasails.registerComponent('modulo-panel-derecho', {
         </div>
     </div>`,
     methods: {
-        evaluacionIndividual(contenido){
+        evaluacionIndividual(contenido) {
             // alert('evaluacion indiidual');
-            this.$emit('evaluacion-individual',contenido);
+            this.$emit('evaluacion-individual', contenido);
         },
 
 
@@ -149,6 +164,19 @@ parasails.registerComponent('modulo-panel-derecho', {
         porcentajeAvanceNiveles() {
             return (this.nivelActual / this.totalNiveles) * 100;
         },
+        existeAvance() {
+            let avance = false;
+
+            console.log('modulo panel derecho, funcion existeAvance');
+            if (this.cursoEstudiante) {
+                console.log('existe cursoEstudiante');
+                if (this.cursoEstudiante.avance) {
+                    avance = true;
+                }
+            }
+
+            return avance;
+        }
 
     }
 

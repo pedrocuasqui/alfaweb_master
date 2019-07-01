@@ -10,9 +10,10 @@ parasails.registerPage('indice-estudiante', {
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     ],
-    usuario: {},
+    usuario: { nombre: 'Visitante', rol: 'Estudiante', id: '1' },
     contenidos: null,
     isAlfaWeb: false,
+    cursoEstudiante:false,
 
   },
 
@@ -25,6 +26,12 @@ parasails.registerPage('indice-estudiante', {
     this.usuario = SAILS_LOCALS.usuario;
     this.contenidos = SAILS_LOCALS.contenidos;
     this.curso = SAILS_LOCALS.curso;
+    if(SAILS_LOCALS.cursoEstudiante){
+      this.cursoEstudiante=SAILS_LOCALS.cursoEstudiante;
+    }
+    console.log('CURSO ESTUDIANTE');
+    console.log(SAILS_LOCALS.cursoEstudiante);
+    
 
 
   },
@@ -50,6 +57,22 @@ parasails.registerPage('indice-estudiante', {
       }
       console.log(this.contenidos.length);
       return contenidoEsVacio;
+    },
+    existeCursoEstudianteyLogueado(){
+      let existe=false;
+      if(this.cursoEstudiante && this.usuario){
+        existe=true;
+      }
+
+      return existe;
+    },
+    noExisteCursoEstudianteyLogueado(){
+      let existe=false;
+      if(!this.cursoEstudiante && this.usuario){
+        existe=true;
+      }
+
+      return existe;
     }
 
   }

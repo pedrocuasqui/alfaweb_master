@@ -90,10 +90,11 @@ parasails.registerComponent('boton-curso', {
                 method: 'PUT',
                 data: { publicar: true }
             }).then(response => {
+                this.curso.publicado = true;
                 alert('curso publicado');
                 console.log(response);
                 console.log(response.data);
-                this.curso.publicado = true;
+                
             }).catch(err => {
                 alert('error, no se ha podido publicar el curso');
                 console.log(err);
@@ -108,10 +109,9 @@ parasails.registerComponent('boton-curso', {
                 method: 'PUT',
                 data: { publicar: false }
             }).then(response => {
-                alert('curso ocultado');
-                console.log(response);
-                console.log(response.data);
                 this.curso.publicado = false;
+                alert('curso ocultado');
+               
             }).catch(err => {
                 alert('error, revisar la consola');
                 console.log(err);

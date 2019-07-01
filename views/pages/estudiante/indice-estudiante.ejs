@@ -64,7 +64,9 @@
           </div>
           <!-- columna derecha -->
           <div class="col-sm-2 col-derecha">
-            <modulo-panel-derecho :usuario="usuario"></modulo-panel-derecho>
+            <modulo-panel-derecho v-if="existeCursoEstudianteyLogueado" key="LogueadoConAvance" :usuario="usuario" :curso-estudiante="cursoEstudiante"></modulo-panel-derecho>
+            <modulo-panel-derecho v-else-if="noExisteCursoEstudianteyLogueado" key="logueadoSinAvance" :usuario="usuario"></modulo-panel-derecho>
+            <modulo-panel-derecho v-else key="visitante" ></modulo-panel-derecho>
           </div>
         </div> <!-- fin fila de contenido central y barra lateral derecha -->
       </div>

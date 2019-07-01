@@ -17,10 +17,7 @@ parasails.registerPage('interfaz-modulos', {
   },
   mounted: async function() {
     //… definir el breadcrumb en este lugar o recibir desde la accion del servidor
-    console.log('CURSO, OBJETO SELECCIONADO y usuario');
-    console.log(SAILS_LOCALS.curso);
-    console.log(SAILS_LOCALS.objetoSeleccionado);
-    console.log(SAILS_LOCALS.usuario);
+
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

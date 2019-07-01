@@ -36,7 +36,14 @@ parasails.registerComponent('modulo-side-var-menu', {
   
     <div id="sidebar-menu" v-bind:class="{'sidebar-oculto':showSidebar}" >
         <div id="menuContenidos" >
-        <h4 class="col text-center">{{curso.nombre}}</h4>    
+        <span><h4 class="col text-center">{{curso.nombre}}</h4>   
+          <template v-if="esAdmin">
+        <!--PUBLICAR Y OCULTAR CURSO-->
+            <a v-if="curso.publicado" @click.stop="ocultarCurso(curso.id)" data-placement="top" title="Ocultar Curso"> <i class="fas fa-lock-open"></i> </a>
+            <a v-else @click.stop="publicarCurso(curso.id)" data-placement="top" title="Publicar Curso"> <i class="fas fa-lock"></i> </a> 
+          </template>
+        </span>
+       
         <h5 class="col text-center">Contenidos </h5>
             <!--dropdownModulo      : contenedor individual del modulo y sus submodulos-->
             <!--dropbtn-modulo      : el boton que contiene el nombre del modulo -->
@@ -111,6 +118,41 @@ parasails.registerComponent('modulo-side-var-menu', {
 
 
             return valor;
+        },
+        publicarCurso(cursoId) {
+
+            axios({
+                url: `/publicar-curso/${cursoId}`,
+                method: 'PUT',
+                data: { publicar: true }
+            }).then(response => {
+                this.curso.publicado = true;
+                alert('curso publicado');
+                console.log(response);
+                console.log(response.data);
+                
+            }).catch(err => {
+                alert('error, no se ha podido publicar el curso');
+                console.log(err);
+            });
+
+
+        },
+        ocultarCurso(cursoId) {
+            this.curso.publicado = false;
+            axios({
+                url: `/publicar-curso/${cursoId}`,
+                method: 'PUT',
+                data: { publicar: false }
+            }).then(response => {
+                this.curso.publicado = false;
+                alert('curso ocultado');
+               
+            }).catch(err => {
+                alert('error, revisar la consola');
+                console.log(err);
+            });
+
         }
 
 

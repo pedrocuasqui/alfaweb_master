@@ -110,6 +110,9 @@ module.exports.routes = {
   'PUT /publicar-curso/:cursoId': {
     action: 'administrador/publicar-curso',
   },
+  'GET /crear-evaluacion':{
+    action : 'administrador/view-crear-evaluacion'
+  },
 
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante

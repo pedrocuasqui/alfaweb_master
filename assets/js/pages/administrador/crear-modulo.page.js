@@ -29,6 +29,12 @@ parasails.registerPage('crear-modulo', {
     rutaTemporal: '',
     color: null,
     mostrarSpinner: false,
+
+
+
+
+    tituloEvaluacion: '',
+    evIndividual: false,
     
 
   },
@@ -231,6 +237,16 @@ parasails.registerPage('crear-modulo', {
      */
     onBorrarImagen() {
       this.imagenPortada = {};
+    },
+    
+    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
+      if (contenido == 'contenido') {
+        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
+        this.evIndividual = false;
+      } else {
+        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
+        this.evIndividual = true;
+      }
     },
 
 

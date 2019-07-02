@@ -3,9 +3,9 @@ parasails.registerPage('crear-submodulo', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    nombreSubmodulo:'',
-    descripcionSubmodulo:'',
-    
+    nombreSubmodulo: '',
+    descripcionSubmodulo: '',
+
     seleccionMultimedia: false,
     seleccionCarrusel: false,
     seleccionMapa: false,
@@ -16,22 +16,23 @@ parasails.registerPage('crear-submodulo', {
     nuevoArchivo: {
       urlLocal: null,
     },
-    indice:null,
-    formErrors:{
-      nombreSubmodulo:false,
-      descripcionSubmodulo:false,
+    indice: null,
+    formErrors: {
+      nombreSubmodulo: false,
+      descripcionSubmodulo: false,
       multimedia: false,
       multimediaGeneral: false
     },
-    moduloSeleccionado:null,
-    tituloTemporal:'Crear submódulo',
+    moduloSeleccionado: null,
+    tituloTemporal: 'Crear submódulo',
     // ancho:null,
     // alto:null,
     // imagenSeleccionada:null
-    submoduloCreado:null,
-    crearSubmodulo:true,
-    tipoContenido:'Submodulo',
-    breadcrumb:[]
+    submoduloCreado: null,
+    crearSubmodulo: true,
+    tipoContenido: 'Submodulo',
+    breadcrumb: [],
+
 
   },
 
@@ -41,13 +42,13 @@ parasails.registerPage('crear-submodulo', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    this.curso= SAILS_LOCALS.curso;
-    this.moduloSeleccionado= SAILS_LOCALS.moduloSeleccionado
+    this.curso = SAILS_LOCALS.curso;
+    this.moduloSeleccionado = SAILS_LOCALS.moduloSeleccionado
     this.breadcrumb.push(SAILS_LOCALS.curso);
   },
   mounted: async function () {
     //se crea la variable contenidoTiny para poder guardar el contenido del textarea de contendio 
-    window.contenidoTiny =null;// se establece el contenido
+    window.contenidoTiny = null;// se establece el contenido
 
   },
 
@@ -58,23 +59,23 @@ parasails.registerPage('crear-submodulo', {
   methods: {
     validarFormulario(e) {
       // solo se ejecutará cuando se pulse el botón Guardar Submodulo
-      this.formErrors={};
+      this.formErrors = {};
 
-      if(!this.nombreSubmodulo){
-        this.formErrors.nombreSubmodulo= true;
+      if (!this.nombreSubmodulo) {
+        this.formErrors.nombreSubmodulo = true;
       }
-      if(!this.descripcionSubmodulo){
-        this.formErrors.descripcionSubmodulo= true;
+      if (!this.descripcionSubmodulo) {
+        this.formErrors.descripcionSubmodulo = true;
       }
-      if(this.selectedFiles.length ==0  &&  !window.contenidoTiny){
-        this.formErrors.multimediaGeneral= true;
+      if (this.selectedFiles.length == 0 && !window.contenidoTiny) {
+        this.formErrors.multimediaGeneral = true;
       }
-      if(!window.contenidoTiny){
-        this.formErrors.contenidoTiny= true;
+      if (!window.contenidoTiny) {
+        this.formErrors.contenidoTiny = true;
       }
 
-       // SI EXISTE ALGUN ERROR SE RETORNA FALSE Y LA PAGINA SE REFRESCA SIN QUE SEA PERCEPTIBLE
-       if (Object.keys(this.formErrors).length > 0) {
+      // SI EXISTE ALGUN ERROR SE RETORNA FALSE Y LA PAGINA SE REFRESCA SIN QUE SEA PERCEPTIBLE
+      if (Object.keys(this.formErrors).length > 0) {
         return false;
       }
       //SI LOS VALORES INGRESADOS SON CORRECTOS SE ENVIA AL SERVIDOR
@@ -84,18 +85,18 @@ parasails.registerPage('crear-submodulo', {
 
 
       const formData = new FormData();//crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es implicitamente declarado con este objeto
-     if(this.selectedFiles.length != 0){
-      console.log(this.selectedFiles);
-      console.log(this.selectedFiles[0].name);
-      formData.append('multimedia', this.selectedFiles[0], this.selectedFiles[0].name);
-     }
-      
+      if (this.selectedFiles.length != 0) {
+        console.log(this.selectedFiles);
+        console.log(this.selectedFiles[0].name);
+        formData.append('multimedia', this.selectedFiles[0], this.selectedFiles[0].name);
+      }
+
       //en primer lugar va el nombre del campo que acepta el servidor, segundo va el archivo y tecero va el nombre del archivo
       formData.append('nombreSubmodulo', this.nombreSubmodulo); //Se puede usar Set en lugar de append, para agregar valores, SET reemplaza el nombre del campo cuando ya existe en formData
       formData.append('descripcionSubmodulo', this.descripcionSubmodulo);
       formData.append('moduloId', this.moduloSeleccionado.id);
       formData.append('contenidoTiny', window.contenidoTiny); //window.contenidoTiny se establece en el archivo layout.ejs, en el script de inicializacion de tinyMCE
-      formData.append('color', this.moduloSeleccionado.color); 
+      formData.append('color', this.moduloSeleccionado.color);
       axios({
         method: 'post',
         url: '/crear-submodulo',
@@ -194,28 +195,28 @@ parasails.registerPage('crear-submodulo', {
       this.seleccionMapa = false;
       // al pasar de carrusel o mapa a multimedia, solo se conservará el primer elemento del arreglo
     },
-    obtenerIndice(){
-      this.indice=$('.indicador.active').text();
-      
+    obtenerIndice() {
+      this.indice = $('.indicador.active').text();
+
     },
-  ////METODOS PARA CAMBIAR EL TAMANIO DE LA IMAGEN (USADO PARA EL MAPA INTERACTIVO)
-  ////Aplicar la siguiente línea al contenedor de la imagen ==> :style="{width:ancho, height:alto}"
-  //   initialiseResize(urlLocal,e) {
-  //     this.imagenSeleccionada=urlLocal;
-  //     window.addEventListener('mousemove', this.startResizing, false);
-  //     window.addEventListener('mouseup', this.stopResizing, false);
-  //     console.log('se ejecuta una vez al pulsar el mouse sin soltar');
-  //   },
-  //   startResizing(e) {
-  //     var boxPosition = $("[src='"+this.imagenSeleccionada+"']").offset();
-  //     this.ancho= (e.pageX-boxPosition.left) + 'px';
-  //     this.alto = (e.pageY -boxPosition.top) + 'px';
-  //  },
-  //  stopResizing(e) {
-  //    console.log('stop resizing');
-  //      window.removeEventListener('mousemove', this.startResizing, false);
-  //      window.removeEventListener('mouseup', this.stopResizing, false);
-  //  }
+    ////METODOS PARA CAMBIAR EL TAMANIO DE LA IMAGEN (USADO PARA EL MAPA INTERACTIVO)
+    ////Aplicar la siguiente línea al contenedor de la imagen ==> :style="{width:ancho, height:alto}"
+    //   initialiseResize(urlLocal,e) {
+    //     this.imagenSeleccionada=urlLocal;
+    //     window.addEventListener('mousemove', this.startResizing, false);
+    //     window.addEventListener('mouseup', this.stopResizing, false);
+    //     console.log('se ejecuta una vez al pulsar el mouse sin soltar');
+    //   },
+    //   startResizing(e) {
+    //     var boxPosition = $("[src='"+this.imagenSeleccionada+"']").offset();
+    //     this.ancho= (e.pageX-boxPosition.left) + 'px';
+    //     this.alto = (e.pageY -boxPosition.top) + 'px';
+    //  },
+    //  stopResizing(e) {
+    //    console.log('stop resizing');
+    //      window.removeEventListener('mousemove', this.startResizing, false);
+    //      window.removeEventListener('mouseup', this.stopResizing, false);
+    //  }
   },
   computed: {
     mapaCarrusel() {

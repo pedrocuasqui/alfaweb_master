@@ -34,9 +34,13 @@ module.exports = {
 
     var req = this.req;
     var res = this.res;
- 
+
     var usuario = null;
     //si se encuentra el usuario, se remite la información del usuario logueado para poder mostrar su nombre y validar su rol
+
+    var navegarAtras = '';
+    var navegarSiguiente = '';
+
 
     if (req.session.userId) {
       usuario = await Profesor.findOne({ id: req.session.userId })
@@ -44,7 +48,7 @@ module.exports = {
         res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
       }
 
-    }else{
+    } else {
       res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
     }
 
@@ -75,10 +79,42 @@ module.exports = {
       return res.status(500).send({ error: err });
     }
 
-    sails.log('ERROR curso: ' + JSON.stringify(curso));
-    sails.log('ERROR:  objetoSeleccionado' + JSON.stringify(objetoSeleccionado));
+    //PREPARACION LINKS DE NAVEGACION ADELANTE Y ATRAS
+    var arreglo = [];
+    if (curso.modulos.length != 0) {
+      //agrego modulos y submodulos en un mismo arreglo
+      curso.modulos.forEach(modulo => {
+        arreglo.push({ objetoId: modulo.id, tipoContenido: 'Modulo' })
+        modulo.submodulos.forEach(submodulo => {
+          arreglo.push({ objetoId: submodulo.id, tipoContenido: 'Submodulo' });
+        });
+      });
 
-    return exits.success({ curso, objetoSeleccionado , usuario});
+      //selecciono los elementos antes y despues del elemento que contiene al objeto seleccionado
+      for (let i = 0; i <= arreglo.length - 1; i++) {
+        if (arreglo[i].objetoId == objetoSeleccionado.id) {
+          //si el objeto es el primero 
+          if (i == 0) { // el anterior retorna al indice
+            navegarAtras = '/administrar-indice/?cursoId=' + curso.id;
+            navegarSiguiente = '/administrar-contenido/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
+          } else if (i == arreglo.length - 1) {
+            navegarAtras = '/administrar-contenido/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
+            navegarSiguiente = '/administrar-indice/?cursoId=' + curso.id;
+          }
+          else {
+            navegarAtras = '/administrar-contenido/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
+            navegarSiguiente = '/administrar-contenido/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
+
+          }
+
+        }
+      }
+    }
+
+
+
+
+    return exits.success({ curso, objetoSeleccionado, usuario, navegarAtras, navegarSiguiente});
 
   }
 

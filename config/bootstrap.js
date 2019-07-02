@@ -614,16 +614,50 @@ module.exports.bootstrap = async function (done) {
       alias: 'j',
       email: '',
       password: '$2b$10$dnUGZGpto1RdygwQ2bWDdeLRceCbCuU8Q2vz4RmZD8eXOyg.qrVqe',
-      administrador:true,
-      tutor:false
-      
+      administrador: true,
+      tutor: false
+
     });
 
+    //CURSO BASE DE DATOS
+    var cursoBdd = await Curso.create({
+      nombre: "Base de datos",
+      descripcion: "conceptos básicos de bases de datos",
+      publicado: true,
+    }).fetch();
 
-    
+    var mod1Bdd = await ModuloLibro.create({
+      nombreModulo: "Introduccion",
+      descripcion: "Una base de datos es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistemáticamente para su posterior uso",
+      multimedia: { imagen: 'https://es.wikipedia.org/wiki/Base_de_datos#/media/Archivo:Componentes_de_un_base_de_datos.jpg' },
+      curso: cursoBdd.id,
+      contenidoTiny: '<p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; text-align: start;">Una&nbsp;<strong>base de datos</strong>&nbsp;es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistem&aacute;ticamente para su posterior uso. En este sentido; una biblioteca puede considerarse una base de datos compuesta en su mayor&iacute;a por documentos y textos impresos en papel e indexados para su consulta. Actualmente, y debido al desarrollo tecnol&oacute;gico de campos como la&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Inform&aacute;tica" href="https://es.wikipedia.org/wiki/Inform%C3%A1tica">inform&aacute;tica</a>&nbsp;y la&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Electr&oacute;nica" href="https://es.wikipedia.org/wiki/Electr%C3%B3nica">electr&oacute;nica</a>, la mayor&iacute;a de las bases de datos est&aacute;n en formato digital, siendo este un componente electr&oacute;nico, por tanto se ha desarrollado y se ofrece un amplio rango de soluciones al problema del&nbsp;<a class="mw-redirect" style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Almacenamiento de datos" href="https://es.wikipedia.org/wiki/Almacenamiento_de_datos">almacenamiento de datos</a>.</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; text-align: start;">Hay&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Programa inform&aacute;tico" href="https://es.wikipedia.org/wiki/Programa_inform%C3%A1tico">programas</a>&nbsp;denominados&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Sistema de gesti&oacute;n de bases de datos" href="https://es.wikipedia.org/wiki/Sistema_de_gesti%C3%B3n_de_bases_de_datos">sistemas gestores de bases de datos</a>, abreviado SGBD (del ingl&eacute;s&nbsp;<em>Database Management System</em>&nbsp;o DBMS), que permiten almacenar y posteriormente acceder a los datos de forma r&aacute;pida y estructurada. Las propiedades de estos DBMS, as&iacute; como su utilizaci&oacute;n y administraci&oacute;n, se estudian dentro del &aacute;mbito de la inform&aacute;tica.</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; text-align: start;"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Componentes_de_un_base_de_datos.jpg" alt="" width="141" height="234" /></p>',
+      color: "#7dec3c",
+      enlace: ""
+    }).fetch();
+
+    var modulo2Bdd = await ModuloLibro.create({
+      nombreModulo: "Conceptos",
+      descripcion: "En esta sección aprenderás conceptos principales sobre bases de datos que te permitirán comprender de mejor manera el curso",
+      multimedia: { imagen: 'https://doc.4d.com/4Dv15/picture/105514/pict105514.es.png' },
+      curso: cursoBdd.id,
+      contenidoTiny: '<p><img src="https://doc.4d.com/4Dv15/picture/105514/pict105514.es.png" alt="" width="727" height="392" />&nbsp;</p>',
+      color: "#b642e1",
+
+      enlace: ""
+    }).fetch();
 
 
-
+    var submoduloModulo2Bdd = await SubmoduloLibro.create({
+      nombreSubmodulo: "Generalidades",
+      descripcion: "Para poder almacenar una base de datos es necesario contar con un gestor de base de datos que es un software especializado en manejo de datos",
+      multimedia: Object,
+      modulo: modulo2Bdd.id,
+      contenidoTiny: '<p>A fin de evitar que id&eacute;ntios datos se encuentren repetidos en m&uacute;ltiples archivos, parece necesario que los comunes se almacenen en un archivo &uacute;nico y que este archivo sea accesible por todos los programas que los manipulen.Definici&oacute;nUna base de datos es una colecci&oacute;n de datos interrelacionados, almacenados en un conjunto sin redundancias (repeticiones) perjudiciales o innecesarias. Su finalidad es la de servir a una o m&aacute;s aplicaciones de la mejor manera posible. Los datos se almacenan de modo que resulten independientes de los programas que los utilizan, y se emplean m&eacute;todos concretos y determinados para incluir nuevos datos y para modificar o extraer los ya almacenados.</p><p><img src="https://jordilopez94.files.wordpress.com/2014/09/sistemas-gestores-base-datos.jpg" alt="" width="303" height="241" /></p>',
+      color: "#b642e1",
+      enlace: "",
+      ordenNavegacion: 0
+    });
     sails.log('creacion de estudiante correcta!');
   }
 

@@ -37,7 +37,8 @@ module.exports = {
     //solo para pruebas se usa la Colecion estudiante 
     var usuario = null;
     var cursoEstudiante = null;
-
+    var navegarAtras = '/';
+    var navegarSiguiente = '';
 
     //Evaluación si existe usuario logueado 
     if (req.session.userId) { //CUANDO EXPIRA LA SESION YA NO INGRESA AQUI
@@ -73,18 +74,18 @@ module.exports = {
             }
 
           }
-          if(ultimoTema.nombreModulo){
+          if (ultimoTema.nombreModulo) {
             cursoEstudiante.nombre = ultimoTema.nombreModulo;
-          }else {
+          } else {
             cursoEstudiante.nombre = ultimoTema.nombreSubmodulo;
           }
-          
+
 
         }
 
 
       }
- 
+
 
     }
 
@@ -97,14 +98,23 @@ module.exports = {
     var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos');
     // console.log('Curso\n'+ JSON.stringify(curso) );
     // console.log('Curso:'+curso[0].nombre+'- modulos:\n'+ JSON.stringify(curso[0].modulos));
-
+    console.log('MODULOS');
+    console.log(curso.modulos);
+    console.log(curso.modulos.lenght);
     var contenidos = curso.modulos;
+    if (curso.modulos.length != 0) {
+      navegarSiguiente = '/interfaz-modulos/?objetoId=' + curso.modulos[0].id + '&tipoContenido=Modulo'
+    } else {
+      navegarSiguiente = '/indice-estudiante/?cursoId=' + curso.id;
+    }
 
     return exits.success({
       contenidos,
       usuario,
       curso,
-      cursoEstudiante
+      cursoEstudiante,
+      navegarAtras,
+      navegarSiguiente
       // cuando el nombre de la propiedad es igual al nombre del objeto que contiene la información, es posible enviar solo un dato es decir que, pasar, contenidos: contenidos es igual que pasar contenidos
     });
 

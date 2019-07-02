@@ -21,7 +21,7 @@ module.exports = {
   },
 
 
-  fn: async function (inputs,exits) {
+  fn: async function (inputs, exits) {
 
 
 
@@ -30,6 +30,8 @@ module.exports = {
     var res = this.res;
     var req = this.req;
     var usuario = null;
+    var navegarAtras = '/administrar-home';
+    var navegarSiguiente = '';
 
     if (!req.session.userId) { //no está logueado
       res.status(401).send({ mensaje: 'Su sesion ha expirado' })
@@ -46,11 +48,18 @@ module.exports = {
       if (!curso) { //no existe el objeto como tal
         return this.res.serverError('NO SE HA ENCONTRADO EL CURSO SOLICITADO');
       }
+      if (curso.modulos.length != 0) {
+        navegarSiguiente = '/administrar-contenido/?objetoId=' + curso.modulos[0].id + '&tipoContenido=Modulo'
+      } else {
+        navegarSiguiente = '/administrar-indice/?cursoId='+curso.id;
+      }
 
       return exits.success({
         curso,
 
-        usuario
+        usuario,
+        navegarAtras,
+        navegarSiguiente
       });
 
     }

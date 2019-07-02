@@ -68,7 +68,7 @@ module.exports = {
       return res.status(500).send({ error: err });
     }
 
-
+    //PREPARACION LINKS DE NAVEGACION ADELANTE Y ATRAS
     var arreglo = [];
     if (curso.modulos.length != 0) {
       //agrego modulos y submodulos en un mismo arreglo
@@ -80,24 +80,24 @@ module.exports = {
       });
 
       //selecciono los elementos antes y despues del elemento que contiene al objeto seleccionado
-    for (let i = 0; i <= arreglo.length - 1; i++) {
-      if (arreglo[i].objetoId == objetoSeleccionado.id) {
-        //si el objeto es el primero 
-        if(i==0){ // el anterior retorna al indice
-          navegarAtras = '/indice-estudiante/?cursoId=' +curso.id;
-          navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
-        }else if(i==arreglo.length - 1){
-          navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
-          navegarSiguiente='/';
+      for (let i = 0; i <= arreglo.length - 1; i++) {
+        if (arreglo[i].objetoId == objetoSeleccionado.id) {
+          //si el objeto es el primero 
+          if (i == 0) { // el anterior retorna al indice
+            navegarAtras = '/indice-estudiante/?cursoId=' + curso.id;
+            navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
+          } else if (i == arreglo.length - 1) {
+            navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
+            navegarSiguiente = '/';
+          }
+          else {
+            navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
+            navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
+
+          }
+
         }
-        else{
-          navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
-          navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
-  
-        }
-        
       }
-    }
     }
 
 
@@ -145,7 +145,7 @@ module.exports = {
 
 
 
-    return exits.success({ curso, objetoSeleccionado, usuario , navegarAtras, navegarSiguiente});
+    return exits.success({ curso, objetoSeleccionado, usuario, navegarAtras, navegarSiguiente });
 
 
   }

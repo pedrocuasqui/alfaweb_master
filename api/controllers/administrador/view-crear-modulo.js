@@ -43,6 +43,7 @@ module.exports = {
     var req = this.req;
     var usuario = null;
 
+
     if (!req.session.userId) { //no está logueado
       res.status(401).send({ mensaje: 'Su sesion ha expirado' })
     } else {
@@ -72,7 +73,6 @@ module.exports = {
 
 
     var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos');
-
 
 
     return exits.success({ curso: curso });

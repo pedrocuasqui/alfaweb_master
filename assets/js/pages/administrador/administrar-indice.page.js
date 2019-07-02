@@ -5,24 +5,24 @@ parasails.registerPage('administrar-indice', {
   data: {
     tituloContenido: "ÍNDICE",
     descripcionObjeto: '',
-    navegarAtras: '/',
-    navegarSiguiente: '/m1-computadora',
+    navegarAtras: '',
+    navegarSiguiente: '',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     ],
 
-    editarNombre:false,
+    editarNombre: false,
 
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function() {
+  beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
   },
-  mounted: async function() {
+  mounted: async function () {
     //…
   },
 
@@ -30,26 +30,26 @@ parasails.registerPage('administrar-indice', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-    
 
-    eliminarDocumento(){
-      var _this=this;
+
+    eliminarDocumento() {
+      var _this = this;
       axios.get('/eliminar-curso', {
         params: {
           cursoId: this.curso.id,
         }
       })
-      .then(function (response) {
-        console.log("respuesta de eliminacion\n"+response);          
-        location.replace("/administrar-home");
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+        .then(function (response) {
+          console.log("respuesta de eliminacion\n" + response);
+          location.replace("/administrar-home");
+        })
+        .catch(function (error) {
+          console.log(error);
+        });
 
     },
   },
-  computed:{
+  computed: {
 
   }
 });

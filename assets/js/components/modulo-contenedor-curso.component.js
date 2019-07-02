@@ -188,6 +188,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
         clickSilenciar() {
             window.sonido.cancel();
             window.silenciar = true;
+            this.silenciar=true;
         },
         clickReproducir() {
             this.silenciar = false;
@@ -206,12 +207,14 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         clickSilenciarGeneral() {
             this.silenciarGeneral = true;
+            this.clickSilenciar();
             $('.audioTag').hide();
             $('.audioTag').hide();
             $('audio').hide();
             $("audio").attr("src", "");
         },
         clickImprimir() {
+            this.clickSilenciar();
             // window.print();
             //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
             var contenidoBreadcrumb = this.$refs.printBreadcrumb;

@@ -29,6 +29,7 @@ parasails.registerPage('crear-modulo', {
     rutaTemporal: '',
     color: null,
     mostrarSpinner: false,
+    
 
   },
 

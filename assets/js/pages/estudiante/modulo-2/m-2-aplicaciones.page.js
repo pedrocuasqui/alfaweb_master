@@ -20,17 +20,17 @@ parasails.registerPage('m-2-aplicaciones', {
     },
 
     //atributos propios
-      
-    indice:null,
-    indicaciones:[
-      {descripcion:''},//la primera descripción es la del objetoSeleccionado
-      {descripcion:'Existen varias formas de abrir una aplicación en Windows, la primera es por medio del botón de inicio de windows, al dar clic sobre él, se despliega una lista de programas instalados en la computadora'},
-      {descripcion:'Paso 2: Seleccionar de entre la lista, el icono de la aplicación que queremos abrir y dar clic'},
-      {descripcion:'Paso 3: Esperar un momento mientras carga la aplicación, al abrirse, se crea un icono en la barra de tareas de la parte inferior, aquí se muestran las aplicaciones abiertas'},
-      {descripcion:'La otra forma de abrir una aplicación es por medio de un acceso directo del escritorio, para ello se ubica el icono deseado en el escritorio y se da doble clic.'},
-      {descripcion:'Esperar un momento mientras se carga la aplicación, al abrirse, se crea un icono en la barra de tareas de la parte inferior, aquí se muestran las aplicaciones abiertas.'},
+
+    indice: null,
+    indicaciones: [
+      { descripcion: '' },//la primera descripción es la del objetoSeleccionado
+      { descripcion: 'Existen varias formas de abrir una aplicación en Windows, la primera es por medio del botón de inicio de windows, al dar clic sobre él, se despliega una lista de programas instalados en la computadora' },
+      { descripcion: 'Paso 2: Seleccionar de entre la lista, el icono de la aplicación que queremos abrir y dar clic' },
+      { descripcion: 'Paso 3: Esperar un momento mientras carga la aplicación, al abrirse, se crea un icono en la barra de tareas de la parte inferior, aquí se muestran las aplicaciones abiertas' },
+      { descripcion: 'La otra forma de abrir una aplicación es por medio de un acceso directo del escritorio, para ello se ubica el icono deseado en el escritorio y se da doble clic.' },
+      { descripcion: 'Esperar un momento mientras se carga la aplicación, al abrirse, se crea un icono en la barra de tareas de la parte inferior, aquí se muestran las aplicaciones abiertas.' },
     ],
-    silenciar:true
+    silenciar: true
 
     // elemento:{
     //   id:'', 
@@ -54,21 +54,21 @@ parasails.registerPage('m-2-aplicaciones', {
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function() {
+  beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    
-    this.indicaciones[0].descripcion=this.objetoSeleccionado.descripcion;
+
+    this.indicaciones[0].descripcion = this.objetoSeleccionado.descripcion;
     this.usuario = SAILS_LOCALS.usuario;
-    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado,
-    this.navegarSiguiente = SAILS_LOCALS.siguiente.enlace;
-    this.navegarAtras = SAILS_LOCALS.anterior.enlace;
+    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
+    this.navegarSiguiente = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.siguiente.enlace;
+    this.navegarAtras = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.anterior.enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
 
   },
-  mounted: async function() {
+  mounted: async function () {
     //…
   },
 
@@ -97,7 +97,7 @@ parasails.registerPage('m-2-aplicaciones', {
       //     $('#modalBarraDeNotificacion').modal('show');
       //   });
 
-    
+
 
     },
     mouseMovePc(event) {
@@ -117,27 +117,27 @@ parasails.registerPage('m-2-aplicaciones', {
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
 
-      
+
       // El audio se encuentra en el componente modulo-contenedor-curso.component
       let audioMouseOver = document.getElementById("audioMouseOver");
       audioMouseOver.volume = 0.2;
       // audioMouseOver.load(); //carga el archivo, esto implica detener la reproduccion actual
       audioMouseOver.play(); //reproduce el archivo de audio
     },
-    obtenerIndice(){
+    obtenerIndice() {
       console.log('clic en obtenerIndice');
-      var _this= this;
+      var _this = this;
       this.$refs.curso.clickSilenciar();
-    //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
-    //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
+      //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
+      //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
       $('#carouselAbrir').on('slid.bs.carousel', function () {
-        this.indice=$('.indicador.active').text(); //obtiene el indice del indicador actual
-        let posicion= parseInt(this.indice)-1;
+        this.indice = $('.indicador.active').text(); //obtiene el indice del indicador actual
+        let posicion = parseInt(this.indice) - 1;
 
-        _this.objetoSeleccionado.descripcion=_this.indicaciones[posicion].descripcion;
-        console.log('POSICION:'+posicion);
-        })
-   
+        _this.objetoSeleccionado.descripcion = _this.indicaciones[posicion].descripcion;
+        console.log('POSICION:' + posicion);
+      })
+
 
     },
   },

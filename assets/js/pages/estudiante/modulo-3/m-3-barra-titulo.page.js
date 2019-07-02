@@ -43,9 +43,9 @@ parasails.registerPage('m-3-barra-titulo', {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
     this.usuario = SAILS_LOCALS.usuario;
-    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado,
-      this.navegarSiguiente = SAILS_LOCALS.siguiente.enlace;
-    this.navegarAtras = SAILS_LOCALS.anterior.enlace;
+    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
+    this.navegarSiguiente = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.siguiente.enlace;
+    this.navegarAtras = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.anterior.enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);

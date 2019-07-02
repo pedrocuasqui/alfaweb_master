@@ -36,7 +36,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         usuario: {
             type: Object,
-            default: () => { return { nombre: 'Visitante', rol: 'Estudiante', id:'1' } }
+            default: () => { return { nombre: 'Visitante', rol: 'Estudiante', id: '1' } }
         },
         crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
         mostrarIconoRepetir: false,
@@ -86,8 +86,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
                     <div class="row">
                         
                         <!--"navegacion-atras"-->
-                        <div class="col-auto">
-                            <a v-if="!evIndividual" key="link" :href="'/contenido-alfaweb/?enlace='+navegarAtras" @click="clickSilenciar" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                        <div class="col-auto" v-if="navegarAtras">
+                            <a v-if="!evIndividual" key="link" :href="navegarAtras" @click="clickSilenciar" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
                             <a v-else  key="ev" title="Ver Contenido" @click.stop="evaluacionIndividual('contenido')"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
                         </div>
                        
@@ -105,9 +105,9 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                                              
                                               
-                         <div  class="col-auto">
+                         <div  class="col-auto" v-if="navegarSiguiente">
                             <!--navegacion-siguiente-->
-                            <a v-if="evIndividual" key="siguiente"  :href="'/contenido-alfaweb/?enlace='+navegarSiguiente" title="Siguiente tema" @click="clickSilenciar" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                            <a v-if="evIndividual" key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickSilenciar" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
                             <!--navegacion-evaluacion-->
                             <a v-else key="evaluacion" title="Evaluación" @click.stop="evaluacionIndividual"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a> <!--por defecto se muestra este boton-->                  
                         </div>

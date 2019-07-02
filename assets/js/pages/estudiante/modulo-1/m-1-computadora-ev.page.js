@@ -11,7 +11,7 @@ parasails.registerPage('m-1-computadora-ev', {
     },
     descripcionActividad: 'Tienes 12 segundos para seleccionar el objeto que se te indica. Si necesitas ayuda presiona el avatar... Suerte!',
     
-    navegarAtras: '/m1-computadora',
+    navegarAtras: '/contenido-alfaweb/?enlace=/m1-computadora',
     navegarSiguiente: '/m1-sistema-informatico',
     accion: 'Da clic sobre el: ',
     elementos: [],

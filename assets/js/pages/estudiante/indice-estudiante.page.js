@@ -6,7 +6,7 @@ parasails.registerPage('indice-estudiante', {
     tituloContenido: "ÍNDICE",
     descripcionObjeto: '',
     navegarAtras: '/',
-    navegarSiguiente: '/m1-computadora',
+    navegarSiguiente: '/contenido-alfaweb/?enlace=/m1-computadora',
 
     breadcrumb: [{ id: '', texto: 'indice', enlace: '/indice-estudiante' },
     ],

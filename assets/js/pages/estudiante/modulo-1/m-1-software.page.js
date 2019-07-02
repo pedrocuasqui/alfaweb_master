@@ -5,12 +5,12 @@ parasails.registerPage('m-1-software', {
   data: {
     breadcrumb: [],
 
-    usuario:Object,
-    navegarSiguiente:'',
-    navegarAtras:'',
-    tituloEvaluacion:'',
-    evIndividual:false,
-    objetoSeleccionado:'',
+    usuario: Object,
+    navegarSiguiente: '',
+    navegarAtras: '',
+    tituloEvaluacion: '',
+    evIndividual: false,
+    objetoSeleccionado: '',
 
     mouseX: 0,
     mouseY: 0,
@@ -21,89 +21,89 @@ parasails.registerPage('m-1-software', {
     },
 
 
-    adobe:{
-      id:'Adobe', 
-      titulo:'Adobe',
-      detalle:'Adobe Acrobat es una familia de programas o aplicaciones informáticas desarrollados por Adobe Systems, diseñados para visualizar, crear y modificar archivos con el formato Portable Document Format, más conocido como PDF. El uso del formato PDF es muy común para mostrar texto con un diseño visual ordenado. \n  Algunos programas de la familia, especialmente para la creación de este tipo de archivos son comerciales; mientras que otros para la lectura de este tipo de documentos son freeware.', 
-      leerMas:'https://es.wikipedia.org/wiki/Adobe_Acrobat', 
-      imgs:[
-        
-          {
-            src:'https://www.softzone.es/app/uploads/2015/10/Adobe-Portada1.jpg?x=634&y=309',
-            alt:'Adobe '
-            } ,
-          
-          ]
+    adobe: {
+      id: 'Adobe',
+      titulo: 'Adobe',
+      detalle: 'Adobe Acrobat es una familia de programas o aplicaciones informáticas desarrollados por Adobe Systems, diseñados para visualizar, crear y modificar archivos con el formato Portable Document Format, más conocido como PDF. El uso del formato PDF es muy común para mostrar texto con un diseño visual ordenado. \n  Algunos programas de la familia, especialmente para la creación de este tipo de archivos son comerciales; mientras que otros para la lectura de este tipo de documentos son freeware.',
+      leerMas: 'https://es.wikipedia.org/wiki/Adobe_Acrobat',
+      imgs: [
+
+        {
+          src: 'https://www.softzone.es/app/uploads/2015/10/Adobe-Portada1.jpg?x=634&y=309',
+          alt: 'Adobe '
+        },
+
+      ]
     },
-    eset:{
-      id:'Eset', 
-      titulo:'Eset Antivirus',
-      detalle:'ESET, empresa pionera en protección antivirus, nació con la creación de un multipremiado software para la detección de amenazas. \n Ahora, el objetivo de ESET es garantizar que todos puedan disfrutar de las asombrosas oportunidades que ofrece la tecnología.', 
-      leerMas:'https://www.eset.com/es/acerca-de-eset/', 
-      imgs:[
-        
-          {
-            src:'https://cdn1.esetstatic.com/ESET/ES/OG_images/b2c.jpg',
-            alt:'Eset'
-            } ,
-          
-          ]
-    }  ,
-    linux:{
-      id:'Linux', 
-      titulo:'GNU Linux',
-      detalle:'GNU/Linux, también conocido informalmente como Linux, es un sistema operativo libre tipo Unix; multiplataforma, multiusuario y multitarea. El sistema es la combinación de varios proyectos, entre los cuales destacan GNU (encabezado por Richard Stallman y la Free Software Foundation) y el núcleo Linux (encabezado por Linus Torvalds). Su desarrollo es uno de los ejemplos más prominentes de software libre: todo su código fuente puede ser utilizado, modificado y redistribuido libremente por cualquiera, bajo los términos de la GPL (Licencia Pública General de GNU) y otra serie de licencias libres.1', 
-      leerMas:'https://es.wikipedia.org/wiki/GNU/Linux', 
-      imgs:[
-        
-          {
-            src:'https://i.blogs.es/4137ee/linux3/450_1000.png',
-            alt:'Gnu Linux'
-            } ,
-          
-          ]
-    }  ,
-    kaspersky:{
-      id:'Kaspersky', titulo:'Kaspersky',
-      detalle:'Kaspersky es una compañía internacional dedicada a la seguridad informática con presencia en aproximadamente 200 países del mundo. Su sede central se encuentra en Moscú, Rusia, mientras que el holding está registrado en Reino Unido. Sus productos y tecnologías garantizan protección informática a más de 300 millones de usuarios y la compañía posee más de 250.000 clientes corporativos a escala internacional.', 
-      leerMas:'https://es.wikipedia.org/wiki/Kaspersky_Lab', 
-      imgs:[
-        
-          {
-            src:'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Kaspersky_virlab.JPG/1024px-Kaspersky_virlab.JPG',
-            alt:'Kaspersky'
-            } ,
-          
-          ]
+    eset: {
+      id: 'Eset',
+      titulo: 'Eset Antivirus',
+      detalle: 'ESET, empresa pionera en protección antivirus, nació con la creación de un multipremiado software para la detección de amenazas. \n Ahora, el objetivo de ESET es garantizar que todos puedan disfrutar de las asombrosas oportunidades que ofrece la tecnología.',
+      leerMas: 'https://www.eset.com/es/acerca-de-eset/',
+      imgs: [
+
+        {
+          src: 'https://cdn1.esetstatic.com/ESET/ES/OG_images/b2c.jpg',
+          alt: 'Eset'
+        },
+
+      ]
     },
-    debian:{
-      id:'Debian', 
-      titulo:'Debian',
-      detalle:'Debian es un sistema operativo (S.O.) libre, para su computadora. El sistema operativo es el conjunto de programas básicos y utilidades que hacen que funcione su computadora. Debian ofrece más que un S.O. puro; viene con 51000 paquetes, programas precompilados distribuidos en un formato que hace más fácil la instalación en su computadora.', 
-      leerMas:'https://www.debian.org/index.es.html', 
-      imgs:[
-        
-          {
-            src:'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Debian-OpenLogo.svg/245px-Debian-OpenLogo.svg.png',
-            alt:'Debian'
-            } ,
-          
-          ]
-    }  ,
-    windows:{
-      id:'Windows', 
-      titulo:'Microsoft Windows',
-      detalle:'Es el nombre de una familia de distribuciones de software para PC, smartphone, servidores y sistemas empotrados, desarrollados y vendidos por Microsoft y disponibles para múltiples arquitecturas, tales como x86, x86-64 y ARM.', 
-      leerMas:'https://es.wikipedia.org/wiki/Microsoft_Windows', 
-      imgs:[
-        
-          {
-            src:'https://as01.epimg.net/meristation/imagenes/2019/03/21/betech/1553186102_297628_1553194488_noticia_normal.jpg',
-            alt:'Windows'
-            } ,
-          
-          ]
-    }    
+    linux: {
+      id: 'Linux',
+      titulo: 'GNU Linux',
+      detalle: 'GNU/Linux, también conocido informalmente como Linux, es un sistema operativo libre tipo Unix; multiplataforma, multiusuario y multitarea. El sistema es la combinación de varios proyectos, entre los cuales destacan GNU (encabezado por Richard Stallman y la Free Software Foundation) y el núcleo Linux (encabezado por Linus Torvalds). Su desarrollo es uno de los ejemplos más prominentes de software libre: todo su código fuente puede ser utilizado, modificado y redistribuido libremente por cualquiera, bajo los términos de la GPL (Licencia Pública General de GNU) y otra serie de licencias libres.1',
+      leerMas: 'https://es.wikipedia.org/wiki/GNU/Linux',
+      imgs: [
+
+        {
+          src: 'https://i.blogs.es/4137ee/linux3/450_1000.png',
+          alt: 'Gnu Linux'
+        },
+
+      ]
+    },
+    kaspersky: {
+      id: 'Kaspersky', titulo: 'Kaspersky',
+      detalle: 'Kaspersky es una compañía internacional dedicada a la seguridad informática con presencia en aproximadamente 200 países del mundo. Su sede central se encuentra en Moscú, Rusia, mientras que el holding está registrado en Reino Unido. Sus productos y tecnologías garantizan protección informática a más de 300 millones de usuarios y la compañía posee más de 250.000 clientes corporativos a escala internacional.',
+      leerMas: 'https://es.wikipedia.org/wiki/Kaspersky_Lab',
+      imgs: [
+
+        {
+          src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Kaspersky_virlab.JPG/1024px-Kaspersky_virlab.JPG',
+          alt: 'Kaspersky'
+        },
+
+      ]
+    },
+    debian: {
+      id: 'Debian',
+      titulo: 'Debian',
+      detalle: 'Debian es un sistema operativo (S.O.) libre, para su computadora. El sistema operativo es el conjunto de programas básicos y utilidades que hacen que funcione su computadora. Debian ofrece más que un S.O. puro; viene con 51000 paquetes, programas precompilados distribuidos en un formato que hace más fácil la instalación en su computadora.',
+      leerMas: 'https://www.debian.org/index.es.html',
+      imgs: [
+
+        {
+          src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Debian-OpenLogo.svg/245px-Debian-OpenLogo.svg.png',
+          alt: 'Debian'
+        },
+
+      ]
+    },
+    windows: {
+      id: 'Windows',
+      titulo: 'Microsoft Windows',
+      detalle: 'Es el nombre de una familia de distribuciones de software para PC, smartphone, servidores y sistemas empotrados, desarrollados y vendidos por Microsoft y disponibles para múltiples arquitecturas, tales como x86, x86-64 y ARM.',
+      leerMas: 'https://es.wikipedia.org/wiki/Microsoft_Windows',
+      imgs: [
+
+        {
+          src: 'https://as01.epimg.net/meristation/imagenes/2019/03/21/betech/1553186102_297628_1553194488_noticia_normal.jpg',
+          alt: 'Windows'
+        },
+
+      ]
+    }
 
 
     // elemento:{
@@ -111,12 +111,12 @@ parasails.registerPage('m-1-software', {
     //   detalle:'', 
     //   leerMas:'', 
     //   imgs:[
-        
+
     //       {
     //         src:'',
     //         alt:''
     //         } ,
-          
+
     //       ]
     // }  
 
@@ -130,10 +130,10 @@ parasails.registerPage('m-1-software', {
     _.extend(this, SAILS_LOCALS);
     console.log('BREADCRUMB BEFORE MOUNT SOFTWARE');
     console.log(this.breadcrumb);
-    this.usuario=SAILS_LOCALS.usuario;
-    this.objetoSeleccionado= SAILS_LOCALS.objetoSeleccionado,
-    this.navegarSiguiente=SAILS_LOCALS.siguiente.enlace;
-    this.navegarAtras=SAILS_LOCALS.anterior.enlace;
+    this.usuario = SAILS_LOCALS.usuario;
+    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
+    this.navegarSiguiente = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.siguiente.enlace;
+    this.navegarAtras = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.anterior.enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
@@ -153,7 +153,7 @@ parasails.registerPage('m-1-software', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-  
+
     //con mouseEnter no reconoce muy bien al elemento
     mouseOver(event) {
       let objetoSeleccionado = event.target.parentNode.id;
@@ -171,7 +171,7 @@ parasails.registerPage('m-1-software', {
             "transform-box": "fill-box",
             "transform-origin": "center",
             "transition-timing-function": "ease-out",
-            "fill":"chartreuse"
+            "fill": "chartreuse"
           })
         },
         //funcion que se ejecuta "onmouseleave" --> vuelve a su estado original
@@ -182,50 +182,50 @@ parasails.registerPage('m-1-software', {
             "transform-box": "fill-box",
             "transform-origin": "center",
             "transition-timing-function": "ease-out",
-            "fill":""
+            "fill": ""
           })
         }
       );
     },
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-      if(contenido=='contenido'){
+      if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
         this.evIndividual = false;
-      }else{
+      } else {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
         this.evIndividual = true;
       }
     },
 
-    
-    infoObjeto(idObjeto){
-      if(idObjeto=='adobe'){
-        $(function(){
+
+    infoObjeto(idObjeto) {
+      if (idObjeto == 'adobe') {
+        $(function () {
           $('#modalAdobe').modal('show');
         });
 
-      }else if(idObjeto=='eset'){
-        $(function(){
+      } else if (idObjeto == 'eset') {
+        $(function () {
           $('#modalEset').modal('show');
         });
 
-      }else if(idObjeto=='linux'){
-        
-        $(function(){
+      } else if (idObjeto == 'linux') {
+
+        $(function () {
           $('#modalLinux').modal('show');
         });
-      }else if(idObjeto=='kaspersky') {
-        $(function(){
+      } else if (idObjeto == 'kaspersky') {
+        $(function () {
           $('#modalKaspersky').modal('show');
         });
       }
-      else if(idObjeto=='debian'){ //usb
-        $(function(){
+      else if (idObjeto == 'debian') { //usb
+        $(function () {
           $('#modalDebian').modal('show');
         });
       }
       else { //impresora
-        $(function(){
+        $(function () {
           $('#modalWindows').modal('show');
         });
       }
@@ -252,7 +252,7 @@ parasails.registerPage('m-1-software', {
     },
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
-      
+
       // El audio se encuentra en el componente modulo-contenedor-curso.component
       let audioMouseOver = document.getElementById("audioMouseOver");
       audioMouseOver.volume = 0.2;
@@ -260,7 +260,7 @@ parasails.registerPage('m-1-software', {
       audioMouseOver.play(); //reproduce el archivo de audio
     },
   },
-  computed:{
+  computed: {
     styleToolTip() {
       // translate define cuanto se moverá el objeto a partir de su posicion original
       // funciona solo con comillas dobles

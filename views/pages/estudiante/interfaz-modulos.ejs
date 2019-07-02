@@ -1,6 +1,6 @@
 <div id="interfaz-modulos" v-cloak>
 
-  <modulo-contenedor-curso :curso="curso" :objeto-seleccionado="objetoSeleccionado"  :breadcrumb="breadcrumb" :usuario="usuario">
+  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :curso="curso" :objeto-seleccionado="objetoSeleccionado"  :breadcrumb="breadcrumb" :usuario="usuario">
     <!-- CONTENIDO MULTIMEDIA -->
     <div v-html="objetoSeleccionado.contenidoTiny"></div>
     <!-- EJEMPLO CON IMAGEN ESTATICA -->

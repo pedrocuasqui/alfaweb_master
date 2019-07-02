@@ -32,6 +32,9 @@ module.exports = {
     var curso = Object;
     var usuario = null;
 
+    var navegarAtras = '';
+    var navegarSiguiente = '';
+
 
 
     console.log('INGRESO A VIEW-INTERFAZ-MODULO');
@@ -44,6 +47,7 @@ module.exports = {
       curso = await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err) => { sails.log('ERROR EN HELPERS: ' + err) });
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreModulo;
+
     } else if (inputs.tipoContenido == 'Submodulo') {
       // console.log('Objeto id submodulos'+inputs.objetoId);
       objetoSeleccionado = await SubmoduloLibro.findOne({ id: inputs.objetoId });
@@ -64,6 +68,44 @@ module.exports = {
       return res.status(500).send({ error: err });
     }
 
+
+    var arreglo = [];
+    if (curso.modulos.length != 0) {
+      //agrego modulos y submodulos en un mismo arreglo
+      curso.modulos.forEach(modulo => {
+        arreglo.push({ objetoId: modulo.id, tipoContenido: 'Modulo' })
+        modulo.submodulos.forEach(submodulo => {
+          arreglo.push({ objetoId: submodulo.id, tipoContenido: 'Submodulo' });
+        });
+      });
+
+      //selecciono los elementos antes y despues del elemento que contiene al objeto seleccionado
+    for (let i = 0; i <= arreglo.length - 1; i++) {
+      if (arreglo[i].objetoId == objetoSeleccionado.id) {
+        //si el objeto es el primero 
+        if(i==0){ // el anterior retorna al indice
+          navegarAtras = '/indice-estudiante/?cursoId=' +curso.id;
+          navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
+        }else if(i==arreglo.length - 1){
+          navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
+          navegarSiguiente='/';
+        }
+        else{
+          navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
+          navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
+  
+        }
+        
+      }
+    }
+    }
+
+
+    console.log('NAVEGACION ATRAS:')
+    console.log(navegarAtras)
+    console.log('NAVEGACION SIGUIENTE:')
+    console.log(navegarSiguiente)
+
     sails.log('curso: ' + JSON.stringify(curso));
     sails.log(' objetoSeleccionado' + JSON.stringify(objetoSeleccionado));
 
@@ -78,8 +120,8 @@ module.exports = {
         // exits.ok({ error: `no se encuentra el usuario con id ${req.session.userId}` });
         res.status(401).send({ message: 'su sesión ha expirado' });
 
-      } else {  
-        console.log('CURSO ID: '+ curso.id);
+      } else {
+        console.log('CURSO ID: ' + curso.id);
         let credenciales = { cursoId: curso.id, usuarioId: usuario.id }
         let avance = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId }
 
@@ -103,7 +145,7 @@ module.exports = {
 
 
 
-    return exits.success({ curso, objetoSeleccionado, usuario });
+    return exits.success({ curso, objetoSeleccionado, usuario , navegarAtras, navegarSiguiente});
 
 
   }

@@ -20,29 +20,29 @@ parasails.registerPage('m-6-creacion-cuenta', {
     },
 
     //atributos propios
-      
-    indice:null,
-    indicaciones:[
-      {descripcion:''},//la primera descripción es la del objetoSeleccionado
-      {descripcion:'Paso 1: Para crear un correo electrónico ingresar a la url del proveedor de correo que desea usar, en este ejercicio usaremos outlook asi que escribimos: www.outlook.com, en el Navegador Web.'},
-      {descripcion:'Paso 2: Ir a la opción ¿No tiene una cuenta? y dar clic sobre Cree una. '},
-      {descripcion:'Paso 3: Se presentará un formulario en el cual se debe proceder a ingresar los datos personales solicitados como nombre, país, etc .'},
-      {descripcion:'Paso 4: Ingresar nombre y apellidos. '},
-      {descripcion:'Paso 5: A continuación, se ingresa nombre de usuario, y se selecciona el dominio y la extensión; Outlook le informará si el nombre de usuario esta disponible o alguien ya lo ha tomado.'},
-      {descripcion:'Paso 6: Seguidamente se procede a crear y confirmar una contraseña. Recuerde escribir una frase facil de recordar para usted pero difícil de adivinar por terceros'},
-      {descripcion:'Paso 7:	Ingresar el país de residencia, fecha de nacimiento, y sexo'},
-      {descripcion:'Paso 8: A continuación, ingresar el Código del país (+593 para Ecuador) , Número de Teléfono y Dirección de correo electrónico alternativo.'},
-      {descripcion:'Paso 9: Posteriormente ingresar los caracteres especificados en el Captcha. Un captcha es una forma de validar que un humano sea quién este controlando la computadora'},
-      {descripcion:'Paso 10: Antes de finalizar el procedimiento, Microsoft envía un código mediante un mensaje de texto a su celular para comprobar la identidad de la persona.'},
-      {descripcion:'Paso 11: Ya recibido el código de seguridad, se procede a ingresar en el campo indicado y dar clic en el botón de Crear cuenta.'},
-      {descripcion:'Paso 12: Finalmente, tendremos acceso a la cuenta de correo electrónico.'},
-      {descripcion:'Paso 13: Outlook pide realizar algunas configuraciones iniciales. Configuración de idioma y zona horaria.'},
-      {descripcion:'Paso 14: Aplicar un tema personal. Un tema personal define los colores y estilos que se aplican a la interfaz del usuario'},
-      {descripcion:'Paso 15: Agregar su firma. La firma se refiere al último texto que acompaña al correo electrónico, e identifica al emisor del correo' },
-      {descripcion:'Paso 16: Terminada la configuración podemos observar que la cuenta de correo electrónico ya se encuentra creada y configurada correctamente para ser utilizada'},
-      {descripcion:'Paso 17: Ingresamos a nuestra cuenta de correo electrónico. Se muestra nuestra bandeja de entrada (buzón virtual) en donde se almacenan los correos que nos han enviado '},
+
+    indice: null,
+    indicaciones: [
+      { descripcion: '' },//la primera descripción es la del objetoSeleccionado
+      { descripcion: 'Paso 1: Para crear un correo electrónico ingresar a la url del proveedor de correo que desea usar, en este ejercicio usaremos outlook asi que escribimos: www.outlook.com, en el Navegador Web.' },
+      { descripcion: 'Paso 2: Ir a la opción ¿No tiene una cuenta? y dar clic sobre Cree una. ' },
+      { descripcion: 'Paso 3: Se presentará un formulario en el cual se debe proceder a ingresar los datos personales solicitados como nombre, país, etc .' },
+      { descripcion: 'Paso 4: Ingresar nombre y apellidos. ' },
+      { descripcion: 'Paso 5: A continuación, se ingresa nombre de usuario, y se selecciona el dominio y la extensión; Outlook le informará si el nombre de usuario esta disponible o alguien ya lo ha tomado.' },
+      { descripcion: 'Paso 6: Seguidamente se procede a crear y confirmar una contraseña. Recuerde escribir una frase facil de recordar para usted pero difícil de adivinar por terceros' },
+      { descripcion: 'Paso 7:	Ingresar el país de residencia, fecha de nacimiento, y sexo' },
+      { descripcion: 'Paso 8: A continuación, ingresar el Código del país (+593 para Ecuador) , Número de Teléfono y Dirección de correo electrónico alternativo.' },
+      { descripcion: 'Paso 9: Posteriormente ingresar los caracteres especificados en el Captcha. Un captcha es una forma de validar que un humano sea quién este controlando la computadora' },
+      { descripcion: 'Paso 10: Antes de finalizar el procedimiento, Microsoft envía un código mediante un mensaje de texto a su celular para comprobar la identidad de la persona.' },
+      { descripcion: 'Paso 11: Ya recibido el código de seguridad, se procede a ingresar en el campo indicado y dar clic en el botón de Crear cuenta.' },
+      { descripcion: 'Paso 12: Finalmente, tendremos acceso a la cuenta de correo electrónico.' },
+      { descripcion: 'Paso 13: Outlook pide realizar algunas configuraciones iniciales. Configuración de idioma y zona horaria.' },
+      { descripcion: 'Paso 14: Aplicar un tema personal. Un tema personal define los colores y estilos que se aplican a la interfaz del usuario' },
+      { descripcion: 'Paso 15: Agregar su firma. La firma se refiere al último texto que acompaña al correo electrónico, e identifica al emisor del correo' },
+      { descripcion: 'Paso 16: Terminada la configuración podemos observar que la cuenta de correo electrónico ya se encuentra creada y configurada correctamente para ser utilizada' },
+      { descripcion: 'Paso 17: Ingresamos a nuestra cuenta de correo electrónico. Se muestra nuestra bandeja de entrada (buzón virtual) en donde se almacenan los correos que nos han enviado ' },
     ],
-    silenciar:true
+    silenciar: true
 
     // elemento:{
     //   id:'', 
@@ -66,21 +66,21 @@ parasails.registerPage('m-6-creacion-cuenta', {
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function() {
+  beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    
-    this.indicaciones[0].descripcion=this.objetoSeleccionado.descripcion;
+
+    this.indicaciones[0].descripcion = this.objetoSeleccionado.descripcion;
     this.usuario = SAILS_LOCALS.usuario;
-    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado,
-    this.navegarSiguiente = SAILS_LOCALS.siguiente.enlace;
-    this.navegarAtras = SAILS_LOCALS.anterior.enlace;
+    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
+    this.navegarSiguiente = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.siguiente.enlace;
+    this.navegarAtras = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.anterior.enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
 
   },
-  mounted: async function() {
+  mounted: async function () {
     //…
   },
 
@@ -109,7 +109,7 @@ parasails.registerPage('m-6-creacion-cuenta', {
       //     $('#modalBarraDeNotificacion').modal('show');
       //   });
 
-    
+
 
     },
     // mouseMovePc(event) {
@@ -129,20 +129,20 @@ parasails.registerPage('m-6-creacion-cuenta', {
     // mouseOutPc(evet) {
     //   this.mostrarToolTip = false;
     // },
-    obtenerIndice(){
-      
-      var _this= this;
-      this.$refs.curso.clickSilenciar();
-    //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
-    //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
-      $('#carouselCuenta').on('slid.bs.carousel', function () {
-        this.indice=$('.indicador.active').text(); //obtiene el indice del indicador actual
-        let posicion= parseInt(this.indice)-1;
+    obtenerIndice() {
 
-        _this.objetoSeleccionado.descripcion=_this.indicaciones[posicion].descripcion;
-        console.log('POSICION:'+posicion);
-        })
-   
+      var _this = this;
+      this.$refs.curso.clickSilenciar();
+      //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
+      //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
+      $('#carouselCuenta').on('slid.bs.carousel', function () {
+        this.indice = $('.indicador.active').text(); //obtiene el indice del indicador actual
+        let posicion = parseInt(this.indice) - 1;
+
+        _this.objetoSeleccionado.descripcion = _this.indicaciones[posicion].descripcion;
+        console.log('POSICION:' + posicion);
+      })
+
 
     },
   },

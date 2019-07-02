@@ -3,7 +3,7 @@ parasails.registerPage('m-1-encender-computadora', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    breadcrumb:[],
+    breadcrumb: [],
     usuario: Object,
     navegarSiguiente: '',
     navegarAtras: '',
@@ -20,19 +20,19 @@ parasails.registerPage('m-1-encender-computadora', {
     },
 
 
-    indice:null,
-    indicaciones:[
-      {descripcion:'Para encender el equipo siga los siguientes pasos. Paso 1: Encender el CPU, para ello diríjase al botón de encendido del equipo, por lo general es un circulo con una línea en el centro '},
-      {descripcion:'Paso 2: Encender el monitor, para ello diríjase hacia la parte inferior derecha de la pantalla que es donde generalmente se encuentra el botón de encendido, presiónelo una sola vez y suéltelo, espere hasta que encienda '},
-      {descripcion:'Paso 3: Seleccionar un usuario, la computadora require que cada persona se identifique como usuario, por ello debe seleccionar un usuario para poder acceder y esperar a que inicie el computador'},
-      {descripcion:'Paso 4: Pantalla de inicio, una vez que la computadora se enciende, carga los programas y muestra accesos directos en el escritorio'},
-      {descripcion:'Para apagar el computador, ir al botón de inicio y seleccionar la opción apagar. Recuerde que esta acción tambien cierra todos los programas abiertos'},
+    indice: null,
+    indicaciones: [
+      { descripcion: 'Para encender el equipo siga los siguientes pasos. Paso 1: Encender el CPU, para ello diríjase al botón de encendido del equipo, por lo general es un circulo con una línea en el centro ' },
+      { descripcion: 'Paso 2: Encender el monitor, para ello diríjase hacia la parte inferior derecha de la pantalla que es donde generalmente se encuentra el botón de encendido, presiónelo una sola vez y suéltelo, espere hasta que encienda ' },
+      { descripcion: 'Paso 3: Seleccionar un usuario, la computadora require que cada persona se identifique como usuario, por ello debe seleccionar un usuario para poder acceder y esperar a que inicie el computador' },
+      { descripcion: 'Paso 4: Pantalla de inicio, una vez que la computadora se enciende, carga los programas y muestra accesos directos en el escritorio' },
+      { descripcion: 'Para apagar el computador, ir al botón de inicio y seleccionar la opción apagar. Recuerde que esta acción tambien cierra todos los programas abiertos' },
     ],
-    silenciar:true
+    silenciar: true
 
 
-    
-   // elemento:{
+
+    // elemento:{
     //   nombre:'', 
     //   detalle:'', 
     //   leerMas:'', 
@@ -52,20 +52,20 @@ parasails.registerPage('m-1-encender-computadora', {
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
   //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
   //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function() {
+  beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    this.objetoSeleccionado.descripcion=this.indicaciones[0].descripcion;
+    this.objetoSeleccionado.descripcion = this.indicaciones[0].descripcion;
 
     this.usuario = SAILS_LOCALS.usuario;
-    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado,
-    this.navegarSiguiente = SAILS_LOCALS.siguiente.enlace;
-    this.navegarAtras = SAILS_LOCALS.anterior.enlace;
+    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
+    this.navegarSiguiente = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.siguiente.enlace;
+    this.navegarAtras = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.anterior.enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
   },
-  mounted: async function() {
+  mounted: async function () {
     //…
   },
 
@@ -122,18 +122,18 @@ parasails.registerPage('m-1-encender-computadora', {
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
     },
-    obtenerIndice(){
-      var _this= this;
+    obtenerIndice() {
+      var _this = this;
       this.$refs.curso.clickSilenciar();
-    //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
-    //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
+      //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
+      //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
       $('#carouseEncendido').on('slid.bs.carousel', function () {
-        this.indice=$('.indicador.active').text(); //obtiene el indice del indicador actual
-        let posicion= parseInt(this.indice)-1;
+        this.indice = $('.indicador.active').text(); //obtiene el indice del indicador actual
+        let posicion = parseInt(this.indice) - 1;
 
-        _this.objetoSeleccionado.descripcion=_this.indicaciones[posicion].descripcion;
-        })
-   
+        _this.objetoSeleccionado.descripcion = _this.indicaciones[posicion].descripcion;
+      })
+
 
     },
   },

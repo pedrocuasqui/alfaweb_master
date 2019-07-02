@@ -214,7 +214,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
             $("audio").attr("src", "");
         },
         clickImprimir() {
-            this.clickSilenciar();
+            this.clickSilenciar(); //ultima linea editada en sprint 6
             // window.print();
             //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
             var contenidoBreadcrumb = this.$refs.printBreadcrumb;

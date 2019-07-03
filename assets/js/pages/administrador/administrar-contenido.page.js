@@ -33,6 +33,14 @@ parasails.registerPage('administrar-contenido', {
     },
     mostrarSpinner: false,
     imagenTemporal: {},
+
+
+    tituloEvaluacion: '',
+    evIndividual: false,
+    codigoTipoEvaluacion:0,
+    mostrarMenuTipoEvaluacion:true,
+
+    
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -243,6 +251,20 @@ parasails.registerPage('administrar-contenido', {
           }
         );
     },
+    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
+      if (contenido == 'contenido') {
+        this.tituloEvaluacion = this.objetoSeleccionado.nombre;
+        this.evIndividual = false;
+      } else {
+        this.tituloEvaluacion = this.objetoSeleccionado.nombre;
+        this.evIndividual = true;
+      }
+    },
+    mostrarTipoEvaluacion(codigo){
+      
+        this.codigoTipoEvaluacion=codigo;
+      this.mostrarMenuTipoEvaluacion=false;
+    }
 
   },
   computed: {

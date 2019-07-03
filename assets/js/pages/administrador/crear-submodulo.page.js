@@ -34,6 +34,9 @@ parasails.registerPage('crear-submodulo', {
     breadcrumb: [],
 
 
+
+    adminCreandoModuloSubmodulo: true
+
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

@@ -54,129 +54,218 @@
 
 
                 <div class="row fila-principal">
-                    <!-- Columna central del cuerpo-->
-                    <div class="col-sm-10 col-central">
-                        <!--botones de navegacion y Titulo-->
-                        <div class="row">
 
-                            <!--atras-->
-                            <div class="col-auto">
-                                <a :href="navegarAtras"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+
+
+                    <!-- Columna central del cuerpo-->
+                    <template v-if="evIndividual">
+                        <div class="col-sm-10 col-central">
+                            <h4>{{objetoSeleccionado.nombre}} - Evaluación</h4>
+
+                            <div v-if="mostrarMenuTipoEvaluacion" class="list-group">
+
+                                <a @click="mostrarTipoEvaluacion(1)"
+                                    class="list-group-item list-group-item-action list-group-item-primary estiloLink"
+                                    style="text-align: left !important;">
+                                    <span> <img width="55px" height="auto"
+                                            src="/images/otros/tipo_de_evaluacion/cuestionario.png"
+                                            alt="Cuestionario de preguntas">
+
+                                        Crear un cuestionario con preguntas de opción múltiple.
+                                    </span>
+                                </a>
+                                <a @click="mostrarTipoEvaluacion(2)"
+                                    class="list-group-item list-group-item-action list-group-item-primary estiloLink"
+                                    style="text-align: left !important;">
+                                    <span> <img width="55px" height="auto"
+                                            src="/images/otros/tipo_de_evaluacion/emparejamiento.png"
+                                            alt="Cuestionario de preguntas">
+                                        Crear una evaluación con opciones para emparejar.
+                                    </span>
+                                </a>
+                                <a @click="mostrarTipoEvaluacion(3)"
+                                    class="list-group-item list-group-item-action list-group-item-primary estiloLink"
+                                    style="text-align: left !important;">
+                                    <span> <img width="55px" height="auto"
+                                            src="/images/otros/tipo_de_evaluacion/senialar_objeto.png"
+                                            alt="Cuestionario de preguntas">
+                                        Crear una evaluación que permita al estudiante seleccione el nombre de la imágen
+                                        que aparece en la pantalla.
+                                    </span>
+                                </a>
+                                <a @click="mostrarTipoEvaluacion(4)"
+                                    class="list-group-item list-group-item-action list-group-item-primary estiloLink"
+                                    style="text-align: left !important;">
+                                    <span><img width="55px" height="auto"
+                                            src="/images/otros/tipo_de_evaluacion/lluvia_objetos.png"
+                                            alt="Cuestionario de preguntas">
+                                        Crear una evaluación que permita al estudiante pulsar el nombre del objeto en
+                                        pantalla antes de que caiga.
+                                    </span>
+                                </a>
                             </div>
 
-                            <!--titulo-->
-                            <div class="col" id="titulo-modulo">
-                                <div class="form-group">
-                                    <!-- <label for="nombre">* Título del módulo</label> -->
-                                    <div class="row ">
-                                        <div class="col tituloObjeto">
+                            <!-- EVALUACIONES -->
 
-                                            <input v-if="editarNombre" type="text" id="nombre" name="nombre"
-                                                v-model="objetoSeleccionado.nombre"
-                                                placeholder="Ej: Modulo 1: la computadora"
-                                                :class="[formErrors.nombre ? 'is-invalid' : '']"
-                                                v-on:keyup.enter="editarNombre=false" maxlength="100" autofocus>
-                                            <h2 v-else>{{objetoSeleccionado.nombre}}</h2>
-                                            <a v-if="editarNombre" @click="actualizarNombre" title="Guardar Nombre"><i
-                                                    class="fas fa-save"></i></a>
-                                            <a v-else @click="mostrarEditarNombre"><i class="fas fa-edit"></i></a>
-                                            <a data-toggle="modal" data-target="#modalConfirmaEliminar"
-                                                data-placement="top" title="Eliminar Objeto"><i
-                                                    class="fas fa-trash-alt"></i></a>
+                            <template v-else>
+                                <!-- SI LA VARIABLE mostrarMenuTipoEvaluacion ES FALSE SE MUESTRA LA INTERFAZ PARA EDITAR  -->
+                                <template v-if="codigoTipoEvaluacion==1">
+                                    <div class="row">
+                                        <h6>Cuestionario</h6>
+                                    </div>
+                                </template>
+                                <template v-if="codigoTipoEvaluacion==2">
+                                    <div class="row">
+                                        <h6>Emparejamiento</h6>
+                                    </div>
+                                </template>
+                                <template v-if="codigoTipoEvaluacion==3">
+                                    <div class="row">
+                                        <h6>Seleccionar objeto indicado</h6>
+                                    </div>
+                                </template>
+                                <template v-if="codigoTipoEvaluacion==4">
+                                    <div class="row">
+                                        <h6>Lluvia de objetos</h6>
+                                    </div>
+                                </template>
+                            </template>
+
+
+
+
+                        </div>
+                    </template>
+                    <template v-else>
+                        <div class="col-sm-10 col-central">
+                            <!--botones de navegacion y Titulo-->
+                            <div class="row">
+
+                                <!--atras-->
+                                <div class="col-auto">
+                                    <a :href="navegarAtras"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                                </div>
+
+                                <!--titulo-->
+                                <div class="col" id="titulo-modulo">
+                                    <div class="form-group">
+                                        <!-- <label for="nombre">* Título del módulo</label> -->
+                                        <div class="row ">
+                                            <div class="col tituloObjeto">
+
+                                                <input v-if="editarNombre" type="text" id="nombre" name="nombre"
+                                                    v-model="objetoSeleccionado.nombre"
+                                                    placeholder="Ej: Modulo 1: la computadora"
+                                                    :class="[formErrors.nombre ? 'is-invalid' : '']"
+                                                    v-on:keyup.enter="editarNombre=false" maxlength="100" autofocus>
+                                                <h2 v-else>{{objetoSeleccionado.nombre}}</h2>
+                                                <a v-if="editarNombre" @click="actualizarNombre"
+                                                    title="Guardar Nombre"><i class="fas fa-save"></i></a>
+                                                <a v-else @click="mostrarEditarNombre"><i class="fas fa-edit"></i></a>
+                                                <a data-toggle="modal" data-target="#modalConfirmaEliminar"
+                                                    data-placement="top" title="Eliminar Objeto"><i
+                                                        class="fas fa-trash-alt"></i></a>
+
+                                            </div>
+                                            <!--col-->
+                                        </div>
+                                        <!--row-->
+
+                                        <div class="invalid-feedback" v-if="formErrors.nombre">Ingrese un nombre para
+                                            el módulo.</div>
+                                    </div>
+                                </div>
+
+
+                                <!--siguiente-->
+                                <div class="col-auto">
+                                    <a :href="navegarSiguiente"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                                </div>
+                            </div>
+                            <!--contenido principal-->
+                            <div class="row">
+
+                                <div class="contenedor-slot-principal">
+
+                                    <form method="post">
+                                        <!-- <textarea id="mytextarea">Escriba aquí el texto</textarea> -->
+                                        <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                                        <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
+                                        <div id="mytextarea" class="contenidoTiny"
+                                            v-html="objetoSeleccionado.contenidoTiny">
+                                            <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                                        </div>
+
+                                        <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
+                                            <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
+                                            <input id="colorModulo" type="color" name="color"
+                                                v-model="objetoSeleccionado.color" />
+
+
+
+                                            <input type="file" name="multimedia" id="file" class="inputfile"
+                                                @change="onFileSelected" accept="image/*"
+                                                :class="[computedErrorImagen ? 'is-invalid' : '']">
+                                            <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
+                                                        class="fas fa-plus-circle fa-2x"></i></a></label>
+                                            <div v-if="mostrarSpinner" class="spinner-border m-5" role="status">
+                                                <span class="sr-only">Loading...</span>
+                                            </div>
+                                            <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
+                                                archivo de
+                                                imagen para la portada max:20MB.</div>
+                                            <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
+                                                permitidos:
+                                                jpg,/png. max:20MB. </div>
+                                            <div class="imagen-portada-modulo">
+                                                <img :src="objetoSeleccionado.multimedia.imagen"
+                                                    alt="Imágen de portada">
+                                            </div>
 
                                         </div>
-                                        <!--col-->
-                                    </div>
-                                    <!--row-->
 
-                                    <div class="invalid-feedback" v-if="formErrors.nombre">Ingrese un nombre para
-                                        el módulo.</div>
+
+
+                                        <button type="button" id="enviarModulo" @click.stop="validarFormulario"> Guardar
+                                            Módulo</button>
+                                    </form>
                                 </div>
                             </div>
 
+                            <!--Contenido pie de página-->
+                            <div class="row pie-contenido">
+                                <div class="col-sm-1" id="avatar">
+                                    <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+                                </div>
 
-                            <!--siguiente-->
-                            <div class="col-auto">
-                                <a :href="navegarSiguiente"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                                <div class="col-sm-11" id="descripcion-objeto">
+
+
+                                    <input v-if="editarDescripcion" type="text" id="descripcion" name="descripcion"
+                                        v-model="objetoSeleccionado.descripcion"
+                                        placeholder="Ej: En este módulo aprenderás a manejar un computador"
+                                        :class="[formErrors.descripcion ? 'is-invalid' : '']"
+                                        v-on:keyup.enter="editarDescripcion=false" maxlength="400">
+                                    <h6 v-else>{{objetoSeleccionado.descripcion}}</h6>
+
+
+
+                                    <a v-if="editarDescripcion" @click="actualizarDescripcion"
+                                        title="Guardar descripcion"><i class="fas fa-save"></i></a>
+                                    <a v-else @click="mostrarEditarDescripcion"><i class="fas fa-edit"></i></a>
+                                </div>
                             </div>
-                        </div>
-                        <!--contenido principal-->
-                        <div class="row">
 
-                            <div class="contenedor-slot-principal">
-
-                                <form method="post">
-                                    <!-- <textarea id="mytextarea">Escriba aquí el texto</textarea> -->
-                                    <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
-                                    <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
-                                    <div id="mytextarea" class="contenidoTiny"
-                                        v-html="objetoSeleccionado.contenidoTiny">
-                                        <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
-                                    </div>
-
-                                    <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
-                                        <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
-                                        <input id="colorModulo" type="color" name="color"
-                                            v-model="objetoSeleccionado.color" />
-
-
-
-                                        <input type="file" name="multimedia" id="file" class="inputfile"
-                                            @change="onFileSelected" accept="image/*"
-                                            :class="[computedErrorImagen ? 'is-invalid' : '']">
-                                        <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
-                                                    class="fas fa-plus-circle fa-2x"></i></a></label>
-                                        <div v-if="mostrarSpinner" class="spinner-border m-5" role="status">
-                                            <span class="sr-only">Loading...</span>
-                                        </div>
-                                        <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
-                                            archivo de
-                                            imagen para la portada max:20MB.</div>
-                                        <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
-                                            permitidos:
-                                            jpg,/png. max:20MB. </div>
-                                        <div class="imagen-portada-modulo">
-                                            <img :src="objetoSeleccionado.multimedia.imagen" alt="Imágen de portada">
-                                        </div>
-
-                                    </div>
-
-
-
-                                    <button type="button" id="enviarModulo" @click.stop="validarFormulario"> Guardar
-                                        Módulo</button>
-                                </form>
-                            </div>
                         </div>
 
-                        <!--Contenido pie de página-->
-                        <div class="row pie-contenido">
-                            <div class="col-sm-1" id="avatar">
-                                <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-                            </div>
-
-                            <div class="col-sm-11" id="descripcion-objeto">
-
-
-                                <input v-if="editarDescripcion" type="text" id="descripcion" name="descripcion"
-                                    v-model="objetoSeleccionado.descripcion"
-                                    placeholder="Ej: En este módulo aprenderás a manejar un computador"
-                                    :class="[formErrors.descripcion ? 'is-invalid' : '']"
-                                    v-on:keyup.enter="editarDescripcion=false" maxlength="400">
-                                <h6 v-else>{{objetoSeleccionado.descripcion}}</h6>
 
 
 
-                                <a v-if="editarDescripcion" @click="actualizarDescripcion"
-                                    title="Guardar descripcion"><i class="fas fa-save"></i></a>
-                                <a v-else @click="mostrarEditarDescripcion"><i class="fas fa-edit"></i></a>
-                            </div>
-                        </div>
-
-                    </div>
+                    </template>
                     <!-- columna derecha -->
                     <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
-                        <modulo-panel-derecho :usuario="usuario"></modulo-panel-derecho>
+                        <modulo-panel-derecho :usuario="usuario" @evaluacion-individual="evaluacionIndividual">
+                        </modulo-panel-derecho>
                     </div>
                 </div> <!-- fin fila de contenido central y barra lateral derecha -->
 

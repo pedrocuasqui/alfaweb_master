@@ -43,6 +43,12 @@ parasails.registerComponent('modulo-contenedor-curso', {
         // silenciar:true
 
 
+        adminCreandoModuloSubmodulo: {
+            type: Boolean,
+            required: false,
+            default: () => { return false },
+        }
+
 
     },
     data: function () {
@@ -144,8 +150,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 </div>
                 <!-- columna derecha -->
                 <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
-                    <modulo-panel-derecho :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" > 
-                        <template v-slot:audio_general>
+                    <modulo-panel-derecho :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"> 
+                        <template v-slot:audio_general >
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                             <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
                             <a v-else @click="clickSilenciarGeneral" title="Silenciar" ><i class="fas fa-volume-up"></i></a>
@@ -188,7 +194,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
         clickSilenciar() {
             window.sonido.cancel();
             window.silenciar = true;
-            this.silenciar=true;
+            this.silenciar = true;
         },
         clickReproducir() {
             this.silenciar = false;

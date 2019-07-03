@@ -69,6 +69,10 @@
 
     }
 
+    .estiloLink {
+        cursor: pointer;
+    }
+
     ////////////////////////////////////////////////////////////////
     // /////////////////////////////////////////////////////////////
     // /////////////////////////////////////////////////////////////
@@ -455,9 +459,9 @@ div.contenedor-slot-principal {
     right           : 0;
     z-index         : 1;
     opacity         : 1;
-    width: 15vw;
+    width           : 15vw;
 
-    
+
 }
 
 // COMPONENTE: modulo-modal-ini-actv
@@ -635,7 +639,8 @@ img.mensaje-bienvenida {
 }
 
 
-#avatarModal:hover,.iconoAudio:hover {
+#avatarModal:hover,
+.iconoAudio:hover {
     //animacion tomada de https://css-tricks.com/snippets/css/shake-css-keyframe-animation/
     animation                  : shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
     transform                  : translate3d(0, 0, 0);
@@ -728,7 +733,7 @@ img.mensaje-bienvenida {
 }
 
 
-.textoOculto{
+.textoOculto {
     position: absolute;
-    z-index: -10;
+    z-index : -10;
 }

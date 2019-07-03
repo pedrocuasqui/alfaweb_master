@@ -42,16 +42,25 @@ parasails.registerComponent('modulo-panel-derecho', {
                     }
                 ]
             }
+        },
+
+
+
+
+        adminCreandoModuloSubmodulo: {
+            type: Boolean,
+            required: false,
+            default: () => { return false; }
         }
 
     },
     data() {
         return {
-
+            redirigeaContenido: false,
         }
 
     },
-    mounted(){
+    mounted() {
         console.log('ENTRA A PANEL DERECHO');
         console.log(this.cursoEstudiante);
     },
@@ -128,7 +137,7 @@ parasails.registerComponent('modulo-panel-derecho', {
 
                 <div class="evaluacion">
                     <i class="fas fa-clipboard-check"></i>
-                    <a @click="evaluacionIndividual()"><span> Evaluación</span></a>
+                    <a @click="evaluacionIndividual()" class="estiloLink"><span> Evaluación</span></a>
                 </div>
 
                 <div class="tabla-puntuacion">
@@ -155,8 +164,28 @@ parasails.registerComponent('modulo-panel-derecho', {
     methods: {
         evaluacionIndividual(contenido) {
             // alert('evaluacion indiidual');
-            this.$emit('evaluacion-individual', contenido);
+            if (this.adminCreandoModuloSubmodulo) {
+                alert('Es necesario crear primero el objeto (módulo o submódulo) actual');
+            } else {
+                if (this.redirigeaContenido) {
+                    contenido = 'contenido';
+                    this.$emit('evaluacion-individual', contenido);
+                    this.redirigeaContenido = false;
+                } else {
+                    this.$emit('evaluacion-individual', contenido);
+                    this.redirigeaContenido = true;
+                }
+
+            }
+
         },
+        reto() { //pendiente desarrollar el reto
+            if (this.adminCreandoModuloSubmodulo) {
+                alert('Es necesario crear primero el objeto (módulo o submódulo) actual');
+            } else {
+                this.$emit('reto', contenido);
+            }
+        }
 
 
     },

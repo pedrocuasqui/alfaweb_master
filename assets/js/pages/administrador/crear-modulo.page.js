@@ -37,6 +37,8 @@ parasails.registerPage('crear-modulo', {
     evIndividual: false,
     
 
+    adminCreandoModuloSubmodulo: true,
+
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

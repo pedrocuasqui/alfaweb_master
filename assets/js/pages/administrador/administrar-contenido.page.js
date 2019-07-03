@@ -2,7 +2,7 @@ parasails.registerPage('administrar-contenido', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
-  data: { 
+  data: {
     formErrors: {},
     objetoSeleccionado: Object,
     editarNombre: false,
@@ -37,10 +37,12 @@ parasails.registerPage('administrar-contenido', {
 
     tituloEvaluacion: '',
     evIndividual: false,
-    codigoTipoEvaluacion:0,
-    mostrarMenuTipoEvaluacion:true,
+    // codigoTipoEvaluacion:'Cuestionario',
+    // mostrarMenuTipoEvaluacion:true,
 
-    
+    opcionSeleccionada: 'Cuestionario'
+
+
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -260,10 +262,10 @@ parasails.registerPage('administrar-contenido', {
         this.evIndividual = true;
       }
     },
-    mostrarTipoEvaluacion(codigo){
-      
-        this.codigoTipoEvaluacion=codigo;
-      this.mostrarMenuTipoEvaluacion=false;
+    mostrarTipoEvaluacion(codigo) {
+
+      this.opcionSeleccionada = codigo;
+      // this.codigoTipoEvaluacion = codigo;
     }
 
   },

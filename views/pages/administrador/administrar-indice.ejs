@@ -22,7 +22,7 @@
     </div>
   </div>
 
-<!-- Contenido -->
+  <!-- Contenido -->
 
   <div class="div-contenido container-fluid" v-cloak>
     <div class="row" id="div-cabecera">
@@ -37,7 +37,7 @@
 
 
 
-    
+
     <!-- Contenedor de contenido -->
     <div class="row" id="div-body">
       <!-- columna izquierda -->
@@ -64,20 +64,21 @@
                 <div class="row">
                   <div class="col nombre-curso">
                     <!-- <input v-if="editarNombre" type="text" name="nombreCurso" v-model="curso.nombre" autofocus> -->
-                    <h1 >{{curso.nombre}}</h1>
+                    <h1>{{curso.nombre}}</h1>
 
                     <!-- <a v-if="editarNombre" @click="guardarNombre" title="Editar Curso"><i class="fas fa-save"></i></a>
                     <a v-else @click="mostrarCajaEditar" ><i class="fas fa-edit"></i></a> -->
-                    <a data-toggle="modal" data-target="#modalConfirmaEliminar"  data-placement="top" title="Eliminar Curso"><i
-                      class="fas fa-trash-alt"></i></a>
+                    <a data-toggle="modal" data-target="#modalConfirmaEliminar" data-placement="top"
+                      title="Eliminar Curso"><i class="fas fa-trash-alt"></i></a>
 
                   </div>
 
                 </div>
                 <div class="row curso-descripcion">
                   <div class="col">
-                      <input v-if="editarNombre" type="text" name="descripcionCurso" v-model="curso.descripcion" autofocus>
-                    <h2 v-else >{{curso.descripcion}}</h2>
+                    <input v-if="editarNombre" type="text" name="descripcionCurso" v-model="curso.descripcion"
+                      autofocus>
+                    <h2 v-else>{{curso.descripcion}}</h2>
                   </div>
 
                 </div>
@@ -88,11 +89,14 @@
               <div class="col">
                 <div class="row">
                   <div class="col-sm-3 item-modulo" v-for="modulo in curso.modulos">
-                    <a :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'"> <img :src="modulo.multimedia.imagen" :alt="'Imagen de '+modulo.nombreModulo"></a>
-                    <a :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'">{{modulo.nombreModulo}}</a>
+                    <a :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'"> <img
+                        :src="modulo.multimedia.imagen" :alt="'Imagen de '+modulo.nombreModulo"></a>
+                    <a
+                      :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'">{{modulo.nombreModulo}}</a>
                   </div>
                   <div class="col-sm-3 agregaModulo">
-                    <a :href="'/view-crear-modulo/?cursoId='+curso.id" title="Añadir nuevo módulo"><i class="fas fa-plus-circle fa-2x"></i></a>
+                    <a :href="'/view-crear-modulo/?cursoId='+curso.id" title="Añadir nuevo módulo"><i
+                        class="fas fa-plus-circle fa-2x"></i></a>
                   </div>
                 </div>
               </div>

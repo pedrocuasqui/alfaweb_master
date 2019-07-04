@@ -1,6 +1,7 @@
 <div id="administrar-contenido" v-cloak>
 
-    <!-- Modal -->
+    <!-- Modals -->
+    <!-- Eliminar el modulo o submodulo -->
     <div class="modal fade" id="modalConfirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
         aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -23,7 +24,64 @@
             </div>
         </div>
     </div>
+    <!-- Crear nueva pregunta -->
+    <div class="modal fade" id="modalCrearPregunta" tabindex="-1" role="dialog"
+        aria-labelledby="modalCrearPreguntaLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCrearPreguntaLabel">Crear nueva pregunta </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
+                    <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                    <div class="row d-flex justify-content-center ">
+                        <label for="enunciado">Enunciado de la pregunta</label>
+                        <input class="inputFull" name="enunciado" type="text" v-model="preguntaEnEdicion.enunciado"
+                            placeholder="Escriba aquí su pregunta">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion1">Opción 1</label>
+                        <input class="inputFull" name="opcion1" type="text" v-model="preguntaEnEdicion.opciones.opcion1"
+                            placeholder="opción 1">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion2">Opción 2</label>
+                        <input class="inputFull" name="opcion2" type="text" v-model="preguntaEnEdicion.opciones.opcion2"
+                            placeholder="opción2">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion3">Opción 3</label>
+                        <input class="inputFull" name="opcion3" type="text" v-model="preguntaEnEdicion.opciones.opcion3"
+                            placeholder="opción 3">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion4"> Opción 4</label>
+                        <input class="inputFull" name="opcion4" type="text" v-model="preguntaEnEdicion.opciones.opcion4"
+                            placeholder="opción 4">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="exampleFormControlSelect1">Respuesta</label>
+                        <select class="form-control inputFull" id="exampleFormControlSelect1"
+                            v-model="preguntaEnEdicion.respuesta">
+                            <option v-for="opcion in opcionesRespuesta"> {{opcion}}</option>
+
+                        </select>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="insertarPregunta()">Aceptar</button>
+                    <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
 
 
 
@@ -78,57 +136,36 @@
                                         type="button">Lluvia de objetos</button>
                                 </div>
                             </div>
-                            <!-- <div v-if="mostrarMenuTipoEvaluacion" class="list-group">
 
-                                <a @click="mostrarTipoEvaluacion(1)"
-                                    class="list-group-item list-group-item-action list-group-item-primary estiloLink"
-                                    style="text-align: left !important;">
-                                    <span> <img width="55px" height="auto"
-                                            src="/images/otros/tipo_de_evaluacion/cuestionario.png"
-                                            alt="Cuestionario de preguntas">
-
-                                        Crear un cuestionario con preguntas de opción múltiple.
-                                    </span>
-                                </a>
-                                <a @click="mostrarTipoEvaluacion(2)"
-                                    class="list-group-item list-group-item-action list-group-item-primary estiloLink"
-                                    style="text-align: left !important;">
-                                    <span> <img width="55px" height="auto"
-                                            src="/images/otros/tipo_de_evaluacion/emparejamiento.png"
-                                            alt="Cuestionario de preguntas">
-                                        Crear una evaluación con opciones para emparejar.
-                                    </span>
-                                </a>
-                                <a @click="mostrarTipoEvaluacion(3)"
-                                    class="list-group-item list-group-item-action list-group-item-primary estiloLink"
-                                    style="text-align: left !important;">
-                                    <span> <img width="55px" height="auto"
-                                            src="/images/otros/tipo_de_evaluacion/senialar_objeto.png"
-                                            alt="Cuestionario de preguntas">
-                                        Crear una evaluación que permita al estudiante seleccione el nombre de la imágen
-                                        que aparece en la pantalla.
-                                    </span>
-                                </a>
-                                <a @click="mostrarTipoEvaluacion(4)"
-                                    class="list-group-item list-group-item-action list-group-item-primary estiloLink"
-                                    style="text-align: left !important;">
-                                    <span><img width="55px" height="auto"
-                                            src="/images/otros/tipo_de_evaluacion/lluvia_objetos.png"
-                                            alt="Cuestionario de preguntas">
-                                        Crear una evaluación que permita al estudiante pulsar el nombre del objeto en
-                                        pantalla antes de que caiga.
-                                    </span>
-                                </a>
-                            </div> -->
 
                             <!-- EVALUACIONES -->
-
-                            <template >
+                            <template>
                                 <!-- SI LA VARIABLE mostrarMenuTipoEvaluacion ES FALSE SE MUESTRA LA INTERFAZ PARA EDITAR  -->
                                 <template v-if="opcionSeleccionada=='Cuestionario'">
                                     <div class="row">
                                         <h6>Cuestionario</h6>
+                                        <a @click="clickMostrarModalCreaPregunta()" title="Añadir nueva pregunta"><i
+                                                class="fas fa-plus-circle fa-2x"></i>
+                                        </a>
                                     </div>
+                                    <ul class="list-group">
+
+                                        <li class="list-group-item d-flex justify-content-between align-items-center"
+                                            v-for="pregunta in preguntasCuestionario">
+                                            {{pregunta.enunciado}}
+
+                                            <span class="badge badge-primary badge-pill">
+
+                                                <a @click.stop="mostrarEditarEvaluacion(pregunta)" data-placement="top"
+                                                    title="Editar pregunta"> <i class="fas fa-edit"></i> </a>
+                                                <a data-placement="top" title="Eliminar pregunta"><i
+                                                        class="fas fa-trash-alt"></i></a>
+                                            </span>
+                                            <p class="mb-1" v-for="opcion in pregunta.opciones">{{opcion}}</p>
+                                        </li>
+
+                                    </ul>
+
                                 </template>
                                 <template v-if="opcionSeleccionada=='Emparejamiento'">
                                     <div class="row">
@@ -211,40 +248,39 @@
                                             v-html="objetoSeleccionado.contenidoTiny">
                                             <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                         </div>
+                                    </form>
+                                    <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
+                                        <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
+                                        <input id="colorModulo" type="color" name="color"
+                                            v-model="objetoSeleccionado.color" />
 
-                                        <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
-                                            <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
-                                            <input id="colorModulo" type="color" name="color"
-                                                v-model="objetoSeleccionado.color" />
 
 
-
-                                            <input type="file" name="multimedia" id="file" class="inputfile"
-                                                @change="onFileSelected" accept="image/*"
-                                                :class="[computedErrorImagen ? 'is-invalid' : '']">
-                                            <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
-                                                        class="fas fa-plus-circle fa-2x"></i></a></label>
-                                            <div v-if="mostrarSpinner" class="spinner-border m-5" role="status">
-                                                <span class="sr-only">Loading...</span>
-                                            </div>
-                                            <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
-                                                archivo de
-                                                imagen para la portada max:20MB.</div>
-                                            <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
-                                                permitidos:
-                                                jpg,/png. max:20MB. </div>
-                                            <div class="imagen-portada-modulo">
-                                                <img :src="objetoSeleccionado.multimedia.imagen"
-                                                    alt="Imágen de portada">
-                                            </div>
-
+                                        <input type="file" name="multimedia" id="file" class="inputfile"
+                                            @change="onFileSelected" accept="image/*"
+                                            :class="[computedErrorImagen ? 'is-invalid' : '']">
+                                        <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
+                                                    class="fas fa-plus-circle fa-2x"></i></a></label>
+                                        <div v-if="mostrarSpinner" class="spinner-border m-5" role="status">
+                                            <span class="sr-only">Loading...</span>
+                                        </div>
+                                        <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
+                                            archivo de
+                                            imagen para la portada max:20MB.</div>
+                                        <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
+                                            permitidos:
+                                            jpg,/png. max:20MB. </div>
+                                        <div class="imagen-portada-modulo">
+                                            <img :src="objetoSeleccionado.multimedia.imagen" alt="Imágen de portada">
                                         </div>
 
+                                    </div>
 
 
-                                        <button type="button" id="enviarModulo" @click.stop="validarFormulario"> Guardar
-                                            Módulo</button>
-                                    </form>
+
+                                    <button type="button" id="enviarModulo" @click.stop="validarFormulario"> Guardar
+                                        Módulo</button>
+
                                 </div>
                             </div>
 
@@ -284,26 +320,6 @@
                         </modulo-panel-derecho>
                     </div>
                 </div> <!-- fin fila de contenido central y barra lateral derecha -->
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

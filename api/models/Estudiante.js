@@ -33,7 +33,12 @@ module.exports = {
       collection: 'Curso',
       via: 'matriculados',
 
-    }
+    },
+    intentosEvaluacion: { //Un estudiante tiene varios intentos de evaluacion     Estudiante-->IntentosEvaluacion
+      collection: 'IntentosEvaluacion',
+      via: 'estudiante',
+
+    },
   },
 
 };

@@ -1,3 +1,4 @@
+
 parasails.registerPage('administrar-contenido', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
@@ -39,8 +40,27 @@ parasails.registerPage('administrar-contenido', {
     evIndividual: false,
     // codigoTipoEvaluacion:'Cuestionario',
     // mostrarMenuTipoEvaluacion:true,
+    // **********************************OPCIONES DE EVALUACION
+    opcionSeleccionada: 'Cuestionario',
+    preguntaEnEdicion: {
+      enunciado: null,
+      opciones: {
+        opcion1: null,
+        opcion2: null,
+        opcion3: null,
+        opcion4: null,
+      },
+      respuesta: null,
+    },
+    preguntasCuestionario: [],
+    evaluacion: {
+      tipo: '',
+      preguntas: {}
+    },
+    formErrorsModal: {}
 
-    opcionSeleccionada: 'Cuestionario'
+
+
 
 
   },
@@ -63,6 +83,12 @@ parasails.registerPage('administrar-contenido', {
     console.log('OBJETO RECIBIDO:');
     console.log(this.objetoSeleccionado);
 
+
+    $(document).on('focusin', function (e) {
+      if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
+        e.stopImmediatePropagation();
+      }
+    });
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -266,7 +292,49 @@ parasails.registerPage('administrar-contenido', {
 
       this.opcionSeleccionada = codigo;
       // this.codigoTipoEvaluacion = codigo;
-    }
+    },
+    clickMostrarModalCreaPregunta() {
+      $(function () {
+        $('#modalCrearPregunta').modal('show');
+      });
+    },
+    insertarPregunta() {
+
+      if (!this.preguntaEnEdicion.enunciado) {
+        this.formErrorsModal.enunciado = true;
+        alert('ingrese enunciado');
+      }
+      if (this.opcionesRespuesta.length < 2) {
+        this.formErrorsModal.opciones = true;
+        alert('registre al menos dos opciones');
+      }
+      if (!this.preguntaEnEdicion.respuesta) {
+        this.formErrorsModal.respuesta = true;
+        alert('seleccione una respuesta');
+      }
+
+
+
+      if (Object.keys(this.formErrorsModal).length == 0) {
+        this.preguntasCuestionario.push(this.preguntaEnEdicion)
+        this.preguntaEnEdicion = {
+          enunciado: null,
+          opciones: {
+            opcion1: null,
+            opcion2: null,
+            opcion3: null,
+            opcion4: null,
+          },
+          respuesta: null,
+        }
+      };
+
+      this.formErrorsModal = {};
+
+    },
+    mostrarEditarEvaluacion(preguntaSelected) {
+
+    },
 
   },
   computed: {
@@ -274,5 +342,16 @@ parasails.registerPage('administrar-contenido', {
       let error = this.formErrors.imagenPortada || this.formErrors.typeFile;
       return error
     },
+    opcionesRespuesta() {
+      let opciones = [];
+      let contador = 0;
+      for (let opcion in this.preguntaEnEdicion.opciones) {
+        contador += 1;
+        if (this.preguntaEnEdicion.opciones[opcion]) {
+          opciones.push('opcion' + contador);
+        }
+      }
+      return opciones;
+    }
   }
 });

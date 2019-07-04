@@ -56,13 +56,11 @@ module.exports = {
       required: false,
       columnName: 'color',
     },
-    // submodulos:{ //aqui no van los submodulos, en los submodulos se agrega la referencia al documento de ModuloLibro
-    //   type:'ref',
-    //   // columnType:'array',
-    //   required: false,
-    //   // allowNull: true, //no se permite en tipos de datos json y ref
-    //   columnName:'submodulos',//modificar esta columna, se necesita una relacion de uno a muchos, cada tema puede tener mas de una sola imagen asociada
-
+    evaluacion:{
+      type:'json',
+      required:false,
+      columnName: 'evaluacion'
+    },
 
     // }
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
@@ -76,7 +74,12 @@ module.exports = {
     modulo: { //el nombre de esta propiedad es el definido en el modulo 'Curso'--> propiedad 'moduloLibro', propiedad 'via'    un curso puede tener varios ModulosLibro curso -->ModulosLibro
       model:'modulolibro', //en minusculas
       required: true,
-    }
+    },
+    intentosEvaluacion: { //Un submodulo tiene varios intentos de evaluacion     Submodulo-->IntentosEvaluacion
+      collection: 'IntentosEvaluacion',
+      via: 'submodulo',
+
+    },
   }
 
 

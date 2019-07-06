@@ -113,6 +113,9 @@ module.exports.routes = {
   'GET /crear-evaluacion':{
     action : 'administrador/view-crear-evaluacion'
   },
+  'POST /crear-evaluacion':{
+    action : 'administrador/crear-evaluacion'
+  },
 
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante

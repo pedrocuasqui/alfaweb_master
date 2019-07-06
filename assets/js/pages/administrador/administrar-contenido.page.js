@@ -37,11 +37,11 @@ parasails.registerPage('administrar-contenido', {
 
 
     tituloEvaluacion: '',
-    evIndividual: false,
+    evIndividualBandera: false,
     // codigoTipoEvaluacion:'Cuestionario',
     // mostrarMenuTipoEvaluacion:true,
     // **********************************OPCIONES DE EVALUACION
-    opcionSeleccionada: 'Cuestionario',
+    tipoEvaluacion: 'Cuestionario',
     preguntaEnEdicion: {
       enunciado: null,
       opciones: {
@@ -57,7 +57,9 @@ parasails.registerPage('administrar-contenido', {
       tipo: '',
       preguntas: {}
     },
-    formErrorsModal: {}
+    formErrorsModal: {},
+    modalEdicion: false,
+    indicePreguntaEditar: null,
 
 
 
@@ -84,9 +86,17 @@ parasails.registerPage('administrar-contenido', {
     console.log(this.objetoSeleccionado);
 
 
-    $(document).on('focusin', function (e) {
-      if ($(e.target).closest(".tox-tinymce-aux, .moxman-window, .tam-assetmanager-root").length) {
-        e.stopImmediatePropagation();
+
+    $('#modalCrearPregunta' + this.infoElement.id).on('hide.bs.modal', function (e) {
+      this.preguntaEnEdicion = {
+        enunciado: null,
+        opciones: {
+          opcion1: null,
+          opcion2: null,
+          opcion3: null,
+          opcion4: null,
+        },
+        respuesta: null,
       }
     });
   },
@@ -282,15 +292,15 @@ parasails.registerPage('administrar-contenido', {
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
       if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombre;
-        this.evIndividual = false;
+        this.evIndividualBandera = false;
       } else {
         this.tituloEvaluacion = this.objetoSeleccionado.nombre;
-        this.evIndividual = true;
+        this.evIndividualBandera = true;
       }
     },
     mostrarTipoEvaluacion(codigo) {
 
-      this.opcionSeleccionada = codigo;
+      this.tipoEvaluacion = codigo;
       // this.codigoTipoEvaluacion = codigo;
     },
     clickMostrarModalCreaPregunta() {
@@ -298,13 +308,13 @@ parasails.registerPage('administrar-contenido', {
         $('#modalCrearPregunta').modal('show');
       });
     },
-    insertarPregunta() {
+    insertarPreguntaCuestionario() {
 
       if (!this.preguntaEnEdicion.enunciado) {
         this.formErrorsModal.enunciado = true;
         alert('ingrese enunciado');
       }
-      if (this.opcionesRespuesta.length < 2) {
+      if (this.opcionesRespuesta(this.preguntaEnEdicion).length < 2) {
         this.formErrorsModal.opciones = true;
         alert('registre al menos dos opciones');
       }
@@ -312,8 +322,6 @@ parasails.registerPage('administrar-contenido', {
         this.formErrorsModal.respuesta = true;
         alert('seleccione una respuesta');
       }
-
-
 
       if (Object.keys(this.formErrorsModal).length == 0) {
         this.preguntasCuestionario.push(this.preguntaEnEdicion)
@@ -332,9 +340,102 @@ parasails.registerPage('administrar-contenido', {
       this.formErrorsModal = {};
 
     },
-    mostrarEditarEvaluacion(preguntaSelected) {
+    actualizarPreguntaCuestionario() {
+      if (!this.preguntaEnEdicion.enunciado) {
+        this.formErrorsModal.enunciado = true;
+        alert('ingrese enunciado');
+      }
+      if (this.opcionesRespuesta(this.preguntaEnEdicion).length < 2) {
+        this.formErrorsModal.opciones = true;
+        alert('registre al menos dos opciones');
+      }
+      if (!this.preguntaEnEdicion.respuesta) {
+        this.formErrorsModal.respuesta = true;
+        alert('seleccione una respuesta');
+      }
+
+      if (Object.keys(this.formErrorsModal).length == 0) {
+
+        this.preguntasCuestionario.splice(this.indicePreguntaEditar, 1, this.preguntaEnEdicion);
+        this.preguntaEnEdicion = {
+          enunciado: null,
+          opciones: {
+            opcion1: null,
+            opcion2: null,
+            opcion3: null,
+            opcion4: null,
+          },
+          respuesta: null,
+        }
+
+      };
+      this.modalEdicion = false,
+        this.indicePreguntaEditar = null;
+      this.formErrorsModal = {};
+    },
+    mostrarEditarPreguntaCuestionario(preguntaSelected, indice) {
+      this.indicePreguntaEditar = indice;
+      this.preguntaEnEdicion = preguntaSelected;
+      this.modalEdicion = true;
+      $(function () {
+        $('#modalCrearPregunta').modal('show');
+      });
+    },
+    eliminarPreguntaCuestionario(preguntaSelected, indice) {
+      console.log('PREGUNTA SELECTED + INDICE');
+      console.log(preguntaSelected);
+      console.log(indice);
+      console.log(this.preguntasCuestionario);
+      this.preguntasCuestionario.splice(indice, 1);
+    },
+    opcionesRespuesta(preguntaEnEdicion) { //Se construye una respuesta como objeto
+      let opciones = [];
+      let contador = 0;
+      for (let opcion in preguntaEnEdicion.opciones) { //obtiene los nombres de atributos: opcion1, opcion 2 ...
+        contador += 1;
+        if (preguntaEnEdicion.opciones[opcion]) { //si la opcion tiene un valor dentro
+          opciones.push({ texto: preguntaEnEdicion.opciones[opcion], id: contador });
+        }
+      }
+      return opciones;
+    },
+    validarEvaluacion() {
+      this.evaluacion.tipo = this.tipoEvaluacion;
+      if (this.tipoEvaluacion == "Cuestionario") {
+        this.evaluacion.preguntas = this.preguntasCuestionario;
+
+      }
+      this.guardarEvaluacion();
 
     },
+    guardarEvaluacion() {
+      const formDataEv = new FormData();
+      formDataEv.append('objetoId', this.objetoSeleccionado.id);
+      formDataEv.append('evaluacion', JSON.stringify(this.evaluacion));
+      axios({
+        url: '/crear-evaluacion',
+        method: 'post',
+        data: formDataEv
+      })
+        .then((response) => {
+          alert('Evaluación creada correctamente')
+
+        })
+        .catch((err) => {
+          alert('Error no se puedo crear la evaluación:\n' + err)
+        });
+    },
+
+
+
+    //emparejamiento
+    actualizarPreguntaEmparejamiento() {
+
+    },
+    insertarPreguntaEmparejamiento() {
+
+    }
+
 
   },
   computed: {
@@ -342,16 +443,6 @@ parasails.registerPage('administrar-contenido', {
       let error = this.formErrors.imagenPortada || this.formErrors.typeFile;
       return error
     },
-    opcionesRespuesta() {
-      let opciones = [];
-      let contador = 0;
-      for (let opcion in this.preguntaEnEdicion.opciones) {
-        contador += 1;
-        if (this.preguntaEnEdicion.opciones[opcion]) {
-          opciones.push('opcion' + contador);
-        }
-      }
-      return opciones;
-    }
+
   }
 });

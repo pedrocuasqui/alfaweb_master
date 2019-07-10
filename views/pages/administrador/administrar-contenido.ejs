@@ -25,8 +25,9 @@
         </div>
     </div>
     <!-- Crear nueva pregunta del cuestionario -->
-    <div class="modal fade" id="modalCrearPregunta" tabindex="-1" role="dialog"
-        aria-labelledby="modalCrearPreguntaLabel" aria-hidden="true">
+    <!-- v-if es necesario porque hay un error al invocar v-model="preguntaEnEdicion.respuesta" -->
+    <div v-if="tipoEvaluacion=='Cuestionario'" class="modal fade" id="modalCrearPreguntaCuestionario" tabindex="-1"
+        role="dialog" aria-labelledby="modalCrearPreguntaLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -37,7 +38,7 @@
                 </div>
                 <div class="modal-body">
 
-                    <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+
                     <div class="row d-flex justify-content-center ">
                         <label for="enunciado">Enunciado de la pregunta</label>
                         <input class="inputFull" name="enunciado" type="text" v-model="preguntaEnEdicion.enunciado"
@@ -92,8 +93,8 @@
 
 
     <!-- PREGUNTA DE EMPAREJAMIENTO -->
-    <div class="modal fade" id="modalPreguntaEmparejar" tabindex="-1" role="dialog" aria-labelledby="preguntaEmparejar"
-        aria-hidden="true">
+    <div v-if="tipoEvaluacion=='Emparejamiento'" class="modal fade" id="modalCrearPreguntaEmparejamiento" tabindex="-1"
+        role="dialog" aria-labelledby="preguntaEmparejar" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
@@ -105,20 +106,36 @@
                 <div class="modal-body">
 
 
-
+                    <div class="row d-flex justify-content-center ">
+                        <label for="enunciado">Enunciado pregunta</label>
+                        <input class="inputFull" name="enunciado" type="text" v-model="preguntaEnEdicion.enunciado"
+                            placeholder="Escriba aquí su pregunta">
+                    </div>
+                    <div class="row d-flex justify-content-center ">
+                        <label for="respuestaEmpareja">Respuesta pregunta</label>
+                        <input class="inputFull" name="respuestaEmpareja" type="text"
+                            v-model="preguntaEnEdicion.respuesta" placeholder="Escriba aquí su respuesta">
+                    </div>
 
 
                 </div>
                 <div class="modal-footer">
-                        <button v-if="modalEdicion" class="btn btn-primary" data-dismiss="modal"
-                            @click.stop="actualizarPreguntaEmparejamiento()">Aceptar</button>
-                        <button v-else class="btn btn-primary" data-dismiss="modal"
-                            @click.stop="insertarPreguntaEmparejamiento()">Aceptar</button>
-                        <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
-                    </div>
+                    <button v-if="modalEdicion" class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="actualizarPreguntaEmparejamiento()">Aceptar</button>
+                    <button v-else class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="insertarPreguntaEmparejamiento()">Aceptar</button>
+                    <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
+                </div>
             </div>
         </div>
     </div>
+
+
+
+
+
+
+
 
 
 
@@ -180,6 +197,13 @@
                             <!-- EVALUACIONES -->
                             <template>
                                 <!-- SI LA VARIABLE mostrarMenuTipoEvaluacion ES FALSE SE MUESTRA LA INTERFAZ PARA EDITAR  -->
+
+
+
+
+
+
+
                                 <!-- CUESTIONARIO -->
                                 <template v-if="tipoEvaluacion=='Cuestionario'">
                                     <div class="row">
@@ -188,11 +212,6 @@
                                                 class="fas fa-plus-circle fa-2x"></i>
                                         </a>
                                     </div>
-
-
-
-
-
                                     <div class="list-group">
                                         <div class="list-group-item list-group-item-action active"
                                             v-for="(pregunta, indexPreg) in preguntasCuestionario">
@@ -220,22 +239,54 @@
                                     </div>
 
                                 </template>
+
+
+
+
+
+
                                 <!-- EMPAREJAMIENTO -->
                                 <template v-if="tipoEvaluacion=='Emparejamiento'">
                                     <div class="row">
                                         <a @click="clickMostrarModalCreaPregunta()" title="Añadir nueva pregunta"><i
                                                 class="fas fa-plus-circle fa-2x"></i>
                                         </a>
-
+                                        <!-- Columna de palabras -->
+                                        <div class="col-sm-4">
+                                            <div @click.stop="seleccionarEnunciadoEmpareja(pregunta,indexPreg)" class="row"
+                                                :class="[ enunciadoSeleccionado==indexPreg ? 'enun-selec' : '']"
+                                                key="indexPreg" v-for="(pregunta,indexPreg) in preguntasCuestionario">
+                                                {{pregunta.enunciado}}
+                                            </div>
+                                        </div>
+                                        <!-- columna de definiciones -->
+                                        <div class="col-sm-4">
+                                            <div class="row"  @click.stop="seleccionarRespuestaEmpareja(pregunta1,indexResp)"
+                                            :class="[ respuestaSeleccionada==indexResp ? 'respuesta-correcta-emparejamiento' : '']" key="indexResp"
+                                                v-for="(pregunta1, indexResp) in arregloRandom">
+                                                {{pregunta1.respuesta}}
+                                            </div>
+                                        </div>
 
                                     </div>
                                 </template>
+
+
+
+
+
+
                                 <!-- SELECCIONAR OBJETO INDICADO -->
                                 <template v-if="tipoEvaluacion=='Seleccionar objeto'">
                                     <div class="row">
 
                                     </div>
                                 </template>
+
+
+
+
+
                                 <!-- LLUVIA DE OBJETOS -->
                                 <template v-if="tipoEvaluacion=='Lluvia de objetos'">
                                     <div class="row">
@@ -377,7 +428,12 @@
                     </template>
                     <!-- columna derecha -->
                     <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
-                        <modulo-panel-derecho :usuario="usuario" @evaluacion-individual="evaluacionIndividual">
+                        <!-- solo si el objetoSeleccionado es submodulo se permite la creacion de una evaluacion -->
+                        <modulo-panel-derecho v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuario"
+                            @evaluacion-individual="evaluacionIndividual">
+                        </modulo-panel-derecho>
+                        <!-- si el objeto Seleccionado es modulo no se escucha la propiedad evaluacion-individual -->
+                        <modulo-panel-derecho v-else :usuario="usuario">
                         </modulo-panel-derecho>
                     </div>
                 </div> <!-- fin fila de contenido central y barra lateral derecha -->

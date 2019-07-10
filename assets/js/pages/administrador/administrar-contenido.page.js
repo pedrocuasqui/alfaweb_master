@@ -60,6 +60,14 @@ parasails.registerPage('administrar-contenido', {
     formErrorsModal: {},
     modalEdicion: false,
     indicePreguntaEditar: null,
+    arregloRandom: [],
+
+
+    //variables para usar en Emparejamiento del lado del Estudiante
+    enunciadoSeleccionado: null,
+    respuestaSeleccionada: null,
+    preguntaSeleccionadaJuegoEmparejamiento: null
+
 
 
 
@@ -87,7 +95,7 @@ parasails.registerPage('administrar-contenido', {
 
 
 
-    $('#modalCrearPregunta' + this.infoElement.id).on('hide.bs.modal', function (e) {
+    $('#modalCrearPregunta' + this.tipoEvaluacion).on('hide.bs.modal', function (e) {
       this.preguntaEnEdicion = {
         enunciado: null,
         opciones: {
@@ -304,8 +312,9 @@ parasails.registerPage('administrar-contenido', {
       // this.codigoTipoEvaluacion = codigo;
     },
     clickMostrarModalCreaPregunta() {
+      let nombreModal = this.tipoEvaluacion;
       $(function () {
-        $('#modalCrearPregunta').modal('show');
+        $('#modalCrearPregunta' + nombreModal).modal('show');
       });
     },
     insertarPreguntaCuestionario() {
@@ -355,7 +364,7 @@ parasails.registerPage('administrar-contenido', {
       }
 
       if (Object.keys(this.formErrorsModal).length == 0) {
-
+        //actualiza el contenido del arreglo de preguntas, remueve el elemento de la  posicion del la pregunta que se edita (indicePreguntaEditar) y se coloca la nueva pregunta editada (preguntaEnEdicion).
         this.preguntasCuestionario.splice(this.indicePreguntaEditar, 1, this.preguntaEnEdicion);
         this.preguntaEnEdicion = {
           enunciado: null,
@@ -401,9 +410,8 @@ parasails.registerPage('administrar-contenido', {
     },
     validarEvaluacion() {
       this.evaluacion.tipo = this.tipoEvaluacion;
-      if (this.tipoEvaluacion == "Cuestionario") {
+      if (this.tipoEvaluacion == "Cuestionario" || this.tipoEvaluacion == "Emparejamiento") {
         this.evaluacion.preguntas = this.preguntasCuestionario;
-
       }
       this.guardarEvaluacion();
 
@@ -433,8 +441,65 @@ parasails.registerPage('administrar-contenido', {
 
     },
     insertarPreguntaEmparejamiento() {
+      if (!this.preguntaEnEdicion.enunciado) {
+        this.formErrorsModal.enunciado = true;
+        alert('ingrese enunciado');
+      }
 
+      if (!this.preguntaEnEdicion.respuesta) {
+        this.formErrorsModal.respuesta = true;
+        alert('ingrese una respuesta');
+      }
+
+      if (Object.keys(this.formErrorsModal).length == 0) {
+        console.log('INSERTA EN PREGUNTASCUESTIONARIO');
+        console.log(this.preguntasCuestionario);
+        this.preguntasCuestionario.push(this.preguntaEnEdicion)
+        this.preguntaEnEdicion = {
+          enunciado: null,
+          opciones: {
+            opcion1: null,
+            opcion2: null,
+            opcion3: null,
+            opcion4: null,
+          },
+          respuesta: null,
+        }
+
+        this.randomPreguntasCuestionario(); //randomizo las opciones de respuesta
+      };
+
+      this.formErrorsModal = {};
+    },
+    randomPreguntasCuestionario() {
+      //
+
+      this.arregloRandom = [];
+
+      this.preguntasCuestionario.forEach((pregunta) => {
+
+        let posicionAleatorio = Math.floor(Math.random() * 10); //numero aleatorio entre 0 y 10(cualquier valor entero)
+        let modulo = posicionAleatorio % 2;
+        if (modulo == 0) {
+          this.arregloRandom.unshift(pregunta);
+        } else {
+          this.arregloRandom.push(pregunta);
+        }
+      })
+      console.log(this.arregloRandom);
+
+      // return arregloRandom;
+    },
+    seleccionarEnunciadoEmpareja(pregunta, indexPreg) {
+      this.enunciadoSeleccionado = indexPreg;
+      this.preguntaSeleccionadaJuegoEmparejamiento = pregunta;
+    },
+    seleccionarRespuestaEmpareja(pregunta, indexResp) {
+      if (pregunta.respuesta == this.preguntaSeleccionadaJuegoEmparejamiento.respuesta) {
+        this.respuestaSeleccionada = indexResp;
+      }
     }
+
 
 
   },

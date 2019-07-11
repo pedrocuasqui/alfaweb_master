@@ -420,33 +420,34 @@ parasails.registerPage('administrar-contenido', {
         var indicesConError = []; //guarda la posicion de la pregunta con error
         this.preguntasCuestionario.forEach(pregunta => {
           //recorrer todas las opciones de respuesta de la pregunta
-          
+
           let opcionesEnNull = 0; //acumula las opciones en null de la pregunta actual
-          pregunta.opciones.forEach(opcion => {
+          Object.values(pregunta.opciones).forEach(opcion => {
 
             if (!opcion) { //la opcion es null
               opcionesEnNull += 1; //acumula el conteo de opciones null en la pregunta
             }
           });
-          if (opcionesEnNull != 0) {
+          if (opcionesEnNull >= 3) {
             indicesConError.push(indice);
           }
           indice += 1; //la posicion incrementa en uno
         });
+
+
+        if (indicesConError.length > 0) {
+          this.formErrors.opciones = true;
+          alert('Las preguntas: ' + JSON.stringify(indicesConError) + 'no tienen opciones de respuesta');
+        }
+
       }
 
 
-      if (indicesConError.length >0) {
-        this.formErrors.opciones = true;
-        alert('Las preguntas: '+ JSON.stringify(indicesConError)+ 'no tienen opciones de respuesta');
-      }
 
 
 
       if (Object.keys(this.formErrors).length == 0) {
         this.guardarEvaluacion();
-      } else {
-        alert('!Aún existen errores por corregir' + JSON.stringify(this.formErrors));
       }
 
       this.formErrors = {};

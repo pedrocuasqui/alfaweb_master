@@ -66,8 +66,8 @@ parasails.registerPage('administrar-contenido', {
     //variables para usar en Emparejamiento del lado del Estudiante
     enunciadoSeleccionado: null,
     respuestaSeleccionada: null,
-    preguntaSeleccionadaJuegoEmparejamiento: null
-
+    preguntaSeleccionadaJuegoEmparejamiento: null,
+    coloresPreguntasEmparejamiento: ['#F31885', '#F39318', '#B4F318', '#18F38F', '#18A7F3', '#9318F3', '#F318D8', '#823815', '#268215', '#158280', '#D52FE3', '#F31850', '#D218F3', '#1833F3', '#18E9F3', '#33F318', '#F3DF18']
 
 
 
@@ -85,6 +85,11 @@ parasails.registerPage('administrar-contenido', {
     this.curso = SAILS_LOCALS.curso;
     this.breadcrumb.push(SAILS_LOCALS.curso);
 
+    if (this.objetoSeleccionado.nombreSubmodulo && this.objetoSeleccionado.evaluacion) { //solo se agregan estas opciones si es un submodulo
+      this.tipoEvaluacion = this.objetoSeleccionado.evaluacion.tipo;
+      this.preguntasCuestionario = [...this.objetoSeleccionado.evaluacion.preguntas];
+      this.modalEdicion = true;
+    }
 
   },
   mounted: async function () {
@@ -321,15 +326,15 @@ parasails.registerPage('administrar-contenido', {
 
       if (!this.preguntaEnEdicion.enunciado) {
         this.formErrorsModal.enunciado = true;
-        alert('ingrese enunciado');
+        alert('Ingrese un enunciado');
       }
       if (this.opcionesRespuesta(this.preguntaEnEdicion).length < 2) {
         this.formErrorsModal.opciones = true;
-        alert('registre al menos dos opciones');
+        alert('Registre al menos dos opciones');
       }
       if (!this.preguntaEnEdicion.respuesta) {
         this.formErrorsModal.respuesta = true;
-        alert('seleccione una respuesta');
+        alert('Seleccione una respuesta');
       }
 
       if (Object.keys(this.formErrorsModal).length == 0) {
@@ -352,15 +357,15 @@ parasails.registerPage('administrar-contenido', {
     actualizarPreguntaCuestionario() {
       if (!this.preguntaEnEdicion.enunciado) {
         this.formErrorsModal.enunciado = true;
-        alert('ingrese enunciado');
+        alert('Ingrese un enunciado');
       }
       if (this.opcionesRespuesta(this.preguntaEnEdicion).length < 2) {
         this.formErrorsModal.opciones = true;
-        alert('registre al menos dos opciones');
+        alert('Registre al menos dos opciones');
       }
       if (!this.preguntaEnEdicion.respuesta) {
         this.formErrorsModal.respuesta = true;
-        alert('seleccione una respuesta');
+        alert('Seleccione una respuesta');
       }
 
       if (Object.keys(this.formErrorsModal).length == 0) {
@@ -378,8 +383,8 @@ parasails.registerPage('administrar-contenido', {
         }
 
       };
-      this.modalEdicion = false,
-        this.indicePreguntaEditar = null;
+      this.modalEdicion = false;
+      this.indicePreguntaEditar = null;
       this.formErrorsModal = {};
     },
     mostrarEditarPreguntaCuestionario(preguntaSelected, indice) {
@@ -387,14 +392,11 @@ parasails.registerPage('administrar-contenido', {
       this.preguntaEnEdicion = preguntaSelected;
       this.modalEdicion = true;
       $(function () {
-        $('#modalCrearPregunta').modal('show');
+        $('#modalCrearPreguntaCuestionario').modal('show');
       });
     },
     eliminarPreguntaCuestionario(preguntaSelected, indice) {
-      console.log('PREGUNTA SELECTED + INDICE');
-      console.log(preguntaSelected);
-      console.log(indice);
-      console.log(this.preguntasCuestionario);
+
       this.preguntasCuestionario.splice(indice, 1);
     },
     opcionesRespuesta(preguntaEnEdicion) { //Se construye una respuesta como objeto
@@ -409,14 +411,56 @@ parasails.registerPage('administrar-contenido', {
       return opciones;
     },
     validarEvaluacion() {
-      this.evaluacion.tipo = this.tipoEvaluacion;
-      if (this.tipoEvaluacion == "Cuestionario" || this.tipoEvaluacion == "Emparejamiento") {
-        this.evaluacion.preguntas = this.preguntasCuestionario;
+
+
+      this.formErrors = {};
+      //vALIDA QUE TODAS LAS PREGUNTAS TENGA OPCIONES, ESTA VALIDACION FUNCIONA CUANDO SE CAMBIA EL TIPO DE EVALUACION DE "EMPAREJAMIENTO" A "CUESTIONARIO"
+      if (this.tipoEvaluacion == "Cuestionario") {
+        var indice = 0; //contador de posiciones
+        var indicesConError = []; //guarda la posicion de la pregunta con error
+        this.preguntasCuestionario.forEach(pregunta => {
+          //recorrer todas las opciones de respuesta de la pregunta
+          
+          let opcionesEnNull = 0; //acumula las opciones en null de la pregunta actual
+          pregunta.opciones.forEach(opcion => {
+
+            if (!opcion) { //la opcion es null
+              opcionesEnNull += 1; //acumula el conteo de opciones null en la pregunta
+            }
+          });
+          if (opcionesEnNull != 0) {
+            indicesConError.push(indice);
+          }
+          indice += 1; //la posicion incrementa en uno
+        });
       }
-      this.guardarEvaluacion();
+
+
+      if (indicesConError.length >0) {
+        this.formErrors.opciones = true;
+        alert('Las preguntas: '+ JSON.stringify(indicesConError)+ 'no tienen opciones de respuesta');
+      }
+
+
+
+      if (Object.keys(this.formErrors).length == 0) {
+        this.guardarEvaluacion();
+      } else {
+        alert('!Aún existen errores por corregir' + JSON.stringify(this.formErrors));
+      }
+
+      this.formErrors = {};
 
     },
     guardarEvaluacion() {
+      this.evaluacion.tipo = this.tipoEvaluacion; //el tipo de evaluacion en la base será el tipo de evaluacion seleccionado
+
+      if (this.tipoEvaluacion == "Cuestionario" || this.tipoEvaluacion == "Emparejamiento") {
+        this.evaluacion.preguntas = this.preguntasCuestionario;
+      }
+
+
+
       const formDataEv = new FormData();
       formDataEv.append('objetoId', this.objetoSeleccionado.id);
       formDataEv.append('evaluacion', JSON.stringify(this.evaluacion));
@@ -437,23 +481,59 @@ parasails.registerPage('administrar-contenido', {
 
 
     //emparejamiento
-    actualizarPreguntaEmparejamiento() {
-
+    mostrarEditarPreguntaEmparejar(pregunta, indexPreg) {
+      this.indicePreguntaEditar = indexPreg;
+      this.preguntaEnEdicion = pregunta;
+      this.modalEdicion = true;
+      $(function () {
+        $('#modalCrearPreguntaEmparejamiento').modal('show');
+      });
     },
-    insertarPreguntaEmparejamiento() {
+    eliminarPreguntaEmparejar(pregunta, indice) {
+      this.preguntasCuestionario.splice(indice, 1);
+    },
+    actualizarPreguntaEmparejamiento() {
       if (!this.preguntaEnEdicion.enunciado) {
         this.formErrorsModal.enunciado = true;
-        alert('ingrese enunciado');
+        alert('Ingrese un enunciado');
       }
 
       if (!this.preguntaEnEdicion.respuesta) {
         this.formErrorsModal.respuesta = true;
-        alert('ingrese una respuesta');
+        alert('Seleccione una respuesta');
       }
 
       if (Object.keys(this.formErrorsModal).length == 0) {
-        console.log('INSERTA EN PREGUNTASCUESTIONARIO');
-        console.log(this.preguntasCuestionario);
+        //actualiza el contenido del arreglo de preguntas, remueve el elemento de la  posicion del la pregunta que se edita (indicePreguntaEditar) y se coloca la nueva pregunta editada (preguntaEnEdicion).
+        this.preguntasCuestionario.splice(this.indicePreguntaEditar, 1, this.preguntaEnEdicion);
+        this.preguntaEnEdicion = {
+          enunciado: null,
+          opciones: {
+            opcion1: null,
+            opcion2: null,
+            opcion3: null,
+            opcion4: null,
+          },
+          respuesta: null,
+        }
+
+      };
+      this.modalEdicion = false;
+      this.indicePreguntaEditar = null;
+      this.formErrorsModal = {};
+    },
+    insertarPreguntaEmparejamiento() {
+      if (!this.preguntaEnEdicion.enunciado) {
+        this.formErrorsModal.enunciado = true;
+        alert('Ingrese un enunciado');
+      }
+
+      if (!this.preguntaEnEdicion.respuesta) {
+        this.formErrorsModal.respuesta = true;
+        alert('Ingrese una respuesta');
+      }
+
+      if (Object.keys(this.formErrorsModal).length == 0) {
         this.preguntasCuestionario.push(this.preguntaEnEdicion)
         this.preguntaEnEdicion = {
           enunciado: null,
@@ -464,6 +544,11 @@ parasails.registerPage('administrar-contenido', {
             opcion4: null,
           },
           respuesta: null,
+        }
+        //quito colores si es que ya hay colores
+        for (let i = 0; i <= this.preguntasCuestionario.length - 1; i++) {
+          $("#Preg" + i).css("background-color", '');
+          $("#Resp" + i).css("background-color", '');
         }
 
         this.randomPreguntasCuestionario(); //randomizo las opciones de respuesta
@@ -490,15 +575,34 @@ parasails.registerPage('administrar-contenido', {
 
       // return arregloRandom;
     },
+    /**
+     * 
+     * @param {Object} pregunta la pregunta seleccionada en la evaluacion de tipo emparejamiento
+     * @param {string | int} indexPreg el indice al que corresponde dentro del arreglo this.preguntasCuestionario
+     */
     seleccionarEnunciadoEmpareja(pregunta, indexPreg) {
-      this.enunciadoSeleccionado = indexPreg;
-      this.preguntaSeleccionadaJuegoEmparejamiento = pregunta;
+      this.enunciadoSeleccionado = indexPreg; //aplica el estilo al enunciado seleccionado
+      // pregunta.color=this.coloresPreguntasEmparejamiento[indexPreg];
+
+      this.preguntaSeleccionadaJuegoEmparejamiento = pregunta; //mantiene esta pregunta para poder comparar con la respuesta que luego seleccione
     },
+    /**
+     * 
+     * @param {Object} pregunta Objeto pregunta de la respuesta seleccionada para poder comparar con el enunciado
+     * @param {string | int} indexResp indice de la respuesta dentro del arreglo this.arregloRandom
+     */
     seleccionarRespuestaEmpareja(pregunta, indexResp) {
-      if (pregunta.respuesta == this.preguntaSeleccionadaJuegoEmparejamiento.respuesta) {
-        this.respuestaSeleccionada = indexResp;
+      if (this.preguntaSeleccionadaJuegoEmparejamiento) {
+        if (pregunta.respuesta == this.preguntaSeleccionadaJuegoEmparejamiento.respuesta) {
+          this.respuestaSeleccionada = indexResp;// esto aplica el estilo a la respuesta seleccionada correctamente
+          $("#Resp" + indexResp).css({ "background-color": this.coloresPreguntasEmparejamiento[indexResp], "border-radius": '10px' });
+          $("#Preg" + this.enunciadoSeleccionado).css({ "background-color": this.coloresPreguntasEmparejamiento[indexResp], "border-radius": '10px' });
+        }
       }
-    }
+
+    },
+
+
 
 
 
@@ -508,6 +612,7 @@ parasails.registerPage('administrar-contenido', {
       let error = this.formErrors.imagenPortada || this.formErrors.typeFile;
       return error
     },
+
 
   }
 });

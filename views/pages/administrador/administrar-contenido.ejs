@@ -186,10 +186,9 @@
                                         type="button">Cuestionario</button>
                                     <button class="dropdown-item" @click="mostrarTipoEvaluacion('Emparejamiento')"
                                         type="button">Emparejamiento</button>
-                                    <button class="dropdown-item" @click="mostrarTipoEvaluacion('Seleccionar objeto')"
-                                        type="button">Seleccionar objeto</button>
-                                    <button class="dropdown-item" @click="mostrarTipoEvaluacion('Lluvia de objetos')"
-                                        type="button">Lluvia de objetos</button>
+                                    <button class="dropdown-item" @click="mostrarTipoEvaluacion('Nombre Objeto')"
+                                        type="button">Nombre Objeto</button>
+
                                 </div>
                             </div>
 
@@ -251,23 +250,53 @@
                                         <a @click="clickMostrarModalCreaPregunta()" title="Añadir nueva pregunta"><i
                                                 class="fas fa-plus-circle fa-2x"></i>
                                         </a>
-                                        <!-- Columna de palabras -->
-                                        <div class="col-sm-4">
-                                            <div @click.stop="seleccionarEnunciadoEmpareja(pregunta,indexPreg)" class="row"
-                                                :class="[ enunciadoSeleccionado==indexPreg ? 'enun-selec' : '']"
-                                                key="indexPreg" v-for="(pregunta,indexPreg) in preguntasCuestionario">
-                                                {{pregunta.enunciado}}
-                                            </div>
-                                        </div>
-                                        <!-- columna de definiciones -->
-                                        <div class="col-sm-4">
-                                            <div class="row"  @click.stop="seleccionarRespuestaEmpareja(pregunta1,indexResp)"
-                                            :class="[ respuestaSeleccionada==indexResp ? 'respuesta-correcta-emparejamiento' : '']" key="indexResp"
-                                                v-for="(pregunta1, indexResp) in arregloRandom">
-                                                {{pregunta1.respuesta}}
+                                        <div class="col-sm-8">
+                                            <div class="row" v-for="(pregunta,indexPreg) in preguntasCuestionario">
+
+
+                                                <div class="col-sm-4" :id="'Preg'+indexPreg" key="'Preg'+indexPreg">
+                                                    {{pregunta.enunciado}}
+
+                                                </div>
+
+                                                <div class="col-sm-4" :id="'Resp'+indexPreg" key="'Resp'+indexPreg">
+                                                    {{pregunta.respuesta}}
+
+                                                </div>
+                                                <small>
+                                                    <a @click.stop="mostrarEditarPreguntaEmparejar(pregunta,indexPreg)"
+                                                        data-placement="top" title="Editar pregunta"> <i
+                                                            class="fas fa-edit fa-2x"></i> </a>
+                                                    <a @click.stop="eliminarPreguntaEmparejar(pregunta,indexPreg)"
+                                                        data-placement="top" title="Eliminar pregunta"><i
+                                                            class="fas fa-trash-alt fa-2x"></i></a>
+                                                </small>
+
                                             </div>
                                         </div>
 
+                                        <!-- usar el siguiente codigo para el estudiante
+                                        <div class="col-sm-4">
+                                            
+                                            <div @click.stop="seleccionarEnunciadoEmpareja(pregunta,indexPreg)"
+                                                class="row"
+                                                :class="[enunciadoSeleccionado == indexPreg ? 'enunSelected': '' ]"
+                                                :id="'Preg'+indexPreg" key="indexPreg"
+                                                v-for="(pregunta,indexPreg) in preguntasCuestionario">
+                                                {{pregunta.enunciado}}
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="col-sm-4">
+                                            <div class="row"
+                                                @click.stop="seleccionarRespuestaEmpareja(pregunta1,indexResp)"
+                                                :id="'Resp'+indexResp" key="indexResp"
+                                                v-for="(pregunta1, indexResp) in arregloRandom">
+                                                
+                                                {{pregunta1.respuesta}}
+                                            </div>
+                                        </div>
+                                    -->
                                     </div>
                                 </template>
 
@@ -277,22 +306,15 @@
 
 
                                 <!-- SELECCIONAR OBJETO INDICADO -->
-                                <template v-if="tipoEvaluacion=='Seleccionar objeto'">
+                                <template v-if="tipoEvaluacion=='Nombre Objeto'">
                                     <div class="row">
-
+                                        <a @click="clickMostrarModalCreaPregunta()" title="Añadir nueva pregunta"><i
+                                                class="fas fa-plus-circle fa-2x"></i>
+                                        </a>
                                     </div>
                                 </template>
 
 
-
-
-
-                                <!-- LLUVIA DE OBJETOS -->
-                                <template v-if="tipoEvaluacion=='Lluvia de objetos'">
-                                    <div class="row">
-
-                                    </div>
-                                </template>
                             </template>
 
                             <a @click="validarEvaluacion" title="Guardar Evaluación"> <i
@@ -301,6 +323,11 @@
 
                         </div>
                     </template>
+
+
+
+
+                    <!-- CONTENIDO DEL MODULO O SUBMODULO -->
                     <template v-else>
                         <div class="col-sm-10 col-central">
                             <!--botones de navegacion y Titulo-->

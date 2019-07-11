@@ -28,15 +28,16 @@
 }
 
 .modal-body>div {
-  padding: 10px 0px !important ; 
+  padding: 10px 0px !important;
 }
 
-.enun-selec{
-  background-color: orange;
+.enunSelected {
+  border       : 2px solid darkgreen;
+  border-radius: 10px;
 }
-.respuesta-correcta-emparejamiento{
-  background-color: chartreuse;
-}
-.resp-equivocada{
-background-color: red;
+
+div[id^="Resp"]:hover, div[id^="Preg"]:hover{
+  cursor: pointer;
+  border       : 2px solid darkgreen;
+  border-radius: 10px;
 }

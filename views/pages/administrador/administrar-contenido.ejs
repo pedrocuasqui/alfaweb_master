@@ -140,6 +140,100 @@
 
 
 
+    <!-- PREGUNTA DE NOMBRE OBJETO -->
+    <div v-if="tipoEvaluacion=='Nombre_Objeto'" class="modal fade" id="modalCrearPreguntaNombre_Objeto" tabindex="-1"
+        role="dialog" aria-labelledby="preguntaNombreObjeto" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="preguntaNombreObjeto">Crear pregunta </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+
+                    PREGUNTA DE NOMBRE OBJETO
+
+                    <template>
+
+                        <input type="file" name="multimedia" id="file" class="inputfile"
+                            @change="onFileSelectedEvaluacionNombreObjeto" accept="image/*"
+                            :class="[computedErrorImagen ? 'is-invalid' : '']">
+                        <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
+                                    class="fas fa-plus-circle fa-2x"></i></a></label>
+                        <div v-if="mostrarSpinner" id="spinnerEv" class="spinner-border m-5" role="status">
+                            <span class="sr-only">Loading...</span>
+                        </div>
+                        <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
+                            archivo de
+                            imagen para la portada max:20MB.</div>
+                        <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
+                            permitidos:
+                            jpg,/png. max:20MB. </div>
+                        <div class="imagen-portada-modulo" v-if="preguntaEnEdicion.enunciado">
+                            <!--El enunciado puede ser cualquier objeto --->
+                            <img :src="preguntaEnEdicion.enunciado" alt="Imágen de evaluacion">
+                        </div>
+                    </template>
+
+
+
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion1">Opción 1</label>
+                        <input class="inputFull" name="opcion1" type="text" v-model="preguntaEnEdicion.opciones.opcion1"
+                            placeholder="opción 1">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion2">Opción 2</label>
+                        <input class="inputFull" name="opcion2" type="text" v-model="preguntaEnEdicion.opciones.opcion2"
+                            placeholder="opción2">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion3">Opción 3</label>
+                        <input class="inputFull" name="opcion3" type="text" v-model="preguntaEnEdicion.opciones.opcion3"
+                            placeholder="opción 3">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion4"> Opción 4</label>
+                        <input class="inputFull" name="opcion4" type="text" v-model="preguntaEnEdicion.opciones.opcion4"
+                            placeholder="opción 4">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="respuestaSelect">Respuesta</label>
+                        <select class="form-control inputFull" id="respuestaPregNombreObjeto"
+                            v-model="preguntaEnEdicion.respuesta">
+                            <option v-for="opcion in opcionesRespuesta(preguntaEnEdicion)"> {{opcion.texto}}</option>
+
+                        </select>
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button v-if="modalEdicion" class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="actualizarPreguntaCuestionario()">Aceptar</button>
+                    <button v-else class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="insertarPreguntaCuestionario()">Aceptar</button>
+                    <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     <!--Pagina contenido-->
@@ -186,8 +280,8 @@
                                         type="button">Cuestionario</button>
                                     <button class="dropdown-item" @click="mostrarTipoEvaluacion('Emparejamiento')"
                                         type="button">Emparejamiento</button>
-                                    <button class="dropdown-item" @click="mostrarTipoEvaluacion('Nombre Objeto')"
-                                        type="button">Nombre Objeto</button>
+                                    <button class="dropdown-item" @click="mostrarTipoEvaluacion('Nombre_Objeto')"
+                                        type="button">Nombre_Objeto</button>
 
                                 </div>
                             </div>
@@ -217,7 +311,7 @@
                                             <div class="d-flex w-100 justify-content-between">
                                                 <h5 class="mb-1">{{pregunta.enunciado}}</h5>
                                                 <small>
-                                                    <a @click.stop="mostrarEditarPreguntaCuestionario(pregunta,indexPreg)"
+                                                    <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
                                                         data-placement="top" title="Editar pregunta"> <i
                                                             class="fas fa-edit fa-2x"></i> </a>
                                                     <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
@@ -264,7 +358,7 @@
 
                                                 </div>
                                                 <small>
-                                                    <a @click.stop="mostrarEditarPreguntaEmparejar(pregunta,indexPreg)"
+                                                    <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
                                                         data-placement="top" title="Editar pregunta"> <i
                                                             class="fas fa-edit fa-2x"></i> </a>
                                                     <a @click.stop="eliminarPreguntaEmparejar(pregunta,indexPreg)"
@@ -306,11 +400,42 @@
 
 
                                 <!-- SELECCIONAR OBJETO INDICADO -->
-                                <template v-if="tipoEvaluacion=='Nombre Objeto'">
+                                <template v-if="tipoEvaluacion=='Nombre_Objeto'">
                                     <div class="row">
                                         <a @click="clickMostrarModalCreaPregunta()" title="Añadir nueva pregunta"><i
                                                 class="fas fa-plus-circle fa-2x"></i>
                                         </a>
+                                        <div class="list-group">
+                                            <div class="list-group-item list-group-item-action active"
+                                                v-for="(pregunta, indexPreg) in preguntasCuestionario">
+                                                <div class="d-flex w-100 justify-content-between">
+
+                                                    <div class="imagen-portada-modulo">
+                                                        <!--El enunciado puede ser cualquier objeto --->
+                                                        <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
+                                                    </div>
+                                                    <small>
+                                                        <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
+                                                            data-placement="top" title="Editar pregunta"> <i
+                                                                class="fas fa-edit fa-2x"></i> </a>
+                                                        <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
+                                                            data-placement="top" title="Eliminar pregunta"><i
+                                                                class="fas fa-trash-alt fa-2x"></i></a>
+                                                    </small>
+                                                </div>
+
+
+                                                <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
+                                                    <input type="radio" :id="opcion.id" :value="opcion.texto"
+                                                        v-model="pregunta.respuesta">
+                                                    <label :for="opcion.id">{{opcion.texto}}</label>
+                                                </div>
+
+                                                <small>Puedes editar la pregunta seleccionando la opción
+                                                    correcta.</small>
+                                            </div>
+                                        </div>
+
                                     </div>
                                 </template>
 

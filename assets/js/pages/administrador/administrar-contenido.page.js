@@ -34,6 +34,8 @@ parasails.registerPage('administrar-contenido', {
     },
     mostrarSpinner: false,
     imagenTemporal: {},
+    rutaObjetoCargado: null,
+
 
 
     tituloEvaluacion: '',
@@ -43,7 +45,7 @@ parasails.registerPage('administrar-contenido', {
     // **********************************OPCIONES DE EVALUACION
     tipoEvaluacion: 'Cuestionario',
     preguntaEnEdicion: {
-      enunciado: null,
+      enunciado: null, //El enunciado puede ser cualquier objeto, ya sea string, imagen , un objeto javascript, lo que sea
       opciones: {
         opcion1: null,
         opcion2: null,
@@ -275,8 +277,27 @@ parasails.registerPage('administrar-contenido', {
 
       this.guardarImagenPortada()
 
+      setTimeout(() => {
+        this.objetoSeleccionado.multimedia.imagen = this.rutaObjetoCargado;
+        this.mostrarSpinner = false;
+      }, 7000);
+    },
+    onFileSelectedEvaluacionNombreObjeto(event) {//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
+
+      //Añadir las propiedades del objeto seleccionado a la variable imagenPortada
+
+      this.imagenTemporal = event.target.files[0];
+      this.mostrarSpinner = true;
+
+      this.guardarImagenPortada()
+
+      setTimeout(() => {
+        this.preguntaEnEdicion.enunciado = this.rutaObjetoCargado;
+        this.mostrarSpinner = false;
+      }, 7000);
     },
     guardarImagenPortada() {
+      this.rutaObjetoCargado = null;
       var _this = this;
       const formData = new FormData();
       formData.append('multimedia', this.imagenTemporal, this.imagenTemporal.name);
@@ -289,15 +310,17 @@ parasails.registerPage('administrar-contenido', {
           (response) => {
             console.log(response.data);
             // _this.objetoSeleccionado.multimedia.imagen = response.data.location;
-            setTimeout(() => {
-              _this.objetoSeleccionado.multimedia.imagen = response.data.location;
-              _this.mostrarSpinner = false;
-            }, 7000);
+            _this.rutaObjetoCargado = response.data.location;
+            // setTimeout(() => {
+            //   _this.objetoSeleccionado.multimedia.imagen = _this.rutaObjetoCargado;
+            //   _this.mostrarSpinner = false;
+            // }, 7000);
           }
         )
         .catch(
           (err) => {
-            console.log('Error encontrado:\n' + err);
+
+            alert('No se puede cargar su imágen en este momento.\n Error:' + err);
 
           }
         );
@@ -320,6 +343,7 @@ parasails.registerPage('administrar-contenido', {
       let nombreModal = this.tipoEvaluacion;
       $(function () {
         $('#modalCrearPregunta' + nombreModal).modal('show');
+
       });
     },
     insertarPreguntaCuestionario() {
@@ -387,14 +411,26 @@ parasails.registerPage('administrar-contenido', {
       this.indicePreguntaEditar = null;
       this.formErrorsModal = {};
     },
-    mostrarEditarPreguntaCuestionario(preguntaSelected, indice) {
+    mostrarEditarPreguntaEvaluacion(preguntaSelected, indice) {
       this.indicePreguntaEditar = indice;
       this.preguntaEnEdicion = preguntaSelected;
       this.modalEdicion = true;
-      $(function () {
-        $('#modalCrearPreguntaCuestionario').modal('show');
-      });
+      if(this.tipoEvaluacion=="Cuestionario"){
+        $(function () {
+          $('#modalCrearPreguntaCuestionario').modal('show');
+        });
+      }else if(this.tipoEvaluacion=="Emparejamiento"){
+        $(function () {
+          $('#modalCrearPreguntaEmparejamiento').modal('show');
+        });
+      }else if(this.tipoEvaluacion=="Nombre_Objeto"){
+        $(function () {
+          $('#modalCrearPreguntaNombre_Objeto').modal('show');
+        });
+      }
+     
     },
+    
     eliminarPreguntaCuestionario(preguntaSelected, indice) {
 
       this.preguntasCuestionario.splice(indice, 1);
@@ -456,9 +492,9 @@ parasails.registerPage('administrar-contenido', {
     guardarEvaluacion() {
       this.evaluacion.tipo = this.tipoEvaluacion; //el tipo de evaluacion en la base será el tipo de evaluacion seleccionado
 
-      if (this.tipoEvaluacion == "Cuestionario" || this.tipoEvaluacion == "Emparejamiento") {
-        this.evaluacion.preguntas = this.preguntasCuestionario;
-      }
+
+      this.evaluacion.preguntas = this.preguntasCuestionario;
+
 
 
 
@@ -482,14 +518,7 @@ parasails.registerPage('administrar-contenido', {
 
 
     //emparejamiento
-    mostrarEditarPreguntaEmparejar(pregunta, indexPreg) {
-      this.indicePreguntaEditar = indexPreg;
-      this.preguntaEnEdicion = pregunta;
-      this.modalEdicion = true;
-      $(function () {
-        $('#modalCrearPreguntaEmparejamiento').modal('show');
-      });
-    },
+   
     eliminarPreguntaEmparejar(pregunta, indice) {
       this.preguntasCuestionario.splice(indice, 1);
     },
@@ -552,12 +581,12 @@ parasails.registerPage('administrar-contenido', {
           $("#Resp" + i).css("background-color", '');
         }
 
-        this.randomPreguntasCuestionario(); //randomizo las opciones de respuesta
+        this.randomPreguntasEmparejamiento(); //randomizo las opciones de respuesta con la misma funcion del cuestionario
       };
 
       this.formErrorsModal = {};
     },
-    randomPreguntasCuestionario() {
+    randomPreguntasEmparejamiento() {
       //
 
       this.arregloRandom = [];

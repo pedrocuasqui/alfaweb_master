@@ -597,9 +597,9 @@ module.exports.bootstrap = async function (done) {
 
 
     estudiante = await Estudiante.create({
-      nombre: 'Elsa Pito',
-      alias: 'esita',
-      email: 'elsa.pita@gmail.com',
+      nombre: 'Elsa Cando',
+      alias: 'els',
+      email: 'elsa.cando@gmail.com',
       password: '$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie',
 
     }).fetch();
@@ -657,7 +657,86 @@ module.exports.bootstrap = async function (done) {
       color: "#b642e1",
       enlace: "",
       ordenNavegacion: 0
-    });
+    }).fetch();
+
+
+
+
+    var intentoEvaluacion = await IntentoEvaluacion.create({
+      puntos: 150,
+      nivel: 2,
+      medalla: 'bebe',
+      tiempoMaximoPorPregunta: 15, //en segundos
+      evaluacion: {
+        tipo: "Emparejamiento",
+        aciertos: [0, 1, 2], //los indices de las preguntas acertadas, la longitud nos dar'a el numero de aciertos totales
+        preguntas: [
+          {
+            errores: 2,//
+            tiempoDeRespuesta: 10,//
+            enunciado: "2+2 es?",
+            opciones:
+            {
+              opcion1: null,
+              opcion2: null,
+              opcion3: null,
+              opcion4: null
+            },
+            respuesta: "4"
+          },
+          {
+            errores: 1,
+            tiempoDeRespuesta: 15,
+            enunciado: "5+5",
+            opciones:
+            {
+              opcion1: null,
+              opcion2: null,
+              opcion3: null,
+              opcion4: null
+            },
+            respuesta: "10"
+          },
+
+
+          {
+            errores: 4,
+            tiempoDeRespuesta: 15,
+            enunciado: "0-5",
+            opciones:
+            {
+              opcion1: null,
+              opcion2: null,
+              opcion3: null,
+              opcion4: null
+            },
+            respuesta: "-5"
+          },
+
+          {
+            errores: null,
+            tiempoDeRespuesta: null, //nunca respondi'o
+            enunciado: "8+4",
+            opciones:
+            {
+              opcion1: null,
+              opcion2: null,
+              opcion3: null,
+              opcion4: null
+            },
+            respuesta: "11"
+          }
+        ]
+      },
+      estudiante: estudiante.id,
+      submodulo: submoduloModulo2Bdd.id
+    })
+
+
+
+
+
+
     sails.log('creacion de estudiante correcta!');
   }
 

@@ -35,7 +35,7 @@ module.exports = {
 
     },
     intentosEvaluacion: { //Un estudiante tiene varios intentos de evaluacion     Estudiante-->IntentosEvaluacion
-      collection: 'IntentosEvaluacion',
+      collection: 'IntentoEvaluacion',
       via: 'estudiante',
 
     },

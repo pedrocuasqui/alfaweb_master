@@ -76,7 +76,7 @@ module.exports = {
       required: true,
     },
     intentosEvaluacion: { //Un submodulo tiene varios intentos de evaluacion     Submodulo-->IntentosEvaluacion
-      collection: 'IntentosEvaluacion',
+      collection: 'IntentoEvaluacion',
       via: 'submodulo',
 
     },

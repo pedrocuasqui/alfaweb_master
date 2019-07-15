@@ -39,7 +39,7 @@
                 <span class="badge badge-primary badge-pill">puntos: </span>
                 <span class="badge badge-primary badge-pill">nivel: </span>
               </div>
-              <p class="mb-1">ultimo Acceso: {{estudiante.ultimoAcceso}}</p>
+              <p class="mb-1">ultimo Acceso: {{fechaUltimoAccesoEstudiante(estudiante)}}</p>
               <p class="mb-1">Cursos tomados:</p>
               <p v-for="curso in estudiante.cursos" class="mb-1">{{curso.nombre}}</p>
             </a>

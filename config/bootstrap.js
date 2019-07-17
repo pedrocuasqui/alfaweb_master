@@ -33,7 +33,7 @@ module.exports.bootstrap = async function (done) {
   // else{
   //   //si no existe ningun submodulo quiere decir que se han borrado, entonces deben volverse a crear
   //   //se borra el curso alfabetizacion para que se vuelva a crear todo
-  //   var cursoAlfaEliminado= await Curso.destroyOne({nombre:'Alfabetizacion informática'});
+  //   var cursoAlfaEliminado= await Curso.destroyOne({nombre:'Alfabetización informática'});
   // }
 
 
@@ -63,18 +63,18 @@ module.exports.bootstrap = async function (done) {
 
   //   //si no existe ningun MODULO quiere decir que se han borrado, entonces deben volverse a crear
   //   //se borra el curso alfabetizacion para que se vuelva a crear todo
-  //   // var cursoAlfaEliminado= await Curso.destroyOne({nombre:'Alfabetizacion informática'});
+  //   // var cursoAlfaEliminado= await Curso.destroyOne({nombre:'Alfabetización informática'});
   // }
 
 
 
-  //PARA QUE SE EJECUTE EL RESTO DE CODIGO, ELIMINAR EL CURSO DE NOMBRE: Alfabetizacion informática EN LA BASE DE DATOS
-  var cursoAlfa = await Curso.findOne({ nombre: 'Alfabetizacion informática' });
+  //PARA QUE SE EJECUTE EL RESTO DE CODIGO, ELIMINAR EL CURSO DE NOMBRE: Alfabetización informática EN LA BASE DE DATOS
+  var cursoAlfa = await Curso.findOne({ nombre: 'Alfabetización informática' });
   if (!cursoAlfa) {
 
     cursoCreado = await Curso.create(
       {
-        nombre: 'Alfabetizacion informática',
+        nombre: 'Alfabetización informática',
         descripcion: 'Enseñanza de informática básica',
         publicado: true
       }

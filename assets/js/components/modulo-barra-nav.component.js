@@ -27,7 +27,7 @@ parasails.registerComponent('modulo-barra-nav', {
 
     if (this.breadcrumb[0].nombre != '') {//verifica si existe el objeto 
 
-      if (this.breadcrumb[0].nombre == 'Alfabetizacion informática') {//el primer elemento siempre sera el curso, por tanto se verifica si el curso es alfabetizacion informatica
+      if (this.breadcrumb[0].nombre == 'Alfabetización informática') {//el primer elemento siempre sera el curso, por tanto se verifica si el curso es alfabetizacion informatica
         this.isAlfaWeb = true;
         this.cursoAlfaWeb = this.breadcrumb.shift(); //retorna el curso alfaweb
       }

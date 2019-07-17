@@ -30,13 +30,17 @@ module.exports = {
 
 
 
-    var curso = await Curso.findOne({ nombre: 'Alfabetizacion informática' }).populate('modulos');
+    var curso = await Curso.findOne({ nombre: 'Alfabetización informática' }).populate('modulos');
     let modulos = await ModuloLibro.find({ curso: curso.id }).populate('submodulos', { sort: 'createdAt ASC' });
     curso.modulos = modulos;
 
       if (req.session.userId) {
         usuario = await Estudiante.findOne({ id: req.session.userId });
         sails.log(usuario);
+        if (!usuario) {
+          usuario = await Profesor.findOne({ id: req.session.userId });
+        }
+
         if (!usuario) {
           // exits.ok({ error: `no se encuentra el usuario con id ${req.session.userId}` });
           res.status(401).send({message:'su sesión ha expirado'});
@@ -57,7 +61,7 @@ module.exports = {
         // var cursos = await Curso.find();
         // usuario.cursos = cursos;
       }
-    // var curso = await Curso.findOne({ nombre: 'Alfabetizacion informática' }).populate('modulos');
+    // var curso = await Curso.findOne({ nombre: 'Alfabetización informática' }).populate('modulos');
 
 
 

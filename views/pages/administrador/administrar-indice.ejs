@@ -68,7 +68,7 @@
 
                     <!-- <a v-if="editarNombre" @click="guardarNombre" title="Editar Curso"><i class="fas fa-save"></i></a>
                     <a v-else @click="mostrarCajaEditar" ><i class="fas fa-edit"></i></a> -->
-                    <a data-toggle="modal" data-target="#modalConfirmaEliminar" data-placement="top"
+                    <a data-toggle="modal" v-if="noEsInforBasica" data-target="#modalConfirmaEliminar" data-placement="top"
                       title="Eliminar Curso"><i class="fas fa-trash-alt"></i></a>
 
                   </div>
@@ -94,7 +94,7 @@
                     <a
                       :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'">{{modulo.nombreModulo}}</a>
                   </div>
-                  <div class="col-sm-3 agregaModulo">
+                  <div v-if="noEsInforBasica" class="col-sm-3 agregaModulo">
                     <a :href="'/view-crear-modulo/?cursoId='+curso.id" title="Añadir nuevo módulo"><i
                         class="fas fa-plus-circle fa-2x"></i></a>
                   </div>

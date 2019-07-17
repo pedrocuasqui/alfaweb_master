@@ -26,7 +26,7 @@ parasails.registerComponent('modulo-side-var-menu', {
     },
     mounted() {
 
-        if (this.curso.nombre == 'Alfabetizacion informática') {
+        if (this.curso.nombre == 'Alfabetización informática') {
             this.cursoInformatica = true;
         }
     },
@@ -52,7 +52,7 @@ parasails.registerComponent('modulo-side-var-menu', {
                 <!--ES ADMIN, PUEDE CREAR CURSO Y MODIFICARLOS, EXCEPTO EL CURSO INFORMATICA BASICA-->
                 <a v-if="esAdmin" key="admin" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" :style="colorModulo(modulo.id)">{{modulo.nombreModulo}}</a>
                 <!--ES CURSO INFORMATICA, TODOS PUEDEN ACCEDER A EL PERO NADIE, NI EL ADMINISTRADOR ni ESTUDIANTE PUEDEn EDITARLO-->
-                <a v-else-if="cursoInformatica" key="informatica" clgit ass="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/contenido-alfaweb/?enlace='+modulo.enlace" :style="colorModulo(modulo.id)" >{{modulo.nombreModulo}}</a>
+                <a v-else-if="cursoInformatica" key="informatica" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/contenido-alfaweb/?enlace='+modulo.enlace" :style="colorModulo(modulo.id)" >{{modulo.nombreModulo}}</a>
                 <!--ES ESTUDIANTE Y HA INGRESADO A OTRO CURSO QUE NO SEA INFORMATICA BASICA-->
                 <a v-else key="estudiante" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/interfaz-modulos/?objetoId='+modulo.id+'&tipoContenido=Modulo'" :style="colorModulo(modulo.id)">{{modulo.nombreModulo}}</a>
 
@@ -66,10 +66,10 @@ parasails.registerComponent('modulo-side-var-menu', {
                     <template v-else>
                     <a  v-for="submodulo in modulo.submodulos" :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
                </template >
-                    <a v-if="esAdmin" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
+                    <a v-if="habilitarEdicion" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
                 </div>
             </div>
-          <div v-if="esAdmin" class="dropdownModulo" >
+          <div v-if="habilitarEdicion" class="dropdownModulo" >
                 <a class="btn btn-primary dropbtn-modulo" :href="'/view-crear-modulo/?cursoId='+curso.id" ><i class="fas fa-plus-circle" ></i> Agregar Módulo</a>
             </div> 
         </div> 
@@ -130,7 +130,7 @@ parasails.registerComponent('modulo-side-var-menu', {
                 alert('curso publicado');
                 console.log(response);
                 console.log(response.data);
-                
+
             }).catch(err => {
                 alert('error, no se ha podido publicar el curso');
                 console.log(err);
@@ -147,7 +147,7 @@ parasails.registerComponent('modulo-side-var-menu', {
             }).then(response => {
                 this.curso.publicado = false;
                 alert('curso ocultado');
-               
+
             }).catch(err => {
                 alert('error, revisar la consola');
                 console.log(err);
@@ -161,7 +161,9 @@ parasails.registerComponent('modulo-side-var-menu', {
         esAdmin() {
             let esadmin = false;
             //si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
-            if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false) {
+            
+            // if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false ){
+            if ((this.usuario.administrador || this.usuario.tutor) ) { //usar la linea anterior para restringir el acceso al curso informatica básica al administrador
                 esadmin = true;
             }
             // si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones 
@@ -169,14 +171,34 @@ parasails.registerComponent('modulo-side-var-menu', {
             //2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
             else if (this.usuario.rol == 'Estudiante') {
                 esadmin = false;
-            }else{
+            } else {
                 esadmin = false;
             }
 
 
             return esadmin;
         },
-        esAlfaweb(){
+        habilitarEdicion(){
+            let edicionHabilitada = false;
+            //si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
+            
+            if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false ){
+            // if ((this.usuario.administrador || this.usuario.tutor) ) { //usar la linea anterior para restringir el acceso al curso informatica básica al administrador
+            edicionHabilitada = true;
+            }
+            // si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones 
+            //1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
+            //2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
+            else if (this.usuario.rol == 'Estudiante') {
+                edicionHabilitada = false;
+            } else {
+                edicionHabilitada = false;
+            }
+
+
+            return edicionHabilitada;
+        },
+        esAlfaweb() {
 
         }
     }

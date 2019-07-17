@@ -223,6 +223,7 @@
     </div>
 
 
+    <!-- fin modales -->
 
 
 
@@ -234,10 +235,16 @@
 
 
 
-
-
-    <!--Pagina contenido-->
-
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-------------------CONTENIDO Y EVALUACIONES--------------------------->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
 
     <div class="div-contenido container-fluid" v-cloak>
         <!--CABECERA-->
@@ -266,6 +273,13 @@
 
 
                     <!-- Columna central del cuerpo-->
+
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-------------------------------EVALUACIONES--------------------------->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-- ---------------------------------------------------------------- -->
+
                     <template v-if="evIndividualBandera">
                         <div class="col-sm-10 col-central">
                             <h4>{{objetoSeleccionado.nombre}} - Evaluación - {{tipoEvaluacion}}</h4>
@@ -452,7 +466,11 @@
 
 
 
-                    <!-- CONTENIDO DEL MODULO O SUBMODULO -->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!----------------CONTENIDO DEL MODULO O SUBMODULO---------------------->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-- ---------------------------------------------------------------- -->
                     <template v-else>
                         <div class="col-sm-10 col-central">
                             <!--botones de navegacion y Titulo-->
@@ -504,7 +522,7 @@
 
                                 <div class="contenedor-slot-principal">
 
-                                    <form method="post">
+                                    <form method="post" v-if="noEsInforBasica">
                                         <!-- <textarea id="mytextarea">Escriba aquí el texto</textarea> -->
                                         <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                         <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
@@ -513,6 +531,7 @@
                                             <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                         </div>
                                     </form>
+                                    <div v-else>NO SE PUEDE EDITAR ESTE CONTENIDO</div>
                                     <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
                                         <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
                                         <input id="colorModulo" type="color" name="color"
@@ -539,11 +558,10 @@
                                         </div>
 
                                     </div>
-
-
-
-                                    <button type="button" id="enviarModulo" @click.stop="validarFormulario"> Guardar
-                                        Módulo</button>
+                                    <button  type="button" id="enviarModulo"
+                                        @click.stop="validarFormulario"> Guardar
+                                        Módulo
+                                    </button>
 
                                 </div>
                             </div>

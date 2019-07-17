@@ -36,7 +36,7 @@ parasails.registerPage('indice-estudiante', {
 
   },
   mounted: async function () {
-    if (this.curso.nombre == 'Alfabetizacion informática') {
+    if (this.curso.nombre == 'Alfabetización informática') {
       //el primer elemento siempre sera el curso, por tanto se verifica si el curso es alfabetizacion informatica
       this.isAlfaWeb = true;
     }

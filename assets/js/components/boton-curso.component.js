@@ -1,3 +1,4 @@
+
 parasails.registerComponent('boton-curso', {
     props: {
 
@@ -26,13 +27,13 @@ parasails.registerComponent('boton-curso', {
       <!--span hace que los contenidos se presenten en linea-->
       <span>
         <!--EDITAR CURSO-->
-        <a v-if="editarCurso" @click.stop="validarCampos()" title="Editar Curso"><i
+        <a v-if="habilitarEdicion" @click.stop="validarCampos()" title="Editar Curso"><i
             class="fas fa-save"></i></a>
-        <a v-else @click.stop="mostrarEditarCurso(curso.id)" data-placement="top" title="Editar Curso"> <i
+        <a v-else-if="noEsInforBasica" @click.stop="mostrarEditarCurso(curso.id)" data-placement="top" title="Editar Curso"> <i
             class="fas fa-edit"></i> </a>
         <!--PUBLICAR Y OCULTAR CURSO-->
-        <a v-if="curso.publicado" @click.stop="ocultarCurso(curso.id)" data-placement="top" title="Ocultar Curso"> <i class="fas fa-lock-open"></i> </a>
-        <a v-else @click.stop="publicarCurso(curso.id)" data-placement="top" title="Publicar Curso"> <i class="fas fa-lock"></i> </a>
+        <a v-if="cursoPublicado" @click.stop="ocultarCurso(curso.id)" data-placement="top" title="Ocultar Curso"> <i class="fas fa-lock-open"></i> </a>
+        <a v-else-if="noEsInforBasica" @click.stop="publicarCurso(curso.id)" data-placement="top" title="Publicar Curso"> <i class="fas fa-lock"></i> </a>
        <!--ELIMINAR CURSO-->
         <a v-if="noEsInforBasica" data-toggle="modal" data-target="#modalConfirmaEliminar"
           @click.stop="$emit('selecciona-curso-eliminar',curso)" data-placement="top" title="Eliminar Curso"><i
@@ -94,7 +95,7 @@ parasails.registerComponent('boton-curso', {
                 alert('curso publicado');
                 console.log(response);
                 console.log(response.data);
-                
+
             }).catch(err => {
                 alert('error, no se ha podido publicar el curso');
                 console.log(err);
@@ -111,7 +112,7 @@ parasails.registerComponent('boton-curso', {
             }).then(response => {
                 this.curso.publicado = false;
                 alert('curso ocultado');
-               
+
             }).catch(err => {
                 alert('error, revisar la consola');
                 console.log(err);
@@ -122,10 +123,23 @@ parasails.registerComponent('boton-curso', {
     },
     computed: {
         noEsInforBasica() {
-            //si el nombre del curso es "Alfabetizacion informática" entonces no se mostrará el botón eliminar, no se debe por ninguna razón eliminar el curso, en caso de hacerlo, se debe reiniciar el servidor para que se vuelva a crear el curso por defecto, aunque las páginas  html del contenido permanecerán siempre intactas
-            let respuesta = this.curso.nombre != 'Alfabetizacion informática';
+            //si el nombre del curso es "Alfabetización informática" entonces no se mostrará el botón eliminar, no se debe por ninguna razón eliminar el curso, en caso de hacerlo, se debe reiniciar el servidor para que se vuelva a crear el curso por defecto, aunque las páginas  html del contenido permanecerán siempre intactas
+            let respuesta = this.curso.nombre != 'Alfabetización informática';
+            return respuesta;
+        },
+        habilitarEdicion() {
+            
+            let respuesta = this.editarCurso ;
+            return respuesta
+        },
+        deshabilitarEdicion() {
+
+        },
+        cursoPublicado() {
+            let respuesta = this.curso.publicado &&this.curso.nombre != 'Alfabetización informática' ;
             return respuesta;
         }
+
 
     }
 

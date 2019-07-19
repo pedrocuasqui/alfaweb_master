@@ -319,6 +319,7 @@
                                                 class="fas fa-plus-circle fa-2x"></i>
                                         </a>
                                     </div>
+                                    <h6>* Las preguntas se mostrarán una por una al estudiante</h6>
                                     <div class="list-group">
                                         <div class="list-group-item list-group-item-action active"
                                             v-for="(pregunta, indexPreg) in preguntasCuestionario">
@@ -419,43 +420,47 @@
                                         <a @click="clickMostrarModalCreaPregunta()" title="Añadir nueva pregunta"><i
                                                 class="fas fa-plus-circle fa-2x"></i>
                                         </a>
-                                        <div class="list-group">
-                                            <div class="list-group-item list-group-item-action active"
-                                                v-for="(pregunta, indexPreg) in preguntasCuestionario">
-                                                <div class="d-flex w-100 justify-content-between">
-
-                                                    <div class="imagen-portada-modulo">
-                                                        <!--El enunciado puede ser cualquier objeto --->
-                                                        <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
-                                                    </div>
-                                                    <small>
-                                                        <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
-                                                            data-placement="top" title="Editar pregunta"> <i
-                                                                class="fas fa-edit fa-2x"></i> </a>
-                                                        <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
-                                                            data-placement="top" title="Eliminar pregunta"><i
-                                                                class="fas fa-trash-alt fa-2x"></i></a>
-                                                    </small>
-                                                </div>
-
-
-                                                <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
-                                                    <input type="radio" :id="opcion.id" :value="opcion.texto"
-                                                        v-model="pregunta.respuesta">
-                                                    <label :for="opcion.id">{{opcion.texto}}</label>
-                                                </div>
-
-                                                <small>Puedes editar la pregunta seleccionando la opción
-                                                    correcta.</small>
-                                            </div>
-                                        </div>
-
                                     </div>
+                                    <h6>* Las preguntas se mostrarán una por una al estudiante</h6>
+                                    <div class="list-group">
+                                        <div class="list-group-item list-group-item-action active"
+                                            v-for="(pregunta, indexPreg) in preguntasCuestionario">
+                                            <div class="d-flex w-100 justify-content-between">
+
+                                                <div class="imagen-portada-modulo">
+                                                    <!--El enunciado puede ser cualquier objeto --->
+                                                    <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
+                                                </div>
+                                                <small>
+                                                    <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
+                                                        data-placement="top" title="Editar pregunta"> <i
+                                                            class="fas fa-edit fa-2x"></i> </a>
+                                                    <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
+                                                        data-placement="top" title="Eliminar pregunta"><i
+                                                            class="fas fa-trash-alt fa-2x"></i></a>
+                                                </small>
+                                            </div>
+
+
+                                            <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
+                                                <input type="radio" :id="opcion.id" :value="opcion.texto"
+                                                    v-model="pregunta.respuesta">
+                                                <label :for="opcion.id">{{opcion.texto}}</label>
+                                            </div>
+
+                                            <small>Puedes editar la pregunta seleccionando la opción
+                                                correcta.</small>
+                                        </div>
+                                    </div>
+
+
                                 </template>
 
 
                             </template>
-
+                            <label for="tiempoPorPregunta">* Tiempo máximo para responder cada pregunta o emparejar
+                            </label>
+                            <input id="tiempoPorPregunta" v-model="tiempoMaximoPorPregunta">
                             <a @click="validarEvaluacion" title="Guardar Evaluación"> <i
                                     class="fas fa-save fa-2x"></i></a>
 
@@ -558,8 +563,7 @@
                                         </div>
 
                                     </div>
-                                    <button  type="button" id="enviarModulo"
-                                        @click.stop="validarFormulario"> Guardar
+                                    <button type="button" id="enviarModulo" @click.stop="validarFormulario"> Guardar
                                         Módulo
                                     </button>
 

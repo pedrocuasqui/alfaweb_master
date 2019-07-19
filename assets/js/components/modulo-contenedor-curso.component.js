@@ -93,8 +93,14 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         
                         <!--"navegacion-atras"-->
                         <div class="col-auto" v-if="navegarAtras">
-                            <a v-if="!evIndividual" key="link" :href="navegarAtras" @click="clickSilenciar" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
-                            <a v-else  key="ev" title="Ver Contenido" @click.stop="evaluacionIndividual('contenido')"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                            <template v-if="objetoSeleccionado.nombreModulo">
+                                <a key="link" :href="navegarAtras" @click="clickSilenciar" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                            </template>
+                            <template v-else>
+                        
+                                <a v-if="!evIndividual" key="link" :href="navegarAtras" @click="clickSilenciar" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                                <a v-else  key="ev" title="Ver Contenido" @click.stop="evaluacionIndividual('contenido')"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                            </template>
                         </div>
                        
                        
@@ -112,10 +118,15 @@ parasails.registerComponent('modulo-contenedor-curso', {
                                              
                                               
                          <div  class="col-auto" v-if="navegarSiguiente">
+                            <template v-if="objetoSeleccionado.nombreModulo">
+                                <a  key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickSilenciar" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                            </template>
+                            <template v-else>   
                             <!--navegacion-siguiente-->
-                            <a v-if="evIndividual" key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickSilenciar" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
-                            <!--navegacion-evaluacion-->
-                            <a v-else key="evaluacion" title="Evaluación" @click.stop="evaluacionIndividual"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a> <!--por defecto se muestra este boton-->                  
+                                <a v-if="evIndividual" key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickSilenciar" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                                <!--navegacion-evaluacion-->
+                                <a v-else key="evaluacion" title="Evaluación" @click.stop="evaluacionIndividual"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a> <!--por defecto se muestra este boton-->                  
+                            </template>
                         </div>
                                           
  
@@ -150,7 +161,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 </div>
                 <!-- columna derecha -->
                 <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
-                    <modulo-panel-derecho :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"> 
+                <!--ESTE PRIMER CONTENEDOR SE USA PARA LOS SUBMODULOS-->    
+                <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"> 
                         <template v-slot:audio_general >
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                             <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
@@ -160,6 +172,20 @@ parasails.registerComponent('modulo-contenedor-curso', {
                         </template>
 
                     </modulo-panel-derecho>
+                    <!--EL SIGUIENTE CONTENEDOR SE USA PARA LOS MODULOS, solo se diferencian en que los modulos no reciben eventos de evaluacion-->    
+                    <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"> 
+                        <template v-slot:audio_general >
+                        <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
+                            <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
+                            <a v-else @click="clickSilenciarGeneral" title="Silenciar" ><i class="fas fa-volume-up"></i></a>
+                            <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
+                            
+                        </template>
+
+                    </modulo-panel-derecho>
+                    
+
+                  
                 </div>
             </div> <!-- fin fila de contenido central y barra lateral derecha -->
         </div> <!--fin columna contenido central y barra lateral derecha-->
@@ -176,13 +202,14 @@ parasails.registerComponent('modulo-contenedor-curso', {
             this.$emit('intentar-nuevamente');
         },
         evaluacionIndividual(contenido) {
-            this.objetoSeleccionado.descripcion = '';
+            this.objetoSeleccionado.descripcion = '';// para que no se muestre nada en el cajon de descripcion
             if (contenido == 'contenido') {
                 //si se envia algo como par'ametro, entonces se retorna
                 this.evIndividual = false;
                 console.log('muestra el contenido, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
             } else {
-                //si no se pasa nada como parametro se muestra la evaluacion
+                //si no se pasa nada como parametro y ademas el objeto seleccionado  NO es modulo se muestra la evaluacion
+
                 this.evIndividual = true;
                 console.log('muestra evaluacion, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
             }
@@ -223,8 +250,9 @@ parasails.registerComponent('modulo-contenedor-curso', {
             this.clickSilenciar(); //ultima linea editada en sprint 6
             // window.print();
             //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
-            var contenidoBreadcrumb = this.$refs.printBreadcrumb;
-            var contenidoCentral = this.$refs.printContenidoCentral;
+            //para ver como funciona this.$refs revisar la siguiente fuente https://vuejs.org/v2/api/#ref
+            var contenidoBreadcrumb = this.$refs.printBreadcrumb;  //https://vuejs.org/v2/api/#ref
+            var contenidoCentral = this.$refs.printContenidoCentral; 
             var contenidoDescripcion = this.$refs.printContenidoDescripcion;
             newWin = window.open(""); //abre una variable para escribir sobre ella
             // console.log(contenidoImprimir.outerHTML)

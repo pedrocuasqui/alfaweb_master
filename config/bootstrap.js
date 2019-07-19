@@ -582,6 +582,23 @@ module.exports.bootstrap = async function (done) {
   var credenciales = null;
   var avance = null
   if (await Estudiante.count() == 0 && Object.keys(curso).length > 0) {
+    estudiante = await Estudiante.create({
+      nombre: 'Elsa Cando',
+      alias: 'els',
+      email: 'elsa.cando@gmail.com',
+      password: '$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie',
+
+    }).fetch();
+
+
+
+
+
+    credenciales = { cursoId: curso.id, usuarioId: estudiante.id }
+    //el avance se coloca en null en lugar de {} porque es mas facil gestionar desde el lado cliente
+    await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
+
+
     estudiante = await Estudiante.create(
       {
         nombre: 'Pedro Cuasqui',
@@ -590,19 +607,6 @@ module.exports.bootstrap = async function (done) {
         password: '$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie',
 
       }).fetch();
-
-    credenciales = { cursoId: curso.id, usuarioId: estudiante.id }
-    //el avance se coloca en null en lugar de {} porque es mas facil gestionar desde el lado cliente
-    await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
-
-
-    estudiante = await Estudiante.create({
-      nombre: 'Elsa Cando',
-      alias: 'els',
-      email: 'elsa.cando@gmail.com',
-      password: '$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie',
-
-    }).fetch();
 
     credenciales = { cursoId: curso.id, usuarioId: estudiante.id }
     //el avance se coloca en null en lugar de {} porque es mas facil gestionar desde el lado cliente
@@ -656,7 +660,12 @@ module.exports.bootstrap = async function (done) {
       contenidoTiny: '<p>A fin de evitar que id&eacute;ntios datos se encuentren repetidos en m&uacute;ltiples archivos, parece necesario que los comunes se almacenen en un archivo &uacute;nico y que este archivo sea accesible por todos los programas que los manipulen.Definici&oacute;nUna base de datos es una colecci&oacute;n de datos interrelacionados, almacenados en un conjunto sin redundancias (repeticiones) perjudiciales o innecesarias. Su finalidad es la de servir a una o m&aacute;s aplicaciones de la mejor manera posible. Los datos se almacenan de modo que resulten independientes de los programas que los utilizan, y se emplean m&eacute;todos concretos y determinados para incluir nuevos datos y para modificar o extraer los ya almacenados.</p><p><img src="https://jordilopez94.files.wordpress.com/2014/09/sistemas-gestores-base-datos.jpg" alt="" width="303" height="241" /></p>',
       color: "#b642e1",
       enlace: "",
-      ordenNavegacion: 0
+      ordenNavegacion: 0,
+      evaluacion: {
+        "tipo": "Emparejamiento",
+        "tiempoMaximoPorPregunta":10,
+        "preguntas": [{ "enunciado": "2+2 es?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "4" }, { "enunciado": "5+5 ?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "10" }, { "enunciado": "0-5 ?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "-5" }, { "enunciado": "8+4 ?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "11" }]
+      }
     }).fetch();
 
 
@@ -687,7 +696,7 @@ module.exports.bootstrap = async function (done) {
           {
             errores: 1,
             tiempoDeRespuesta: 15,
-            enunciado: "5+5",
+            enunciado: "5+5 ?",
             opciones:
             {
               opcion1: null,
@@ -702,7 +711,7 @@ module.exports.bootstrap = async function (done) {
           {
             errores: 4,
             tiempoDeRespuesta: 15,
-            enunciado: "0-5",
+            enunciado: "0-5 ?",
             opciones:
             {
               opcion1: null,
@@ -716,7 +725,7 @@ module.exports.bootstrap = async function (done) {
           {
             errores: null,
             tiempoDeRespuesta: null, //nunca respondi'o
-            enunciado: "8+4",
+            enunciado: "8+4 ?",
             opciones:
             {
               opcion1: null,

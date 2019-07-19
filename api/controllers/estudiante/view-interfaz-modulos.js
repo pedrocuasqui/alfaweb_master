@@ -34,6 +34,7 @@ module.exports = {
 
     var navegarAtras = '';
     var navegarSiguiente = '';
+    var moduloPadre= null;
 
 
 
@@ -52,7 +53,7 @@ module.exports = {
       // console.log('Objeto id submodulos'+inputs.objetoId);
       objetoSeleccionado = await SubmoduloLibro.findOne({ id: inputs.objetoId });
       curso = await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err) => { sails.log('ERROR EN HELPERS: ' + err) });
-      let moduloPadre = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
+      moduloPadre = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
       // console.log('CURSOO:'+ JSON.stringify(curso));
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreSubmodulo;
@@ -145,7 +146,8 @@ module.exports = {
 
 
 
-    return exits.success({ curso, objetoSeleccionado, usuario, navegarAtras, navegarSiguiente });
+    return exits.success({ curso, objetoSeleccionado,moduloPadre, usuario, navegarAtras, navegarSiguiente });
+    //el objeto moduloPadre solo contiene valores cuando el objeto seleccionado es SUBMODULO
 
 
   }

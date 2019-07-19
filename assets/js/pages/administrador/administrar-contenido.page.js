@@ -63,7 +63,7 @@ parasails.registerPage('administrar-contenido', {
     modalEdicion: false,
     indicePreguntaEditar: null,
     arregloRandom: [],
-
+    tiempoMaximoPorPregunta:20, //Valor en segundos por defecto
 
     //variables para usar en Emparejamiento del lado del Estudiante
     enunciadoSeleccionado: null,
@@ -89,6 +89,7 @@ parasails.registerPage('administrar-contenido', {
 
     if (this.objetoSeleccionado.nombreSubmodulo && this.objetoSeleccionado.evaluacion) { //solo se agregan estas opciones si es un submodulo
       this.tipoEvaluacion = this.objetoSeleccionado.evaluacion.tipo;
+      this.tiempoMaximoPorPregunta = this.objetoSeleccionado.evaluacion.tiempoMaximoPorPregunta;
       this.preguntasCuestionario = [...this.objetoSeleccionado.evaluacion.preguntas];
       this.modalEdicion = true;
     }
@@ -415,22 +416,22 @@ parasails.registerPage('administrar-contenido', {
       this.indicePreguntaEditar = indice;
       this.preguntaEnEdicion = preguntaSelected;
       this.modalEdicion = true;
-      if(this.tipoEvaluacion=="Cuestionario"){
+      if (this.tipoEvaluacion == "Cuestionario") {
         $(function () {
           $('#modalCrearPreguntaCuestionario').modal('show');
         });
-      }else if(this.tipoEvaluacion=="Emparejamiento"){
+      } else if (this.tipoEvaluacion == "Emparejamiento") {
         $(function () {
           $('#modalCrearPreguntaEmparejamiento').modal('show');
         });
-      }else if(this.tipoEvaluacion=="Nombre_Objeto"){
+      } else if (this.tipoEvaluacion == "Nombre_Objeto") {
         $(function () {
           $('#modalCrearPreguntaNombre_Objeto').modal('show');
         });
       }
-     
+
     },
-    
+
     eliminarPreguntaCuestionario(preguntaSelected, indice) {
 
       this.preguntasCuestionario.splice(indice, 1);
@@ -451,7 +452,7 @@ parasails.registerPage('administrar-contenido', {
 
       this.formErrors = {};
       //vALIDA QUE TODAS LAS PREGUNTAS TENGA OPCIONES, ESTA VALIDACION FUNCIONA CUANDO SE CAMBIA EL TIPO DE EVALUACION DE "EMPAREJAMIENTO" A "CUESTIONARIO"
-      if (this.tipoEvaluacion == "Cuestionario") {
+      if (this.tipoEvaluacion == "Cuestionario" || this.tipoEvaluacion == "Nombre_Objeto") {
         var indice = 0; //contador de posiciones
         var indicesConError = []; //guarda la posicion de la pregunta con error
         this.preguntasCuestionario.forEach(pregunta => {
@@ -477,8 +478,10 @@ parasails.registerPage('administrar-contenido', {
         }
 
       }
-
-
+      // si el administrador borró el campo y olvidó escribir un valor para tiempo máximo, este se asigna por defecto
+      if (this.tiempoMaximoPorPregunta == '' || !this.tiempoMaximoPorPregunta) {
+        this.tiempoMaximoPorPregunta = 20;
+      }
 
 
 
@@ -490,9 +493,9 @@ parasails.registerPage('administrar-contenido', {
 
     },
     guardarEvaluacion() {
+
       this.evaluacion.tipo = this.tipoEvaluacion; //el tipo de evaluacion en la base será el tipo de evaluacion seleccionado
-
-
+      this.evaluacion.tiempoMaximoPorPregunta = this.tiempoMaximoPorPregunta;
       this.evaluacion.preguntas = this.preguntasCuestionario;
 
 
@@ -518,7 +521,7 @@ parasails.registerPage('administrar-contenido', {
 
 
     //emparejamiento
-   
+
     eliminarPreguntaEmparejar(pregunta, indice) {
       this.preguntasCuestionario.splice(indice, 1);
     },
@@ -646,7 +649,7 @@ parasails.registerPage('administrar-contenido', {
       //si el nombre del curso es "Alfabetización informática" entonces no se mostrará el botón eliminar, no se debe por ninguna razón eliminar el curso, en caso de hacerlo, se debe reiniciar el servidor para que se vuelva a crear el curso por defecto, aunque las páginas  html del contenido permanecerán siempre intactas
       let respuesta = this.curso.nombre != 'Alfabetización informática';
       return respuesta;
-  },
+    },
 
   }
 });

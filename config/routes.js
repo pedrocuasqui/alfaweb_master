@@ -129,6 +129,11 @@ module.exports.routes = {
     action: 'estudiante/view-indice-estudiante',
 
   },
+  'POST /crear-intento-evaluacion': {
+    action: 'estudiante/crear-intento-evaluacion',
+
+  },
+  
   // 'GET /m1-computadora': {
   //   action: 'estudiante/modulo-1/view-m-1-computadora',
 

@@ -31,11 +31,20 @@ module.exports = {
     var objetoSeleccionado;
     var curso = Object;
     var usuario = null;
+    var usuario = { nombre: 'Visitante', rol: 'Estudiante', id: '1' };
 
     var navegarAtras = '';
     var navegarSiguiente = '';
-    var moduloPadre= null;
+    var moduloPadre = null;
+    var ultimoIntentoEvaluacion = null;
 
+    var intentoEvaluacion = { //intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
+      puntos: 0,
+      nivel: 1,//modulo 1
+      medalla: 'bebe', //medalla mas basica
+      tiempoMaximoPorPregunta: 30, //en segundos por defecto
+      evaluacion: null,
+    };
 
 
     console.log('INGRESO A VIEW-INTERFAZ-MODULO');
@@ -58,6 +67,13 @@ module.exports = {
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreSubmodulo;
       objetoSeleccionado.color = moduloPadre.color;
+
+
+
+
+
+
+
     } else {
       return res.status(500).send({ problema: 'no se encontró el tipo de contenido' })
     }
@@ -102,15 +118,6 @@ module.exports = {
     }
 
 
-    console.log('NAVEGACION ATRAS:')
-    console.log(navegarAtras)
-    console.log('NAVEGACION SIGUIENTE:')
-    console.log(navegarSiguiente)
-
-    sails.log('curso: ' + JSON.stringify(curso));
-    sails.log(' objetoSeleccionado' + JSON.stringify(objetoSeleccionado));
-
-
 
 
     // usuario = await Estudiante.findOne({ alias: 'Pedroc' });
@@ -122,11 +129,17 @@ module.exports = {
         res.status(401).send({ message: 'su sesión ha expirado' });
 
       } else {
-        console.log('CURSO ID: ' + curso.id);
+
         let credenciales = { cursoId: curso.id, usuarioId: usuario.id }
         let avance = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId }
-
+        // se guarda el avance
         await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
+        //se retorna el ultimo intento de evaluacion
+
+      
+
+
+
 
 
 
@@ -146,7 +159,28 @@ module.exports = {
 
 
 
-    return exits.success({ curso, objetoSeleccionado,moduloPadre, usuario, navegarAtras, navegarSiguiente });
+
+
+    //siempre se aniade un intento evaluacion al usuario
+    usuario.ultimoIntento = intentoEvaluacion;
+    if (inputs.tipoContenido == 'Submodulo') {
+      if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
+        //se buscan los documentos que contengan al id de usuario logueado y el submodulo seleccionado
+        let intentoEv = null;
+        intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, submodulo: objetoSeleccionado.id }).sort('createdAt DESC');
+        if (intentoEv) {//existe un intento evaluacion entonces se reemplaza el valor de usuario.ultimoIntento
+          usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
+        } //caso contrario se mantiene el valor por defecto
+        console.log('RETORNO DE INTENTO EVALUACION :');
+        console.log(usuario.ultimoIntento);
+
+      }
+    }
+ 
+
+
+
+    return exits.success({ curso, objetoSeleccionado, moduloPadre, usuario, navegarAtras, navegarSiguiente, ultimoIntentoEvaluacion });
     //el objeto moduloPadre solo contiene valores cuando el objeto seleccionado es SUBMODULO
 
 

@@ -663,7 +663,7 @@ module.exports.bootstrap = async function (done) {
       ordenNavegacion: 0,
       evaluacion: {
         "tipo": "Emparejamiento",
-        "tiempoMaximoPorPregunta":10,
+        "tiempoMaximoPorPregunta":20,
         "preguntas": [{ "enunciado": "2+2 es?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "4" }, { "enunciado": "5+5 ?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "10" }, { "enunciado": "0-5 ?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "-5" }, { "enunciado": "8+4 ?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "11" }]
       }
     }).fetch();
@@ -738,7 +738,8 @@ module.exports.bootstrap = async function (done) {
         ]
       },
       estudiante: estudiante.id,
-      submodulo: submoduloModulo2Bdd.id
+      submodulo: submoduloModulo2Bdd.id,
+      curso:cursoBdd.id
     })
 
 

@@ -19,13 +19,39 @@ parasails.registerComponent('modulo-ev-individual', {
             coloresPreguntasEmparejamiento: ['#F31885', '#F39318', '#B4F318', '#18F38F', '#18A7F3', '#9318F3', '#F318D8', '#823815', '#268215', '#158280', '#D52FE3', '#F31850', '#D218F3', '#1833F3', '#18E9F3', '#33F318', '#F3DF18'],
 
             totalTime: null,
-            descripcionActividad: ''
+            descripcionActividad: '',
+
+            tiempoRespuestaInicio: null,// almacena el valor de totalTime  al momento de dar clic en un enunciado
+            tiempoRespuestaFin: null,
+            erroresRespuesta: 0,
+            aciertos: [],
+            preguntasCuestionarioRespuestas: [],
+
+            puntos: null,
+            nivel: null,
+            medalla: null,
+
+
+
         };
     },
     beforeMount() {
         this.tipoEvaluacion = this.submodulo.evaluacion.tipo;
         this.tiempoMaximoPorPregunta = this.submodulo.evaluacion.tiempoMaximoPorPregunta;
         this.preguntasCuestionario = [...this.submodulo.evaluacion.preguntas];
+
+        this.preguntasCuestionario.forEach(pregunta => {
+            //agrego todas las preguntas al arrreglo para despues reemplazar cada pregunta por su pregunta , este se guardará en la collection IntentoEvaluacioncon respuestas
+            let respuestaIntento = pregunta;
+            respuestaIntento.errores = null;
+            respuestaIntento.tiempoDeRespuesta = null;
+            this.preguntasCuestionarioRespuestas.push(respuestaIntento);
+        });
+
+        this.puntos = this.usuario.puntos;
+        this.nivel = this.usuario.nivel;
+        this.medalla = this.usuario.medalla;
+
         this.randomPreguntasEmparejamiento();
 
     },
@@ -246,6 +272,10 @@ parasails.registerComponent('modulo-ev-individual', {
             // pregunta.color=this.coloresPreguntasEmparejamiento[indexPreg];
 
             this.preguntaSeleccionadaJuegoEmparejamiento = pregunta; //mantiene esta pregunta para poder comparar con la respuesta que luego seleccione
+
+            //
+            this.tiempoRespuestaInicio = this.totalTime; //copia el tiempo en el que se encuentra actualmente para despues restar del tiempo final cuando responda correctamente
+
         },
         /**
          * 
@@ -254,14 +284,47 @@ parasails.registerComponent('modulo-ev-individual', {
          */
         seleccionarRespuestaEmpareja(pregunta, indexResp) {
             if (this.preguntaSeleccionadaJuegoEmparejamiento) {
-                if (pregunta.respuesta == this.preguntaSeleccionadaJuegoEmparejamiento.respuesta) {
+                if (pregunta.respuesta == this.preguntaSeleccionadaJuegoEmparejamiento.respuesta) { //la respuesta es correcta
                     this.respuestaSeleccionada = indexResp;// esto aplica el estilo a la respuesta seleccionada correctamente
                     $("#Resp" + indexResp).css({ "background-color": this.coloresPreguntasEmparejamiento[indexResp], "border-radius": '10px' });
                     $("#Preg" + this.enunciadoSeleccionado).css({ "background-color": this.coloresPreguntasEmparejamiento[indexResp], "border-radius": '10px' });
+
+
+                    this.tiempoRespuestaFin = this.totalTime;
+                    let respuestaIntento = pregunta;
+                    respuestaIntento.errores = this.erroresRespuesta;
+                    respuestaIntento.tiempoDeRespuesta = this.tiempoRespuestaInicio - this.tiempoRespuestaFin;
+                    this.preguntasCuestionarioRespuestas.splice(indexResp, 1, respuestaIntento);
+                    this.aciertos.push(indexResp);
+
+                    // reseteo valores para la siguiente pregunta
+                    this.tiempoRespuestaInicio = null;
+                    this.tiempoRespuestaFin = null;
+                    this.erroresRespuesta = 0;
+                    if (this.haFinalizadoEvaluacion()) {
+                        alert('¡Bien hecho, terminaste antes de tiempo!');
+                        this.calcularPuntuacionEmparejamiento(); //aun si es visitante se muestra el puntaje obtenido
+                        //tambien se invoca a guardar dentro de esta funcion
+                    }
+
+                } else {// se cuentan las veces que se equivoca
+                    this.erroresRespuesta += 1;
                 }
             }
 
         },
+        haFinalizadoEvaluacion() {
+            let finalizar = false;
+            if (this.tipoEvaluacion == "Emparejamiento") {
+                if (this.aciertos.length == this.preguntasCuestionarioRespuestas.length) {
+                    finalizar = true;
+                };
+
+            }
+
+            return finalizar;
+        },
+
         randomPreguntasEmparejamiento() {
             //
 
@@ -286,21 +349,56 @@ parasails.registerComponent('modulo-ev-individual', {
             if (this.totalTime == 0.0) {
                 alert('Se agotó el tiempo');
 
-                if (this.usuario) {
-                    if (this.usuario.nombre != 'Visitante') {
-                        this.guardarIntentoEvaluacion();//si el usuario es estudiante se guardan los resultados de la evaluacion
-                    }
+                if (this.tipoEvaluacion == "Emparejamiento") {
+                    this.calcularPuntuacionEmparejamiento(); //aun si es visitante se muestra el puntaje obtenido
+                    //tambien se invoca a guardar dentro de esta funcion
                 }
 
 
 
                 let valorRepetir = true;// se muestra el botón para repetir la evaluacion
                 this.$emit('finaliza-evaluacion', valorRepetir) // se emite el evento finaliza la evaluacion,el valor remitido activa el boton de repetir en el modulo-contenedor-curso
-            } else {
+            } else if (this.haFinalizadoEvaluacion()) {
+                // detener el contador
+                // se detiene el contador
+            }
+            else {
                 this.totalTime -= 0.1000000000000;
                 this.totalTime = this.totalTime.toFixed(1)
                 setTimeout(this.actualizaCuentaRegresiva, 100);
             }
+        },
+        calcularPuntuacionEmparejamiento() {
+            //1) valorar los PUNTOS que se sumanán por sus respuestas
+            //cada pregunta tiene un minimo de 100
+            if (this.totalTime <= 1.0) {
+                this.puntos = 100;
+            }
+            else { //calculo el valor 
+                this.puntos = this.totalTime * 100;
+                this.puntos = this.puntos.toFixed(0);
+            }
+            //2) valorar si terminó el modulo para subir al siguiente NIVEL
+            this.nivel = 5000; //EJEMPLO
+
+
+            
+            //3) valorar si ya pasó el porcentaje de niveles necesario para darle medallas
+            // PENDIENTE
+
+
+
+
+            //4) guardar en la base de datos
+
+            if (this.usuario) {
+                if (this.usuario.nombre != 'Visitante') {
+                    //this.guardarIntentoEvaluacion();
+                    alert('Se ha guardado tu progreso (llamar al metodo guardar)');
+                    //si el usuario es estudiante se guardan los resultados de la evaluacion
+                }
+            }
+
         },
         empezarEvaluacion() {
             setTimeout(this.actualizaCuentaRegresiva, 1000);
@@ -324,15 +422,36 @@ parasails.registerComponent('modulo-ev-individual', {
          */
         guardarIntentoEvaluacion() {
             // alert('se guardó su intento');
-            //solo se guarda si el usuario es estudiante, debe estar logueado
+            //solo se guarda si el usuario es estudiante, es decir, el usuario debe estar logueado
+            let evaluacionIntento = {
+                tipo: this.tipoEvaluacion,
+                aciertos: this.aciertos,
+                preguntas: this.preguntasCuestionarioRespuestas,
+            }
 
-            var formData= new FormData()
-            formData.append('',);
+
+            var formData = new FormData()
+            formData.append('submoduloId', this.submodulo.id);
+            formData.append('estudianteId', this.estudiante.id);
+            //los siguientes valores se retornan desde la accion view-administrar-contenido, para ello se consulta la coleccion IntentoEvaluacion, luego se reemplazan estos valores por los generados en la aplicacion
+            formData.append('puntos', this.puntos);
+            formData.append('nivel');
+            formData.append('medalla');
+            formData.append('tiempoMaximoPorPregunta', this.tiempoMaximoPorPregunta);
+            formData.append('evaluacion', evaluacionIntento);
+
             axios({
-                url="",
-                method="post",
-                data=formData
-            }).then().catch();
+                url: "crear-intento-evaluacion",
+                method: "post",
+                data: formData
+            }).then(
+                response => {
+
+                }
+            ).catch(
+                err => {
+
+                });
         }
 
 

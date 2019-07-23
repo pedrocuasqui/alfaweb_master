@@ -6,7 +6,7 @@
  */
 
 module.exports = {
-
+  tableName: 'IntentoEvaluacion',
   attributes: {
 
     //The string, number and boolean data types do not accept null as a value when creating or updating records. In order to allow a null value to be set, toggle the allowNull flag on the attribute
@@ -32,16 +32,20 @@ module.exports = {
       isIn: ['bebe', 'estudiante', 'graduado', 'profesor'],
       required: true,
     },
-    tiempoMaximoPorPregunta:{
+    tiempoMaximoPorPregunta: {
       type: 'number',
       columnName: 'tiempoMaximoPorPregunta',
       required: true,
     },
- 
-    evaluacion:{  //esta evaluacion debe contener los errores en cada pregunta
-      type:'json',
-      required:true,
+
+    evaluacion: {  //esta evaluacion debe contener los errores en cada pregunta
+      type: 'json',
+      required: true,
       columnName: 'evaluacion'
+    },
+    curso:{ //se usa esta propiedad para poder retornar los puntos y medallas en cada curso, sin tener que buscar por submodulo
+      type:'string',
+      required:true,
     },
     // fecha,la fecha de creacion y fecha de actualizacion
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗

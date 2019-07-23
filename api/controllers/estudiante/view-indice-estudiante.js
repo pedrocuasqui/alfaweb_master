@@ -35,10 +35,26 @@ module.exports = {
     var req = this.req;
     var res = this.res;
     //solo para pruebas se usa la Colecion estudiante 
-    var usuario = null;
+    var usuario = { nombre: 'Visitante', rol: 'Estudiante', id: '1' };
     var cursoEstudiante = null;
     var navegarAtras = '/';
     var navegarSiguiente = '';
+
+
+
+    var intentoEvaluacion = { //intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
+      puntos: 0,
+      nivel: 1,//modulo 1
+      medalla: 'bebe', //medalla mas basica
+      tiempoMaximoPorPregunta: 30, //en segundos por defecto
+      evaluacion: null,
+    };
+
+
+
+
+
+
 
     //Evaluación si existe usuario logueado 
     if (req.session.userId) { //CUANDO EXPIRA LA SESION YA NO INGRESA AQUI
@@ -52,7 +68,7 @@ module.exports = {
       }
 
 
-
+      //se busca el avance en el curso solicitado
       cursoEstudiante = await CursoEstudiantes.findOne({ curso_matriculados: inputs.cursoId, estudiante_cursos: usuario.id });
       if (cursoEstudiante) {
         console.log('existe curso Estudiante');
@@ -74,6 +90,7 @@ module.exports = {
             }
 
           }
+          //si el utlimo tema es un modulo
           if (ultimoTema.nombreModulo) {
             cursoEstudiante.nombre = ultimoTema.nombreModulo;
           } else {
@@ -87,8 +104,27 @@ module.exports = {
       }
 
 
+
     }
 
+
+
+
+
+    //siempre se aniade un intento evaluacion al usuario
+    usuario.ultimoIntento = intentoEvaluacion;
+
+    if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
+      //se buscan los documentos que contengan al id de usuario logueado y el submodulo seleccionado
+      let intentoEv = null;
+      intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, curso:  inputs.cursoId }).sort('createdAt DESC');
+      if (intentoEv) {//existe un intento evaluacion entonces se reemplaza el valor de usuario.ultimoIntento
+        usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
+      } //caso contrario se mantiene el valor por defecto
+      console.log('RETORNO DE INTENTO EVALUACION :');
+      console.log(usuario.ultimoIntento);
+
+    }
     /* var moduloLibro = await ModuloLibro.find(); //esta es una instancia de consulta --> es un intento aún no cumplido de obtener registros de la base de datos
         //el resultado solo se observa cuando se usa la palabra await antes de la instancia y se asigna a una variable
         console.log('metodo1:\n'+moduloLibro); //devuelve el arreglo completo --> [object Object]
@@ -96,11 +132,7 @@ module.exports = {
         console.log('metodo3:\n'+JSON.stringify(moduloLibro)); //usar JSON.stringify para ver el resultado en consola en formato JSON, JSON.parse muestra un error
      */
     var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos');
-    // console.log('Curso\n'+ JSON.stringify(curso) );
-    // console.log('Curso:'+curso[0].nombre+'- modulos:\n'+ JSON.stringify(curso[0].modulos));
-    console.log('MODULOS');
-    console.log(curso.modulos);
-    console.log(curso.modulos.lenght);
+
     var contenidos = curso.modulos;
     if (curso.modulos.length != 0) {
       navegarSiguiente = '/interfaz-modulos/?objetoId=' + curso.modulos[0].id + '&tipoContenido=Modulo'

@@ -68,6 +68,11 @@ module.exports = {
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreSubmodulo;
       objetoSeleccionado.color = moduloPadre.color;
+
+
+
+
+
     } else {
       return res.status(500).send({ problema: 'no se encontró el tipo de contenido' })
     }
@@ -114,7 +119,7 @@ module.exports = {
 
 
 
-    return exits.success({ curso, objetoSeleccionado, usuario, navegarAtras, navegarSiguiente});
+    return exits.success({ curso, objetoSeleccionado, usuario, navegarAtras, navegarSiguiente });
 
   }
 

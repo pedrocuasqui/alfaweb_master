@@ -13,7 +13,7 @@ parasails.registerPage('indice-estudiante', {
     usuario: { nombre: 'Visitante', rol: 'Estudiante', id: '1' },
     contenidos: null,
     isAlfaWeb: false,
-    cursoEstudiante:false,
+    cursoEstudiante: false,
 
   },
 
@@ -26,12 +26,12 @@ parasails.registerPage('indice-estudiante', {
     this.usuario = SAILS_LOCALS.usuario;
     this.contenidos = SAILS_LOCALS.contenidos;
     this.curso = SAILS_LOCALS.curso;
-    if(SAILS_LOCALS.cursoEstudiante){
-      this.cursoEstudiante=SAILS_LOCALS.cursoEstudiante;
+    if (SAILS_LOCALS.cursoEstudiante) {
+      this.cursoEstudiante = SAILS_LOCALS.cursoEstudiante;
     }
     console.log('CURSO ESTUDIANTE');
     console.log(SAILS_LOCALS.cursoEstudiante);
-    
+
 
 
   },
@@ -58,18 +58,18 @@ parasails.registerPage('indice-estudiante', {
       console.log(this.contenidos.length);
       return contenidoEsVacio;
     },
-    existeCursoEstudianteyLogueado(){
-      let existe=false;
-      if(this.cursoEstudiante && this.usuario){
-        existe=true;
+    existeCursoEstudianteyLogueado() {
+      let existe = false;
+      if (this.cursoEstudiante && this.usuario.nombre != 'Visitante') {
+        existe = true;
       }
 
       return existe;
     },
-    noExisteCursoEstudianteyLogueado(){
-      let existe=false;
-      if(!this.cursoEstudiante && this.usuario){
-        existe=true;
+    noExisteCursoEstudianteyLogueado() {
+      let existe = false;
+      if (!this.cursoEstudiante && this.usuario.nombre != 'Visitante') {
+        existe = true;
       }
 
       return existe;

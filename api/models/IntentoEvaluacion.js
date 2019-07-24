@@ -29,7 +29,7 @@ module.exports = {
     medalla: {
       type: 'string',
       columnName: 'medalla',
-      isIn: ['bebe', 'estudiante', 'graduado', 'profesor'],
+      isIn: ['bebe', 'estudiante', 'estudiante destacado', 'egresado', 'graduado'],
       required: true,
     },
     tiempoMaximoPorPregunta: {
@@ -37,15 +37,20 @@ module.exports = {
       columnName: 'tiempoMaximoPorPregunta',
       required: true,
     },
-
+    apruebaEvaluacion: {
+      type: 'number',
+      columnName: 'apruebaEvaluacion',
+      required: true,
+      description: 'Guarda 1 si la evaluacion tiene mas de la mitad de respuestas acertadas, caso contrario guarda cero, es decir que reprueba la evaluacion '
+    },
     evaluacion: {  //esta evaluacion debe contener los errores en cada pregunta
       type: 'json',
       required: true,
       columnName: 'evaluacion'
     },
-    curso:{ //se usa esta propiedad para poder retornar los puntos y medallas en cada curso, sin tener que buscar por submodulo
-      type:'string',
-      required:true,
+    curso: { //se usa esta propiedad para poder retornar los puntos y medallas en cada curso, sin tener que buscar por submodulo
+      type: 'string',
+      required: true,
     },
     // fecha,la fecha de creacion y fecha de actualizacion
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗

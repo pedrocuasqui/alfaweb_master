@@ -45,7 +45,7 @@ module.exports = {
       tiempoMaximoPorPregunta: 30, //en segundos por defecto
       evaluacion: null,
     };
-
+    var numeroSubmodulosCurso=0; //sirve para enviar en el usuario y comprobar el porcentaje de evaluaciones realizadas de todo el curso
 
     console.log('INGRESO A VIEW-INTERFAZ-MODULO');
 
@@ -92,6 +92,7 @@ module.exports = {
       curso.modulos.forEach(modulo => {
         arreglo.push({ objetoId: modulo.id, tipoContenido: 'Modulo' })
         modulo.submodulos.forEach(submodulo => {
+          numeroSubmodulosCurso +=1;
           arreglo.push({ objetoId: submodulo.id, tipoContenido: 'Submodulo' });
         });
       });
@@ -136,7 +137,7 @@ module.exports = {
         await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
         //se retorna el ultimo intento de evaluacion
 
-      
+
 
 
 
@@ -160,9 +161,11 @@ module.exports = {
 
 
 
-
+    // retorno de ultimo intentoEvaluacion
     //siempre se aniade un intento evaluacion al usuario
     usuario.ultimoIntento = intentoEvaluacion;
+    usuario.numeroSubmodulosCurso = numeroSubmodulosCurso;
+    usuario.numerointentosSubmodulosCurso = 0;
     if (inputs.tipoContenido == 'Submodulo') {
       if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
         //se buscan los documentos que contengan al id de usuario logueado y el submodulo seleccionado
@@ -170,13 +173,23 @@ module.exports = {
         intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, submodulo: objetoSeleccionado.id }).sort('createdAt DESC');
         if (intentoEv) {//existe un intento evaluacion entonces se reemplaza el valor de usuario.ultimoIntento
           usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
+          //se crea una nueva conexion al servidor para obtener los intentosEvaluacion, 1 por cada submodulo de todo el curso
+          var datastoreSails = sails.getDatastore().manager;
+          //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
+          await datastoreSails.collection('IntentoEvaluacion').distinct("submodulo", { curso: curso.id, estudiante: usuario.id, apruebaEvaluacion: 1 }).then(respuesta => {
+            usuario.numerointentosSubmodulosCurso = respuesta;
+          });
+
+          //conteo de submodulos totales en este curso
+
         } //caso contrario se mantiene el valor por defecto
-        console.log('RETORNO DE INTENTO EVALUACION :');
-        console.log(usuario.ultimoIntento);
+
+
+
 
       }
     }
- 
+
 
 
 

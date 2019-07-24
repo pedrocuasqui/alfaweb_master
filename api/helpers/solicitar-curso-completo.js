@@ -27,6 +27,8 @@ module.exports = {
 
   fn: async function (inputs) {
 
+
+    // EL ORDEN DE LOS OBJETOS POR DEFECTO ES POR FECHA ASCENDENTE
     try {
       //primero busca en el la coleccion CURSO
       var curso = await Curso.findOne({ id: inputs.objetoId });

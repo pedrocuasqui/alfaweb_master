@@ -16,7 +16,7 @@ module.exports = {
       type: 'string',
       required: true,
     },
-    cursoId:{
+    cursoId: {
       type: 'string',
       required: true,
     },
@@ -34,29 +34,36 @@ module.exports = {
       isIn: ['bebe', 'estudiante', 'graduado', 'profesor'],
       required: true,
     },
-    tiempoMaximoPorPregunta:{
+    tiempoMaximoPorPregunta: {
       type: 'number',
       required: true,
     },
- 
-    evaluacion:{  //esta evaluacion debe contener los errores en cada pregunta
-      type:'json',
+    apruebaEvaluacion: {
+      type: 'number',
+
+      required: true,
+      description: 'Guarda 1 si la evaluacion tiene mas de la mitad de respuestas acertadas, caso contrario guarda cero, es decir que reprueba la evaluacion '
+    },
+    evaluacion: {  //esta evaluacion debe contener los errores en cada pregunta
+      type: 'json',
       columnName: 'evaluacion'
     },
-    
+
 
 
   },
 
 
   exits: {
-
+    success: {
+      description: 'retorna exito'
+    }
   },
 
 
   fn: async function (inputs) {
 
-    // All done.
+    console.log('ESCRIBIR CODIGO PARA GUARDAR');
     return;
 
   }

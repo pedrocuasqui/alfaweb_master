@@ -3,6 +3,9 @@ parasails.registerComponent('modulo-ev-individual', {
         submodulo: {
             type: Object
         },
+        curso: {
+            type: Object
+        },
         usuario: {
             type: Object
         }
@@ -31,6 +34,7 @@ parasails.registerComponent('modulo-ev-individual', {
             nivel: null,
             medalla: null,
 
+            apruebaEvaluacion: 0,
 
 
         };
@@ -51,6 +55,9 @@ parasails.registerComponent('modulo-ev-individual', {
         this.puntos = this.usuario.puntos;
         this.nivel = this.usuario.nivel;
         this.medalla = this.usuario.medalla;
+
+        this.numeroSubmodulosCurso = this.usuario.numeroSubmodulosCurso;
+        this.numerointentosSubmodulosCurso = this.usuario.numerointentosSubmodulosCurso
 
         this.randomPreguntasEmparejamiento();
 
@@ -359,8 +366,8 @@ parasails.registerComponent('modulo-ev-individual', {
                 let valorRepetir = true;// se muestra el botón para repetir la evaluacion
                 this.$emit('finaliza-evaluacion', valorRepetir) // se emite el evento finaliza la evaluacion,el valor remitido activa el boton de repetir en el modulo-contenedor-curso
             } else if (this.haFinalizadoEvaluacion()) {
-                // detener el contador
                 // se detiene el contador
+                //no es necesario hacer nada, en la linea 308 en el metodo seleccionarRespuestaEmpareja ya se  evalúa si finaliza la evaluacion y a continuacion calcula el puntaje para luego gurdar en la base de datos
             }
             else {
                 this.totalTime -= 0.1000000000000;
@@ -379,12 +386,40 @@ parasails.registerComponent('modulo-ev-individual', {
                 this.puntos = this.puntos.toFixed(0);
             }
             //2) valorar si terminó el modulo para subir al siguiente NIVEL
-            this.nivel = 5000; //EJEMPLO
+            //contar el porcentaje de evaluaciones realizadas de todo el curso
+            if (this.aciertos.length > this.preguntasCuestionarioRespuestas.length / 2) {
+                this.apruebaEvaluacion = 1;
+            }
 
 
-            
+
+            //cada 10% de avance se sube un nivel, es decir que siempre se llegara al nivel 10
+            let porcentajeAvanceSubmodulos = ((this.numerointentosSubmodulosCurso + this.apruebaEvaluacion) / this.numeroSubmodulosCurso) * 100;
+            porcentajeAvanceSubmodulos = porcentajeAvanceSubmodulos.toFixed(0); //se suma el valor de apruebaEvaluacion como entero, con eso se verifica si alcanca o no un nuevo porcentaje para poder subir de nivel
+            if (porcentajeAvanceSubmodulos > this.nivel * 10) {
+                this.nivel += 1; // se incrementa un nivel
+                alert('has pasado a un nuevo nivel');
+            }
+
+
+
+
             //3) valorar si ya pasó el porcentaje de niveles necesario para darle medallas
             // PENDIENTE
+
+            if (this.nivel > 0 && this.nivel <= 2) {
+                this.medalla = 'bebe';
+            } else if (this.nivel > 2 && this.nivel <= 5) {
+                this.medalla = 'estudiante';
+            } else if (this.nivel > 5 && this.nivel <= 8) {
+                this.medalla = 'estudiante destacado';
+            } else if (this.nivel == 9) {
+                this.medalla = 'egresado';
+            } else {
+                this.medalla = 'graduado';
+            }
+
+
 
 
 
@@ -393,12 +428,15 @@ parasails.registerComponent('modulo-ev-individual', {
 
             if (this.usuario) {
                 if (this.usuario.nombre != 'Visitante') {
-                    //this.guardarIntentoEvaluacion();
+                    this.guardarIntentoEvaluacion();
                     alert('Se ha guardado tu progreso (llamar al metodo guardar)');
                     //si el usuario es estudiante se guardan los resultados de la evaluacion
                 }
             }
 
+        },
+        reiniciarValores() {
+            this.apruebaEvaluacion = 0;
         },
         empezarEvaluacion() {
             setTimeout(this.actualizaCuentaRegresiva, 1000);
@@ -431,14 +469,16 @@ parasails.registerComponent('modulo-ev-individual', {
 
 
             var formData = new FormData()
+            formData.append('estudianteId', this.usuario.id);
             formData.append('submoduloId', this.submodulo.id);
-            formData.append('estudianteId', this.estudiante.id);
+            formData.append('cursoId', this.curso.id);
             //los siguientes valores se retornan desde la accion view-administrar-contenido, para ello se consulta la coleccion IntentoEvaluacion, luego se reemplazan estos valores por los generados en la aplicacion
-            formData.append('puntos', this.puntos);
-            formData.append('nivel');
-            formData.append('medalla');
-            formData.append('tiempoMaximoPorPregunta', this.tiempoMaximoPorPregunta);
-            formData.append('evaluacion', evaluacionIntento);
+            formData.append('puntos', this.puntos); //number
+            formData.append('nivel', this.nivel);// number
+            formData.append('medalla', this.medalla);//string
+            formData.append('tiempoMaximoPorPregunta', this.tiempoMaximoPorPregunta);//number
+            formData.append('apruebaEvaluacion', this.apruebaEvaluacion); //number
+            formData.append('evaluacion', evaluacionIntento); //json
 
             axios({
                 url: "crear-intento-evaluacion",
@@ -446,11 +486,12 @@ parasails.registerComponent('modulo-ev-individual', {
                 data: formData
             }).then(
                 response => {
-
+                    alert('MODULO GUARDADO CON EXITO');
                 }
             ).catch(
                 err => {
-
+                    alert('SE HA ENCONTRADO UN ERROR AL INTENTAR GUARDAR EL AVANCE');
+                    console.log(err);
                 });
         }
 

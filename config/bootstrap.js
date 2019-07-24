@@ -676,6 +676,7 @@ module.exports.bootstrap = async function (done) {
       nivel: 2,
       medalla: 'bebe',
       tiempoMaximoPorPregunta: 15, //en segundos
+      apruebaEvaluacion:1,
       evaluacion: {
         tipo: "Emparejamiento",
         aciertos: [0, 1, 2], //los indices de las preguntas acertadas, la longitud nos dar'a el numero de aciertos totales

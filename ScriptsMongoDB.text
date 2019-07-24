@@ -45,3 +45,17 @@ db.LibroAlfabetizacion.renameCollection("ModuloLibro")
 ])
 /*,
         ".tmp" : true*/
+
+
+
+
+martes 23/07/2019
+Como hacer una consulta distinct usando el "Node.js MongoDB Driver API" de mongo
+
+var datastoreSails = sails.getDatastore().manager;
+        //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado 
+        let intentosDistintosDelCurso = await datastoreSails.collection('IntentoEvaluacion').distinct("submodulo", { curso: curso.id }).then(respuesta => {
+          console.log('RESPUESTA DENTRO DE PROMESAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA');
+          console.log(respuesta);
+        });
+Fuente: https://mongodb.github.io/node-mongodb-native/2.2/api/Collection.html#distinct

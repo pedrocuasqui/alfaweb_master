@@ -9,7 +9,7 @@
     <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
     <template v-if="objetoSeleccionado.nombreSubmodulo">
       <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
-        @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion">
+        @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso">
 
       </modulo-ev-individual>
       <div v-else>

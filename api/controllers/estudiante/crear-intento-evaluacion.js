@@ -61,10 +61,31 @@ module.exports = {
   },
 
 
-  fn: async function (inputs) {
+  fn: async function (inputs, exits) {
 
-    console.log('ESCRIBIR CODIGO PARA GUARDAR');
-    return;
+    var res = this.res;
+
+
+    try {
+      await IntentoEvaluacion.create({
+        puntos: inputs.puntos,
+        nivel: inputs.nivel,
+        medalla: inputs.medalla,
+        tiempoMaximoPorPregunta: inputs.tiempoMaximoPorPregunta,
+        apruebaEvaluacion: inputs.apruebaEvaluacion,
+        evaluacion: JSON.parse(inputs.evaluacion),
+        curso: inputs.cursoId,
+        estudiante: inputs.estudianteId,
+        submodulo: inputs.submoduloId
+
+      });
+    } catch (e) {
+      let error = new Error();
+      error.code = 'NO SE PUDO GUARDAR, ERROR EN EL SERVIDOR';
+      error.message = e;
+      return res.status(500).send({ error })
+    }
+    return exits.success();
 
   }
 

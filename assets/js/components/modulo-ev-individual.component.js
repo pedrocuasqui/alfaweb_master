@@ -53,7 +53,7 @@ parasails.registerComponent('modulo-ev-individual', {
         });
 
         this.puntos = this.usuario.puntos;
-        this.nivel = this.usuario.nivel;
+        this.nivel = this.usuario.ultimoIntento.nivel;
         this.medalla = this.usuario.medalla;
 
         this.numeroSubmodulosCurso = this.usuario.numeroSubmodulosCurso;
@@ -359,15 +359,15 @@ parasails.registerComponent('modulo-ev-individual', {
                 if (this.tipoEvaluacion == "Emparejamiento") {
                     this.calcularPuntuacionEmparejamiento(); //aun si es visitante se muestra el puntaje obtenido
                     //tambien se invoca a guardar dentro de esta funcion
+                    //se emite finaliza-evaluacion en el metodo  calcularPuntuacionEmparejamiento
                 }
 
 
-
-                let valorRepetir = true;// se muestra el botón para repetir la evaluacion
-                this.$emit('finaliza-evaluacion', valorRepetir) // se emite el evento finaliza la evaluacion,el valor remitido activa el boton de repetir en el modulo-contenedor-curso
             } else if (this.haFinalizadoEvaluacion()) {
                 // se detiene el contador
                 //no es necesario hacer nada, en la linea 308 en el metodo seleccionarRespuestaEmpareja ya se  evalúa si finaliza la evaluacion y a continuacion calcula el puntaje para luego gurdar en la base de datos
+
+                
             }
             else {
                 this.totalTime -= 0.1000000000000;
@@ -376,6 +376,12 @@ parasails.registerComponent('modulo-ev-individual', {
             }
         },
         calcularPuntuacionEmparejamiento() {
+
+
+            let valorRepetir = true;// se muestra el botón para repetir la evaluacion
+            this.$emit('finaliza-evaluacion', valorRepetir) // se emite el evento finaliza la evaluacion,el valor remitido activa el boton de repetir en el modulo-contenedor-curso
+
+
             //1) valorar los PUNTOS que se sumanán por sus respuestas
             //cada pregunta tiene un minimo de 100
             if (this.totalTime <= 1.0) {
@@ -429,7 +435,7 @@ parasails.registerComponent('modulo-ev-individual', {
             if (this.usuario) {
                 if (this.usuario.nombre != 'Visitante') {
                     this.guardarIntentoEvaluacion();
-                    alert('Se ha guardado tu progreso (llamar al metodo guardar)');
+                    
                     //si el usuario es estudiante se guardan los resultados de la evaluacion
                 }
             }
@@ -477,12 +483,12 @@ parasails.registerComponent('modulo-ev-individual', {
             formData.append('nivel', this.nivel);// number
             formData.append('medalla', this.medalla);//string
             formData.append('tiempoMaximoPorPregunta', this.tiempoMaximoPorPregunta);//number
-            formData.append('apruebaEvaluacion', this.apruebaEvaluacion); //number
-            formData.append('evaluacion', evaluacionIntento); //json
+            formData.append('apruebaEvaluacion', this.apruebaEvaluacion); //number 1 o 0
+            formData.append('evaluacion', JSON.stringify(evaluacionIntento)); //json
 
             axios({
-                url: "crear-intento-evaluacion",
-                method: "post",
+                method: 'post',
+                url: '/crear-intento-evaluacion',
                 data: formData
             }).then(
                 response => {

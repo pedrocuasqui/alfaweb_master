@@ -54,7 +54,7 @@ parasails.registerPage('interfaz-modulos', {
     },
     finalizaEvaluacion(valor) {
 
-      this.mostrarIconoRepetir = valor;
+      this.mostrarIconoRepetir = valor; //true o false
     },
     /**
      * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion

@@ -35,7 +35,9 @@ parasails.registerComponent('modulo-ev-individual', {
             medalla: null,
 
             apruebaEvaluacion: 0,
+            presionaIntentarNuevamente: false,
 
+            bucleCuentaRegresiva: null,
 
         };
     },
@@ -52,9 +54,9 @@ parasails.registerComponent('modulo-ev-individual', {
             this.preguntasCuestionarioRespuestas.push(respuestaIntento);
         });
 
-        this.puntos = this.usuario.puntos;
+        this.puntos = this.usuario.ultimoIntento.puntos;
         this.nivel = this.usuario.ultimoIntento.nivel;
-        this.medalla = this.usuario.medalla;
+        this.medalla = this.usuario.ultimoIntento.medalla;
 
         this.numeroSubmodulosCurso = this.usuario.numeroSubmodulosCurso;
         this.numerointentosSubmodulosCurso = this.usuario.numerointentosSubmodulosCurso
@@ -354,6 +356,7 @@ parasails.registerComponent('modulo-ev-individual', {
         actualizaCuentaRegresiva() {
             // document.getElementById('countdown').innerHTML = totalTime;
             if (this.totalTime == 0.0) {
+
                 alert('Se agotó el tiempo');
 
                 if (this.tipoEvaluacion == "Emparejamiento") {
@@ -363,16 +366,18 @@ parasails.registerComponent('modulo-ev-individual', {
                 }
 
 
+
+
             } else if (this.haFinalizadoEvaluacion()) {
                 // se detiene el contador
                 //no es necesario hacer nada, en la linea 308 en el metodo seleccionarRespuestaEmpareja ya se  evalúa si finaliza la evaluacion y a continuacion calcula el puntaje para luego gurdar en la base de datos
 
-                
+
             }
             else {
                 this.totalTime -= 0.1000000000000;
                 this.totalTime = this.totalTime.toFixed(1)
-                setTimeout(this.actualizaCuentaRegresiva, 100);
+                this.bucleCuentaRegresiva = setTimeout(this.actualizaCuentaRegresiva, 100);
             }
         },
         calcularPuntuacionEmparejamiento() {
@@ -388,8 +393,8 @@ parasails.registerComponent('modulo-ev-individual', {
                 this.puntos = 100;
             }
             else { //calculo el valor 
-                this.puntos = this.totalTime * 100;
-                this.puntos = this.puntos.toFixed(0);
+                this.puntos += this.totalTime * 100; //se acumulan los puntos al numero original de puntos
+                this.puntos = parseFloat(this.puntos).toFixed(0);
             }
             //2) valorar si terminó el modulo para subir al siguiente NIVEL
             //contar el porcentaje de evaluaciones realizadas de todo el curso
@@ -400,13 +405,17 @@ parasails.registerComponent('modulo-ev-individual', {
 
 
             //cada 10% de avance se sube un nivel, es decir que siempre se llegara al nivel 10
-            let porcentajeAvanceSubmodulos = ((this.numerointentosSubmodulosCurso + this.apruebaEvaluacion) / this.numeroSubmodulosCurso) * 100;
-            porcentajeAvanceSubmodulos = porcentajeAvanceSubmodulos.toFixed(0); //se suma el valor de apruebaEvaluacion como entero, con eso se verifica si alcanca o no un nuevo porcentaje para poder subir de nivel
-            if (porcentajeAvanceSubmodulos > this.nivel * 10) {
-                this.nivel += 1; // se incrementa un nivel
-                alert('has pasado a un nuevo nivel');
-            }
+            if (!this.presionaIntentarNuevamente && this.usuario.ultimoIntento.submodulo.id != this.submodulo.id) { //no ha presionado el botón de reiniciar --entonces incrementa el numero de intentos de esta evaluacion
+                this.numerointentosSubmodulosCurso += this.apruebaEvaluacion;
 
+                let porcentajeAvanceSubmodulos = (this.numerointentosSubmodulosCurso / this.numeroSubmodulosCurso) * 100;
+                porcentajeAvanceSubmodulos = porcentajeAvanceSubmodulos.toFixed(); //se suma el valor de apruebaEvaluacion como entero, con eso se verifica si alcanca o no un nuevo porcentaje para poder subir de nivel
+
+                if (porcentajeAvanceSubmodulos > this.nivel * 10) {
+                    this.nivel += 1; // se incrementa un nivel
+                    alert('has pasado a un nuevo nivel');
+                }
+            }
 
 
 
@@ -435,17 +444,15 @@ parasails.registerComponent('modulo-ev-individual', {
             if (this.usuario) {
                 if (this.usuario.nombre != 'Visitante') {
                     this.guardarIntentoEvaluacion();
-                    
+
                     //si el usuario es estudiante se guardan los resultados de la evaluacion
                 }
             }
 
         },
-        reiniciarValores() {
-            this.apruebaEvaluacion = 0;
-        },
+
         empezarEvaluacion() {
-            setTimeout(this.actualizaCuentaRegresiva, 1000);
+            setTimeout(this.actualizaCuentaRegresiva, 1000); //tarda un segundo en empezar la cuenta regresiva
         },
         mostrarModalInicial() {
             this.totalTime = this.tiempoMaximoPorPregunta;
@@ -453,14 +460,63 @@ parasails.registerComponent('modulo-ev-individual', {
                 $('#modalInstrucciones').modal('show');
             });
         },
+        reiniciarValores() {
+
+
+            this.arregloRandom = [];
+            //variables para usar en Emparejamiento del lado del Estudiante
+            this.enunciadoSeleccionado = null;
+            this.respuestaSeleccionada = null;
+            this.preguntaSeleccionadaJuegoEmparejamiento = null;
+
+            this.totalTime = this.tiempoMaximoPorPregunta;
+
+            this.tiempoRespuestaInici = null;// almacena el valor de totalTime  al momento de dar clic en un enunciado
+            this.tiempoRespuestaFin = null;
+            this.erroresRespuesta = 0;
+            this.aciertos = [];
+            this.preguntasCuestionarioRespuestas = [];
+
+            //los puntos actuales ya se encuentran en la variable this.puntos
+            //nivel y medallas se encuentran actualizadas
+
+
+            this.apruebaEvaluacion = 0;
+            
+            this.bucleCuentaRegresiva = null;
+            this.preguntasCuestionario.forEach(pregunta => {
+                //agrego todas las preguntas al arrreglo para despues reemplazar cada pregunta por su pregunta , este se guardará en la collection IntentoEvaluacioncon respuestas
+                let respuestaIntento = pregunta;
+                respuestaIntento.errores = null;
+                respuestaIntento.tiempoDeRespuesta = null;
+                this.preguntasCuestionarioRespuestas.push(respuestaIntento);
+
+                $("[id^='Resp']").css({ "background-color": "white" });
+                $("[id^='Preg']").css({ "background-color": "white" });
+
+            });
+
+
+            this.randomPreguntasEmparejamiento();
+
+        },
         intentarNuevamente() {
             // CODIGO PARA INTENTAR NUEVAMENTE
 
-            //Antes de ejecutar este código ya se guardó  la evaluacion, seguir los siguientes pasos
-            //1 reponer todos los valores nuevamente
+
+            //Existen dos posibilidades:
+            // primera: ya se guardó la evaluacion sea porque se acabó el tiempo o porque terminó la evaluacion --entonces no hacer nada
+            // segunda: el usuario presionó el botón de reiniciar antes de que se guarde su evaluación --entonces parar el contador  sin guardar la evaluacion
+            clearTimeout(this.bucleCuentaRegresiva);
+            this.presionaIntentarNuevamente = true;
+
+            //1 reiniciar todos los valores nuevamente
+            this.reiniciarValores();
             //2 mostrar Modal Inicial
             this.mostrarModalInicial();
+
         },
+
         /**
          * Guarda el intento de la evaluacion con su tiempo 
          */
@@ -492,7 +548,8 @@ parasails.registerComponent('modulo-ev-individual', {
                 data: formData
             }).then(
                 response => {
-                    alert('MODULO GUARDADO CON EXITO');
+                    alert('EVALUACION GUARDADA CON EXITO');
+                    this.usuario.ultimoIntento = response.data.intentoEvaluacionCreado;
                 }
             ).catch(
                 err => {

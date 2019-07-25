@@ -64,10 +64,10 @@ module.exports = {
   fn: async function (inputs, exits) {
 
     var res = this.res;
-
+    var intentoEvaluacionCreado = null;
 
     try {
-      await IntentoEvaluacion.create({
+      intentoEvaluacionCreado= await IntentoEvaluacion.create({
         puntos: inputs.puntos,
         nivel: inputs.nivel,
         medalla: inputs.medalla,
@@ -78,14 +78,14 @@ module.exports = {
         estudiante: inputs.estudianteId,
         submodulo: inputs.submoduloId
 
-      });
+      }).fetch();
     } catch (e) {
       let error = new Error();
       error.code = 'NO SE PUDO GUARDAR, ERROR EN EL SERVIDOR';
       error.message = e;
       return res.status(500).send({ error })
     }
-    return exits.success();
+    return exits.success({intentoEvaluacionCreado});
 
   }
 

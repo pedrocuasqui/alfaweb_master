@@ -640,6 +640,8 @@ module.exports.bootstrap = async function (done) {
       enlace: ""
     }).fetch();
 
+
+    
     var modulo2Bdd = await ModuloLibro.create({
       nombreModulo: "Conceptos",
       descripcion: "En esta sección aprenderás conceptos principales sobre bases de datos que te permitirán comprender de mejor manera el curso",
@@ -673,7 +675,7 @@ module.exports.bootstrap = async function (done) {
 
     var intentoEvaluacion = await IntentoEvaluacion.create({
       puntos: 150,
-      nivel: 2,
+      nivel: 1,
       medalla: 'bebe',
       tiempoMaximoPorPregunta: 15, //en segundos
       apruebaEvaluacion:1,
@@ -745,6 +747,87 @@ module.exports.bootstrap = async function (done) {
 
 
 
+
+    /***SEGUNDO SUBMODULO DEL MODULO "CONCEPTOS" */
+    
+    var submodulo2Modulo2Bdd = await SubmoduloLibro.create({
+      nombreSubmodulo: "Modelo entidad relación",
+      descripcion: "Un modelo de entidad relación es una herramienta para el modelo de datos, la cual permite representar entidades de una Base de Datos",
+      multimedia: Object,
+      modulo: modulo2Bdd.id,
+      contenidoTiny: '<p>Un modelo de entidad relación es una herramienta para el modelo de datos, la cual permite representar entidades de una Base de Datos </p><p>     Se elabora el diagrama (o diagramas) entidad-relación.Se completa el modelo con listas de atributos y una descripción de otras restricciones que no se pueden reflejar en el diagrama.El modelado de datos no acaba con el uso de esta técnica. Son necesarias otras técnicas para lograr un modelo directamente implementable en una base de datos. Brevemente:</p>Permite mostrar resultados entre otras entidades pertenecientes a las existentes de manera que se encuentre la normatividad de archivos que se almacenarán.</p><p><img src="https://commons.wikimedia.org/wiki/File:Ejemplo_Diagrama_E-R_extendido.PNG" alt="" width="303" height="241" /></p>',
+      color: "#b642e1",
+      enlace: "",
+      ordenNavegacion: 0,
+      evaluacion: {
+        "tipo": "Emparejamiento",
+        "tiempoMaximoPorPregunta":10,
+        "preguntas": [{ "enunciado": "Un modelo de entidad relación es: ", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "una herramienta para el modelo de datos" }, { "enunciado": "Entidad", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "Representa una 'cosa', 'objeto' o 'concepto'" }, { "enunciado": "Atributos", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": " Son las características que definen o identifican a una entidad" }]
+      }
+    }).fetch();
+
+
+
+
+    // var intentoEvaluacion2 = await IntentoEvaluacion.create({
+    //   puntos: 160,
+    //   nivel: 2,
+    //   medalla: 'bebe',
+    //   tiempoMaximoPorPregunta: 10, //en segundos
+    //   apruebaEvaluacion:1,
+    //   evaluacion: {
+    //     tipo: "Emparejamiento",
+    //     aciertos: [0, 1, 2], //los indices de las preguntas acertadas, la longitud nos dar'a el numero de aciertos totales
+    //     preguntas: [
+    //       {
+    //         errores: 2,//
+    //         tiempoDeRespuesta: 4,//
+    //         enunciado: "Un modelo de entidad relación es:",
+    //         opciones:
+    //         {
+    //           opcion1: null,
+    //           opcion2: null,
+    //           opcion3: null,
+    //           opcion4: null
+    //         },
+    //         respuesta: "una herramienta para el modelo de datos"
+    //       },
+    //       {
+    //         errores: 0,
+    //         tiempoDeRespuesta: 1,
+    //         enunciado: "Entidad",
+    //         opciones:
+    //         {
+    //           opcion1: null,
+    //           opcion2: null,
+    //           opcion3: null,
+    //           opcion4: null
+    //         },
+    //         respuesta: "Representa una 'cosa', 'objeto' o 'concepto'"
+    //       },
+
+
+    //       {
+    //         errores: 4,
+    //         tiempoDeRespuesta: 5,
+    //         enunciado: "Atributos",
+    //         opciones:
+    //         {
+    //           opcion1: null,
+    //           opcion2: null,
+    //           opcion3: null,
+    //           opcion4: null
+    //         },
+    //         respuesta: "Son las características que definen o identifican a una entidad"
+    //       },
+
+          
+    //     ]
+    //   },
+    //   estudiante: estudiante.id,
+    //   submodulo: submodulo2Modulo2Bdd.id,
+    //   curso:cursoBdd.id
+    // })
 
 
 

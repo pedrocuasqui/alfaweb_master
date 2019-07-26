@@ -36,7 +36,7 @@ module.exports = {
     var navegarAtras = '';
     var navegarSiguiente = '';
     var moduloPadre = null;
-    var ultimoIntentoEvaluacion = null;
+
 
     var intentoEvaluacion = { //intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
       puntos: 0,
@@ -45,7 +45,7 @@ module.exports = {
       tiempoMaximoPorPregunta: 30, //en segundos por defecto
       evaluacion: null,
     };
-    var numeroSubmodulosCurso=0; //sirve para enviar en el usuario y comprobar el porcentaje de evaluaciones realizadas de todo el curso
+    var numeroSubmodulosCurso = 0; //sirve para enviar en el usuario y comprobar el porcentaje de evaluaciones realizadas de todo el curso
 
     console.log('INGRESO A VIEW-INTERFAZ-MODULO');
 
@@ -92,7 +92,7 @@ module.exports = {
       curso.modulos.forEach(modulo => {
         arreglo.push({ objetoId: modulo.id, tipoContenido: 'Modulo' })
         modulo.submodulos.forEach(submodulo => {
-          numeroSubmodulosCurso +=1;
+          numeroSubmodulosCurso += 1;
           arreglo.push({ objetoId: submodulo.id, tipoContenido: 'Submodulo' });
         });
       });
@@ -165,24 +165,37 @@ module.exports = {
     //siempre se aniade un intento evaluacion al usuario
     usuario.ultimoIntento = intentoEvaluacion;
     usuario.numeroSubmodulosCurso = numeroSubmodulosCurso;
-    usuario.numerointentosSubmodulosCurso = 0;
+    usuario.submodulosAprobadosPorCurso = [];
     if (inputs.tipoContenido == 'Submodulo') {
       if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
         //se buscan los documentos que contengan al id de usuario logueado y el submodulo seleccionado
         let intentoEv = null;
         intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, submodulo: objetoSeleccionado.id }).sort('createdAt DESC');
-        if (intentoEv) {//existe un intento evaluacion entonces se reemplaza el valor de usuario.ultimoIntento
+        console.log('INTENTO EVALUACION');
+        console.log(intentoEv);
+        if (intentoEv.length > 0) {//existe el arreglo de  intentos evaluacion entonces se reemplaza el valor de usuario.ultimoIntento por el intento mas actual
           usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
           //se crea una nueva conexion al servidor para obtener los intentosEvaluacion, 1 por cada submodulo de todo el curso
-          var datastoreSails = sails.getDatastore().manager;
-          //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
-          await datastoreSails.collection('IntentoEvaluacion').distinct("submodulo", { curso: curso.id, estudiante: usuario.id, apruebaEvaluacion: 1 }).then(respuesta => {
-            usuario.numerointentosSubmodulosCurso = respuesta;
-          });
-
-          //conteo de submodulos totales en este curso
-
         } //caso contrario se mantiene el valor por defecto
+        
+        var datastoreSails = sails.getDatastore().manager;
+        //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
+        let ObjectId = require('mongodb').ObjectID;
+        let estudianteObjectId = ObjectId(usuario.id);
+        await datastoreSails.collection('IntentoEvaluacion').distinct("submodulo", { curso: curso.id, estudiante: estudianteObjectId, apruebaEvaluacion: 1 }).then(respuesta => {  //estudiante: usuario.id,
+          //respuesta contiene un arreglo con el codigo de submodulo por cada intento aprobado
+          respuesta.forEach(elemento => {
+            usuario.submodulosAprobadosPorCurso.push(elemento.toString());
+          });
+          // usuario.submodulosAprobadosPorCurso = [...respuesta];/// submodulosAprobadosPorCurso');
+          console.log(curso.id)
+          console.log(usuario.id)
+          console.log(usuario.submodulosAprobadosPorCurso);
+        });
+
+        //conteo de submodulos totales en este curso
+
+
 
 
 
@@ -193,7 +206,7 @@ module.exports = {
 
 
 
-    return exits.success({ curso, objetoSeleccionado, moduloPadre, usuario, navegarAtras, navegarSiguiente, ultimoIntentoEvaluacion });
+    return exits.success({ curso, objetoSeleccionado, moduloPadre, usuario, navegarAtras, navegarSiguiente });
     //el objeto moduloPadre solo contiene valores cuando el objeto seleccionado es SUBMODULO
 
 

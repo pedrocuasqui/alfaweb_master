@@ -38,6 +38,10 @@ parasails.registerComponent('modulo-ev-individual', {
             presionaIntentarNuevamente: false,
 
             bucleCuentaRegresiva: null,
+            submodulosAprobadosPorCurso: [],
+
+            porcentajeAvanceSubmodulos: 0,
+            puntosObtenidos: 0,
 
         };
     },
@@ -59,7 +63,12 @@ parasails.registerComponent('modulo-ev-individual', {
         this.medalla = this.usuario.ultimoIntento.medalla;
 
         this.numeroSubmodulosCurso = this.usuario.numeroSubmodulosCurso;
-        this.numerointentosSubmodulosCurso = this.usuario.numerointentosSubmodulosCurso
+        this.submodulosAprobadosPorCurso = [...this.usuario.submodulosAprobadosPorCurso];
+
+        // this.usuario.submodulosAprobadosPorCurso.forEach(elemento => {
+        //     this.submodulosAprobadosPorCurso.push(elemento.toString());
+        // });
+
 
         this.randomPreguntasEmparejamiento();
 
@@ -84,7 +93,7 @@ parasails.registerComponent('modulo-ev-individual', {
     <div class="">
   
 
-<!-- Modal -->
+<!-- Modal INICIO -->
 <div class="modal fade" id="modalInstrucciones" tabindex="-1" role="dialog" aria-labelledby="modalInstruccionesLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -108,6 +117,40 @@ parasails.registerComponent('modulo-ev-individual', {
 </div>
 
 
+
+<!-- Modal FIN -->
+<div class="modal fade" id="actividadFinalizada" tabindex="-1" role="dialog" aria-labelledby="actividadFinalizadaLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="actividadFinalizadaLabel">Fin de la evaluación</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body">
+      
+        
+        <p>Puntos Obtenidos: {{puntosObtenidos}}</p>
+        <p>Con esto Acumulas un total de : {{puntos}}</p>
+        <p v-if="apruebaEvaluacion==1"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
+        <p v-else>Nivel actual {{nivel}}</p>
+        <p v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, HAS COMPLETADO TODOS LOS MODULOS, TE HAS GRADUADO!!</p>
+        <p v-else>Eres un: {{medalla}}</p>
+        <p>Tu progreso es: {{porcentajeAvanceSubmodulos}} %</p>
+
+
+
+
+        <p></p>
+      </div>
+      <div class="modal-footer">
+        <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Omitir evaluación</button>-->
+        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="empezarEvaluacion">Aceptar</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -393,42 +436,63 @@ parasails.registerComponent('modulo-ev-individual', {
                 this.puntos = 100;
             }
             else { //calculo el valor 
-                this.puntos += this.totalTime * 100; //se acumulan los puntos al numero original de puntos
+                this.puntosObtenidos = this.totalTime * 100;
+                this.puntos += this.puntosObtenidos; //se acumulan los puntos al numero original de puntos
                 this.puntos = parseFloat(this.puntos).toFixed(0);
             }
             //2) valorar si terminó el modulo para subir al siguiente NIVEL
             //contar el porcentaje de evaluaciones realizadas de todo el curso
             if (this.aciertos.length > this.preguntasCuestionarioRespuestas.length / 2) {
                 this.apruebaEvaluacion = 1;
+            } else {
+                this.apruebaEvaluacion = 0;
             }
 
 
 
-            //cada 10% de avance se sube un nivel, es decir que siempre se llegara al nivel 10
-            if (!this.presionaIntentarNuevamente && this.usuario.ultimoIntento.submodulo.id != this.submodulo.id) { //no ha presionado el botón de reiniciar --entonces incrementa el numero de intentos de esta evaluacion
-                this.numerointentosSubmodulosCurso += this.apruebaEvaluacion;
-
-                let porcentajeAvanceSubmodulos = (this.numerointentosSubmodulosCurso / this.numeroSubmodulosCurso) * 100;
-                porcentajeAvanceSubmodulos = porcentajeAvanceSubmodulos.toFixed(); //se suma el valor de apruebaEvaluacion como entero, con eso se verifica si alcanca o no un nuevo porcentaje para poder subir de nivel
-
-                if (porcentajeAvanceSubmodulos > this.nivel * 10) {
-                    this.nivel += 1; // se incrementa un nivel
-                    alert('has pasado a un nuevo nivel');
+            // verificamos si la evaluacion ya está aprobada
+            var submoduloAprobado = false;
+            this.submodulosAprobadosPorCurso.forEach(idSubmodulo => {
+                console.log('CURSO APROBADO ID: ' + idSubmodulo + "//submodulo: " + this.submodulo.id)
+                if (this.submodulo.id == idSubmodulo) {
+                    submoduloAprobado = true;
                 }
-            }
+            });
 
+
+            var numeroSubmoduloAprobadosPorCurso = this.submodulosAprobadosPorCurso.length;
+            /*sube de nivel cuando hay una sola evaluacion aprobada y cumple con el parametro para subir de nivel*/
+            if (this.apruebaEvaluacion == 1 && !submoduloAprobado) { //si aprueba la evaluacion y el submodulo no ha sido aprobado se guarda en el array de submodulosAprobados por tanto el numero de modulos aprobados sera uno mas
+
+                console.log('SI EL CURSO APROBADO ID ES IGUA A SUBMODULO, NO DEBE ENTRAR AQUI');
+                this.submodulosAprobadosPorCurso.push(this.submodulo.id); //agrego el id sel submodulo aprobado
+
+                numeroSubmoduloAprobadosPorCurso = this.submodulosAprobadosPorCurso.length;
+
+
+                // if (numeroSubmoduloAprobadosPorCurso > this.nivel) { //si el porcentaje alcanzado es superior al porcentaje anterior entonces se 
+                // alert('has pasado al nivel: ' + numeroSubmoduloAprobadosPorCurso + 'de  ' + this.numeroSubmodulosCurso);
+                this.nivel = numeroSubmoduloAprobadosPorCurso; // se incrementa el nivel de acuerdo al porcentaje alcanzado /10, es posible saltarse mas de un nivel a la vez (del 3 al 5 por ejemplo) porque depende del número de evaluaciones que tenga el curso, mientras más evaluaciones tenga el curso, mas preciso es el cálculo del nivel 
+
+                // }
+
+
+            }
 
 
             //3) valorar si ya pasó el porcentaje de niveles necesario para darle medallas
             // PENDIENTE
+            //calculo el porcentaje de avance incluyendo la evaluacion actual
 
-            if (this.nivel > 0 && this.nivel <= 2) {
+            this.porcentajeAvanceSubmodulos = (numeroSubmoduloAprobadosPorCurso / this.numeroSubmodulosCurso) * 100;
+
+            if (this.porcentajeAvanceSubmodulos > 0 && this.porcentajeAvanceSubmodulos <= 20) {
                 this.medalla = 'bebe';
-            } else if (this.nivel > 2 && this.nivel <= 5) {
+            } else if (this.porcentajeAvanceSubmodulos > 20 && this.porcentajeAvanceSubmodulos <= 80) {
                 this.medalla = 'estudiante';
-            } else if (this.nivel > 5 && this.nivel <= 8) {
+            } else if (this.porcentajeAvanceSubmodulos > 80 && this.porcentajeAvanceSubmodulos <= 95) {
                 this.medalla = 'estudiante destacado';
-            } else if (this.nivel == 9) {
+            } else if (this.porcentajeAvanceSubmodulos > 95 && this.porcentajeAvanceSubmodulos <= 99) {
                 this.medalla = 'egresado';
             } else {
                 this.medalla = 'graduado';
@@ -443,21 +507,32 @@ parasails.registerComponent('modulo-ev-individual', {
 
             if (this.usuario) {
                 if (this.usuario.nombre != 'Visitante') {
+
                     this.guardarIntentoEvaluacion();
 
                     //si el usuario es estudiante se guardan los resultados de la evaluacion
                 }
             }
 
+            //5) mostrar el modal resumen de resultados
+            this.mostrarModalActividadFinalizada();
+
         },
 
         empezarEvaluacion() {
             setTimeout(this.actualizaCuentaRegresiva, 1000); //tarda un segundo en empezar la cuenta regresiva
         },
+
         mostrarModalInicial() {
             this.totalTime = this.tiempoMaximoPorPregunta;
             $(function () {
                 $('#modalInstrucciones').modal('show');
+            });
+        },
+        mostrarModalActividadFinalizada() {
+
+            $(function () {
+                $('#actividadFinalizada').modal('show');
             });
         },
         reiniciarValores() {
@@ -482,7 +557,7 @@ parasails.registerComponent('modulo-ev-individual', {
 
 
             this.apruebaEvaluacion = 0;
-            
+
             this.bucleCuentaRegresiva = null;
             this.preguntasCuestionario.forEach(pregunta => {
                 //agrego todas las preguntas al arrreglo para despues reemplazar cada pregunta por su pregunta , este se guardará en la collection IntentoEvaluacioncon respuestas
@@ -495,7 +570,7 @@ parasails.registerComponent('modulo-ev-individual', {
                 $("[id^='Preg']").css({ "background-color": "white" });
 
             });
-
+            this.puntosObtenidos = 0;
 
             this.randomPreguntasEmparejamiento();
 
@@ -548,8 +623,9 @@ parasails.registerComponent('modulo-ev-individual', {
                 data: formData
             }).then(
                 response => {
-                    alert('EVALUACION GUARDADA CON EXITO');
+                    // alert('EVALUACION GUARDADA CON EXITO');
                     this.usuario.ultimoIntento = response.data.intentoEvaluacionCreado;
+
                 }
             ).catch(
                 err => {
@@ -568,3 +644,10 @@ parasails.registerComponent('modulo-ev-individual', {
     }
 
 });
+
+/*
+pruebas a realizar
+1: tiempo = 0 , evaluacion cero, reintentar
+2: timpo > 0, evaluacion 1 , reintentar
+*/
+

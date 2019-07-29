@@ -47,6 +47,10 @@ parasails.registerComponent('modulo-contenedor-curso', {
             type: Boolean,
             required: false,
             default: () => { return false },
+        },
+        progreso: {
+            type: Object,
+            description: 'puntaje, nivel y progreso (medalla) actuales'
         }
 
 
@@ -162,7 +166,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 <!-- columna derecha -->
                 <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
                 <!--ESTE PRIMER CONTENEDOR SE USA PARA LOS SUBMODULOS-->    
-                <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"> 
+                <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance"> 
                         <template v-slot:audio_general >
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                             <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
@@ -173,7 +177,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                     </modulo-panel-derecho>
                     <!--EL SIGUIENTE CONTENEDOR SE USA PARA LOS MODULOS, solo se diferencian en que los modulos no reciben eventos de evaluacion-->    
-                    <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"> 
+                    <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" > 
                         <template v-slot:audio_general >
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                             <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
@@ -252,7 +256,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
             //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
             //para ver como funciona this.$refs revisar la siguiente fuente https://vuejs.org/v2/api/#ref
             var contenidoBreadcrumb = this.$refs.printBreadcrumb;  //https://vuejs.org/v2/api/#ref
-            var contenidoCentral = this.$refs.printContenidoCentral; 
+            var contenidoCentral = this.$refs.printContenidoCentral;
             var contenidoDescripcion = this.$refs.printContenidoDescripcion;
             newWin = window.open(""); //abre una variable para escribir sobre ella
             // console.log(contenidoImprimir.outerHTML)

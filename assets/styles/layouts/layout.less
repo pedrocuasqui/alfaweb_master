@@ -478,9 +478,9 @@ div.contenedor-slot-principal {
 @padding-superior: 5%;
 @padding-inferior: 5%;
 
-.nivel,
 .puntaje,
-.medallas {
+.medallas,
+.nivel {
     padding-top   : @padding-superior;
     padding-bottom: @padding-inferior;
     overflow      : visible;
@@ -509,27 +509,29 @@ div.contenedor-slot-principal {
         background-color: inherit;
     }
 
-    div.contenedor-icono {
-        overflow: visible;
 
-        i {
-            position   : absolute; //funciona para darle libertad de ubicacion al icono
-            margin-left: -18.5px;
-            margin-top : -8px;
-        }
+}
 
-        span {
-            // position      : absolute; //funciona para darle libertad de ubicacion al icono
-            margin-left      : -18.5px;
-            margin-top       : -8px;
-            color            : white;
-        }
+div.contenedor-icono {
+    overflow: visible;
 
-        img {
-            height     : 150%;
-            margin-left: -16.5px;
-            margin-top : -8px;
-        }
+    i {
+        position   : absolute; //funciona para darle libertad de ubicacion al icono
+        margin-left: -18.5px;
+        margin-top : -8px;
+    }
+
+    span {
+        // position      : absolute; //funciona para darle libertad de ubicacion al icono
+        margin-left      : -18.5px;
+        margin-top       : -8px;
+        color            : white;
+    }
+
+    img {
+        height     : 150%;
+        margin-left: -16.5px;
+        margin-top : -8px;
     }
 }
 

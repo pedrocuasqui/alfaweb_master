@@ -9,6 +9,7 @@ parasails.registerPage('interfaz-modulos', {
     tituloEvaluacion: '',
     evIndividual: false,
     mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación
+    progreso: {} //puntos, niveles y medalla actuales
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -31,6 +32,14 @@ parasails.registerPage('interfaz-modulos', {
 
     this.navegarSiguiente = SAILS_LOCALS.navegarSiguiente;
     this.navegarAtras = SAILS_LOCALS.navegarAtras;
+
+
+
+    this.progreso.puntos = SAILS_LOCALS.usuario.ultimoIntento.puntos;
+    this.progreso.nivel = SAILS_LOCALS.usuario.ultimoIntento.nivel;
+    this.progreso.medalla = SAILS_LOCALS.usuario.ultimoIntento.medalla;
+    this.progreso.porcentajeAvance = (SAILS_LOCALS.usuario.submodulosAprobadosPorCurso.length / SAILS_LOCALS.usuario.numeroSubmodulosCurso) * 100;
+    this.progreso.totalNiveles = SAILS_LOCALS.usuario.numeroSubmodulosCurso;
   },
   mounted: async function () {
     //… definir el breadcrumb en este lugar o recibir desde la accion del servidor
@@ -59,10 +68,13 @@ parasails.registerPage('interfaz-modulos', {
     /**
      * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
      */
-    intentarNuevamente() { 
+    intentarNuevamente() {
 
       this.$refs.componenteEvaluacion.intentarNuevamente();
 
+    },
+    actualizaProgreso(progresoActual) {
+      this.progreso = progresoActual;
     }
   }
 });

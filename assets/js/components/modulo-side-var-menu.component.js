@@ -49,6 +49,7 @@ parasails.registerComponent('modulo-side-var-menu', {
             <!--dropbtn-modulo      : el boton que contiene el nombre del modulo -->
             <!--dropdown-submodulo  : contenedor individual del submodulo -->
             <div v-for="(modulo, index) in curso.modulos" class="dropdownModulo" :key="modulo.id" >
+                <!--MODULOS-->
                 <!--ES ADMIN, PUEDE CREAR CURSO Y MODIFICARLOS, EXCEPTO EL CURSO INFORMATICA BASICA-->
                 <a v-if="esAdmin" key="admin" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" :style="colorModulo(modulo.id)">{{modulo.nombreModulo}}</a>
                 <!--ES CURSO INFORMATICA, TODOS PUEDEN ACCEDER A EL PERO NADIE, NI EL ADMINISTRADOR ni ESTUDIANTE PUEDEn EDITARLO-->
@@ -57,14 +58,21 @@ parasails.registerComponent('modulo-side-var-menu', {
                 <a v-else key="estudiante" class="btn btn-primary dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/interfaz-modulos/?objetoId='+modulo.id+'&tipoContenido=Modulo'" :style="colorModulo(modulo.id)">{{modulo.nombreModulo}}</a>
 
                 <div :class="[perteneceObjeto(modulo.id) ? 'dropdown-submodulo':'dropdown-submodulo-deselect' ]">
+                <!--SUBMODULOS-->
                     <template v-if="esAdmin"> 
-                         <a  v-for="submodulo in modulo.submodulos" :href="'/administrar-contenido/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                        <div key="esAdmin">
+                            <a  v-for="submodulo in modulo.submodulos" :href="'/administrar-contenido/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                         </div>
                     </template>
-                    <template v-else-if="cursoInformatica">
-                         <a  v-for="submodulo in modulo.submodulos" :href="'/contenido-alfaweb/?enlace='+submodulo.enlace" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                    <template v-else-if="cursoInformatica" >
+                        <div key="esCursoInformatica">
+                            <a  v-for="submodulo in modulo.submodulos" :href="'/contenido-alfaweb/?enlace='+submodulo.enlace" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                         </div>
                     </template >
-                    <template v-else>
-                    <a  v-for="submodulo in modulo.submodulos" :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                    <template v-else >
+                        <div key="noEsCursoInformatica">
+                            <a  v-for="submodulo in modulo.submodulos"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                        </div>
                </template >
                     <a v-if="habilitarEdicion" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
                 </div>
@@ -161,9 +169,9 @@ parasails.registerComponent('modulo-side-var-menu', {
         esAdmin() {
             let esadmin = false;
             //si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
-            
+
             // if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false ){
-            if ((this.usuario.administrador || this.usuario.tutor) ) { //usar la linea anterior para restringir el acceso al curso informatica básica al administrador
+            if ((this.usuario.administrador || this.usuario.tutor)) { //usar la linea anterior para restringir el acceso al curso informatica básica al administrador
                 esadmin = true;
             }
             // si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones 
@@ -178,13 +186,13 @@ parasails.registerComponent('modulo-side-var-menu', {
 
             return esadmin;
         },
-        habilitarEdicion(){
+        habilitarEdicion() {
             let edicionHabilitada = false;
             //si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
-            
-            if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false ){
-            // if ((this.usuario.administrador || this.usuario.tutor) ) { //usar la linea anterior para restringir el acceso al curso informatica básica al administrador
-            edicionHabilitada = true;
+
+            if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false) {
+                // if ((this.usuario.administrador || this.usuario.tutor) ) { //usar la linea anterior para restringir el acceso al curso informatica básica al administrador
+                edicionHabilitada = true;
             }
             // si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones 
             //1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica

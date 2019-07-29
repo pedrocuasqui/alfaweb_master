@@ -3,13 +3,13 @@
   <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :curso="curso"
     :objeto-seleccionado="objetoSeleccionado" :breadcrumb="breadcrumb" :usuario="usuario"
     @evaluacion-individual="evaluacionIndividual" ref="curso" :mostrar-icono-repetir="mostrarIconoRepetir"
-    @intentar-nuevamente="intentarNuevamente">
+    @intentar-nuevamente="intentarNuevamente" :progreso="progreso">
     <!--mostrarIconoRepetir es una varible de tipo Boolean-->
 
     <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
     <template v-if="objetoSeleccionado.nombreSubmodulo">
       <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
-        @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso">
+        @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso" @actualiza-progreso="actualizaProgreso">
 
       </modulo-ev-individual>
       <div v-else>

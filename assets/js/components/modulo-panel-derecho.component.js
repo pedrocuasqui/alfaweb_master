@@ -7,23 +7,28 @@ parasails.registerComponent('modulo-panel-derecho', {
         cursoEstudiante: {
             type: Object,
             required: false,
-            default: () => { return null; }
-        },
-        nivelActual: {
-            type: String,
-            default: "9",
-        },
-        totalNiveles: {
-            type: String,
-            default: '9',
+            default: () => { return null; },
+            description: 'solo se usa en la interfaz indice de estudiante para poder redireccionar al último tema revisado'
         },
         puntajeActual: {
-            type: String,
-            default: "50"
+            type: Number,
+            default: 0
+        },
+        nivelActual: {
+            type: Number,
+            default: 0,
+        },
+        totalNiveles: {
+            type: Number,
+            default: 0,
         },
         medallaActual: {
             type: String,
-            default: "70"
+            default: "bebe"
+        },
+        porcentajeAvance: {
+            type: Number,
+            default: 0
         },
         usuariosConectados: {
             type: Array,
@@ -82,23 +87,28 @@ parasails.registerComponent('modulo-panel-derecho', {
         
         <slot ></slot>
         <div class="row progreso">
-                <div class="col">
-                    <div class="nivel">
+                        <div class="col">
+                        
+                            
+                        <div class="nivel">
                         <div class="progress icono">    
-                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="nivelActual" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100">
                             </div>
-                            <div class="contenedor-icono fa-stack">
+                            <div class="contenedor-icono">
                                 <i class="fas fa-battery-empty fa-stack-2x"></i>    
                                 <span class="fa-stack-1x">&nbsp{{nivelActual}}/{{totalNiveles}}</span>
                             </div>
                         </div>
-                        <div class="progress">    
-                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="nivelActual" aria-valuemin="0" aria-valuemax="100">Nivel</div>
+                        <div class="progress ">    
+                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100">Nivel</div>
                         </div>
-                    </div>
+                   
                     
+                    </div>
+
+
                     <div class="puntaje">
-                        <div class="progress icono">    
+                        <!--<div class="progress icono">    
                             <div class="progress-bar" role="progressbar" :style="{width:puntajeActual+'%'}" :aria-valuenow="puntajeActual" aria-valuemin="0" aria-valuemax="100">
                             </div>
                             <div class="contenedor-icono fa-stack">
@@ -109,23 +119,41 @@ parasails.registerComponent('modulo-panel-derecho', {
                         <div class="progress ">
                             <div class="progress-bar" role="progressbar" :style="{width:puntajeActual+'%'}" :aria-valuenow="puntajeActual" aria-valuemin="0" aria-valuemax="100">Puntos</div>
                         </div>
+                        -->
+                        <div class="contenedor-icono fa-stack">
+                            <i class="fas fa-certificate fa-stack-2x" > </i>
+                            <span class="fa-stack-1x">{{puntajeActual}}</span>
+                        </div>
                     </div>
+
+
+
                    
                     <div class="medallas">
                         <div class="progress icono">    
-                            <div class="progress-bar" role="progressbar" :style="{width:medallaActual+'%'}" :aria-valuenow="medallaActual" aria-valuemin="0" aria-valuemax="100">
+                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100">
                             </div>
                             <div class="contenedor-icono">
-                                <img v-if="medallaActual<=30.0" src="/images/svg/buho_bebe.svg" alt="polhibou_bebe">
-                                <img v-else-if="medallaActual>=30.1 && medallaActual<=50.0" src="/images/svg/buho_original_1.svg" alt="polhibou_estudiante">
-                                <img v-else-if="medallaActual>=50.1 && medallaActual<=90" src="/images/svg/buho_sabio.svg" alt="polhibou_sabio">
+                                <img v-if="porcentajeAvance<=30.0" src="/images/svg/buho_bebe.svg" alt="polhibou_bebe">
+                                <img v-else-if="porcentajeAvance>=30.1 && porcentajeAvance<=50.0" src="/images/svg/buho_original_1.svg" alt="polhibou_estudiante">
+                                <img v-else-if="porcentajeAvance>=50.1 && porcentajeAvance<=90" src="/images/svg/buho_sabio.svg" alt="polhibou_sabio">
                                 <img v-else src="/images/svg/buho_graduado.svg" alt="polhibou_graduado">
                             </div>
                         </div>
                         <div class="progress ">
-                            <div class="progress-bar" role="progressbar" :style="{width:medallaActual+'%'}" :aria-valuenow="medallaActual" aria-valuemin="0" aria-valuemax="100">Medalla</div>
+                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100">{{medallaActual}}</div>
                         </div>
                     </div>
+
+
+
+
+
+                 
+
+
+
+
                 </div>
         </div>
         <div class="row enlaces">
@@ -191,7 +219,14 @@ parasails.registerComponent('modulo-panel-derecho', {
     },
     computed: {
         porcentajeAvanceNiveles() {
-            return (this.nivelActual / this.totalNiveles) * 100;
+            let porcentaje = 0
+            if (this.nivelActual && this.totalNiveles ) {
+                if(this.totalNiveles !=0){
+                    porcentaje=   (this.nivelActual / this.totalNiveles) * 100;
+                }
+                
+            }
+            return porcentaje;
         },
         existeAvance() {
             let avance = false;

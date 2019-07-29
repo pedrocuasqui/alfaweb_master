@@ -42,7 +42,9 @@ parasails.registerComponent('modulo-ev-individual', {
 
             porcentajeAvanceSubmodulos: 0,
             puntosObtenidos: 0,
-
+            progreso: {},
+            submoduloAprobado: false,
+            finEvaluacion: false,
         };
     },
     beforeMount() {
@@ -104,8 +106,10 @@ parasails.registerComponent('modulo-ev-individual', {
         </button>
       </div>
       <div class="modal-body">
+      
         <div id="descripcion" v-html="descripcionActividad">
         </div>
+        <div v-if="usuario.nombre='Visitante'"> <em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></div>
         
       </div>
       <div class="modal-footer">
@@ -131,14 +135,15 @@ parasails.registerComponent('modulo-ev-individual', {
       <div class="modal-body">
       
         
-        <p>Puntos Obtenidos: {{puntosObtenidos}}</p>
-        <p>Con esto Acumulas un total de : {{puntos}}</p>
-        <p v-if="apruebaEvaluacion==1"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
-        <p v-else>Nivel actual {{nivel}}</p>
+        <p >Puntos Obtenidos: {{puntosObtenidos}}</p>
+        <p >Acumulas un total de : {{puntos}}</p>
+        <p v-if="subeDeNivel_Comp"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
+        <p v-else>Nivel actual: {{nivel}}</p>
         <p v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, HAS COMPLETADO TODOS LOS MODULOS, TE HAS GRADUADO!!</p>
         <p v-else>Eres un: {{medalla}}</p>
         <p>Tu progreso es: {{porcentajeAvanceSubmodulos}} %</p>
-
+        <div v-if="usuario.nombre='Visitante'"> <em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em>
+        </div>
 
 
 
@@ -146,7 +151,7 @@ parasails.registerComponent('modulo-ev-individual', {
       </div>
       <div class="modal-footer">
         <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Omitir evaluación</button>-->
-        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="empezarEvaluacion">Aceptar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" >Aceptar</button>
       </div>
     </div>
   </div>
@@ -320,13 +325,16 @@ parasails.registerComponent('modulo-ev-individual', {
      * @param {string | int} indexPreg el indice al que corresponde dentro del arreglo this.preguntasCuestionario
      */
         seleccionarEnunciadoEmpareja(pregunta, indexPreg) {
-            this.enunciadoSeleccionado = indexPreg; //aplica el estilo al enunciado seleccionado
-            // pregunta.color=this.coloresPreguntasEmparejamiento[indexPreg];
+            if (!this.finEvaluacion) { //si aún no termina la evaluación, una vez que termina la evaluacion es necesario que pulse el boton de VOLVER A INTENTAR
+                this.enunciadoSeleccionado = indexPreg; //aplica el estilo al enunciado seleccionado
+                // pregunta.color=this.coloresPreguntasEmparejamiento[indexPreg];
 
-            this.preguntaSeleccionadaJuegoEmparejamiento = pregunta; //mantiene esta pregunta para poder comparar con la respuesta que luego seleccione
+                this.preguntaSeleccionadaJuegoEmparejamiento = pregunta; //mantiene esta pregunta para poder comparar con la respuesta que luego seleccione
 
-            //
-            this.tiempoRespuestaInicio = this.totalTime; //copia el tiempo en el que se encuentra actualmente para despues restar del tiempo final cuando responda correctamente
+                //
+                this.tiempoRespuestaInicio = this.totalTime; //copia el tiempo en el que se encuentra actualmente para despues restar del tiempo final cuando responda correctamente
+
+            }
 
         },
         /**
@@ -353,10 +361,11 @@ parasails.registerComponent('modulo-ev-individual', {
                     this.tiempoRespuestaInicio = null;
                     this.tiempoRespuestaFin = null;
                     this.erroresRespuesta = 0;
-                    if (this.haFinalizadoEvaluacion()) {
+                    if (this.haFinalizadoEvaluacionAntes()) {
                         alert('¡Bien hecho, terminaste antes de tiempo!');
-                        this.calcularPuntuacionEmparejamiento(); //aun si es visitante se muestra el puntaje obtenido
-                        //tambien se invoca a guardar dentro de esta funcion
+                        this.calcularPuntuacionEmparejamiento(); //aun si es visitante se muestra el puntaje obtenido //tambien se invoca a guardar dentro de esta funcion
+
+
                     }
 
                 } else {// se cuentan las veces que se equivoca
@@ -365,7 +374,7 @@ parasails.registerComponent('modulo-ev-individual', {
             }
 
         },
-        haFinalizadoEvaluacion() {
+        haFinalizadoEvaluacionAntes() {
             let finalizar = false;
             if (this.tipoEvaluacion == "Emparejamiento") {
                 if (this.aciertos.length == this.preguntasCuestionarioRespuestas.length) {
@@ -408,12 +417,13 @@ parasails.registerComponent('modulo-ev-individual', {
                     //se emite finaliza-evaluacion en el metodo  calcularPuntuacionEmparejamiento
                 }
 
+                // clearTimeout(this.bucleCuentaRegresiva);
 
 
-
-            } else if (this.haFinalizadoEvaluacion()) {
+            } else if (this.haFinalizadoEvaluacionAntes()) {
                 // se detiene el contador
                 //no es necesario hacer nada, en la linea 308 en el metodo seleccionarRespuestaEmpareja ya se  evalúa si finaliza la evaluacion y a continuacion calcula el puntaje para luego gurdar en la base de datos
+
 
 
             }
@@ -433,11 +443,13 @@ parasails.registerComponent('modulo-ev-individual', {
             //1) valorar los PUNTOS que se sumanán por sus respuestas
             //cada pregunta tiene un minimo de 100
             if (this.totalTime <= 1.0) {
-                this.puntos = 100;
+                this.puntosObtenidos = 100 * this.aciertos.length * 1;
+                this.puntos = Number(this.puntos) + Number(this.puntosObtenidos); //se acumulan los puntos al numero original de puntos
+
             }
             else { //calculo el valor 
-                this.puntosObtenidos = this.totalTime * 100;
-                this.puntos += this.puntosObtenidos; //se acumulan los puntos al numero original de puntos
+                this.puntosObtenidos = 100 * this.aciertos.length * this.totalTime;
+                this.puntos = Number(this.puntos) + Number(this.puntosObtenidos); //se acumulan los puntos al numero original de puntos
                 this.puntos = parseFloat(this.puntos).toFixed(0);
             }
             //2) valorar si terminó el modulo para subir al siguiente NIVEL
@@ -451,18 +463,18 @@ parasails.registerComponent('modulo-ev-individual', {
 
 
             // verificamos si la evaluacion ya está aprobada
-            var submoduloAprobado = false;
+
             this.submodulosAprobadosPorCurso.forEach(idSubmodulo => {
                 console.log('CURSO APROBADO ID: ' + idSubmodulo + "//submodulo: " + this.submodulo.id)
                 if (this.submodulo.id == idSubmodulo) {
-                    submoduloAprobado = true;
+                    this.submoduloAprobado = true;
                 }
             });
 
 
             var numeroSubmoduloAprobadosPorCurso = this.submodulosAprobadosPorCurso.length;
             /*sube de nivel cuando hay una sola evaluacion aprobada y cumple con el parametro para subir de nivel*/
-            if (this.apruebaEvaluacion == 1 && !submoduloAprobado) { //si aprueba la evaluacion y el submodulo no ha sido aprobado se guarda en el array de submodulosAprobados por tanto el numero de modulos aprobados sera uno mas
+            if (this.apruebaEvaluacion == 1 && !this.submoduloAprobado) { //si aprueba la evaluacion y el submodulo no ha sido aprobado se guarda en el array de submodulosAprobados por tanto el numero de modulos aprobados sera uno mas
 
                 console.log('SI EL CURSO APROBADO ID ES IGUA A SUBMODULO, NO DEBE ENTRAR AQUI');
                 this.submodulosAprobadosPorCurso.push(this.submodulo.id); //agrego el id sel submodulo aprobado
@@ -513,8 +525,9 @@ parasails.registerComponent('modulo-ev-individual', {
                     //si el usuario es estudiante se guardan los resultados de la evaluacion
                 }
             }
-
-            //5) mostrar el modal resumen de resultados
+            //5) propagar el puntaje a la raiz
+            this.actualizaProgreso();
+            //6) mostrar el modal resumen de resultados
             this.mostrarModalActividadFinalizada();
 
         },
@@ -571,7 +584,7 @@ parasails.registerComponent('modulo-ev-individual', {
 
             });
             this.puntosObtenidos = 0;
-
+            this.finEvaluacion = false;
             this.randomPreguntasEmparejamiento();
 
         },
@@ -625,13 +638,24 @@ parasails.registerComponent('modulo-ev-individual', {
                 response => {
                     // alert('EVALUACION GUARDADA CON EXITO');
                     this.usuario.ultimoIntento = response.data.intentoEvaluacionCreado;
-
+                    //  deshabilitar los botones
+                    this.finEvaluacion = true;
                 }
             ).catch(
                 err => {
                     alert('SE HA ENCONTRADO UN ERROR AL INTENTAR GUARDAR EL AVANCE');
                     console.log(err);
                 });
+        },
+        actualizaProgreso() {
+            if (this.usuario.nombre !== "Visitante") {
+                this.progreso.puntos = Number(this.puntos);
+                this.progreso.nivel = this.nivel;
+                this.progreso.medalla = this.medalla;
+                this.progreso.totalNiveles = this.numeroSubmodulosCurso;
+                this.$emit('actualiza-progreso', this.progreso)
+            }
+
         }
 
 
@@ -640,6 +664,10 @@ parasails.registerComponent('modulo-ev-individual', {
         totalTimeProgress() {
             let porcentaje = (this.totalTime / this.tiempoMaximoPorPregunta) * 100;
             return porcentaje;
+        },
+        subeDeNivel_Comp() {
+            let retorno = this.apruebaEvaluacion == 1 && !this.submoduloAprobado
+            return retorno
         }
     }
 

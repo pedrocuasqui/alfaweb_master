@@ -40,7 +40,7 @@ module.exports = {
 
     var intentoEvaluacion = { //intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
       puntos: 0,
-      nivel: 1,//modulo 1
+      nivel: 0,//modulo 1
       medalla: 'bebe', //medalla mas basica
       tiempoMaximoPorPregunta: 30, //en segundos por defecto
       evaluacion: null,
@@ -97,14 +97,14 @@ module.exports = {
         });
       });
 
-      //selecciono los elementos antes y despues del elemento que contiene al objeto seleccionado
+      //selecciono los elementos anteriores y posteriores al objeto seleccionado
       for (let i = 0; i <= arreglo.length - 1; i++) {
         if (arreglo[i].objetoId == objetoSeleccionado.id) {
           //si el objeto es el primero 
           if (i == 0) { // el anterior retorna al indice
             navegarAtras = '/indice-estudiante/?cursoId=' + curso.id;
             navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
-          } else if (i == arreglo.length - 1) {
+          } else if (i == arreglo.length - 1) { //el ultimo elemento del arreglo
             navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
             navegarSiguiente = '/';
           }
@@ -170,14 +170,14 @@ module.exports = {
       if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
         //se buscan los documentos que contengan al id de usuario logueado y el submodulo seleccionado
         let intentoEv = null;
-        intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, submodulo: objetoSeleccionado.id }).sort('createdAt DESC');
+        intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, curso: curso.id }).sort('createdAt DESC');
         console.log('INTENTO EVALUACION');
         console.log(intentoEv);
         if (intentoEv.length > 0) {//existe el arreglo de  intentos evaluacion entonces se reemplaza el valor de usuario.ultimoIntento por el intento mas actual
           usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
           //se crea una nueva conexion al servidor para obtener los intentosEvaluacion, 1 por cada submodulo de todo el curso
         } //caso contrario se mantiene el valor por defecto
-        
+
         var datastoreSails = sails.getDatastore().manager;
         //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
         let ObjectId = require('mongodb').ObjectID;

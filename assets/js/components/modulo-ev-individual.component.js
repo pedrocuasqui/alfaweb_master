@@ -325,14 +325,14 @@ parasails.registerComponent('modulo-ev-individual', {
      * @param {string | int} indexPreg el indice al que corresponde dentro del arreglo this.preguntasCuestionario
      */
         seleccionarEnunciadoEmpareja(pregunta, indexPreg) {
-            if (!this.finEvaluacion) { //si aún no termina la evaluación, una vez que termina la evaluacion es necesario que pulse el boton de VOLVER A INTENTAR
+            if (!this.finEvaluacion) { //si aún no termina la evaluación, una vez que termina la evaluacion es necesario que pulse el boton de VOLVER A INTENTAR, en lugar de deshabilitar los botones
                 this.enunciadoSeleccionado = indexPreg; //aplica el estilo al enunciado seleccionado
                 // pregunta.color=this.coloresPreguntasEmparejamiento[indexPreg];
 
                 this.preguntaSeleccionadaJuegoEmparejamiento = pregunta; //mantiene esta pregunta para poder comparar con la respuesta que luego seleccione
 
                 //
-                this.tiempoRespuestaInicio = this.totalTime; //copia el tiempo en el que se encuentra actualmente para despues restar del tiempo final cuando responda correctamente
+                this.tiempoRespuestaInicio = this.totalTime; //copia el tiempo en el que se encuentra actualmente para despues restar del tiempo final cuando responda correctamente y obtener el tiempo que se demoró en responde
 
             }
 
@@ -377,7 +377,7 @@ parasails.registerComponent('modulo-ev-individual', {
         haFinalizadoEvaluacionAntes() {
             let finalizar = false;
             if (this.tipoEvaluacion == "Emparejamiento") {
-                if (this.aciertos.length == this.preguntasCuestionarioRespuestas.length) {
+                if (this.aciertos.length == this.preguntasCuestionarioRespuestas.length) { //responde correctamente todas las preguntas
                     finalizar = true;
                 };
 
@@ -386,6 +386,9 @@ parasails.registerComponent('modulo-ev-individual', {
             return finalizar;
         },
 
+        /**
+         * Crea un orden aleatorio para el arreglo de respuestas 
+         */
         randomPreguntasEmparejamiento() {
             //
 

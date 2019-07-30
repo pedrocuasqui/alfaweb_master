@@ -635,13 +635,13 @@ module.exports.bootstrap = async function (done) {
       descripcion: "Una base de datos es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistemáticamente para su posterior uso",
       multimedia: { imagen: 'https://es.wikipedia.org/wiki/Base_de_datos#/media/Archivo:Componentes_de_un_base_de_datos.jpg' },
       curso: cursoBdd.id,
-      contenidoTiny: '<p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; text-align: start;">Una&nbsp;<strong>base de datos</strong>&nbsp;es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistem&aacute;ticamente para su posterior uso. En este sentido; una biblioteca puede considerarse una base de datos compuesta en su mayor&iacute;a por documentos y textos impresos en papel e indexados para su consulta. Actualmente, y debido al desarrollo tecnol&oacute;gico de campos como la&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Inform&aacute;tica" href="https://es.wikipedia.org/wiki/Inform%C3%A1tica">inform&aacute;tica</a>&nbsp;y la&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Electr&oacute;nica" href="https://es.wikipedia.org/wiki/Electr%C3%B3nica">electr&oacute;nica</a>, la mayor&iacute;a de las bases de datos est&aacute;n en formato digital, siendo este un componente electr&oacute;nico, por tanto se ha desarrollado y se ofrece un amplio rango de soluciones al problema del&nbsp;<a class="mw-redirect" style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Almacenamiento de datos" href="https://es.wikipedia.org/wiki/Almacenamiento_de_datos">almacenamiento de datos</a>.</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; text-align: start;">Hay&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Programa inform&aacute;tico" href="https://es.wikipedia.org/wiki/Programa_inform%C3%A1tico">programas</a>&nbsp;denominados&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Sistema de gesti&oacute;n de bases de datos" href="https://es.wikipedia.org/wiki/Sistema_de_gesti%C3%B3n_de_bases_de_datos">sistemas gestores de bases de datos</a>, abreviado SGBD (del ingl&eacute;s&nbsp;<em>Database Management System</em>&nbsp;o DBMS), que permiten almacenar y posteriormente acceder a los datos de forma r&aacute;pida y estructurada. Las propiedades de estos DBMS, as&iacute; como su utilizaci&oacute;n y administraci&oacute;n, se estudian dentro del &aacute;mbito de la inform&aacute;tica.</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; text-align: start;"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Componentes_de_un_base_de_datos.jpg" alt="" width="141" height="234" /></p>',
+      contenidoTiny: '<p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; text-align: start;">Una&nbsp;<strong>base de datos</strong>&nbsp;es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistem&aacute;ticamente para su posterior uso. En este sentido; una biblioteca puede considerarse una base de datos compuesta en su mayor&iacute;a por documentos y textos impresos en papel e indexados para su consulta. Actualmente, y debido al desarrollo tecnol&oacute;gico de campos como la&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Inform&aacute;tica" href="https://es.wikipedia.org/wiki/Inform%C3%A1tica">inform&aacute;tica</a>&nbsp;y la&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Electr&oacute;nica" href="https://es.wikipedia.org/wiki/Electr%C3%B3nica">electr&oacute;nica</a>, la mayor&iacute;a de las bases de datos est&aacute;n en formato digital, siendo este un componente electr&oacute;nico, por tanto se ha desarrollado y se ofrece un amplio rango de soluciones al problema del&nbsp;<a class="mw-redirect" style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Almacenamiento de datos" href="https://es.wikipedia.org/wiki/Almacenamiento_de_datos">almacenamiento de datos</a>.</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; text-align: start;">Hay&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Programa inform&aacute;tico" href="https://es.wikipedia.org/wiki/Programa_inform%C3%A1tico">programas</a>&nbsp;denominados&nbsp;<a style="color: #0b0080; background-image: none; background-position: initial; background-size: initial; background-repeat: initial; background-attachment: initial; background-origin: initial; background-clip: initial;" title="Sistema de gesti&oacute;n de bases de datos" href="https://es.wikipedia.org/wiki/Sistema_de_gesti%C3%B3n_de_bases_de_datos">sistemas gestores de bases de datos</a>, abreviado SGBD (del ingl&eacute;s&nbsp;<em>Database Management System</em>&nbsp;o DBMS), que permiten almacenar y posteriormente acceder a los datos de forma r&aacute;pida y estructurada. Las propiedades de estos DBMS, as&iacute; como su utilizaci&oacute;n y administraci&oacute;n, se estudian dentro del &aacute;mbito de la inform&aacute;tica.</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; text-align: start;"><img style="display: block; margin-left: auto; margin-right: auto;" src="https://upload.wikimedia.org/wikipedia/commons/b/b2/Componentes_de_un_base_de_datos.jpg" alt="" width="300" height="450" /></p>',
       color: "#7dec3c",
       enlace: ""
     }).fetch();
 
 
-    
+
     var modulo2Bdd = await ModuloLibro.create({
       nombreModulo: "Conceptos",
       descripcion: "En esta sección aprenderás conceptos principales sobre bases de datos que te permitirán comprender de mejor manera el curso",
@@ -665,7 +665,7 @@ module.exports.bootstrap = async function (done) {
       ordenNavegacion: 0,
       evaluacion: {
         "tipo": "Emparejamiento",
-        "tiempoMaximoPorPregunta":20,
+        "tiempoMaximoPorPregunta": 20,
         "preguntas": [{ "enunciado": "2+2 es?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "4" }, { "enunciado": "5+5 ?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "10" }, { "enunciado": "0-5 ?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "-5" }, { "enunciado": "8+4 ?", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "11" }]
       }
     }).fetch();
@@ -678,7 +678,7 @@ module.exports.bootstrap = async function (done) {
       nivel: 1,
       medalla: 'bebe',
       tiempoMaximoPorPregunta: 15, //en segundos
-      apruebaEvaluacion:1,
+      apruebaEvaluacion: 1,
       evaluacion: {
         tipo: "Emparejamiento",
         aciertos: [0, 1, 2], //los indices de las preguntas acertadas, la longitud nos dar'a el numero de aciertos totales
@@ -742,14 +742,14 @@ module.exports.bootstrap = async function (done) {
       },
       estudiante: estudiante.id,
       submodulo: submoduloModulo2Bdd.id,
-      curso:cursoBdd.id
+      curso: cursoBdd.id
     })
 
 
 
 
     /***SEGUNDO SUBMODULO DEL MODULO "CONCEPTOS" */
-    
+
     var submodulo2Modulo2Bdd = await SubmoduloLibro.create({
       nombreSubmodulo: "Modelo entidad relación",
       descripcion: "Un modelo de entidad relación es una herramienta para el modelo de datos, la cual permite representar entidades de una Base de Datos",
@@ -761,8 +761,20 @@ module.exports.bootstrap = async function (done) {
       ordenNavegacion: 0,
       evaluacion: {
         "tipo": "Emparejamiento",
-        "tiempoMaximoPorPregunta":10,
-        "preguntas": [{ "enunciado": "Un modelo de entidad relación es: ", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "una herramienta para el modelo de datos" }, { "enunciado": "Entidad", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "Representa una 'cosa', 'objeto' o 'concepto'" }, { "enunciado": "Atributos", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": " Son las características que definen o identifican a una entidad" }]
+        "tiempoMaximoPorPregunta": 10,
+        "preguntas": [
+          {
+            "enunciado": "Un modelo de entidad relación es: ",
+            "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null },
+            "respuesta": "una herramienta para el modelo de datos"
+          },
+          {
+            "enunciado": "Entidad",
+            "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "Representa una 'cosa', 'objeto' o 'concepto'"
+          }, {
+            "enunciado": "Atributos", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null },
+            "respuesta": " Son las características que definen o identifican a una entidad"
+          }]
       }
     }).fetch();
 
@@ -821,7 +833,7 @@ module.exports.bootstrap = async function (done) {
     //         respuesta: "Son las características que definen o identifican a una entidad"
     //       },
 
-          
+
     //     ]
     //   },
     //   estudiante: estudiante.id,
@@ -829,6 +841,38 @@ module.exports.bootstrap = async function (done) {
     //   curso:cursoBdd.id
     // })
 
+
+
+
+
+    /***TERCER SUBMODULO DEL MODULO "CONCEPTOS" */
+
+    var submodulo3Modulo2Bdd = await SubmoduloLibro.create({
+      nombreSubmodulo: "Tablas",
+      descripcion: "Una tabla es una herramienta de organización de información que se utiliza en bases de datos en la informática.",
+      multimedia: Object,
+      modulo: modulo2Bdd.id,
+      contenidoTiny: '<p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;"><strong>Tabla</strong>&nbsp;en las&nbsp;<a class="mw-redirect" style="text-decoration: none; color: #0b0080; background: none;" title="Bases de datos" href="https://es.wikipedia.org/wiki/Bases_de_datos">bases de datos</a>, se refiere al tipo de&nbsp;<a style="text-decoration: none; color: #0b0080; background: none;" title="Modelo de datos" href="https://es.wikipedia.org/wiki/Modelo_de_datos">modelado de datos</a>&nbsp;donde se guardan los datos recogidos por un programa. Su estructura general se asemeja a la vista general de un programa de&nbsp;<a style="text-decoration: none; color: #0b0080; background: none;" title="Hoja de c&aacute;lculo" href="https://es.wikipedia.org/wiki/Hoja_de_c%C3%A1lculo">hoja de c&aacute;lculo</a>.</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;">Las tablas se componen de dos estructuras:</p><ul style="margin: 0.3em 0px 0px 1.6em; padding: 0px; color: #222222; font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;"><li style="margin-bottom: 0.1em;"><strong><a class="mw-redirect" style="text-decoration: none; color: #0b0080; background: none;" title="Campo (base de datos)" href="https://es.wikipedia.org/wiki/Campo_(base_de_datos)">Campo</a></strong>: Corresponde al nombre de la columna. Debe ser &uacute;nico y adem&aacute;s de tener un tipo de dato asociado.</li><li style="margin-bottom: 0.1em;"><strong><a style="text-decoration: none; color: #0b0080; background: none;" title="Registro (base de datos)" href="https://es.wikipedia.org/wiki/Registro_(base_de_datos)">Registro</a></strong>: Corresponde a cada fila que compone la tabla. All&iacute; se componen los datos y los registros. Eventualmente pueden ser nulos en su almacenamiento.</li></ul><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;">En la definici&oacute;n de cada campo, debe existir un nombre &uacute;nico, con su tipo de dato correspondiente. Esto es &uacute;til a la hora de manejar varios campos en la tabla, ya que cada nombre de campo debe ser distinto entre s&iacute;.</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;">A los campos se les puede asignar, adem&aacute;s, propiedades especiales que afectan a los registros insertados. El campo puede ser definido como&nbsp;<em>&iacute;ndice</em>&nbsp;o&nbsp;<em>autoincrementable</em>, lo cual permite que los datos de ese campo cambien solos o sean el principal indicar a la hora de ordenar los datos contenidos.</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;">Cada tabla creada debe tener un nombre &uacute;nico en la cada base de datos, haci&eacute;ndola accesible mediante su nombre o su seud&oacute;nimo (alias) (dependiendo del tipo de base de datos elegida).</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;">&nbsp;</p><p style="margin: 0.5em 0px; line-height: inherit; color: #222222; font-family: sans-serif; font-size: 14px; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; background-color: #ffffff; text-decoration-style: initial; text-decoration-color: initial;"><img src="../images/uploaded/ded\67917863-af7d-4bd7-a3a0-7b68d27d8803" alt="tabla" width="346" height="145" /></p>',
+      color: "#b642e1",
+      enlace: "",
+      ordenNavegacion: 0,
+      evaluacion: {
+        "tipo": "Cuestionario",
+        "tiempoMaximoPorPregunta": "40",
+        "preguntas": [
+          {
+            "enunciado": "Un campo corresponde al nombre de:",
+            "opciones": { opcion1: null, opcion2: "Una fila", opcion3: "Una tabla", opcion4: "Una columna" },
+            respuesta: "Una columna"
+          },
+          {
+            "enunciado": "Una tabla es...",
+            "opciones": { opcion1: "Una herramienta para eliminar información", opcion2: "Una herramienta para almacenar la información", opcion3: "Una estructura de datos", opcion4: null },
+            respuesta: "Una herramienta para almacenar la información"
+          }
+        ]
+      }
+    }).fetch();
 
 
     sails.log('creacion de estudiante correcta!');

@@ -45,13 +45,15 @@ parasails.registerComponent('modulo-ev-individual', {
             progreso: {},
             submoduloAprobado: false,
             finEvaluacion: false,
+            indicePreguntaCuestionario: 0,
         };
     },
     beforeMount() {
         this.tipoEvaluacion = this.submodulo.evaluacion.tipo;
         this.tiempoMaximoPorPregunta = this.submodulo.evaluacion.tiempoMaximoPorPregunta;
         this.preguntasCuestionario = [...this.submodulo.evaluacion.preguntas];
-
+        console.log('preguntas cuestionario');
+        console.log(this.preguntasCuestionario);
         this.preguntasCuestionario.forEach(pregunta => {
             //agrego todas las preguntas al arrreglo para despues reemplazar cada pregunta por su pregunta , este se guardará en la collection IntentoEvaluacioncon respuestas
             let respuestaIntento = pregunta;
@@ -194,23 +196,22 @@ parasails.registerComponent('modulo-ev-individual', {
     <template v-if="tipoEvaluacion=='Cuestionario'">
         <div class="row">
             <div class="list-group">
-                <div class="list-group-item list-group-item-action active"
-                    v-for="(pregunta, indexPreg) in preguntasCuestionario">
+                <div class="list-group-item list-group-item-action active">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{pregunta.enunciado}}</h5>
-                        
+                        <h5 class="mb-1">{{preguntasCuestionario[indicePreguntaCuestionario].enunciado}}</h5>   
                     </div>
-
-
-                    <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
+                    <div v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionario[indicePreguntaCuestionario])">
                         <input type="radio" :id="opcion.id" :value="opcion.texto">
                             <!--v-model="pregunta.respuesta">-->
                         <label :for="opcion.id">{{opcion.texto}}</label>
                     </div>
 
-                    <small>Puedes editar la pregunta seleccionando la opción correcta.</small>
+                    
                 </div>
             </div>
+
+            <button @click="clickSiguientePregunta"> Continuar</button>
+            <CONTINUAR AQUI
         </div>
     </template>
 
@@ -223,25 +224,7 @@ parasails.registerComponent('modulo-ev-individual', {
     <template v-if="tipoEvaluacion=='Emparejamiento'">
         <div class="container">
             <div class="row">
-            <!--
-                <div class="col-sm-8">
-                    <div class="row" v-for="(pregunta,indexPreg) in preguntasCuestionario">
-
-
-                        <div class="col-sm-4" :id="'Preg'+indexPreg" key="'Preg'+indexPreg">
-                            {{pregunta.enunciado}}
-
-                        </div>
-
-                        <div class="col-sm-4" :id="'Resp'+indexPreg" key="'Resp'+indexPreg">
-                            {{pregunta.respuesta}}
-
-                        </div>
-                        
-
-                    </div>
-                </div>
-                -->
+           
                 <!-- usar el siguiente codigo para el estudiante-->
                 <div class="col-sm-4">
                     
@@ -308,16 +291,21 @@ parasails.registerComponent('modulo-ev-individual', {
 
     </div>`,
     methods: {
-        opcionesRespuesta(preguntaEnEdicion) { //Se construye una respuesta como objeto
+        opcionesRespuesta(preguntaActual) { //Se construye una respuesta como objeto
             let opciones = [];
             let contador = 0;
-            for (let opcion in preguntaEnEdicion.opciones) { //obtiene los nombres de atributos: opcion1, opcion 2 ...
+            for (let opcion in preguntaActual.opciones) { //obtiene los nombres de atributos: opcion1, opcion 2 ...
                 contador += 1;
-                if (preguntaEnEdicion.opciones[opcion]) { //si la opcion tiene un valor dentro
-                    opciones.push({ texto: preguntaEnEdicion.opciones[opcion], id: contador });
+               
+                if (preguntaActual.opciones[opcion] && pregunta.opciones[opcion].trim() != "") { //si la opcion tiene un valor dentro
+                    opciones.push({ texto: preguntaActual.opciones[opcion].trim(), id: contador });
                 }
             }
             return opciones;
+        },
+
+        clickSiguientePregunta() {
+
         },
         /**
      * 

@@ -74,9 +74,11 @@ parasails.registerComponent('modulo-panel-derecho', {
     <div class="container-fluid barra-lateral">
         <div class="row usuario">
                 <div class="col">
+                
                     {{usuario.nombre}}
 
-                    <slot name="audio_general"></slot>
+                    <slot ></slot>
+                    
                     <div v-if="existeAvance" >
                         <a v-if="cursoEstudiante.avance.enlace" :href="'/contenido-alfaweb/?enlace='+cursoEstudiante.avance.enlace" >ultimo tema revisado:{{cursoEstudiante.nombre}}</a>
                         <a v-else :href="'/interfaz-modulos/?objetoId='+cursoEstudiante.avance.objetoId+'&tipoContenido='+cursoEstudiante.avance.tipoContenido">ultimo tema revisado:{{cursoEstudiante.nombre}}</a>
@@ -85,76 +87,76 @@ parasails.registerComponent('modulo-panel-derecho', {
                 
         </div>
         
-        <slot ></slot>
+       
         <div class="row progreso">
-                        <div class="col">
+            <div class="col">
                         
-                            
-                        <div class="nivel">
-                        <div class="progress icono">    
-                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100">
+                <div class="puntaje">
+                        <div class="row">
+                            <div>Puntos:</div>
+                            <!--<div class="progress icono">    
+                                <div class="progress-bar" role="progressbar" :style="{width:puntajeActual+'%'}" :aria-valuenow="puntajeActual" aria-valuemin="0" aria-valuemax="100">
+                                </div>
+                                <div class="contenedor-icono fa-stack">
+                                    <i class="fas fa-certificate fa-stack-2x" > </i>
+                                    <span class="fa-stack-1x">{{puntajeActual}}</span>
+                                </div>
                             </div>
-                            <div class="contenedor-icono">
-                                <i class="fas fa-battery-empty fa-stack-2x"></i>    
-                                <span class="fa-stack-1x">&nbsp{{nivelActual}}/{{totalNiveles}}</span>
+                            <div class="progress ">
+                                <div class="progress-bar" role="progressbar" :style="{width:puntajeActual+'%'}" :aria-valuenow="puntajeActual" aria-valuemin="0" aria-valuemax="100">Puntos</div>
+                            </div>
+                            -->
+                            <div class="progress icono" >
+                                <div class="contenedor-icono ">
+                                    <i class="fas fa-certificate fa-stack-2x" > </i>
+                                    <span class="fa-stack-1x">{{puntajeActual}}</span>
+                                </div>
+
+                                
                             </div>
                         </div>
-                        <div class="progress ">    
-                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100">Nivel</div>
-                        </div>
-                   
-                    
+                </div>  
+                        
+
+
+                <div class="nivel">
+                    <div class="row indicador">
+                            <div>Nivel:</div>
+                            <div class="progress icono" >    
+                               <!-- <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100">
+                                </div> -->
+                                <div class="contenedor-icono">
+                                    <i class="fas fa-battery-empty fa-stack-2x"></i>    
+                                    <span class="fa-stack-1x">&nbsp{{nivelActual}}/{{totalNiveles}}</span>
+                                </div>
+                            </div>
                     </div>
-
-
-                    <div class="puntaje">
-                        <!--<div class="progress icono">    
-                            <div class="progress-bar" role="progressbar" :style="{width:puntajeActual+'%'}" :aria-valuenow="puntajeActual" aria-valuemin="0" aria-valuemax="100">
-                            </div>
-                            <div class="contenedor-icono fa-stack">
-                                <i class="fas fa-certificate fa-stack-2x" > </i>
-                                <span class="fa-stack-1x">{{puntajeActual}}</span>
-                            </div>
-                        </div>
-                        <div class="progress ">
-                            <div class="progress-bar" role="progressbar" :style="{width:puntajeActual+'%'}" :aria-valuenow="puntajeActual" aria-valuemin="0" aria-valuemax="100">Puntos</div>
-                        </div>
-                        -->
-                        <div class="contenedor-icono fa-stack">
-                            <i class="fas fa-certificate fa-stack-2x" > </i>
-                            <span class="fa-stack-1x">{{puntajeActual}}</span>
-                        </div>
+                    <div class="progress "  style="height: 3px;">    
+                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100"></div>
                     </div>
-
-
-
-                   
-                    <div class="medallas">
-                        <div class="progress icono">    
-                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100">
-                            </div>
-                            <div class="contenedor-icono">
-                                <img v-if="porcentajeAvance<=30.0" src="/images/svg/buho_bebe.svg" alt="polhibou_bebe">
-                                <img v-else-if="porcentajeAvance>=30.1 && porcentajeAvance<=50.0" src="/images/svg/buho_original_1.svg" alt="polhibou_estudiante">
-                                <img v-else-if="porcentajeAvance>=50.1 && porcentajeAvance<=90" src="/images/svg/buho_sabio.svg" alt="polhibou_sabio">
-                                <img v-else src="/images/svg/buho_graduado.svg" alt="polhibou_graduado">
-                            </div>
-                        </div>
-                        <div class="progress ">
-                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100">{{medallaActual}}</div>
-                        </div>
-                    </div>
-
-
-
-
-
-                 
-
-
-
-
                 </div>
+
+                <div class="medallas">
+                    <div class="row indicador" >
+                        <div>Progreso:</div>
+                        <div class="progress icono">    
+                            <!--<div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100">
+                            </div> -->
+                            <div class="contenedor-icono">
+                                <img v-if="medallaActual=='bebe'" src="/images/svg/buho_bebe.svg" :alt="medallaActual">
+                                <img v-else-if="medallaActual=='estudiante'" src="/images/svg/buho_original_1.svg" :alt="medallaActual">
+                                <img v-else-if="medallaActual=='estudiante destacado'" src="/images/svg/buho_original_1.svg" :alt="medallaActual">
+                                <img v-else-if="medallaActual=='egresado'" src="/images/svg/buho_sabio.svg" :alt="medallaActual">
+                                <img v-else src="/images/svg/buho_graduado.svg" :alt="medallaActual">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress "  style="height: 3px;">
+                        <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+            </div>
         </div>
         <div class="row enlaces">
             <div class="col">
@@ -220,11 +222,11 @@ parasails.registerComponent('modulo-panel-derecho', {
     computed: {
         porcentajeAvanceNiveles() {
             let porcentaje = 0
-            if (this.nivelActual && this.totalNiveles ) {
-                if(this.totalNiveles !=0){
-                    porcentaje=   (this.nivelActual / this.totalNiveles) * 100;
+            if (this.nivelActual && this.totalNiveles) {
+                if (this.totalNiveles != 0) {
+                    porcentaje = (this.nivelActual / this.totalNiveles) * 100;
                 }
-                
+
             }
             return porcentaje;
         },

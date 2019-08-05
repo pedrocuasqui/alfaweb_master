@@ -336,10 +336,10 @@
                                             </div>
 
 
-                                            <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
+                                            <div v-for="(opcion,index) in opcionesRespuesta(pregunta)" >
                                                 <input type="radio" :id="opcion.id" :value="opcion.texto"
-                                                    v-model="pregunta.respuesta">
-                                                <label :for="opcion.id">{{opcion.texto}}</label>
+                                                    v-model="pregunta.respuesta" class="custom-control-input">
+                                                <label  :for="opcion.id">{{opcion.texto}}</label>
                                             </div>
 
                                             <small>Puedes editar la pregunta seleccionando la opción correcta.</small>

@@ -46,6 +46,7 @@ parasails.registerComponent('modulo-ev-individual', {
             submoduloAprobado: false,
             finEvaluacion: false,
             indicePreguntaCuestionario: 0,
+            siguientePreguntaCuestionario: true
         };
     },
     beforeMount() {
@@ -59,6 +60,7 @@ parasails.registerComponent('modulo-ev-individual', {
             let respuestaIntento = pregunta;
             respuestaIntento.errores = null;
             respuestaIntento.tiempoDeRespuesta = null;
+            respuestaIntento.respuestaEstudiante = null;
             this.preguntasCuestionarioRespuestas.push(respuestaIntento);
         });
 
@@ -91,6 +93,10 @@ parasails.registerComponent('modulo-ev-individual', {
         }
         this.mostrarModalInicial();
 
+        if (this.tipoEvaluacion == "Cuestionario" || this.tipoEvaluacion == "Nombre_Objeto") {
+            this.tiempoRespuestaInicio = this.totalTime;
+        }
+
     },
     template://html
         `  
@@ -111,7 +117,7 @@ parasails.registerComponent('modulo-ev-individual', {
       
         <div id="descripcion" v-html="descripcionActividad">
         </div>
-        <div v-if="usuario.nombre='Visitante'"> <em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></div>
+        <div v-if="usuario.nombre=='Visitante'"> <em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></div>
         
       </div>
       <div class="modal-footer">
@@ -144,7 +150,7 @@ parasails.registerComponent('modulo-ev-individual', {
         <p v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, HAS COMPLETADO TODOS LOS MODULOS, TE HAS GRADUADO!!</p>
         <p v-else>Eres un: {{medalla}}</p>
         <p>Tu progreso es: {{porcentajeAvanceSubmodulos}} %</p>
-        <div v-if="usuario.nombre='Visitante'"> <em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em>
+        <div v-if="usuario.nombre=='Visitante'"> <em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em>
         </div>
 
 
@@ -184,7 +190,7 @@ parasails.registerComponent('modulo-ev-individual', {
 
 
  
-
+<template  v-if="!finEvaluacion">
     <div>
     
     <div class="progress">
@@ -195,13 +201,14 @@ parasails.registerComponent('modulo-ev-individual', {
     <!--CUESTIONARIO-->
     <template v-if="tipoEvaluacion=='Cuestionario'">
         <div class="row">
+            <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
             <div class="list-group">
-                <div class="list-group-item list-group-item-action active">
+                <div  class="list-group-item list-group-item-action active">
                     <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{preguntasCuestionario[indicePreguntaCuestionario].enunciado}}</h5>   
+                        <h5 class="mb-1">{{preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado}}</h5>   
                     </div>
-                    <div v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionario[indicePreguntaCuestionario])">
-                        <input type="radio" :id="opcion.id" :value="opcion.texto">
+                    <div v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
+                        <input type="radio" :id="opcion.id" v-model="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"  :value="opcion.texto" @click="respuestaCuestionarioSeleccionada">
                             <!--v-model="pregunta.respuesta">-->
                         <label :for="opcion.id">{{opcion.texto}}</label>
                     </div>
@@ -210,8 +217,10 @@ parasails.registerComponent('modulo-ev-individual', {
                 </div>
             </div>
 
-            <button @click="clickSiguientePregunta"> Continuar</button>
-            <CONTINUAR AQUI
+            <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
+            <button v-else @click="clickSiguientePregunta"> Siguiente</button>
+            
+            
         </div>
     </template>
 
@@ -224,7 +233,7 @@ parasails.registerComponent('modulo-ev-individual', {
     <template v-if="tipoEvaluacion=='Emparejamiento'">
         <div class="container">
             <div class="row">
-           
+                
                 <!-- usar el siguiente codigo para el estudiante-->
                 <div class="col-sm-4">
                     
@@ -259,35 +268,64 @@ parasails.registerComponent('modulo-ev-individual', {
     <!-- SELECCIONAR OBJETO INDICADO -->
     <template v-if="tipoEvaluacion=='Nombre_Objeto'">
         <div class="row">
-         
+            <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
             <div class="list-group">
-                <div class="list-group-item list-group-item-action active"
-                    v-for="(pregunta, indexPreg) in preguntasCuestionario">
+                <div class="list-group-item list-group-item-action active">
                     <div class="d-flex w-100 justify-content-between">
 
                         <div class="imagen-portada-modulo">
                             <!--El enunciado puede ser cualquier objeto --->
-                            <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
+                            <img :src="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado" alt="Imágen de evaluacion">
                         </div>
                        
                     </div>
 
-
-                    <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
-                        <input type="radio" :id="opcion.id" :value="opcion.texto">
-                            <!--v-model="pregunta.respuesta">-->
-                        <label :for="opcion.id">{{opcion.texto}}</label>
+                    <div v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
+                        <input type="radio" :id="opcion.id" v-model="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"  :value="opcion.texto" @click="respuestaCuestionarioSeleccionada">
+                        <!--v-model="pregunta.respuesta">-->
+                    <label :for="opcion.id">{{opcion.texto}}</label>
                     </div>
 
-                    <small>Puedes editar la pregunta seleccionando la opción
-                        correcta.</small>
                 </div>
             </div>
-
+            <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
+            <button v-else @click="clickSiguientePregunta"> Siguiente</button>
+            
         </div>
     </template>
+</template>
 
+    <template v-else>
+        <h3>RESULTADOS:</h3>
+        <div>
+            <template v-if="tipoEvaluacion=='Cuestionario'">
+                
+                <div class="row" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
+                    <div class="col-sm-3"> {{pregunta.enunciado}}</div> 
+                    <div class="col-sm-3"> 
+                        <p :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">Tu respuesta: {{pregunta.respuestaEstudiante}}</p>    
+                        <p>Respuesta correcta:{{pregunta.respuesta}}</p>
+                    </div>   
+                </div>
+            </template>
 
+            <template v-else-if="tipoEvaluacion=='Emparejamiento'">
+            RESULTADOS EMPAREJAMIENTO
+            </template>
+            <template v-else>
+                <div class="row" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
+                    <div class="imagen-portada-modulo">
+                        <!--El enunciado puede ser cualquier objeto --->
+                        <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
+                    </div>
+                    <div class="col-sm-3"> 
+                        <p :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">Tu respuesta: {{pregunta.respuestaEstudiante}}</p>    
+                        <p>Respuesta correcta:{{pregunta.respuesta}}</p>
+                    </div>   
+                </div>
+            </template>
+        </div>    
+    </template>
 
     </div>`,
     methods: {
@@ -296,16 +334,63 @@ parasails.registerComponent('modulo-ev-individual', {
             let contador = 0;
             for (let opcion in preguntaActual.opciones) { //obtiene los nombres de atributos: opcion1, opcion 2 ...
                 contador += 1;
-               
-                if (preguntaActual.opciones[opcion] && pregunta.opciones[opcion].trim() != "") { //si la opcion tiene un valor dentro
+
+                if (preguntaActual.opciones[opcion] && preguntaActual.opciones[opcion].trim() != "") { //si la opcion tiene un valor dentro
                     opciones.push({ texto: preguntaActual.opciones[opcion].trim(), id: contador });
                 }
             }
             return opciones;
         },
-
+        clickAnteriorPregunta() {
+            if (this.indicePreguntaCuestionario > 0) {
+                this.indicePreguntaCuestionario -= 1;
+            }
+        },
         clickSiguientePregunta() {
 
+
+            // if (this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante == this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuesta) {
+            //     this.aciertos.push(this.indicePreguntaCuestionario);
+            // }
+            this.tiempoRespuestaFin = this.totalTime;
+            this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].tiempoDeRespuesta = this.tiempoRespuestaInicio - this.tiempoRespuestaFin;
+
+
+
+            if (this.indicePreguntaCuestionario < this.preguntasCuestionario.length - 1) {
+                this.indicePreguntaCuestionario += 1;
+            }
+            //reinicia el tiempo de inicio para calcular el tiempo de respuesta de la siguiente pregunta
+            this.tiempoRespuestaInicio = this.totalTime;
+
+        },
+        respuestaCuestionarioSeleccionada() {
+            if (this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante != this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuesta) {
+                this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].errores += 1;
+                for (let i = 0; i <= this.aciertos.length - 1; i++) {
+                    if (this.aciertos[i] == this.indicePreguntaCuestionario) {
+                        this.aciertos.splice(i, 1);
+                    }
+                }
+
+
+            } else {
+
+                this.aciertos.push(this.indicePreguntaCuestionario);
+            }
+        },
+        finalizarCuestionario() {
+            // verifico la respuesta de la ultima pregunta
+            // if (this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante == this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuesta) {
+            //     this.aciertos.push(this.indicePreguntaCuestionario);
+            // }
+            this.tiempoRespuestaFin = this.totalTime;
+            this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].tiempoDeRespuesta = this.tiempoRespuestaInicio - this.tiempoRespuestaFin;
+
+
+            this.calcularPuntuacion();
+            clearTimeout(this.bucleCuentaRegresiva);
+            this.finEvaluacion = true;
         },
         /**
      * 
@@ -351,7 +436,7 @@ parasails.registerComponent('modulo-ev-individual', {
                     this.erroresRespuesta = 0;
                     if (this.haFinalizadoEvaluacionAntes()) {
                         alert('¡Bien hecho, terminaste antes de tiempo!');
-                        this.calcularPuntuacionEmparejamiento(); //aun si es visitante se muestra el puntaje obtenido //tambien se invoca a guardar dentro de esta funcion
+                        this.calcularPuntuacion(); //aun si es visitante se muestra el puntaje obtenido //tambien se invoca a guardar dentro de esta funcion
 
 
                     }
@@ -401,21 +486,21 @@ parasails.registerComponent('modulo-ev-individual', {
             if (this.totalTime == 0.0) {
 
                 alert('Se agotó el tiempo');
-
-                if (this.tipoEvaluacion == "Emparejamiento") {
-                    this.calcularPuntuacionEmparejamiento(); //aun si es visitante se muestra el puntaje obtenido
+                if (this.tipoEvaluacion == "Cuestionario" || this.tipoEvaluacion == "Nombre_Objeto") {
+                    //desde finalizarCuestionario() se llama a calcularPuntuacion
+                    this.finalizarCuestionario();
+                } else {
+                    // cuando la evaluacion es EMPAREJAMIENTO no existe funcion finalizarCuestionario
+                    this.calcularPuntuacion(); //aun si es visitante se muestra el puntaje obtenido
                     //tambien se invoca a guardar dentro de esta funcion
-                    //se emite finaliza-evaluacion en el metodo  calcularPuntuacionEmparejamiento
+                    //se emite finaliza-evaluacion en el metodo  calcularPuntuacion
                 }
 
-                // clearTimeout(this.bucleCuentaRegresiva);
 
 
             } else if (this.haFinalizadoEvaluacionAntes()) {
                 // se detiene el contador
                 //no es necesario hacer nada, en la linea 308 en el metodo seleccionarRespuestaEmpareja ya se  evalúa si finaliza la evaluacion y a continuacion calcula el puntaje para luego gurdar en la base de datos
-
-
 
             }
             else {
@@ -424,7 +509,7 @@ parasails.registerComponent('modulo-ev-individual', {
                 this.bucleCuentaRegresiva = setTimeout(this.actualizaCuentaRegresiva, 100);
             }
         },
-        calcularPuntuacionEmparejamiento() {
+        calcularPuntuacion() {
 
 
             let valorRepetir = true;// se muestra el botón para repetir la evaluacion
@@ -444,7 +529,7 @@ parasails.registerComponent('modulo-ev-individual', {
                 this.puntos = parseFloat(this.puntos).toFixed(0);
             }
             //2) valorar si terminó el modulo para subir al siguiente NIVEL
-            //contar el porcentaje de evaluaciones realizadas de todo el curso
+            //Si tiene mas del 50% de aciertos aprueba la evaluacion
             if (this.aciertos.length > this.preguntasCuestionarioRespuestas.length / 2) {
                 this.apruebaEvaluacion = 1;
             } else {
@@ -453,7 +538,7 @@ parasails.registerComponent('modulo-ev-individual', {
 
 
 
-            // verificamos si la evaluacion ya está aprobada
+            // verificamos si la evaluacion ya ha sido aprobada con anterioridad, se almacena el valor 1 en la variable submoduloAprobado en caso de ser positivo
 
             this.submodulosAprobadosPorCurso.forEach(idSubmodulo => {
                 console.log('CURSO APROBADO ID: ' + idSubmodulo + "//submodulo: " + this.submodulo.id)
@@ -465,7 +550,7 @@ parasails.registerComponent('modulo-ev-individual', {
 
             var numeroSubmoduloAprobadosPorCurso = this.submodulosAprobadosPorCurso.length;
             /*sube de nivel cuando hay una sola evaluacion aprobada y cumple con el parametro para subir de nivel*/
-            if (this.apruebaEvaluacion == 1 && !this.submoduloAprobado) { //si aprueba la evaluacion y el submodulo no ha sido aprobado se guarda en el array de submodulosAprobados por tanto el numero de modulos aprobados sera uno mas
+            if (this.apruebaEvaluacion == 1 && !this.submoduloAprobado) { //si aprueba la evaluacion y el submodulo no ha sido aprobado quiere decir que es la primera vez que se aprueba esta evaluacion,se guarda en el array de submodulosAprobados por tanto el numero de modulos aprobados sera uno mas
 
                 console.log('SI EL CURSO APROBADO ID ES IGUA A SUBMODULO, NO DEBE ENTRAR AQUI');
                 this.submodulosAprobadosPorCurso.push(this.submodulo.id); //agrego el id sel submodulo aprobado
@@ -484,7 +569,7 @@ parasails.registerComponent('modulo-ev-individual', {
 
 
             //3) valorar si ya pasó el porcentaje de niveles necesario para darle medallas
-            // PENDIENTE
+
             //calculo el porcentaje de avance incluyendo la evaluacion actual
 
             this.porcentajeAvanceSubmodulos = (numeroSubmoduloAprobadosPorCurso / this.numeroSubmodulosCurso) * 100;
@@ -516,7 +601,7 @@ parasails.registerComponent('modulo-ev-individual', {
                     //si el usuario es estudiante se guardan los resultados de la evaluacion
                 }
             }
-            //5) propagar el puntaje a la raiz
+            //5) propagar el puntaje al componente raiz
             this.actualizaProgreso();
             //6) mostrar el modal resumen de resultados
             this.mostrarModalActividadFinalizada();
@@ -568,6 +653,7 @@ parasails.registerComponent('modulo-ev-individual', {
                 let respuestaIntento = pregunta;
                 respuestaIntento.errores = null;
                 respuestaIntento.tiempoDeRespuesta = null;
+                respuestaIntento.respuestaEstudiante = null;
                 this.preguntasCuestionarioRespuestas.push(respuestaIntento);
 
                 $("[id^='Resp']").css({ "background-color": "white" });
@@ -578,6 +664,9 @@ parasails.registerComponent('modulo-ev-individual', {
             this.finEvaluacion = false;
             this.randomPreguntasEmparejamiento();
 
+            /*VARIABLE DE CUESTIONARIO*/
+            this.indicePreguntaCuestionario = 0;
+            this.siguientePreguntaCuestionario = true;
         },
         intentarNuevamente() {
             // CODIGO PARA INTENTAR NUEVAMENTE
@@ -644,7 +733,9 @@ parasails.registerComponent('modulo-ev-individual', {
                 this.progreso.nivel = this.nivel;
                 this.progreso.medalla = this.medalla;
                 this.progreso.totalNiveles = this.numeroSubmodulosCurso;
+                this.progreso.porcentajeAvance = this.porcentajeAvanceSubmodulos;
                 this.$emit('actualiza-progreso', this.progreso)
+
             }
 
         }
@@ -659,6 +750,17 @@ parasails.registerComponent('modulo-ev-individual', {
         subeDeNivel_Comp() {
             let retorno = this.apruebaEvaluacion == 1 && !this.submoduloAprobado
             return retorno
+        },
+        noEsPrimeraPregunta() {
+            let noEs = true;
+            noEs = this.indicePreguntaCuestionario > 0
+
+            return noEs;
+        },
+        esUltimaPregunta() {
+            let es = false;
+            es = this.indicePreguntaCuestionario == this.preguntasCuestionario.length - 1;
+            return es;
         }
     }
 

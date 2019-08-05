@@ -511,7 +511,8 @@ div.contenedor-slot-principal {
 
 
 }
-.row.indicador{
+
+.row.indicador {
     padding-bottom: 5px;
 }
 
@@ -522,7 +523,7 @@ div.contenedor-icono {
         position   : absolute; //funciona para darle libertad de ubicacion al icono
         margin-left: 10px;
         margin-top : -2px;
-        
+
     }
 
     span {
@@ -742,3 +743,34 @@ img.mensaje-bienvenida {
     position: absolute;
     z-index : -10;
 }
+
+.respuesta_correcta {
+    background-color: green;
+}
+
+.respuesta_erronea {
+    background-color: red;
+}
+
+.inputfile,
+.input-submit {
+    //no se oculta realmente, solo se hace muy pequeño con opacidad 0 para que no se lo vea
+    /* width   : 0.1px;
+    height     : 0.1px;
+    opacity    : 0;
+    overflow   : hidden;
+    position   : absolute;
+    z-index    : -1;*/
+}
+
+
+.contenedor-formulario {
+    height    : 100%;
+    width     : 100%;
+    overflow-y: auto;
+  }
+  .contenedor-slot-principal{
+    height    : 100%;
+    width     : 100%;
+    overflow-y: auto; 
+  }

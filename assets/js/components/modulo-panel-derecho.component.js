@@ -68,6 +68,8 @@ parasails.registerComponent('modulo-panel-derecho', {
     mounted() {
         console.log('ENTRA A PANEL DERECHO');
         console.log(this.cursoEstudiante);
+        console.log(this.usuario);
+        
     },
     template: //html 
         `  

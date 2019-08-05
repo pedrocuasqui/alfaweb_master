@@ -441,7 +441,7 @@ parasails.registerPage('administrar-contenido', {
       let contador = 0;
       for (let opcion in preguntaEnEdicion.opciones) { //obtiene los nombres de atributos: opcion1, opcion 2 ...
         contador += 1;
-        if (preguntaEnEdicion.opciones[opcion] && pregunta.opciones[opcion].trim()!="") { //si la opcion tiene un valor dentro
+        if (preguntaEnEdicion.opciones[opcion] && preguntaEnEdicion.opciones[opcion].trim()!="") { //si la opcion tiene un valor dentro
           opciones.push({ texto: preguntaEnEdicion.opciones[opcion].trim(), id: contador });
         }
       }

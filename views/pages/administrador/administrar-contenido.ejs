@@ -73,6 +73,11 @@
 
                         </select>
                     </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="pista"> Pista</label>
+                        <input class="inputFull" name="pista" type="text" v-model="preguntaEnEdicion.pista"
+                            placeholder="Pista">
+                    </div>
 
                 </div>
                 <div class="modal-footer">
@@ -115,6 +120,11 @@
                         <label for="respuestaEmpareja">Respuesta pregunta</label>
                         <input class="inputFull" name="respuestaEmpareja" type="text"
                             v-model="preguntaEnEdicion.respuesta" placeholder="Escriba aquí su respuesta">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="pista"> Pista</label>
+                        <input class="inputFull" name="pista" type="text" v-model="preguntaEnEdicion.pista"
+                            placeholder="Pista">
                     </div>
 
 
@@ -208,7 +218,11 @@
 
                         </select>
                     </div>
-
+                    <div class="row d-flex justify-content-center">
+                        <label for="pista"> Pista</label>
+                        <input class="inputFull" name="pista" type="text" v-model="preguntaEnEdicion.pista"
+                            placeholder="Pista">
+                    </div>
 
                 </div>
                 <div class="modal-footer">
@@ -336,10 +350,10 @@
                                             </div>
 
 
-                                            <div v-for="(opcion,index) in opcionesRespuesta(pregunta)" >
+                                            <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
                                                 <input type="radio" :id="opcion.id" :value="opcion.texto"
                                                     v-model="pregunta.respuesta" class="custom-control-input">
-                                                <label  :for="opcion.id">{{opcion.texto}}</label>
+                                                <label :for="opcion.id">{{opcion.texto}}</label>
                                             </div>
 
                                             <small>Puedes editar la pregunta seleccionando la opción correcta.</small>
@@ -564,7 +578,7 @@
 
                                     </div>
                                     <button type="button" id="enviarModulo" @click.stop="validarFormulario"> Guardar
-                                        Módulo
+                                        Cambios
                                     </button>
 
                                 </div>

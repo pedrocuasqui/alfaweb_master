@@ -573,3 +573,7 @@ http://www.domain.com/index.html*?name1=value1&name2=value2
 SESSIONS
 por que la sesion expira
 https://stackoverflow.com/questions/36525830/executing-code-when-a-session-ends-in-sails-js
+
+
+05-08-2019
+VUEX: no parece haber literaura sobre vuex con parasails o sails js, no se usa vue en este proyecto, revisar tutorial https://www.youtube.com/watch?v=-qmLWz6pWnM&list=PLPl81lqbj-4J-gfAERGDCdOQtVgRhSvIT&index=13

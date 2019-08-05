@@ -606,6 +606,9 @@ parasails.registerComponent('modulo-ev-individual', {
             //6) mostrar el modal resumen de resultados
             this.mostrarModalActividadFinalizada();
 
+            //7)  finalizar evaluacion
+            this.finEvaluacion = true;
+
         },
 
         empezarEvaluacion() {
@@ -718,8 +721,7 @@ parasails.registerComponent('modulo-ev-individual', {
                 response => {
                     // alert('EVALUACION GUARDADA CON EXITO');
                     this.usuario.ultimoIntento = response.data.intentoEvaluacionCreado;
-                    //  deshabilitar los botones
-                    this.finEvaluacion = true;
+                    
                 }
             ).catch(
                 err => {
@@ -738,8 +740,24 @@ parasails.registerComponent('modulo-ev-individual', {
 
             }
 
-        }
+        },
+        /**
+         * MMetodo que recibe la accion desde el modulo-contenedor-curso
+         */
+        mostrarPista() {
+            if (!this.finEvaluacion) {
+                if (this.tipoEvaluacion == "Emparejamiento") {
+                    if (this.preguntaSeleccionadaJuegoEmparejamiento) { //ha sido seleccionada la pregunta
+                        alert('Pista: ' + this.preguntaSeleccionadaJuegoEmparejamiento.pista);
+                    } else {
+                        alert('Seleccione un enunciado primero');
+                    }
 
+                } else {
+                    alert('Pista: ' + this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].pista);
+                }
+            }
+        }
 
     },
     computed: {

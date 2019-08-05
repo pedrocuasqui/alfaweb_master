@@ -53,6 +53,7 @@ parasails.registerPage('administrar-contenido', {
         opcion4: null,
       },
       respuesta: null,
+      pista:null
     },
     preguntasCuestionario: [],
     evaluacion: {
@@ -113,6 +114,7 @@ parasails.registerPage('administrar-contenido', {
           opcion4: null,
         },
         respuesta: null,
+        pista:null
       }
     });
   },
@@ -208,7 +210,7 @@ parasails.registerPage('administrar-contenido', {
       formData.append('contenidoTiny', window.contenidoTiny);
       formData.append('submoduloId', this.objetoSeleccionado.id);
       formData.append('color', this.objetoSeleccionado.color);
-      // formData.append('rutaPortada',);
+      formData.append('evaluacion', this.objetoSeleccionado.evaluacion);
       // no se envia el id del curso 
       axios({
         method: 'post',
@@ -373,6 +375,7 @@ parasails.registerPage('administrar-contenido', {
             opcion4: null,
           },
           respuesta: null,
+          pista:null
         }
       };
 
@@ -496,7 +499,8 @@ parasails.registerPage('administrar-contenido', {
 
       this.evaluacion.tipo = this.tipoEvaluacion; //el tipo de evaluacion en la base será el tipo de evaluacion seleccionado
       this.evaluacion.tiempoMaximoPorPregunta = this.tiempoMaximoPorPregunta;
-      this.evaluacion.preguntas = this.preguntasCuestionario;
+      this.evaluacion.preguntas = this.preguntasCuestionario; //incluyen la pista
+      
 
 
 
@@ -548,6 +552,7 @@ parasails.registerPage('administrar-contenido', {
             opcion4: null,
           },
           respuesta: null,
+          pista:null
         }
 
       };
@@ -577,6 +582,7 @@ parasails.registerPage('administrar-contenido', {
             opcion4: null,
           },
           respuesta: null,
+          pista:null
         }
         //quito colores si es que ya hay colores
         for (let i = 0; i <= this.preguntasCuestionario.length - 1; i++) {

@@ -677,7 +677,8 @@ module.exports.bootstrap = async function (done) {
                 "opcion3": "Gestor MongoDB",
                 "opcion4": null
               },
-              "respuesta": "Gestor MySQL"
+              "respuesta": "Gestor MySQL",
+              "pista": "Gestor MySql"
             },
 
             {
@@ -689,7 +690,8 @@ module.exports.bootstrap = async function (done) {
                 "opcion3": "Gestor de datos MariaDb",
                 "opcion4": null
               },
-              "respuesta": "Gestor de datos SQL server"
+              "respuesta": "Gestor de datos SQL server",
+              "pista": "Gestor Sql Server"
             }]
 
       }
@@ -792,14 +794,18 @@ module.exports.bootstrap = async function (done) {
           {
             "enunciado": "Un modelo de entidad relación es: ",
             "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null },
-            "respuesta": "una herramienta para el modelo de datos"
+            "respuesta": "una herramienta para el modelo de datos",
+            "pista": "Modelado de datos"
           },
           {
             "enunciado": "Entidad",
-            "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "Representa una 'cosa', 'objeto' o 'concepto'"
+            "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null }, "respuesta": "Representa una 'cosa', 'objeto' o 'concepto'",
+            "pista": "Representa una cosa, objeto o concepto"
           }, {
-            "enunciado": "Atributos", "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null },
-            "respuesta": " Son las características que definen o identifican a una entidad"
+            "enunciado": "Atributos",
+            "opciones": { "opcion1": null, "opcion2": null, "opcion3": null, "opcion4": null },
+            "respuesta": " Son las características que definen o identifican a una entidad",
+            "pista": "Características que definen ..."
           }]
       }
     }).fetch();
@@ -889,12 +895,14 @@ module.exports.bootstrap = async function (done) {
           {
             "enunciado": "Un campo corresponde al nombre de:",
             "opciones": { opcion1: null, opcion2: "Una fila", opcion3: "Una tabla", opcion4: "Una columna" },
-            respuesta: "Una columna"
+            "respuesta": "Una columna",
+            "pista":"Columna"
           },
           {
             "enunciado": "Una tabla es...",
             "opciones": { opcion1: "Una herramienta para eliminar información", opcion2: "Una herramienta para almacenar la información", opcion3: "Una estructura de datos", opcion4: null },
-            respuesta: "Una herramienta para almacenar la información"
+            "respuesta": "Una herramienta para almacenar la información",
+            "pista":"Herramientas para almacenar ..."
           }
         ]
       }

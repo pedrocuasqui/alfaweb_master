@@ -3,7 +3,7 @@
   <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :curso="curso"
     :objeto-seleccionado="objetoSeleccionado" :breadcrumb="breadcrumb" :usuario="usuario"
     @evaluacion-individual="evaluacionIndividual" ref="curso" :mostrar-icono-repetir="mostrarIconoRepetir"
-    @intentar-nuevamente="intentarNuevamente" :progreso="progreso">
+    @intentar-nuevamente="intentarNuevamente" :progreso="progreso" @click-asistente-buho="clickMostrarPista">
     <!--mostrarIconoRepetir es una varible de tipo Boolean-->
 
     <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->

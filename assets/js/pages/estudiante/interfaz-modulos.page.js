@@ -77,6 +77,12 @@ parasails.registerPage('interfaz-modulos', {
       this.progreso = progresoActual;
       console.log('PROGRESO ACTUAL');
       console.log(progresoActual);
+    },
+    clickMostrarPista() {
+      if (this.evIndividual) {
+        this.$refs.componenteEvaluacion.mostrarPista();
+      }
+
     }
   }
 });

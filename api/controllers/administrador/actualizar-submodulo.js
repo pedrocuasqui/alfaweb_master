@@ -30,6 +30,9 @@ module.exports = {
     color:{
       type:'string',
       required:false,
+    },
+    evaluacion:{
+      type:'json'
     }
   },
 
@@ -52,9 +55,9 @@ console.log('ENTRA A SUBMODULO');
         .set({
           nombreSubmodulo: inputs.nombreSubmodulo,
           descripcion: inputs.descripcionSubmodulo,
-          // multimedia:{imagen:inputs.rutaPortada},
           contenidoTiny: inputs.contenidoTiny,
           color:inputs.color,
+          evaluacion: inputs.evaluacion
 
         });
     } catch (e) {

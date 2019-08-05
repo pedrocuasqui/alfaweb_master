@@ -151,7 +151,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                     <div class="row pie-contenido" >
                         <div class="col-sm-1" id="avatar">
-                            <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+                            <img  @click="clickAsistenteBuho" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
                             <a v-if="silenciar" @click="clickReproducir" title="Reproducir" class="audioTag"><i class="fas fa-volume-mute"></i></a>
                             <a v-else @click="clickSilenciar" title="Silenciar" class="audioTag"><i class="fas fa-volume-up"></i></a>
                         </div>
@@ -198,12 +198,17 @@ parasails.registerComponent('modulo-contenedor-curso', {
         
         
     </div>
+
 </div>
+
 
     `,
 
 
     methods: {
+        clickAsistenteBuho() {
+            this.$emit('click-asistente-buho');
+        },
         intentarNuevamente() {
             this.$emit('intentar-nuevamente');
         },

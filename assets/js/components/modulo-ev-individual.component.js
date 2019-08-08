@@ -17,7 +17,7 @@ parasails.registerComponent('modulo-ev-individual', {
             arregloRandom: [],
             //variables para usar en Emparejamiento del lado del Estudiante
             enunciadoSeleccionado: null,
-            respuestaSeleccionada: null,
+            // respuestasSeleccionadas: [],
             preguntaSeleccionadaJuegoEmparejamiento: null,
             coloresPreguntasEmparejamiento: ['#F31885', '#F39318', '#B4F318', '#18F38F', '#18A7F3', '#9318F3', '#F318D8', '#823815', '#268215', '#158280', '#D52FE3', '#F31850', '#D218F3', '#1833F3', '#18E9F3', '#33F318', '#F3DF18'],
 
@@ -46,7 +46,10 @@ parasails.registerComponent('modulo-ev-individual', {
             submoduloAprobado: false,
             finEvaluacion: false,
             indicePreguntaCuestionario: 0,
-            siguientePreguntaCuestionario: true
+            siguientePreguntaCuestionario: true,
+
+
+            respuestaAnterior: [],
         };
     },
     beforeMount() {
@@ -76,7 +79,10 @@ parasails.registerComponent('modulo-ev-individual', {
         // });
 
 
-        this.randomPreguntasEmparejamiento();
+        if (this.tipoEvaluacion == "Emparejamiento") {
+            this.randomPreguntasEmparejamiento();
+        }
+
 
     },
 
@@ -365,8 +371,11 @@ parasails.registerComponent('modulo-ev-individual', {
 
         },
         respuestaCuestionarioSeleccionada() {
+            // Si la respuesta es equivocada:
             if (this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante != this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuesta) {
+                // se aumenta en uno el numero de errores,
                 this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].errores += 1;
+                // si ya se habia seleccionado la respuesta correcta, se elimina del arreglo
                 for (let i = 0; i <= this.aciertos.length - 1; i++) {
                     if (this.aciertos[i] == this.indicePreguntaCuestionario) {
                         this.aciertos.splice(i, 1);
@@ -399,6 +408,7 @@ parasails.registerComponent('modulo-ev-individual', {
      */
         seleccionarEnunciadoEmpareja(pregunta, indexPreg) {
             if (!this.finEvaluacion) { //si aún no termina la evaluación, una vez que termina la evaluacion es necesario que pulse el boton de VOLVER A INTENTAR, en lugar de deshabilitar los botones
+
                 this.enunciadoSeleccionado = indexPreg; //aplica el estilo al enunciado seleccionado
                 // pregunta.color=this.coloresPreguntasEmparejamiento[indexPreg];
 
@@ -406,7 +416,12 @@ parasails.registerComponent('modulo-ev-individual', {
 
                 //
                 this.tiempoRespuestaInicio = this.totalTime; //copia el tiempo en el que se encuentra actualmente para despues restar del tiempo final cuando responda correctamente y obtener el tiempo que se demoró en responde
+                $("#Preg" + this.enunciadoSeleccionado).css({ "background-color": this.coloresPreguntasEmparejamiento[indexPreg], "border-radius": '10px' });
 
+                //   reseteo valores para la siguiente pregunta
+                this.erroresRespuesta = 0; // se encera porque en adelante no se permite modificar la respuesta, mientras no se presione el enunciado el usuario puede cambiar de respuesta las veces que desee
+
+                this.respuestaAnterior = [];
             }
 
         },
@@ -416,45 +431,90 @@ parasails.registerComponent('modulo-ev-individual', {
          * @param {string | int} indexResp indice de la respuesta dentro del arreglo this.arregloRandom
          */
         seleccionarRespuestaEmpareja(pregunta, indexResp) {
+            if (this.respuestaAnterior.length) {
+                $("#Resp" + this.respuestaAnterior[0]).css({ "background-color": "white" });
+                this.respuestaAnterior.pop();
+            }
+            this.respuestaAnterior.push(indexResp);
             if (this.preguntaSeleccionadaJuegoEmparejamiento) {
-                if (pregunta.respuesta == this.preguntaSeleccionadaJuegoEmparejamiento.respuesta) { //la respuesta es correcta
-                    this.respuestaSeleccionada = indexResp;// esto aplica el estilo a la respuesta seleccionada correctamente
-                    $("#Resp" + indexResp).css({ "background-color": this.coloresPreguntasEmparejamiento[indexResp], "border-radius": '10px' });
-                    $("#Preg" + this.enunciadoSeleccionado).css({ "background-color": this.coloresPreguntasEmparejamiento[indexResp], "border-radius": '10px' });
 
+                // recorrer el arreglo de preguntasCuestionarioRespuestas 
+                for (let p = 0; p <= this.preguntasCuestionarioRespuestas.length - 1; p++) {
+                    // si la pregunta de indice p tiene respuestaEstudiante,pasa a la siguietne evalucaion if
+                    if (this.preguntasCuestionarioRespuestas[p].respuestaEstudiante) {
+                        // si la pregunta de indice p tiene una respuestaEstudiante igual a la respuesta seleccionada por el estudiante
+                        if (this.preguntasCuestionarioRespuestas[p].respuestaEstudiante == pregunta.respuesta) {
+                            // Se quita el estilo de color al enunciado 
+                            $("#Preg" + p).css({ "background-color": "white" });
 
-                    this.tiempoRespuestaFin = this.totalTime;
-                    let respuestaIntento = pregunta;
-                    respuestaIntento.errores = this.erroresRespuesta;
-                    respuestaIntento.tiempoDeRespuesta = this.tiempoRespuestaInicio - this.tiempoRespuestaFin;
-                    this.preguntasCuestionarioRespuestas.splice(indexResp, 1, respuestaIntento);
-                    this.aciertos.push(indexResp);
-
-                    // reseteo valores para la siguiente pregunta
-                    this.tiempoRespuestaInicio = null;
-                    this.tiempoRespuestaFin = null;
-                    this.erroresRespuesta = 0;
-                    if (this.haFinalizadoEvaluacionAntes()) {
-                        alert('¡Bien hecho, terminaste antes de tiempo!');
-                        this.calcularPuntuacion(); //aun si es visitante se muestra el puntaje obtenido //tambien se invoca a guardar dentro de esta funcion
-
-
+                            //Se establece en null la respuestaEstudiante de la pregunta de indice p
+                            this.preguntasCuestionarioRespuestas[p].respuestaEstudiante = null;
+                        }
                     }
 
-                } else {// se cuentan las veces que se equivoca
-                    this.erroresRespuesta += 1;
                 }
+
+                // this.respuestasSeleccionadas.push();
+                //Se  pinta la respuesta  del color de la pregunta seleccionada
+                $("#Resp" + indexResp).css({ "background-color": this.coloresPreguntasEmparejamiento[this.enunciadoSeleccionado], "border-radius": '10px' });
+
+                this.tiempoRespuestaFin = this.totalTime;
+                // SE usa el arreglo preguntasCuestionarioREspuestas que mantiene el orden de las preguntas originales, para almacenar las respuestas de emparejamiento
+                this.preguntasCuestionarioRespuestas[this.enunciadoSeleccionado].tiempoDeRespuesta = this.tiempoRespuestaInicio - this.tiempoRespuestaFin;
+                this.preguntasCuestionarioRespuestas[this.enunciadoSeleccionado].respuestaEstudiante = pregunta.respuesta;
+
+
+
+                if (pregunta.respuesta != this.preguntaSeleccionadaJuegoEmparejamiento.respuesta) {
+
+                    // se incrementa en uno, el numero de veces que se equivoca
+                    this.preguntasCuestionarioRespuestas[this.enunciadoSeleccionado].errores += 1;
+
+                    // Se recore el arreglo de aciertos para verificar si ya se habia seleccionado la respuesta correcta
+                    for (let i = 0; i <= this.aciertos.length - 1; i++) {
+                        // si ya se habia seleccionado la respuesta correcta:
+                        if (this.aciertos[i] == this.enunciadoSeleccionado) {
+                            // se elimina el indice acertado del arreglo
+                            this.aciertos.splice(i, 1);
+                        }
+                    }
+
+                } else {//la respuesta es correcta
+
+                    //se agrega el indice de la pregunta acertada
+                    this.aciertos.push(this.enunciadoSeleccionado);
+                }
+
+
+
+                if (this.haFinalizadoEvaluacionAntes()) {
+                    alert('¡Bien hecho, terminaste antes de tiempo!');
+                    this.calcularPuntuacion(); //aun si es visitante se muestra el puntaje obtenido //tambien se invoca a guardar dentro de esta funcion
+
+
+                }
+
+
             }
 
         },
+
+
         haFinalizadoEvaluacionAntes() {
             let finalizar = false;
-            if (this.tipoEvaluacion == "Emparejamiento") {
-                if (this.aciertos.length == this.preguntasCuestionarioRespuestas.length) { //responde correctamente todas las preguntas
-                    finalizar = true;
-                };
 
-            }
+            let contadorRespuestaEstudiante = 0;
+            this.preguntasCuestionarioRespuestas.forEach(pregunta => {
+                if (pregunta.respuestaEstudiante) {
+                    contadorRespuestaEstudiante += 1;
+                }
+
+            });
+
+            if (contadorRespuestaEstudiante == this.preguntasCuestionarioRespuestas.length) { //Ha seleccionado una respuesta para todas las preguntas
+                finalizar = true;
+            };
+
 
             return finalizar;
         },
@@ -471,9 +531,10 @@ parasails.registerComponent('modulo-ev-individual', {
 
                 let posicionAleatorio = Math.floor(Math.random() * 10); //numero aleatorio entre 0 y 10(cualquier valor entero)
                 let modulo = posicionAleatorio % 2;
+                //si el numero aleatorio es par, entonces añadimos la pregunta al inicio de la lista
                 if (modulo == 0) {
                     this.arregloRandom.unshift(pregunta);
-                } else {
+                } else {// si el numero aleatorio es impar entonces el número se agrega al final de la lista
                     this.arregloRandom.push(pregunta);
                 }
             })
@@ -633,7 +694,7 @@ parasails.registerComponent('modulo-ev-individual', {
             this.arregloRandom = [];
             //variables para usar en Emparejamiento del lado del Estudiante
             this.enunciadoSeleccionado = null;
-            this.respuestaSeleccionada = null;
+            // this.respuestasSeleccionadas = [];
             this.preguntaSeleccionadaJuegoEmparejamiento = null;
 
             this.totalTime = this.tiempoMaximoPorPregunta;
@@ -666,6 +727,8 @@ parasails.registerComponent('modulo-ev-individual', {
             this.puntosObtenidos = 0;
             this.finEvaluacion = false;
             this.randomPreguntasEmparejamiento();
+
+            this.respuestaAnterior = [];
 
             /*VARIABLE DE CUESTIONARIO*/
             this.indicePreguntaCuestionario = 0;
@@ -721,7 +784,7 @@ parasails.registerComponent('modulo-ev-individual', {
                 response => {
                     // alert('EVALUACION GUARDADA CON EXITO');
                     this.usuario.ultimoIntento = response.data.intentoEvaluacionCreado;
-                    
+
                 }
             ).catch(
                 err => {

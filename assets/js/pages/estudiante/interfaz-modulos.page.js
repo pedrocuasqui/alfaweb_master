@@ -40,6 +40,8 @@ parasails.registerPage('interfaz-modulos', {
     this.progreso.medalla = SAILS_LOCALS.usuario.ultimoIntento.medalla;
     this.progreso.porcentajeAvance = (SAILS_LOCALS.usuario.submodulosAprobadosPorCurso.length / SAILS_LOCALS.usuario.numeroSubmodulosCurso) * 100;
     this.progreso.totalNiveles = SAILS_LOCALS.usuario.numeroSubmodulosCurso;
+    console.log('PROGRESO');
+    console.log(this.progreso);
   },
   mounted: async function () {
     //… definir el breadcrumb en este lugar o recibir desde la accion del servidor

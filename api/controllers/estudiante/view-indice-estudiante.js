@@ -39,7 +39,7 @@ module.exports = {
     var cursoEstudiante = null;
     var navegarAtras = '/';
     var navegarSiguiente = '';
-
+    var numeroSubmodulosCurso = 0; //sirve para enviar en el usuario y comprobar el porcentaje de evaluaciones realizadas de todo el curso
 
 
     var intentoEvaluacion = { //intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
@@ -111,34 +111,61 @@ module.exports = {
 
 
 
-    //siempre se aniade un intento evaluacion al usuario
-    usuario.ultimoIntento = intentoEvaluacion;
-
-    if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
-      //se buscan los documentos que contengan al id de usuario logueado y el submodulo seleccionado
-      let intentoEv = null;
-      intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, curso:  inputs.cursoId }).sort('createdAt DESC');
-      if (intentoEv) {//existe un intento evaluacion entonces se reemplaza el valor de usuario.ultimoIntento
-        usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
-      } //caso contrario se mantiene el valor por defecto
-      console.log('RETORNO DE INTENTO EVALUACION :');
-      console.log(usuario.ultimoIntento);
-
-    }
-    /* var moduloLibro = await ModuloLibro.find(); //esta es una instancia de consulta --> es un intento aún no cumplido de obtener registros de la base de datos
-        //el resultado solo se observa cuando se usa la palabra await antes de la instancia y se asigna a una variable
-        console.log('metodo1:\n'+moduloLibro); //devuelve el arreglo completo --> [object Object]
-        console.log('metodo2:\n'+moduloLibro[0]);// devuelve el objeto JSON de la posision 0 --> [object Object]
-        console.log('metodo3:\n'+JSON.stringify(moduloLibro)); //usar JSON.stringify para ver el resultado en consola en formato JSON, JSON.parse muestra un error
-     */
-    var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos');
+    // var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos');
+    var curso = await sails.helpers.solicitarCursoCompleto(inputs.cursoId).intercept((err) => { sails.log('ERROR EN HELPERS: ' + err) });
 
     var contenidos = curso.modulos;
     if (curso.modulos.length != 0) {
-      navegarSiguiente = '/interfaz-modulos/?objetoId=' + curso.modulos[0].id + '&tipoContenido=Modulo'
+      navegarSiguiente = '/interfaz-modulos/?objetoId=' + curso.modulos[0].id + '&tipoContenido=Modulo';
+
+
+      //Conteo del numero de submodulos del mismo curso
+      curso.modulos.forEach(modulo => {
+        modulo.submodulos.forEach(submodulo => {
+          numeroSubmodulosCurso += 1;
+        });
+      });
+
     } else {
       navegarSiguiente = '/indice-estudiante/?cursoId=' + curso.id;
     }
+
+
+
+
+
+
+
+    //siempre se aniade un intento evaluacion al usuario
+    usuario.ultimoIntento = intentoEvaluacion;
+    usuario.numeroSubmodulosCurso = numeroSubmodulosCurso;
+    usuario.submodulosAprobadosPorCurso = [];
+    if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
+      //se buscan los documentos que contengan al id de usuario logueado y el submodulo seleccionado
+      let intentoEv = null;
+      intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, curso: inputs.cursoId }).sort('createdAt DESC');
+
+      if (intentoEv.length > 0) {//existe un intento evaluacion entonces se reemplaza el valor de usuario.ultimoIntento
+        usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
+      } //caso contrario se mantiene el valor por defecto
+
+      var datastoreSails = sails.getDatastore().manager;
+      //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
+      let ObjectId = require('mongodb').ObjectID;
+      let estudianteObjectId = ObjectId(usuario.id);
+      await datastoreSails.collection('IntentoEvaluacion').distinct("submodulo", { curso: curso.id, estudiante: estudianteObjectId, apruebaEvaluacion: 1 }).then(respuesta => {  //estudiante: usuario.id,
+        //respuesta contiene un arreglo con el codigo de submodulo por cada intento aprobado
+        respuesta.forEach(elemento => {
+          usuario.submodulosAprobadosPorCurso.push(elemento.toString());
+        });
+
+
+      });
+    }
+
+
+
+
 
     return exits.success({
       contenidos,

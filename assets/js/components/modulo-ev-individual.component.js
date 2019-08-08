@@ -93,7 +93,7 @@ parasails.registerComponent('modulo-ev-individual', {
         if (this.tipoEvaluacion == 'Cuestionario') {
             this.descripcionActividad = '<p>Lee atentamente el enunciado y selecciona la respuesta correcta.</p><p>Tienes <strong>' + this.tiempoMaximoPorPregunta + ' segundos </strong> para responder la pregunta. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>';
         } else if (this.tipoEvaluacion == "Emparejamiento") {
-            this.descripcionActividad = '<p>Selecciona una opción de la columna de la izquierda. Luego selecciona la respuesta correcta de la columna derecha</p>' + '<p>Tienes <strong>' + this.tiempoMaximoPorPregunta + ' segundos  </strong> para responder la pregunta. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>';
+            this.descripcionActividad = '<p>Primero selecciona una opción de la columna izquierda.</p><p>Luego selecciona la respuesta correcta de la columna derecha</p>' + '<p>Tienes <strong>' + this.tiempoMaximoPorPregunta + ' segundos  </strong> para responder la pregunta. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>';
         } else {
             this.descripcionActividad = '<p>Mira atentamente la imágen y selecciona la respuesta correcta.</p><p>Tienes <strong>' + this.tiempoMaximoPorPregunta + ' segundos </strong> para escoger la respuesta correcta. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>';
         }
@@ -214,7 +214,7 @@ parasails.registerComponent('modulo-ev-individual', {
                         <h5 class="mb-1">{{preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado}}</h5>   
                     </div>
                     <div v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
-                        <input type="radio" :id="opcion.id" v-model="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"  :value="opcion.texto" @click="respuestaCuestionarioSeleccionada">
+                        <input type="radio" :id="opcion.id" key="index" v-model="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"  :value="opcion.texto" @click="respuestaCuestionarioSeleccionada">
                             <!--v-model="pregunta.respuesta">-->
                         <label :for="opcion.id">{{opcion.texto}}</label>
                     </div>
@@ -316,7 +316,13 @@ parasails.registerComponent('modulo-ev-individual', {
             </template>
 
             <template v-else-if="tipoEvaluacion=='Emparejamiento'">
-            RESULTADOS EMPAREJAMIENTO
+                <div class="row" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
+                    <div class="col-sm-3"> {{pregunta.enunciado}}</div> 
+                    <div class="col-sm-3"> 
+                        <p :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">Tu respuesta: {{pregunta.respuestaEstudiante}}</p>    
+                        <p>Respuesta correcta:{{pregunta.respuesta}}</p>
+                    </div>   
+                </div>
             </template>
             <template v-else>
                 <div class="row" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
@@ -354,7 +360,7 @@ parasails.registerComponent('modulo-ev-individual', {
         },
         clickSiguientePregunta() {
 
-
+            // La siguiente evaluacion se realiza al pulsar cada opcion de respuesta, ver el metodo respuestaCuestionarioSeleccionada
             // if (this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante == this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuesta) {
             //     this.aciertos.push(this.indicePreguntaCuestionario);
             // }
@@ -371,6 +377,7 @@ parasails.registerComponent('modulo-ev-individual', {
 
         },
         respuestaCuestionarioSeleccionada() {
+            // alert('respuesta seleccionada' + this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante);
             // Si la respuesta es equivocada:
             if (this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante != this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuesta) {
                 // se aumenta en uno el numero de errores,

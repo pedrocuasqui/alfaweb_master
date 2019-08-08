@@ -125,24 +125,17 @@ module.exports = {
     if (req.session.userId) {
       usuario = await Estudiante.findOne({ id: req.session.userId });
 
-      if (!usuario) {
+      if (!usuario) { //no existe el usuario, retorna error
         // exits.ok({ error: `no se encuentra el usuario con id ${req.session.userId}` });
         res.status(401).send({ message: 'su sesión ha expirado' });
 
-      } else {
+      } else {// se guarda el avance
 
         let credenciales = { cursoId: curso.id, usuarioId: usuario.id }
         let avance = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId }
         // se guarda el avance
         await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
         //se retorna el ultimo intento de evaluacion
-
-
-
-
-
-
-
 
       }
     } else { //si el usuario es el usuario Visitante se remite su información
@@ -166,42 +159,32 @@ module.exports = {
     usuario.ultimoIntento = intentoEvaluacion;
     usuario.numeroSubmodulosCurso = numeroSubmodulosCurso;
     usuario.submodulosAprobadosPorCurso = [];
-    if (inputs.tipoContenido == 'Submodulo') {
-      if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
-        //se buscan los documentos que contengan al id de usuario logueado y el submodulo seleccionado
-        let intentoEv = null;
-        intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, curso: curso.id }).sort('createdAt DESC');
-        console.log('INTENTO EVALUACION');
-        console.log(intentoEv);
-        if (intentoEv.length > 0) {//existe el arreglo de  intentos evaluacion entonces se reemplaza el valor de usuario.ultimoIntento por el intento mas actual
-          usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
-          //se crea una nueva conexion al servidor para obtener los intentosEvaluacion, 1 por cada submodulo de todo el curso
-        } //caso contrario se mantiene el valor por defecto
+    if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
+      //se buscan los documentos que contengan al id de usuario logueado y el submodulo seleccionado
+      let intentoEv = null;
+      intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, curso: curso.id }).sort('createdAt DESC');
 
-        var datastoreSails = sails.getDatastore().manager;
-        //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
-        let ObjectId = require('mongodb').ObjectID;
-        let estudianteObjectId = ObjectId(usuario.id);
-        await datastoreSails.collection('IntentoEvaluacion').distinct("submodulo", { curso: curso.id, estudiante: estudianteObjectId, apruebaEvaluacion: 1 }).then(respuesta => {  //estudiante: usuario.id,
-          //respuesta contiene un arreglo con el codigo de submodulo por cada intento aprobado
-          respuesta.forEach(elemento => {
-            usuario.submodulosAprobadosPorCurso.push(elemento.toString());
-          });
-          // usuario.submodulosAprobadosPorCurso = [...respuesta];/// submodulosAprobadosPorCurso');
-          console.log(curso.id)
-          console.log(usuario.id)
-          console.log(usuario.submodulosAprobadosPorCurso);
+      if (intentoEv.length > 0) {//existe el arreglo de  intentos evaluacion entonces se reemplaza el valor de usuario.ultimoIntento por el intento mas actual
+        usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
+        //se crea una nueva conexion al servidor para obtener los intentosEvaluacion, 1 por cada submodulo de todo el curso
+      } //caso contrario se mantiene el valor por defecto
+
+      var datastoreSails = sails.getDatastore().manager;
+      //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
+      let ObjectId = require('mongodb').ObjectID;
+      let estudianteObjectId = ObjectId(usuario.id);
+      await datastoreSails.collection('IntentoEvaluacion').distinct("submodulo", { curso: curso.id, estudiante: estudianteObjectId, apruebaEvaluacion: 1 }).then(respuesta => {  //estudiante: usuario.id,
+        //respuesta contiene un arreglo con el codigo de submodulo por cada intento aprobado
+        respuesta.forEach(elemento => {
+          usuario.submodulosAprobadosPorCurso.push(elemento.toString());
         });
 
-        //conteo de submodulos totales en este curso
+
+      });
 
 
-
-
-
-
-      }
     }
+
 
 
 

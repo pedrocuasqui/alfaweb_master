@@ -42,15 +42,17 @@
                 <div class="row">
                   <div class="col-sm-3 item-modulo" v-for="contenido in contenidos">
                     <template v-if="isAlfaWeb">
-                      <a key="modImage" :href="'/contenido-alfaweb/?enlace='+contenido.enlace"> <img :src="contenido.multimedia.imagen"
-                          alt="La Computadora, Módulo 1"></a>
-                      <a key="modText" :href="'/contenido-alfaweb/?enlace='+contenido.enlace">{{contenido.nombreModulo}}</a>
+                      <a key="modImage" :href="'/contenido-alfaweb/?enlace='+contenido.enlace"> <img
+                          :src="contenido.multimedia.imagen" alt="La Computadora, Módulo 1"></a>
+                      <a key="modText"
+                        :href="'/contenido-alfaweb/?enlace='+contenido.enlace">{{contenido.nombreModulo}}</a>
                     </template>
                     <template v-else>
                       <!-- la propiedad key es necesaria porque vue reutiliza los elementos, y podria no cambiar el atributo href -->
-                        <a key="modImage1" :href="'/interfaz-modulos/?objetoId='+contenido.id+'&tipoContenido=Modulo'"> <img :src="contenido.multimedia.imagen"
-                          alt="La Computadora, Módulo 1"></a>
-                      <a key="modTexto1" :href="'/interfaz-modulos/?objetoId='+contenido.id+'&tipoContenido=Modulo'">{{contenido.nombreModulo}}</a>
+                      <a key="modImage1" :href="'/interfaz-modulos/?objetoId='+contenido.id+'&tipoContenido=Modulo'">
+                        <img :src="contenido.multimedia.imagen" alt="La Computadora, Módulo 1"></a>
+                      <a key="modTexto1"
+                        :href="'/interfaz-modulos/?objetoId='+contenido.id+'&tipoContenido=Modulo'">{{contenido.nombreModulo}}</a>
                     </template>
 
                   </div>
@@ -64,9 +66,13 @@
           </div>
           <!-- columna derecha -->
           <div class="col-sm-2 col-derecha">
-            <modulo-panel-derecho v-if="existeCursoEstudianteyLogueado" key="LogueadoConAvance" :usuario="usuario" :curso-estudiante="cursoEstudiante"></modulo-panel-derecho>
-            <modulo-panel-derecho v-else-if="noExisteCursoEstudianteyLogueado" key="logueadoSinAvance" :usuario="usuario"></modulo-panel-derecho>
-            <modulo-panel-derecho v-else key="visitante" ></modulo-panel-derecho>
+            <modulo-panel-derecho v-if="existeCursoEstudianteyLogueado" key="LogueadoConAvance" :usuario="usuario"
+              :curso-estudiante="cursoEstudiante" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel"
+              :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla"
+              :porcentaje-avance="progreso.porcentajeAvance"></modulo-panel-derecho>
+            <modulo-panel-derecho v-else-if="noExisteCursoEstudianteyLogueado" key="logueadoSinAvance"
+              :usuario="usuario"></modulo-panel-derecho>
+            <modulo-panel-derecho v-else key="visitante"></modulo-panel-derecho>
           </div>
         </div> <!-- fin fila de contenido central y barra lateral derecha -->
       </div>

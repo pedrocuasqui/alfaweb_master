@@ -14,6 +14,7 @@ parasails.registerPage('indice-estudiante', {
     contenidos: null,
     isAlfaWeb: false,
     cursoEstudiante: false,
+    progreso: {} //puntos, niveles y medalla actuales
 
   },
 
@@ -33,6 +34,12 @@ parasails.registerPage('indice-estudiante', {
     console.log(SAILS_LOCALS.cursoEstudiante);
 
 
+
+    this.progreso.puntos = SAILS_LOCALS.usuario.ultimoIntento.puntos;
+    this.progreso.nivel = SAILS_LOCALS.usuario.ultimoIntento.nivel;
+    this.progreso.medalla = SAILS_LOCALS.usuario.ultimoIntento.medalla;
+    this.progreso.porcentajeAvance = (SAILS_LOCALS.usuario.submodulosAprobadosPorCurso.length / SAILS_LOCALS.usuario.numeroSubmodulosCurso) * 100;
+    this.progreso.totalNiveles = SAILS_LOCALS.usuario.numeroSubmodulosCurso;
 
   },
   mounted: async function () {

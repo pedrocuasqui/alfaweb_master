@@ -178,7 +178,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                     </modulo-panel-derecho>
                     <!--EL SIGUIENTE CONTENEDOR SE USA PARA LOS MODULOS, solo se diferencian en que los modulos no reciben eventos de evaluacion-->    
-                    <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" > 
+                    <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"  :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance"> 
                         <template >
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                             <div>

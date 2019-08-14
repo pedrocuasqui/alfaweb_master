@@ -29,7 +29,7 @@
 
     <!------------------------------------------------------------------------------------------------>
     <!------------------------------------------------------------------------------------------------>
-    <!-- PREGUNTA DE CUESTIONARIO-- ------------------------------------------------------------------>
+    <!-- CREA - EDITA PREGUNTA DE CUESTIONARIO-- ----------------------------------------------------->
     <!------------------------------------------------------------------------------------------------>
     <!------------------------------------------------------------------------------------------------>
     <div v-if="tipoEvaluacion=='Cuestionario'" class="modal fade" id="modalCrearPreguntaCuestionario" tabindex="-1"
@@ -105,7 +105,7 @@
 
     <!------------------------------------------------------------------------------------------------>
     <!------------------------------------------------------------------------------------------------>
-    <!-- PREGUNTA DE EMPAREJAMIENTO ------------------------------------------------------------------>
+    <!-- CREA- EDITA PREGUNTA DE EMPAREJAMIENTO ------------------------------------------------------------------>
     <!------------------------------------------------------------------------------------------------>
     <!------------------------------------------------------------------------------------------------>
     <div v-if="tipoEvaluacion=='Emparejamiento'" class="modal fade" id="modalCrearPreguntaEmparejamiento" tabindex="-1"
@@ -160,7 +160,7 @@
 
     <!------------------------------------------------------------------------------------------------>
     <!------------------------------------------------------------------------------------------------>
-    <!-- PREGUNTA DE NOMBRE OBJETO -------------------------------------------------------------------->
+    <!-- CREA- EDITA- MBRE OBJETO -------------------------------------------------------------------->
     <!------------------------------------------------------------------------------------------------>
     <!------------------------------------------------------------------------------------------------>
     <div v-if="tipoEvaluacion=='Nombre_Objeto'" class="modal fade" id="modalCrearPreguntaNombre_Objeto" tabindex="-1"
@@ -266,7 +266,7 @@
     <!-- ---------------------------------------------------------------- -->
     <!-- ---------------------------------------------------------------- -->
     <!-- ---------------------------------------------------------------- -->
-    <!-------------------CONTENIDO Y EVALUACIONES--------------------------->
+    <!------------------- RETO, EVALUACIONES Y CONTENIDO ------------------->
     <!-- ---------------------------------------------------------------- -->
     <!-- ---------------------------------------------------------------- -->
     <!-- ---------------------------------------------------------------- -->
@@ -300,6 +300,90 @@
 
                     <!-- Columna central del cuerpo-->
 
+
+
+
+
+
+
+
+
+
+
+
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-------------------------------RETO DEL MODULO------------------------>
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!--
+                    <template v-else-if="">
+                        <div class="col-sm-10 col-central">
+                            <h4>{{objetoSeleccionado.nombre}} - Evaluación - {{tipoEvaluacion}}</h4>
+
+
+                           
+                            <template>
+
+                               
+
+                                <div class="row">
+
+                                    <a @click="clickMostrarModalCreaPregunta()" title="Añadir nueva pregunta"><i
+                                            class="fas fa-plus-circle fa-2x"></i>
+                                    </a>
+                                </div>
+                                <h6>* Las preguntas se mostrarán una por una al estudiante</h6>
+                                <div class="list-group">
+                                    <div class="list-group-item list-group-item-action active"
+                                        v-for="(pregunta, indexPreg) in preguntasCuestionario">
+                                        <div class="d-flex w-100 justify-content-between">
+                                            <h5 class="mb-1">{{pregunta.enunciado}}</h5>
+                                            <small>
+                                                <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
+                                                    data-placement="top" title="Editar pregunta"> <i
+                                                        class="fas fa-edit fa-2x"></i> </a>
+                                                <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
+                                                    data-placement="top" title="Eliminar pregunta"><i
+                                                        class="fas fa-trash-alt fa-2x"></i></a>
+                                            </small>
+                                        </div>
+
+
+                                        <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
+                                            <input type="radio" :id="opcion.id" :value="opcion.texto"
+                                                v-model="pregunta.respuesta" class="custom-control-input">
+                                            <label :for="opcion.id">{{opcion.texto}}</label>
+                                        </div>
+
+                                        <small>Puedes editar la pregunta seleccionando la opción correcta.</small>
+                                    </div>
+                                </div>
+
+                            </template>
+                            <label for="tiempoPorPregunta">* Tiempo máximo para responder cada pregunta o emparejar
+                            </label>
+                            <input id="tiempoPorPregunta" v-model="tiempoMaximoPorPregunta">
+                            <a @click="validarEvaluacion" title="Guardar Evaluación"> <i
+                                    class="fas fa-save fa-2x"></i></a>
+
+
+                        </div>
+                    </template>
+
+                -->
+
+
+
+
+
+
+
+
+
+
+
+
                     <!-- ---------------------------------------------------------------- -->
                     <!-- ---------------------------------------------------------------- -->
                     <!-------------------------------EVALUACIONES CREADAS------------------->
@@ -330,10 +414,6 @@
                             <!-- EVALUACIONES -->
                             <template>
                                 <!-- SI LA VARIABLE mostrarMenuTipoEvaluacion ES FALSE SE MUESTRA LA INTERFAZ PARA EDITAR  -->
-
-
-
-
 
 
 
@@ -410,32 +490,8 @@
                                             </div>
                                         </div>
 
-                                        <!-- usar el siguiente codigo para el estudiante
-                                        <div class="col-sm-4">
-                                            
-                                            <div @click.stop="seleccionarEnunciadoEmpareja(pregunta,indexPreg)"
-                                                class="row"
-                                                :class="[enunciadoSeleccionado == indexPreg ? 'enunSelected': '' ]"
-                                                :id="'Preg'+indexPreg" key="indexPreg"
-                                                v-for="(pregunta,indexPreg) in preguntasCuestionario">
-                                                {{pregunta.enunciado}}
-                                            </div>
-                                        </div>
-                                        
-                                        <div class="col-sm-4">
-                                            <div class="row"
-                                                @click.stop="seleccionarRespuestaEmpareja(pregunta1,indexResp)"
-                                                :id="'Resp'+indexResp" key="indexResp"
-                                                v-for="(pregunta1, indexResp) in arregloRandom">
-                                                
-                                                {{pregunta1.respuesta}}
-                                            </div>
-                                        </div>
-                                    -->
                                     </div>
                                 </template>
-
-
 
 
 
@@ -493,6 +549,17 @@
 
                         </div>
                     </template>
+
+
+
+
+
+
+
+
+
+
+
 
 
 

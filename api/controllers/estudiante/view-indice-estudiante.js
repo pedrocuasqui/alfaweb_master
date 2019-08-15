@@ -68,7 +68,7 @@ module.exports = {
       }
 
 
-      //se busca el avance en el curso solicitado
+      //se busca el avance en el curso solicitado para mostrar en el indice
       cursoEstudiante = await CursoEstudiantes.findOne({ curso_matriculados: inputs.cursoId, estudiante_cursos: usuario.id });
       if (cursoEstudiante) {
         console.log('existe curso Estudiante');
@@ -146,11 +146,11 @@ module.exports = {
       intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, curso: inputs.cursoId }).sort('createdAt DESC');
 
       if (intentoEv.length > 0) {//existe un intento evaluacion entonces se reemplaza el valor de usuario.ultimoIntento
-        usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
-      } //caso contrario se mantiene el valor por defecto
+        usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente para tomar los puntos y el nivel, no es necesario que haya aprobado la 'ultima evaluacion
+      } //caso contrario se mantiene el valor por defecto => null
 
       var datastoreSails = sails.getDatastore().manager;
-      //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
+      //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas esto para saber cuantos submodulos ha aprobado realmente
       let ObjectId = require('mongodb').ObjectID;
       let estudianteObjectId = ObjectId(usuario.id);
       await datastoreSails.collection('IntentoEvaluacion').distinct("submodulo", { curso: curso.id, estudiante: estudianteObjectId, apruebaEvaluacion: 1 }).then(respuesta => {  //estudiante: usuario.id,
@@ -164,7 +164,8 @@ module.exports = {
     }
 
 
-
+    console.log('USUARIO --------------------------');
+    console.log(usuario);
 
 
     return exits.success({

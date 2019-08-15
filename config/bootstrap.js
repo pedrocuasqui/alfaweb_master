@@ -701,77 +701,153 @@ module.exports.bootstrap = async function (done) {
 
 
 
-    var intentoEvaluacion = await IntentoEvaluacion.create({
-      puntos: 150,
-      nivel: 1,
-      medalla: 'bebe',
-      tiempoMaximoPorPregunta: 15, //en segundos
-      apruebaEvaluacion: 1,
-      evaluacion: {
-        tipo: "Emparejamiento",
-        aciertos: [0, 1, 2], //los indices de las preguntas acertadas, la longitud nos dar'a el numero de aciertos totales
-        preguntas: [
-          {
-            errores: 2,//
-            tiempoDeRespuesta: 10,//
-            enunciado: "2+2 es?",
-            opciones:
+    var intentoEvaluacion = await IntentoEvaluacion.createEach([
+      {
+        puntos: 1500,
+        nivel: 1,
+        medalla: 'bebe',
+        tiempoMaximoPorPregunta: 15, //en segundos
+        apruebaEvaluacion: 1,
+        evaluacion: {
+          tipo: "Emparejamiento",
+          aciertos: [0, 1, 2], //los indices de las preguntas acertadas, la longitud nos dar'a el numero de aciertos totales
+          preguntas: [
             {
-              opcion1: null,
-              opcion2: null,
-              opcion3: null,
-              opcion4: null
+              errores: 2,//
+              tiempoDeRespuesta: 10,//
+              enunciado: "2+2 es?",
+              opciones:
+              {
+                opcion1: null,
+                opcion2: null,
+                opcion3: null,
+                opcion4: null
+              },
+              respuesta: "4"
             },
-            respuesta: "4"
-          },
-          {
-            errores: 1,
-            tiempoDeRespuesta: 15,
-            enunciado: "5+5 ?",
-            opciones:
             {
-              opcion1: null,
-              opcion2: null,
-              opcion3: null,
-              opcion4: null
+              errores: 1,
+              tiempoDeRespuesta: 15,
+              enunciado: "5+5 ?",
+              opciones:
+              {
+                opcion1: null,
+                opcion2: null,
+                opcion3: null,
+                opcion4: null
+              },
+              respuesta: "10"
             },
-            respuesta: "10"
-          },
 
 
-          {
-            errores: 4,
-            tiempoDeRespuesta: 15,
-            enunciado: "0-5 ?",
-            opciones:
             {
-              opcion1: null,
-              opcion2: null,
-              opcion3: null,
-              opcion4: null
+              errores: 4,
+              tiempoDeRespuesta: 15,
+              enunciado: "0-5 ?",
+              opciones:
+              {
+                opcion1: null,
+                opcion2: null,
+                opcion3: null,
+                opcion4: null
+              },
+              respuesta: "-5"
             },
-            respuesta: "-5"
-          },
 
-          {
-            errores: null,
-            tiempoDeRespuesta: null, //nunca respondi'o
-            enunciado: "8+4 ?",
-            opciones:
             {
-              opcion1: null,
-              opcion2: null,
-              opcion3: null,
-              opcion4: null
-            },
-            respuesta: "11"
-          }
-        ]
+              errores: null,
+              tiempoDeRespuesta: null, //nunca respondi'o
+              enunciado: "8+4 ?",
+              opciones:
+              {
+                opcion1: null,
+                opcion2: null,
+                opcion3: null,
+                opcion4: null
+              },
+              respuesta: "11"
+            }
+          ]
+        },
+        estudiante: estudiante.id,
+        submodulo: submoduloModulo2Bdd.id,
+        curso: cursoBdd.id
       },
-      estudiante: estudiante.id,
-      submodulo: submoduloModulo2Bdd.id,
-      curso: cursoBdd.id
-    })
+      {
+        puntos: 1950,
+        nivel: 1,
+        medalla: 'bebe',
+        tiempoMaximoPorPregunta: 15, //en segundos
+        apruebaEvaluacion: 1,
+        evaluacion: {
+          tipo: "Emparejamiento",
+          aciertos: [0, 2], //los indices de las preguntas acertadas, la longitud nos dar'a el numero de aciertos totales
+          preguntas: [
+            {
+              errores: 2,//
+              tiempoDeRespuesta: 10,//
+              enunciado: "2+2 es?",
+              opciones:
+              {
+                opcion1: null,
+                opcion2: null,
+                opcion3: null,
+                opcion4: null
+              },
+              respuesta: "4"
+            },
+            {
+              errores: null,
+              tiempoDeRespuesta: null,
+              enunciado: "5+5 ?",
+              opciones:
+              {
+                opcion1: null,
+                opcion2: null,
+                opcion3: null,
+                opcion4: null
+              },
+              respuesta: "10"
+            },
+
+
+            {
+              errores: 4,
+              tiempoDeRespuesta: 8,
+              enunciado: "0-5 ?",
+              opciones:
+              {
+                opcion1: null,
+                opcion2: null,
+                opcion3: null,
+                opcion4: null
+              },
+              respuesta: "-5"
+            },
+
+            {
+              errores: null,
+              tiempoDeRespuesta: null, //nunca respondi'o
+              enunciado: "8+4 ?",
+              opciones:
+              {
+                opcion1: null,
+                opcion2: null,
+                opcion3: null,
+                opcion4: null
+              },
+              respuesta: "11"
+            }
+          ]
+        },
+        estudiante: estudiante.id,
+        submodulo: submoduloModulo2Bdd.id,
+        curso: cursoBdd.id
+      },
+
+
+    ]
+    )
 
 
 
@@ -811,67 +887,104 @@ module.exports.bootstrap = async function (done) {
     }).fetch();
 
 
+    var intentoEvaluacion = await IntentoEvaluacion.createEach(
+      [
 
-
-    // var intentoEvaluacion2 = await IntentoEvaluacion.create({
-    //   puntos: 160,
-    //   nivel: 2,
-    //   medalla: 'bebe',
-    //   tiempoMaximoPorPregunta: 10, //en segundos
-    //   apruebaEvaluacion:1,
-    //   evaluacion: {
-    //     tipo: "Emparejamiento",
-    //     aciertos: [0, 1, 2], //los indices de las preguntas acertadas, la longitud nos dar'a el numero de aciertos totales
-    //     preguntas: [
-    //       {
-    //         errores: 2,//
-    //         tiempoDeRespuesta: 4,//
-    //         enunciado: "Un modelo de entidad relación es:",
-    //         opciones:
-    //         {
-    //           opcion1: null,
-    //           opcion2: null,
-    //           opcion3: null,
-    //           opcion4: null
-    //         },
-    //         respuesta: "una herramienta para el modelo de datos"
-    //       },
-    //       {
-    //         errores: 0,
-    //         tiempoDeRespuesta: 1,
-    //         enunciado: "Entidad",
-    //         opciones:
-    //         {
-    //           opcion1: null,
-    //           opcion2: null,
-    //           opcion3: null,
-    //           opcion4: null
-    //         },
-    //         respuesta: "Representa una 'cosa', 'objeto' o 'concepto'"
-    //       },
-
-
-    //       {
-    //         errores: 4,
-    //         tiempoDeRespuesta: 5,
-    //         enunciado: "Atributos",
-    //         opciones:
-    //         {
-    //           opcion1: null,
-    //           opcion2: null,
-    //           opcion3: null,
-    //           opcion4: null
-    //         },
-    //         respuesta: "Son las características que definen o identifican a una entidad"
-    //       },
-
-
-    //     ]
-    //   },
-    //   estudiante: estudiante.id,
-    //   submodulo: submodulo2Modulo2Bdd.id,
-    //   curso:cursoBdd.id
-    // })
+        {
+          puntos: 2750,
+          nivel: 1,
+          medalla: 'estudiante',
+          tiempoMaximoPorPregunta: 20,
+          apruebaEvaluacion: 1,
+          evaluacion: {
+            tipo: 'Nombre_Objeto',
+            aciertos: [
+              0,
+              1
+            ],
+            preguntas: [
+              {
+                enunciado: 'https://www.frikipandi.com/wp-content/uploads/2015/03/MySQL.jpg',
+                opciones: {
+                  opcion1: 'Gestor MySQL',
+                  opcion2: 'Gestor Oracle',
+                  opcion3: 'Gestor MongoDB',
+                  opcion4: null
+                },
+                respuesta: 'Gestor MySQL',
+                pista: 'Gestor MySql',
+                errores: null,
+                tiempoDeRespuesta: 4.699999999999999,
+                respuestaEstudiante: 'Gestor MySQL'
+              },
+              {
+                enunciado: 'http://www.ingdiaz.org/wp-content/uploads/2018/01/j00-150x150.png',
+                opciones: {
+                  opcion1: 'Gestor de datos SQL server',
+                  opcion2: 'Gestor de datos Mongo',
+                  opcion3: 'Gestor de datos MariaDb',
+                  opcion4: null
+                },
+                respuesta: 'Gestor de datos SQL server',
+                pista: 'Gestor Sql Server',
+                errores: null,
+                tiempoDeRespuesta: 2.3000000000000007,
+                respuestaEstudiante: 'Gestor de datos SQL server'
+              }
+            ]
+          },
+          estudiante: estudiante.id,
+          submodulo: submodulo2Modulo2Bdd.id,
+          curso: cursoBdd.id
+        },
+        {
+          puntos: 4080,
+          nivel: 1,
+          medalla: 'estudiante',
+          tiempoMaximoPorPregunta: 20,
+          apruebaEvaluacion: 0,
+          evaluacion: {
+            tipo: 'Nombre_Objeto',
+            aciertos: [
+              1
+            ],
+            preguntas: [
+              {
+                enunciado: 'https://www.frikipandi.com/wp-content/uploads/2015/03/MySQL.jpg',
+                opciones: {
+                  opcion1: 'Gestor MySQL',
+                  opcion2: 'Gestor Oracle',
+                  opcion3: 'Gestor MongoDB',
+                  opcion4: null
+                },
+                respuesta: 'Gestor MySQL',
+                pista: 'Gestor MySql',
+                errores: 1,
+                tiempoDeRespuesta: -2.3999999999999986,
+                respuestaEstudiante: 'Gestor Oracle'
+              },
+              {
+                enunciado: 'http://www.ingdiaz.org/wp-content/uploads/2018/01/j00-150x150.png',
+                opciones: {
+                  opcion1: 'Gestor de datos SQL server',
+                  opcion2: 'Gestor de datos Mongo',
+                  opcion3: 'Gestor de datos MariaDb',
+                  opcion4: null
+                },
+                respuesta: 'Gestor de datos SQL server',
+                pista: 'Gestor Sql Server',
+                errores: 1,
+                tiempoDeRespuesta: 4.399999999999999,
+                respuestaEstudiante: 'Gestor de datos SQL server'
+              }
+            ]
+          },
+          estudiante: estudiante.id,
+          submodulo: submodulo2Modulo2Bdd.id,
+          curso: cursoBdd.id
+        },
+      ]
+    )
 
 
 
@@ -896,18 +1009,141 @@ module.exports.bootstrap = async function (done) {
             "enunciado": "Un campo corresponde al nombre de:",
             "opciones": { opcion1: null, opcion2: "Una fila", opcion3: "Una tabla", opcion4: "Una columna" },
             "respuesta": "Una columna",
-            "pista":"Columna"
+            "pista": "Columna"
           },
           {
             "enunciado": "Una tabla es...",
             "opciones": { opcion1: "Una herramienta para eliminar información", opcion2: "Una herramienta para almacenar la información", opcion3: "Una estructura de datos", opcion4: null },
             "respuesta": "Una herramienta para almacenar la información",
-            "pista":"Herramientas para almacenar ..."
+            "pista": "Herramientas para almacenar ..."
           }
         ]
       }
     }).fetch();
 
+
+
+
+
+    var intentoEvaluacion = await IntentoEvaluacion.createEach(
+      [
+        {
+
+          puntos: 7710,
+          nivel: 1,
+          medalla: 'estudiante',
+          tiempoMaximoPorPregunta: 40,
+          apruebaEvaluacion: 0,
+          evaluacion: {
+            tipo: 'Cuestionario',
+            aciertos: [
+              1
+            ],
+            preguntas: [
+              {
+                enunciado: 'Un campo corresponde al nombre de:',
+                opciones: {
+                  opcion1: null,
+                  opcion2: 'Una fila',
+                  opcion3: 'Una tabla',
+                  opcion4: 'Una columna'
+                },
+                respuesta: 'Una columna',
+                pista: 'Columna',
+                errores: 1,
+                tiempoDeRespuesta: 3.1000000000000014,
+                respuestaEstudiante: 'Una tabla'
+              },
+              {
+                enunciado: 'Una tabla es...',
+                opciones: {
+                  opcion1: 'Una herramienta para eliminar información',
+                  opcion2: 'Una herramienta para almacenar la información',
+                  opcion3: 'Una estructura de datos',
+                  opcion4: null
+                },
+                respuesta: 'Una herramienta para almacenar la información',
+                pista: 'Herramientas para almacenar ...',
+                errores: null,
+                tiempoDeRespuesta: 0.6000000000000014,
+                respuestaEstudiante: 'Una herramienta para almacenar la información'
+              }
+            ]
+          },
+          estudiante: estudiante.id,
+          submodulo: submodulo3Modulo2Bdd.id,
+          curso: cursoBdd.id
+        },
+        {
+
+          puntos: 14710,
+          nivel: 2,
+          medalla: 'estudiante',
+          tiempoMaximoPorPregunta: 40,
+          apruebaEvaluacion: 1,
+          evaluacion: {
+            tipo: 'Cuestionario',
+            aciertos: [
+              0,
+              1
+            ],
+            preguntas: [
+              {
+                enunciado: 'Un campo corresponde al nombre de:',
+                opciones: {
+                  opcion1: null,
+                  opcion2: 'Una fila',
+                  opcion3: 'Una tabla',
+                  opcion4: 'Una columna'
+                },
+                respuesta: 'Una columna',
+                pista: 'Columna',
+                errores: null,
+                tiempoDeRespuesta: 0.10000000000000142,
+                respuestaEstudiante: 'Una columna'
+              },
+              {
+                enunciado: 'Una tabla es...',
+                opciones: {
+                  opcion1: 'Una herramienta para eliminar información',
+                  opcion2: 'Una herramienta para almacenar la información',
+                  opcion3: 'Una estructura de datos',
+                  opcion4: null
+                },
+                respuesta: 'Una herramienta para almacenar la información',
+                pista: 'Herramientas para almacenar ...',
+                errores: null,
+                tiempoDeRespuesta: 1.7999999999999972,
+                respuestaEstudiante: 'Una herramienta para almacenar la información'
+              }
+            ]
+          },
+          estudiante: estudiante.id,
+          submodulo: submodulo3Modulo2Bdd.id,
+          curso: cursoBdd.id
+        }
+      ]
+    )
+
+
+    var d = new Date();
+
+    var cursoEstudiante = await CursoEstudiantes.create(
+
+      {
+
+        curso_matriculados: cursoBdd.id,
+        estudiante_cursos: estudiante.id,
+        ultimoAcceso: d.getTime(),
+        avance: {
+          tipoContenido: 'Submodulo',
+          objetoId: submodulo3Modulo2Bdd.id
+        },
+        createdAt: d.getTime(),
+        updatedAt: d.getTime(),
+      }
+
+    )
 
     sails.log('creacion de estudiante correcta!');
   }

@@ -24,10 +24,10 @@ module.exports.routes = {
   *                                                                          *
   ***************************************************************************/
 
-/**LAYOUT GENERAL DE CONTENIDOS */
-'GET /interfaz-modulos' :{
-  action: 'estudiante/view-interfaz-modulos'
-},
+  /**LAYOUT GENERAL DE CONTENIDOS */
+  'GET /interfaz-modulos': {
+    action: 'estudiante/view-interfaz-modulos'
+  },
 
   'GET /': {
     action: 'view-homepage',
@@ -87,7 +87,7 @@ module.exports.routes = {
   'POST /crear-modulo': {
     action: 'administrador/crear-modulo',
   },
-  
+
   'GET /view-crear-submodulo': {
     action: 'administrador/view-crear-submodulo',
 
@@ -104,23 +104,23 @@ module.exports.routes = {
   'POST /actualizar-submodulo': {
     action: 'administrador/actualizar-submodulo',
   },
-  'GET /eliminar-contenido': { 
-    action: 'administrador/eliminar-contenido' 
+  'GET /eliminar-contenido': {
+    action: 'administrador/eliminar-contenido'
   },
   'PUT /publicar-curso/:cursoId': {
     action: 'administrador/publicar-curso',
   },
-  'GET /crear-evaluacion':{
-    action : 'administrador/view-crear-evaluacion'
+  'GET /crear-evaluacion': {
+    action: 'administrador/view-crear-evaluacion'
   },
-  'POST /crear-evaluacion':{
-    action : 'administrador/crear-evaluacion'
+  'POST /crear-evaluacion': {
+    action: 'administrador/crear-evaluacion'
   },
 
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
   // estudiante
-  
+
   'GET /contenido-alfaweb': {
     action: 'estudiante/view-contenido-alfaweb',
 
@@ -133,7 +133,11 @@ module.exports.routes = {
     action: 'estudiante/crear-intento-evaluacion',
 
   },
-  
+  'GET /progreso-estudiante': {
+    action: 'estudiante/view-progreso-estudiante',
+
+  },
+
   // 'GET /m1-computadora': {
   //   action: 'estudiante/modulo-1/view-m-1-computadora',
 

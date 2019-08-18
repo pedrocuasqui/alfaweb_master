@@ -709,6 +709,7 @@ module.exports.bootstrap = async function (done) {
         tiempoMaximoPorPregunta: 15, //en segundos
         apruebaEvaluacion: 1,
         evaluacion: {
+
           tipo: "Emparejamiento",
           aciertos: [0, 1, 2], //los indices de las preguntas acertadas, la longitud nos dar'a el numero de aciertos totales
           preguntas: [
@@ -767,7 +768,8 @@ module.exports.bootstrap = async function (done) {
               },
               respuesta: "11"
             }
-          ]
+          ],
+          puntosObtenidos: 450,
         },
         estudiante: estudiante.id,
         submodulo: submoduloModulo2Bdd.id,
@@ -838,7 +840,8 @@ module.exports.bootstrap = async function (done) {
               },
               respuesta: "11"
             }
-          ]
+          ],
+          puntosObtenidos: 780,
         },
         estudiante: estudiante.id,
         submodulo: submoduloModulo2Bdd.id,
@@ -931,7 +934,8 @@ module.exports.bootstrap = async function (done) {
                 tiempoDeRespuesta: 2.3000000000000007,
                 respuestaEstudiante: 'Gestor de datos SQL server'
               }
-            ]
+            ],
+            puntosObtenidos: 800,
           },
           estudiante: estudiante.id,
           submodulo: submodulo2Modulo2Bdd.id,
@@ -939,7 +943,7 @@ module.exports.bootstrap = async function (done) {
         },
         {
           puntos: 4080,
-          nivel: 1,
+          nivel: 2,
           medalla: 'estudiante',
           tiempoMaximoPorPregunta: 20,
           apruebaEvaluacion: 0,
@@ -977,7 +981,8 @@ module.exports.bootstrap = async function (done) {
                 tiempoDeRespuesta: 4.399999999999999,
                 respuestaEstudiante: 'Gestor de datos SQL server'
               }
-            ]
+            ],
+            puntosObtenidos: 355,
           },
           estudiante: estudiante.id,
           submodulo: submodulo2Modulo2Bdd.id,
@@ -1029,8 +1034,8 @@ module.exports.bootstrap = async function (done) {
       [
         {
 
-          puntos: 7710,
-          nivel: 1,
+          puntos: 4435,
+          nivel: 2,
           medalla: 'estudiante',
           tiempoMaximoPorPregunta: 40,
           apruebaEvaluacion: 0,
@@ -1068,7 +1073,8 @@ module.exports.bootstrap = async function (done) {
                 tiempoDeRespuesta: 0.6000000000000014,
                 respuestaEstudiante: 'Una herramienta para almacenar la información'
               }
-            ]
+            ],
+            puntosObtenidos: 3630,
           },
           estudiante: estudiante.id,
           submodulo: submodulo3Modulo2Bdd.id,
@@ -1076,8 +1082,8 @@ module.exports.bootstrap = async function (done) {
         },
         {
 
-          puntos: 14710,
-          nivel: 2,
+          puntos: 8065,
+          nivel: 3,
           medalla: 'estudiante',
           tiempoMaximoPorPregunta: 40,
           apruebaEvaluacion: 1,
@@ -1116,7 +1122,8 @@ module.exports.bootstrap = async function (done) {
                 tiempoDeRespuesta: 1.7999999999999972,
                 respuestaEstudiante: 'Una herramienta para almacenar la información'
               }
-            ]
+            ],
+            puntosObtenidos: 7000,
           },
           estudiante: estudiante.id,
           submodulo: submodulo3Modulo2Bdd.id,

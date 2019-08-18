@@ -50,6 +50,15 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         progreso: {
             type: Object,
+            default: () => {
+                return {
+                    puntos: 0,
+                    nivel: 0,//modulo 1
+                    medalla: 'bebe', //medalla mas basica
+                    tiempoMaximoPorPregunta: 30, //en segundos por defecto
+                    evaluacion: null,
+                }
+            },
             description: 'puntaje, nivel y progreso (medalla) actuales'
         }
 
@@ -166,7 +175,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 <!-- columna derecha -->
                 <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
                 <!--ESTE PRIMER CONTENEDOR SE USA PARA LOS SUBMODULOS-->    
-                <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance"> 
+                <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance" :curso-estudiante="curso"> 
                         <template >
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                         <div>    
@@ -178,7 +187,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                     </modulo-panel-derecho>
                     <!--EL SIGUIENTE CONTENEDOR SE USA PARA LOS MODULOS, solo se diferencian en que los modulos no reciben eventos de evaluacion-->    
-                    <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"  :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance"> 
+                    <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"  :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance"
+                    :curso-estudiante="curso"> 
                         <template >
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                             <div>

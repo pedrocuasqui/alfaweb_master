@@ -240,17 +240,20 @@ parasails.registerPage('crear-modulo', {
     onBorrarImagen() {
       this.imagenPortada = {};
     },
-    
+    /*
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-      if (contenido == 'contenido') {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = false;
-      } else {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = true;
-      }
+      
+        if (contenido == 'contenido') {
+          this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
+          this.evIndividual = false;
+        } else {
+          this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
+          this.evIndividual = true;
+        }
+      
+      
     },
-
+*/
 
   },
   computed: {

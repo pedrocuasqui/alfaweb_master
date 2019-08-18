@@ -154,21 +154,22 @@ module.exports = {
 
 
 
-    // retorno de ultimo intentoEvaluacion
+    // retorno de ultimo intentoEvaluacion para mostrar la puntuacion actual
     //siempre se aniade un intento evaluacion al usuario
     usuario.ultimoIntento = intentoEvaluacion;
     usuario.numeroSubmodulosCurso = numeroSubmodulosCurso;
     usuario.submodulosAprobadosPorCurso = [];
     if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
-      //se buscan los documentos que contengan al id de usuario logueado y el submodulo seleccionado
+      //se buscan los documentos que contengan al id de usuario logueado y el curso que está siguiente en actualmente, SE BUSCA EL ULTIMO INTENTO PORQUE ESTE CONTIENE LA PUNTUACION ULTIMA
       let intentoEv = null;
       intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, curso: curso.id }).sort('createdAt DESC');
 
       if (intentoEv.length > 0) {//existe el arreglo de  intentos evaluacion entonces se reemplaza el valor de usuario.ultimoIntento por el intento mas actual
-        usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente
-        //se crea una nueva conexion al servidor para obtener los intentosEvaluacion, 1 por cada submodulo de todo el curso
-      } //caso contrario se mantiene el valor por defecto
+        usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente porque es el que contiene la ultima puntuación del usuario
 
+      } //caso contrario se mantiene el valor por defecto, null
+
+      //se crea una nueva conexion al servidor para obtener los intentosEvaluacion, 1 por cada submodulo de todo el curso
       var datastoreSails = sails.getDatastore().manager;
       //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
       let ObjectId = require('mongodb').ObjectID;
@@ -178,7 +179,6 @@ module.exports = {
         respuesta.forEach(elemento => {
           usuario.submodulosAprobadosPorCurso.push(elemento.toString());
         });
-
 
       });
 

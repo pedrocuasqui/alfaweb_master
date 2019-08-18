@@ -53,14 +53,16 @@ parasails.registerPage('interfaz-modulos', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-
-      if (contenido == 'contenido') {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombre;
-        this.evIndividual = false;
-      } else {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombre;
-        this.evIndividual = true;
+      if (this.objetoSeleccionado.nombreSubmodulo && this.objetoSeleccionado.evaluacion) {
+        if (contenido == 'contenido') {
+          this.tituloEvaluacion = this.objetoSeleccionado.nombre;
+          this.evIndividual = false;
+        } else {
+          this.tituloEvaluacion = this.objetoSeleccionado.nombre;
+          this.evIndividual = true;
+        }
       }
+
 
     },
     finalizaEvaluacion(valor) {

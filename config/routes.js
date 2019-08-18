@@ -133,8 +133,8 @@ module.exports.routes = {
     action: 'estudiante/crear-intento-evaluacion',
 
   },
-  'GET /progreso-estudiante': {
-    action: 'estudiante/view-progreso-estudiante',
+  'GET /puntuacion-estudiante': {
+    action: 'estudiante/puntuacion-estudiante',
 
   },
 

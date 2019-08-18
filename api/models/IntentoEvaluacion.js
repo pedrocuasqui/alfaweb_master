@@ -1,7 +1,7 @@
 /**
  * IntentosEvaluacion.js
  *
- * @description :: A model definition represents a database table/collection.
+ * @description :: Esta coleccion funge como tabla de rompimiento entre el submodulo y el estudiante,  relacion: una evaluacion del submodulo puede ser realizada por varios estudiantes y un estudiante puede evaluar varios submodulos
  * @docs        :: https://sailsjs.com/docs/concepts/models-and-orm/models
  */
 
@@ -67,11 +67,12 @@ module.exports = {
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
 
-    estudiante: { //el intento pertenece al estudiante
+    // 
+    estudiante: { //el intento pertenece al estudiante, relacion: un estudiante tiene varios intentos
       model: 'Estudiante',
       required: true,
     },
-    submodulo: { //la evaluacion esta dentro del modelo Submodulo, por tanto se asocia directamente con el Submodulo
+    submodulo: { //la evaluacion esta dentro del modelo Submodulo, por tanto se asocia directamente con el Submodulo, relacion un submodulo tiene varios intentos
       model: 'SubmoduloLibro',
       required: true,
     }

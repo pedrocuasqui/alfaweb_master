@@ -768,6 +768,7 @@ parasails.registerComponent('modulo-ev-individual', {
                 tipo: this.tipoEvaluacion,
                 aciertos: this.aciertos,
                 preguntas: this.preguntasCuestionarioRespuestas,
+                puntosObtenidos: this.puntosObtenidos,
             }
 
 

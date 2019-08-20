@@ -67,7 +67,6 @@ parasails.registerPage('interfaz-modulos', {
       }
 
     },
-
     finalizaEvaluacion(valor) {
 
       this.mostrarIconoRepetir = valor; //true o false

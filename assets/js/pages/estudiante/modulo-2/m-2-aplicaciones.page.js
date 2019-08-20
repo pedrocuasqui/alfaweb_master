@@ -31,7 +31,9 @@ parasails.registerPage('m-2-aplicaciones', {
       { descripcion: 'Esperar un momento mientras se carga la aplicación, al abrirse, se crea un icono en la barra de tareas de la parte inferior, aquí se muestran las aplicaciones abiertas.' },
     ],
     silenciar: true
-
+    ,
+    mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
+    progreso: {} //puntos, niveles y medalla actuales
     // elemento:{
     //   id:'', 
     //   titulo:'',
@@ -76,6 +78,34 @@ parasails.registerPage('m-2-aplicaciones', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    /**
+  * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
+  */
+    intentarNuevamente() {
+
+      this.$refs.componenteEvaluacion.intentarNuevamente();
+
+    },
+    clickMostrarPista() {
+      if (this.evIndividual) {
+        this.$refs.componenteEvaluacion.mostrarPista();
+      }
+
+    },
+
+    finalizaEvaluacion(valor) {
+
+      this.mostrarIconoRepetir = valor; //true o false
+    },
+
+    actualizaProgreso(progresoActual) {
+      this.progreso = progresoActual;
+      console.log('PROGRESO ACTUAL');
+      console.log(progresoActual);
+    },
+
+
+
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
       if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;

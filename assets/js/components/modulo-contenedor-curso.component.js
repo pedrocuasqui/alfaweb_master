@@ -175,7 +175,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                 <!-- columna derecha -->
                 <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
                 <!--ESTE PRIMER CONTENEDOR SE USA PARA LOS SUBMODULOS-->    
-                <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance" :curso-estudiante="curso"> 
+                <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance" :curso="curso" :objeto-seleccionado="objetoSeleccionado"> 
                         <template >
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                         <div>    
@@ -188,7 +188,7 @@ parasails.registerComponent('modulo-contenedor-curso', {
                     </modulo-panel-derecho>
                     <!--EL SIGUIENTE CONTENEDOR SE USA PARA LOS MODULOS, solo se diferencian en que los modulos no reciben eventos de evaluacion-->    
                     <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"  :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance"
-                    :curso-estudiante="curso"> 
+                    :curso="curso"> 
                         <template >
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                             <div>
@@ -224,17 +224,28 @@ parasails.registerComponent('modulo-contenedor-curso', {
         },
         evaluacionIndividual(contenido) {
             this.objetoSeleccionado.descripcion = '';// para que no se muestre nada en el cajon de descripcion
-            if (contenido == 'contenido') {
-                //si se envia algo como par'ametro, entonces se retorna
-                this.evIndividual = false;
-                console.log('muestra el contenido, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
-            } else {
-                //si no se pasa nada como parametro y ademas el objeto seleccionado  NO es modulo se muestra la evaluacion
 
-                this.evIndividual = true;
-                console.log('muestra evaluacion, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
+            if (this.objetoSeleccionado.nombreSubmodulo) {
+                if (this.objetoSeleccionado.evaluacion) {
+                    if (contenido == 'contenido') {
+                        //si se envia algo como par'ametro, entonces se retorna
+                        this.evIndividual = false;
+                        console.log('muestra el contenido, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
+                    } else {
+                        //si no se pasa nada como parametro y ademas el objeto seleccionado  NO es modulo se muestra la evaluacion
+
+                        this.evIndividual = true;
+                        console.log('muestra evaluacion, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
+                    }
+                    this.$emit('evaluacion-individual', contenido);
+                } else {
+                    alert('No existe evaluación para este tema');
+                }
+
             }
-            this.$emit('evaluacion-individual', contenido);
+            else {
+                alert('La evaluación se realiza en cada tema');
+            }
             this.clickSilenciar();
 
         },

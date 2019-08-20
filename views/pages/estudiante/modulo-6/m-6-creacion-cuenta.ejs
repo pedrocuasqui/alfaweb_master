@@ -2,9 +2,19 @@
 
   <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
   :usuario="usuario" :curso="curso" :objeto-seleccionado.sync="objetoSeleccionado"
-  :titulo-temporal.sync="tituloEvaluacion" @evaluacion-individual="evaluacionIndividual" ref="curso">
-  <modulo-ev-individual v-if="evIndividual">
-
+  :titulo-temporal.sync="tituloEvaluacion" @evaluacion-individual="evaluacionIndividual" 
+  ref="curso"
+  :mostrar-icono-repetir="mostrarIconoRepetir"
+  @intentar-nuevamente="intentarNuevamente"
+  :progreso="progreso"
+  @click-asistente-buho="clickMostrarPista">
+  <!--mostrarIconoRepetir es una varible de tipo Boolean-->
+  
+  <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
+    <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
+      @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
+      @actualiza-progreso="actualizaProgreso">
+  
   </modulo-ev-individual>
 
   <div v-else>

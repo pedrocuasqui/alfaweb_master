@@ -60,15 +60,7 @@ parasails.registerPage('m-4-edicion-word', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-      if(contenido=='contenido'){
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = false;
-      }else{
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = true;
-      }
-    },
+
 
  
   },

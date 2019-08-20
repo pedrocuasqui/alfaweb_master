@@ -30,8 +30,9 @@ parasails.registerPage('m-5-motores-navegacion', {
       {descripcion:'Paso 4: Dar clic sobre un enlace para ver su contenido, al hacer esto el navegador mostrará en la parte superior la animación de un anillo que gira, significa que el navegador está cargando la información '},
       {descripcion:'Paso 5: El contenido del sitio seleccionado se muestra en la pantalla.'},
     ],
-    silenciar:true
-
+    silenciar:true,
+    mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
+    progreso: {} //puntos, niveles y medalla actuales
     // elemento:{
     //   id:'', 
     //   titulo:'',
@@ -76,6 +77,34 @@ parasails.registerPage('m-5-motores-navegacion', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    /**
+  * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
+  */
+    intentarNuevamente() {
+
+      this.$refs.componenteEvaluacion.intentarNuevamente();
+
+    },
+    clickMostrarPista() {
+      if (this.evIndividual) {
+        this.$refs.componenteEvaluacion.mostrarPista();
+      }
+
+    },
+    
+    finalizaEvaluacion(valor) {
+
+      this.mostrarIconoRepetir = valor; //true o false
+    },
+
+    actualizaProgreso(progresoActual) {
+      this.progreso = progresoActual;
+      console.log('PROGRESO ACTUAL');
+      console.log(progresoActual);
+    },
+
+
+    
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
       if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;

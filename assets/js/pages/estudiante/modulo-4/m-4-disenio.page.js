@@ -24,8 +24,8 @@ parasails.registerPage('m-4-disenio', {
 
 
 
-/////////////////////////////
-//TEMAS
+    /////////////////////////////
+    //TEMAS
     /// /images/informaticabasica/modulo4/disenio/revisar/0.png
     temas: {
       id: 'temas',
@@ -37,52 +37,52 @@ parasails.registerPage('m-4-disenio', {
           detalle: 'Los temas permiten cambiar de forma automática el estilo de la página, los colores de fondo, de texto, etcétera. La opción temas presenta varias opciones predefinidas como se puede ver en la imágen.',
           imagen: '/images/informaticabasica/modulo4/disenio/p_disenio/temas/1.png',
           alt: 'opciones predefinidas de temas',
-  
+
         },
         {
           posicion: '2', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Se puede elegir entre diferentes tipos de formatos para el documento, como se puede ver en  la imágen.',
           imagen: '/images/informaticabasica/modulo4/disenio/p_disenio/temas/1_1.png',
           alt: 'colores predefinidos',
-  
+
         },
         {
           posicion: '3', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'Cada formato dará un aspecto particular a las partes que lo conforman.',
           imagen: '/images/informaticabasica/modulo4/disenio/p_disenio/temas/1_2.png',
           alt: 'formato particular',
-  
+
         }
       ]
     },
-    
+
 
     colores: {
       id: 'colores',
       titulo: 'Colores',
       detalle: 'La opción colores te permite cambiar rápidamente todos los colores que se usan en el documento eligiendo de una paleta de colores diferentes',
       leerMas: '',
-      html: '<p> La opción colores presenta varias opciones predefinidas como se puede ver en la imágen.</p>'+
-      '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/temas/2.png" alt="colores"></div>'
-   
+      html: '<p> La opción colores presenta varias opciones predefinidas como se puede ver en la imágen.</p>' +
+        '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/temas/2.png" alt="colores"></div>'
+
     },
     fuentes: {
       id: 'fuentes',
       titulo: 'Fuentes',
       detalle: 'La opción Fuentes cambia rápidamente el aspecto de todo el documento seleccionando un nuevo juego de fuentes. ',
       leerMas: '',
-      html: ''+
-      '<p> La opción fuentes presenta varias opciones predefinidas como se puede ver en la imágen.</p>'+
-      '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/temas/3.png" alt="fuentes"></div>'
+      html: '' +
+        '<p> La opción fuentes presenta varias opciones predefinidas como se puede ver en la imágen.</p>' +
+        '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/temas/3.png" alt="fuentes"></div>'
     },
     efectos: {
       id: 'efectos',
       titulo: 'Efectos',
       detalle: 'La opción Efectos cambia rápidamente el aspecto general de todos los objetos del documento. ',
       leerMas: '',
-      html: ''+
-      '<p> La opción efectos presenta varias opciones predefinidas como se puede ver en la imágen. </p>'+
-      '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/temas/4.png" alt="efectos"></div>'
+      html: '' +
+        '<p> La opción efectos presenta varias opciones predefinidas como se puede ver en la imágen. </p>' +
+        '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/temas/4.png" alt="efectos"></div>'
     },
     //////////////////////////////////////////////////
     //////////////////////////////////////////////////
@@ -93,9 +93,9 @@ parasails.registerPage('m-4-disenio', {
       titulo: 'Márgenes',
       detalle: 'La opción Márgenes establece los tamaños de márgenes de todo el documento o la selección actual. ',
       leerMas: '',
-      html: ''+
-      '<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imágen. </p>'+
-      '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/1.png" alt="márgenes"></div>'
+      html: '' +
+        '<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imágen. </p>' +
+        '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/1.png" alt="márgenes"></div>'
     },
     orientacion: {
       id: 'orientacion',
@@ -132,15 +132,15 @@ parasails.registerPage('m-4-disenio', {
       titulo: 'Tamaño',
       detalle: 'Permite elegir un tamño de papel para el documento. ',
       leerMas: '',
-      html: ''+
-      '<p> La opción márgenes presenta varias opciones predefinidas. </p>'+
-      '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/3.png" alt="tamanio"></div>'
+      html: '' +
+        '<p> La opción márgenes presenta varias opciones predefinidas. </p>' +
+        '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/3.png" alt="tamanio"></div>'
     },
     columnas: {
       id: 'columnas',
       titulo: 'Columnas',
       detalle: '',
-     
+
       carousel: [
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
@@ -171,27 +171,27 @@ parasails.registerPage('m-4-disenio', {
       titulo: 'Saltos',
       detalle: 'Agrega un salto en la ubicación actual para retomar denuevo el texto en la siguiente página, sección o columna.',
       leerMas: '',
-      html: ''+
-      '<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imágen. </p>'+
-      '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/5.png" alt="saltos"></div>'
+      html: '' +
+        '<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imágen. </p>' +
+        '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/5.png" alt="saltos"></div>'
     },
     numeros: {
       id: 'numeros',
       titulo: 'Números de línea',
       detalle: 'Permite hacer referencia a líneas específicas del documento de forma fácil y rápido usando números de líneas en el márgen. ',
       leerMas: '',
-      html: ''+
-      '<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imágen. </p>'+
-      '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/6.png" alt="números"></div>'
+      html: '' +
+        '<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imágen. </p>' +
+        '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/6.png" alt="números"></div>'
     },
     guiones: {
       id: 'guiones',
       titulo: 'Guiones',
       detalle: 'Cuando una palabra se queda sin espacio word normalmente la pasa a la siguiente línea. ',
       leerMas: '',
-      html: ''+
-      '<p>Cuando se activa el uso de guiones, Word divide la palabra automáticamente de forma que se ve en los párrafos de los diarios</p>'+
-      '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/7.png" alt="guiones"></div>'
+      html: '' +
+        '<p>Cuando se activa el uso de guiones, Word divide la palabra automáticamente de forma que se ve en los párrafos de los diarios</p>' +
+        '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/7.png" alt="guiones"></div>'
     },
 
 
@@ -204,7 +204,7 @@ parasails.registerPage('m-4-disenio', {
       detalle: '',
       leerMas: '',
 
-      
+
       carousel: [
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
@@ -276,16 +276,16 @@ parasails.registerPage('m-4-disenio', {
       titulo: 'Color',
       detalle: 'La opción Color da un toque de color al documento cambiando el color de la página. ',
       leerMas: '',
-      html: ''+
-      '<p> Se presentan colores predefinidos en una paleta como se puede ver en la imágen. </p>'+
-      '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/fondo/2.png" alt="color"></div>'
+      html: '' +
+        '<p> Se presentan colores predefinidos en una paleta como se puede ver en la imágen. </p>' +
+        '<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/fondo/2.png" alt="color"></div>'
     },
     bordes: {
       id: 'bordes',
       titulo: 'Bordes de página',
       detalle: '',
       leerMas: '',
-           carousel: [
+      carousel: [
         {
           posicion: '1', //siempre empezar en uno para poder identificar a los elementos
           detalle: 'La opción "Bordes" agrega o cambia el borde alrededor de la página. Un borde atrae la atención y agrega un toque elegante al documento. ',
@@ -349,7 +349,7 @@ parasails.registerPage('m-4-disenio', {
     },
 
 
-        /////////////////////////////////////////
+    /////////////////////////////////////////
     // ORGANIZAR
 
     organizar: {
@@ -359,6 +359,8 @@ parasails.registerPage('m-4-disenio', {
       leerMas: '',
       html: ''
     },
+    mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
+    progreso: {} //puntos, niveles y medalla actuales
 
   },
 
@@ -385,6 +387,34 @@ parasails.registerPage('m-4-disenio', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    /**
+  * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
+  */
+    intentarNuevamente() {
+
+      this.$refs.componenteEvaluacion.intentarNuevamente();
+
+    },
+    clickMostrarPista() {
+      if (this.evIndividual) {
+        this.$refs.componenteEvaluacion.mostrarPista();
+      }
+
+    },
+
+    finalizaEvaluacion(valor) {
+
+      this.mostrarIconoRepetir = valor; //true o false
+    },
+
+    actualizaProgreso(progresoActual) {
+      this.progreso = progresoActual;
+      console.log('PROGRESO ACTUAL');
+      console.log(progresoActual);
+    },
+
+
+
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
       if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
@@ -416,37 +446,37 @@ parasails.registerPage('m-4-disenio', {
           $('#modalefectos').modal('show');
         });
 
-      }else if (idObjeto == 'margenes') {
+      } else if (idObjeto == 'margenes') {
         $(function () {
           $('#modalmargenes').modal('show');
         });
 
-      }else if (idObjeto == 'orientacion') {
+      } else if (idObjeto == 'orientacion') {
         $(function () {
           $('#modalorientacion').modal('show');
         });
 
-      }else if (idObjeto == 'tamanio') {
+      } else if (idObjeto == 'tamanio') {
         $(function () {
           $('#modaltamanio').modal('show');
         });
 
-      }else if (idObjeto == 'columnas') {
+      } else if (idObjeto == 'columnas') {
         $(function () {
           $('#modalcolumnas').modal('show');
         });
 
-      }else if (idObjeto == 'saltos') {
+      } else if (idObjeto == 'saltos') {
         $(function () {
           $('#modalsaltos').modal('show');
         });
 
-      }else if (idObjeto == 'numeros') {
+      } else if (idObjeto == 'numeros') {
         $(function () {
           $('#modalnumeros').modal('show');
         });
 
-      }else if (idObjeto == 'guiones') {
+      } else if (idObjeto == 'guiones') {
         $(function () {
           $('#modalguiones').modal('show');
         });
@@ -457,7 +487,7 @@ parasails.registerPage('m-4-disenio', {
           $('#modalmarca').modal('show');
         });
 
-      }else if (idObjeto == 'color') {
+      } else if (idObjeto == 'color') {
         $(function () {
           $('#modalcolor').modal('show');
         });
@@ -468,7 +498,7 @@ parasails.registerPage('m-4-disenio', {
           $('#modalbordes').modal('show');
         });
 
-      }else if (idObjeto == 'sangria') {
+      } else if (idObjeto == 'sangria') {
         $(function () {
           $('#modalsangria').modal('show');
         });
@@ -523,7 +553,7 @@ parasails.registerPage('m-4-disenio', {
     },
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
-      
+
       // El audio se encuentra en el componente modulo-contenedor-curso.component
       let audioMouseOver = document.getElementById("audioMouseOver");
       audioMouseOver.volume = 0.2;
@@ -532,7 +562,7 @@ parasails.registerPage('m-4-disenio', {
     },
     clickSelectorPestania(pestania) {
       this.pestaniaActual = pestania;
-      console.log('pest actua:'+ pestania);
+      console.log('pest actua:' + pestania);
     }
   },
   computed: {

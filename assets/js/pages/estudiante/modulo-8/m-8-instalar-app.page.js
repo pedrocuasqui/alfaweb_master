@@ -41,7 +41,9 @@ parasails.registerPage('m-8-instalar-app', {
       {descripcion:'Paso 16: Se solicita un nombre de usuario para la aplicación Whatsapp. Este nombre de usuario identificará a la persona ante los demás usuarios de la red social. '},
       {descripcion:'Paso 17: Finalmente ya se puede ver una lista de las personas que tienen cuenta en Whatsapp y que están registradas como contactos en el dispositivo móvil. '},
     ],
-    silenciar:true
+    silenciar:true,
+    mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
+    progreso: {} //puntos, niveles y medalla actuales
 
 
     
@@ -86,6 +88,34 @@ parasails.registerPage('m-8-instalar-app', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    /**
+  * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
+  */
+    intentarNuevamente() {
+
+      this.$refs.componenteEvaluacion.intentarNuevamente();
+
+    },
+    clickMostrarPista() {
+      if (this.evIndividual) {
+        this.$refs.componenteEvaluacion.mostrarPista();
+      }
+
+    },
+    
+    finalizaEvaluacion(valor) {
+
+      this.mostrarIconoRepetir = valor; //true o false
+    },
+
+    actualizaProgreso(progresoActual) {
+      this.progreso = progresoActual;
+      console.log('PROGRESO ACTUAL');
+      console.log(progresoActual);
+    },
+
+
+    
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
       if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;

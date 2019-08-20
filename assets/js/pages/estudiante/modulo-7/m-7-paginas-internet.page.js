@@ -19,131 +19,131 @@ parasails.registerPage('m-7-paginas-internet', {
       type: String,
       default: "software"
     },
- 
+
     qqcom: {
       id: 'qqcom',
       titulo: 'QQ.com',
       detalle: 'El portal de servicios de Internet más grande y usado de China, propiedad de Tencent, Inc., fundado en noviembre de 1998.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
+      leerMas: 'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
       imgs: [
-  
+
         {
           src: '',
           alt: '',
         },
-  
+
       ]
     },
     youtube: {
       id: 'youtube',
       titulo: 'Youtube',
       detalle: 'Vídeos de todo tipo publicados por sus usuarios con clasificación y comentarios',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
+      leerMas: 'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
       imgs: [
-  
+
         {
           src: '',
           alt: '',
         },
-  
+
       ]
     },
     facebook: {
       id: 'facebook',
       titulo: 'Facebook',
       detalle: 'Red social que conecta a la gente, para mantenerse al tanto de amigos, subir fotos, compartir enlaces, noticias, eventos y videos.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
+      leerMas: 'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
       imgs: [
-  
+
         {
           src: '',
           alt: '',
         },
-  
+
       ]
     },
     reddit: {
       id: 'reddit',
       titulo: 'Reddit',
       detalle: 'Enlaces de noticias generados por el usuario. Los votos promueven las historias más populares a la portada.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
+      leerMas: 'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
       imgs: [
-  
+
         {
           src: '',
           alt: '',
         },
-  
+
       ]
     },
     google: {
       id: 'google',
       titulo: 'Google',
       detalle: 'Permite a sus usuarios buscar toda la información del mundo, incluidas páginas web, imágenes, noticias y vídeos. Ofrece características únicas en tecnología de búsqueda.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
+      leerMas: 'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
       imgs: [
-  
+
         {
           src: '',
           alt: '',
         },
-  
+
       ]
     },
     wikipedia: {
       id: 'wikipedia',
       titulo: 'Wikipedia',
       detalle: 'Una enciclopedia libre construida colaborativamente usando software wiki.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
+      leerMas: 'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
       imgs: [
-  
+
         {
           src: '',
           alt: '',
         },
-  
+
       ]
     },
     yahoo: {
       id: 'yahoo',
       titulo: 'Yahoo',
       detalle: 'Portal de Internet y proveedor de servicios que ofrece resultados de búsqueda, contenido personalizable, salas de chat, correo electrónico gratuito y noticias entre otros servicios.',
-      leerMas:'',
+      leerMas: '',
       imgs: [
-  
+
         {
           src: '',
           alt: '',
         },
-  
+
       ]
     },
     baidu: {
       id: 'baidu',
       titulo: 'Baidu',
       detalle: 'Es el motor de búsqueda mas utilizado en China. Incluye búsquedas en chino de contenido multi-media (mp3 y películas).',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
+      leerMas: 'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
       imgs: [
-  
+
         {
           src: '',
           alt: '',
         },
-  
+
       ]
     },
     taobao: {
       id: 'taobao',
       titulo: 'Taobao',
       detalle: 'Lanzado en mayo de 2003, Taobao es el mayor marketplace onLine de China habiendo desplazado a Amazon de esta exclusiva lista de las 10 páginas web más visitadas del mundo.',
-      leerMas:'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
+      leerMas: 'https://1000preguntas.com/las-10-paginas-web-mas-visitadas-del-mundo-2018/',
       imgs: [
-  
+
         {
           src: '',
           alt: '',
         },
-  
+
       ]
     },
 
@@ -161,7 +161,7 @@ parasails.registerPage('m-7-paginas-internet', {
     this.navegarSiguiente = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.siguiente.enlace;
     this.navegarAtras = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.anterior.enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
-    
+
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
   },
   mounted: async function () {
@@ -172,15 +172,7 @@ parasails.registerPage('m-7-paginas-internet', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-      if (contenido == 'contenido') {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = false;
-      } else {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = true;
-      }
-    },
+
 
     infoObjeto(idObjeto) {
       if (idObjeto == 'qqcom') {
@@ -261,7 +253,7 @@ parasails.registerPage('m-7-paginas-internet', {
     },
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
-      
+
       // El audio se encuentra en el componente modulo-contenedor-curso.component
       let audioMouseOver = document.getElementById("audioMouseOver");
       audioMouseOver.volume = 0.2;

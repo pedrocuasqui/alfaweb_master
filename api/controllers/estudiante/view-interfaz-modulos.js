@@ -189,6 +189,11 @@ module.exports = {
 
 
 
+
+    console.log("El curso es: ");
+    console.log(curso);
+
+
     return exits.success({ curso, objetoSeleccionado, moduloPadre, usuario, navegarAtras, navegarSiguiente });
     //el objeto moduloPadre solo contiene valores cuando el objeto seleccionado es SUBMODULO
 

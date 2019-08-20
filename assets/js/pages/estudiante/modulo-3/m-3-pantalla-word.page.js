@@ -33,7 +33,7 @@ parasails.registerPage('m-3-pantalla-word', {
         },
       ]
     },
-     
+
     barra_titulo: {
       id: 'BarraTitulo',
       titulo: 'Barra de título',
@@ -46,7 +46,7 @@ parasails.registerPage('m-3-pantalla-word', {
         },
       ]
     },
-     
+
     barra_acceso_rapido: {
       id: 'BarraAcceso',
       titulo: 'Barra de acceso rápido',
@@ -59,7 +59,7 @@ parasails.registerPage('m-3-pantalla-word', {
         },
       ]
     },
-     
+
     barra_opciones: {
       id: 'BarraOpciones',
       titulo: 'Cinta de opciones',
@@ -72,7 +72,7 @@ parasails.registerPage('m-3-pantalla-word', {
         },
       ]
     },
-     
+
     inicio_sesion: {
       id: 'InicioSesion',
       titulo: 'Inicio de sesión',
@@ -85,7 +85,7 @@ parasails.registerPage('m-3-pantalla-word', {
         },
       ]
     },
-     
+
     barra_estado: {
       id: 'BarraEstado',
       titulo: 'Barra de estado',
@@ -98,7 +98,7 @@ parasails.registerPage('m-3-pantalla-word', {
         },
       ]
     },
-     
+
     barra_desplazamiento: {
       id: 'BarraDesplazamiento',
       titulo: 'Barra de desplazamiento',
@@ -111,7 +111,9 @@ parasails.registerPage('m-3-pantalla-word', {
         },
       ]
     },
-     
+    mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
+    progreso: {} //puntos, niveles y medalla actuales
+
     // elemento: {
     //   id: '',
     //   titulo: '',
@@ -148,6 +150,34 @@ parasails.registerPage('m-3-pantalla-word', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    /**
+  * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
+  */
+    intentarNuevamente() {
+
+      this.$refs.componenteEvaluacion.intentarNuevamente();
+
+    },
+    clickMostrarPista() {
+      if (this.evIndividual) {
+        this.$refs.componenteEvaluacion.mostrarPista();
+      }
+
+    },
+
+    finalizaEvaluacion(valor) {
+
+      this.mostrarIconoRepetir = valor; //true o false
+    },
+
+    actualizaProgreso(progresoActual) {
+      this.progreso = progresoActual;
+      console.log('PROGRESO ACTUAL');
+      console.log(progresoActual);
+    },
+
+
+
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
       if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
@@ -218,7 +248,7 @@ parasails.registerPage('m-3-pantalla-word', {
     },
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
-      
+
       // El audio se encuentra en el componente modulo-contenedor-curso.component
       let audioMouseOver = document.getElementById("audioMouseOver");
       audioMouseOver.volume = 0.2;

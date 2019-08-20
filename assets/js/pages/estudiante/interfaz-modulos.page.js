@@ -8,7 +8,8 @@ parasails.registerPage('interfaz-modulos', {
     navegarAtras: '',
     tituloEvaluacion: '',
     evIndividual: false,
-    mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación
+
+    mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
     progreso: {} //puntos, niveles y medalla actuales
   },
 
@@ -52,41 +53,48 @@ parasails.registerPage('interfaz-modulos', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-      if (this.objetoSeleccionado.nombreSubmodulo && this.objetoSeleccionado.evaluacion) {
-        if (contenido == 'contenido') {
-          this.tituloEvaluacion = this.objetoSeleccionado.nombre;
-          this.evIndividual = false;
-        } else {
-          this.tituloEvaluacion = this.objetoSeleccionado.nombre;
-          this.evIndividual = true;
-        }
-      }
-
-
-    },
-    finalizaEvaluacion(valor) {
-
-      this.mostrarIconoRepetir = valor; //true o false
-    },
     /**
-     * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
-     */
+  * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
+  */
     intentarNuevamente() {
 
       this.$refs.componenteEvaluacion.intentarNuevamente();
 
-    },
-    actualizaProgreso(progresoActual) {
-      this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
     },
     clickMostrarPista() {
       if (this.evIndividual) {
         this.$refs.componenteEvaluacion.mostrarPista();
       }
 
+    },
+
+    finalizaEvaluacion(valor) {
+
+      this.mostrarIconoRepetir = valor; //true o false
+    },
+
+    actualizaProgreso(progresoActual) {
+      this.progreso = progresoActual;
+      console.log('PROGRESO ACTUAL');
+      console.log(progresoActual);
+    },
+
+
+
+
+    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
+      // if (this.objetoSeleccionado.nombreSubmodulo && this.objetoSeleccionado.evaluacion) {
+      if (contenido == 'contenido') {
+        this.tituloEvaluacion = this.objetoSeleccionado.nombre;
+        this.evIndividual = false;
+      } else {
+        this.tituloEvaluacion = this.objetoSeleccionado.nombre;
+        this.evIndividual = true;
+      }
+      // }
+
+
     }
+
   }
 });

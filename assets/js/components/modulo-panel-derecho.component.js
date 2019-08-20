@@ -8,7 +8,14 @@ parasails.registerComponent('modulo-panel-derecho', {
             type: Object,
             required: false,
             default: () => { return null; },
-            description: 'El curso que está solicitando revisando el estudiante, se usa en la interfaz indice de estudiante para poder redireccionar al último tema revisado y se usa para buscar la puntuacion (intentoEvaluacion) actual del estudiante '
+            description: 'un objeo de tipo CursoEstudiante, este objeto guarda el lúltimo tema o módulo revisado por el estudiante,  se usa en la interfaz indice de estudiante para poder redireccionar al último tema revisado  '
+        },
+
+        curso: {
+            type: Object,
+            required: false,
+            default: () => { return null; },
+            description: 'un objeto de tipo Curso, se usa para buscar la puntuacion (intentoEvaluacion) actual del estudiante '
         },
         puntajeActual: {
             type: Number,
@@ -56,7 +63,13 @@ parasails.registerComponent('modulo-panel-derecho', {
             type: Boolean,
             required: false,
             default: () => { return false; }
-        }
+        },
+        objetoSeleccionado: {
+            type: Object,
+            // required: true,//no necesario para señalar el modulo o submodulo seleccionado en el menu lateral porque el menu ya contiene su definicion por defecto
+            default: () => { return { id: '1' } }, // se usa el mismo id por defecto que se usa en modulo-contenedor-curso
+            // description:'parametro de barra de navegacion, tambien se usa la descripcion cuando el objeto seleccionado es un modulo o submodulo'
+        },
 
     },
     data() {
@@ -270,29 +283,33 @@ parasails.registerComponent('modulo-panel-derecho', {
     methods: {
         clickPuntuacion() {
 
-            if (this.cursoEstudiante) {//Siempre debe existir un curso, no es posible acceder hasta esta ventana sin pasar por la seleccion de un curso
-                axios(
-                    {
-                        url: '/puntuacion-estudiante',
-                        method: 'get',
-                        params: { cursoId: this.cursoEstudiante.id }
+            if (this.curso) {//Siempre debe existir un curso, no es posible acceder hasta esta ventana sin pasar por la seleccion de un curso
+                if (this.usuario.nombre != "Visitante") {
+                    axios(
+                        {
+                            url: '/puntuacion-estudiante',
+                            method: 'get',
+                            params: { cursoId: this.curso.id }
 
-                    }
-                ).then(response => {
-                    console.log(response.data);
-                    // Los intentos del usuario logueado, ordenados ascendentemente por fecha de creacion
-                    this.intentosEvaluacion = response.data.intentosEvaluacion;
-                    // funcion para seleccinar solo los estudiantes que tienen evaluaciones es decir que la propiedad intentosEvaluacion tenga una longitud mayor a cero
-                    this.estudiantesConSusIntentos = response.data.estudiantesConSusIntentos;
-                    this.seleccionarEstudiantesConIntentos();
-                    this.estudiantesConSusIntentosQuickSort = this.ordenamientoQuickSort(this.estudiantesConSusIntentos);
-                    this.definirGraficoPuntuacion();
-                    this.mostrarModalPuntuacion();
+                        }
+                    ).then(response => {
+                        console.log(response.data);
+                        // Los intentos del usuario logueado, ordenados ascendentemente por fecha de creacion
+                        this.intentosEvaluacion = response.data.intentosEvaluacion;
+                        // funcion para seleccinar solo los estudiantes que tienen evaluaciones es decir que la propiedad intentosEvaluacion tenga una longitud mayor a cero
+                        this.estudiantesConSusIntentos = response.data.estudiantesConSusIntentos;
+                        this.seleccionarEstudiantesConIntentos();
+                        this.estudiantesConSusIntentosQuickSort = this.ordenamientoQuickSort(this.estudiantesConSusIntentos);
+                        this.definirGraficoPuntuacion();
+                        this.mostrarModalPuntuacion();
 
-                }).catch(err => {
-                    alert('Error: ' + err + '/n Contacte con el administrador del sistema')
-                });
+                    }).catch(err => {
+                        alert('Error: ' + err + '/n Contacte con el administrador del sistema')
+                    });
 
+                } else {
+                    alert("No puede acceder a esta información como usuario Visitante");
+                }
             }
         },
         seleccionarEstudiantesConIntentos() {
@@ -322,10 +339,11 @@ parasails.registerComponent('modulo-panel-derecho', {
             });
         },
         evaluacionIndividual(contenido) {
-            // alert('evaluacion indiidual');
+
             if (this.adminCreandoModuloSubmodulo) {
-                alert('Es necesario crear primero el objeto (módulo o submódulo) actual');
+                alert('Es necesario crear primero el tema actual');
             } else {
+
 
                 if (this.redirigeaContenido) {
                     contenido = 'contenido';
@@ -335,6 +353,9 @@ parasails.registerComponent('modulo-panel-derecho', {
                     this.$emit('evaluacion-individual', contenido);
                     this.redirigeaContenido = true;
                 }
+
+
+
 
 
 
@@ -354,7 +375,7 @@ parasails.registerComponent('modulo-panel-derecho', {
 
             console.log('DEFINIR GRAFICO DE PUNTUACION');
             var labels = [];
-            var datasetLabel = "Curso: " + this.cursoEstudiante.nombre;
+            var datasetLabel = "Curso: " + this.curso.nombre;
             var datasetData = [];
             let contadorEvaluaciones = 0;
             let limiteEvaluaciones = 30;

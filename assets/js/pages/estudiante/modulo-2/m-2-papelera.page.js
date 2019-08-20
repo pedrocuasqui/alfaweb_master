@@ -19,12 +19,12 @@ parasails.registerPage('m-2-papelera', {
       type: String,
       default: "software"
     },
-    
-    
+
+
     papeleraVacia: {
       id: 'PapeleraVacia',
       titulo: 'Papelera de reciclaje vacía',
-      detalle: 'La papelera de reciclaje se encuentra vacía cuando no se ha borrado ningún archivo'  ,
+      detalle: 'La papelera de reciclaje se encuentra vacía cuando no se ha borrado ningún archivo',
       leerMas: 'https://recoverit.wondershare.com/es/deleted-recovery/recycle-bin-recovery.html',
       imgs: [
 
@@ -38,7 +38,7 @@ parasails.registerPage('m-2-papelera', {
     papeleraLlena: {
       id: 'PapeleraLlena',
       titulo: 'Papelera de reciclaje llena',
-      detalle: 'Si el usuario elimina un nuevo archivo y la papelera está por llenarse, reacciona eliminando suficientes archivos para que la carpeta no se llene en exceso. Por tanto el usuario siempre podrá eliminar archivos sin temor a sobrecargar la papelera.' ,
+      detalle: 'Si el usuario elimina un nuevo archivo y la papelera está por llenarse, reacciona eliminando suficientes archivos para que la carpeta no se llene en exceso. Por tanto el usuario siempre podrá eliminar archivos sin temor a sobrecargar la papelera.',
       leerMas: 'https://techlandia.com/sucede-papelera-reciclaje-computadora-llena-info_303933/',
       imgs: [
         {
@@ -46,7 +46,9 @@ parasails.registerPage('m-2-papelera', {
           alt: 'Papelera de reciclaje llena'
         },
       ]
-    }
+    },
+    mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
+    progreso: {} //puntos, niveles y medalla actuales
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -72,6 +74,34 @@ parasails.registerPage('m-2-papelera', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    /**
+  * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
+  */
+    intentarNuevamente() {
+
+      this.$refs.componenteEvaluacion.intentarNuevamente();
+
+    },
+    clickMostrarPista() {
+      if (this.evIndividual) {
+        this.$refs.componenteEvaluacion.mostrarPista();
+      }
+
+    },
+
+    finalizaEvaluacion(valor) {
+
+      this.mostrarIconoRepetir = valor; //true o false
+    },
+
+    actualizaProgreso(progresoActual) {
+      this.progreso = progresoActual;
+      console.log('PROGRESO ACTUAL');
+      console.log(progresoActual);
+    },
+
+
+
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
       if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
@@ -119,7 +149,7 @@ parasails.registerPage('m-2-papelera', {
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
 
-      
+
       // El audio se encuentra en el componente modulo-contenedor-curso.component
       let audioMouseOver = document.getElementById("audioMouseOver");
       audioMouseOver.volume = 0.2;

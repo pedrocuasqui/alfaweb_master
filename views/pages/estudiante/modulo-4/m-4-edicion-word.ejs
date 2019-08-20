@@ -2,13 +2,10 @@
 
     <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
     :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
-    @evaluacion-individual="evaluacionIndividual">
-    <modulo-ev-individual v-if="evIndividual">
-       
-    </modulo-ev-individual>
-    <div v-else>
+    >
+  
         <img src="/images/informaticabasica/modulo4/edicion_word/edicion_documentos.gif" alt="Edición de documentos">
-    </div>
+    
   
     </modulo-contenedor-curso>
     <!--  -->

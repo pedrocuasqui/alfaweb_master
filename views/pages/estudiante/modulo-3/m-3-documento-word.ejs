@@ -12,11 +12,8 @@
 
   <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
     :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
-    @evaluacion-individual="evaluacionIndividual">
-    <modulo-ev-individual v-if="evIndividual">
-
-    </modulo-ev-individual>
-    <div v-else>
+>
+ 
 
 
       <svg id="svg834" width="500" height="300" version="1.1" viewBox="0 0 132.29 79.375"
@@ -45,7 +42,7 @@
         <span>{{textoToolTip}}</span>
       </div>
 
-    </div>
+  
 
   </modulo-contenedor-curso>
   <!--  -->

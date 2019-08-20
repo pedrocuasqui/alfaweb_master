@@ -7,11 +7,21 @@
 
   <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
     :usuario="usuario" :curso="curso" :objeto-seleccionado.sync="objetoSeleccionado"
-    :titulo-temporal.sync="tituloEvaluacion" @evaluacion-individual="evaluacionIndividual" ref="curso">
-    <modulo-ev-individual v-if="evIndividual">
+    :titulo-temporal.sync="tituloEvaluacion" @evaluacion-individual="evaluacionIndividual" ref="curso"
+    :mostrar-icono-repetir="mostrarIconoRepetir" @intentar-nuevamente="intentarNuevamente" :progreso="progreso"
+    @click-asistente-buho="clickMostrarPista">
+    <!--mostrarIconoRepetir es una varible de tipo Boolean-->
+
+    <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
+
+    <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
+      @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
+      @actualiza-progreso="actualizaProgreso">
 
     </modulo-ev-individual>
-    <div v-else>
+    <div v-else >
+      <!-- CONTENIDO  -->
+
 
       <div id="carouseEncendido" class="carousel slide" data-ride="carousel" data-interval="false">
         <ol class="carousel-indicators carousel-indicators-numbers">
@@ -23,19 +33,28 @@
         </ol>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img class="d-block w-100" src="/images/informaticabasica/modulo1/encender_computadora/image29_encender_cpu.png" alt="Encender el CPu">
+            <img class="d-block w-100"
+              src="/images/informaticabasica/modulo1/encender_computadora/image29_encender_cpu.png"
+              alt="Encender el CPu">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="/images/informaticabasica/modulo1/encender_computadora/encenderMonitor.jpg" alt="Encender el Monitor">
+            <img class="d-block w-100" src="/images/informaticabasica/modulo1/encender_computadora/encenderMonitor.jpg"
+              alt="Encender el Monitor">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="/images/informaticabasica/modulo1/encender_computadora/inicioSesionWindows.png" alt="Seleccionar un Usuario">
+            <img class="d-block w-100"
+              src="/images/informaticabasica/modulo1/encender_computadora/inicioSesionWindows.png"
+              alt="Seleccionar un Usuario">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="/images/informaticabasica/modulo1/encender_computadora/patanllaInicioWindows.jpg" alt="Pantalla inicial de Windows">
+            <img class="d-block w-100"
+              src="/images/informaticabasica/modulo1/encender_computadora/patanllaInicioWindows.jpg"
+              alt="Pantalla inicial de Windows">
           </div>
           <div class="carousel-item">
-            <img class="d-block w-100" src="/images/informaticabasica/modulo1/encender_computadora/apagar-computadora.png" alt="Apagar la computadora">
+            <img class="d-block w-100"
+              src="/images/informaticabasica/modulo1/encender_computadora/apagar-computadora.png"
+              alt="Apagar la computadora">
           </div>
 
         </div>
@@ -51,7 +70,11 @@
         </a>
       </div>
 
+
     </div>
+
+
+
 
   </modulo-contenedor-curso>
   <!--  -->

@@ -42,7 +42,9 @@ parasails.registerPage('m-6-creacion-cuenta', {
       { descripcion: 'Paso 16: Terminada la configuración podemos observar que la cuenta de correo electrónico ya se encuentra creada y configurada correctamente para ser utilizada' },
       { descripcion: 'Paso 17: Ingresamos a nuestra cuenta de correo electrónico. Se muestra nuestra bandeja de entrada (buzón virtual) en donde se almacenan los correos que nos han enviado ' },
     ],
-    silenciar: true
+    silenciar: true,
+    mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
+    progreso: {} //puntos, niveles y medalla actuales
 
     // elemento:{
     //   id:'', 
@@ -88,6 +90,34 @@ parasails.registerPage('m-6-creacion-cuenta', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
+    /**
+  * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
+  */
+    intentarNuevamente() {
+
+      this.$refs.componenteEvaluacion.intentarNuevamente();
+
+    },
+    clickMostrarPista() {
+      if (this.evIndividual) {
+        this.$refs.componenteEvaluacion.mostrarPista();
+      }
+
+    },
+    
+    finalizaEvaluacion(valor) {
+
+      this.mostrarIconoRepetir = valor; //true o false
+    },
+
+    actualizaProgreso(progresoActual) {
+      this.progreso = progresoActual;
+      console.log('PROGRESO ACTUAL');
+      console.log(progresoActual);
+    },
+
+
+    
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
       if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;

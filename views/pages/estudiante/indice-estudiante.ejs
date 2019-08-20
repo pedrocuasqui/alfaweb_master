@@ -67,7 +67,7 @@
           <!-- columna derecha -->
           <div class="col-sm-2 col-derecha">
             <modulo-panel-derecho v-if="existeCursoEstudianteyLogueado" key="LogueadoConAvance" :usuario="usuario"
-              :curso-estudiante="cursoEstudiante" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel"
+              :curso-estudiante="cursoEstudiante" :curso="curso" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel"
               :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla"
               :porcentaje-avance="progreso.porcentajeAvance"></modulo-panel-derecho>
             <modulo-panel-derecho v-else-if="noExisteCursoEstudianteyLogueado" key="logueadoSinAvance"

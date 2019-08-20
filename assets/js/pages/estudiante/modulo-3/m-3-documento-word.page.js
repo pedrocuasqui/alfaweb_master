@@ -73,15 +73,7 @@ parasails.registerPage('m-3-documento-word', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-      if (contenido == 'contenido') {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = false;
-      } else {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = true;
-      }
-    },
+ 
 
     infoObjeto(idObjeto) {
       if (idObjeto == 'word') {

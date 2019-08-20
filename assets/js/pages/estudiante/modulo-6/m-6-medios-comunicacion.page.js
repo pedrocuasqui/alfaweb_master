@@ -2,8 +2,8 @@ parasails.registerPage('m-6-medios-comunicacion', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
-  data:{
-  breadcrumb: [],
+  data: {
+    breadcrumb: [],
 
     usuario: Object,
     navegarSiguiente: '',
@@ -19,51 +19,51 @@ parasails.registerPage('m-6-medios-comunicacion', {
       type: String,
       default: "software"
     },
-    
-    
+
+
     outlook: {
       id: 'outlook',
       titulo: 'Microsoft Outlook',
       detalle: 'Microsoft Outlook es un gestor de información personal desarrollado por Microsoft, disponible como parte de la suite Microsoft Office. Puede ser utilizado como aplicación independiente para trabajar día y noche o con Microsoft Exchange Server para dar servicios a múltiples usuarios dentro de una organización tales como buzones compartidos, calendarios comunes, etc',
-      leerMas:'https://es.wikipedia.org/wiki/Microsoft_Outlook',
+      leerMas: 'https://es.wikipedia.org/wiki/Microsoft_Outlook',
       imgs: [
-  
+
         {
           src: 'https://i.blogs.es/375004/outlook-copia/450_1000.jpg',
           alt: 'Microsoft outlook',
         },
-  
+
       ]
     },
     yahoo: {
       id: 'yahoo',
       titulo: 'Yahoo',
       detalle: 'Yahoo! es una empresa global de medios con sede en Estados Unidos que posee un portal de Internet, un directorio web y una serie de servicios tales como el popular correo electrónico Yahoo!. Su propósito es "ser el servicio global de Internet más esencial para consumidores y negocios".',
-      leerMas:'https://es.wikipedia.org/wiki/Yahoo!',
+      leerMas: 'https://es.wikipedia.org/wiki/Yahoo!',
       imgs: [
-  
+
         {
           src: 'https://s.yimg.com/dh/ap/default/130909/y_200_a.png',
           alt: 'Yahoo',
         },
-  
+
       ]
     },
     gmail: {
       id: 'gmail',
       titulo: 'Gmail',
       detalle: 'Gmail es un servicio de correo electrónico gratuito proporcionado por la empresa estadounidense Google, Inc a partir del 1 de abril de 2004. Tras más de cinco años, el 7 de julio de 2009, el servicio de Gmail, junto con Google Calendar, Google Docs (ahora integrado en Google Drive), Hangouts y Google Buzz (cerrado), dejaron su calidad de Beta y pasaron a ser considerados productos terminados.',
-      leerMas:'https://es.wikipedia.org/wiki/Gmail',
+      leerMas: 'https://es.wikipedia.org/wiki/Gmail',
       imgs: [
-  
+
         {
           src: 'https://upload.wikimedia.org/wikipedia/commons/thumb/a/ab/Gmail_Icon.svg/245px-Gmail_Icon.svg.png',
           alt: 'Gmail',
         },
-  
+
       ]
     },
-   
+
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -88,15 +88,7 @@ parasails.registerPage('m-6-medios-comunicacion', {
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
-    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-      if (contenido == 'contenido') {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = false;
-      } else {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = true;
-      }
-    },
+
 
     infoObjeto(idObjeto) {
       if (idObjeto == 'outlook') {
@@ -139,7 +131,7 @@ parasails.registerPage('m-6-medios-comunicacion', {
     },
     mouseOutPc(evet) {
       this.mostrarToolTip = false;
-      
+
       // El audio se encuentra en el componente modulo-contenedor-curso.component
       let audioMouseOver = document.getElementById("audioMouseOver");
       audioMouseOver.volume = 0.2;

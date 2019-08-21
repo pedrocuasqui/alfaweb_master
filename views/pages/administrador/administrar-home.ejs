@@ -30,9 +30,9 @@
       <div class="row">
         <!-- COLUMNA IZQUIERDA: ESTUDIANTES -->
         <div class="col">
-          <h3>Últimos estudiantes logeados</h3>
+          <h3>Últimos estudiantes logueados</h3>
           <div class="list-group">
-            <a v-for="estudiante in estudiantes" href="#"
+            <a v-for="estudiante in estudiantes" :href="'/view-puntaje-estudiante/?estudianteId='+estudiante.id"
               class="list-group-item list-group-item-action flex-column align-items-start">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{estudiante.nombre}}</h5>
@@ -52,7 +52,8 @@
           <h3>Cursos</h3>
           <div class="list-group">
 
-            <boton-curso v-for="(curso,index) in cursos" :key="curso.id" :curso="curso" @guardar-curso="guardarCurso" @selecciona-curso-eliminar="seleccionaCursoEliminar">
+            <boton-curso v-for="(curso,index) in cursos" :key="curso.id" :curso="curso" @guardar-curso="guardarCurso"
+              @selecciona-curso-eliminar="seleccionaCursoEliminar">
 
             </boton-curso>
 

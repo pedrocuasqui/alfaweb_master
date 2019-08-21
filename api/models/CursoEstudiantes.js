@@ -15,7 +15,7 @@ module.exports = {
     curso_matriculados: {
       type: 'string',
       columnName: 'curso_matriculados',
-      description:'El ID del curso en que se encuentra matriculado el estudiante',
+      description: 'El ID del curso en que se encuentra matriculado el estudiante',
       unique: false
     },
     estudiante_cursos: {

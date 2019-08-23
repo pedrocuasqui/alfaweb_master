@@ -140,6 +140,21 @@ parasails.registerPage('puntaje-estudiante', {
 
 
 
+      $("#graficoPuntuacionHistorica").click(
+        function (evt) {
+          var activePoints = chart.getElementsAtEvent(evt);
+          // var url = "http://example.com/?label=" + activePoints[0].label + "&value=" + activePoints[0].value;
+          if (activePoints[0]) {
+            var selectedIndex = activePoints[0]._index;
+            alert(selectedIndex);
+          }
+
+          // alert(url);
+        }
+      );
+
+
+
     },
     seleccionarEstudiantesConIntentos() {
       //se recorre el arreglo recibido del servidor con los estudiantes y sus evaluaciones
@@ -194,10 +209,28 @@ parasails.registerPage('puntaje-estudiante', {
       // var sortedArray = quick_Sort(myArray);
       // console.log("Sorted array: " + sortedArray);
 
+    },
+    devuelveFecha(fechaIntento) {
+      let fi = new Date(fechaIntento);
+      let fecha = fi.getDate() + "/" + fi.getMonth() + "/" + fi.getFullYear() + " " + fi.getHours() + ":" + fi.getMinutes();
+      return fecha
     }
 
 
   },
+  computed: {
+    intentoEvaluacionReversa() {
+
+      let intentosReversa = [];
+      if (this.intentosEvaluacion) {
+        if (this.intentosEvaluacion.length > 0) {
+          intentosReversa = [... this.intentosEvaluacion.slice().reverse()]
+        }
+      }
+
+      return intentosReversa;
+    }
+  }
 
 
 

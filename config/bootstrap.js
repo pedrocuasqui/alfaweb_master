@@ -724,7 +724,8 @@ module.exports.bootstrap = async function (done) {
                 opcion3: null,
                 opcion4: null
               },
-              respuesta: "4"
+              respuesta: "4",
+              respuestaEstudiante: '4'
             },
             {
               errores: 1,
@@ -737,7 +738,8 @@ module.exports.bootstrap = async function (done) {
                 opcion3: null,
                 opcion4: null
               },
-              respuesta: "10"
+              respuesta: "10",
+              respuestaEstudiante: '10'
             },
 
 
@@ -752,7 +754,8 @@ module.exports.bootstrap = async function (done) {
                 opcion3: null,
                 opcion4: null
               },
-              respuesta: "-5"
+              respuesta: "-5",
+              respuestaEstudiante: '-5'
             },
 
             {
@@ -766,7 +769,8 @@ module.exports.bootstrap = async function (done) {
                 opcion3: null,
                 opcion4: null
               },
-              respuesta: "11"
+              respuesta: "11",
+              respuestaEstudiante: null
             }
           ],
           puntosObtenidos: 450,
@@ -796,7 +800,8 @@ module.exports.bootstrap = async function (done) {
                 opcion3: null,
                 opcion4: null
               },
-              respuesta: "4"
+              respuesta: "4",
+              respuestaEstudiante: '4'
             },
             {
               errores: null,
@@ -809,7 +814,8 @@ module.exports.bootstrap = async function (done) {
                 opcion3: null,
                 opcion4: null
               },
-              respuesta: "10"
+              respuesta: "10",
+              respuestaEstudiante: null
             },
 
 
@@ -824,7 +830,8 @@ module.exports.bootstrap = async function (done) {
                 opcion3: null,
                 opcion4: null
               },
-              respuesta: "-5"
+              respuesta: "-5",
+              respuestaEstudiante: '-5'
             },
 
             {
@@ -838,7 +845,8 @@ module.exports.bootstrap = async function (done) {
                 opcion3: null,
                 opcion4: null
               },
-              respuesta: "11"
+              respuesta: "11",
+              respuestaEstudiante: null
             }
           ],
           puntosObtenidos: 780,

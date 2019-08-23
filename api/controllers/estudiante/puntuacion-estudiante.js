@@ -9,6 +9,11 @@ module.exports = {
     cursoId: {
       type: 'string',
       required: true
+    },
+    estudianteId: {
+      type: "string",
+      required: false,
+      description: "esta propiedad se remite solo desde la vista del administrador cuando busca la información de un usuario"
     }
   },
 
@@ -27,14 +32,20 @@ module.exports = {
     var res = this.res;
     var curso = null;
     var intentosEvaluacion = null;
+    var estudianteId = null;
     //verifacion de que el usuario existe
+
+
 
     if (req.session.userId) {
       usuario = await Estudiante.findOne({ id: req.session.userId });
       sails.log(usuario);
 
       if (!usuario) {
-        res.status(401).send({ message: 'su sesión ha expirado' });
+        usuario = await Profesor.findOne({ id: req.session.userId });
+      }
+      if (!usuario) {
+        res.status(401).send({ message: 'su sesión ha expirado o no se encuentra el usuario' });
       }
     } else { //si el usuario es el usuario Visitante se remite su información
       usuario = {
@@ -45,11 +56,17 @@ module.exports = {
       }
     }
 
+    // si se recibe la propiedad inputs.estudianteId significa que la consulta es desde un usuario administrador
+    if (inputs.estudianteId) {
+      estudianteId = inputs.estudianteId;
+    } else {
+      estudianteId = inputs.usuario.id;
+    }
     // Se retorna el historico de intentosEvaluacion por el estudiante en ese curso
 
     curso = await Curso.find({ id: inputs.cursoId });
     if (usuario.nombre != "Visitante") { //solo si existe un usuario, caso contrario
-      intentosEvaluacion = await IntentoEvaluacion.find({ curso: inputs.cursoId, estudiante: usuario.id }).populate('submodulo').sort('createdAt ASC');
+      intentosEvaluacion = await IntentoEvaluacion.find({ curso: inputs.cursoId, estudiante: estudianteId }).populate('submodulo').sort('createdAt ASC');
     }
 
     // retornar la puntuacion actual de todos los usuarios para construir la tabla de puntuacion
@@ -62,8 +79,6 @@ module.exports = {
           sort: 'createdAt desc'
         });
     // 
-    console.log('ESTUDIANTES CON SUS INTENTOS');
-    console.log(estudiantesConSusIntentos)
 
     return res.status(200).send({
       usuario,

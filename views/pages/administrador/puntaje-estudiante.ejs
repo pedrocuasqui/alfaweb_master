@@ -1,7 +1,66 @@
 <div id="puntaje-estudiante" v-cloak>
 
-  <h1>TODO: Implement this page.</h1>
-  <p>(See also <em>assets/styles/pages/administrador/puntaje-estudiante.less</em>, <em>assets/js/pages/administrador/puntaje-estudiante.page.js</em>, and <em>api/controllers/administrador/view-puntaje-estudiante.js</em>.)</p>
+
+  <!-- Pagina principal -->
+  <modulo-contenedor-admin :breadcrumb="breadcrumb" :usuario="usuario">
+    <div class="container">
+      <div class="row">
+        <div class="form-group">
+          <label for="curso">Curso</label>
+          <select class="form-control inputFull" id="curso" v-model="cursoSeleccionado" @change="clickPuntuacion()">
+            <option value="0" selected> Seleccione un curso </option>
+            <option v-for="(curso, index) in estudiante.cursos" :value="curso.id"> {{curso.nombre}}
+            </option>
+
+          </select>
+        </div>
+
+      </div>
+
+      <div class="row">
+        <!-- COLUMNA IZQUIERDA: TABLA DE POSICIONES -->
+        <div class="col">
+          <h3>Tabla de posiciones Curso: {{nombreCursoSeleccionado}}</h3>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Posición</th>
+                <th scope="col">Estudiante</th>
+                <th scope="col">Puntos</th>
+                <th scope="col">Experiencia</th>
+                <th scope="col">Nivel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(estudiante, index) in estudiantesConSusIntentosQuickSort">
+
+                <th scope="row">{{index+1}}</th>
+                <td>{{estudiante.nombre}}</td>
+                <td>{{estudiante.intentosEvaluacion[0].puntos}}</td>
+                <td>{{estudiante.intentosEvaluacion[0].medalla}}</td>
+                <td>{{estudiante.intentosEvaluacion[0].nivel}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+
+        <!-- COLUMNA DERECHA: GRAFICO DE AVANCE -->
+        <div class="col">
+          <h3>Gráfico de puntuaciones por evaluación</h3>
+          <div> Puntuación de las últimas evaluaciones </div>
+          <canvas id="graficoPuntuacionHistorica" width="1200" height="600"></canvas>
+
+        </div>
+      </div>
+
+
+    </div>
+  </modulo-contenedor-admin>
 
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

@@ -135,12 +135,6 @@ parasails.registerComponent('modulo-panel-derecho', {
                                 </tbody>
                           </table>
 
-
-
-
-
-
-
                             </div>
                             <div class="col-sm-8">
                             <!--COLUMNA DE GRÁFICO DE AVANCE-->
@@ -159,6 +153,9 @@ parasails.registerComponent('modulo-panel-derecho', {
             </div>
         </div>
     </div>
+
+
+    
     <div class="container-fluid barra-lateral">
         <div class="row usuario">
                 <div class="col">
@@ -281,56 +278,8 @@ parasails.registerComponent('modulo-panel-derecho', {
     </div>    
 </div>`,
     methods: {
-        clickPuntuacion() {
-
-            if (this.curso) {//Siempre debe existir un curso, no es posible acceder hasta esta ventana sin pasar por la seleccion de un curso
-                if (this.usuario.nombre != "Visitante") {
-                    axios(
-                        {
-                            url: '/puntuacion-estudiante',
-                            method: 'get',
-                            params: { cursoId: this.curso.id }
-
-                        }
-                    ).then(response => {
-                        console.log(response.data);
-                        // Los intentos del usuario logueado, ordenados ascendentemente por fecha de creacion
-                        this.intentosEvaluacion = response.data.intentosEvaluacion;
-                        // funcion para seleccinar solo los estudiantes que tienen evaluaciones es decir que la propiedad intentosEvaluacion tenga una longitud mayor a cero
-                        this.estudiantesConSusIntentos = response.data.estudiantesConSusIntentos;
-                        this.seleccionarEstudiantesConIntentos();
-                        this.estudiantesConSusIntentosQuickSort = this.ordenamientoQuickSort(this.estudiantesConSusIntentos);
-                        this.definirGraficoPuntuacion();
-                        this.mostrarModalPuntuacion();
-
-                    }).catch(err => {
-                        alert('Error: ' + err + '/n Contacte con el administrador del sistema')
-                    });
-
-                } else {
-                    alert("No puede acceder a esta información como usuario Visitante");
-                }
-            }
-        },
-        seleccionarEstudiantesConIntentos() {
-            //se recorre el arreglo recibido del servidor con los estudiantes y sus evaluaciones
-            this.estudiantesConSusIntentos.forEach(estudiante => {
-                // si el estudiante no tiene evaluaciones, se añaden valores por defecto a una evaluacion ficticia para que se lo tome en cuenta
-                if (estudiante.intentosEvaluacion.length == 0) {
-                    estudiante.intentosEvaluacion.push({ //intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
-                        puntos: 0,
-                        nivel: 0,//modulo 1
-                        medalla: 'bebe', //medalla mas basica
-                        tiempoMaximoPorPregunta: 30, //en segundos por defecto
-                        evaluacion: null,
-                    });
-                }
-
-
-
-            });
-
-        },
+       
+       
         mostrarModalPuntuacion() {
             console.log('MOSTRAR MODAL PUNTUACION');
             console.log(this.estudiantesConSusIntentosQuickSort);
@@ -371,6 +320,38 @@ parasails.registerComponent('modulo-panel-derecho', {
             }
         },
         */
+
+       clickPuntuacion() {
+
+        if (this.curso) {//Siempre debe existir un curso, no es posible acceder hasta esta ventana sin pasar por la seleccion de un curso
+            if (this.usuario.nombre != "Visitante") {
+                axios(
+                    {
+                        url: '/puntuacion-estudiante',
+                        method: 'get',
+                        params: { cursoId: this.curso.id }
+
+                    }
+                ).then(response => {
+                    console.log(response.data);
+                    // Los intentos del usuario logueado, ordenados ascendentemente por fecha de creacion
+                    this.intentosEvaluacion = response.data.intentosEvaluacion;
+                    // funcion para seleccinar solo los estudiantes que tienen evaluaciones es decir que la propiedad intentosEvaluacion tenga una longitud mayor a cero
+                    this.estudiantesConSusIntentos = response.data.estudiantesConSusIntentos;
+                    this.seleccionarEstudiantesConIntentos();
+                    this.estudiantesConSusIntentosQuickSort = this.ordenamientoQuickSort(this.estudiantesConSusIntentos);
+                    this.definirGraficoPuntuacion();
+                    this.mostrarModalPuntuacion();
+
+                }).catch(err => {
+                    alert('Error: ' + err + '/n Contacte con el administrador del sistema')
+                });
+
+            } else {
+                alert("No puede acceder a esta información como usuario Visitante");
+            }
+        }
+    },
         definirGraficoPuntuacion() {
 
             console.log('DEFINIR GRAFICO DE PUNTUACION');
@@ -436,7 +417,25 @@ parasails.registerComponent('modulo-panel-derecho', {
         },
 
 
+        seleccionarEstudiantesConIntentos() {
+            //se recorre el arreglo recibido del servidor con los estudiantes y sus evaluaciones
+            this.estudiantesConSusIntentos.forEach(estudiante => {
+                // si el estudiante no tiene evaluaciones, se añaden valores por defecto a una evaluacion ficticia para que se lo tome en cuenta
+                if (estudiante.intentosEvaluacion.length == 0) {
+                    estudiante.intentosEvaluacion.push({ //intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
+                        puntos: 0,
+                        nivel: 0,//modulo 1
+                        medalla: 'bebe', //medalla mas basica
+                        tiempoMaximoPorPregunta: 30, //en segundos por defecto
+                        evaluacion: null,
+                    });
+                }
 
+
+
+            });
+
+        },
         ordenamientoQuickSort(origArray) {
             console.log('INGRESO A QUICK SORT ');
             if (origArray.length <= 1) {

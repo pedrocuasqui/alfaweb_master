@@ -42,6 +42,9 @@ module.exports.routes = {
   'POST /registro-usuario': {
     action: 'autenticacion/registro-usuario',
   },
+  'POST /actualizar-usuario': {
+    action: 'autenticacion/actualizar-usuario',
+  },
   'GET /view-login': {
     action: 'autenticacion/view-login',
   },

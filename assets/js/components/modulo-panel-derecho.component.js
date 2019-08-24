@@ -155,12 +155,33 @@ parasails.registerComponent('modulo-panel-derecho', {
     </div>
 
 
-    
+    <!--Contenido del panel derecho-->
     <div class="container-fluid barra-lateral">
         <div class="row usuario">
                 <div class="col">
-                
+                  
+                      
+                    
+
+                    <div class="btn-group">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {{usuario.nombre}}
+                    </button>
+                    <div class="dropdown-menu">
+                      <a v-if="usuario.nombre =='Visitante'" class="dropdown-item" href="/view-login">Iniciar Sesión</a>
+                      <a v-else class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
+                      <div class="dropdown-divider"></div>
+                      <a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
+                    </div>
+                  </div>
+
+
+
+
+
+
+
+
 
                     <slot ></slot>
                     
@@ -278,8 +299,8 @@ parasails.registerComponent('modulo-panel-derecho', {
     </div>    
 </div>`,
     methods: {
-       
-       
+
+
         mostrarModalPuntuacion() {
             console.log('MOSTRAR MODAL PUNTUACION');
             console.log(this.estudiantesConSusIntentosQuickSort);
@@ -321,37 +342,37 @@ parasails.registerComponent('modulo-panel-derecho', {
         },
         */
 
-       clickPuntuacion() {
+        clickPuntuacion() {
 
-        if (this.curso) {//Siempre debe existir un curso, no es posible acceder hasta esta ventana sin pasar por la seleccion de un curso
-            if (this.usuario.nombre != "Visitante") {
-                axios(
-                    {
-                        url: '/puntuacion-estudiante',
-                        method: 'get',
-                        params: { cursoId: this.curso.id }
+            if (this.curso) {//Siempre debe existir un curso, no es posible acceder hasta esta ventana sin pasar por la seleccion de un curso
+                if (this.usuario.nombre != "Visitante") {
+                    axios(
+                        {
+                            url: '/puntuacion-estudiante',
+                            method: 'get',
+                            params: { cursoId: this.curso.id }
 
-                    }
-                ).then(response => {
-                    console.log(response.data);
-                    // Los intentos del usuario logueado, ordenados ascendentemente por fecha de creacion
-                    this.intentosEvaluacion = response.data.intentosEvaluacion;
-                    // funcion para seleccinar solo los estudiantes que tienen evaluaciones es decir que la propiedad intentosEvaluacion tenga una longitud mayor a cero
-                    this.estudiantesConSusIntentos = response.data.estudiantesConSusIntentos;
-                    this.seleccionarEstudiantesConIntentos();
-                    this.estudiantesConSusIntentosQuickSort = this.ordenamientoQuickSort(this.estudiantesConSusIntentos);
-                    this.definirGraficoPuntuacion();
-                    this.mostrarModalPuntuacion();
+                        }
+                    ).then(response => {
+                        console.log(response.data);
+                        // Los intentos del usuario logueado, ordenados ascendentemente por fecha de creacion
+                        this.intentosEvaluacion = response.data.intentosEvaluacion;
+                        // funcion para seleccinar solo los estudiantes que tienen evaluaciones es decir que la propiedad intentosEvaluacion tenga una longitud mayor a cero
+                        this.estudiantesConSusIntentos = response.data.estudiantesConSusIntentos;
+                        this.seleccionarEstudiantesConIntentos();
+                        this.estudiantesConSusIntentosQuickSort = this.ordenamientoQuickSort(this.estudiantesConSusIntentos);
+                        this.definirGraficoPuntuacion();
+                        this.mostrarModalPuntuacion();
 
-                }).catch(err => {
-                    alert('Error: ' + err + '/n Contacte con el administrador del sistema')
-                });
+                    }).catch(err => {
+                        alert('Error: ' + err + '/n Contacte con el administrador del sistema')
+                    });
 
-            } else {
-                alert("No puede acceder a esta información como usuario Visitante");
+                } else {
+                    alert("No puede acceder a esta información como usuario Visitante");
+                }
             }
-        }
-    },
+        },
         definirGraficoPuntuacion() {
 
             console.log('DEFINIR GRAFICO DE PUNTUACION');

@@ -14,6 +14,11 @@ module.exports = {
 
     success: {
       viewTemplatePath: 'pages/homepage'
+    },
+    redirect: {
+      description: 'Redirecciona a la página de administrador cuando se llama a homepage',
+      responseType: 'redirect' // Los diferentes tipos de response buscar en la siguiente página https://sailsjs.com/documentation/reference/response-res
+      //ejemplos: responseType:'ok'  responseType:'view'
     }
 
   },
@@ -42,9 +47,10 @@ module.exports = {
     if (req.session.userId) { // si existe un usuario
       // if (req.session.userId != 1) {// si el usuario no es visitante entonces se busca la información del usuario en la base de datos
       usuario = await Estudiante.findOne({ id: req.session.userId })
-      
+
       if (!usuario) {
-        usuario = await Profesor.findOne({ id: req.session.userId })  
+        usuario = await Profesor.findOne({ id: req.session.userId })
+        var esAdmin = true;
       }
 
       if (!usuario) {
@@ -57,8 +63,13 @@ module.exports = {
 
     var cursosPublicados = await Curso.find({ where: { publicado: true } });
 
+    if (esAdmin) {
+      return exits.redirect('/administrar-home');
+    } else {
+      exits.success({ usuario, cursosPublicados });
+    }
 
-    exits.success({ usuario, cursosPublicados });
+
 
   }
 

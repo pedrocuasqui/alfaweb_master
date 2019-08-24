@@ -36,7 +36,9 @@ module.exports.routes = {
   'GET /view-registro-usuario': {
     action: 'autenticacion/view-registro-usuario',
   },
-
+  'GET /view-actualizar-usuario': {
+    action: 'autenticacion/view-actualizar-usuario',
+  },
   'POST /registro-usuario': {
     action: 'autenticacion/registro-usuario',
   },
@@ -45,6 +47,9 @@ module.exports.routes = {
   },
   'POST /login': {
     action: 'autenticacion/login',
+  },
+  'GET /logout': {
+    action: 'autenticacion/logout',
   },
 
   /* RUTAS DE ADMINISTRADOR*/

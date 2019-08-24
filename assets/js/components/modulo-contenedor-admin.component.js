@@ -4,7 +4,7 @@ parasails.registerComponent('modulo-contenedor-admin', {
         breadcrumb: {
             type: Array,
             required: false,
-            default:()=>{return [{nombreModulo:'',id:1,enlace:''}]}
+            default: () => { return [{ nombreModulo: '', id: 1, enlace: '' }] }
         },
         // usuarioLogueado:{
         //     type:Boolean,
@@ -33,8 +33,25 @@ parasails.registerComponent('modulo-contenedor-admin', {
 
     <!--Contenido -->
     <div class="row" id="div-body">
-        <div v-if="usuario" class="nombre-usuario"> <i class="fas fa-user-circle"></i> {{usuario.nombre}} <i class="fas fa-bars"></i></div>
-        <div v-else class="nombre-usuario"> <a href="/view-login">Inicia Sesión</a> | <a href="/view-registro-usuario">Regístrate</a> </div>
+        <div v-if="usuario" class="nombre-usuario">      
+            <div class="btn-group">
+                <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                
+                    <i class="fas fa-user-circle"></i> {{usuario.nombre}} <i class="fas fa-bars"></i>
+                </button>
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
+                    <div class="dropdown-divider"></div>
+                    <a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
+                </div>
+            </div>
+     
+        </div>
+
+
+        <div v-else class="nombre-usuario">
+            <a href="/view-login">Inicia Sesión</a> | <a href="/view-registro-usuario">Regístrate</a> 
+        </div>
         <div class="col">
             <slot></slot>  
         </div>   

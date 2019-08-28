@@ -41,6 +41,7 @@ module.exports = {
     var navegarAtras = '';
     var navegarSiguiente = '';
 
+    //si se encuentra el usuario, se remite la información del usuario logueado para poder mostrar su nombre y validar su rol
 
     if (req.session.userId) {
       usuario = await Profesor.findOne({ id: req.session.userId })

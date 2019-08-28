@@ -31,10 +31,14 @@ module.exports = {
       if (!usuario) {
         res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
       }
+      if (usuario.administrador) {//busqueda del curso alfaweb para todos los administradores
+        var cursoInforBasica = await Curso.findOne({ nombre: 'Alfabetización informática' });
+      }
 
-      var cursos = await Curso.find(); //devuelve un arreglo con los cursos encotrados
+      var cursos = await Curso.find({ profesor: usuario.id }); //devuelve un arreglo con los cursos encotrados que pertenecen al profesor
       var estudiantes = await Estudiante.find({}).populate('cursos').sort('updatedAt DESC');//buscar los estudiantes que pertenecen a un curso 
-
+      // aniade el curso de informatica basica al arreglo de cursos
+      cursos.unshift(cursoInforBasica);
 
       return exits.success({
         cursos,

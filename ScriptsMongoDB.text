@@ -59,3 +59,10 @@ var datastoreSails = sails.getDatastore().manager;
           console.log(respuesta);
         });
 Fuente: https://mongodb.github.io/node-mongodb-native/2.2/api/Collection.html#distinct
+
+
+
+
+sabado 24 de Agosto 2019
+Como hacer pull de una rama remota y copiar su contenido en una rama local, para luego poder usar este contenido
+https://es.stackoverflow.com/a/193

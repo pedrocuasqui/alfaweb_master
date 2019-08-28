@@ -43,7 +43,7 @@ tutor:{
   type:'boolean',
   columnName:'tutor',
   required:true,
-}
+},
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
@@ -53,7 +53,11 @@ tutor:{
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+    cursos: { //Un Profesor crea varios cursos     profesor-->cursos
+      collection: 'Curso',
+      via: 'profesor',
 
+    },
   },
 
 };

@@ -50,6 +50,7 @@ parasails.registerComponent('modulo-ev-individual', {
 
 
             respuestaAnterior: [],
+            respuestaCuestionarioPreguntaPrueba: '',
         };
     },
     beforeMount() {
@@ -103,6 +104,16 @@ parasails.registerComponent('modulo-ev-individual', {
             this.tiempoRespuestaInicio = this.totalTime;
         }
 
+
+
+
+        // empieza la evaluaci'on despues de que se cierra el modal de inicio
+
+        var _this = this;
+        $('#modalInstrucciones').on('hidden.bs.modal', function (e) {
+            _this.empezarEvaluacion();
+        })
+
     },
     template://html
         `  
@@ -128,7 +139,8 @@ parasails.registerComponent('modulo-ev-individual', {
       </div>
       <div class="modal-footer">
         <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Omitir evaluación</button>-->
-        <button type="button" class="btn btn-primary" data-dismiss="modal" @click="empezarEvaluacion">Aceptar</button>
+        <button type="button" class="btn btn-primary" data-dismiss="modal" >Aceptar</button>
+        <!--// empieza la evaluaci'on despues de que se cierra el modal de inicio, revisar en la seccion MOUNTED-->
       </div>
     </div>
   </div>
@@ -208,20 +220,26 @@ parasails.registerComponent('modulo-ev-individual', {
     <template v-if="tipoEvaluacion=='Cuestionario'">
         <div class="row">
             <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
+       
+       
+       
+       
+       
             <div class="list-group">
-                <div  class="list-group-item list-group-item-action active">
-                    <div class="d-flex w-100 justify-content-between">
-                        <h5 class="mb-1">{{preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado}}</h5>   
-                    </div>
-                    <div v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
-                        <input type="radio" :id="opcion.id" key="index" v-model="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"  :value="opcion.texto" @click="respuestaCuestionarioSeleccionada">
-                            <!--v-model="pregunta.respuesta">-->
-                        <label :for="opcion.id">{{opcion.texto}}</label>
-                    </div>
-
-                    
+                <div class="d-flex w-100 justify-content-between">
+                    <h5 class="mb-1">{{preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado}}</h5>   
                 </div>
-            </div>
+
+            <div class="custom-control custom-radio" v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
+            <input type="radio" :id="opcion.id" class="custom-control-input"  :name="opcion.id" :value="opcion.texto" v-model="respuestaCuestionarioPreguntaPrueba" @click.stop="respuestaCuestionarioSeleccionada">
+            <label class="custom-control-label" :for="opcion.id">{{opcion.texto}}</label>
+          </div>
+          </div>
+
+
+
+
+
 
             <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
             <button v-else @click="clickSiguientePregunta"> Siguiente</button>
@@ -275,25 +293,28 @@ parasails.registerComponent('modulo-ev-individual', {
     <template v-if="tipoEvaluacion=='Nombre_Objeto'">
         <div class="row">
             <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
+ 
+
+
+
             <div class="list-group">
-                <div class="list-group-item list-group-item-action active">
-                    <div class="d-flex w-100 justify-content-between">
+            <div class="d-flex w-100 justify-content-between">
 
                         <div class="imagen-portada-modulo">
-                            <!--El enunciado puede ser cualquier objeto --->
+                            
                             <img :src="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado" alt="Imágen de evaluacion">
                         </div>
                        
                     </div>
+            <div class="custom-control custom-radio" v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
+            <input type="radio" :id="index" class="custom-control-input"  :name="index" :value="opcion.texto" v-model="respuestaCuestionarioPreguntaPrueba"  :key="index">
+            <label class="custom-control-label" :for="index">{{opcion.texto}}</label>
+          </div>
+             </div>
+        
+<!--@click.stop="respuestaCuestionarioSeleccionada"-->
 
-                    <div v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
-                        <input type="radio" :id="opcion.id" v-model="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"  :value="opcion.texto" @click="respuestaCuestionarioSeleccionada">
-                        <!--v-model="pregunta.respuesta">-->
-                    <label :for="opcion.id">{{opcion.texto}}</label>
-                    </div>
 
-                </div>
-            </div>
             <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
             <button v-else @click="clickSiguientePregunta"> Siguiente</button>
             
@@ -340,6 +361,9 @@ parasails.registerComponent('modulo-ev-individual', {
     </template>
 
     </div>`,
+    watch: {
+        respuestaCuestionarioPreguntaPrueba: 'respuestaCuestionarioSeleccionada'
+    },
     methods: {
         opcionesRespuesta(preguntaActual) { //Se construye una respuesta como objeto
             let opciones = [];
@@ -379,8 +403,14 @@ parasails.registerComponent('modulo-ev-individual', {
         respuestaCuestionarioSeleccionada() {
             // alert('respuesta seleccionada' + this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante);
             // Si la respuesta es equivocada:
-            if (this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante != this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuesta) {
+
+
+            // this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante
+            console.log("ingresa a  la evaluacion de la respuesta");
+            console.log(this.respuestaCuestionarioPreguntaPrueba);
+            if (this.respuestaCuestionarioPreguntaPrueba != this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuesta) {
                 // se aumenta en uno el numero de errores,
+                console.log('no es la respuesta correcta');
                 this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].errores += 1;
                 // si ya se habia seleccionado la respuesta correcta, se elimina del arreglo
                 for (let i = 0; i <= this.aciertos.length - 1; i++) {
@@ -389,10 +419,10 @@ parasails.registerComponent('modulo-ev-individual', {
                     }
                 }
 
-
             } else {
-
+                this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante = this.respuestaCuestionarioPreguntaPrueba
                 this.aciertos.push(this.indicePreguntaCuestionario);
+                console.log("hace push en aciertos");
             }
         },
         finalizarCuestionario() {
@@ -509,18 +539,22 @@ parasails.registerComponent('modulo-ev-individual', {
 
         haFinalizadoEvaluacionAntes() {
             let finalizar = false;
+            if (this.tipoEvaluacion == "Emparejamiento") {
+                let contadorRespuestaEstudiante = 0;
+                this.preguntasCuestionarioRespuestas.forEach(pregunta => {
+                    if (pregunta.respuestaEstudiante) {
+                        contadorRespuestaEstudiante += 1;
+                    }
 
-            let contadorRespuestaEstudiante = 0;
-            this.preguntasCuestionarioRespuestas.forEach(pregunta => {
-                if (pregunta.respuestaEstudiante) {
-                    contadorRespuestaEstudiante += 1;
-                }
+                });
 
-            });
+                if (contadorRespuestaEstudiante == this.preguntasCuestionarioRespuestas.length) { //Ha seleccionado una respuesta para todas las preguntas
+                    finalizar = true;
+                };
 
-            if (contadorRespuestaEstudiante == this.preguntasCuestionarioRespuestas.length) { //Ha seleccionado una respuesta para todas las preguntas
-                finalizar = true;
-            };
+            }
+
+
 
 
             return finalizar;

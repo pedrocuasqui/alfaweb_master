@@ -8,9 +8,9 @@ module.exports = {
 
 
   inputs: {
-    cursoId:{
-      type:'string',
-      required:true,
+    cursoId: {
+      type: 'string',
+      required: true,
     },
     nombreCurso: {
       type: 'string',
@@ -34,29 +34,29 @@ module.exports = {
 
   fn: async function (inputs) {
 
-    var res= this.res;
+    var res = this.res;
     // var cursoRecibido = JSON.parse(inputs.curso);
-    
-    try{
-    await Curso
-      .update({
-        id: inputs.cursoId
-      })
-      .set({
-        nombre: inputs.nombreCurso,
-        descripcion: inputs.descripcionCurso
-      });
-    }catch(e){
-      console.log('Error al intentar actualizar el curso:'+inputs.nombreCurso+'\n'+e)
-      if(e.CODE=='E_UNIQUE'){
-        return res.status(409).send({error: e});
+
+    try {
+      await Curso
+        .update({
+          id: inputs.cursoId
+        })
+        .set({
+          nombre: inputs.nombreCurso,
+          descripcion: inputs.descripcionCurso
+        });
+    } catch (e) {
+      console.log('Error al intentar actualizar el curso:' + inputs.nombreCurso + '\n' + e)
+      if (e.CODE == 'E_UNIQUE') {
+        return res.status(409).send({ error: e });
       }
-      if(e.name=='UsageError'){
-        return res.status(400).send({error: e});
-      }else{
-        return res.status(500).send({err: e});
+      if (e.name == 'UsageError') {
+        return res.status(400).send({ error: e });
+      } else {
+        return res.status(500).send({ err: e });
       }
-      
+
     }
 
     return res.ok();

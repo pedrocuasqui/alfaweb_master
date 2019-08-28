@@ -72,11 +72,14 @@ module.exports.bootstrap = async function (done) {
   var cursoAlfa = await Curso.findOne({ nombre: 'Alfabetización informática' });
   if (!cursoAlfa) {
 
+
+
     cursoCreado = await Curso.create(
       {
         nombre: 'Alfabetización informática',
         descripcion: 'Enseñanza de informática básica',
-        publicado: true
+        publicado: true,
+        // profesor: profesorCreado.id
       }
     ).fetch();
 
@@ -612,8 +615,34 @@ module.exports.bootstrap = async function (done) {
     //el avance se coloca en null en lugar de {} porque es mas facil gestionar desde el lado cliente
     await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
 
+    // 
+    // 
+    //NUEVO PROFESOR 1
+    // 
+    // 
+    var profesorCreado = await Profesor.create({
+      nombre: 'm',
+      alias: 'm',
+      email: '',
+      password: '$2b$10$dnUGZGpto1RdygwQ2bWDdeLRceCbCuU8Q2vz4RmZD8eXOyg.qrVqe',
+      administrador: true,
+      tutor: false
 
-    await Profesor.create({
+    }).fetch();
+
+    //CURSO PROGRAMACION BASICA
+    var cursoProgra = await Curso.create({
+      nombre: "Programaci'on b'asica",
+      descripcion: "conceptos básicos sobre programacion",
+      publicado: true,
+      profesor: profesorCreado.id
+    }).fetch();
+    // 
+    // 
+    //NUEVO PROFESOR 2
+    // 
+    // 
+    var profesorCreado = await Profesor.create({
       nombre: 'j',
       alias: 'j',
       email: '',
@@ -621,13 +650,14 @@ module.exports.bootstrap = async function (done) {
       administrador: true,
       tutor: false
 
-    });
+    }).fetch();
 
     //CURSO BASE DE DATOS
     var cursoBdd = await Curso.create({
       nombre: "Base de datos",
       descripcion: "conceptos básicos de bases de datos",
       publicado: true,
+      profesor: profesorCreado.id
     }).fetch();
 
     var mod1Bdd = await ModuloLibro.create({

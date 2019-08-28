@@ -16,16 +16,16 @@ module.exports = {
       type: 'string',
       required: true,
       columnName: 'nombre',
-      unique:true
+      unique: true
     },
     descripcion: {
       type: 'string',
       defaultsTo: 'Curso básico',
       columnName: 'descripcion'
     },
-    publicado:{
-      type:'boolean',
-      defaultsTo:false,
+    publicado: {
+      type: 'boolean',
+      defaultsTo: false,
       columnName: 'publicado'
     },
 
@@ -48,6 +48,11 @@ module.exports = {
     matriculados: { //un estudiante puede seguir varios cursos  estudiante -->curso
       collection: 'estudiante',
       via: 'cursos',
+    },
+
+    profesor: { //el curso pertenece a un profesor Profesor-->Curso
+      model: 'Profesor',
+      // required: true,
     }
   },
 

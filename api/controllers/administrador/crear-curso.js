@@ -44,11 +44,13 @@ module.exports = {
     if (req.session.userId) {
       usuario = await Profesor.findOne({ id: req.session.userId })
       if (!usuario) {
-        res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+        // res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+        return exits.redirect('/401-unauthorized');
       }
 
     } else {
-      res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+      // res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+      return exits.redirect('/401-unauthorized');
     }
 
     //la propiedad PUBLICADO tiene el valor predeterminado de FALSE

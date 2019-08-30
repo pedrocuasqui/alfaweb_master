@@ -16,7 +16,13 @@ module.exports = {
 
     success: {
       viewTemplatePath: 'pages/administrador/crear-submodulo'
+    },
+    redirect:{
+      description:'Redirecciona a la página indicada',
+      responseType:'redirect' // Los diferentes tipos de response buscar en la siguiente página https://sailsjs.com/documentation/reference/response-res
+      //ejemplos: responseType:'ok'  responseType:'view'
     }
+
 
   },
 
@@ -35,11 +41,13 @@ module.exports = {
     if (req.session.userId) {
       usuario = await Profesor.findOne({ id: req.session.userId })
       if (!usuario) {
-        res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+        // res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+        return exits.redirect('/401-unauthorized');
       }
 
     } else {
-      res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
+      // res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })/
+      return exits.redirect('/401-unauthorized');
     }
 
 

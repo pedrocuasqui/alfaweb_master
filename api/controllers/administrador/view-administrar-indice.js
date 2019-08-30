@@ -39,16 +39,14 @@ module.exports = {
     var navegarSiguiente = '';
 
     if (!req.session.userId) { //no está logueado
-      // res.status(401).send({ mensaje: 'Su sesion ha expirado' })
-      return exits.redirect('/401-unauthorized');
+      return res.forbidden();
     } else {
       usuario = await Profesor.findOne({ id: req.session.userId });// deberá encontrar un Profesor
       sails.log('USUARIO LOGUEADO');
       sails.log(usuario);
 
       if (!usuario) {
-        // res.status(401).send({ mensaje: 'Necesita permisos de Administrador' })
-        return exits.redirect('/401-unauthorized');
+        return res.forbidden();
       }
 
       var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos');

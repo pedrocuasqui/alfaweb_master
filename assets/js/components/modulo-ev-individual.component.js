@@ -399,7 +399,7 @@ parasails.registerComponent('modulo-ev-individual', {
 
         },
         respuestaCuestionarioSeleccionada() {
-            // alert('respuesta seleccionada' + this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante);
+
             // Si la respuesta es equivocada:
 
 
@@ -654,7 +654,7 @@ parasails.registerComponent('modulo-ev-individual', {
 
 
                 // if (numeroSubmoduloAprobadosPorCurso > this.nivel) { //si el porcentaje alcanzado es superior al porcentaje anterior entonces se 
-                // alert('has pasado al nivel: ' + numeroSubmoduloAprobadosPorCurso + 'de  ' + this.numeroSubmodulosCurso);
+
                 this.nivel = numeroSubmoduloAprobadosPorCurso; // se incrementa el nivel de acuerdo al porcentaje alcanzado /10, es posible saltarse mas de un nivel a la vez (del 3 al 5 por ejemplo) porque depende del número de evaluaciones que tenga el curso, mientras más evaluaciones tenga el curso, mas preciso es el cálculo del nivel 
 
                 // }
@@ -789,7 +789,7 @@ parasails.registerComponent('modulo-ev-individual', {
          * Guarda el intento de la evaluacion con su tiempo 
          */
         guardarIntentoEvaluacion() {
-            // alert('se guardó su intento');
+
             //solo se guarda si el usuario es estudiante, es decir, el usuario debe estar logueado
             let evaluacionIntento = {
                 tipo: this.tipoEvaluacion,
@@ -817,13 +817,13 @@ parasails.registerComponent('modulo-ev-individual', {
                 data: formData
             }).then(
                 response => {
-                    // alert('EVALUACION GUARDADA CON EXITO');
+
                     this.usuario.ultimoIntento = response.data.intentoEvaluacionCreado;
 
                 }
             ).catch(
                 err => {
-                    alert('SE HA ENCONTRADO UN ERROR AL INTENTAR GUARDAR EL AVANCE');
+                    alert('Error: no se puede guardar el avance en este momento');
                 });
         },
         actualizaProgreso() {

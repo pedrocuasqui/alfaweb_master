@@ -149,20 +149,20 @@ parasails.registerPage('administrar-contenido', {
       if (!this.objetoSeleccionado.contenidoTiny) {
         this.formErrors.contenidoTiny = true;
       }
-      alert('contenido tiny: ' + this.objetoSeleccionado.contenidoTiny);
+
 
       // SI EXISTE ALGUN ERROR SE RETORNA FALSE Y LA PAGINA SE REFRESCA SIN QUE SEA PERCEPTIBLE
       if (Object.keys(this.formErrors).length > 0) {
-        alert('error, existen errores');
+        alert('Corrija los errores antes de continuar');
         return false;
       }
       //SI LOS VALORES INGRESADOS SON CORRECTOS SE carga la imagen, en then se carga el resto de campos
 
       if (this.objetoSeleccionado.nombreModulo) {//si el objeto editado es modulo,  se envia a actualiar-modulo en el servidor
         this.actualizarModulo();
-        alert('actualizar modulo');
+
       } else if (this.objetoSeleccionado.nombreSubmodulo) {  //si el objeto editado es submodulo, se envia a actualizar-submodulo en el servidor
-        alert('actualizar submodulo');
+
         this.actualizarSubmodulo();
       }
 
@@ -189,12 +189,12 @@ parasails.registerPage('administrar-contenido', {
       }
       ).then(
         (response) => {
-          alert('Modificacion Exitosa');
+          alert('Modificación Exitosa');
           this.editarNombre = false;
           this.editarDescripcion = false;
         }
       ).catch((err) => {
-        alert(err);
+        alert('Error: no se ha podido actualizar el módulo');
       });
     },
     actualizarSubmodulo() {
@@ -219,7 +219,7 @@ parasails.registerPage('administrar-contenido', {
           this.editarDescripcion = false;
         }
       ).catch((err) => {
-        alert(err);
+        alert('Error: no se ha podido actualizar el tema');
       });
     },
 
@@ -255,7 +255,7 @@ parasails.registerPage('administrar-contenido', {
 
         })
         .catch(function (error) {
-          alert('Error, consulte a soporte técnico');
+          alert('Error, no se ha podido eliminar el objeto solicitado');
         });
 
 
@@ -343,20 +343,22 @@ parasails.registerPage('administrar-contenido', {
       });
     },
     insertarPreguntaCuestionario() {
-
+      var errores = "";
       if (!this.preguntaEnEdicion.enunciado) {
         this.formErrorsModal.enunciado = true;
-        alert('Ingrese un enunciado');
+        errores += "\n .Ingrese un enunciado";
+
       }
       if (this.opcionesRespuesta(this.preguntaEnEdicion).length < 2) {
         this.formErrorsModal.opciones = true;
-        alert('Registre al menos dos opciones');
+        errores += "\n .alert('Registre al menos dos opciones";
       }
       if (!this.preguntaEnEdicion.respuesta) {
         this.formErrorsModal.respuesta = true;
-        alert('Seleccione una respuesta');
+        errores += "\n .Seleccione una respuesta";
       }
-
+      alert(errores);
+      errores = "";
       if (Object.keys(this.formErrorsModal).length == 0) {
         this.preguntasCuestionario.push(this.preguntaEnEdicion)
         this.preguntaEnEdicion = {
@@ -376,19 +378,24 @@ parasails.registerPage('administrar-contenido', {
 
     },
     actualizarPreguntaCuestionario() {
+
+
+      var errores = "";
       if (!this.preguntaEnEdicion.enunciado) {
         this.formErrorsModal.enunciado = true;
-        alert('Ingrese un enunciado');
+        errores += "\n .Ingrese un enunciado";
       }
       if (this.opcionesRespuesta(this.preguntaEnEdicion).length < 2) {
         this.formErrorsModal.opciones = true;
-        alert('Registre al menos dos opciones');
+        errores += "\n .alert('Registre al menos dos opciones";
       }
       if (!this.preguntaEnEdicion.respuesta) {
         this.formErrorsModal.respuesta = true;
-        alert('Seleccione una respuesta');
+        errores += "\n .Seleccione una respuesta";
       }
 
+      alert(errores);
+      errores = "";
       if (Object.keys(this.formErrorsModal).length == 0) {
         //actualiza el contenido del arreglo de preguntas, remueve el elemento de la  posicion del la pregunta que se edita (indicePreguntaEditar) y se coloca la nueva pregunta editada (preguntaEnEdicion).
         this.preguntasCuestionario.splice(this.indicePreguntaEditar, 1, this.preguntaEnEdicion);
@@ -554,16 +561,26 @@ parasails.registerPage('administrar-contenido', {
       this.formErrorsModal = {};
     },
     insertarPreguntaEmparejamiento() {
+
+
+
+
+
+
+
+      var errores = "";
+
       if (!this.preguntaEnEdicion.enunciado) {
         this.formErrorsModal.enunciado = true;
-        alert('Ingrese un enunciado');
+        errores += "\n .Ingrese un enunciado";
       }
 
       if (!this.preguntaEnEdicion.respuesta) {
         this.formErrorsModal.respuesta = true;
-        alert('Ingrese una respuesta');
+        errores += "\n .Ingrese una respuesta";
       }
-
+      alert(errores);
+      errores = "";
       if (Object.keys(this.formErrorsModal).length == 0) {
         this.preguntasCuestionario.push(this.preguntaEnEdicion)
         this.preguntaEnEdicion = {

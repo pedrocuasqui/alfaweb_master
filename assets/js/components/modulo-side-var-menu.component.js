@@ -137,7 +137,7 @@ parasails.registerComponent('modulo-side-var-menu', {
 
 
             }).catch(err => {
-                alert('error, no se ha podido publicar el curso');
+                alert('Error, no se ha podido publicar el curso');
             });
 
 
@@ -150,10 +150,10 @@ parasails.registerComponent('modulo-side-var-menu', {
                 data: { publicar: false }
             }).then(response => {
                 this.curso.publicado = false;
-                alert('Curso ocultado');
+                alert('Se ha ocultado el curso a los estudiantes');
 
             }).catch(err => {
-                alert('Error, consulte a soporte técnico');
+                alert('Error: intente más tarde');
             });
 
         }

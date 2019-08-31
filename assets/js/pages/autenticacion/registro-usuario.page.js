@@ -92,7 +92,7 @@ parasails.registerPage('registro-usuario', {
         .catch((err) => {
 
           if (err.response.status == 409) {
-            alert('ERROR: EL USUARIO YA SE ENCUENTRA CREADO');
+            alert('Error: el usuario ya se encuentra creado');
             // if (_this.formData.alias) {
             //   _this.formErrors.alias = true;
             // }
@@ -104,7 +104,7 @@ parasails.registerPage('registro-usuario', {
 
             // }
           } else {
-            alert('NO SE PUEDE REGISTRAR EN ESTE MOMENTO, INTENTE MÁS TARDE');
+            alert('Error: no se puede registrar en este momento');
           }
 
           // return false;

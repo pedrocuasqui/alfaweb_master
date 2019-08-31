@@ -140,18 +140,17 @@ parasails.registerPage('puntaje-estudiante', {
 
 
 
-      $("#graficoPuntuacionHistorica").click(
+/*       $("#graficoPuntuacionHistorica").click(
         function (evt) {
           var activePoints = chart.getElementsAtEvent(evt);
           // var url = "http://example.com/?label=" + activePoints[0].label + "&value=" + activePoints[0].value;
           if (activePoints[0]) {
             var selectedIndex = activePoints[0]._index;
-            alert(selectedIndex);
           }
 
           // alert(url);
         }
-      );
+      ); */
 
 
 

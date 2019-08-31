@@ -118,7 +118,7 @@ parasails.registerPage('crear-submodulo', {
 
           if (err.response.status == 409) {
 
-            alert('ya existe un submodulo con el mismo nombre');
+            alert('Ya existe un tema con el mismo nombre');
           } else if (err.response.status == 400) {
             alert('Existen errores en la información suministrada');
             

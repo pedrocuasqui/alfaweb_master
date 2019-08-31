@@ -214,7 +214,7 @@ parasails.registerPage('crear-modulo', {
         .catch((err) => { //la respuesta de sails this.res
 
           if (err.response.status == 409) {
-            alert('ya existe un modulo con el mismo nombre');
+            alert('Ya existe un modulo con el mismo nombre');
           } else if (err.response.status == 400) {
             alert('Existen errores en la información suministrada');
           } else {

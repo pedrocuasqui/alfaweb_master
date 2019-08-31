@@ -90,10 +90,10 @@ parasails.registerPage('actualizar-usuario', {
         .catch((err) => {
 
           if (err.response.status == 409) {
-            alert('ERROR: EL USUARIO YA SE ENCUENTRA CREADO');
+            alert('Error: El usuario ya se encuentra creado');
 
           } else {
-            alert('NO SE PUEDE ACTUALIZAR EN ESTE MOMENTO, INTENTE MÁS TARDE');
+            alert('Error: No se puede actualizar en este momento');
           }
 
           // return false;

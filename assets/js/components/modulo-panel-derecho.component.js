@@ -306,7 +306,7 @@ parasails.registerComponent('modulo-panel-derecho', {
         evaluacionIndividual(contenido) {
 
             if (this.adminCreandoModuloSubmodulo) {
-                alert('Es necesario crear primero el tema actual');
+                alert('Primero debe crear el tema');
             } else {
 
 
@@ -359,7 +359,7 @@ parasails.registerComponent('modulo-panel-derecho', {
                         this.mostrarModalPuntuacion();
 
                     }).catch(err => {
-                        alert('Error: ' + err + '/n Contacte con el administrador del sistema')
+                        alert('Error: no se puede mostrar la puntuación en este momento')
                     });
 
                 } else {

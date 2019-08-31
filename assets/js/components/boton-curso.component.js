@@ -89,10 +89,10 @@ parasails.registerComponent('boton-curso', {
                 data: { publicar: true }
             }).then(response => {
                 this.curso.publicado = true;
-                alert('curso publicado');
+                alert('Curso publicado');
 
             }).catch(err => {
-                alert('error, no se ha podido publicar el curso');
+                alert('Error: no se ha podido publicar el curso');
             });
 
 
@@ -105,10 +105,10 @@ parasails.registerComponent('boton-curso', {
                 data: { publicar: false }
             }).then(response => {
                 this.curso.publicado = false;
-                alert('curso ocultado');
+                alert('Se ha ocultado el curso a los estudiantes');
 
             }).catch(err => {
-                alert('error, revisar la consola');
+                alert('Error: intente más tarde');
             });
 
         }

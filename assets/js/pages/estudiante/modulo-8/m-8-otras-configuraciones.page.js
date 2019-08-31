@@ -83,8 +83,7 @@ parasails.registerPage('m-8-otras-configuraciones', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 

@@ -172,8 +172,7 @@ parasails.registerPage('m-3-pantalla-word', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 

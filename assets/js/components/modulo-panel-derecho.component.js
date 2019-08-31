@@ -82,10 +82,6 @@ parasails.registerComponent('modulo-panel-derecho', {
 
     },
     mounted() {
-        console.log('ENTRA A PANEL DERECHO');
-        console.log(this.cursoEstudiante);
-        console.log(this.usuario);
-
 
 
     },
@@ -302,8 +298,7 @@ parasails.registerComponent('modulo-panel-derecho', {
 
 
         mostrarModalPuntuacion() {
-            console.log('MOSTRAR MODAL PUNTUACION');
-            console.log(this.estudiantesConSusIntentosQuickSort);
+
             $(function () {
                 $('#modalPuntuacionEstudiante').modal('show');
             });
@@ -354,7 +349,6 @@ parasails.registerComponent('modulo-panel-derecho', {
 
                         }
                     ).then(response => {
-                        console.log(response.data);
                         // Los intentos del usuario logueado, ordenados ascendentemente por fecha de creacion
                         this.intentosEvaluacion = response.data.intentosEvaluacion;
                         // funcion para seleccinar solo los estudiantes que tienen evaluaciones es decir que la propiedad intentosEvaluacion tenga una longitud mayor a cero
@@ -375,7 +369,6 @@ parasails.registerComponent('modulo-panel-derecho', {
         },
         definirGraficoPuntuacion() {
 
-            console.log('DEFINIR GRAFICO DE PUNTUACION');
             var labels = [];
             var datasetLabel = "Curso: " + this.curso.nombre;
             var datasetData = [];
@@ -458,14 +451,10 @@ parasails.registerComponent('modulo-panel-derecho', {
 
         },
         ordenamientoQuickSort(origArray) {
-            console.log('INGRESO A QUICK SORT ');
             if (origArray.length <= 1) {
-                console.log('RETORNA: ');
-                console.log(origArray);
                 return origArray;
 
             } else {
-                console.log('NO DEBE INGRESAR A CONTINUACION DE "RETORNA": ');
                 var left = [];
                 var right = [];
                 var newArray = [];
@@ -483,13 +472,6 @@ parasails.registerComponent('modulo-panel-derecho', {
 
                 return newArray.concat(this.ordenamientoQuickSort(left), estudiantePivot, this.ordenamientoQuickSort(right));
             }
-
-
-            // var myArray = [3, 0, 2, 5, -1, 4, 1 ];
-
-            // console.log("Original array: " + myArray);
-            // var sortedArray = quick_Sort(myArray);
-            // console.log("Sorted array: " + sortedArray);
 
         }
 
@@ -509,9 +491,7 @@ parasails.registerComponent('modulo-panel-derecho', {
         existeAvance() {
             let avance = false;
 
-            console.log('modulo panel derecho, funcion existeAvance');
             if (this.cursoEstudiante) {
-                console.log('existe cursoEstudiante');
                 if (this.cursoEstudiante.avance) {
                     avance = true;
                 }

@@ -62,7 +62,7 @@ module.exports = {
 
         });
     } catch (e) {
-      console.log('Error al intentar actualizar el modulo:' + inputs.nombreModulo + '\n' + e)
+      sails.log('Error al intentar actualizar el modulo:' + inputs.nombreModulo + '\n' + e)
       if (e.CODE == 'E_UNIQUE') {
         return res.status(409).send({ error: e });
       }

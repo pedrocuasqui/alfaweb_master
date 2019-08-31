@@ -99,7 +99,6 @@ parasails.registerComponent('modulo-side-var-menu', {
         },
         perteneceObjeto(moduloId) {
             var pertenece = false;
-            console.log('modulo.id:' + moduloId + 'vs Submodulo.modulo' + this.objetoSeleccionado.modulo);
             if (this.objetoSeleccionado.id == moduloId || this.objetoSeleccionado.modulo == moduloId) {
                 pertenece = true;
             }
@@ -108,7 +107,6 @@ parasails.registerComponent('modulo-side-var-menu', {
         colorModulo(moduloId) {
 
             var estilo = {};
-            console.log('modulo.id:' + moduloId + 'vs Submodulo.modulo' + this.objetoSeleccionado.modulo);
             if (this.objetoSeleccionado.id == moduloId || this.objetoSeleccionado.modulo == moduloId) {
                 estilo = { backgroundColor: this.objetoSeleccionado.color };
 
@@ -136,12 +134,10 @@ parasails.registerComponent('modulo-side-var-menu', {
             }).then(response => {
                 this.curso.publicado = true;
                 alert('curso publicado');
-                console.log(response);
-                console.log(response.data);
+
 
             }).catch(err => {
                 alert('error, no se ha podido publicar el curso');
-                console.log(err);
             });
 
 
@@ -154,11 +150,10 @@ parasails.registerComponent('modulo-side-var-menu', {
                 data: { publicar: false }
             }).then(response => {
                 this.curso.publicado = false;
-                alert('curso ocultado');
+                alert('Curso ocultado');
 
             }).catch(err => {
-                alert('error, revisar la consola');
-                console.log(err);
+                alert('Error, consulte a soporte técnico');
             });
 
         }

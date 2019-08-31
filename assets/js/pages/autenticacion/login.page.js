@@ -57,7 +57,7 @@ parasails.registerPage('login', {
       /*INSERTAR LA VALIDACION DE CORREO ELECTRONICO VALIDO */
       //  si el objeto formErrors se encuentra vacío, entonces continuar, caso contrario no recargar la página
       if (Object.keys(this.formErrors).length == 0) {
-        console.log('sin errores de validacion');
+
         this.valor = 'hola';
         // e.preventDefault();
 
@@ -68,7 +68,7 @@ parasails.registerPage('login', {
 
     },
     intentarEnvio() {
-      console.log(JSON.stringify(this.formData));
+
       //establezco los sigueintes valores en false para que se oculten los mensajes de error en la vista
       this.aliasIncorrecto = false;
       this.passwordIncorrecto = false;
@@ -80,28 +80,26 @@ parasails.registerPage('login', {
       })
         .then(
           (response) => {
-            // if (response.data.statusCode == 200){ console.log('LOGIN EXITOSO');}
-            // console.log('LOGIN EXITOSO');
-// console.log('response :');
-            if(response.data.usuario.administrador || response.data.usuario.tutor){
+
+            if (response.data.usuario.administrador || response.data.usuario.tutor) {
               window.location.replace("/administrar-home");
-              
-            }else{
+
+            } else {
               window.location.replace("/");
             }
-            
+
           }
         )
         .catch(
           err => {
-            console.log(err.response);
+
             if (err.response.status == 401) {
               this.aliasIncorrecto = true;
-              console.log('EL USUARIO NO SE ENCUENTRA REGISTRADO');
+
             }
             else if (err.response.status == 409) {
               this.passwordIncorrecto = true;
-              console.log('LA CONTRASEÑA ES INCORRECTA');
+
             };
           }
         );

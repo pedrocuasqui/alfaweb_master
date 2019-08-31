@@ -69,8 +69,7 @@ parasails.registerPage('m-3-area-trabajo', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 

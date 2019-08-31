@@ -114,8 +114,7 @@ parasails.registerPage('m-5-nombres-dominio', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 

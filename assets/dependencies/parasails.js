@@ -15,9 +15,9 @@
  * > around Vue.js and Lodash, with optional participation from jQuery, bowser,
  * > and VueRouter.
  */
-(function(factory, exposeUMD){
+(function (factory, exposeUMD) {
   exposeUMD(this, factory);
-})(function (Vue, _, VueRouter, $, bowser){
+})(function (Vue, _, VueRouter, $, bowser) {
 
   //  ██████╗ ██████╗ ██╗██╗   ██╗ █████╗ ████████╗███████╗
   //  ██╔══██╗██╔══██╗██║██║   ██║██╔══██╗╚══██╔══╝██╔════╝
@@ -64,27 +64,27 @@
    * Module utilities (private)
    */
 
-  function _ensureGlobalCache(){
+  function _ensureGlobalCache() {
     parasails._cache = parasails._cache || {};
   }
 
-  function _exportOnGlobalCache(moduleName, moduleDefinition){
+  function _exportOnGlobalCache(moduleName, moduleDefinition) {
     _ensureGlobalCache();
-    if (parasails._cache[moduleName]) { throw new Error('Something else (e.g. a utility or constant) has already been registered under that name (`'+moduleName+'`)'); }
+    if (parasails._cache[moduleName]) { throw new Error('Something else (e.g. a utility or constant) has already been registered under that name (`' + moduleName + '`)'); }
     parasails._cache[moduleName] = moduleDefinition;
   }
 
-  function _exposeBonusMethods(def, currentModuleEntityNoun){
+  function _exposeBonusMethods(def, currentModuleEntityNoun) {
     if (!currentModuleEntityNoun) { throw new Error('Consistency violation: Bad internal usage. '); }
-    if (def.methods && def.methods.$get) { throw new Error('This '+currentModuleEntityNoun+' contains `methods` with a `$get` key, but you\'re not allowed to override that'); }
-    if (def.methods && def.methods.$find) { throw new Error('This '+currentModuleEntityNoun+' contains `methods` with a `$find` key, but you\'re not allowed to override that'); }
-    if (def.methods && def.methods.$focus) { throw new Error('This '+currentModuleEntityNoun+' contains `methods` with a `$focus` key, but you\'re not allowed to override that'); }
-    if (def.methods && def.methods.forceRender) { throw new Error('This '+currentModuleEntityNoun+' contains `methods` with a `forceRender` key, but you\'re not allowed to override that'); }
-    if (def.methods && def.methods.$forceRender) { throw new Error('This '+currentModuleEntityNoun+' contains `methods` with a `$forceRender` key, but that\'s too confusing to let stand (did you mean "forceRender"?  Besides, that method cannot be overridden anyway)'); }
+    if (def.methods && def.methods.$get) { throw new Error('This ' + currentModuleEntityNoun + ' contains `methods` with a `$get` key, but you\'re not allowed to override that'); }
+    if (def.methods && def.methods.$find) { throw new Error('This ' + currentModuleEntityNoun + ' contains `methods` with a `$find` key, but you\'re not allowed to override that'); }
+    if (def.methods && def.methods.$focus) { throw new Error('This ' + currentModuleEntityNoun + ' contains `methods` with a `$focus` key, but you\'re not allowed to override that'); }
+    if (def.methods && def.methods.forceRender) { throw new Error('This ' + currentModuleEntityNoun + ' contains `methods` with a `forceRender` key, but you\'re not allowed to override that'); }
+    if (def.methods && def.methods.$forceRender) { throw new Error('This ' + currentModuleEntityNoun + ' contains `methods` with a `$forceRender` key, but that\'s too confusing to let stand (did you mean "forceRender"?  Besides, that method cannot be overridden anyway)'); }
     def.methods = def.methods || {};
 
     // Attach misc. methods:
-    def.methods.forceRender = function (){
+    def.methods.forceRender = function () {
       this.$forceUpdate();
       var promise = this.$nextTick();
       return promise;
@@ -93,35 +93,35 @@
 
     // Attach jQuery-powered methods:
     if ($) {
-      def.methods.$get = function (){
+      def.methods.$get = function () {
         var $rootEl = $(this.$el);
-        if ($rootEl.length !== 1) { throw new Error('Cannot use .$get() - something is wrong with this '+currentModuleEntityNoun+'\'s top-level DOM element.  (It probably has not mounted yet!)'); }
+        if ($rootEl.length !== 1) { throw new Error('Cannot use .$get() - something is wrong with this ' + currentModuleEntityNoun + '\'s top-level DOM element.  (It probably has not mounted yet!)'); }
         return $rootEl;
       };
-      def.methods.$find = function (subSelector){
+      def.methods.$find = function (subSelector) {
         if (!subSelector) { throw new Error('Cannot use .$find() because no sub-selector was provided.\nExample usage:\n    var $emailFields = this.$find(\'[name="emailAddress"]\');'); }
         var $rootEl = $(this.$el);
-        if ($rootEl.length !== 1) { throw new Error('Cannot use .$find() - something is wrong with this '+currentModuleEntityNoun+'\'s top-level DOM element.  (It probably has not mounted yet!)'); }
+        if ($rootEl.length !== 1) { throw new Error('Cannot use .$find() - something is wrong with this ' + currentModuleEntityNoun + '\'s top-level DOM element.  (It probably has not mounted yet!)'); }
         return $rootEl.find(subSelector);
       };
-      def.methods.$focus = function (subSelector){
+      def.methods.$focus = function (subSelector) {
         if (!subSelector) { throw new Error('Cannot use .$focus() because no sub-selector was provided.\nExample usage:\n    this.$focus(\'[name="emailAddress"]\');'); }
         var $rootEl = $(this.$el);
-        if ($rootEl.length !== 1) { throw new Error('Cannot use .$focus() - something is wrong with this '+currentModuleEntityNoun+'\'s top-level DOM element.  (It probably has not mounted yet!)'); }
+        if ($rootEl.length !== 1) { throw new Error('Cannot use .$focus() - something is wrong with this ' + currentModuleEntityNoun + '\'s top-level DOM element.  (It probably has not mounted yet!)'); }
         var $fieldToAutoFocus = $rootEl.find(subSelector);
-        if ($fieldToAutoFocus.length === 0) { throw new Error('Could not autofocus-- no such element exists within this '+currentModuleEntityNoun+'.'); }
-        if ($fieldToAutoFocus.length > 1) { throw new Error('Could not autofocus `'+subSelector+'`-- too many elements matched!'); }
+        if ($fieldToAutoFocus.length === 0) { throw new Error('Could not autofocus-- no such element exists within this ' + currentModuleEntityNoun + '.'); }
+        if ($fieldToAutoFocus.length > 1) { throw new Error('Could not autofocus `' + subSelector + '`-- too many elements matched!'); }
         $fieldToAutoFocus.focus();
       };
     }
     else {
-      def.methods.$get = function (){ throw new Error('Cannot use .$get() method because, at the time when this '+currentModuleEntityNoun+' was registered, jQuery (`$`) did not exist on the page yet.  (If you\'re using Sails, please check dependency loading order in pipeline.js and make sure jQuery is getting brought in before `parasails`.)'); };
-      def.methods.$find = function (){ throw new Error('Cannot use .$find() method because, at the time when this '+currentModuleEntityNoun+' was registered, jQuery (`$`) did not exist on the page yet.  (If you\'re using Sails, please check dependency loading order in pipeline.js and make sure jQuery is getting brought in before `parasails`.)'); };
-      def.methods.$focus = function (){ throw new Error('Cannot use .$focus() method because, at the time when this '+currentModuleEntityNoun+' was registered, jQuery (`$`) did not exist on the page yet.  (If you\'re using Sails, please check dependency loading order in pipeline.js and make sure jQuery is getting brought in before `parasails`.)'); };
+      def.methods.$get = function () { throw new Error('Cannot use .$get() method because, at the time when this ' + currentModuleEntityNoun + ' was registered, jQuery (`$`) did not exist on the page yet.  (If you\'re using Sails, please check dependency loading order in pipeline.js and make sure jQuery is getting brought in before `parasails`.)'); };
+      def.methods.$find = function () { throw new Error('Cannot use .$find() method because, at the time when this ' + currentModuleEntityNoun + ' was registered, jQuery (`$`) did not exist on the page yet.  (If you\'re using Sails, please check dependency loading order in pipeline.js and make sure jQuery is getting brought in before `parasails`.)'); };
+      def.methods.$focus = function () { throw new Error('Cannot use .$focus() method because, at the time when this ' + currentModuleEntityNoun + ' was registered, jQuery (`$`) did not exist on the page yet.  (If you\'re using Sails, please check dependency loading order in pipeline.js and make sure jQuery is getting brought in before `parasails`.)'); };
     }
   }
 
-  function _wrapMethodsAndVerifyNoArrowFunctions(def, currentModuleEntityNoun){
+  function _wrapMethodsAndVerifyNoArrowFunctions(def, currentModuleEntityNoun) {
     if (!currentModuleEntityNoun) { throw new Error('Consistency violation: Bad internal usage. '); }
 
     // Preliminary sanity check:
@@ -144,14 +144,14 @@
     };
     // > Note that this determination of whether to show a more precise
     // > "Did you mean?" error message is a case-_insensitive_ check.
-    var lowercasedRecommendationsByKey = _.reduce(RECOMMENDATIONS_BY_UNRECOGNIZED_KEY, function(memo, correctAlias, incorrectKey){
+    var lowercasedRecommendationsByKey = _.reduce(RECOMMENDATIONS_BY_UNRECOGNIZED_KEY, function (memo, correctAlias, incorrectKey) {
       memo[incorrectKey.toLowerCase()] = correctAlias;
       return memo;
     }, {});
     _.each(def, function (x, propertyName) {
       if (x !== undefined) {
         if (_.contains(_.keys(RECOMMENDATIONS_BY_UNRECOGNIZED_KEY), propertyName) || _.contains(_.keys(lowercasedRecommendationsByKey), propertyName.toLowerCase())) {
-          throw new Error('Detected unrecognized and potentially confusing key "'+propertyName+'" on the top level of '+currentModuleEntityNoun+' definition.  Did you mean "'+lowercasedRecommendationsByKey[propertyName.toLowerCase()]+'"?');
+          throw new Error('Detected unrecognized and potentially confusing key "' + propertyName + '" on the top level of ' + currentModuleEntityNoun + ' definition.  Did you mean "' + lowercasedRecommendationsByKey[propertyName.toLowerCase()] + '"?');
         }
       }
     });//∞
@@ -246,7 +246,7 @@
       // out a user who is trying to use e.g. "beforemount", without a capital "M"
       _.each(_.difference(_.keys(def), LEGAL_TOP_LVL_KEYS), function (propertyName) {
         if (def[propertyName] !== undefined) {
-          throw new Error('Detected unrecognized key "'+propertyName+'" on the top level of '+currentModuleEntityNoun+' definition.  Did you perhaps intend for `'+propertyName+'` to be included as a nested key within `data` or `methods`?  Please check on that and try again.  If you\'re unsure, or you\'re deliberately attempting to use a Vue.js feature that relies on having a top-level property named `'+propertyName+'`, then please remove this check from the parasails.js library in your project, or drop by https://sailsjs.com/support for assistance.');
+          throw new Error('Detected unrecognized key "' + propertyName + '" on the top level of ' + currentModuleEntityNoun + ' definition.  Did you perhaps intend for `' + propertyName + '` to be included as a nested key within `data` or `methods`?  Please check on that and try again.  If you\'re unsure, or you\'re deliberately attempting to use a Vue.js feature that relies on having a top-level property named `' + propertyName + '`, then please remove this check from the parasails.js library in your project, or drop by https://sailsjs.com/support for assistance.');
         }
       });//∞
     }//ﬁ
@@ -296,7 +296,7 @@
     def.methods = def.methods || {};
     _.each(_.keys(def.methods), function (methodName) {
       if (!_.isFunction(def.methods[methodName])) {
-        throw new Error('Unexpected definition for Vue method `'+methodName+'`.  Expecting a function, but got "'+def.methods[methodName]+'"');
+        throw new Error('Unexpected definition for Vue method `' + methodName + '`.  Expecting a function, but got "' + def.methods[methodName] + '"');
       }
 
       var isArrowFunction;
@@ -304,11 +304,11 @@
         var asString = def.methods[methodName].toString();
         isArrowFunction = asString.match(/^\s*\(\s*/) || asString.match(/^\s*async\s*\(\s*/);
       } catch (err) {
-        console.warn('Consistency violation: Encountered unexpected error when attempting to verify that Vue method `'+methodName+'` is not an arrow function.  (What browser is this?!)  Anyway, error details:', err);
+        console.warn('Consistency violation: Encountered unexpected error when attempting to verify that Vue method `' + methodName + '` is not an arrow function.  (What browser is this?!)  Anyway, error details:', err);
       }
 
       if (isArrowFunction) {
-        throw new Error('Unexpected definition for Vue method `'+methodName+'`.  Vue methods cannot be specified as arrow functions, because then you wouldn\'t have access to `this` (i.e. the Vue vm instance).  Please use a function like `function(){…}` or `async function(){…}` instead.');
+        throw new Error('Unexpected definition for Vue method `' + methodName + '`.  Vue methods cannot be specified as arrow functions, because then you wouldn\'t have access to `this` (i.e. the Vue vm instance).  Please use a function like `function(){…}` or `async function(){…}` instead.');
       }
 
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -392,37 +392,37 @@
   ///////////////////////////////////////////////////////////////////////////////////////////
   if ($ && typeof window !== 'undefined' && window.SAILS_LOCALS && window.SAILS_LOCALS._environment !== 'production') {
 
-    var _displayErrorOverlay = function(errorSummary){
+    var _displayErrorOverlay = function (errorSummary) {
 
       if ($('#parasails-error-handler').length === 0) {
         // Very first error:
-        $('<div id="parasails-error-handler">'+
-          '<div role="error-handler-content">'+
-            '<h1>Whoops</h1>'+
-            '<p>'+
-              '<span role="summary">An unexpected client-side error occurred.</span><br/>'+
-              '<pre>'+_.escape(_.trunc(errorSummary, {length: 350}))+'</pre>'+
-              '<span>Please check your browser\'s JavaScript console for further details.</span><br/>'+
-              '<small>This message will not be displayed in production.  '+
-              'If you\'re unsure, <a href="https://sailsjs.com/support">ask for help</a>.</small><br/>'+
-              '<small>'+_.escape(new Date())+'</small>'+
-              // '<br/><br/>'+
-              // '<span>High-level summary:</span>'+
-              // '<code><pre>'+_.escape(errorSummary)+'</pre></code>'+
-            '</p>'+
-          '</div>'+
-        '</div>')
-        .css({
-          position: 'fixed',
-          bottom: '0',
-          height: '100%',
-          width: '100%',
-          'z-index': '9000',
-          display: 'table',
-          'background': 'radial-gradient(circle, rgba(0,0,0,0.98) 0%, rgba(35,8,8,0.87) 80%, rgba(20,5,5,0.85) 100%)',
-          // (Thanks cssgradient.io!)
-        })
-        .appendTo('body');
+        $('<div id="parasails-error-handler">' +
+          '<div role="error-handler-content">' +
+          '<h1>Whoops</h1>' +
+          '<p>' +
+          '<span role="summary">An unexpected client-side error occurred.</span><br/>' +
+          '<pre>' + _.escape(_.trunc(errorSummary, { length: 350 })) + '</pre>' +
+          '<span>Please check your browser\'s JavaScript console for further details.</span><br/>' +
+          '<small>This message will not be displayed in production.  ' +
+          'If you\'re unsure, <a href="https://sailsjs.com/support">ask for help</a>.</small><br/>' +
+          '<small>' + _.escape(new Date()) + '</small>' +
+          // '<br/><br/>'+
+          // '<span>High-level summary:</span>'+
+          // '<code><pre>'+_.escape(errorSummary)+'</pre></code>'+
+          '</p>' +
+          '</div>' +
+          '</div>')
+          .css({
+            position: 'fixed',
+            bottom: '0',
+            height: '100%',
+            width: '100%',
+            'z-index': '9000',
+            display: 'table',
+            'background': 'radial-gradient(circle, rgba(0,0,0,0.98) 0%, rgba(35,8,8,0.87) 80%, rgba(20,5,5,0.85) 100%)',
+            // (Thanks cssgradient.io!)
+          })
+          .appendTo('body');
 
         $('#parasails-error-handler [role="error-handler-content"]').css({
           display: 'table-cell',
@@ -460,7 +460,7 @@
       } else {
         // Subsequent errors:
         $('#parasails-error-handler [role="summary"]')
-        .text('Multiple unexpected client-side errors occurred.');
+          .text('Multiple unexpected client-side errors occurred.');
       }
 
       // Returning `true` would suppress the actual uncaught error from
@@ -478,8 +478,8 @@
     //
     // For more info about `window.onerror`, see:
     // https://developer.mozilla.org/en-US/docs/Web/API/GlobalEventHandlers/onerror
-    window.onerror = function(message, scriptSrc, lineNo, charNo, err) {
-      _displayErrorOverlay(err&&err.message? err.message : message);
+    window.onerror = function (message, scriptSrc, lineNo, charNo, err) {
+      _displayErrorOverlay(err && err.message ? err.message : message);
     };//œ   </ on uncaught error >
 
     // Configure Vue to share its beforeMount errors (and others) with us.
@@ -487,9 +487,9 @@
     Vue.config.errorHandler = function (err, unusedVm, errorSourceDisplayName) {
       if (err && err.message) {
         if (errorSourceDisplayName === 'render function') {
-          err.message = 'In the HTML template (during render): '+err.message;
+          err.message = 'In the HTML template (during render): ' + err.message;
         } else {
-          err.message = 'In '+errorSourceDisplayName+': '+err.message;
+          err.message = 'In ' + errorSourceDisplayName + ': ' + err.message;
         }
         // err.message += '\n [?] If you\'re unsure, get help: https://sailsjs.com/support';
       } else {
@@ -507,7 +507,7 @@
     // > `trace` is the component hierarchy trace
     Vue.config.warnHandler = function (msg, unusedVm, unusedTrace) {
       throw new Error(
-        msg + '\n\n'+
+        msg + '\n\n' +
         'Expand this error and check out the stack trace for more info.'
       );
     };//ƒ
@@ -550,7 +550,7 @@
    * @param {Function} def
    */
 
-  parasails.registerUtility = function(utilityName, def){
+  parasails.registerUtility = function (utilityName, def) {
 
     // Usage
     if (!utilityName) { throw new Error('1st argument (utility name) is required'); }
@@ -580,7 +580,7 @@
    * @param {Ref} value
    */
 
-  parasails.registerConstant = function(constantName, value){
+  parasails.registerConstant = function (constantName, value) {
 
     // Usage
     if (!constantName) { throw new Error('1st argument (constant name) is required'); }
@@ -609,7 +609,7 @@
    * @returns {Ref}  [new vue component for this page]
    */
 
-  parasails.registerComponent = function(componentName, def){
+  parasails.registerComponent = function (componentName, def) {
 
     // Expose extra methods on component def, if jQuery is available.
     _exposeBonusMethods(def, 'component');
@@ -624,7 +624,7 @@
     if (def.mounted) {
       customMountedLC = def.mounted;
     }//ﬁ
-    def.mounted = function(){
+    def.mounted = function () {
 
       // Attach `parasails-component="…"` DOM attribute to allow for painless
       // selecting from an optional, corresponding per-component stylesheet.
@@ -640,12 +640,12 @@
     if (def.methods && def.methods.goto) { throw new Error('Component definition contains `methods` with a `goto` key-- but you\'re not allowed to override that'); }
     def.methods = def.methods || {};
     if (VueRouter) {
-      def.methods.goto = function (rootRelativeUrl){
+      def.methods.goto = function (rootRelativeUrl) {
         window.location = rootRelativeUrl;
       };
     }
     else {
-      def.methods.goto = function (){ throw new Error('Cannot use .goto() method because, at the time when this component was registered, VueRouter did not exist on the page yet. (If you\'re using Sails, please check dependency loading order in pipeline.js and make sure VueRouter is getting brought in before `parasails`.)'); };
+      def.methods.goto = function () { throw new Error('Cannot use .goto() method because, at the time when this component was registered, VueRouter did not exist on the page yet. (If you\'re using Sails, please check dependency loading order in pipeline.js and make sure VueRouter is getting brought in before `parasails`.)'); };
     }
 
     // Finally, register as a global Vue component.
@@ -664,7 +664,7 @@
    * @throws {Error} if no such module has been registered
    */
 
-  parasails.require = function(moduleName) {
+  parasails.require = function (moduleName) {
 
     // Usage
     if (!moduleName) { throw new Error('1st argument (module name -- i.e. the name of a utility or constant) is required'); }
@@ -672,7 +672,7 @@
     // Fetch from global cache
     _ensureGlobalCache();
     if (parasails._cache[moduleName] === undefined) {
-      var err = new Error('No utility or constant is registered under that name (`'+moduleName+'`)');
+      var err = new Error('No utility or constant is registered under that name (`' + moduleName + '`)');
       err.name = 'RequireError';
       err.code = 'MODULE_NOT_FOUND';
       throw err;
@@ -693,7 +693,7 @@
    * @returns {Ref}  [new vue app thing for this page]
    */
 
-  parasails.registerPage = function(pageName, def){
+  parasails.registerPage = function (pageName, def) {
 
     // Usage
     if (!pageName) { throw new Error('1st argument (page name) is required'); }
@@ -703,7 +703,7 @@
     if (!document.getElementById(pageName)) { return; }//eslint-disable-line no-undef
 
     // Spinlock
-    if (didAlreadyLoadPageScript) { throw new Error('Cannot load page script (`'+pageName+') because a page script has already been loaded on this page.'); }
+    if (didAlreadyLoadPageScript) { throw new Error('Cannot load page script (`' + pageName + ') because a page script has already been loaded on this page.'); }
     didAlreadyLoadPageScript = true;
 
     // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -714,7 +714,7 @@
 
     // Automatically set `el`
     if (def.el) { throw new Error('Page script definition contains `el`, but you\'re not allowed to override that'); }
-    def.el = '#'+pageName;
+    def.el = '#' + pageName;
 
     // Expose extra methods, if jQuery is available.
     _exposeBonusMethods(def, 'page script');
@@ -728,33 +728,33 @@
     var SNIFFER_CSS_CLASS_PREFIX = 'detected-';
     if (bowser && $) {
 
-      if (bowser.tablet||bowser.mobile) {
-        bowserSniffClasses += ' '+SNIFFER_CSS_CLASS_PREFIX+'mobile';
+      if (bowser.tablet || bowser.mobile) {
+        bowserSniffClasses += ' ' + SNIFFER_CSS_CLASS_PREFIX + 'mobile';
         // ^^Note: "detected-mobile" means ANY mobile OS/device (handset or tablet)
         //  [?] https://github.com/lancedikson/bowser/tree/6bbdaf99f0b36cf3a7b8a14feb0aa60d86d7e0dd#device-flags
         if (bowser.ios) {
-          bowserSniffClasses += ' '+SNIFFER_CSS_CLASS_PREFIX+'ios';
+          bowserSniffClasses += ' ' + SNIFFER_CSS_CLASS_PREFIX + 'ios';
         } else if (bowser.android) {
-          bowserSniffClasses += ' '+SNIFFER_CSS_CLASS_PREFIX+'android';
+          bowserSniffClasses += ' ' + SNIFFER_CSS_CLASS_PREFIX + 'android';
         } else if (bowser.windowsphone) {
-          bowserSniffClasses += ' '+SNIFFER_CSS_CLASS_PREFIX+'windowsphone';
+          bowserSniffClasses += ' ' + SNIFFER_CSS_CLASS_PREFIX + 'windowsphone';
         }
 
         if (bowser.tablet) {
-          bowserSniffClasses += ' '+SNIFFER_CSS_CLASS_PREFIX+'tablet';
+          bowserSniffClasses += ' ' + SNIFFER_CSS_CLASS_PREFIX + 'tablet';
         } else if (bowser.mobile) {
-          bowserSniffClasses += ' '+SNIFFER_CSS_CLASS_PREFIX+'handset';
+          bowserSniffClasses += ' ' + SNIFFER_CSS_CLASS_PREFIX + 'handset';
         }
       }
       else {
         // Otherwise we're not on a mobile OS/browser/device.
         // But we can at least get a bit more intell on what's up:
         if (bowser.mac) {
-          bowserSniffClasses += ' '+SNIFFER_CSS_CLASS_PREFIX+'mac';
+          bowserSniffClasses += ' ' + SNIFFER_CSS_CLASS_PREFIX + 'mac';
         } else if (bowser.windows) {
-          bowserSniffClasses += ' '+SNIFFER_CSS_CLASS_PREFIX+'windows';
+          bowserSniffClasses += ' ' + SNIFFER_CSS_CLASS_PREFIX + 'windows';
         } else if (bowser.linux) {
-          bowserSniffClasses += ' '+SNIFFER_CSS_CLASS_PREFIX+'linux';
+          bowserSniffClasses += ' ' + SNIFFER_CSS_CLASS_PREFIX + 'linux';
         }
       }
     }//ﬁ
@@ -763,7 +763,7 @@
     // appropriate based on browser device sniffing, attach special classes to
     // the <body> element.
     if ($ && bowserSniffClasses) {
-      $(function(){
+      $(function () {
         $('body').addClass(bowserSniffClasses);
       });//_∏_
     }//ﬁ
@@ -773,7 +773,7 @@
     if (def.mounted) {
       customMountedLC = def.mounted;
     }//ﬁ
-    def.mounted = function(){
+    def.mounted = function () {
 
       // Similar to above, attach special classes to the page script's top-level
       // DOM element, now that it has been mounted (again, only if appropriate
@@ -792,14 +792,14 @@
     if (def.data && def.data.pageName) { throw new Error('Page script definition contains `data` with a `pageName` key, but you\'re not allowed to override that'); }
     def.data = _.extend({
       pageName: pageName
-    }, def.data||{});
+    }, def.data || {});
 
     // Attach `goto` method, for convenience.
     if (def.methods && def.methods.goto) { throw new Error('Page script definition contains `methods` with a `goto` key-- but you\'re not allowed to override that'); }
     def.methods = def.methods || {};
     if (VueRouter) {
       var _virtualPagesRegExp = def.virtualPagesRegExp;
-      def.methods.goto = function (rootRelativeUrlOrOpts){
+      def.methods.goto = function (rootRelativeUrlOrOpts) {
         // FUTURE: add support for using '../' without reloading the page
         // (even though it doesn't technicaly match the regexp)
         if (!_virtualPagesRegExp || (_.isString(rootRelativeUrlOrOpts) && !rootRelativeUrlOrOpts.match(_virtualPagesRegExp))) {
@@ -810,7 +810,7 @@
       };
     }
     else {
-      def.methods.goto = function (){ throw new Error('Cannot use .goto() method because, at the time when this page script was registered, VueRouter did not exist on the page yet. (If you\'re using Sails, please check dependency loading order in pipeline.js and make sure VueRouter is getting brought in before `parasails`.)'); };
+      def.methods.goto = function () { throw new Error('Cannot use .goto() method because, at the time when this page script was registered, VueRouter did not exist on the page yet. (If you\'re using Sails, please check dependency loading order in pipeline.js and make sure VueRouter is getting brought in before `parasails`.)'); };
     }
 
     // If virtualPages-related stuff was specified, check usage and tolerate shorthand.
@@ -855,18 +855,17 @@
       if (def.beforeMount) {
         customBeforeMountLC = def.beforeMount;
       }//ﬁ
-      def.beforeMount = function(){
+      def.beforeMount = function () {
 
         // Inject additional code to check for <router-view> element:
-        // console.log('this.$find(\'router-view\').length', this.$find('router-view').length);
         if (this.$find('router-view').length === 0) {
           throw new Error(
-            'Cannot mount this page with `virtualPages: true` because no '+
-            '<router-view> element exists in this page\'s HTML.\n'+
-            'Please be sure the HTML includes:\n'+
-            '\n'+
-            '```\n'+
-            '<router-view></router-view>\n'+
+            'Cannot mount this page with `virtualPages: true` because no ' +
+            '<router-view> element exists in this page\'s HTML.\n' +
+            'Please be sure the HTML includes:\n' +
+            '\n' +
+            '```\n' +
+            '<router-view></router-view>\n' +
             '```\n'
           );
         }//•
@@ -895,11 +894,11 @@
       // Now modify the definition's methods and remove all relevant top-level props understood
       // by parasails (but not by Vue.js) to avoid creating any weird additional dependence on
       // parasails features beyond the expected usage.
-      def.methods = _.extend(def.methods||{}, {
-        _handleVirtualNavigation: function(virtualPageSlug){
+      def.methods = _.extend(def.methods || {}, {
+        _handleVirtualNavigation: function (virtualPageSlug) {
 
           if (beforeNavigate) {
-            var resultFromBeforeNavigate = beforeNavigate.apply(this, [ virtualPageSlug ]);
+            var resultFromBeforeNavigate = beforeNavigate.apply(this, [virtualPageSlug]);
             if (resultFromBeforeNavigate === false) {
               return false;
             }//•
@@ -907,11 +906,8 @@
 
           this.virtualPageSlug = virtualPageSlug;
 
-          // console.log('navigate!  Got:', arguments);
-          // console.log('Navigated. (Set `this.virtualPageSlug=\''+virtualPageSlug+'\'`)');
-
           if (afterNavigate) {
-            afterNavigate.apply(this, [ virtualPageSlug ]);
+            afterNavigate.apply(this, [virtualPageSlug]);
           }
 
         }
@@ -919,11 +915,11 @@
 
       // Automatically attach `virtualPageSlug` to `data`, for convenience.
       if (def.data && def.data.virtualPageSlug !== undefined && !_.isString(def.data.virtualPageSlug)) {
-        throw new Error('Page script definition contains `data` with a `virtualPageSlug` key, but you\'re not allowed to set that yourself unless you use a string.  (And this is set to a non-string value: '+def.data.virtualPageSlug+')');
+        throw new Error('Page script definition contains `data` with a `virtualPageSlug` key, but you\'re not allowed to set that yourself unless you use a string.  (And this is set to a non-string value: ' + def.data.virtualPageSlug + ')');
       } else if (def.data && def.data.virtualPageSlug === undefined) {
         def.data = _.extend({
           virtualPageSlug: undefined
-        }, def.data||{});
+        }, def.data || {});
       }//ﬁ
 
       // Now we'll replace `virtualPages` in our def with the thing that VueRouter actually expects:
@@ -933,38 +929,37 @@
           routes: [
             {
               path: '*',
-              component: (function(){
+              component: (function () {
                 var vueComponentDef = {
-                  render: function(){},
-                  beforeRouteUpdate: function (to,from,next){
+                  render: function () { },
+                  beforeRouteUpdate: function (to, from, next) {
                     // this.$emit('navigate', to.path); <<old way
                     var path = to.path;
                     var matches = path.match(pathMatchingRegExp);
                     if (!matches) {
-                      var err =new Error('Could not match current URL path (`'+path+'`) as a virtual page.  Please check the `virtualPagesRegExp` -- e.g. `/^\/foo\/bar\/?([^\/]+)?/`');
+                      var err = new Error('Could not match current URL path (`' + path + '`) as a virtual page.  Please check the `virtualPagesRegExp` -- e.g. `/^\/foo\/bar\/?([^\/]+)?/`');
                       err.code = 'E_DID_NOT_MATCH_REGEXP';
                       throw err;
                     }//•
 
-                    // console.log('this.$parent', this.$parent);
-                    this.$parent._handleVirtualNavigation(matches[1]||'');
+                    this.$parent._handleVirtualNavigation(matches[1] || '');
                     // this.$emit('navigate', {
                     //   rawPath: path,
                     //   virtualPageSlug: matches[1]||''
                     // });
                     return next();
                   },
-                  mounted: function(){
+                  mounted: function () {
                     // this.$emit('navigate', this.$route.path); <<old way
                     var path = this.$route.path;
                     var matches = path.match(pathMatchingRegExp);
                     if (!matches) {
-                      var err =new Error('Could not match current URL path (`'+path+'`) as a virtual page.  Please check the `virtualPagesRegExp` -- e.g. `/^\/foo\/bar\/?([^\/]+)?/`');
+                      var err = new Error('Could not match current URL path (`' + path + '`) as a virtual page.  Please check the `virtualPagesRegExp` -- e.g. `/^\/foo\/bar\/?([^\/]+)?/`');
                       err.code = 'E_DID_NOT_MATCH_REGEXP';
                       throw err;
                     }//•
 
-                    this.$parent._handleVirtualNavigation(matches[1]||'');
+                    this.$parent._handleVirtualNavigation(matches[1] || '');
                     // this.$emit('navigate', {
                     //   rawPath: path,
                     //   virtualPageSlug: matches[1]||''
@@ -1004,13 +999,13 @@
    *
    * @returns {Boolean}
    */
-  parasails.util.isMobile = function(){
+  parasails.util.isMobile = function () {
 
     // If `bowser` is not available, throw an error.
-    if(!bowser) {
-      throw new Error('Cannot detect mobile-ness, because `bowser` global does not exist on the page yet. '+
-        '(If you\'re using Sails, please check dependency loading order in pipeline.js and make sure '+
-        'the Bowser library is getting brought in before `parasails`. If you have not included Bowser '+
+    if (!bowser) {
+      throw new Error('Cannot detect mobile-ness, because `bowser` global does not exist on the page yet. ' +
+        '(If you\'re using Sails, please check dependency loading order in pipeline.js and make sure ' +
+        'the Bowser library is getting brought in before `parasails`. If you have not included Bowser ' +
         'in your project, you can find it at https://github.com/lancedikson/bowser/releases)');
     }
 
@@ -1035,23 +1030,33 @@
    * @returns {Boolean}
    */
 
-  parasails.util.isValidEmailAddress = function(value){
+  parasails.util.isValidEmailAddress = function (value) {
     if (!value || typeof value !== 'string') { return false; }
     /* eslint-disable */
-    return (function(){function _isByteLength(str,min,max){var len=encodeURI(str).split(/%..|./).length-1;return len>=min&&(typeof max==='undefined'||len<=max)}
-    var emailUserUtf8Part=/^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+$/i;var quotedEmailUserUtf8=/^([\s\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|(\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*$/i;function _isFQDN(str){var options={require_tld:!0,allow_underscores:!1,allow_trailing_dot:!1};if(options.allow_trailing_dot&&str[str.length-1]==='.'){str=str.substring(0,str.length-1)}
-    var parts=str.split('.');if(options.require_tld){var tld=parts.pop();if(!parts.length||!/^([a-z\u00a1-\uffff]{2,}|xn[a-z0-9-]{2,})$/i.test(tld)){return!1}}
-    for(var part,i=0;i<parts.length;i++){part=parts[i];if(options.allow_underscores){if(part.indexOf('__')>=0){return!1}
-    part=part.replace(/_/g,'')}
-    if(!/^[a-z\u00a1-\uffff0-9-]+$/i.test(part)){return!1}
-    if(/[\uff01-\uff5e]/.test(part)){return!1}
-    if(part[0]==='-'||part[part.length-1]==='-'||part.indexOf('---')>=0){return!1}}
-    return!0};return function(str){var parts=str.split('@'),domain=parts.pop(),user=parts.join('@');var lower_domain=domain.toLowerCase();if(lower_domain==='gmail.com'||lower_domain==='googlemail.com'){user=user.replace(/\./g,'').toLowerCase()}
-    if(!_isByteLength(user,0,64)||!_isByteLength(domain,0,256)){return!1}
-    if(!_isFQDN(domain)){return!1}
-    if(user[0]==='"'){user=user.slice(1,user.length-1);return quotedEmailUserUtf8.test(user)}
-    var pattern=emailUserUtf8Part;var user_parts=user.split('.');for(var i=0;i<user_parts.length;i++){if(!pattern.test(user_parts[i])){return!1}}
-    return!0}})()(value);
+    return (function () {
+      function _isByteLength(str, min, max) { var len = encodeURI(str).split(/%..|./).length - 1; return len >= min && (typeof max === 'undefined' || len <= max) }
+      var emailUserUtf8Part = /^[a-z\d!#\$%&'\*\+\-\/=\?\^_`{\|}~\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]+$/i; var quotedEmailUserUtf8 = /^([\s\x01-\x08\x0b\x0c\x0e-\x1f\x7f\x21\x23-\x5b\x5d-\x7e\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]|(\\[\x01-\x09\x0b\x0c\x0d-\x7f\u00A0-\uD7FF\uF900-\uFDCF\uFDF0-\uFFEF]))*$/i; function _isFQDN(str) {
+        var options = { require_tld: !0, allow_underscores: !1, allow_trailing_dot: !1 }; if (options.allow_trailing_dot && str[str.length - 1] === '.') { str = str.substring(0, str.length - 1) }
+        var parts = str.split('.'); if (options.require_tld) { var tld = parts.pop(); if (!parts.length || !/^([a-z\u00a1-\uffff]{2,}|xn[a-z0-9-]{2,})$/i.test(tld)) { return !1 } }
+        for (var part, i = 0; i < parts.length; i++) {
+          part = parts[i]; if (options.allow_underscores) {
+            if (part.indexOf('__') >= 0) { return !1 }
+            part = part.replace(/_/g, '')
+          }
+          if (!/^[a-z\u00a1-\uffff0-9-]+$/i.test(part)) { return !1 }
+          if (/[\uff01-\uff5e]/.test(part)) { return !1 }
+          if (part[0] === '-' || part[part.length - 1] === '-' || part.indexOf('---') >= 0) { return !1 }
+        }
+        return !0
+      }; return function (str) {
+        var parts = str.split('@'), domain = parts.pop(), user = parts.join('@'); var lower_domain = domain.toLowerCase(); if (lower_domain === 'gmail.com' || lower_domain === 'googlemail.com') { user = user.replace(/\./g, '').toLowerCase() }
+        if (!_isByteLength(user, 0, 64) || !_isByteLength(domain, 0, 256)) { return !1 }
+        if (!_isFQDN(domain)) { return !1 }
+        if (user[0] === '"') { user = user.slice(1, user.length - 1); return quotedEmailUserUtf8.test(user) }
+        var pattern = emailUserUtf8Part; var user_parts = user.split('.'); for (var i = 0; i < user_parts.length; i++) { if (!pattern.test(user_parts[i])) { return !1 } }
+        return !0
+      }
+    })()(value);
     /* eslint-enable */
   };//ƒ
 
@@ -1088,15 +1093,15 @@
     Vue = _require('vue');
     _ = _require('lodash');
     // optional deps:
-    try { VueRouter = _require('vue-router'); } catch (e) { if (e.code === 'MODULE_NOT_FOUND') {/* ok */} else { throw e; } }
-    try { $ = _require('jquery'); } catch (e) { if (e.code === 'MODULE_NOT_FOUND') {/* ok */} else { throw e; } }
-    try { bowser = _require('bowser'); } catch (e) { if (e.code === 'MODULE_NOT_FOUND') {/* ok */} else { throw e; } }
+    try { VueRouter = _require('vue-router'); } catch (e) { if (e.code === 'MODULE_NOT_FOUND') {/* ok */ } else { throw e; } }
+    try { $ = _require('jquery'); } catch (e) { if (e.code === 'MODULE_NOT_FOUND') {/* ok */ } else { throw e; } }
+    try { bowser = _require('bowser'); } catch (e) { if (e.code === 'MODULE_NOT_FOUND') {/* ok */ } else { throw e; } }
     // export:
     _module.exports = factory(Vue, _, VueRouter, $, bowser);
   }
   //˙°˚°·
   //‡AMD ˚¸
-  else if(typeof define === 'function' && define.amd) {// eslint-disable-line no-undef
+  else if (typeof define === 'function' && define.amd) {// eslint-disable-line no-undef
     // Register as an anonymous module.
     define([], function () {// eslint-disable-line no-undef
       // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

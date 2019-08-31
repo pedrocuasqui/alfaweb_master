@@ -32,16 +32,12 @@ module.exports = {
     var res = this.res;
     // no evalua si esta o no logueado el usuario
     try {
-      console.log(inputs.evaluacion);
-      console.log(inputs.objetoId);
       var evaluacionSubmodulo = await SubmoduloLibro.update({ id: inputs.objetoId })
         .set(
           {
             evaluacion: JSON.parse(inputs.evaluacion)
           }
         ).fetch();
-      console.log('SE REGISTRO LA EVALUACION');
-      console.log(evaluacionSubmodulo);
     } catch (e) {
       return res.status(500).send({ error: new Error('no se puede guardar') });
     }

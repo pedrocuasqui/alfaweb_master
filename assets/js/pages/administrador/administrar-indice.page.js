@@ -40,11 +40,10 @@ parasails.registerPage('administrar-indice', {
         }
       })
         .then(function (response) {
-          console.log("respuesta de eliminacion\n" + response);
           location.replace("/administrar-home");
         })
         .catch(function (error) {
-          console.log(error);
+          alert('Error: consulte a soporte técnico');
         });
 
     },
@@ -54,6 +53,6 @@ parasails.registerPage('administrar-indice', {
       //si el nombre del curso es "Alfabetización informática" entonces no se mostrará el botón eliminar, no se debe por ninguna razón eliminar el curso, en caso de hacerlo, se debe reiniciar el servidor para que se vuelva a crear el curso por defecto, aunque las páginas  html del contenido permanecerán siempre intactas
       let respuesta = this.curso.nombre != 'Alfabetización informática';
       return respuesta;
-  },
+    },
   }
 });

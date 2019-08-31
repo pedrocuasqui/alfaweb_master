@@ -30,8 +30,7 @@ parasails.registerPage('indice-estudiante', {
     if (SAILS_LOCALS.cursoEstudiante) {
       this.cursoEstudiante = SAILS_LOCALS.cursoEstudiante;
     }
-    console.log('CURSO ESTUDIANTE');
-    console.log(SAILS_LOCALS.cursoEstudiante);
+
 
 
 
@@ -62,7 +61,7 @@ parasails.registerPage('indice-estudiante', {
       if (this.contenidos.length == 0) {
         contenidoEsVacio = true;
       }
-      console.log(this.contenidos.length);
+    
       return contenidoEsVacio;
     },
     existeCursoEstudianteyLogueado() {

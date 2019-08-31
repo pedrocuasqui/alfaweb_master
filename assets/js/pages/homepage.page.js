@@ -25,8 +25,7 @@ parasails.registerPage('homepage', {
   },
   mounted: async function () {
     //…
-    console.log('USUARIO ....');
-    console.log(this.usuario);
+    
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

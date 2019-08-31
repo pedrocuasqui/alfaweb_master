@@ -63,7 +63,7 @@ parasails.registerPage('actualizar-usuario', {
       else { //si se encuentran errores no se recarga la página
         return false;
         // e.preventDefault();
-        // console.log("# de errores: "+Object.keys(this.formErrors).length);
+        
       }
 
     },
@@ -83,7 +83,7 @@ parasails.registerPage('actualizar-usuario', {
         data: formData
       }).
         then((response) => {
-          console.log(response);
+          
           alert('Vuelve a ingresar con tu nueva contraseña');
           window.location.replace('/view-login');
         })

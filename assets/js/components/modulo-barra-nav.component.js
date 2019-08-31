@@ -20,10 +20,6 @@ parasails.registerComponent('modulo-barra-nav', {
     };
   },
   beforeMount() {
-    console.log('BREADCRUMB componente');
-    console.log(this.breadcrumb);
-    console.log('BREADCRUMB TAMANIO');
-    console.log(this.breadcrumb.lenght);
 
     if (this.breadcrumb[0].nombre != '') {//verifica si existe el objeto 
 
@@ -33,7 +29,6 @@ parasails.registerComponent('modulo-barra-nav', {
       }
 
     } else {
-      console.log('NO EXISTEN VALORES DE BREAD');
       this.breadcrumbTieneValores = false;
     }
 

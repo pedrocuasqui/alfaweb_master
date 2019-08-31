@@ -115,8 +115,7 @@ parasails.registerPage('m-5-direccion-web', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 

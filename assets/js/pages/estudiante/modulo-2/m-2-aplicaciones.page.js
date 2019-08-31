@@ -100,8 +100,7 @@ parasails.registerPage('m-2-aplicaciones', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+ 
     },
 
 
@@ -155,7 +154,7 @@ parasails.registerPage('m-2-aplicaciones', {
       audioMouseOver.play(); //reproduce el archivo de audio
     },
     obtenerIndice() {
-      console.log('clic en obtenerIndice');
+      
       var _this = this;
       this.$refs.curso.clickSilenciar();
       //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
@@ -165,7 +164,7 @@ parasails.registerPage('m-2-aplicaciones', {
         let posicion = parseInt(this.indice) - 1;
 
         _this.objetoSeleccionado.descripcion = _this.indicaciones[posicion].descripcion;
-        console.log('POSICION:' + posicion);
+        
       })
 
 

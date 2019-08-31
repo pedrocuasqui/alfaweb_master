@@ -47,7 +47,7 @@ module.exports = {
           descripcion: inputs.descripcionCurso
         });
     } catch (e) {
-      console.log('Error al intentar actualizar el curso:' + inputs.nombreCurso + '\n' + e)
+      sails.log('Error al intentar actualizar el curso:' + inputs.nombreCurso + '\n' + e)
       if (e.CODE == 'E_UNIQUE') {
         return res.status(409).send({ error: e });
       }

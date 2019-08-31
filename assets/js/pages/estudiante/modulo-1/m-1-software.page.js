@@ -130,8 +130,7 @@ parasails.registerPage('m-1-software', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    console.log('BREADCRUMB BEFORE MOUNT SOFTWARE');
-    console.log(this.breadcrumb);
+
     this.usuario = SAILS_LOCALS.usuario;
     this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
     this.navegarSiguiente = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.siguiente.enlace;
@@ -177,8 +176,7 @@ parasails.registerPage('m-1-software', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+
     },
 
 

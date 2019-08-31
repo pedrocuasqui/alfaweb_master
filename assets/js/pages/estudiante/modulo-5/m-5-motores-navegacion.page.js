@@ -99,8 +99,7 @@ parasails.registerPage('m-5-motores-navegacion', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 
@@ -147,7 +146,7 @@ parasails.registerPage('m-5-motores-navegacion', {
     //   this.mostrarToolTip = false;
     // },
     obtenerIndice(){
-      console.log('clic en obtenerIndice');
+      
       var _this= this;
       this.$refs.curso.clickSilenciar();
     //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
@@ -157,7 +156,7 @@ parasails.registerPage('m-5-motores-navegacion', {
         let posicion= parseInt(this.indice)-1;
 
         _this.objetoSeleccionado.descripcion=_this.indicaciones[posicion].descripcion;
-        console.log('POSICION:'+posicion);
+        
         })
    
 

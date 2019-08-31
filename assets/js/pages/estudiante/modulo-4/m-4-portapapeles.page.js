@@ -184,8 +184,7 @@ parasails.registerPage('m-4-portapapeles', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 

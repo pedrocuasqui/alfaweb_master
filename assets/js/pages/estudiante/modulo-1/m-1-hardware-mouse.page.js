@@ -149,7 +149,7 @@ parasails.registerPage('m-1-hardware-mouse', {
       }
 
     },
-    
+
     finalizaEvaluacion(valor) {
 
       this.mostrarIconoRepetir = valor; //true o false
@@ -157,12 +157,11 @@ parasails.registerPage('m-1-hardware-mouse', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+
     },
 
 
-    
+
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
       if (contenido == 'contenido') {
         this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
@@ -175,7 +174,7 @@ parasails.registerPage('m-1-hardware-mouse', {
 
     infoObjeto(idObjeto) {
       if (idObjeto == 'clic-izquierdo') {
-        console.log('funciones');
+
         $(function () {
           $('#modalClicIzquierdo').modal('show');
         });

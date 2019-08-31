@@ -409,8 +409,7 @@ parasails.registerPage('m-4-disenio', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 
@@ -562,7 +561,7 @@ parasails.registerPage('m-4-disenio', {
     },
     clickSelectorPestania(pestania) {
       this.pestaniaActual = pestania;
-      console.log('pest actua:' + pestania);
+      
     }
   },
   computed: {

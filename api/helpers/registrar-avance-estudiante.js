@@ -40,15 +40,15 @@ module.exports = {
     // let avanceCurso = null; //el null es mas facil manejar desde el cliente, se puede poner este valor poque en la base es required:false
     // buscar un registro que contenfa al id del curso y el id del usurio logueado
 
-    
+
 
     cursoEstudiante = await CursoEstudiantes.findOne({
       curso_matriculados: inputs.credenciales.cursoId,
       estudiante_cursos: inputs.credenciales.usuarioId, //CUANDO NO SE PASA ESTE PARAMETRO O EL ANTERIOR BUSCA TODAS LAS COINCIDENCIAS CON EL UNICO PARAMETRO REMITIDO, SI EL PARAMETRO ES NULL, NO SE TOMA EN CUENTA
-      
-      
+
+
     })
- 
+
 
     if (!cursoEstudiante) {// no existe el registro en la tabla de rompimiento entonces se crea uno
       registroCreadoModificado = await CursoEstudiantes
@@ -71,8 +71,8 @@ module.exports = {
         .updateOne({
           curso_matriculados: inputs.credenciales.cursoId,
           estudiante_cursos: inputs.credenciales.usuarioId,
-          
-          
+
+
         })
         .set({
           ultimoAcceso: fechaUltimoAcceso,
@@ -81,8 +81,7 @@ module.exports = {
     }
 
     if (registroCreadoModificado) {
-      console.log(' REGISTRO nuevo o MODIFICADO');
-      console.log(registroCreadoModificado)
+
       return registroCreadoModificado;
     }
     else {

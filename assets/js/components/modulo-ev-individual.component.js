@@ -57,8 +57,6 @@ parasails.registerComponent('modulo-ev-individual', {
         this.tipoEvaluacion = this.submodulo.evaluacion.tipo;
         this.tiempoMaximoPorPregunta = this.submodulo.evaluacion.tiempoMaximoPorPregunta;
         this.preguntasCuestionario = [...this.submodulo.evaluacion.preguntas];
-        console.log('preguntas cuestionario');
-        console.log(this.preguntasCuestionario);
         this.preguntasCuestionario.forEach(pregunta => {
             //agrego todas las preguntas al arrreglo para despues reemplazar cada pregunta por su pregunta , este se guardará en la collection IntentoEvaluacioncon respuestas
             let respuestaIntento = pregunta;
@@ -406,11 +404,9 @@ parasails.registerComponent('modulo-ev-individual', {
 
 
             // this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante
-            console.log("ingresa a  la evaluacion de la respuesta");
-            console.log(this.respuestaCuestionarioPreguntaPrueba);
+
             if (this.respuestaCuestionarioPreguntaPrueba != this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuesta) {
                 // se aumenta en uno el numero de errores,
-                console.log('no es la respuesta correcta');
                 this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].errores += 1;
                 // si ya se habia seleccionado la respuesta correcta, se elimina del arreglo
                 for (let i = 0; i <= this.aciertos.length - 1; i++) {
@@ -422,7 +418,6 @@ parasails.registerComponent('modulo-ev-individual', {
             } else {
                 this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante = this.respuestaCuestionarioPreguntaPrueba
                 this.aciertos.push(this.indicePreguntaCuestionario);
-                console.log("hace push en aciertos");
             }
         },
         finalizarCuestionario() {
@@ -579,7 +574,7 @@ parasails.registerComponent('modulo-ev-individual', {
                     this.arregloRandom.push(pregunta);
                 }
             })
-            console.log(this.arregloRandom);
+
 
             // return arregloRandom;
         },
@@ -643,7 +638,6 @@ parasails.registerComponent('modulo-ev-individual', {
             // verificamos si la evaluacion ya ha sido aprobada con anterioridad, se almacena el valor 1 en la variable submoduloAprobado en caso de ser positivo
 
             this.submodulosAprobadosPorCurso.forEach(idSubmodulo => {
-                console.log('CURSO APROBADO ID: ' + idSubmodulo + "//submodulo: " + this.submodulo.id)
                 if (this.submodulo.id == idSubmodulo) {
                     this.submoduloAprobado = true;
                 }
@@ -654,7 +648,6 @@ parasails.registerComponent('modulo-ev-individual', {
             /*sube de nivel cuando hay una sola evaluacion aprobada y cumple con el parametro para subir de nivel*/
             if (this.apruebaEvaluacion == 1 && !this.submoduloAprobado) { //si aprueba la evaluacion y el submodulo no ha sido aprobado quiere decir que es la primera vez que se aprueba esta evaluacion,se guarda en el array de submodulosAprobados por tanto el numero de modulos aprobados sera uno mas
 
-                console.log('SI EL CURSO APROBADO ID ES IGUA A SUBMODULO, NO DEBE ENTRAR AQUI');
                 this.submodulosAprobadosPorCurso.push(this.submodulo.id); //agrego el id sel submodulo aprobado
 
                 numeroSubmoduloAprobadosPorCurso = this.submodulosAprobadosPorCurso.length;
@@ -831,7 +824,6 @@ parasails.registerComponent('modulo-ev-individual', {
             ).catch(
                 err => {
                     alert('SE HA ENCONTRADO UN ERROR AL INTENTAR GUARDAR EL AVANCE');
-                    console.log(err);
                 });
         },
         actualizaProgreso() {

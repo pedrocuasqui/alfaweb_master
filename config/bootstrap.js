@@ -25,8 +25,7 @@ module.exports.bootstrap = async function (done) {
       if (!modulo) {
 
         let SubmoduloEliminado = await SubmoduloLibro.destroyOne({ id: submodulos[contador].id });
-        console.log('SUBMODULO ELIMINADO');
-        console.log(SubmoduloEliminado);
+
       }
     }
   }
@@ -48,14 +47,13 @@ module.exports.bootstrap = async function (done) {
       if (!curso) {
 
         let sulbmodulosEliminados = await SubmoduloLibro.destroy({ modulo: modulos[contador].id }).fetch();
-        console.log('SUBMODULOs ELIMINADOs');
+        
         sulbmodulosEliminados.forEach(element => {
-          console.log(element);
+          
         });
 
         let moduloEliminado = await ModuloLibro.destroyOne({ id: modulos[contador].id });
-        console.log('MODULO ELIMINADO');
-        console.log(moduloEliminado);
+        
       }
     }
   }

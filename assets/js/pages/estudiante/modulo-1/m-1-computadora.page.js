@@ -123,7 +123,7 @@ parasails.registerPage('m-1-computadora', {
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
 
-    console.log(this.usuario);
+
   },
   mounted: async function () {
     //…

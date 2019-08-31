@@ -53,7 +53,7 @@ parasails.registerPage('administrar-contenido', {
         opcion4: null,
       },
       respuesta: null,
-      pista:null
+      pista: null
     },
     preguntasCuestionario: [],
     evaluacion: {
@@ -64,7 +64,7 @@ parasails.registerPage('administrar-contenido', {
     modalEdicion: false,
     indicePreguntaEditar: null,
     arregloRandom: [],
-    tiempoMaximoPorPregunta:20, //Valor en segundos por defecto
+    tiempoMaximoPorPregunta: 20, //Valor en segundos por defecto
 
     //variables para usar en Emparejamiento del lado del Estudiante
     enunciadoSeleccionado: null,
@@ -99,9 +99,6 @@ parasails.registerPage('administrar-contenido', {
   mounted: async function () {
     // $('.contenido-tiny').html(this.objetoSeleccionado.contenidoTiny);
     this.establecerContenidoTiny();
-    console.log('OBJETO RECIBIDO:');
-    console.log(this.objetoSeleccionado);
-
 
 
     $('#modalCrearPregunta' + this.tipoEvaluacion).on('hide.bs.modal', function (e) {
@@ -114,7 +111,7 @@ parasails.registerPage('administrar-contenido', {
           opcion4: null,
         },
         respuesta: null,
-        pista:null
+        pista: null
       }
     });
   },
@@ -124,8 +121,7 @@ parasails.registerPage('administrar-contenido', {
   //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
   methods: {
     validarFormulario() {
-      console.log('valida formulario ');
-      console.log('contenido tiny' + window.contenidoTiny);
+
       // Limpiar el objeto de almacenamiento de errores
       this.formErrors = {};
       //Valida que exista un nombre de modulo
@@ -158,7 +154,6 @@ parasails.registerPage('administrar-contenido', {
       // SI EXISTE ALGUN ERROR SE RETORNA FALSE Y LA PAGINA SE REFRESCA SIN QUE SEA PERCEPTIBLE
       if (Object.keys(this.formErrors).length > 0) {
         alert('error, existen errores');
-        console.log(this.formErrors);
         return false;
       }
       //SI LOS VALORES INGRESADOS SON CORRECTOS SE carga la imagen, en then se carga el resto de campos
@@ -250,7 +245,7 @@ parasails.registerPage('administrar-contenido', {
         }
       })
         .then(function (response) {
-          console.log(response.data);
+
           alert('Objeto eliminado correctamente');
           if (response.data.nombreModulo) { //si el objeto eliminado es un modulo entonces se muestra la interfaz crear modulo
             window.location.replace('/view-crear-modulo/?cursoId=' + _this.curso.id);
@@ -260,8 +255,7 @@ parasails.registerPage('administrar-contenido', {
 
         })
         .catch(function (error) {
-          console.log('error al eliminar');
-          console.log(error);
+          alert('Error, consulte a soporte técnico');
         });
 
 
@@ -311,7 +305,6 @@ parasails.registerPage('administrar-contenido', {
       })
         .then(
           (response) => {
-            console.log(response.data);
             // _this.objetoSeleccionado.multimedia.imagen = response.data.location;
             _this.rutaObjetoCargado = response.data.location;
             // setTimeout(() => {
@@ -375,7 +368,7 @@ parasails.registerPage('administrar-contenido', {
             opcion4: null,
           },
           respuesta: null,
-          pista:null
+          pista: null
         }
       };
 
@@ -444,7 +437,7 @@ parasails.registerPage('administrar-contenido', {
       let contador = 0;
       for (let opcion in preguntaEnEdicion.opciones) { //obtiene los nombres de atributos: opcion1, opcion 2 ...
         contador += 1;
-        if (preguntaEnEdicion.opciones[opcion] && preguntaEnEdicion.opciones[opcion].trim()!="") { //si la opcion tiene un valor dentro
+        if (preguntaEnEdicion.opciones[opcion] && preguntaEnEdicion.opciones[opcion].trim() != "") { //si la opcion tiene un valor dentro
           opciones.push({ texto: preguntaEnEdicion.opciones[opcion].trim(), id: contador });
         }
       }
@@ -500,7 +493,7 @@ parasails.registerPage('administrar-contenido', {
       this.evaluacion.tipo = this.tipoEvaluacion; //el tipo de evaluacion en la base será el tipo de evaluacion seleccionado
       this.evaluacion.tiempoMaximoPorPregunta = this.tiempoMaximoPorPregunta;
       this.evaluacion.preguntas = this.preguntasCuestionario; //incluyen la pista
-      
+
 
 
 
@@ -552,7 +545,7 @@ parasails.registerPage('administrar-contenido', {
             opcion4: null,
           },
           respuesta: null,
-          pista:null
+          pista: null
         }
 
       };
@@ -582,7 +575,7 @@ parasails.registerPage('administrar-contenido', {
             opcion4: null,
           },
           respuesta: null,
-          pista:null
+          pista: null
         }
         //quito colores si es que ya hay colores
         for (let i = 0; i <= this.preguntasCuestionario.length - 1; i++) {
@@ -610,7 +603,6 @@ parasails.registerPage('administrar-contenido', {
           this.arregloRandom.push(pregunta);
         }
       })
-      console.log(this.arregloRandom);
 
       // return arregloRandom;
     },

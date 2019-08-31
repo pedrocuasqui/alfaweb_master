@@ -54,7 +54,6 @@ module.exports = {
     var usuario;
     // si se envia el alias
     if (inputs.alias) {
-      console.log('recpta alias');
       //buscar por alias, tanto en estudiante como en profesor
       usuario = await Estudiante.findOne({ alias: inputs.alias });
       if (!usuario) {
@@ -64,7 +63,6 @@ module.exports = {
     }
     // si se envia un correo
     if (inputs.email) {
-      console.log('recpta email');
       //buscar por correo tanto en estudiante como en profesor
       usuario = await Estudiante.findOne({ email: inputs.email });
       if (!usuario) {
@@ -75,7 +73,6 @@ module.exports = {
     // si no se encuentra el usuario se remite el mensaje noAutorizado con el código 401
 
     if (!usuario) {//si no se
-      // console.log('no existe usuario'); 
       sails.log('no se encuentra el usuario');
       objetoError.code = 401;
       objetoError.message = 'No se encuentra el usuario recibido'
@@ -97,7 +94,6 @@ module.exports = {
     req.session.userId = usuario.id;
     req.session.usuario = usuario;
     req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
-    console.log('antes de remitir 200');
     return res.status(200).send({ usuario: usuario });
 
   }

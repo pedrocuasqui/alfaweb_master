@@ -27,9 +27,9 @@ module.exports = {
       type: "string",
       required: false
     },
-    color:{
-      type:'string',
-      required:false,
+    color: {
+      type: 'string',
+      required: false,
     }
   },
 
@@ -49,40 +49,38 @@ module.exports = {
     // var filaParaGuardarSubmodulo = crearSubmodulo(); //la funcion está en estado pendiente
     // var errores = false;
     var submoduloCreado = {};
-    var  objetoError={};
+    var objetoError = {};
 
-    var nuevoSubmodulo= {   //se resuelve esta promesa y se mantiene su resultado sin presentarlos aun en la funcion crearSubmodulo()
+    var nuevoSubmodulo = {   //se resuelve esta promesa y se mantiene su resultado sin presentarlos aun en la funcion crearSubmodulo()
       nombreSubmodulo: inputs.nombreSubmodulo,
       descripcion: inputs.descripcionSubmodulo,
       multimedia: nuevoArchivo,
       modulo: inputs.moduloId,
       contenidoTiny: inputs.contenidoTiny,
-      color:inputs.color
-      
+      color: inputs.color
+
     }
-    
-    // console.log(req.allParams());
+
     if (req.param('multimedia')) { // si exise el parametro 'multimedia' invoca a la funcion cargaImagen
-      console.log('existe el parametro multimedia');
       respuestaCargaImagen = cargaImagen();
     }
 
 
     if (respuestaCargaImagen) { // si no hubo problema en procesar la imagen entonces se crea el modulo
       submoduloCreado = await sails.helpers.crearSubmodulo(nuevoSubmodulo)
-      .catch(
-        (err)=>{
-          if(err.code=='E_UNIQUE'){
-            objetoError.statusCode=409;
-            objetoError.error= err;
-          }else if(err.name='UsageError'){
-            objetoError.statusCode=400;
-            objetoError.error= err;
-          }else{
-            objetoError.statusCode=500;
-            objetoError.error= err;
+        .catch(
+          (err) => {
+            if (err.code == 'E_UNIQUE') {
+              objetoError.statusCode = 409;
+              objetoError.error = err;
+            } else if (err.name = 'UsageError') {
+              objetoError.statusCode = 400;
+              objetoError.error = err;
+            } else {
+              objetoError.statusCode = 500;
+              objetoError.error = err;
+            }
           }
-        }
         )
 
     } else {
@@ -90,8 +88,7 @@ module.exports = {
     }
 
     if (Object.keys(objetoError).length > 0) {// si existe un error responde con el codigo de error correspondiente y el mensaje de erro
-      console.log('error encontrado');
-      return res.status(objetoError.statusCode).send({ error: objetoError.error});
+      return res.status(objetoError.statusCode).send({ error: objetoError.error });
 
     } else {
       return res.ok(submoduloCreado);
@@ -120,7 +117,6 @@ module.exports = {
           return false; //Respuesta para axios ERROR EN EL SERVIDOR
         }
 
-        console.log('se debe imprimir primero  en carga imagen');
         return true;
       });
 

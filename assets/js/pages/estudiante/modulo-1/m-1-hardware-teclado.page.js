@@ -244,8 +244,7 @@ parasails.registerPage('m-1-hardware-teclado', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+
     },
 
 
@@ -263,7 +262,7 @@ parasails.registerPage('m-1-hardware-teclado', {
 
     infoObjeto(idObjeto) {
       if (idObjeto == 'funciones') {
-        console.log('funciones');
+        
         $(function () {
           $('#modalTeclasDeFuncion').modal('show');
         });

@@ -49,9 +49,6 @@ module.exports = {
       return res.status(500);
     }
 
-    console.log('ELIMINADOS');
-    console.log(moduloEliminado);
-    console.log(submoduloEliminado);
     if (!moduloEliminado && !submoduloEliminado) {
       //no se ha eliminado ningun documento
       objetoError = new Error();

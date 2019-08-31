@@ -84,8 +84,7 @@ parasails.registerPage('m-6-envio-correo', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 

@@ -116,8 +116,7 @@ parasails.registerPage('m-2-gestion-archivos', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+
     },
 
 

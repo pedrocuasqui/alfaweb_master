@@ -67,8 +67,7 @@ parasails.registerPage('registro-usuario', {
       }
       else { //si se encuentran errores no se recarga la página
         return false;
-        // e.preventDefault();
-        // console.log("# de errores: "+Object.keys(this.formErrors).length);
+
       }
 
     },
@@ -87,7 +86,7 @@ parasails.registerPage('registro-usuario', {
         data: formData
       }).
         then((response) => {
-          console.log(response);
+
           window.location.replace('/view-login');
         })
         .catch((err) => {

@@ -22,9 +22,9 @@ module.exports = {
     success: {
       viewTemplatePath: 'pages/administrador/administrar-contenido'
     },
-    redirect:{
-      description:'Redirecciona a la página indicada',
-      responseType:'redirect' // Los diferentes tipos de response buscar en la siguiente página https://sailsjs.com/documentation/reference/response-res
+    redirect: {
+      description: 'Redirecciona a la página indicada',
+      responseType: 'redirect' // Los diferentes tipos de response buscar en la siguiente página https://sailsjs.com/documentation/reference/response-res
       //ejemplos: responseType:'ok'  responseType:'view'
     }
 
@@ -52,12 +52,12 @@ module.exports = {
       usuario = await Profesor.findOne({ id: req.session.userId })
       if (!usuario) {
         // res.status(404).send({ mensaje: 'Necesita permisos de Administrador' })
-        return exits.redirect('/401-unauthorized');
+        return res.forbidden();
       }
 
     } else {
       // res.status(404).send({ mensaje: 'Necesita permisos de Administrador' })
-      return exits.redirect('/401-unauthorized');
+      return res.forbidden();
     }
 
 
@@ -68,11 +68,10 @@ module.exports = {
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreModulo;
     } else if (inputs.tipoContenido == 'Submodulo') {
-      // console.log('Objeto id submodulos'+inputs.objetoId);
+
       objetoSeleccionado = await SubmoduloLibro.findOne({ id: inputs.objetoId });
       curso = await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err) => { sails.log('ERROR EN HELPERS: ' + err) });
       let moduloPadre = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      // console.log('CURSOO:'+ JSON.stringify(curso));
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreSubmodulo;
       objetoSeleccionado.color = moduloPadre.color;

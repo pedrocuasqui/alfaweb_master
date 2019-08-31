@@ -62,7 +62,7 @@ parasails.registerPage('m-1-computadora-ev', {
 
   },
   updated: function () {
-    // console.log('actualizado');
+    
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -121,7 +121,6 @@ parasails.registerPage('m-1-computadora-ev', {
       this.iniciaConteo();
     },
     moseDownPc(event) {
-      console.log(this.contadorTimer)
       if (this.contadorTimer < (this.elementos.length)) {
         // event.target funciona tal como document.getElementById() 
         // fuente: https://stackoverflow.com/questions/7723188/what-properties-can-i-use-with-event-target

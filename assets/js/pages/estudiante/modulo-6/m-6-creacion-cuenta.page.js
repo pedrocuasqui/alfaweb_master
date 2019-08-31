@@ -112,8 +112,7 @@ parasails.registerPage('m-6-creacion-cuenta', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 
@@ -170,7 +169,7 @@ parasails.registerPage('m-6-creacion-cuenta', {
         let posicion = parseInt(this.indice) - 1;
 
         _this.objetoSeleccionado.descripcion = _this.indicaciones[posicion].descripcion;
-        console.log('POSICION:' + posicion);
+        
       })
 
 

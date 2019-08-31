@@ -49,7 +49,7 @@ parasails.registerPage('puntaje-estudiante', {
 
             }
           ).then(response => {
-            console.log(response.data);
+            
             // Los intentos del usuario logueado, ordenados ascendentemente por fecha de creacion
             this.intentosEvaluacion = response.data.intentosEvaluacion;
             // funcion para seleccinar solo los estudiantes que tienen evaluaciones es decir que la propiedad intentosEvaluacion tenga una longitud mayor a cero
@@ -176,14 +176,13 @@ parasails.registerPage('puntaje-estudiante', {
 
     },
     ordenamientoQuickSort(origArray) {
-      console.log('INGRESO A QUICK SORT ');
+      
       if (origArray.length <= 1) {
-        console.log('RETORNA: ');
-        console.log(origArray);
+
         return origArray;
 
       } else {
-        console.log('NO DEBE INGRESAR A CONTINUACION DE "RETORNA": ');
+        
         var left = [];
         var right = [];
         var newArray = [];
@@ -202,12 +201,6 @@ parasails.registerPage('puntaje-estudiante', {
         return newArray.concat(this.ordenamientoQuickSort(left), estudiantePivot, this.ordenamientoQuickSort(right));
       }
 
-
-      // var myArray = [3, 0, 2, 5, -1, 4, 1 ];
-
-      // console.log("Original array: " + myArray);
-      // var sortedArray = quick_Sort(myArray);
-      // console.log("Sorted array: " + sortedArray);
 
     },
     devuelveFecha(fechaIntento) {

@@ -83,8 +83,7 @@ parasails.registerPage('m-6-cuenta-skype', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+      
     },
 
 

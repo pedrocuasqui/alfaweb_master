@@ -294,9 +294,7 @@ module.exports = {
     } 
     // ///////////////////////////////////////////////////////
     else if (inputs.enlace == '/m3-barra-titulo') {
-console.log('barra titulo');
       let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m3-barra-titulo' });
-      console.log(objetoSeleccionado);
       let modulo = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
       let siguiente = await SubmoduloLibro.findOne(
         {

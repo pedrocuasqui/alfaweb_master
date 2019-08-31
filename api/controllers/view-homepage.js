@@ -41,8 +41,7 @@ module.exports = {
     var usuario = null;
 
     //si se encuentra el usuario, se remite la información del usuario logueado para poder mostrar su nombre y validar su rol
-    console.log('session:');
-    console.log(req.session);
+
 
     if (req.session.userId) { // si existe un usuario
       // if (req.session.userId != 1) {// si el usuario no es visitante entonces se busca la información del usuario en la base de datos

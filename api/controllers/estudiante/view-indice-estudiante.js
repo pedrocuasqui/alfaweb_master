@@ -71,8 +71,6 @@ module.exports = {
       //se busca el avance en el curso solicitado para mostrar en el indice
       cursoEstudiante = await CursoEstudiantes.findOne({ curso_matriculados: inputs.cursoId, estudiante_cursos: usuario.id });
       if (cursoEstudiante) {
-        console.log('existe curso Estudiante');
-        console.log(cursoEstudiante);
         if (cursoEstudiante.avance) {
           var ultimoTema = null; //para almacenar el nombre del ultimo tema
           if (cursoEstudiante.avance.enlace) { //es alfaweb, entonces busco por enlace
@@ -162,11 +160,6 @@ module.exports = {
 
       });
     }
-
-
-    console.log('USUARIO --------------------------');
-    console.log(usuario);
-
 
     return exits.success({
       contenidos,

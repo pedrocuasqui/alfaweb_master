@@ -21,8 +21,9 @@
   <!-- FUENTE ROBOTO -->
   <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
   <!--  CHART JS -- css file -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css" integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin="anonymous" />
- 
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css"
+    integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin="anonymous" />
+
 
 </head>
 
@@ -47,31 +48,28 @@
       // images_upload_url: '127.0.0.1:1337/crear-modulo',
       /* we override default upload handler to simulate successful upload*/
       init_instance_callback: function (editor) {
-      //  window.contenidoTiny =null;
-        
+        //  window.contenidoTiny =null;
+
         editor.on('keyup', function (e) { // no reconoce los clicks
-          console.log('editor heyup:');
-          window.contenidoTiny=tinymce.get("mytextarea").getContent()
+
+          window.contenidoTiny = tinymce.get("mytextarea").getContent()
           // $('.contenido-tiny').html(window.contenidoTiny);          
-          
-        }); 
+
+        });
         editor.on('Change', function (e) { //reconoce los clicks sobre el objeto iframe
-          console.log('editor changed:');
-          window.contenidoTiny=tinymce.get("mytextarea").getContent()
+
+          window.contenidoTiny = tinymce.get("mytextarea").getContent()
           // $('.contenido-tiny').html(window.contenidoTiny);          
         });
 
       },
-      
+
       images_upload_handler: function (blobInfo, success, failure) {
         const formData = new FormData();
         var _success = success;
         var _failure = failure;
         var json;
-        console.log('INFORMACION DEL BLOB');
-        console.log(blobInfo);
-        console.log(blobInfo.blob());
-        console.log(blobInfo.blob().name);
+
         formData.append('multimedia', blobInfo.blob(), blobInfo.blob().name);
         axios({
           method: 'post',
@@ -80,16 +78,15 @@
         })
           .then(
             (response) => {
-              console.log(response.data);
+
               json = response.data;
-              console.log('respuesta de cargar-imagen aplicado en tinymce:');
-              console.log(json);
+
               _success(json.location);
             }
           )
           .catch(
             (err) => {
-              console.log('Error encontrado:\n' + err);
+              
               _failure('Error encontrado' + err);
             }
           );

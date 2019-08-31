@@ -230,12 +230,11 @@ parasails.registerComponent('modulo-contenedor-curso', {
                     if (contenido == 'contenido') {
                         //si se envia algo como par'ametro, entonces se retorna
                         this.evIndividual = false;
-                        console.log('muestra el contenido, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
+
                     } else {
                         //si no se pasa nada como parametro y ademas el objeto seleccionado  NO es modulo se muestra la evaluacion
 
                         this.evIndividual = true;
-                        console.log('muestra evaluacion, boton izquierdo apunta a mostrar contenido, boton derecho muestra al siguiente submodulo');
                     }
                     this.$emit('evaluacion-individual', contenido);
                 } else {
@@ -287,7 +286,6 @@ parasails.registerComponent('modulo-contenedor-curso', {
             var contenidoCentral = this.$refs.printContenidoCentral;
             var contenidoDescripcion = this.$refs.printContenidoDescripcion;
             newWin = window.open(""); //abre una variable para escribir sobre ella
-            // console.log(contenidoImprimir.outerHTML)
             newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>');
             newWin.document.write('<h2>Contenido</h2>');
             newWin.document.write(contenidoBreadcrumb.outerHTML);
@@ -317,7 +315,6 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
             var usuarioR = this.usuario;
             if (!this.usuario) { //si el usuario es null o undefined
-                console.log('USUARIO DENTRO DE CONTENEDOR-CURSO es null');
                 usuarioR = { nombre: 'Visitante', rol: 'Estudiante' }
             }
             return usuarioR;

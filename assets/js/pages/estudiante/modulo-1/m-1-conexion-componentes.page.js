@@ -85,8 +85,7 @@ parasails.registerPage('m-1-conexion-componentes', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+
     },
 
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso

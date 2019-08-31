@@ -89,8 +89,7 @@ parasails.registerPage('crear-submodulo', {
 
       const formData = new FormData();//crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es implicitamente declarado con este objeto
       if (this.selectedFiles.length != 0) {
-        console.log(this.selectedFiles);
-        console.log(this.selectedFiles[0].name);
+
         formData.append('multimedia', this.selectedFiles[0], this.selectedFiles[0].name);
       }
 
@@ -106,27 +105,26 @@ parasails.registerPage('crear-submodulo', {
         data: formData,
       })
         .then((response) => {
-          console.log('corecto');
-          console.log(response.data)
+
           //PASAR COMO PARÁMETRO AL COMPONENTE SIDE-VAR-MENU EL MODULO CREADO
           //pasar el objeto creado, 
           alert('Submodulo creado correctamente');
           this.submoduloCreado = response.data;
-          // console.log(this.submoduloCreado);
+          
 
           window.location.replace('/administrar-contenido/?objetoId=' + this.submoduloCreado.id + '&tipoContenido=' + this.tipoContenido);
         })
         .catch((err) => { //la respuesta de sails this.res
 
           if (err.response.status == 409) {
-            // console.log(err.response); //para ver todas las propiedades del objeto response
+
             alert('ya existe un submodulo con el mismo nombre');
           } else if (err.response.status == 400) {
             alert('Existen errores en la información suministrada');
-            console.log(err);
+            
           } else {
             alert('Error en el servidor');
-            console.log(err);
+            
           }
         }
         );
@@ -155,8 +153,6 @@ parasails.registerPage('crear-submodulo', {
       //agrego el archivo nuevo al arreglo de archivos del submodulo
       this.selectedFiles.push(this.nuevoArchivo);
       // this.selectedFiles[0].toltip='tooltip de la imagen';
-      console.log(this.selectedFiles);
-      console.log(this.selectedFiles[0].name);
 
       this.nuevoArchivo = {
         urlLocal: null,
@@ -173,7 +169,7 @@ parasails.registerPage('crear-submodulo', {
 
       }
 
-      // console.log(event.target.files[0]);
+
 
       //Añadir las propiedades del objeto seleccionado
       this.nuevoArchivo = event.target.files[0];

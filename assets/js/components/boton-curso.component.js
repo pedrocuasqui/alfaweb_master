@@ -49,10 +49,7 @@ parasails.registerComponent('boton-curso', {
     methods: {
         mostrarEditarCurso(cursoId) {
 
-            console.log('COMPONENTE' + cursoId);
             this.editarCurso = true;
-            // var abrir= function(){};
-            console.log(document.getElementById(cursoId));
             document.getElementById(cursoId).removeEventListener("click", abrir, false);
 
         },
@@ -93,12 +90,9 @@ parasails.registerComponent('boton-curso', {
             }).then(response => {
                 this.curso.publicado = true;
                 alert('curso publicado');
-                console.log(response);
-                console.log(response.data);
 
             }).catch(err => {
                 alert('error, no se ha podido publicar el curso');
-                console.log(err);
             });
 
 
@@ -115,7 +109,6 @@ parasails.registerComponent('boton-curso', {
 
             }).catch(err => {
                 alert('error, revisar la consola');
-                console.log(err);
             });
 
         }
@@ -128,15 +121,15 @@ parasails.registerComponent('boton-curso', {
             return respuesta;
         },
         habilitarEdicion() {
-            
-            let respuesta = this.editarCurso ;
+
+            let respuesta = this.editarCurso;
             return respuesta
         },
         deshabilitarEdicion() {
 
         },
         cursoPublicado() {
-            let respuesta = this.curso.publicado &&this.curso.nombre != 'Alfabetización informática' ;
+            let respuesta = this.curso.publicado && this.curso.nombre != 'Alfabetización informática';
             return respuesta;
         }
 

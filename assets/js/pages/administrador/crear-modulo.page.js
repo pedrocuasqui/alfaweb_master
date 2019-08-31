@@ -35,7 +35,7 @@ parasails.registerPage('crear-modulo', {
 
     tituloEvaluacion: '',
     evIndividual: false,
-    
+
 
     adminCreandoModuloSubmodulo: true,
 
@@ -65,8 +65,7 @@ parasails.registerPage('crear-modulo', {
   methods: {
 
     validarFormulario() {
-      console.log('valida formulario ');
-      console.log('contenido tiny' + window.contenidoTiny);
+
       // Limpiar el objeto de almacenamiento de errores
       this.formErrors = {};
       //Valida que exista un nombre de modulo
@@ -76,8 +75,7 @@ parasails.registerPage('crear-modulo', {
       if (!this.descripcionModulo) {
         this.formErrors.descripcionModulo = true;
       }
-      console.log('IMAGENPORTADA EN EN VALIDACION');
-      console.log(this.imagenPortada);
+
       if (Object.keys(this.imagenPortada).length == 0) {
         this.formErrors.imagenPortada = true;
         this.formErrors.typeFile = false;
@@ -136,7 +134,7 @@ parasails.registerPage('crear-modulo', {
       })
         .then(
           (response) => {
-            console.log(response.data);
+
             _this.imagenPortada = response.data;
             setTimeout(() => {
               _this.rutaTemporal = response.data.location;
@@ -146,7 +144,7 @@ parasails.registerPage('crear-modulo', {
         )
         .catch(
           (err) => {
-            console.log('Error encontrado:\n' + err);
+            alert('Error: consulte a soporte técnico');
 
           }
         );
@@ -177,8 +175,6 @@ parasails.registerPage('crear-modulo', {
     //   // URL.revokeObjectURL(this.imagenTemporal);    
     // },
     enviarModulo() {
-      console.log('this.imagenPortada');
-      console.log(this.imagenPortada);
 
       const formData = new FormData();//crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es impliscitamente declarado con este objeto
       // this.imagenPortada.urlLocal=null;
@@ -194,7 +190,6 @@ parasails.registerPage('crear-modulo', {
       //   const config = {
       //     headers: { 'content-type': 'multipart/form-data' }
       // }
-      console.log('se intenta enviar al servidor');
       axios({
         method: 'post',
         url: '/crear-modulo',
@@ -202,16 +197,15 @@ parasails.registerPage('crear-modulo', {
         // config
       })
         .then((response) => {
-          console.log('corecto');
-          console.log(response.data)
+
           //PASAR COMO PARÁMETRO AL COMPONENTE SIDE-VAR-MENU EL MODULO CREADO
           //pasar el objeto creado, 
           alert('Módulo creado correctamente');
-          console.log('Módulo creado correctamente');
+
           // window.replace('');
           // se guarda el modulo creado en el arreglo de modulos
           this.moduloCreado = response.data;
-          // console.log(this.moduloCreado);
+
 
           window.location.replace('/administrar-contenido/?objetoId=' + this.moduloCreado.id + '&tipoContenido=' + this.tipoContenido);
           // this.curso.modulos.push(response.data); //AUN NO SE VALIDA 23-05-2019
@@ -221,13 +215,10 @@ parasails.registerPage('crear-modulo', {
 
           if (err.response.status == 409) {
             alert('ya existe un modulo con el mismo nombre');
-            console.log(err);
           } else if (err.response.status == 400) {
             alert('Existen errores en la información suministrada');
-            console.log(err);
           } else {
             alert('Error en el servidor');
-            console.log(err);
           }
         }
         );

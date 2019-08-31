@@ -47,7 +47,6 @@ module.exports = {
     };
     var numeroSubmodulosCurso = 0; //sirve para enviar en el usuario y comprobar el porcentaje de evaluaciones realizadas de todo el curso
 
-    console.log('INGRESO A VIEW-INTERFAZ-MODULO');
 
 
 
@@ -59,11 +58,9 @@ module.exports = {
       objetoSeleccionado.nombre = objetoSeleccionado.nombreModulo;
 
     } else if (inputs.tipoContenido == 'Submodulo') {
-      // console.log('Objeto id submodulos'+inputs.objetoId);
       objetoSeleccionado = await SubmoduloLibro.findOne({ id: inputs.objetoId });
       curso = await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err) => { sails.log('ERROR EN HELPERS: ' + err) });
       moduloPadre = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      // console.log('CURSOO:'+ JSON.stringify(curso));
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreSubmodulo;
       objetoSeleccionado.color = moduloPadre.color;
@@ -185,13 +182,6 @@ module.exports = {
 
     }
 
-
-
-
-
-
-    console.log("El curso es: ");
-    console.log(curso);
 
 
     return exits.success({ curso, objetoSeleccionado, moduloPadre, usuario, navegarAtras, navegarSiguiente });

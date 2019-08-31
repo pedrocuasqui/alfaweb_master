@@ -236,7 +236,6 @@ parasails.registerComponent('modal-detalle-elemento', {
     obtenerIndice() {
       var _this = this;
       this.clickSilenciar()
-      console.log(this.infoElement);
       // this.$refs.curso.clickSilenciar();
       //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
       //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
@@ -251,7 +250,6 @@ parasails.registerComponent('modal-detalle-elemento', {
         let posicion = parseInt(indice) - 1;
 
         _this.infoElement.detalle = _this.infoElement.carousel[posicion].detalle;
-        console.log('cambia a posicion: ' + indice);
       })
 
 
@@ -260,7 +258,7 @@ parasails.registerComponent('modal-detalle-elemento', {
     clickImprimir() {
       // window.print();
       //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
-      var contenidoBreadcrumb1= document.getElementById('breadcrumbText');
+      var contenidoBreadcrumb1 = document.getElementById('breadcrumbText');
 
       var contenidoTexto = this.$refs.printTexto;
       var contenidoImagenes = this.$refs.printImagenes;
@@ -268,7 +266,6 @@ parasails.registerComponent('modal-detalle-elemento', {
       var contenidoCarousel = this.$refs.printCarousel;
 
       newWin = window.open(""); //abre una variable para escribir sobre ella
-      // console.log(contenidoImprimir.outerHTML)
       newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>');
 
       newWin.document.write('<h2>Contenido: ' + this.infoElement.titulo + '</h2>');
@@ -284,7 +281,7 @@ parasails.registerComponent('modal-detalle-elemento', {
         newWin.document.write(contenidoCarousel.outerHTML);
       }
       newWin.document.write('<h6>http://www.epn.edu.ec </h6>');
-  
+
 
 
       newWin.print();

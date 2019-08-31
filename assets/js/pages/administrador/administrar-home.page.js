@@ -23,7 +23,6 @@ parasails.registerPage('administrar-home', {
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
-    // console.log(window.SAILS_LOCALS);
     this.cursos = SAILS_LOCALS.cursos;
     this.estudiantes = SAILS_LOCALS.estudiantes;
     this.usuario = SAILS_LOCALS.usuario;
@@ -43,8 +42,6 @@ parasails.registerPage('administrar-home', {
 
       var _this = this;
       this.cursos.forEach(element => {
-        console.log('iteracion de elemento');
-        console.log(element.id);
         document.getElementById(element.id).addEventListener("click", abrir = function () { _this.abrirCurso(element.id); }, false);
       })
 
@@ -55,7 +52,7 @@ parasails.registerPage('administrar-home', {
 
     },
     seleccionaCursoEliminar(curso) {
-      console.log('seleccionaCursoEliminar');
+
       this.cursoEliminar = curso;
       $(function () {
         $('#modalConfirmaEliminar').modal('show');
@@ -69,11 +66,11 @@ parasails.registerPage('administrar-home', {
         }
       })
         .then(function (response) {
-          console.log("respuesta de eliminacion\n" + response);
+
           _this.consultarCursos();
         })
         .catch(function (error) {
-          console.log(error);
+          alert('Error: consultar a soporte técnico');
         });
 
     },
@@ -82,12 +79,10 @@ parasails.registerPage('administrar-home', {
       var _this = this;
       axios.get('/consulta-cursos') //llamada a la ruta curso por defecto
         .then(function (response) {
-          console.log('archivos encontrados');
           _this.cursos = response.data;
-          console.log(response);
         })
         .catch(function (error) {
-          console.log(error);
+          alert('Error: consultar a soporte técnico');
         });
     },
     abrirCurso(cursoId) {
@@ -121,7 +116,6 @@ parasails.registerPage('administrar-home', {
     },
     guardarCurso(curso) {
       var _this = this;
-      console.log('guardar curso');
       this.editarCurso = false;
 
       // PROCESO PARA GUARDAR EL CURSO
@@ -136,14 +130,12 @@ parasails.registerPage('administrar-home', {
       })
         .then(
           (response) => {
-            console.log('curso modificado');
-            console.log(response.data)
+            alert('Curso guardado correctamente');
           }
         )
         .catch(
           (err) => {
-            console.log('error devuelto');
-            console.log(err)
+            alert('Error: consulte a soporte técnico');
           }
         );
 
@@ -154,8 +146,8 @@ parasails.registerPage('administrar-home', {
       let fechaUltimoAcceso = '01-01-1970';
       fechaUltimoAcceso = new Date(estudiante.updatedAt);
       // let fecha= fechaUltimoAcceso.toString();
-      let fecha= fechaUltimoAcceso.getDate()+"/"+fechaUltimoAcceso.getMonth()+"/"+fechaUltimoAcceso.getFullYear();
-      
+      let fecha = fechaUltimoAcceso.getDate() + "/" + fechaUltimoAcceso.getMonth() + "/" + fechaUltimoAcceso.getFullYear();
+
       // return fecha.substring(1, 12);
       return fecha
     }

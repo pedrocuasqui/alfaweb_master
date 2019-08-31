@@ -159,8 +159,7 @@ parasails.registerPage('m-1-hardware', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      console.log('PROGRESO ACTUAL');
-      console.log(progresoActual);
+
     },
 
 

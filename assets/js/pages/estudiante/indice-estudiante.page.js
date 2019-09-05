@@ -68,7 +68,7 @@ parasails.registerPage('indice-estudiante', {
       let existe = false;
       if (this.cursoEstudiante && this.usuario.nombre != 'Visitante') {
         existe = true;
-        alert("existe el Curso  y Estudiante logueado");
+        
       }
       
 
@@ -78,7 +78,7 @@ parasails.registerPage('indice-estudiante', {
       let existe = false;
       if (!this.cursoEstudiante && this.usuario.nombre != 'Visitante') {
         existe = true;
-        alert("NO existe el Curso  y Estudiante logueado");
+        ß
 
       }
 

@@ -4,7 +4,7 @@
     height     : 100vh; // vh hace referencia a la centésima parte de la altura del viewport 
     width      : 100vw; //vw hace referencia al la centésima parte del ancho del viewport
     font-family: 'Roboto', sans-serif;
-
+    background-color:#1e1e2f;
     [v-cloak] * {
         display: none
     }
@@ -79,7 +79,8 @@
     // /////////////////////////////////////////////////////////////
     ////////////////////---CABECERA PRINCIPAL---////////////////////
     .row#div-cabecera {
-        background-color: #0460a9;
+        // background-color: #0460a9;
+        background: rgba(0, 0, 0, 0.0);
         width           : 100%;
         height          : 9vh; //9% del alto de .div-contenido
         margin          : 0px !important;
@@ -97,7 +98,8 @@
                 margin          : 0 !important;
                 padding-top     : 7px !important;
                 padding-bottom  : 7px !important;
-                background-color: #0460a9;
+                // background-color: #0460a9;
+                background: rgba(0, 0, 0, 0.0);
 
                 a {
                     color: aliceblue;
@@ -165,10 +167,12 @@
                 transition      : all 0.3s ease-in-out;
                 text-align      : left;
                 width           : 100%;
-                background-color: rgb(17, 17, 17, 0.9);
+                // background-color: rgb(17, 17, 17, 0.9);
+                background:linear-gradient(0deg, #389466 0%, #42b883 100%);
                 overflow        : hidden;
                 height          : 100%; // esto estará contenido dentro de la columna izquierda
                 opacity         : 1;
+                border-radius: 10px;
 
 
 
@@ -742,6 +746,7 @@ img.mensaje-bienvenida {
 .textoOculto {
     position: absolute;
     z-index : -10;
+    opacity:0;
 }
 
 .respuesta_correcta {
@@ -774,3 +779,5 @@ img.mensaje-bienvenida {
     width     : 100%;
     overflow-y: auto; 
   }
+
+  

@@ -84,8 +84,8 @@ parasails.registerComponent('modulo-side-var-menu', {
 
                 
         <div class="caret-container ">
-          <i v-if="!showSidebar" @click="onClickLeftCaret" id="left-caret" class="caret fas fa-caret-left "></i>
-          <i v-else @click="onClickRightCaret" id="right-caret" class="caret fas fa-caret-right "></i>
+          <i v-if="!showSidebar" @mouseover="onClickLeftCaret" id="left-caret" class="caret fas fa-caret-left "></i>
+          <i v-else @mouseover="onClickRightCaret" id="right-caret" class="caret fas fa-caret-right "></i>
         </div>
         
     </div>

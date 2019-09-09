@@ -1,87 +1,92 @@
-parasails.registerComponent('modulo-contenedor-curso', {
-    props: {
-        // tituloContenido: String,
+parasails.registerComponent("modulo-contenedor-curso", {
+  props: {
+    // tituloContenido: String,
 
-        // descripcionObjeto: [String],
-        navegarAtras: {
-            type: String,
-            required: false,
-            description: 'la ruta del modulo anterior',
-        },
-        navegarSiguiente: {
-            type: String,
-            required: false,
-            description: 'la ruta del modulo siguiente',
-        },
-        breadcrumb: {
-            type: Array,
-            required: false,
-        },
-        curso: {
-            type: Object,
-            required: true, //es necesario para poder cargar el menu lateral
-            // description:'parametro de barra de navegacion lateral'
-        },
-        objetoSeleccionado: {
-            type: Object,
-            // required: true,//no necesario para señalar el modulo o submodulo seleccionado en el menu lateral porque el menu ya contiene su definicion por defecto
-            default: () => { return { id: '1', nombreModulo: 'crearModulo', rol: 'Administrador' } },
-            // description:'parametro de barra de navegacion, tambien se usa la descripcion cuando el objeto seleccionado es un modulo o submodulo'
-        },
-        tituloTemporal: {
-            type: String,
-            required: false,
-            default: () => { return '' },
-            // description:'Se debe enviar cuando se crea un modulo o submodulo para reemplzar al titlo del modulo o submodulo'
-        },
-        usuario: {
-            type: Object,
-            default: () => { return { nombre: 'Visitante', rol: 'Estudiante', id: '1' } }
-        },
-        crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
-        mostrarIconoRepetir: false,
-        // silenciar:true
-
-
-        adminCreandoModuloSubmodulo: {
-            type: Boolean,
-            required: false,
-            default: () => { return false },
-        },
-        progreso: {
-            type: Object,
-            default: () => {
-                return {
-                    puntos: 0,
-                    nivel: 0,//modulo 1
-                    medalla: 'bebe', //medalla mas basica
-                    tiempoMaximoPorPregunta: 30, //en segundos por defecto
-                    evaluacion: null,
-                }
-            },
-            description: 'puntaje, nivel y progreso (medalla) actuales'
-        }
-
-
+    // descripcionObjeto: [String],
+    navegarAtras: {
+      type: String,
+      required: false,
+      description: "la ruta del modulo anterior"
     },
-    data: function () {
+    navegarSiguiente: {
+      type: String,
+      required: false,
+      description: "la ruta del modulo siguiente"
+    },
+    breadcrumb: {
+      type: Array,
+      required: false
+    },
+    curso: {
+      type: Object,
+      required: true //es necesario para poder cargar el menu lateral
+      // description:'parametro de barra de navegacion lateral'
+    },
+    objetoSeleccionado: {
+      type: Object,
+      // required: true,//no necesario para señalar el modulo o submodulo seleccionado en el menu lateral porque el menu ya contiene su definicion por defecto
+      default: () => {
+        return { id: "1", nombreModulo: "crearModulo", rol: "Administrador" };
+      }
+      // description:'parametro de barra de navegacion, tambien se usa la descripcion cuando el objeto seleccionado es un modulo o submodulo'
+    },
+    tituloTemporal: {
+      type: String,
+      required: false,
+      default: () => {
+        return "";
+      }
+      // description:'Se debe enviar cuando se crea un modulo o submodulo para reemplzar al titlo del modulo o submodulo'
+    },
+    usuario: {
+      type: Object,
+      default: () => {
+        return { nombre: "Visitante", rol: "Estudiante", id: "1" };
+      }
+    },
+    crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
+    mostrarIconoRepetir: false,
+    // silenciar:true
+
+    adminCreandoModuloSubmodulo: {
+      type: Boolean,
+      required: false,
+      default: () => {
+        return false;
+      }
+    },
+    progreso: {
+      type: Object,
+      default: () => {
         return {
-            campoNombre: null,
-            nombre: null,
-            evIndividual: false,
-            silenciar: true,
-            sonido: null,
-            silenciarGeneral: false, //el audio est'a activado
-
+          puntos: 0,
+          nivel: 0, //modulo 1
+          medalla: "bebe", //medalla mas basica
+          tiempoMaximoPorPregunta: 30, //en segundos por defecto
+          evaluacion: null
         };
-    },
-    mounted() {
-        window.sonido = null;
-        window.sonido = window.speechSynthesis;
+      },
+      description: "puntaje, nivel y progreso (medalla) actuales"
+    }
+  },
+  data: function() {
+    return {
+      campoNombre: null,
+      nombre: null,
+      evIndividual: false,
+      silenciar: true,
+      sonido: null,
+      silenciarGeneral: false //el audio est'a activado
+    };
+  },
+  mounted() {
+    window.sonido = null;
+    window.sonido = window.speechSynthesis;
+  },
 
-    },
-    template: //html
-        `  
+  
+  template: //html
+  `  
 <div class="div-contenido container-fluid"  v-cloak>
     <div class="row" id="div-cabecera"  >
         <div class="col-sm-10" id="breadcrumbText" ref="printBreadcrumb">
@@ -131,9 +136,11 @@ parasails.registerComponent('modulo-contenedor-curso', {
                                              
                                               
                          <div  class="col-auto" v-if="navegarSiguiente">
+                         <!--Estoy en un módulo, no se pasa a evaluación-->
                             <template v-if="objetoSeleccionado.nombreModulo">
                                 <a  key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickSilenciar" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
                             </template>
+                            <!--Estoy en un submodulo, paso a evaluacion antes de pasar a otro tema-->
                             <template v-else>   
                             <!--navegacion-siguiente-->
                                 <a v-if="evIndividual" key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickSilenciar" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
@@ -149,12 +156,13 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
                     <div class="row">
                             
+                            
                                 <div class="contenedor-slot-principal" ref="printContenidoCentral">
                                     <!--El javascript que reproduce el siguiente audio se encuentra en cada documento javascript de cada modulo y submodulo del curso informaticaBasica, tambien se puede invocar desde cuanlquier contenido dentro de este componente-->
                                     <audio id="audioMouseOver" src="/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3"></audio>
                                     <slot></slot>
                                 </div>
-                            
+                                
                     </div>
 
 
@@ -214,110 +222,122 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
     `,
 
-
-    methods: {
-        clickAsistenteBuho() {
-            this.$emit('click-asistente-buho');
-        },
-        intentarNuevamente() {
-            this.$emit('intentar-nuevamente');
-        },
-        evaluacionIndividual(contenido) {
-            this.objetoSeleccionado.descripcion = '';// para que no se muestre nada en el cajon de descripcion
-
-            if (this.objetoSeleccionado.nombreSubmodulo) {
-                if (this.objetoSeleccionado.evaluacion) {
-                    if (contenido == 'contenido') {
-                        //si se envia algo como par'ametro, entonces se retorna
-                        this.evIndividual = false;
-
-                    } else {
-                        //si no se pasa nada como parametro y ademas el objeto seleccionado  NO es modulo se muestra la evaluacion
-
-                        this.evIndividual = true;
-                    }
-                    this.$emit('evaluacion-individual', contenido);
-                } else {
-                    alert('No existe evaluación para este tema');
-                }
-
-            }
-            else {
-                alert('La evaluación se realiza en cada tema');
-            }
-            this.clickSilenciar();
-
-        },
-
-        clickSilenciar() {
-            window.sonido.cancel();
-            window.silenciar = true;
-            this.silenciar = true;
-        },
-        clickReproducir() {
-            this.silenciar = false;
-            // var voices = window.speechSynthesis.getVoices();
-            var msg = new SpeechSynthesisUtterance(this.objetoSeleccionado.descripcion);
-            // msg.voice = voices[10]; // Note: some voices don't support altering params
-            window.sonido.speak(msg);
-        },
-        clickReproducirGeneral() {
-            this.silenciarGeneral = false;
-            $('.audioTag').show();
-            $('.audioTag').show();
-            $("#audioMouseOver").attr("src", "/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3");
-            $("#audioModalAbrir").attr("src", "/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3");
-            $("#audioModalCerrar").attr("src", "/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3");
-        },
-        clickSilenciarGeneral() {
-            this.silenciarGeneral = true;
-            this.clickSilenciar();
-            $('.audioTag').hide();
-            $('.audioTag').hide();
-            $('audio').hide();
-            $("audio").attr("src", "");
-        },
-        clickImprimir() {
-            this.clickSilenciar(); //ultima linea editada en sprint 6
-            // window.print();
-            //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
-            //para ver como funciona this.$refs revisar la siguiente fuente https://vuejs.org/v2/api/#ref
-            var contenidoBreadcrumb = this.$refs.printBreadcrumb;  //https://vuejs.org/v2/api/#ref
-            var contenidoCentral = this.$refs.printContenidoCentral;
-            var contenidoDescripcion = this.$refs.printContenidoDescripcion;
-            newWin = window.open(""); //abre una variable para escribir sobre ella
-            newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>');
-            newWin.document.write('<h2>Contenido</h2>');
-            newWin.document.write(contenidoBreadcrumb.outerHTML);
-            newWin.document.write(contenidoCentral.outerHTML);
-            newWin.document.write('<h2>Descripción</h2>');
-            newWin.document.write(contenidoDescripcion.outerHTML);
-            newWin.document.write('<h5>Sistema "alfaweb" http://www.epn.edu.ec autor: EPN-FIS-Pedro Cuasqui</h5>');
-            newWin.print();
-            newWin.close();
-            newWin.document.write('<h6>http://www.epn.edu.ec </h6>');
-        }
-
-
+  methods: {
+    clickAsistenteBuho() {
+      this.$emit("click-asistente-buho");
     },
-    computed: {
-        existeDescripcion() {
-            var existe = false;
-            if (this.objetoSeleccionado.descripcion)
-                existe = true;
+    intentarNuevamente() {
+      this.$emit("intentar-nuevamente");
+    },
+    evaluacionIndividual(contenido) {
+      this.objetoSeleccionado.descripcion = ""; // se vacía la descripción porque ingresa  a una evaluación
 
-            return existe;
-        },
-        /**
-         * Se establece el tipo de usuario en caso de ser null
-         */
-        usuarioRecibido() {
+      if (this.objetoSeleccionado.nombreSubmodulo) {
+        if (this.objetoSeleccionado.evaluacion) {
+          //Si existe evaluación
+          if (contenido == "contenido") {
+            //si se envia algo como par'ametro, entonces se retorna
+            this.evIndividual = false;
+          } else {
+            //si no se pasa nada como parametro y ademas el objeto seleccionado  NO es modulo se muestra la evaluacion
 
-            var usuarioR = this.usuario;
-            if (!this.usuario) { //si el usuario es null o undefined
-                usuarioR = { nombre: 'Visitante', rol: 'Estudiante' }
-            }
-            return usuarioR;
+            this.evIndividual = true;
+          }
+          this.$emit("evaluacion-individual", contenido);
+        } else {
+          var r = confirm(
+            "No existe evaluación para este tema. \n ¿Deseas continuar al siguiente tema?"
+          );
+          if (r == true) {
+            location.assign(this.navegarSiguiente);
+          } else {
+          }
         }
+      } else {
+        alert("La evaluación se realiza en cada tema");
+      }
+      this.clickSilenciar();
+    },
+
+    clickSilenciar() {
+      window.sonido.cancel();
+      window.silenciar = true;
+      this.silenciar = true;
+    },
+    clickReproducir() {
+      this.silenciar = false;
+      // var voices = window.speechSynthesis.getVoices();
+      var msg = new SpeechSynthesisUtterance(
+        this.objetoSeleccionado.descripcion
+      );
+      // msg.voice = voices[10]; // Note: some voices don't support altering params
+      window.sonido.speak(msg);
+    },
+    clickReproducirGeneral() {
+      this.silenciarGeneral = false;
+      $(".audioTag").show();
+      $(".audioTag").show();
+      $("#audioMouseOver").attr(
+        "src",
+        "/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3"
+      );
+      $("#audioModalAbrir").attr(
+        "src",
+        "/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3"
+      );
+      $("#audioModalCerrar").attr(
+        "src",
+        "/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3"
+      );
+    },
+    clickSilenciarGeneral() {
+      this.silenciarGeneral = true;
+      this.clickSilenciar();
+      $(".audioTag").hide();
+      $(".audioTag").hide();
+      $("audio").hide();
+      $("audio").attr("src", "");
+    },
+    clickImprimir() {
+      this.clickSilenciar(); //ultima linea editada en sprint 6
+      // window.print();
+      //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
+      //para ver como funciona this.$refs revisar la siguiente fuente https://vuejs.org/v2/api/#ref
+      var contenidoBreadcrumb = this.$refs.printBreadcrumb; //https://vuejs.org/v2/api/#ref
+      var contenidoCentral = this.$refs.printContenidoCentral;
+      var contenidoDescripcion = this.$refs.printContenidoDescripcion;
+      newWin = window.open(""); //abre una variable para escribir sobre ella
+      newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>');
+      newWin.document.write("<h2>Contenido</h2>");
+      newWin.document.write(contenidoBreadcrumb.outerHTML);
+      newWin.document.write(contenidoCentral.outerHTML);
+      newWin.document.write("<h2>Descripción</h2>");
+      newWin.document.write(contenidoDescripcion.outerHTML);
+      newWin.document.write(
+        '<h5>Sistema "alfaweb" http://www.epn.edu.ec autor: EPN-FIS-Pedro Cuasqui</h5>'
+      );
+      newWin.print();
+      newWin.close();
+      newWin.document.write("<h6>http://www.epn.edu.ec </h6>");
     }
+  },
+  computed: {
+    existeDescripcion() {
+      var existe = false;
+      if (this.objetoSeleccionado.descripcion) existe = true;
+
+      return existe;
+    },
+    /**
+     * Se establece el tipo de usuario en caso de ser null
+     */
+    usuarioRecibido() {
+      var usuarioR = this.usuario;
+      if (!this.usuario) {
+        //si el usuario es null o undefined
+        usuarioR = { nombre: "Visitante", rol: "Estudiante" };
+      }
+      return usuarioR;
+    }
+  }
 });

@@ -11,7 +11,7 @@
 
   <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
     :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
-    @evaluacion-individual="evaluacionIndividual">
+    >
     <modulo-ev-individual v-if="evIndividual">
 
     </modulo-ev-individual>
@@ -48,6 +48,6 @@
     </div>
   </modulo-contenedor-curso>
   <!--  -->
-
+</div>
 
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

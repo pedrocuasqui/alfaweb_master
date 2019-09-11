@@ -313,6 +313,10 @@
                 position           : relative; //para poder acomodar los botones en funcion de este padre
                 display            : block;
                 text-align         : center;
+                background-color: #27293d;
+                // border-radius:calc(0.2857rem - 0.0225rem) calc(0.2857rem - 0.0225rem) 0 0;
+                border-radius:calc(0.65rem) calc(0.6rem) 0 0;
+                padding: 15px ;
 
                 //Fila del titulo
                 #titulo-modulo {
@@ -324,10 +328,12 @@
 
                     h1 {
                         font-size: 2vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
+                        color: white;
                     }
 
                     h2 {
                         font-size: 1.5vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
+                        color: white;
                     }
                 }
 
@@ -383,6 +389,7 @@
 
                         h6 {
                             font-size: 1rem;
+                            color: white;
                         }
                     }
                 }
@@ -547,9 +554,14 @@ div.contenedor-icono {
 
 //COMPONENTE: modulo-indice 
 .row.contenido-menu {
-    background-color: rgb(255, 255, 255);
+    background-color: #27293d;
+}
 
-
+.row.contenido-menu *{
+    background-color: #27293d;
+}
+.row.contenido-menu img{
+    border-radius: 20px;
 }
 
 .item-modulo {

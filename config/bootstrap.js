@@ -630,7 +630,7 @@ module.exports.bootstrap = async function (done) {
 
     //CURSO PROGRAMACION BASICA
     var cursoProgra = await Curso.create({
-      nombre: "Programaci'on b'asica",
+      nombre: "Programación básica",
       descripcion: "conceptos básicos sobre programacion",
       publicado: true,
       profesor: profesorCreado.id

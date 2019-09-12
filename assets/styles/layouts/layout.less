@@ -1,10 +1,11 @@
 #layout-general {
     //es el body del layout principal
     //se usa para poder usar elementos con posicion absoluta dentro de este padre
-    height     : 100vh; // vh hace referencia a la centésima parte de la altura del viewport 
-    width      : 100vw; //vw hace referencia al la centésima parte del ancho del viewport
-    font-family: 'Roboto', sans-serif;
-    background-color:#1e1e2f;
+    height          : 100vh; // vh hace referencia a la centésima parte de la altura del viewport 
+    width           : 100vw; //vw hace referencia al la centésima parte del ancho del viewport
+    font-family     : 'Roboto', sans-serif;
+    background-color: #1e1e2f;
+
     [v-cloak] * {
         display: none
     }
@@ -13,6 +14,34 @@
     // [v-cloak]::before { content: "loading…" } //usar esta etiqueta si se quiere usar loading mientras carga, solo sirve para vuejs, no para carga de imagenes o carga de base de datos
 
 }
+
+// /////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////
+// VARIABLES
+// /////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////
+
+
+
+@opacity-8             : rgba(255, 255, 255, .8);
+@font-weight-normal    : 400;
+@colorContenidoCentral :#27293d;
+
+
+// FIN VARIABLES
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p {
+    font-weight: @font-weight-normal;
+    color      : @opacity-8;
+}
+
+
 
 #layout-general>div:first-child {
     padding-left : 1px !important;
@@ -73,6 +102,7 @@
         cursor: pointer;
     }
 
+
     ////////////////////////////////////////////////////////////////
     // /////////////////////////////////////////////////////////////
     // /////////////////////////////////////////////////////////////
@@ -80,12 +110,12 @@
     ////////////////////---CABECERA PRINCIPAL---////////////////////
     .row#div-cabecera {
         // background-color: #0460a9;
-        background: rgba(0, 0, 0, 0.0);
-        width           : 100%;
-        height          : 9vh; //9% del alto de .div-contenido
-        margin          : 0px !important;
-        margin-right    : 0px !important;
-        margin-left     : 0px !important;
+        background         : rgba(0, 0, 0, 0.0);
+        width              : 100%;
+        height             : 9vh; //9% del alto de .div-contenido
+        margin             : 0px !important;
+        margin-right       : 0px !important;
+        margin-left        : 0px !important;
 
         #breadcrumb {
             //ocupamos el 100% de espacio de ancho para la barra de navegacion
@@ -95,11 +125,11 @@
 
             nav ol {
                 //eliminamos el margen de los elementos ol de la barra de navegacion
-                margin          : 0 !important;
-                padding-top     : 7px !important;
-                padding-bottom  : 7px !important;
+                margin             : 0 !important;
+                padding-top        : 7px !important;
+                padding-bottom     : 7px !important;
                 // background-color: #0460a9;
-                background: rgba(0, 0, 0, 0.0);
+                background         : rgba(0, 0, 0, 0.0);
 
                 a {
                     color: aliceblue;
@@ -162,17 +192,17 @@
 
             #sidebar-menu {
                 //todo el sidebar
-                z-index         : 10;
-                position        : absolute;
-                transition      : all 0.3s ease-in-out;
-                text-align      : left;
-                width           : 100%;
+                z-index            : 10;
+                position           : absolute;
+                transition         : all 0.3s ease-in-out;
+                text-align         : left;
+                width              : 100%;
                 // background-color: rgb(17, 17, 17, 0.9);
-                background:linear-gradient(0deg, #389466 0%, #42b883 100%);
-                overflow        : hidden;
-                height          : 100%; // esto estará contenido dentro de la columna izquierda
-                opacity         : 1;
-                border-radius: 10px;
+                background         : linear-gradient(0deg, #389466 0%, #42b883 100%);
+                overflow           : hidden;
+                height             : 100%; // esto estará contenido dentro de la columna izquierda
+                opacity            : 1;
+                border-radius      : 10px;
 
 
 
@@ -313,10 +343,10 @@
                 position           : relative; //para poder acomodar los botones en funcion de este padre
                 display            : block;
                 text-align         : center;
-                background-color: #27293d;
-                // border-radius:calc(0.2857rem - 0.0225rem) calc(0.2857rem - 0.0225rem) 0 0;
-                border-radius:calc(0.65rem) calc(0.6rem) 0 0;
-                padding: 15px ;
+                background-color   : @colorContenido;
+                // border-radius   :calc(0.2857rem - 0.0225rem) calc(0.2857rem - 0.0225rem) 0 0;
+                border-radius      : calc(0.65rem) calc(0.6rem) 0 0;
+                padding            : 15px;
 
                 //Fila del titulo
                 #titulo-modulo {
@@ -328,12 +358,12 @@
 
                     h1 {
                         font-size: 2vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
-                        color: white;
+                        color    : white;
                     }
 
                     h2 {
                         font-size: 1.5vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
-                        color: white;
+                        color    : white;
                     }
                 }
 
@@ -389,7 +419,7 @@
 
                         h6 {
                             font-size: 1rem;
-                            color: white;
+                            color    : white;
                         }
                     }
                 }
@@ -554,13 +584,14 @@ div.contenedor-icono {
 
 //COMPONENTE: modulo-indice 
 .row.contenido-menu {
-    background-color: #27293d;
+    background-color: @colorContenidoCentral;
 }
 
-.row.contenido-menu *{
-    background-color: #27293d;
+.row.contenido-menu * {
+    background-color: @colorContenidoCentral;
 }
-.row.contenido-menu img{
+
+.row.contenido-menu img {
     border-radius: 20px;
 }
 
@@ -705,32 +736,6 @@ img.mensaje-bienvenida {
 
 
 
-
-
-
-.carousel-indicators-numbers {
-    li {
-        text-indent     : 0 !important;
-        margin          : 0 2px !important;
-        width           : 30px !important;
-        height          : 30px !important;
-        border          : none !important;
-        border-radius   : 100% !important;
-        line-height     : 30px !important;
-        color           : #fff !important;
-        background-color: rgb(69, 236, 27) !important;
-        transition      : all 0.25s ease;
-
-        &.active,
-        &:hover {
-            margin          : 0 2px !important;
-            width           : 30px !important;
-            height          : 30px !important;
-            background-color: #337ab7 !important;
-        }
-    }
-}
-
 .carousel.slide.modalDetalle img {
     width     : auto !important;
     max-height: 60vh !important;
@@ -758,7 +763,7 @@ img.mensaje-bienvenida {
 .textoOculto {
     position: absolute;
     z-index : -10;
-    opacity:0;
+    opacity : 0;
 }
 
 .respuesta_correcta {
@@ -785,11 +790,198 @@ img.mensaje-bienvenida {
     height    : 100%;
     width     : 100%;
     overflow-y: auto;
-  }
-  .contenedor-slot-principal{
+}
+
+.contenedor-slot-principal {
     height    : 100%;
     width     : 100%;
-    overflow-y: auto; 
-  }
+    overflow-y: auto;
+}
 
-  
+
+
+.typography-line {
+    padding-left : 25%;
+    margin-bottom: 35px;
+    position     : relative;
+    display      : block;
+    width        : 100%;
+}
+
+.typography-line span {
+    color         : #c0c1c2;
+    display       : block;
+    font-weight   : 400;
+    font-size     : 13px;
+    line-height   : 13px;
+    left          : 0;
+    position      : absolute;
+    width         : 260px;
+    text-transform: none;
+}
+
+
+
+
+
+
+#lienzo-hardware {
+    display     : block;
+    margin-left : auto;
+    margin-right: auto;
+    text-align  : center;
+    overflow    : visible;
+    /*permite que el tooltip se pueda ver sobre los márgenes*/
+    // background-color:rgb(51, 192, 180);
+    width              : 80%; //width y height son el viewport de el grafico svg
+    height             : auto; //89% del 80vh del contenedor principal, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+}
+
+
+
+
+
+
+#contenedor-lienzo {
+    position: relative;
+}
+
+.text-area-editar {
+    position: absolute;
+    top     : 25%;
+    left    : 25%;
+    z-index : 10;
+    width   : 50%;
+    height  : 55%;
+}
+
+
+
+.lienzo-svg {
+    margin-left        : auto;
+    margin-right       : auto;
+    text-align         : center;
+    overflow           : visible; //permite que el tooltip se pueda ver sobre los márgenes
+    // background-color:rgb(51, 192, 180);
+    width              : 85%; //width y height son el viewport de el grafico svg
+    height             : auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+}
+
+
+
+
+
+
+
+
+//estilo para poner numeros en el carousel
+.carousel-indicators-numbers {
+    li {
+        text-indent     : 0 !important;
+        margin          : 0 2px !important;
+        width           : 30px !important;
+        height          : 30px !important;
+        border          : none !important;
+        border-radius   : 100% !important;
+        line-height     : 30px !important;
+        color           : #fff !important;
+        background-color: #999 !important;
+        transition      : all 0.25s ease;
+
+        &.active,
+        &:hover {
+            margin          : 0 2px !important;
+            width           : 30px !important;
+            height          : 30px !important;
+            background-color: #337ab7 !important;
+        }
+    }
+}
+
+
+img {
+    margin-left : auto;
+    margin-right: auto;
+    max-width   : 90%;
+    max-height  : 100%
+}
+
+.carousel .carousel-item img {
+    max-height: 54vh;
+    max-width : auto;
+}
+
+
+
+
+
+/*FINAL*/
+#lienzo-svg {
+    margin-left        : auto;
+    margin-right       : auto;
+    text-align         : center;
+    overflow           : visible; //permite que el tooltip se pueda ver sobre los márgenes
+    // background-color:rgb(51, 192, 180);
+    width              : 75%; //width y height son el viewport de el grafico svg
+    height             : auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+}
+
+
+
+
+
+
+g.contenedor1:hover * {
+    stroke-width  : 1.5px !important;
+    stroke        : #58da28 !important;
+    stroke-opacity: 1;
+}
+
+
+g.contenedor:hover * {
+    fill  : #58da28 !important;
+    cursor: pointer;
+}
+
+
+
+
+
+.tooltip1 {
+    pointer-events: none; //permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
+    opacity       : 1;
+    display       : block;
+    position      : fixed; // el origen de coordenadas se toma de la ventana del navegador 
+    border-radius : 3px;
+    border        : #d3d3d3 solid 1px;
+    background    : #fff;
+    color         : red;
+    font-family   : Comfortaa, Verdana;
+    font-size     : medium;
+    padding       : 8px;
+    box-shadow    : 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    max-height    : 50px;
+}
+
+
+#listadoCursosHomepage {
+    background-color: @colorContenidoCentral  !important;
+}
+
+// .list-group-item {
+//     border-color    : #ccc !important;
+//     background-color: @colorContenidoCentral  !important;
+//     border-radius   : 0.4285rem !important;
+// }
+
+// .btn-curso {
+//     border-color    : #ccc !important;
+//     background-color: @colorContenidoCentral  !important;
+//     border-radius   : 0.4285rem !important;
+// }
+
+// [id^="boton-lista"] {
+//     border-color    : #ccc !important;
+//     background-color: @colorContenidoCentral  !important;
+//     border-radius   : 0.4285rem !important;
+// }

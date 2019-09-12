@@ -175,7 +175,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
                       
 
                         <div class="col-sm-11" id="descripcion-objeto" ref="printContenidoDescripcion">
-                            <h6 v-if="existeDescripcion  && tituloTemporal==''">{{objetoSeleccionado.descripcion}}</h6>
+                            <h6 v-if="existeDescripcion  && tituloTemporal==''" class="typography-line"><span>{{objetoSeleccionado.descripcion}}</span></h6>
                         </div>
                     </div>
 

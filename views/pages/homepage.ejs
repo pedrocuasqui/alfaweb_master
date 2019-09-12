@@ -43,13 +43,13 @@ For more information, see:
           href="/view-registro-usuario">Regístrate</a> </div>
       <div class="col">
 
-        <div class="jumbotron">
+        <div id="listadoCursosHomepage" class="jumbotron">
 
           <h1>CURSOS DISPONIBLES</h1>
 
           <template v-for="curso in cursosPublicados">
-            <button :id="curso.id" type="button"
-              class="btnCurso list-group-item list-group-item-action flex-column align-items-start"
+            <button :id="'boton-lista'+curso.id" type="button"
+              class="list-group-item btn-curso  list-group-item-action flex-column align-items-start"
               @click="abrirCurso(curso.id)">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{curso.nombre}}</h5>

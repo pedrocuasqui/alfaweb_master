@@ -84,9 +84,8 @@ parasails.registerComponent("modulo-contenedor-curso", {
     window.sonido = window.speechSynthesis;
   },
 
-  
-  template: //html
-  `  
+  //html
+  template: `  
 <div class="div-contenido container-fluid"  v-cloak>
     <div class="row" id="div-cabecera"  >
         <div class="col-sm-10" id="breadcrumbText" ref="printBreadcrumb">
@@ -230,8 +229,6 @@ parasails.registerComponent("modulo-contenedor-curso", {
       this.$emit("intentar-nuevamente");
     },
     evaluacionIndividual(contenido) {
-      this.objetoSeleccionado.descripcion = ""; // se vacía la descripción porque ingresa  a una evaluación
-
       if (this.objetoSeleccionado.nombreSubmodulo) {
         if (this.objetoSeleccionado.evaluacion) {
           //Si existe evaluación
@@ -250,6 +247,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
           );
           if (r == true) {
             location.assign(this.navegarSiguiente);
+            this.objetoSeleccionado.descripcion = ""; // se vacía la descripción porque ingresa  a una evaluación
           } else {
           }
         }

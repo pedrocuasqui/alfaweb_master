@@ -5,47 +5,31 @@
     @evaluacion-individual="evaluacionIndividual" ref="curso" :mostrar-icono-repetir="mostrarIconoRepetir"
     @intentar-nuevamente="intentarNuevamente" :progreso="progreso" @click-asistente-buho="clickMostrarPista">
     <!--mostrarIconoRepetir es una varible de tipo Boolean-->
+    <div class="contenedor-formulario">
+      <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
+      <template v-if="objetoSeleccionado.nombreSubmodulo">
+        <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
+          @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
+          @actualiza-progreso="actualizaProgreso">
 
-    <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
-    <template v-if="objetoSeleccionado.nombreSubmodulo">
-      <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
-        @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
-        @actualiza-progreso="actualizaProgreso">
+        </modulo-ev-individual>
+        <div v-else>
+          <!-- CONTENIDO MULTIMEDIA -->
+          <div v-html="objetoSeleccionado.contenidoTiny"></div>
+        </div>
+      </template>
 
-      </modulo-ev-individual>
-      <div v-else>
+      <!-- si el contenido retornado es un MODULO no existen evaluaciones -->
+      <template v-else>
+
         <!-- CONTENIDO MULTIMEDIA -->
         <div v-html="objetoSeleccionado.contenidoTiny"></div>
-      </div>
-    </template>
 
-    <!-- si el contenido retornado es un MODULO no existen evaluaciones -->
-    <template v-else>
+      </template>
 
-      <!-- CONTENIDO MULTIMEDIA -->
-      <div v-html="objetoSeleccionado.contenidoTiny"></div>
 
-    </template>
+    </div>
   </modulo-contenedor-curso>
 
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-

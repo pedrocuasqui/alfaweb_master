@@ -26,8 +26,8 @@
 @opacity-8             : rgba(255, 255, 255, .8);
 @font-weight-normal    : 400;
 @colorContenidoCentral :#27293d;
-
-
+@borderRadiusMargen    : calc(0.65rem) calc(0.6rem) 0 0;
+@colorFuente           : #c0c1c2;
 // FIN VARIABLES
 
 h1,
@@ -36,9 +36,11 @@ h3,
 h4,
 h5,
 h6,
-p {
-    font-weight: @font-weight-normal;
-    color      : @opacity-8;
+p,
+p a,
+label {
+    font-weight: @font-weight-normal  !important;
+    color      : @opacity-8  !important;
 }
 
 
@@ -343,9 +345,9 @@ p {
                 position           : relative; //para poder acomodar los botones en funcion de este padre
                 display            : block;
                 text-align         : center;
-                background-color   : @colorContenido;
+                background-color   : @colorContenidoCentral;
                 // border-radius   :calc(0.2857rem - 0.0225rem) calc(0.2857rem - 0.0225rem) 0 0;
-                border-radius      : calc(0.65rem) calc(0.6rem) 0 0;
+                border-radius      : @borderRadiusMargen;
                 padding            : 15px;
 
                 //Fila del titulo
@@ -488,7 +490,7 @@ p {
 }
 
 div.contenedor-slot-principal {
-    background-color: rgb(255, 255, 255);
+    background-color: @colorContenidoCentral;
 }
 
 // COMPONENTE:modulo-contenedor-admin
@@ -592,7 +594,7 @@ div.contenedor-icono {
 }
 
 .row.contenido-menu img {
-    border-radius: 20px;
+    border-radius: @borderRadiusMargen ;
 }
 
 .item-modulo {
@@ -776,13 +778,7 @@ img.mensaje-bienvenida {
 
 .inputfile,
 .input-submit {
-    //no se oculta realmente, solo se hace muy pequeño con opacidad 0 para que no se lo vea
-    /* width   : 0.1px;
-    height     : 0.1px;
-    opacity    : 0;
-    overflow   : hidden;
-    position   : absolute;
-    z-index    : -1;*/
+    color: @colorFuente;
 }
 
 
@@ -809,15 +805,15 @@ img.mensaje-bienvenida {
 }
 
 .typography-line span {
-    color         : #c0c1c2;
-    display       : block;
-    font-weight   : 400;
-    font-size     : 13px;
-    line-height   : 13px;
-    left          : 0;
-    position      : absolute;
-    width         : 260px;
-    text-transform: none;
+    color            : @colorFuente;
+    display          : block;
+    font-weight      : 400;
+    font-size        : 13px;
+    line-height      : 13px;
+    left             : 0;
+    position         : absolute;
+    // width         : 260px;
+    text-transform   : none;
 }
 
 
@@ -968,20 +964,30 @@ g.contenedor:hover * {
     background-color: @colorContenidoCentral  !important;
 }
 
-// .list-group-item {
-//     border-color    : #ccc !important;
-//     background-color: @colorContenidoCentral  !important;
-//     border-radius   : 0.4285rem !important;
-// }
 
-// .btn-curso {
-//     border-color    : #ccc !important;
-//     background-color: @colorContenidoCentral  !important;
-//     border-radius   : 0.4285rem !important;
-// }
 
-// [id^="boton-lista"] {
-//     border-color    : #ccc !important;
-//     background-color: @colorContenidoCentral  !important;
-//     border-radius   : 0.4285rem !important;
-// }
+.button,
+.list-group-item-estudiante {
+    border             : 1px solid;
+    border-color       : #ccc !important;
+    background-color   : @colorContenidoCentral  !important;
+    border-radius      : 0.4285rem !important;
+    // border-radius   : 2rem !important;
+    padding            : 12px 20px !important;
+    width              : 100% !important;
+
+}
+
+.button:hover,
+.list-group-item-estudiante:hover {
+    background-color   : darken(@colorContenidoCentral, 5%) !important;
+    // background-image: linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+    // background-image: -webkit-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+    // background-image: -o-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+    // background-image: -moz-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+    // color           : white;
+}
+
+p a:hover {
+    color: white !important;
+}

@@ -30,7 +30,7 @@ For more information, see:
               <i class="fas fa-user-circle"></i> {{usuario.nombre}} <i class="fas fa-bars"></i>
             </button>
             <div class="dropdown-menu">
-                <a class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
+              <a class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
               <div class="dropdown-divider"></div>
               <a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
             </div>
@@ -46,18 +46,16 @@ For more information, see:
         <div id="listadoCursosHomepage" class="jumbotron">
 
           <h1>CURSOS DISPONIBLES</h1>
-
+          <!--list-group-item btn-curso  list-group-item-action flex-column align-items-start-->
           <template v-for="curso in cursosPublicados">
-            <button :id="'boton-lista'+curso.id" type="button"
-              class="list-group-item btn-curso  list-group-item-action flex-column align-items-start"
-              @click="abrirCurso(curso.id)">
+            <button :id="curso.id" type="button" class=" button " @click="abrirCurso(curso.id)">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{curso.nombre}}</h5>
                 <!--span hace que los contenidos se presenten en linea-->
                 <span>
                 </span>
               </div>
-              <p class="mb-1">{{curso.descripcion}}</p>
+              <p class="mb-1 d-flex w-100 justify-content-between">{{curso.descripcion}}</p>
             </button>
           </template>
         </div>

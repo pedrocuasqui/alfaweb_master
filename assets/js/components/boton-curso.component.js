@@ -18,7 +18,7 @@ parasails.registerComponent('boton-curso', {
     template://html
         `  
 <div>
-    <button :id="curso.id" type="button" class="btnCurso list-group-item list-group-item-action flex-column align-items-start">
+    <button :id="curso.id" type="button" class=" button list-group-item list-group-item-action flex-column align-items-start">
     <!-- @click="abrirCurso(curso.id)"> -->
     <div class="d-flex w-100 justify-content-between">
       <input :id="'input'+curso.id" v-if="editarCurso" type="text" v-model="curso.nombre" :class="[formErrors.nombre ? 'is-invalid' : '']">

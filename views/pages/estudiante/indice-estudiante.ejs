@@ -44,15 +44,16 @@
                     <template v-if="isAlfaWeb">
                       <a key="modImage" :href="'/contenido-alfaweb/?enlace='+contenido.enlace"> <img
                           :src="contenido.multimedia.imagen" alt="La Computadora, Módulo 1"></a>
-                      <a key="modText"
-                        :href="'/contenido-alfaweb/?enlace='+contenido.enlace">{{contenido.nombreModulo}}</a>
+                      <p><a key="modText"
+                          :href="'/contenido-alfaweb/?enlace='+contenido.enlace">{{contenido.nombreModulo}}</a></p>
                     </template>
                     <template v-else>
                       <!-- la propiedad key es necesaria porque vue reutiliza los elementos, y podria no cambiar el atributo href -->
                       <a key="modImage1" :href="'/interfaz-modulos/?objetoId='+contenido.id+'&tipoContenido=Modulo'">
                         <img :src="contenido.multimedia.imagen" alt="La Computadora, Módulo 1"></a>
-                      <a key="modTexto1"
-                        :href="'/interfaz-modulos/?objetoId='+contenido.id+'&tipoContenido=Modulo'">{{contenido.nombreModulo}}</a>
+                      <p> <a key="modTexto1"
+                          :href="'/interfaz-modulos/?objetoId='+contenido.id+'&tipoContenido=Modulo'">{{contenido.nombreModulo}}</a>
+                      </p>
                     </template>
 
                   </div>
@@ -67,8 +68,8 @@
           <!-- columna derecha -->
           <div class="col-sm-2 col-derecha">
             <modulo-panel-derecho v-if="existeCursoEstudianteyLogueado" key="LogueadoConAvance" :usuario="usuario"
-              :curso-estudiante="cursoEstudiante" :curso="curso" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel"
-              :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla"
+              :curso-estudiante="cursoEstudiante" :curso="curso" :puntaje-actual="progreso.puntos"
+              :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla"
               :porcentaje-avance="progreso.porcentajeAvance"></modulo-panel-derecho>
             <modulo-panel-derecho v-else-if="noExisteCursoEstudianteyLogueado" key="logueadoSinAvance"
               :usuario="usuario"></modulo-panel-derecho>

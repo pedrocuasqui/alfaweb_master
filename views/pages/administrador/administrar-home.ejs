@@ -33,7 +33,7 @@
           <h3>Últimos estudiantes logueados</h3>
           <div class="list-group">
             <a v-for="estudiante in estudiantes" :href="'/view-puntaje-estudiante/?estudianteId='+estudiante.id"
-              class="list-group-item list-group-item-action flex-column align-items-start">
+              class="list-group-item list-group-item-action flex-column align-items-start list-group-item-estudiante">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{estudiante.nombre}}</h5>
                 <span class="badge badge-primary badge-pill">puntos: </span>
@@ -56,10 +56,14 @@
               @selecciona-curso-eliminar="seleccionaCursoEliminar">
 
             </boton-curso>
-
-            <a class="list-group-item list-group-item-action" href="/view-crear-curso"><i class="fas fa-plus"></i>
-              Agregar
-              Curso</a>
+            <div class="button list-group-item list-group-item-action">
+              <div class="d-flex w-100 justify-content-between">
+                <a href="/view-crear-curso"><i class="fas fa-plus"></i>
+                  Agregar
+                  Curso
+                </a>
+              </div>
+            </div>
           </div>
 
 

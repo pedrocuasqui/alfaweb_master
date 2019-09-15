@@ -85,7 +85,7 @@ parasails.registerPage('login', {
               window.location.replace("/administrar-home");
 
             } else {
-              window.location.replace("/");
+              window.location.replace("/inicio");
             }
 
           }

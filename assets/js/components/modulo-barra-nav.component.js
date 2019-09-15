@@ -44,7 +44,7 @@ parasails.registerComponent('modulo-barra-nav', {
         <ol class="breadcrumb">
         <li v-if="esAdmin" key="homeAdmin" class="breadcrumb-item"><a href="/administrar-home" title="Home"><a class="textoOculto"  href="/administrar-home">home</a><i class="fas fa-home" > </i></a></li>
           
-          <li  v-else key="homeEst" class="breadcrumb-item"><a href="/" title="Home"><a class="textoOculto"  href="/">home</a><i class="fas fa-home" > </i></a></li>
+          <li  v-else key="homeEst" class="breadcrumb-item"><a href="/inicio" title="Home"><a class="textoOculto"  href="/inicio">home</a><i class="fas fa-home" > </i></a></li>
           
           <template v-if="isAlfaWeb" > <!-- el curso es alfaweb -->
             <li  key="rutaAlfaweb" class="breadcrumb-item"> <a :href="'/indice-estudiante/?cursoId='+cursoAlfaWeb.id"> {{cursoAlfaWeb.nombre}}</a></li>

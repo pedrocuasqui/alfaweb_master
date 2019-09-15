@@ -898,7 +898,7 @@ img.mensaje-bienvenida {
 img {
     margin-left : auto;
     margin-right: auto;
-    max-width   : 90%;
+    max-width   : 100%;
     max-height  : 100%
 }
 
@@ -990,4 +990,42 @@ g.contenedor:hover * {
 
 p a:hover {
     color: white !important;
+}
+
+#homepage,
+.contenedor-principal {
+    height          : inherit; //hereda las propedades del padre, #layout-general
+    width           : inherit;
+    font-family     : inherit;
+    background-color: inherit;
+
+
+
+}
+
+.banner-homepage {
+    height: 20%;
+
+
+    .col,
+    .col .imagen-banner {
+        height: 100%;
+        width : 100%;
+        border: 1px solid #a9a9a9;
+
+    }
+}
+
+
+
+.contenido-homepage {
+    height: 80%;
+}
+
+.contenido-homepage .row{
+    justify-content: center;
+}
+
+.contenido-homepage .homepage-derecho, .contenido-homepage .homepage-izquierdo {
+    border: 1px solid #a9a9a9;
 }

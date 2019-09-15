@@ -30,7 +30,7 @@ module.exports = {
     //solo para pruebas se usa la Colecion estudiante
     var usuario = { nombre: "Visitante", rol: "Estudiante", id: "1" };
     var cursoEstudiante = null;
-    var navegarAtras = "/";
+    var navegarAtras = "/inicio";
     var navegarSiguiente = "";
     var numeroSubmodulosCurso = 0; //sirve para enviar en el usuario y comprobar el porcentaje de evaluaciones realizadas de todo el curso
 

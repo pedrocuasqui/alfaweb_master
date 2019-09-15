@@ -161,7 +161,7 @@ parasails.registerPage('m-1-computadora-ev', {
 
     },
     omitirActividad(){
-      return res.view("/");
+      return res.view("/inicio");
     },
     intentarNuevamente(){
       this.mostrarModal();

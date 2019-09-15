@@ -29,8 +29,15 @@ module.exports.routes = {
     action: 'estudiante/view-interfaz-modulos'
   },
 
+  
   'GET /': {
     action: 'view-homepage',
+  },
+
+
+
+  'GET /inicio': {
+    action: 'view-inicio',
   },
   /**AUTENTICACION */
   'GET /view-registro-usuario': {

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 
 parasails.registerPage('administrar-contenido', {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
@@ -112,7 +113,7 @@ parasails.registerPage('administrar-contenido', {
         },
         respuesta: null,
         pista: null
-      }
+      };
     });
   },
 
@@ -172,7 +173,7 @@ parasails.registerPage('administrar-contenido', {
     actualizarModulo() {
       var formData = new FormData();
 
-      //valor quemado, establecer el verdadero valor de color 
+      //valor quemado, establecer el verdadero valor de color
       // this.objetoSeleccionado.color= '#529674';
 
       formData.append('nombreModulo', this.objetoSeleccionado.nombre);
@@ -181,7 +182,7 @@ parasails.registerPage('administrar-contenido', {
       formData.append('moduloId', this.objetoSeleccionado.id);
       formData.append('color', this.objetoSeleccionado.color);
       formData.append('rutaPortada', this.objetoSeleccionado.multimedia.imagen);
-      // no se envia el id del curso 
+      // no se envia el id del curso
       axios({
         method: 'post',
         url: '/actualizar-modulo',
@@ -194,7 +195,7 @@ parasails.registerPage('administrar-contenido', {
           this.editarDescripcion = false;
         }
       ).catch((err) => {
-        alert('Error: no se ha podido actualizar el módulo');
+        alert('Error: no se ha podido actualizar el módulo'+ err);
       });
     },
     actualizarSubmodulo() {
@@ -206,7 +207,7 @@ parasails.registerPage('administrar-contenido', {
       formData.append('submoduloId', this.objetoSeleccionado.id);
       formData.append('color', this.objetoSeleccionado.color);
       formData.append('evaluacion', this.objetoSeleccionado.evaluacion);
-      // no se envia el id del curso 
+      // no se envia el id del curso
       axios({
         method: 'post',
         url: '/actualizar-submodulo',
@@ -219,7 +220,7 @@ parasails.registerPage('administrar-contenido', {
           this.editarDescripcion = false;
         }
       ).catch((err) => {
-        alert('Error: no se ha podido actualizar el tema');
+        alert('Error: no se ha podido actualizar el tema'+err);
       });
     },
 
@@ -244,7 +245,7 @@ parasails.registerPage('administrar-contenido', {
           id: _this.objetoSeleccionado.id,
         }
       })
-        .then(function (response) {
+        .then((response) => {
 
           alert('Objeto eliminado correctamente');
           if (response.data.nombreModulo) { //si el objeto eliminado es un modulo entonces se muestra la interfaz crear modulo
@@ -254,7 +255,7 @@ parasails.registerPage('administrar-contenido', {
           }
 
         })
-        .catch(function (error) {
+        .catch((error) => {
           alert('Error, no se ha podido eliminar el objeto solicitado');
         });
 
@@ -272,7 +273,7 @@ parasails.registerPage('administrar-contenido', {
       this.imagenTemporal = event.target.files[0];
       this.mostrarSpinner = true;
 
-      this.guardarImagenPortada()
+      this.guardarImagenPortada();
 
       setTimeout(() => {
         this.objetoSeleccionado.multimedia.imagen = this.rutaObjetoCargado;
@@ -286,7 +287,7 @@ parasails.registerPage('administrar-contenido', {
       this.imagenTemporal = event.target.files[0];
       this.mostrarSpinner = true;
 
-      this.guardarImagenPortada()
+      this.guardarImagenPortada();
 
       setTimeout(() => {
         this.preguntaEnEdicion.enunciado = this.rutaObjetoCargado;
@@ -337,7 +338,7 @@ parasails.registerPage('administrar-contenido', {
     },
     clickMostrarModalCreaPregunta() {
       let nombreModal = this.tipoEvaluacion;
-      $(function () {
+      $(() => {
         $('#modalCrearPregunta' + nombreModal).modal('show');
 
       });
@@ -360,7 +361,7 @@ parasails.registerPage('administrar-contenido', {
       alert(errores);
       errores = "";
       if (Object.keys(this.formErrorsModal).length == 0) {
-        this.preguntasCuestionario.push(this.preguntaEnEdicion)
+        this.preguntasCuestionario.push(this.preguntaEnEdicion);
         this.preguntaEnEdicion = {
           enunciado: null,
           opciones: {
@@ -371,8 +372,8 @@ parasails.registerPage('administrar-contenido', {
           },
           respuesta: null,
           pista: null
-        }
-      };
+        };
+      }
 
       this.formErrorsModal = {};
 
@@ -408,9 +409,9 @@ parasails.registerPage('administrar-contenido', {
             opcion4: null,
           },
           respuesta: null,
-        }
+        };
 
-      };
+      }
       this.modalEdicion = false;
       this.indicePreguntaEditar = null;
       this.formErrorsModal = {};
@@ -420,15 +421,15 @@ parasails.registerPage('administrar-contenido', {
       this.preguntaEnEdicion = preguntaSelected;
       this.modalEdicion = true;
       if (this.tipoEvaluacion == "Cuestionario") {
-        $(function () {
+        $(() => {
           $('#modalCrearPreguntaCuestionario').modal('show');
         });
       } else if (this.tipoEvaluacion == "Emparejamiento") {
-        $(function () {
+        $(() => {
           $('#modalCrearPreguntaEmparejamiento').modal('show');
         });
       } else if (this.tipoEvaluacion == "Nombre_Objeto") {
-        $(function () {
+        $(() => {
           $('#modalCrearPreguntaNombre_Objeto').modal('show');
         });
       }
@@ -514,11 +515,11 @@ parasails.registerPage('administrar-contenido', {
         data: formDataEv
       })
         .then((response) => {
-          alert('Evaluación creada correctamente')
+          alert('Evaluación creada correctamente');
 
         })
         .catch((err) => {
-          alert('Error no se puedo crear la evaluación:\n' + err)
+          alert('Error no se puedo crear la evaluación:\n' + err);
         });
     },
 
@@ -553,9 +554,9 @@ parasails.registerPage('administrar-contenido', {
           },
           respuesta: null,
           pista: null
-        }
+        };
 
-      };
+      }
       this.modalEdicion = false;
       this.indicePreguntaEditar = null;
       this.formErrorsModal = {};
@@ -582,7 +583,7 @@ parasails.registerPage('administrar-contenido', {
       alert(errores);
       errores = "";
       if (Object.keys(this.formErrorsModal).length == 0) {
-        this.preguntasCuestionario.push(this.preguntaEnEdicion)
+        this.preguntasCuestionario.push(this.preguntaEnEdicion);
         this.preguntaEnEdicion = {
           enunciado: null,
           opciones: {
@@ -593,7 +594,7 @@ parasails.registerPage('administrar-contenido', {
           },
           respuesta: null,
           pista: null
-        }
+        };
         //quito colores si es que ya hay colores
         for (let i = 0; i <= this.preguntasCuestionario.length - 1; i++) {
           $("#Preg" + i).css("background-color", '');
@@ -601,7 +602,7 @@ parasails.registerPage('administrar-contenido', {
         }
 
         this.randomPreguntasEmparejamiento(); //randomizo las opciones de respuesta con la misma funcion del cuestionario
-      };
+      }
 
       this.formErrorsModal = {};
     },
@@ -619,12 +620,12 @@ parasails.registerPage('administrar-contenido', {
         } else {
           this.arregloRandom.push(pregunta);
         }
-      })
+      });
 
       // return arregloRandom;
     },
     /**
-     * 
+     *
      * @param {Object} pregunta la pregunta seleccionada en la evaluacion de tipo emparejamiento
      * @param {string | int} indexPreg el indice al que corresponde dentro del arreglo this.preguntasCuestionario
      */
@@ -635,7 +636,7 @@ parasails.registerPage('administrar-contenido', {
       this.preguntaSeleccionadaJuegoEmparejamiento = pregunta; //mantiene esta pregunta para poder comparar con la respuesta que luego seleccione
     },
     /**
-     * 
+     *
      * @param {Object} pregunta Objeto pregunta de la respuesta seleccionada para poder comparar con el enunciado
      * @param {string | int} indexResp indice de la respuesta dentro del arreglo this.arregloRandom
      */
@@ -658,7 +659,7 @@ parasails.registerPage('administrar-contenido', {
   computed: {
     computedErrorImagen() {
       let error = this.formErrors.imagenPortada || this.formErrors.typeFile;
-      return error
+      return error;
     },
     noEsInforBasica() {
       //si el nombre del curso es "Alfabetización informática" entonces no se mostrará el botón eliminar, no se debe por ninguna razón eliminar el curso, en caso de hacerlo, se debe reiniciar el servidor para que se vuelva a crear el curso por defecto, aunque las páginas  html del contenido permanecerán siempre intactas

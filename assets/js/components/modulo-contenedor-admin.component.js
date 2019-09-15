@@ -18,8 +18,8 @@ parasails.registerComponent("modulo-contenedor-admin", {
     }
   },
   // la definicion de clases css para este componente se encuentra en layout-admin.less
-  //html
-  template: `  
+  template://html
+   `  
 <div class="div-contenido container-fluid" v-cloak>
     <!-- Barra de navegacion en la parte superior-->
     <div class="row" id="div-cabecera"  >

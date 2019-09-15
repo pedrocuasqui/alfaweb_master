@@ -13,7 +13,7 @@ module.exports = {
   exits: {
 
     success: {
-      viewTemplatePath: 'pages/inicio'
+      viewTemplatePath: 'pages/estudiante/inicio'
     },
     redirect: {
       description: 'Redirecciona a la página de administrador cuando se llama a inicio',

@@ -51,10 +51,11 @@ module.exports = {
     var res = this.res;
     var passwordEncriptada = await sails.helpers.hashPassword(inputs.password);
     // All done.
+    var usuarioCreado=null;
 
     if (inputs.rol == 'estudiante') {
       //registra al usuario en la tabla estudiante
-      await Estudiante.create({
+     usuarioCreado= await Estudiante.create({
         nombre: inputs.nombre,
         alias: inputs.alias,
         email: inputs.email.toLowerCase(),
@@ -62,7 +63,7 @@ module.exports = {
         // ultimoAcceso:Date.now(), //solo para crear
         // avance:{} //inicia vacio
 
-      })
+      }).fetch()
 
         .intercept('E_UNIQUE', () => {
           var errores = new Error();
@@ -74,14 +75,14 @@ module.exports = {
       sails.log('ESTUDIANTE CREADO CORRECTAMENTE');
     } else if (inputs.rol == 'administrador') {
       //registra al usuario en la coleccion profesor
-      await Profesor.create({
+      usuarioCreado=await Profesor.create({
         nombre: inputs.nombre,
         alias: inputs.alias,
         email: inputs.email.toLowerCase(),
         password: passwordEncriptada,
         administrador: true,
         tutor: false,
-      })
+      }).fetch()
 
         .intercept('E_UNIQUE', () => {
           //LAS TRES sentencias siguientes son iguales,
@@ -95,14 +96,14 @@ module.exports = {
       sails.log('ADMIN CREADO CORRECTAMENTE');
     } else if (inputs.rol == 'tutor') {
       //registra al usuario en la coleccion profesor
-      await Profesor.create({
+      usuarioCreado=await Profesor.create({
         nombre: inputs.nombre,
         alias: inputs.alias,
         email: inputs.email.toLowerCase(),
         password: passwordEncriptada,
         administrador: false,
         tutor: true,
-      })
+      }).fetch()
         .intercept('E_UNIQUE', () => {
           var errores = new Error();
           errores.message = 'Ya existe el usuario con el alias o email provistos';
@@ -114,7 +115,7 @@ module.exports = {
     }
 
     // return exits.redirect('/view-login');
-    return res.status(200).send();// es necesario retornar algo para que axios sepa que realizar
+    return res.status(200).send({usuarioCreado});// es necesario retornar algo para que axios sepa que realizar
 
   }
 

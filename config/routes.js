@@ -37,7 +37,7 @@ module.exports.routes = {
 
 
   'GET /inicio': {
-    action: 'view-inicio',
+    action: 'estudiante/view-inicio',
   },
   /**AUTENTICACION */
   'GET /view-registro-usuario': {

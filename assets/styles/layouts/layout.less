@@ -38,7 +38,8 @@ h5,
 h6,
 p,
 p a,
-label {
+label,
+span {
     font-weight: @font-weight-normal  !important;
     color      : @opacity-8  !important;
 }
@@ -1022,10 +1023,27 @@ p a:hover {
     height: 80%;
 }
 
-.contenido-homepage .row{
+.contenido-homepage .row {
     justify-content: center;
 }
 
-.contenido-homepage .homepage-derecho, .contenido-homepage .homepage-izquierdo {
+.contenido-homepage .col-sm-6 {
+    padding-top: 20px;
+}
+
+.contenido-homepage .homepage-logo,
+.contenido-homepage .homepage-login,
+.seccion-inicia-sesion {
     border: 1px solid #a9a9a9;
+}
+
+.imagen-derecha-homepage {
+    img {
+        max-height: 300px;
+        max-width : auto;
+    }
+}
+
+.form-group .btn.btn-primary {
+    width: 100% !important;
 }

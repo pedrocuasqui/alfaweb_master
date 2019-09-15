@@ -183,7 +183,7 @@ http://localhost:1337/modulolibro/create?nombreModulo=Modulo2: Navegacion en el 
 
 
 
-corrigjo el objeto json a insertar en la base de datos MOduloLibro de acuerdo a los datos definidos en el modelo ModuloLibro de sails en esta aplicacion
+corrijo el objeto json a insertar en la base de datos MOduloLibro de acuerdo a los datos definidos en el modelo ModuloLibro de sails en esta aplicacion
 
 db.ModuloLibro.insert([{
         nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la intro',

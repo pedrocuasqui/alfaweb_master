@@ -6,59 +6,55 @@
  */
 
 module.exports = {
- tableName:'Profesor',
+  tableName: "Profesor",
   attributes: {
-
     //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
     //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
     //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-nombre:{
-  type:'string',
-  columnName:'nombre',
-  required:true,
-},
-alias:{
-  type:'string',
-  columnName:'alias',
-  required:true,
-  unique:true,
-},
-email:{
-  type:'string',
-  columnName:'email',
-  unique:true,
-  unique:false
-},
-password:{
-  type:'string',
-  columnName:'password',
-  required:true,
-},
-administrador:{
-  type:'boolean',
-  columnName:'administrador',
-  required:true,
-},
-tutor:{
-  type:'boolean',
-  columnName:'tutor',
-  required:true,
-},
+    nombre: {
+      type: "string",
+      columnName: "nombre",
+      required: true
+    },
+    alias: {
+      type: "string",
+      columnName: "alias",
+      required: true,
+      unique: true
+    },
+    email: {
+      type: "string",
+      columnName: "email",
+      required:false,
+      unique: false,
+    },
+    password: {
+      type: "string",
+      columnName: "password",
+      required: true
+    },
+    administrador: {
+      type: "boolean",
+      columnName: "administrador",
+      required: true
+    },
+    tutor: {
+      type: "boolean",
+      columnName: "tutor",
+      required: true
+    },
 
     //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
     //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
     //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
-
     //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
     //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
     //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    cursos: { //Un Profesor crea varios cursos     profesor-->cursos
-      collection: 'Curso',
-      via: 'profesor',
-
-    },
-  },
-
+    cursos: {
+      //Un Profesor crea varios cursos     profesor-->cursos
+      collection: "Curso",
+      via: "profesor"
+    }
+  }
 };
-

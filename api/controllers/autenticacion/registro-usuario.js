@@ -55,7 +55,7 @@ module.exports = {
 
     if (inputs.rol == 'estudiante') {
       //registra al usuario en la tabla estudiante
-     usuarioCreado= await Estudiante.create({
+      usuarioCreado= await Estudiante.create({
         nombre: inputs.nombre,
         alias: inputs.alias,
         email: inputs.email.toLowerCase(),
@@ -64,13 +64,12 @@ module.exports = {
         // avance:{} //inicia vacio
 
       }).fetch()
-
         .intercept('E_UNIQUE', () => {
           var errores = new Error();
           errores.message = 'Ya existe el usuario con el alias o email provistos';
-          return res.status(409).send({ error: errores })
+          return res.status(409).send({ error: errores });
         })
-        .intercept((err) => { sails.log('ERROR GENERAL\n' + err) });
+        .intercept((err) => { sails.log('ERROR GENERAL\n' + err); });
 
       sails.log('ESTUDIANTE CREADO CORRECTAMENTE');
     } else if (inputs.rol == 'administrador') {
@@ -91,7 +90,7 @@ module.exports = {
           //  return exits.aliasoEmailYaEnUso()
           return "aliasoEmailYaEnUso";
         })
-        .intercept((err) => { sails.log('ERROR GENERAL\n' + err + "\n FIN ERROR GENERAL") });
+        .intercept((err) => { sails.log('ERROR GENERAL\n' + err + "\n FIN ERROR GENERAL"); });
 
       sails.log('ADMIN CREADO CORRECTAMENTE');
     } else if (inputs.rol == 'tutor') {
@@ -107,9 +106,9 @@ module.exports = {
         .intercept('E_UNIQUE', () => {
           var errores = new Error();
           errores.message = 'Ya existe el usuario con el alias o email provistos';
-          return res.status(409).send({ error: errores })
+          return res.status(409).send({ error: errores });
         })
-        .intercept((err) => { sails.log('ERROR GENERAL\n' + err) });
+        .intercept((err) => { sails.log('ERROR GENERAL\n' + err); });
 
       sails.log('TUTOR CREADO CORRECTAMENTE');
     }

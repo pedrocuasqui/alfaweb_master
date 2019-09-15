@@ -85,12 +85,9 @@ parasails.registerPage("registro-usuario", {
             title: `Usuario creado correctamente!`,
             icon: "success",
             type: "success",
-            text: `El usuario \" ${response.data.usuarioCreado.nombre} \" ha sido creado correctamente`,            // html: `<p><span>El usuario </span><em>${response.data.usuarioCreado.nombre}</em> ha sido creado correctamente</p>`,
+            text: `El usuario \" ${response.data.usuarioCreado.nombre} \" ha sido creado correctamente`, // html: `<p><span>El usuario </span><em>${response.data.usuarioCreado.nombre}</em> ha sido creado correctamente</p>`,
             // html:"<div>hola</div>",
-            content: {
-              element: "div",
-              text: "hola"
-            },
+
             confirmButtonClass: "btn btn-success btn-fill",
             buttonsStyling: false
           }).then(() => {
@@ -99,19 +96,23 @@ parasails.registerPage("registro-usuario", {
         })
         .catch(err => {
           if (err.response.status == 409) {
-            alert("Error: el usuario ya se encuentra creado");
-            // if (_this.formData.alias) {
-            //   _this.formErrors.alias = true;
-            // }
-
-            // if (_this.formData.email) {
-            //   if (!_this.validEmail(argins.email)) {
-            //     _this.formErrors.email = true
-            //   }
-
-            // }
+            swal({
+              title: `No se ha podido registrar!`,
+              icon: "error",
+              type: "error",
+              text: `El usuario "${this.formData.alias}" ya se encuentra registrado`,
+              confirmButtonClass: "btn-danger"
+              // buttonsStyling: false
+            }).then(() => {
+              // window.location.replace("/view-login");
+            });
           } else {
-            alert("Error: no se puede registrar en este momento");
+            swal({
+              title: `No se puede registrar en este momento, intente más tarde!`,
+              icon: "error",
+              type: "error",
+              confirmButtonClass: "btn-danger"
+            });
           }
 
           // return false;

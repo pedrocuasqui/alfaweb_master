@@ -18,6 +18,7 @@
     "sails-hook-orm": "^2.0.0-16",
     "sails-hook-sockets": "^1.4.0",
     "sails-mongo": "^1.0.1",
+    "toastr": "^2.1.4",
     "vue-sidebar-menu": "^3.5.0"
   },
   "devDependencies": {

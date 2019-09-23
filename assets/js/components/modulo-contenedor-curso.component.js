@@ -69,7 +69,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
       description: "puntaje, nivel y progreso (medalla) actuales"
     }
   },
-  data: function() {
+  data: function () {
     return {
       campoNombre: null,
       nombre: null,
@@ -83,9 +83,8 @@ parasails.registerComponent("modulo-contenedor-curso", {
     window.sonido = null;
     window.sonido = window.speechSynthesis;
   },
-
-  //html
-  template: `  
+  template: //html
+    `  
 <div class="div-contenido container-fluid"  v-cloak>
     <div class="row" id="div-cabecera"  >
         <div class="col-sm-10" id="breadcrumbText" ref="printBreadcrumb">
@@ -111,11 +110,11 @@ parasails.registerComponent("modulo-contenedor-curso", {
                         <!--"navegacion-atras"-->
                         <div class="col-auto" v-if="navegarAtras">
                             <template v-if="objetoSeleccionado.nombreModulo">
-                                <a key="link" :href="navegarAtras" @click="clickSilenciar" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                                <a key="link" :href="navegarAtras" @click="clickStop" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
                             </template>
                             <template v-else>
                         
-                                <a v-if="!evIndividual" key="link" :href="navegarAtras" @click="clickSilenciar" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                                <a v-if="!evIndividual" key="link" :href="navegarAtras" @click="clickStop" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
                                 <a v-else  key="ev" title="Ver Contenido" @click.stop="evaluacionIndividual('contenido')"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
                             </template>
                         </div>
@@ -137,12 +136,12 @@ parasails.registerComponent("modulo-contenedor-curso", {
                          <div  class="col-auto" v-if="navegarSiguiente">
                          <!--Estoy en un módulo, no se pasa a evaluación-->
                             <template v-if="objetoSeleccionado.nombreModulo">
-                                <a  key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickSilenciar" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                                <a  key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickStop" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
                             </template>
                             <!--Estoy en un submodulo, paso a evaluacion antes de pasar a otro tema-->
                             <template v-else>   
                             <!--navegacion-siguiente-->
-                                <a v-if="evIndividual" key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickSilenciar" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                                <a v-if="evIndividual" key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickStop" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
                                 <!--navegacion-evaluacion-->
                                 <a v-else key="evaluacion" title="Evaluación" @click.stop="evaluacionIndividual"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a> <!--por defecto se muestra este boton-->                  
                             </template>
@@ -168,8 +167,9 @@ parasails.registerComponent("modulo-contenedor-curso", {
                     <div class="row pie-contenido" >
                         <div class="col-sm-1" id="avatar">
                             <img  @click="clickAsistenteBuho" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-                            <a v-if="silenciar" @click="clickReproducir" title="Reproducir" class="audioTag"><i class="fas fa-volume-mute"></i></a>
-                            <a v-else @click="clickSilenciar" title="Silenciar" class="audioTag"><i class="fas fa-volume-up"></i></a>
+                            <a v-if="silenciar" @click="clickReproducir" title="Reproducir" class="audioTag"><i class="fas fa-play"></i></a>
+                            <a v-else @click="clickStop" title="Silenciar" class="audioTag"><i class="fas fa-pause"></i></a>
+                            <a v-else @click="clickStop" title="Silenciar" class="audioTag"><i class="fas fa-pause"></i></a>
                         </div>
                       
 
@@ -254,22 +254,30 @@ parasails.registerComponent("modulo-contenedor-curso", {
       } else {
         alert("La evaluación se realiza en cada tema");
       }
-      this.clickSilenciar();
+      this.clickStop();
     },
-
-    clickSilenciar() {
+    clickPause() {
+      window.sonido.pause();
+    },
+    clickStop() {
       window.sonido.cancel();
       window.silenciar = true;
       this.silenciar = true;
     },
     clickReproducir() {
       this.silenciar = false;
-      // var voices = window.speechSynthesis.getVoices();
+      var voices = window.sonido.getVoices();
       var msg = new SpeechSynthesisUtterance(
         this.objetoSeleccionado.descripcion
       );
-      // msg.voice = voices[10]; // Note: some voices don't support altering params
+      msg.voice = voices[7]; // Note: some voices don't support altering params
+      // msg.voice =  window.sonido.getVoices().filter(function(voice) { return voice.name == 'Whisper'; })[0];
       window.sonido.speak(msg);
+      // Detecta las voces soportadas por speechSynthesis
+
+      /* speechSynthesis.getVoices().forEach(function(voice) {
+        console.log(voice.name, voice.default ? voice.default : "");
+      }); */
     },
     clickReproducirGeneral() {
       this.silenciarGeneral = false;
@@ -290,21 +298,21 @@ parasails.registerComponent("modulo-contenedor-curso", {
     },
     clickSilenciarGeneral() {
       this.silenciarGeneral = true;
-      this.clickSilenciar();
+      this.clickStop();
       $(".audioTag").hide();
       $(".audioTag").hide();
       $("audio").hide();
       $("audio").attr("src", "");
     },
     clickImprimir() {
-      this.clickSilenciar(); //ultima linea editada en sprint 6
+      this.clickStop(); //ultima linea editada en sprint 6
       // window.print();
       //fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
       //para ver como funciona this.$refs revisar la siguiente fuente https://vuejs.org/v2/api/#ref
       var contenidoBreadcrumb = this.$refs.printBreadcrumb; //https://vuejs.org/v2/api/#ref
       var contenidoCentral = this.$refs.printContenidoCentral;
       var contenidoDescripcion = this.$refs.printContenidoDescripcion;
-      newWin = window.open(""); //abre una variable para escribir sobre ella
+      var newWin = window.open(""); //abre una variable para escribir sobre ella
       newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>');
       newWin.document.write("<h2>Contenido</h2>");
       newWin.document.write(contenidoBreadcrumb.outerHTML);
@@ -322,7 +330,9 @@ parasails.registerComponent("modulo-contenedor-curso", {
   computed: {
     existeDescripcion() {
       var existe = false;
-      if (this.objetoSeleccionado.descripcion) existe = true;
+      if (this.objetoSeleccionado.descripcion) {
+        existe = true;
+      }
 
       return existe;
     },

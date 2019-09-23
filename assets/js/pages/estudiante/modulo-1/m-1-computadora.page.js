@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 parasails.registerPage("m-1-computadora", {
   //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
@@ -117,7 +118,6 @@ parasails.registerPage("m-1-computadora", {
     // aqui se puede ejecutar código apenas la instancia vue ha sido creada, la propiedad "el" aun no estará disponible
     // mostramos el modal
     this.mostrarModal();
-    toastr.info('Are you the 6 fingered man?');
   },
   beforeMount: function() {
     // Attach any initial data from the server.
@@ -137,9 +137,7 @@ parasails.registerPage("m-1-computadora", {
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
   },
-  mounted: async function() {
-
-  },
+  mounted: async function() {},
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
   //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
@@ -150,12 +148,30 @@ parasails.registerPage("m-1-computadora", {
       // fuente: https://es.stackoverflow.com/questions/51946/cu%C3%A1l-es-la-diferencia-entre-window-onload-y-document-ready
       $(function() {
         $("#modalInicial").modal("show");
-        
       });
     },
     infoObjeto(idObjeto) {
+      this.$notify({
+        message:
+          "Welcome to <b>Vue Black Dashboard Pro</b> - a beautiful resource for every web developer",
+        timeout: 30000,
+        icon: "tim-icons icon-bell-55",
+        horizontalAlign: "bottom",
+        verticalAlign: "right",
+        type: "warning"
+      });
+
       if (idObjeto == "cpu") {
+        // Display an info toast with no title
+        // toastr["warning"]("Are you the 6 fingered man?","titulo");
+
+        //   $(function(){
+        //     $.amaran({content:{'message':'My first example!'}});
+        // });
+
         $(function() {
+          // $.notify("Alert!", {align:"center", verticalAlign:"top"});
+
           $("#modalCpu").modal("show");
         });
       } else if (idObjeto == "teclado") {

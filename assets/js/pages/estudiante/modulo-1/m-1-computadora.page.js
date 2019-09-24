@@ -151,7 +151,7 @@ parasails.registerPage("m-1-computadora", {
       });
     },
     infoObjeto(idObjeto) {
-      this.$notify({
+      /* this.$notify({
         message:
           "Welcome to <b>Vue Black Dashboard Pro</b> - a beautiful resource for every web developer",
         timeout: 30000,
@@ -159,7 +159,7 @@ parasails.registerPage("m-1-computadora", {
         horizontalAlign: "bottom",
         verticalAlign: "right",
         type: "warning"
-      });
+      }); */
 
       if (idObjeto == "cpu") {
         // Display an info toast with no title

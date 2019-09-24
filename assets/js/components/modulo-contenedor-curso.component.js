@@ -46,7 +46,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
     },
     crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
     mostrarIconoRepetir: false,
-    // silenciar:true
+    // mostrarPlay:true
 
     adminCreandoModuloSubmodulo: {
       type: Boolean,
@@ -74,7 +74,8 @@ parasails.registerComponent("modulo-contenedor-curso", {
       campoNombre: null,
       nombre: null,
       evIndividual: false,
-      silenciar: true,
+      mostrarPlay: true,
+      pausado: false,
       sonido: null,
       silenciarGeneral: false //el audio est'a activado
     };
@@ -165,15 +166,18 @@ parasails.registerComponent("modulo-contenedor-curso", {
 
 
                     <div class="row pie-contenido" >
-                        <div class="col-sm-1" id="avatar">
-                            <img  @click="clickAsistenteBuho" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-                            <a v-if="silenciar" @click="clickReproducir" title="Reproducir" class="audioTag"><i class="fas fa-play"></i></a>
-                            <a v-else @click="clickStop" title="Silenciar" class="audioTag"><i class="fas fa-pause"></i></a>
-                            <a v-else @click="clickStop" title="Silenciar" class="audioTag"><i class="fas fa-pause"></i></a>
+                        <div  id="avatar">   
+                      
+                                <img  @click="clickAsistenteBuho" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+                                <span>
+                                <a v-if="mostrarPlay" @click="clickReproducir" title="Reproducir" class="audioTag"><i class="fas fa-play"></i></a>
+                                <a v-else @click="clickPause" title="Pausar" class="audioTag"><i class="fas fa-pause"></i></a>
+                                <a @click="clickStop" title="Parar" class="audioTag"><i class="fas fa-stop"></i></a>
+                                </span>        
+                                
                         </div>
                       
-
-                        <div class="col-sm-11" id="descripcion-objeto" ref="printContenidoDescripcion">
+                        <div id="descripcion-objeto" ref="printContenidoDescripcion">
                             <h6 v-if="existeDescripcion  && tituloTemporal==''" class="typography-line"><span>{{objetoSeleccionado.descripcion}}</span></h6>
                         </div>
                     </div>
@@ -187,7 +191,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                         <div>    
                             <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
-                            <a v-else @click="clickSilenciarGeneral" title="Silenciar" ><i class="fas fa-volume-up"></i></a>
+                            <a v-else @click="clickSilenciarGeneral" title="Silenciar Todo " ><i class="fas fa-volume-up"></i></a>
                             <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
                         </div>
                         </template>
@@ -200,7 +204,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
                         <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                             <div>
                             <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
-                            <a v-else @click="clickSilenciarGeneral" title="Silenciar" ><i class="fas fa-volume-up"></i></a>
+                            <a v-else @click="clickSilenciarGeneral" title="Silenciar Todo" ><i class="fas fa-volume-up"></i></a>
                             <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
                             </div>
                         </template>
@@ -258,21 +262,31 @@ parasails.registerComponent("modulo-contenedor-curso", {
     },
     clickPause() {
       window.sonido.pause();
+      this.pausado = true;
+      window.mostrarPlay = true;
+      this.mostrarPlay = true;
     },
     clickStop() {
       window.sonido.cancel();
-      window.silenciar = true;
-      this.silenciar = true;
+      window.mostrarPlay = true;
+      this.mostrarPlay = true;
+      this.pausado = false;
     },
     clickReproducir() {
-      this.silenciar = false;
-      var voices = window.sonido.getVoices();
-      var msg = new SpeechSynthesisUtterance(
-        this.objetoSeleccionado.descripcion
-      );
-      msg.voice = voices[7]; // Note: some voices don't support altering params
-      // msg.voice =  window.sonido.getVoices().filter(function(voice) { return voice.name == 'Whisper'; })[0];
-      window.sonido.speak(msg);
+
+      this.mostrarPlay = false;
+      if (this.pausado) {
+        window.sonido.resume();
+      } else {
+        var voices = window.sonido.getVoices();
+        var msg = new SpeechSynthesisUtterance(
+          this.objetoSeleccionado.descripcion
+        );
+        msg.voice = voices[7]; // Note: some voices don't support altering params
+        // msg.voice =  window.sonido.getVoices().filter(function(voice) { return voice.name == 'Whisper'; })[0];
+        window.sonido.speak(msg);
+      }
+
       // Detecta las voces soportadas por speechSynthesis
 
       /* speechSynthesis.getVoices().forEach(function(voice) {

@@ -161,7 +161,7 @@ parasails.registerPage('m-6-creacion-cuenta', {
     obtenerIndice() {
 
       var _this = this;
-      this.$refs.curso.clickSilenciar();
+      this.$refs.curso.clickStop();
       //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
       //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
       $('#carouselCuenta').on('slid.bs.carousel', function () {

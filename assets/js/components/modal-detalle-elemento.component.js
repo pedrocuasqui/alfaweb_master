@@ -34,8 +34,9 @@ parasails.registerComponent('modal-detalle-elemento', {
       ecarousel: false,
       animarBuho: true,
       // sonido: null, //objeto window.speechSynthesis
-      silenciar: true, //el lector de texto empieza en silencio,
+      mostrarPlay: true, //el lector de texto empieza en silencio,
       reproduciendo: false,
+      pausado: false,
       msg: null,
     };
   },
@@ -49,8 +50,10 @@ parasails.registerComponent('modal-detalle-elemento', {
     }
 
     if (this.infoElement.imgs) { // en caso de existir la propiedad imágenes
-      if (this.infoElement.imgs[0].src == '')
+      if (this.infoElement.imgs[0].src == '') {
         this.imagen = false;
+      }
+
     } else {
       this.imagen = false;
     }
@@ -109,7 +112,7 @@ parasails.registerComponent('modal-detalle-elemento', {
             <!--HEADER --> 
             <div class="modal-header">
               <h5 class="modal-title" :id="'exampleModalLongTitle'+infoElement.id">{{infoElement.titulo}}</h5>
-              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clickSilenciar">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clickStop">
                 <span aria-hidden="true">&times;</span>
               </button>
             </div>
@@ -122,12 +125,21 @@ parasails.registerComponent('modal-detalle-elemento', {
               
             
             <div class="d-print-inline-flex text-justify" >
-                <!--<img @click="onReproducirParar" @mouseover="onReproducirParar" :class="{avatarModalInicio : animarBuho }" id="avatarModal" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+                <!--<img @click="clickReproducir" @mouseover="clickReproducir" :class="{avatarModalInicio : animarBuho }" id="avatarModal" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
 -->
                 <!-- <div class="col-sm-1" id="avatar">-->
                 <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-                <a v-if="silenciar" @click="onReproducirParar" title="Reproducir" class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-volume-mute"></i></a>
-                <a v-else @click="onReproducirParar" title="Silenciar"  class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-volume-up"></i></a>
+                <span>
+                <a v-if="mostrarPlay" @click="clickReproducir" title="Reproducir" class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-play"></i></a>
+                
+                <a v-else @click="clickPausar" title="Pausar"  class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-pause"></i></a>
+                <a @click="clickStop" title="Parar" class="iconoAudio audioTag"><i class="fas fa-stop"></i></a>
+                </span>
+
+
+
+
+
            <!--  </div>-->
               <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
 
@@ -179,7 +191,7 @@ parasails.registerComponent('modal-detalle-elemento', {
 
             </div>
             <div class="modal-footer">
-              <button type="button"  @click="clickSilenciar" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
+              <button type="button"  @click="clickStop" class="btn btn-secondary" data-dismiss="modal">Cerrar</button>
               <!-- <button type="button" class="btn btn-primary">Aceptar</button> -->
             </div>
           </div>
@@ -190,41 +202,42 @@ parasails.registerComponent('modal-detalle-elemento', {
   methods: {
     clickReestablecerModal() {
       this.animarBuho = true;
-      this.onReproducirParar();
+      this.clickReproducir();
     },
     clickLimitarTiempoAnimacion() {
 
       var _this = this;
-      setTimeout(() => { _this.animarBuho = false }, 1000);
+      setTimeout(() => { _this.animarBuho = false; }, 1000);
     },
 
-    clickSilenciar() {
+    clickStop() {
       this.sonido.cancel();
       this.reproduciendo = false;
-      this.silenciar = true;
+      this.mostrarPlay = true;
+      this.pausado = false;
 
     },
+
+    clickPausar() {
+      this.sonido.pause();
+      this.mostrarPlay = true;
+    },
+
     /**
  * Reproduce un el mensaje del string infoElement.detalle
  */
-    onReproducirParar() {
+    clickReproducir() {
 
       var textoHtml = $('#htmlContent' + this.infoElement.id).contents().filter('h1, h2,h3, h4, h5, h6, p').text();
       var textoLectura = this.infoElement.detalle + " " + textoHtml;
 
 
-      if (this.reproduciendo) {
-        this.clickSilenciar();
-
-      }
-      else if (this.reproduciendo == false) {
-        this.silenciar = false;
+      if (this.pausado) {
+        this.sonido.resume();
+        this.mostrarPlay = false;
+      } else {
         // var synth = window.speechSynthesis;
-
         //  var voices = synth.getVoices();
-
-
-
         this.reproduciendo = true;
         this.msg = new SpeechSynthesisUtterance(textoLectura);
         // this.msg.voice = voices[2]; // Note: some voices don't support altering params
@@ -235,8 +248,8 @@ parasails.registerComponent('modal-detalle-elemento', {
     },
     obtenerIndice() {
       var _this = this;
-      this.clickSilenciar()
-      // this.$refs.curso.clickSilenciar();
+      this.clickStop();
+      // this.$refs.curso.clickStop();
       //slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
       //slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
 
@@ -250,7 +263,7 @@ parasails.registerComponent('modal-detalle-elemento', {
         let posicion = parseInt(indice) - 1;
 
         _this.infoElement.detalle = _this.infoElement.carousel[posicion].detalle;
-      })
+      });
 
 
 
@@ -265,7 +278,7 @@ parasails.registerComponent('modal-detalle-elemento', {
       var contenidoHtml = this.$refs.printHtml;
       var contenidoCarousel = this.$refs.printCarousel;
 
-      newWin = window.open(""); //abre una variable para escribir sobre ella
+      var newWin = window.open(""); //abre una variable para escribir sobre ella
       newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>');
 
       newWin.document.write('<h2>Contenido: ' + this.infoElement.titulo + '</h2>');

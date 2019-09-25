@@ -211,7 +211,7 @@ parasails.registerPage('m-1-software', {
             "transform-origin": "center",
             "transition-timing-function": "ease-out",
             "fill": ""
-          })
+          });
         }
       );
     },
@@ -282,7 +282,7 @@ parasails.registerPage('m-1-software', {
       this.mostrarToolTip = false;
 
       // El audio se encuentra en el componente modulo-contenedor-curso.component
-      let audioMouseOver = document.getElementById("audioMouseOver");
+      var audioMouseOver = document.getElementById("audioMouseOver");
       audioMouseOver.volume = 0.2;
       // audioMouseOver.load(); //carga el archivo, esto implica detener la reproduccion actual
       audioMouseOver.play(); //reproduce el archivo de audio

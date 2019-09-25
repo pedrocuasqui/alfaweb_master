@@ -22,7 +22,7 @@ parasails.registerComponent('modal-detalle-elemento', {
 
             }
           ]
-        }
+        };
       },
     }
   },
@@ -35,13 +35,16 @@ parasails.registerComponent('modal-detalle-elemento', {
       animarBuho: true,
       // sonido: null, //objeto window.speechSynthesis
       mostrarPlay: true, //el lector de texto empieza en silencio,
-      reproduciendo: false,
       pausado: false,
       msg: null,
+      textoHtml:"",
+      textoLectura: ""
     };
   },
 
   mounted() {
+
+
     if (this.infoElement.leerMas) {
       if (this.infoElement.leerMas != '') {
         this.leerMas = true;
@@ -75,29 +78,35 @@ parasails.registerComponent('modal-detalle-elemento', {
 
     var _this = this;
     // setTimeout(()=>{ _this.animarBuho=false}, 2000);
-    $('#modal' + this.infoElement.id).on('show.bs.modal', function (e) {
+    $('#modal' + this.infoElement.id).on('show.bs.modal', ()=>{
       _this.clickLimitarTiempoAnimacion();
-
     });
 
     //efecto de sonido de ABRIR
-    $('#modal' + this.infoElement.id).on('show.bs.modal', function (e) {
+    $('#modal' + this.infoElement.id).on('show.bs.modal', () => {
       // do something...
       let audioModal = document.getElementById("audioModalAbrir");
       audioModal.volume = 0.2;
       audioModal.load(); //carga el archivo, esto implica detener la reproduccion actual
-      audioModal.play(); //reproduce el archivo de audio
+      audioModal.play();//reproduce el archivo de audio
     });
     //efecto de sonido de CERRAR
-    $('#modal' + this.infoElement.id).on('hide.bs.modal', function (e) {
+    $('#modal' + this.infoElement.id).on('hide.bs.modal',()=> {
       window.sonido.cancel();
-
-
       let audioModal = document.getElementById("audioModalCerrar");
       audioModal.volume = 0.2;
       audioModal.load(); //carga el archivo, esto implica detener la reproduccion actual
       audioModal.play(); //reproduce el archivo de audio
+      this.clickStop();
     });
+
+
+
+
+    //Obtiene el texto de las etiquetas dentro de filter
+    this.textoHtml = $('#htmlContent' + this.infoElement.id).contents().filter('h1, h2,h3, h4, h5, h6, p').text();
+    // Obtiene el texto del elemento infoElement.detalle pasado como parametro al modal
+    this.textoLectura = this.infoElement.detalle + " " + this.textoHtml;
   },
 
   template://html
@@ -130,10 +139,10 @@ parasails.registerComponent('modal-detalle-elemento', {
                 <!-- <div class="col-sm-1" id="avatar">-->
                 <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
                 <span>
-                <a v-if="mostrarPlay" @click="clickReproducir" title="Reproducir" class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-play"></i></a>
+                <a v-if="mostrarPlay" tabindex="0"  @click="clickReproducir" title="Reproducir" class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-play"></i></a>
                 
-                <a v-else @click="clickPausar" title="Pausar"  class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-pause"></i></a>
-                <a @click="clickStop" title="Parar" class="iconoAudio audioTag"><i class="fas fa-stop"></i></a>
+                <a v-else @click="clickPausar" tabindex="0" title="Pausar"  class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-pause"></i></a>
+                <a @click="clickStop" title="Parar" tabindex="0" class="iconoAudio audioTag"><i class="fas fa-stop"></i></a>
                 </span>
 
 
@@ -212,7 +221,6 @@ parasails.registerComponent('modal-detalle-elemento', {
 
     clickStop() {
       this.sonido.cancel();
-      this.reproduciendo = false;
       this.mostrarPlay = true;
       this.pausado = false;
 
@@ -221,6 +229,8 @@ parasails.registerComponent('modal-detalle-elemento', {
     clickPausar() {
       this.sonido.pause();
       this.mostrarPlay = true;
+      this.pausado = true;
+      console.log("pausado");
     },
 
     /**
@@ -228,18 +238,16 @@ parasails.registerComponent('modal-detalle-elemento', {
  */
     clickReproducir() {
 
-      var textoHtml = $('#htmlContent' + this.infoElement.id).contents().filter('h1, h2,h3, h4, h5, h6, p').text();
-      var textoLectura = this.infoElement.detalle + " " + textoHtml;
-
-
       if (this.pausado) {
         this.sonido.resume();
         this.mostrarPlay = false;
+        console.log("resume");
       } else {
+        console.log("reproduciendo");
         // var synth = window.speechSynthesis;
         //  var voices = synth.getVoices();
-        this.reproduciendo = true;
-        this.msg = new SpeechSynthesisUtterance(textoLectura);
+        this.mostrarPlay = false;
+        this.msg = new SpeechSynthesisUtterance(this.textoLectura);
         // this.msg.voice = voices[2]; // Note: some voices don't support altering params
         this.sonido.speak(this.msg);
       }

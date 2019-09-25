@@ -278,11 +278,11 @@ parasails.registerComponent("modulo-contenedor-curso", {
       if (this.pausado) {
         window.sonido.resume();
       } else {
-        var voices = window.sonido.getVoices();
+        // var voices = window.sonido.getVoices();
         var msg = new SpeechSynthesisUtterance(
           this.objetoSeleccionado.descripcion
         );
-        msg.voice = voices[7]; // Note: some voices don't support altering params
+        // msg.voice = voices[7]; // Note: some voices don't support altering params
         // msg.voice =  window.sonido.getVoices().filter(function(voice) { return voice.name == 'Whisper'; })[0];
         window.sonido.speak(msg);
       }

@@ -167,18 +167,22 @@ parasails.registerComponent("modulo-contenedor-curso", {
 
                     <div class="row pie-contenido" >
                         <div  id="avatar">   
-                      
                                 <img  @click="clickAsistenteBuho" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
                                 <span>
                                 <a v-if="mostrarPlay" @click="clickReproducir" title="Reproducir" class="audioTag"><i class="fas fa-play"></i></a>
                                 <a v-else @click="clickPause" title="Pausar" class="audioTag"><i class="fas fa-pause"></i></a>
                                 <a @click="clickStop" title="Parar" class="audioTag"><i class="fas fa-stop"></i></a>
                                 </span>        
-                                
                         </div>
                       
-                        <div id="descripcion-objeto" ref="printContenidoDescripcion">
-                            <h6 v-if="existeDescripcion  && tituloTemporal==''" class="typography-line"><span>{{objetoSeleccionado.descripcion}}</span></h6>
+                       
+                      <div id="descripcion-objeto" ref="printContenidoDescripcion">
+                        
+    
+    
+                        <h6 v-if="existeDescripcion  && tituloTemporal==''" class="typography-line"><span>{{objetoSeleccionado.descripcion}}</span></h6>
+                        
+
                         </div>
                     </div>
 

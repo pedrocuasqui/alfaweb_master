@@ -28,8 +28,6 @@ module.exports.routes = {
   'GET /interfaz-modulos': {
     action: 'estudiante/view-interfaz-modulos'
   },
-
-  
   'GET /': {
     action: 'view-homepage',
   },
@@ -138,7 +136,6 @@ module.exports.routes = {
   /** RUTAS DE ESTUDIANTE */
   // modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
   // estudiante
-
   'GET /contenido-alfaweb': {
     action: 'estudiante/view-contenido-alfaweb',
 

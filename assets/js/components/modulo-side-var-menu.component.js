@@ -34,6 +34,32 @@ parasails.registerComponent('modulo-side-var-menu', {
         `  
     <div >
   
+  <!-- Modals -->
+    <!-- Ver puntuacion Historica del estudiante -->
+    <div class="modal fade " id="modalEnlaceEvaluacion" tabindex="-1" role="dialog" aria-labelledby="etiquetaModalEnlaceEvaluacion"
+        aria-hidden="true">
+        <div class="modal-dialog modal-xl" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="etiquetaModalEnlaceEvaluacion">Evaluación </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">    
+                    <div class = "container">
+                        
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button class="btn btn-primary" data-dismiss="modal">Cancelar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+<!--BARRA LATERAL-->
+
     <div id="sidebar-menu" v-bind:class="{'sidebar-oculto':showSidebar}" >
         <div id="menuContenidos" >
         <span><h4 class="col text-center">{{curso.nombre}}</h4>   
@@ -64,7 +90,7 @@ parasails.registerComponent('modulo-side-var-menu', {
                             <a  v-for="submodulo in modulo.submodulos" :href="'/administrar-contenido/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
                          </div>
                     </template>
-                    <template v-else-if="cursoInformatica" >
+                    <template v-else-if="cursoInformatica">
                         <div key="esCursoInformatica">
                             <a  v-for="submodulo in modulo.submodulos" :href="'/contenido-alfaweb/?enlace='+submodulo.enlace" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
                          </div>
@@ -72,8 +98,9 @@ parasails.registerComponent('modulo-side-var-menu', {
                     <template v-else >
                         <div key="noEsCursoInformatica">
                             <a  v-for="submodulo in modulo.submodulos"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                            <a @click="onClickShowModalEvaluacion" >Evaluación</a>
                         </div>
-               </template >
+                    </template >
                     <a v-if="habilitarEdicion" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
                 </div>
             </div>
@@ -91,6 +118,11 @@ parasails.registerComponent('modulo-side-var-menu', {
     </div>
     </div>`,
     methods: {
+        onClickShowModalEvaluacion(){
+            $(function () {
+                $('#modalEnlaceEvaluacion').modal('show');
+            });
+        },
         onClickLeftCaret() {
             this.showSidebar = true;
         },
@@ -137,7 +169,7 @@ parasails.registerComponent('modulo-side-var-menu', {
 
 
             }).catch(err => {
-                alert('Error, no se ha podido publicar el curso');
+                alert('Error, no se ha podido publicar el curso: '+ err);
             });
 
 
@@ -153,7 +185,7 @@ parasails.registerComponent('modulo-side-var-menu', {
                 alert('Se ha ocultado el curso a los estudiantes');
 
             }).catch(err => {
-                alert('Error: intente más tarde');
+                alert('Error: intente más tarde: '+err );
             });
 
         }

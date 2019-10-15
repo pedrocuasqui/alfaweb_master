@@ -111,12 +111,12 @@ parasails.registerComponent("modulo-contenedor-curso", {
                         <!--"navegacion-atras"-->
                         <div class="col-auto" v-if="navegarAtras">
                             <template v-if="objetoSeleccionado.nombreModulo">
-                                <a key="link" :href="navegarAtras" @click="clickStop" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                                <a key="link" :href="navegarAtras" @click="clickStop" title="Tema anterior"> <i class="fas fa-chevron-left fa-3x"></i> </a>
                             </template>
                             <template v-else>
                         
-                                <a v-if="!evIndividual" key="link" :href="navegarAtras" @click="clickStop" title="Tema anterior"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
-                                <a v-else  key="ev" title="Ver Contenido" @click.stop="evaluacionIndividual('contenido')"> <i class="fas fa-arrow-alt-circle-left fa-3x"></i> </a>
+                                <a v-if="!evIndividual" key="link" :href="navegarAtras" @click="clickStop" title="Tema anterior"> <i class="fas fa-chevron-left fa-3x"></i> </a>
+                                <a v-else  key="ev" title="Ver Contenido" @click.stop="evaluacionIndividual('contenido')"> <i class="fas fa-chevron-left fa-3x"></i> </a>
                             </template>
                         </div>
                        
@@ -137,14 +137,14 @@ parasails.registerComponent("modulo-contenedor-curso", {
                          <div  class="col-auto" v-if="navegarSiguiente">
                          <!--Estoy en un módulo, no se pasa a evaluación-->
                             <template v-if="objetoSeleccionado.nombreModulo">
-                                <a  key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickStop" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                                <a  key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickStop" ><i class="fas fa-chevron-right fa-3x"></i> </a>
                             </template>
                             <!--Estoy en un submodulo, paso a evaluacion antes de pasar a otro tema-->
                             <template v-else>   
                             <!--navegacion-siguiente-->
-                                <a v-if="evIndividual" key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickStop" ><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a>
+                                <a v-if="evIndividual" key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickStop" ><i class="fas fa-chevron-right fa-3x"></i> </a>
                                 <!--navegacion-evaluacion-->
-                                <a v-else key="evaluacion" title="Evaluación" @click.stop="evaluacionIndividual"><i class="fas fa-arrow-alt-circle-right fa-3x"></i> </a> <!--por defecto se muestra este boton-->                  
+                                <a v-else key="evaluacion" title="Evaluación" @click.stop="evaluacionIndividual"><i class="fas fa-chevron-right fa-3x"></i> </a> <!--por defecto se muestra este boton-->                  
                             </template>
                         </div>
                                           

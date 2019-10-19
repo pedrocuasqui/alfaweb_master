@@ -49,7 +49,7 @@ parasails.registerComponent('modulo-side-var-menu', {
                 <div class="modal-body">    
                     <div class = "container">
                         <div v-for="submodulo in curso.modulos[1].submodulos">
-                        <a href="" > {{submodulo.nombreSubmodulo}}</a>
+                        <a :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" > {{submodulo.nombreSubmodulo}}</a>
                         </div>
                     </div>
                 </div>

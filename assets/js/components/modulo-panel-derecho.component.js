@@ -74,7 +74,7 @@ parasails.registerComponent('modulo-panel-derecho', {
     },
     data() {
         return {
-            redirigeaContenido: false,
+            proximaRedireccionAContenido: false,
             intentosEvaluacion: null,
             estudiantesConSusIntentos: [],
             estudiantesConSusIntentosQuickSort: null,
@@ -310,13 +310,13 @@ parasails.registerComponent('modulo-panel-derecho', {
             } else {
 
 
-                if (this.redirigeaContenido) {
+                if (this.proximaRedireccionAContenido) {
                     contenido = 'contenido';
                     this.$emit('evaluacion-individual', contenido);
-                    this.redirigeaContenido = false;
+                    this.proximaRedireccionAContenido = false;
                 } else {
                     this.$emit('evaluacion-individual', contenido);
-                    this.redirigeaContenido = true;
+                    this.proximaRedireccionAContenido = true;
                 }
 
 

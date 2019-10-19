@@ -13,6 +13,11 @@ module.exports = {
     tipoContenido: {
       type: 'string',
       required: true
+    },
+    mostrarEvaluacion:{
+      type: 'boolean',
+      required: false,
+      defaultsTo:false
     }
   },
 
@@ -36,7 +41,7 @@ module.exports = {
     var navegarAtras = '';
     var navegarSiguiente = '';
     var moduloPadre = null;
-
+    var mostrarEvaluacion= inputs.mostrarEvaluacion;
 
     var intentoEvaluacion = { //intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
       puntos: 0,
@@ -53,13 +58,13 @@ module.exports = {
 
     if (inputs.tipoContenido == 'Modulo') {
       objetoSeleccionado = await ModuloLibro.findOne({ id: inputs.objetoId });
-      curso = await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err) => { sails.log('ERROR EN HELPERS: ' + err) });
+      curso = await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err) => { sails.log('ERROR EN HELPERS: ' + err); });
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreModulo;
 
     } else if (inputs.tipoContenido == 'Submodulo') {
       objetoSeleccionado = await SubmoduloLibro.findOne({ id: inputs.objetoId });
-      curso = await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err) => { sails.log('ERROR EN HELPERS: ' + err) });
+      curso = await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err) => { sails.log('ERROR EN HELPERS: ' + err); });
       moduloPadre = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreSubmodulo;
@@ -70,9 +75,8 @@ module.exports = {
 
 
 
-
     } else {
-      return res.status(500).send({ problema: 'no se encontró el tipo de contenido' })
+      return res.status(500).send({ problema: 'no se encontró el tipo de contenido' });
     }
 
     if (!objetoSeleccionado) { //si no se ha encontrado un modulo o submodulo con el id entregado se devuelve un mensaje de error
@@ -87,7 +91,7 @@ module.exports = {
     if (curso.modulos.length != 0) {
       //agrego modulos y submodulos en un mismo arreglo
       curso.modulos.forEach(modulo => {
-        arreglo.push({ objetoId: modulo.id, tipoContenido: 'Modulo' })
+        arreglo.push({ objetoId: modulo.id, tipoContenido: 'Modulo' });
         modulo.submodulos.forEach(submodulo => {
           numeroSubmodulosCurso += 1;
           arreglo.push({ objetoId: submodulo.id, tipoContenido: 'Submodulo' });
@@ -100,14 +104,14 @@ module.exports = {
           //si el objeto es el primero 
           if (i == 0) { // el anterior retorna al indice
             navegarAtras = '/indice-estudiante/?cursoId=' + curso.id;
-            navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
+            navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido;
           } else if (i == arreglo.length - 1) { //el ultimo elemento del arreglo
-            navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
+            navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido;
             navegarSiguiente = '/';
           }
           else {
-            navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido
-            navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido
+            navegarAtras = '/interfaz-modulos/?objetoId=' + arreglo[i - 1].objetoId + '&tipoContenido=' + arreglo[i - 1].tipoContenido;
+            navegarSiguiente = '/interfaz-modulos/?objetoId=' + arreglo[i + 1].objetoId + '&tipoContenido=' + arreglo[i + 1].tipoContenido;
 
           }
 
@@ -128,8 +132,8 @@ module.exports = {
 
       } else {// se guarda el avance
 
-        let credenciales = { cursoId: curso.id, usuarioId: usuario.id }
-        let avance = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId }
+        let credenciales = { cursoId: curso.id, usuarioId: usuario.id };
+        let avance = { tipoContenido: inputs.tipoContenido, objetoId: inputs.objetoId };
         // se guarda el avance
         await sails.helpers.registrarAvanceEstudiante(credenciales, avance);//la fecha de acceso es creada dentro 
         //se retorna el ultimo intento de evaluacion
@@ -141,7 +145,7 @@ module.exports = {
         nombre: 'Visitante',
         rol: 'Estudiante'
 
-      }
+      };
       // var cursos = await Curso.find();
       // usuario.cursos = cursos;
     }
@@ -184,7 +188,7 @@ module.exports = {
 
 
 
-    return exits.success({ curso, objetoSeleccionado, moduloPadre, usuario, navegarAtras, navegarSiguiente });
+    return exits.success({ curso, objetoSeleccionado, moduloPadre, usuario, navegarAtras, navegarSiguiente,mostrarEvaluacion });
     //el objeto moduloPadre solo contiene valores cuando el objeto seleccionado es SUBMODULO
 
 

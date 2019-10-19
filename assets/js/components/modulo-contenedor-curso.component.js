@@ -83,6 +83,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
   mounted() {
     window.sonido = null;
     window.sonido = window.speechSynthesis;
+  
   },
   template: //html
     `  

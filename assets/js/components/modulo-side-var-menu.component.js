@@ -21,6 +21,8 @@ parasails.registerComponent('modulo-side-var-menu', {
 
             showSidebar: false,
             cursoInformatica: false,
+            moduloEvaluacion:'', //nombre del modulo que se pasa como parametro a la funcion de mostrar modal
+            indiceModulo:0 //el indice del modulo que se pasa como parametro a la funcion de mostrar modal
 
         };
     },
@@ -38,19 +40,30 @@ parasails.registerComponent('modulo-side-var-menu', {
     <!-- Ver puntuacion Historica del estudiante -->
     <div class="modal fade " id="modalEnlaceEvaluacion" tabindex="-1" role="dialog" aria-labelledby="etiquetaModalEnlaceEvaluacion"
         aria-hidden="true">
-        <div class="modal-dialog modal-xl" role="document">
+        <div class="modal-dialog modal-l" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="etiquetaModalEnlaceEvaluacion">Evaluación </h5>
+                    <h5 class="modal-title" id="etiquetaModalEnlaceEvaluacion">Evaluación {{moduloEvaluacion}}</h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">    
                     <div class = "container">
-                        <div v-for="submodulo in curso.modulos[1].submodulos">
-                        <a :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" > {{submodulo.nombreSubmodulo}}</a>
+                        
+                        <div class="list-group">
+                            <a v-for="submodulo in curso.modulos[indiceModulo].submodulos" :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">
+                                <div class="d-flex w-100 justify-content-between">
+                                <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+                                <small>{{submodulo.evaluacion.tipo =='Nombre_Objeto'? 'Cuestionario de imagenes': submodulo.evaluacion.tipo}}</small>
+                                </div>
+                                <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Nombre_Objeto'">Identifica la imágen y selecciona la respuesta correcta</p>
+                                <p class="mb-1" v-else-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
+                                <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'">Empareje el término con el concepto correcto</p>
+                            </a> 
+                            
                         </div>
+                        
                     </div>
                 </div>
                 <div class="modal-footer">
@@ -100,7 +113,7 @@ parasails.registerComponent('modulo-side-var-menu', {
                     <template v-else >
                         <div key="noEsCursoInformatica">
                             <a  v-for="submodulo in modulo.submodulos"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
-                            <a @click="onClickShowModalEvaluacion" >Evaluación</a>
+                            <a v-if="modulo.submodulos.length>0" @click="onClickShowModalEvaluacion(modulo.nombreModulo, index)" >Evaluación</a>
                         </div>
                     </template >
                     <a v-if="habilitarEdicion" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
@@ -120,10 +133,13 @@ parasails.registerComponent('modulo-side-var-menu', {
     </div>
     </div>`,
     methods: {
-        onClickShowModalEvaluacion(){
+        onClickShowModalEvaluacion(moduloNombre, indice) {
+            this.moduloEvaluacion= moduloNombre;
+            this.indiceModulo = indice;
             $(function () {
                 $('#modalEnlaceEvaluacion').modal('show');
             });
+            
         },
         onClickLeftCaret() {
             this.showSidebar = true;
@@ -171,7 +187,7 @@ parasails.registerComponent('modulo-side-var-menu', {
 
 
             }).catch(err => {
-                alert('Error, no se ha podido publicar el curso: '+ err);
+                alert('Error, no se ha podido publicar el curso: ' + err);
             });
 
 
@@ -187,7 +203,7 @@ parasails.registerComponent('modulo-side-var-menu', {
                 alert('Se ha ocultado el curso a los estudiantes');
 
             }).catch(err => {
-                alert('Error: intente más tarde: '+err );
+                alert('Error: intente más tarde: ' + err);
             });
 
         }

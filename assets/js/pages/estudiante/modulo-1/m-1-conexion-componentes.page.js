@@ -59,7 +59,7 @@ parasails.registerPage('m-1-conexion-componentes', {
     }
   },
   mounted: async function () {
-   
+   //
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

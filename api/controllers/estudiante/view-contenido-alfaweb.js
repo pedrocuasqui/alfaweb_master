@@ -33,6 +33,15 @@ module.exports = {
     var res= this.res;
     var usuario=null;
     var mostrarEvaluacion= inputs.mostrarEvaluacion;
+    var intentoEvaluacion = { //intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
+      puntos: 0,
+      nivel: 0,//modulo 1
+      medalla: 'bebe', //medalla mas basica
+      tiempoMaximoPorPregunta: 30, //en segundos por defecto
+      evaluacion: null,
+    };
+    var numeroSubmodulosCurso = 0; //sirve para enviar en el usuario y comprobar el porcentaje de evaluaciones realizadas de todo el curso
+
 
 
     var curso = await Curso.findOne({ nombre: 'Alfabetización informática' }).populate('modulos');
@@ -71,9 +80,57 @@ module.exports = {
 
 
 
-    //USUARIO PARA PRUEBAS, REEMPLAZAR EN PRODUCCION POR UNA SESION
-    // var usuario = await Estudiante.findOne({ alias: 'Pedroc' });
-    // usuario.rol = 'Estudiante'
+    // retorno de ultimo intentoEvaluacion para mostrar la puntuacion actual
+    //siempre se aniade un intento evaluacion al usuario
+    usuario.ultimoIntento = intentoEvaluacion;
+    usuario.numeroSubmodulosCurso = numeroSubmodulosCurso;
+    usuario.submodulosAprobadosPorCurso = [];
+    if (usuario.nombre != "Visitante") { //si existe un usuario logueado tipo estudiante
+      //se buscan los documentos que contengan al id de usuario logueado y el curso que está siguiente en actualmente, SE BUSCA EL ULTIMO INTENTO PORQUE ESTE CONTIENE LA PUNTUACION ULTIMA
+      let intentoEv = null;
+      intentoEv = await IntentoEvaluacion.find({ estudiante: usuario.id, curso: curso.id }).sort('createdAt DESC');
+
+      if (intentoEv.length > 0) {//existe el arreglo de  intentos evaluacion entonces se reemplaza el valor de usuario.ultimoIntento por el intento mas actual
+        usuario.ultimoIntento = intentoEv[0]; //escogemos el elemento mas reciente porque es el que contiene la ultima puntuación del usuario
+
+      } //caso contrario se mantiene el valor por defecto, null
+
+      //se crea una nueva conexion al servidor para obtener los intentosEvaluacion, 1 por cada submodulo de todo el curso
+      var datastoreSails = sails.getDatastore().manager;
+      //buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
+      let ObjectId = require('mongodb').ObjectID;
+      let estudianteObjectId = ObjectId(usuario.id);
+      await datastoreSails.collection('IntentoEvaluacion').distinct("submodulo", { curso: curso.id, estudiante: estudianteObjectId, apruebaEvaluacion: 1 }).then(respuesta => {  //estudiante: usuario.id,
+        //respuesta contiene un arreglo con el codigo de submodulo por cada intento aprobado
+        respuesta.forEach(elemento => {
+          usuario.submodulosAprobadosPorCurso.push(elemento.toString());
+        });
+
+      });
+
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
     if (inputs.enlace == '/m1-computadora') {
       let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m1-computadora' }).populate('submodulos', { sort: 'createdAt ASC' });
       return this.res.view('pages/estudiante/modulo-1/m-1-computadora', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, modulo: objetoSeleccionado });

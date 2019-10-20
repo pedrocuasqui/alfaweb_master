@@ -156,7 +156,7 @@ parasails.registerComponent("modulo-ev-individual", {
       
         <div id="descripcion" v-html="descripcionActividad">
         </div>
-        <div v-if="usuario.nombre=='Visitante'"> <em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></div>
+        <div v-if="usuario.nombre=='Visitante'"> <p><em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></p></div>
         
       </div>
       <div class="modal-footer">

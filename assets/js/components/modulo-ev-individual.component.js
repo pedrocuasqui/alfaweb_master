@@ -289,7 +289,9 @@ parasails.registerComponent("modulo-ev-individual", {
                         :class="[enunciadoSeleccionado == indexPreg ? 'enunSelected': '' ]"
                         :id="'Preg'+indexPreg" key="indexPreg"
                         v-for="(pregunta,indexPreg) in preguntasCuestionario">
+                        <p>
                         {{pregunta.enunciado}}
+                        </p>
                     </div>
                 </div>
                 
@@ -298,8 +300,9 @@ parasails.registerComponent("modulo-ev-individual", {
                         @click.stop="seleccionarRespuestaEmpareja(pregunta1,indexResp)"
                         :id="'Resp'+indexResp" key="indexResp"
                         v-for="(pregunta1, indexResp) in arregloRandom">
-                        
+                        <p>
                         {{pregunta1.respuesta}}
+                        </p>
                     </div>
                 </div>
             

@@ -142,7 +142,7 @@ parasails.registerComponent("modulo-ev-individual", {
     <div class="">
   
 
-<!-- Modal INICIO -->
+<!-- Modal INICIO EVALUACION -->
 <div class="modal fade" id="modalInstrucciones" tabindex="-1" role="dialog" aria-labelledby="modalInstruccionesLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -170,7 +170,7 @@ parasails.registerComponent("modulo-ev-individual", {
 
 
 
-<!-- Modal FIN -->
+<!-- Modal FIN EVALUACION-->
 <div class="modal fade" id="actividadFinalizada" tabindex="-1" role="dialog" aria-labelledby="actividadFinalizadaLabel" aria-hidden="true">
   <div class="modal-dialog" role="document">
     <div class="modal-content">
@@ -182,7 +182,7 @@ parasails.registerComponent("modulo-ev-individual", {
       </div>
       <div class="modal-body">
       
-        
+        <p >Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p>
         <p >Puntos Obtenidos: {{puntosObtenidos}}</p>
         <p >Acumulas un total de : {{puntos}}</p>
         <p v-if="subeDeNivel_Comp"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
@@ -349,20 +349,29 @@ parasails.registerComponent("modulo-ev-individual", {
     <template v-else>
         <h3>RESULTADOS:</h3>
         <div >
-            <template v-if="tipoEvaluacion=='Cuestionario'">
+        <div><p>Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p></div>
+            
                 
                 <div class="row" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
-                    <div class="col-sm-3"> {{pregunta.enunciado}}</div> 
+                    <div v-if="tipoEvaluacion=='Nombre_Objeto'" class="imagen-portada-modulo">
+                      <!--El enunciado puede ser cualquier objeto --->
+                      <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
+                    </div>    
+
+                
+                    <div v-else class="col-sm-3"><p>{{pregunta.enunciado}}</p></div> 
+                    
+                    
                     <div class="col-sm-3"> 
-                        <p :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">Tu respuesta: {{pregunta.respuestaEstudiante}}</p>    
+                        <p :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">Tu respuesta: {{pregunta.respuestaEstudiante ? pregunta.respuestaEstudiante: 'SIN RESPUESTA'}}</p>    
                         <p>Respuesta correcta:{{pregunta.respuesta}}</p>
                     </div>   
                 </div>
-            </template>
-
+           
+<!--
             <template v-else-if="tipoEvaluacion=='Emparejamiento'">
                 <div class="row" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
-                    <div class="col-sm-3"> {{pregunta.enunciado}}</div> 
+                    <div class="col-sm-3"><p>{{pregunta.enunciado}}</p></div> 
                     <div class="col-sm-3"> 
                         <p :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">Tu respuesta: {{pregunta.respuestaEstudiante}}</p>    
                         <p>Respuesta correcta:{{pregunta.respuesta}}</p>
@@ -372,7 +381,7 @@ parasails.registerComponent("modulo-ev-individual", {
             <template v-else>
                 <div class="row" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
                     <div class="imagen-portada-modulo">
-                        <!--El enunciado puede ser cualquier objeto --->
+                        
                         <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
                     </div>
                     <div class="col-sm-3"> 
@@ -381,6 +390,8 @@ parasails.registerComponent("modulo-ev-individual", {
                     </div>   
                 </div>
             </template>
+
+            -->
         </div>    
     </template>
 

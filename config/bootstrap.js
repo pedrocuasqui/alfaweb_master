@@ -1084,7 +1084,7 @@ module.exports.bootstrap = async function(done) {
       ordenNavegacion: 0,
       evaluacion: {
         tipo: "Cuestionario",
-        tiempoMaximoPorPregunta: "40",
+        tiempoMaximoPorPregunta: "1000",
         preguntas: [
           {
             enunciado: "Un campo corresponde al nombre de:",

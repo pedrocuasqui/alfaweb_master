@@ -243,18 +243,17 @@ parasails.registerComponent("modulo-ev-individual", {
     <template v-if="tipoEvaluacion=='Cuestionario'">
         <div class="row">
             <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
-       
-       
-       
-       
-       
+
             <div class="list-group">
                 <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado}}</h5>   
                 </div>
 
             <div class="custom-control custom-radio" v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
-            <input type="radio" :id="opcion.id" class="custom-control-input"  :name="opcion.id" :value="opcion.texto" v-model="respuestaCuestionarioPreguntaPrueba" @click.stop="respuestaCuestionarioSeleccionada">
+            <input type="radio" :id="opcion.id" class="custom-control-input"  :name="opcion.id" :value="opcion.texto" 
+            v-model=" preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"
+            @click.stop="respuestaCuestionarioSeleccionada">
+            <!--v-model="respuestaCuestionarioPreguntaPrueba"-->
             <label class="custom-control-label" :for="opcion.id">{{opcion.texto}}</label>
           </div>
           </div>
@@ -331,14 +330,13 @@ parasails.registerComponent("modulo-ev-individual", {
                             <img :src="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado" alt="Imágen de evaluacion">
                         </div>
                        
-                    </div>
+            </div>
             <div class="custom-control custom-radio" v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
-            <input type="radio" :id="index" class="custom-control-input"  :name="index" :value="opcion.texto" v-model="respuestaCuestionarioPreguntaPrueba"  :key="index">
+            <input type="radio" :id="index" class="custom-control-input"  :name="index" :value="opcion.texto" v-model=" preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"  :key="index" @click.stop="respuestaCuestionarioSeleccionada">
             <label class="custom-control-label" :for="index">{{opcion.texto}}</label>
           </div>
              </div>
-        
-<!--@click.stop="respuestaCuestionarioSeleccionada"-->
+
 
 
             <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
@@ -400,7 +398,9 @@ parasails.registerComponent("modulo-ev-individual", {
 
     </div>`,
   watch: {
-    respuestaCuestionarioPreguntaPrueba: "respuestaCuestionarioSeleccionada"
+    //Está pendiente de los cambios que se hagan a la variable respuestaCuestionarioPreguntaPrueba
+
+    //respuestaCuestionarioPreguntaPrueba: "respuestaCuestionarioSeleccionada"
   },
   methods: {
     opcionesRespuesta(preguntaActual) {
@@ -453,9 +453,9 @@ parasails.registerComponent("modulo-ev-individual", {
       // Si la respuesta es equivocada:
 
       // this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante
-
-      if (
-        this.respuestaCuestionarioPreguntaPrueba !=
+      // this.respuestaCuestionarioPreguntaPrueba  
+      if (// si la respuesta seleccionada es equivocada
+        this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante!=
         this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario]
           .respuesta
       ) {
@@ -464,16 +464,27 @@ parasails.registerComponent("modulo-ev-individual", {
           this.indicePreguntaCuestionario
         ].errores += 1;
         // si ya se habia seleccionado la respuesta correcta, se elimina del arreglo
-        for (let i = 0; i <= this.aciertos.length - 1; i++) {
-          if (this.aciertos[i] == this.indicePreguntaCuestionario) {
-            this.aciertos.splice(i, 1);
+
+        this.aciertos.forEach((indiceDePreguntaAcertada,indice)=>{
+          if (indiceDePreguntaAcertada == this.indicePreguntaCuestionario) {
+            this.aciertos.splice(indice, 1);
           }
-        }
+        });
       } else {
-        this.preguntasCuestionarioRespuestas[
-          this.indicePreguntaCuestionario
-        ].respuestaEstudiante = this.respuestaCuestionarioPreguntaPrueba;
-        this.aciertos.push(this.indicePreguntaCuestionario);
+        //se verifica si la pregunta ya esta o no registrada
+        var preguntaRegistrada= false;
+        this.aciertos.forEach(indiceDePreguntaAcertada=>{
+          if(indiceDePreguntaAcertada==this.indicePreguntaCuestionario){
+            preguntaRegistrada= true;
+          }
+        });
+        if(!preguntaRegistrada){ //si la pregunta no esta registrada se la inserta 
+          this.preguntasCuestionarioRespuestas[
+            this.indicePreguntaCuestionario
+          ].respuestaEstudiante = this.preguntasCuestionarioRespuestas[this.indicePreguntaCuestionario].respuestaEstudiante;//this.respuestaCuestionarioPreguntaPrueba;
+          this.aciertos.push(this.indicePreguntaCuestionario);
+        }
+        
       }
     },
     finalizarCuestionario() {
@@ -658,8 +669,8 @@ parasails.registerComponent("modulo-ev-individual", {
           this.tipoEvaluacion == "Cuestionario" ||
           this.tipoEvaluacion == "Nombre_Objeto"
         ) {
-          //desde finalizarCuestionario() se llama a calcularPuntuacion
           this.finalizarCuestionario();
+          //desde finalizarCuestionario() se llama a calcularPuntuacion
         } else {
           // cuando la evaluacion es EMPAREJAMIENTO no existe funcion finalizarCuestionario
           this.calcularPuntuacion(); //aun si es visitante se muestra el puntaje obtenido
@@ -780,7 +791,7 @@ parasails.registerComponent("modulo-ev-individual", {
     },
 
     empezarEvaluacion() {
-      setTimeout(this.actualizaCuentaRegresiva, 1000); //tarda un segundo en empezar la cuenta regresiva
+      setTimeout(this.actualizaCuentaRegresiva, 200); //tarda un doscientos milisegundos en empezar la cuenta regresiva
     },
 
     mostrarModalInicial() {
@@ -884,7 +895,7 @@ parasails.registerComponent("modulo-ev-individual", {
           this.usuario.ultimoIntento = response.data.intentoEvaluacionCreado;
         })
         .catch(err => {
-          alert("Error: no se puede guardar el avance en este momento");
+          alert("Error: no se puede guardar el avance en este momento: "+err);
         });
     },
     actualizaProgreso() {

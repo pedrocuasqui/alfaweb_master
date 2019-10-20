@@ -96,7 +96,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar </p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 1,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color, //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "El Teclado",
@@ -107,7 +108,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 2,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color, //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Mouse",
@@ -118,7 +120,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 3,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color, //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
 
       {
@@ -130,7 +133,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 4,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color, //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Conexión de los componentes a la computadora",
@@ -141,7 +145,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 5,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color, //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Encender y apagar la computadora",
@@ -152,7 +157,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 6,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color, //el color del padre se hereda a los hijos,
+        evaluacion:null
       }
     ]);
 
@@ -179,7 +185,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 1,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Gestión de archivos",
@@ -190,7 +197,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 2,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "La papelera de reciclaje",
@@ -201,7 +209,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 3,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       }
     ]);
 
@@ -227,7 +236,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 1,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Área de trabajo",
@@ -238,7 +248,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 2,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Barra de título",
@@ -249,7 +260,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 3,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Barra de herramientas de acceso rápido",
@@ -260,7 +272,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 4,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Barra o cinta de opciones",
@@ -271,7 +284,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 5,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Otras Opciones",
@@ -282,7 +296,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 6,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       }
       // {
       //   nombreSubmodulo: 'Barra de estado',
@@ -327,7 +342,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 1,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Ortografía y gramática",
@@ -338,7 +354,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 2,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Guardar e imprimir un documento",
@@ -348,7 +365,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 3,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Diseño de página",
@@ -359,7 +377,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 4,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       }
 
       // {
@@ -414,7 +433,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 1,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Nombres de dominio",
@@ -425,7 +445,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 2,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Navegador web",
@@ -436,7 +457,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 3,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Motores de navegación",
@@ -447,7 +469,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 4,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       }
     ]);
     moduloCreado = await ModuloLibro.create({
@@ -472,7 +495,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 1,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Envío de correo electrónico",
@@ -483,7 +507,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 2,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Creación de una cuenta SKYPE",
@@ -494,7 +519,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 3,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Realizar videollamadas",
@@ -505,7 +531,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 4,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       }
     ]);
     moduloCreado = await ModuloLibro.create({
@@ -530,7 +557,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 1,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Como usar Youtube",
@@ -541,7 +569,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 2,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       }
     ]);
     moduloCreado = await ModuloLibro.create({
@@ -566,7 +595,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 1,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Otras configuraciones",
@@ -577,7 +607,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 2,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       },
       {
         nombreSubmodulo: "Instalación de una aplicación móvil",
@@ -588,7 +619,8 @@ module.exports.bootstrap = async function(done) {
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,
         ordenNavegacion: 3,
-        color: moduloCreado.color //el color del padre se hereda a los hijos
+        color: moduloCreado.color , //el color del padre se hereda a los hijos,
+        evaluacion:null
       }
     ]);
 

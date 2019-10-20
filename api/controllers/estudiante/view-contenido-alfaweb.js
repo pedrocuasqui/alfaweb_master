@@ -10,6 +10,11 @@ module.exports = {
       type: 'string',
       required: true
     },
+    mostrarEvaluacion:{
+      type: 'boolean',
+      required: false,
+      defaultsTo:false
+    }
 
   },
 
@@ -27,7 +32,7 @@ module.exports = {
     var req=this.req;
     var res= this.res;
     var usuario=null;
-
+    var mostrarEvaluacion= inputs.mostrarEvaluacion;
 
 
     var curso = await Curso.findOne({ nombre: 'Alfabetización informática' }).populate('modulos');
@@ -71,7 +76,7 @@ module.exports = {
     // usuario.rol = 'Estudiante'
     if (inputs.enlace == '/m1-computadora') {
       let objetoSeleccionado = await ModuloLibro.findOne({ enlace: '/m1-computadora' }).populate('submodulos', { sort: 'createdAt ASC' });
-      return this.res.view('pages/estudiante/modulo-1/m-1-computadora', { usuario, curso, objetoSeleccionado, modulo: objetoSeleccionado });
+      return this.res.view('pages/estudiante/modulo-1/m-1-computadora', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, modulo: objetoSeleccionado });
     }
     else if (inputs.enlace == '/m1-hardware') {
       let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m1-hardware' });
@@ -83,7 +88,7 @@ module.exports = {
           }
         });//.sort('createdAt');
       let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      return this.res.view('pages/estudiante/modulo-1/m-1-hardware', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+      return this.res.view('pages/estudiante/modulo-1/m-1-hardware', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
     }
     else if (inputs.enlace == '/m1-software') {
 
@@ -103,7 +108,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-1/m-1-software', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-1/m-1-software', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     else if (inputs.enlace == '/m1-teclado') {
 
@@ -123,7 +128,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-1/m-1-hardware-teclado', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-1/m-1-hardware-teclado', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     else if (inputs.enlace == '/m1-mouse') {
 
@@ -143,7 +148,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-1/m-1-hardware-mouse', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-1/m-1-hardware-mouse', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     else if (inputs.enlace == '/m1-conexion-componentes') {
 
@@ -163,7 +168,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-1/m-1-conexion-componentes', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-1/m-1-conexion-componentes', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     else if (inputs.enlace == '/m1-encender-computadora') {
 
@@ -182,7 +187,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-1/m-1-encender-computadora', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-1/m-1-encender-computadora', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     else if (inputs.enlace == '/m2-navegacion-escritorio') {
 
@@ -190,7 +195,7 @@ module.exports = {
       let siguiente = await SubmoduloLibro.findOne({ enlace: '/m2-aplicaciones' });
       let anterior = await SubmoduloLibro.findOne({ enlace: '/m1-encender-computadora' });
 
-      return this.res.view('pages/estudiante/modulo-2/m-2-navegacion-escritorio', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+      return this.res.view('pages/estudiante/modulo-2/m-2-navegacion-escritorio', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
     }
     else if (inputs.enlace == '/m2-aplicaciones') {
       let objetoSeleccionado = await SubmoduloLibro.findOne({ enlace: '/m2-aplicaciones' });
@@ -202,7 +207,7 @@ module.exports = {
           }
         });//.sort('createdAt');
       let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      return this.res.view('pages/estudiante/modulo-2/m-2-aplicaciones', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+      return this.res.view('pages/estudiante/modulo-2/m-2-aplicaciones', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
     }
     else if (inputs.enlace == '/m2-gestion-archivos') {
 
@@ -222,7 +227,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-2/m-2-gestion-archivos', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-2/m-2-gestion-archivos', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     else if (inputs.enlace == '/m2-papelera') {
 
@@ -241,7 +246,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-2/m-2-papelera', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-2/m-2-papelera', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
@@ -256,7 +261,7 @@ module.exports = {
       let siguiente = await SubmoduloLibro.findOne({ enlace: '/m3-pantalla-word' });
       let anterior = await SubmoduloLibro.findOne({ enlace: '/m2-papelera' });
 
-      return this.res.view('pages/estudiante/modulo-3/m-3-documento-word', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+      return this.res.view('pages/estudiante/modulo-3/m-3-documento-word', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
     }
     // ///////////////////////////////////////////////////////
     else if (inputs.enlace == '/m3-pantalla-word') {
@@ -269,7 +274,7 @@ module.exports = {
           }
         });//.sort('createdAt');
       let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      return this.res.view('pages/estudiante/modulo-3/m-3-pantalla-word', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+      return this.res.view('pages/estudiante/modulo-3/m-3-pantalla-word', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
     }   
     // ///////////////////////////////////////////////////////
     else if (inputs.enlace == '/m3-area-trabajo') {
@@ -290,7 +295,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-3/m-3-area-trabajo', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-3/m-3-area-trabajo', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     } 
     // ///////////////////////////////////////////////////////
     else if (inputs.enlace == '/m3-barra-titulo') {
@@ -310,7 +315,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-3/m-3-barra-titulo', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-3/m-3-barra-titulo', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
 
     }
 
@@ -333,7 +338,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-3/m-3-barra-acceso-rapido', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-3/m-3-barra-acceso-rapido', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
 
 // ///////////////////////////////////////////////////////
@@ -355,7 +360,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-3/m-3-barra-opciones', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-3/m-3-barra-opciones', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     // ///////////////////////////////////////////////////////////////////////////
     else if (inputs.enlace == '/m3-otras-opciones') {
@@ -370,7 +375,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-3/m-3-otras-opciones', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-3/m-3-otras-opciones', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     
     // ///////////////////////////////////////////////////////
@@ -387,7 +392,7 @@ module.exports = {
       let siguiente = await SubmoduloLibro.findOne({ enlace: '/m4-portapapeles' });
       let anterior = await SubmoduloLibro.findOne({ enlace: '/m3-otras-opciones' });
 
-      return this.res.view('pages/estudiante/modulo-4/m-4-edicion-word', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+      return this.res.view('pages/estudiante/modulo-4/m-4-edicion-word', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
     }
     // ///////////////////////////////////////////////////////
     else if (inputs.enlace == '/m4-portapapeles') {
@@ -400,7 +405,7 @@ module.exports = {
           }
         });//.sort('createdAt');
       let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      return this.res.view('pages/estudiante/modulo-4/m-4-portapapeles', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+      return this.res.view('pages/estudiante/modulo-4/m-4-portapapeles', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
     }   
     // ///////////////////////////////////////////////////////
     else if (inputs.enlace == '/m4-ortografia') {
@@ -421,7 +426,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-4/m-4-ortografia', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-4/m-4-ortografia', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
        // ///////////////////////////////////////////////////////
        else if (inputs.enlace == '/m4-guardar') {
@@ -442,7 +447,7 @@ module.exports = {
               modulo: objetoSeleccionado.modulo
             }
           });
-        return this.res.view('pages/estudiante/modulo-4/m-4-guardar', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+        return this.res.view('pages/estudiante/modulo-4/m-4-guardar', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
       }
         // ///////////////////////////////////////////////////////////////////////////
         else if (inputs.enlace == '/m4-disenio') {
@@ -457,7 +462,7 @@ module.exports = {
                 modulo: objetoSeleccionado.modulo
               }
             });
-          return this.res.view('pages/estudiante/modulo-4/m-4-disenio', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+          return this.res.view('pages/estudiante/modulo-4/m-4-disenio', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
         }
 
 
@@ -480,7 +485,7 @@ module.exports = {
       let siguiente = await SubmoduloLibro.findOne({ enlace: '/m5-direccion-web' });
       let anterior = await SubmoduloLibro.findOne({ enlace: '/m4-disenio' });
 
-      return this.res.view('pages/estudiante/modulo-5/m-5-navegar-internet', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+      return this.res.view('pages/estudiante/modulo-5/m-5-navegar-internet', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
     }
     //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
@@ -494,7 +499,7 @@ module.exports = {
           }
         });//.sort('createdAt');
       let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      return this.res.view('pages/estudiante/modulo-5/m-5-direccion-web', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+      return this.res.view('pages/estudiante/modulo-5/m-5-direccion-web', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
     } 
     //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
@@ -516,7 +521,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-5/m-5-nombres-dominio', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-5/m-5-nombres-dominio', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
    //////////////////////////////////////////////////////////////////
     //////////////////////////////////////////////////////////////////
@@ -538,7 +543,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-5/m-5-navegador-web', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-5/m-5-navegador-web', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     
     // ///////////////////////////////////////////////////////
@@ -555,7 +560,7 @@ module.exports = {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-5/m-5-motores-navegacion', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-5/m-5-motores-navegacion', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
 
 
@@ -576,7 +581,7 @@ else if (inputs.enlace == '/m6-medios-comunicacion') {
   let siguiente = await SubmoduloLibro.findOne({ enlace: '/m6-creacion-cuenta' });
   let anterior = await SubmoduloLibro.findOne({ enlace: '/m5-motores-navegacion' });
 
-  return this.res.view('pages/estudiante/modulo-6/m-6-medios-comunicacion', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+  return this.res.view('pages/estudiante/modulo-6/m-6-medios-comunicacion', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
 }
     // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
@@ -590,7 +595,7 @@ else if (inputs.enlace == '/m6-creacion-cuenta') {
       }
     });//.sort('createdAt');
   let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-  return this.res.view('pages/estudiante/modulo-6/m-6-creacion-cuenta', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+  return this.res.view('pages/estudiante/modulo-6/m-6-creacion-cuenta', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
 }
    // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
@@ -612,7 +617,7 @@ else if (inputs.enlace == '/m6-envio-correo') {
         modulo: objetoSeleccionado.modulo
       }
     });
-  return this.res.view('pages/estudiante/modulo-6/m-6-envio-correo', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+  return this.res.view('pages/estudiante/modulo-6/m-6-envio-correo', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
 }
 
    // ///////////////////////////////////////////////////////
@@ -635,7 +640,7 @@ else if (inputs.enlace == '/m6-envio-correo') {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-6/m-6-cuenta-skype', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-6/m-6-cuenta-skype', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
         
     // ///////////////////////////////////////////////////////
@@ -652,7 +657,7 @@ else if (inputs.enlace == '/m6-envio-correo') {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-6/m-6-realizar-videollamada', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-6/m-6-realizar-videollamada', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
 
         
@@ -670,7 +675,7 @@ else if (inputs.enlace == '/m6-envio-correo') {
       let siguiente = await SubmoduloLibro.findOne({ enlace: '/m7-facebook' });
       let anterior = await SubmoduloLibro.findOne({ enlace: '/m6-realizar-videollamada' });
     
-      return this.res.view('pages/estudiante/modulo-7/m-7-paginas-internet', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+      return this.res.view('pages/estudiante/modulo-7/m-7-paginas-internet', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
     }
        // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
@@ -685,7 +690,7 @@ else if (inputs.enlace == '/m6-envio-correo') {
           }
         });//.sort('createdAt');
       let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      return this.res.view('pages/estudiante/modulo-7/m-7-facebook', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+      return this.res.view('pages/estudiante/modulo-7/m-7-facebook', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
     }
   // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
@@ -701,7 +706,7 @@ else if (inputs.enlace == '/m6-envio-correo') {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-7/m-7-youtube', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+      return this.res.view('pages/estudiante/modulo-7/m-7-youtube', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
     }
     // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
@@ -719,7 +724,7 @@ else if (inputs.enlace == '/m6-envio-correo') {
       let siguiente = await SubmoduloLibro.findOne({ enlace: '/m8-configuracion-basica' });
       let anterior = await SubmoduloLibro.findOne({ enlace: '/m7-youtube' });
     
-      return this.res.view('pages/estudiante/modulo-8/m-8-dispositivos-moviles', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
+      return this.res.view('pages/estudiante/modulo-8/m-8-dispositivos-moviles', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado })
     }
           // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
@@ -734,7 +739,7 @@ else if (inputs.enlace == '/m6-envio-correo') {
           }
         });//.sort('createdAt');
       let anterior = await ModuloLibro.findOne({ id: objetoSeleccionado.modulo });
-      return this.res.view('pages/estudiante/modulo-8/m-8-configuracion-basica', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+      return this.res.view('pages/estudiante/modulo-8/m-8-configuracion-basica', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
     }
        // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
@@ -756,7 +761,7 @@ else if (inputs.enlace == '/m8-otras-configuraciones') {
         modulo: objetoSeleccionado.modulo
       }
     });
-  return this.res.view('pages/estudiante/modulo-8/m-8-otras-configuraciones', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
+  return this.res.view('pages/estudiante/modulo-8/m-8-otras-configuraciones', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo })
 }
         // ///////////////////////////////////////////////////////
     // ///////////////////////////////////////////////////////
@@ -771,7 +776,7 @@ else if (inputs.enlace == '/m8-otras-configuraciones') {
             modulo: objetoSeleccionado.modulo
           }
         });
-      return this.res.view('pages/estudiante/modulo-8/m-8-instalar-app', { usuario, curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
+      return this.res.view('pages/estudiante/modulo-8/m-8-instalar-app', { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: anterior })
     }
 
 

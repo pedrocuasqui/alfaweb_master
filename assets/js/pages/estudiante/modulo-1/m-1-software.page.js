@@ -138,6 +138,9 @@ parasails.registerPage('m-1-software', {
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
+    if(SAILS_LOCALS.mostrarEvaluacion){
+      this.evaluacionIndividual('evaluacion');
+    }
   },
   mounted: async function () {
     // al cargar la página se cargan los codigos de los objetos 'g' hijos de lienzo-svg

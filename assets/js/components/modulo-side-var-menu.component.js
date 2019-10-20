@@ -52,8 +52,33 @@ parasails.registerComponent('modulo-side-var-menu', {
                     <div class = "container">
                         
                         <div class="list-group">
-                            <a v-for="submodulo in curso.modulos[indiceModulo].submodulos" :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">
+                       
+                            <template v-if="cursoInformatica">
+                            <template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
+                            <a v-if="submodulo.evaluacion"  :href="'/contenido-alfaweb/?enlace='+submodulo.enlace+'&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">
+                            
                                 <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+                                    <small >{{submodulo.evaluacion.tipo =='Nombre_Objeto'? 'Cuestionario de imagenes': submodulo.evaluacion.tipo}}</small>
+                                </div>
+                            
+                                <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Nombre_Objeto'">Identifica la imágen y selecciona la respuesta correcta</p>
+                                <p class="mb-1" v-else-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
+                                <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'">Empareje el término con el concepto correcto</p>
+                            </a> 
+                            <a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+                                </div>
+                                <p class="mb-1" >Evaluación no disponible</p>
+                            </a> 
+                            </template>
+                            </template>
+
+                            <template v-else>
+                            <template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
+                            <a v-if="submodulo.evaluacion"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">  
+                            <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
                                 <small>{{submodulo.evaluacion.tipo =='Nombre_Objeto'? 'Cuestionario de imagenes': submodulo.evaluacion.tipo}}</small>
                                 </div>
@@ -61,7 +86,14 @@ parasails.registerComponent('modulo-side-var-menu', {
                                 <p class="mb-1" v-else-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
                                 <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'">Empareje el término con el concepto correcto</p>
                             </a> 
-                            
+                            <a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
+                                <div class="d-flex w-100 justify-content-between">
+                                    <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+                                </div>
+                                <p class="mb-1" >Evaluación no disponible</p>
+                            </a> 
+                            </template>
+                            </template>
                         </div>
                         
                     </div>
@@ -108,6 +140,7 @@ parasails.registerComponent('modulo-side-var-menu', {
                     <template v-else-if="cursoInformatica">
                         <div key="esCursoInformatica">
                             <a  v-for="submodulo in modulo.submodulos" :href="'/contenido-alfaweb/?enlace='+submodulo.enlace" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']">{{submodulo.nombreSubmodulo}}</a>
+                            <a v-if="modulo.submodulos.length>0" @click="onClickShowModalEvaluacion(modulo.nombreModulo, index)" >Evaluación</a>
                          </div>
                     </template >
                     <template v-else >

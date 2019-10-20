@@ -67,6 +67,9 @@ parasails.registerPage('m-5-motores-navegacion', {
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
+    if(SAILS_LOCALS.mostrarEvaluacion){
+      this.evaluacionIndividual('evaluacion');
+    }
 
   },
   mounted: async function() {

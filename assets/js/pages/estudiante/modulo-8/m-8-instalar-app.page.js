@@ -79,6 +79,9 @@ parasails.registerPage('m-8-instalar-app', {
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
+    if(SAILS_LOCALS.mostrarEvaluacion){
+      this.evaluacionIndividual('evaluacion');
+    }
   },
   mounted: async function () {
     //…

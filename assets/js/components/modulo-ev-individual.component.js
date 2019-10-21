@@ -12,6 +12,7 @@ parasails.registerComponent("modulo-ev-individual", {
   },
   data() {
     return {
+      
       tipoEvaluacion: null,
       arregloRandom: [],
       //variables para usar en Emparejamiento del lado del Estudiante
@@ -47,7 +48,8 @@ parasails.registerComponent("modulo-ev-individual", {
       aciertos: [],
       preguntasCuestionarioRespuestas: [],
 
-      puntos: null,
+      puntos: null, //el numero total de puntos que suma en el curso
+      puntosInterpolados: 0,// puntos interpolados con tweenedTo
       nivel: null,
       medalla: null,
 
@@ -58,7 +60,8 @@ parasails.registerComponent("modulo-ev-individual", {
       submodulosAprobadosPorCurso: [],
 
       porcentajeAvanceSubmodulos: 0,
-      puntosObtenidos: 0,
+      puntosObtenidos: 0, //puntos obtenidos en la evaluacion que se acaba de realizar
+      puntosOtenidosInterpolados: 0, //puntosObtenidos interpolados con tweenedto
       progreso: {},
       submoduloAprobado: false,
       finEvaluacion: false,
@@ -182,14 +185,18 @@ parasails.registerComponent("modulo-ev-individual", {
       </div>
       <div class="modal-body">
       
-        <p >Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p>
-        <p >Puntos Obtenidos: {{puntosObtenidos}}</p>
-        <p >Acumulas un total de : {{puntos}}</p>
-        <p v-if="subeDeNivel_Comp"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
-        <p v-else>Nivel actual: {{nivel}}</p>
-        <p v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, HAS COMPLETADO TODOS LOS MODULOS, TE HAS GRADUADO!!</p>
-        <p v-else>Eres un: {{medalla}}</p>
-        <p>Tu progreso es: {{porcentajeAvanceSubmodulos}} %</p>
+        <p class="evFinPtos">Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p>
+        <p class="evFinPtos">Puntos de la evaluación: {{puntosOtenidosAnimados}} </p>  <!--Puntos Obtenidos:{{puntosObtenidos}}-->
+        <p class="evFinPtos">Acumulas un total de : {{puntosAnimados}}</p> <!--puntos-->
+        <template  v-if="usuario.nombre!='Visitante'"> 
+            <p v-if="subeDeNivel_Comp"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
+            <p v-else>Nivel actual: {{nivel}}</p>
+            <p v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, HAS COMPLETADO TODOS LOS MODULOS, TE HAS GRADUADO!!</p>
+            <!--<p v-else>Eres un: {{medalla}}</p>-->
+            <p>Tu progreso es: {{porcentajeAvanceSubmodulos}} %</p>
+        </template>
+ 
+        
         <div v-if="usuario.nombre=='Visitante'"> <em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em>
         </div>
 
@@ -397,11 +404,11 @@ parasails.registerComponent("modulo-ev-individual", {
     </template>
 
     </div>`,
-  watch: {
-    //Está pendiente de los cambios que se hagan a la variable respuestaCuestionarioPreguntaPrueba
-
-    //respuestaCuestionarioPreguntaPrueba: "respuestaCuestionarioSeleccionada"
-  },
+    watch: {
+     /*  number: function(newValue) {
+        TweenLite.to(this.$data, 0.5, { puntosOtenidosInterpolados: newValue });
+      } */
+    },
   methods: {
     opcionesRespuesta(preguntaActual) {
       //Se construye una respuesta como objeto
@@ -535,9 +542,10 @@ parasails.registerComponent("modulo-ev-individual", {
      * @param {string | int} indexResp indice de la respuesta dentro del arreglo this.arregloRandom
      */
     seleccionarRespuestaEmpareja(pregunta, indexResp) {
-      if (this.respuestaAnterior.length) {
+      //se despinta la respuesta seleccionada anteriormente para un enunciado
+      if (this.respuestaAnterior.length) { //si existe una respuesta anterior se la despinta
         $("#Resp" + this.respuestaAnterior[0]).css({
-          "background-color": "white"
+          "background-color": "#27293d"
         });
         this.respuestaAnterior.pop();
       }
@@ -557,7 +565,7 @@ parasails.registerComponent("modulo-ev-individual", {
               pregunta.respuesta
             ) {
               // Se quita el estilo de color al enunciado
-              $("#Preg" + p).css({ "background-color": "white" });
+              $("#Preg" + p).css({ "background-color": "#27293d" });
 
               //Se establece en null la respuestaEstudiante de la pregunta de indice p
               this.preguntasCuestionarioRespuestas[
@@ -804,6 +812,12 @@ parasails.registerComponent("modulo-ev-individual", {
       $(function() {
         $("#actividadFinalizada").modal("show");
       });
+      
+      // interpolación que le permite definir los valores de destino: this.$data
+      // DEBE IR AQUI PORQUE EN ESTE PUNTO YA SE SABE CUANTOS PUNTOS OBTENIDOS HAY
+      TweenLite.to(this.$data, 3, { puntosOtenidosInterpolados: this.puntosObtenidos,
+                                      puntosInterpolados: this.puntos }); //puntosObtenidosInterpolados recibe el maximo valor  que puede tener
+    
     },
     reiniciarValores() {
       this.arregloRandom = [];
@@ -954,6 +968,12 @@ parasails.registerComponent("modulo-ev-individual", {
         this.indicePreguntaCuestionario ==
         this.preguntasCuestionario.length - 1;
       return es;
+    },
+    puntosOtenidosAnimados: function() {
+      return this.puntosOtenidosInterpolados.toFixed(0);
+    },
+    puntosAnimados: function() {
+      return this.puntosInterpolados.toFixed(0);
     }
   }
 });

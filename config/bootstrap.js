@@ -932,7 +932,7 @@ module.exports.bootstrap = async function(done) {
       ordenNavegacion: 0,
       evaluacion: {
         tipo: "Emparejamiento",
-        tiempoMaximoPorPregunta: 10,
+        tiempoMaximoPorPregunta: 1000,
         preguntas: [
           {
             enunciado: "Un modelo de entidad relación es: ",

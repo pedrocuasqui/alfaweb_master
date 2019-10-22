@@ -20,12 +20,13 @@ parasails.registerComponent("modulo-login", {
   }, 
   template: //html
  `<div>
-  <form @submit.prevent="validarFormulario" >
+  <form  @submit.prevent="validarFormulario" >
 
       <!--SLOT  PARA BOTON DE REGISRATE-->
       <slot>
       </slot>
       <div class="seccion-inicia-sesion">
+      <p>Inicia Sesión</p>
       <input type="radio" id="seleccionar_alias" value="alias" v-model="usuario">
       <label for="alias">Alias</label>
       
@@ -33,22 +34,22 @@ parasails.registerComponent("modulo-login", {
       <label for="email">Email</label>
 
       <div v-if="usuario=='alias'" class="form-group">
-        <label for="alias">* Alias de usuario</label>
+        <label for="alias">Alias de usuario</label>
         <input name="alias" class="form-control" id="alias" autofocus type="text"
           :class="[formErrors.alias || aliasIncorrecto ? 'is-invalid' : '']" v-model.trim="formData.alias" placeholder="Ej. pepito123">
           <div class="invalid-feedback" v-if="formErrors.alias">Ingrese un alias de usuario.</div>
           <div class="invalid-feedback" v-if="aliasIncorrecto">Usuario no registrado.</div>
       </div>
       <div v-else class="form-group">
-        <label for="email">* Correo electrónico</label>
+        <label for="email">Correo electrónico</label>
         <input name="email" class="form-control" id="email" type="email" :class="[formErrors.email || correoIncorrecto ? 'is-invalid' : '']"
-          v-model.trim="formData.email" placeholder="pepito@example.com">
+          v-model.trim="formData.email" placeholder="Ej. pepito@example.com">
         <div class="invalid-feedback" v-if="formErrors.email">Ingrese un correo electrónico válido.</div>
         <div class="invalid-feedback" v-if="correoIncorrecto">Usuario no registrado.</div>
       </div>
 
       <div class="form-group">
-        <label for="password">* Contraseña</label>
+        <label for="password">Contraseña</label>
         <input name="password" class="form-control" id="password" type="password"
           :class="[formErrors.password || passwordIncorrecto ? 'is-invalid' : '']" v-model.trim="formData.password" placeholder="••••••••">
         <div class="invalid-feedback" v-if="formErrors.password">Ingrese una contraseña</div>
@@ -59,11 +60,29 @@ parasails.registerComponent("modulo-login", {
         <input type="submit" value="Iniciar Sesión" class="btn btn-primary">
       </div>
       <div class="form-group">
-        <p>¿No está registrad@? </p>
-        <a class="btn btn-primary" href="/inicio" role="button">Ingrese como visitante</a>
+        <p>¿Quieres ingresar sin registrarte? </p>
+        <a class="btn btn-primary" href="/inicio" role="button">Ingresa como visitante</a>
       </div>
      </div>
     </form>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   </div>
   `,
   methods: {

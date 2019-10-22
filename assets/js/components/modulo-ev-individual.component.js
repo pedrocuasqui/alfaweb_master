@@ -215,36 +215,15 @@ parasails.registerComponent("modulo-ev-individual", {
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
  
 <template  v-if="!finEvaluacion">
-<div class="container">
-    <div>
+<div class="container contenido-evaluacion">
+    
     
     <div class="progress">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" :aria-valuenow="totalTimeProgress" aria-valuemin="0.0" aria-valuemax="100" :style="{width: totalTimeProgress+'%'}">{{totalTime}}</div>
     </div>
-    </div>
+    
 
     <!--CUESTIONARIO-->
     <template v-if="tipoEvaluacion=='Cuestionario'">
@@ -351,12 +330,13 @@ parasails.registerComponent("modulo-ev-individual", {
             
         </div>
     </template>
+  
     </div>
 </template>
 
     <template v-else>
         <h3>RESULTADOS:</h3>
-        <div >
+        <div class="container contenido-evaluacion">
         <div><p>Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p></div>
             
                 
@@ -376,30 +356,7 @@ parasails.registerComponent("modulo-ev-individual", {
                     </div>   
                 </div>
            
-<!--
-            <template v-else-if="tipoEvaluacion=='Emparejamiento'">
-                <div class="row" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
-                    <div class="col-sm-3"><p>{{pregunta.enunciado}}</p></div> 
-                    <div class="col-sm-3"> 
-                        <p :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">Tu respuesta: {{pregunta.respuestaEstudiante}}</p>    
-                        <p>Respuesta correcta:{{pregunta.respuesta}}</p>
-                    </div>   
-                </div>
-            </template>
-            <template v-else>
-                <div class="row" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
-                    <div class="imagen-portada-modulo">
-                        
-                        <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
-                    </div>
-                    <div class="col-sm-3"> 
-                        <p :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">Tu respuesta: {{pregunta.respuestaEstudiante}}</p>    
-                        <p>Respuesta correcta:{{pregunta.respuesta}}</p>
-                    </div>   
-                </div>
-            </template>
 
-            -->
         </div>    
     </template>
 

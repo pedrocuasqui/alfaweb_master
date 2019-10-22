@@ -44,20 +44,22 @@ For more information, see:
       <div class="col">
 
         <div id="listadoCursosHomepage" class="jumbotron">
-
-          <h1 >CURSOS DISPONIBLES</h1>
+          <div class="lista-cursos-disponible">
+          <h1 class="titulo-centrado">CURSOS DISPONIBLES</h1>
           <!--list-group-item btn-curso  list-group-item-action flex-column align-items-start-->
-          <template v-for="curso in cursosPublicados">
+          <template v-for="(curso, index) in cursosPublicados">
             <button :id="curso.id" type="button" class=" button " @click="abrirCurso(curso.id)">
               <div class="d-flex w-100 justify-content-between">
                 <h5 class="mb-1">{{curso.nombre}}</h5>
                 <!--span hace que los contenidos se presenten en linea-->
                 <span>
+                  {{index+1}}
                 </span>
               </div>
               <p class="mb-1 d-flex w-100 justify-content-between">{{curso.descripcion}}</p>
             </button>
           </template>
+        </div>
         </div>
       </div>
 

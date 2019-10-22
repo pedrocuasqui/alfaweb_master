@@ -52,7 +52,7 @@ parasails.registerComponent("modulo-contenedor-admin", {
         <div v-else class="nombre-usuario">
             <a href="/view-login">Inicia Sesión</a> | <a href="/view-registro-usuario">Regístrate</a> 
         </div>
-        <div class="col">
+        <div class="col contenedor-admin-login">
             <slot></slot>  
         </div>   
     </div>

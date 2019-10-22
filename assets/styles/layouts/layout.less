@@ -31,6 +31,7 @@
 @colorFuente           : #c0c1c2;
 @colorTituloModal      :#595959;
 @colorLetraModal       :#222a42;
+@menuSideBar           :linear-gradient(0deg, #389466 0%, #42b883 100%);
 // FIN VARIABLES
 
 h1,
@@ -214,7 +215,7 @@ span {
                 text-align         : left;
                 width              : 100%;
                 // background-color: rgb(17, 17, 17, 0.9);
-                background         : linear-gradient(0deg, #389466 0%, #42b883 100%);
+                background         : @menuSideBar;
                 overflow           : hidden;
                 height             : 100%; // esto estará contenido dentro de la columna izquierda
                 opacity            : 1;
@@ -268,7 +269,7 @@ span {
                     .dropbtn-modulo {
                         //el boton que contiene el nombre del modulo
                         width           : 100%;
-                        background-color: rgb(17, 17, 17, 0.9);
+                        background: @menuSideBar ;
                         color           : white;
                         padding         : 2px;
                         font-size       : 1vw;
@@ -283,9 +284,10 @@ span {
                         //contenedor individual del submodulo
                         display            : block;
                         // position        : relative; //descomentar esta linea para mostrar el contenido sin mover las demas filas
-                        background-color   : #f1f1f1;
+                        // background-color   : #f1f1f1;
+                        background:@menuSideBar ;
                         min-width          : 160px;
-                        box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                        // box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
                         z-index            : 1;
                         margin-left        : 5px;
 
@@ -296,9 +298,10 @@ span {
                         //contenedor individual del submodulo cuando el su modulo no es el seleccionado
                         display            : none;
                         // position        : relative; //descomentar esta linea para mostrar el contenido sin mover las demas filas
-                        background-color   : #f1f1f1;
+                        // background-color   : #f1f1f1;
+                        background: @menuSideBar ;
                         min-width          : 160px;
-                        box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+                        // box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
                         z-index            : 1;
                         margin-left        : 5px;
 
@@ -979,6 +982,15 @@ g.contenedor:hover * {
 
 #listadoCursosHomepage {
     background-color: @colorContenidoCentral  !important;
+    width: 75%;
+    margin: auto;
+    // text-align: center;
+}
+//computadora, por favor al elemento que tiene un identificador llamado .lista-cursos-disponible centrele con respecto a su padre
+.lista-cursos-disponible{
+    // width: 75%;
+    margin: auto;
+    position: relative;
 }
 
 
@@ -1022,7 +1034,9 @@ p a:hover {
 
 .banner-homepage {
     height: 20%;
-
+    background-image: url(/images/homepage/Escuela-Politecnica.jpg);
+    background-size: cover;
+    background-repeat: no-repeat;
 
     .col,
     .col .imagen-banner {
@@ -1048,10 +1062,22 @@ p a:hover {
 }
 
 .contenido-homepage .homepage-logo,
-.contenido-homepage .homepage-login,
-.seccion-inicia-sesion {
+.contenido-homepage .homepage-login{
     border: 1px solid #a9a9a9;
 }
+
+.seccion-inicia-sesion{
+    // border: 1px solid #a9a9a9;
+    // padding: 25px 45px;
+}
+.contenedor-admin-login{
+    position: relative;
+}
+.login-contenedor{
+    width: 40%;
+    margin: auto;
+}
+
 
 .imagen-derecha-homepage {
     img {
@@ -1184,3 +1210,26 @@ h5.modal-title{
 .titulo-centrado{
     text-align: center;
 }
+
+// .seccion-inicia-sesion input:focus {
+//     border: red 1px !important;
+//     box-shadow: none !important;
+//   }
+
+    .form-control {
+        background-color:@colorContenidoCentral;
+        border: @borderRadiusMargen!important;
+        box-shadow: none !important;
+    }
+
+    .form-control:focus {
+        background-color:@colorContenidoCentral;
+        border:1px solid #12bf75 !important;
+        color:@opacity-8;
+        box-shadow: none !important;
+    }
+
+
+    .container.contenido-evaluacion{
+        text-align: center;
+    }

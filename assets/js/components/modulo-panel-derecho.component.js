@@ -134,7 +134,7 @@ parasails.registerComponent('modulo-panel-derecho', {
                             </div>
                             <div class="col-sm-8">
                             <!--COLUMNA DE GRÁFICO DE AVANCE-->
-                            <div> Puntuación de las últimas evaluaciones </div>
+                            <div><p> Puntuación de las últimas evaluaciones </p></div>
                             <canvas id="graficoPuntuacionHistorica" width="1200" height="600"></canvas>
 
                             </div>

@@ -215,19 +215,16 @@ parasails.registerComponent("modulo-ev-individual", {
 
 
 
+ 
 <template  v-if="!finEvaluacion">
 <div class="contenido-evaluacion">
- 
+    
     <!-- Tiempo restante -->
-    <span>
-    <img src="./images/otros/evaluacion/reloj.gif" alt="cuenta regresiva">
     <div class="progress">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" :aria-valuenow="totalTimeProgress" aria-valuemin="0.0" aria-valuemax="100" :style="{width: totalTimeProgress+'%'}">{{totalTime}}</div>
     </div>
-    </span>
-
-    <div class="container">
-
+    
+<div class="container">
     <!--CUESTIONARIO-->
     <template v-if="tipoEvaluacion=='Cuestionario'">
         <div class="row justify-content-center">
@@ -246,6 +243,11 @@ parasails.registerComponent("modulo-ev-individual", {
             <label class="custom-control-label" :for="opcion.id">{{opcion.texto}}</label>
           </div>
           </div>
+
+
+
+
+
 
             <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
             <button v-else @click="clickSiguientePregunta"> Siguiente</button>
@@ -302,6 +304,9 @@ parasails.registerComponent("modulo-ev-individual", {
     <template v-if="tipoEvaluacion=='Nombre_Objeto'">
         <div class="row justify-content-center">
             <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
+ 
+
+
 
             <div class="list-group">
             <div class="d-flex w-100 justify-content-between">
@@ -331,7 +336,6 @@ parasails.registerComponent("modulo-ev-individual", {
 
     <template v-else>
         <h3>RESULTADOS:</h3>
-
         <div class="container">
         <div><p>Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p></div>
             
@@ -353,11 +357,9 @@ parasails.registerComponent("modulo-ev-individual", {
                 </div>
            
 
-        </div>
-           
+        </div>    
     </template>
-    
-    
+
     </div>`,
     watch: {
      /*  number: function(newValue) {

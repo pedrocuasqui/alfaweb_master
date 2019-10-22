@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+  <title>alfabetizaweb | epn</title>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <!-- Viewport mobile tag for sensible mobile support -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no">
+  <!-- ESTILOS DE BOOTSTRAP -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.css" crossorigin="anonymous"> -->
+  
+  
+    <!-- ESTILOS DE BOOTSTRAP END-->
+  <!--STYLES-->
+  <link rel="stylesheet" href="/dependencies/toastr/toastr.min.css">
+  <link rel="stylesheet" href="/styles/importer.css">
+  <!--STYLES END-->
+
+  <!-- FONT AWESOME -->
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css"
+    integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <!--  -->
+  <!-- FUENTE POPPINS -->
+  <link href="https://fonts.googleapis.com/css?family=Poppins:200,300,400,600,700,800" rel="stylesheet">
+  <!--  CHART JS -- css file -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css"
+    integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin="anonymous" />
+  <!-- <link href="/dependencies/toastr.min.css" rel="stylesheet"/> -->
+
+  
+</head>
+
+<body id="layout-general">
+  <%- body %>
+
+  <!-- JQUERY -->
+  <script
+  src="https://code.jquery.com/jquery-3.4.1.js"
+  integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
+  crossorigin="anonymous"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
+    integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+    crossorigin="anonymous"></script>
+  
+  <!-- CHAR JS -- javascript file -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js@2.8.0"></script>
+  <!-- AXIOS -->
+  <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+
+
+  <!-- SCRIPTS BOOTSTRAP: JS, Popper.js, and jQuery-->
+
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"
+    integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+    crossorigin="anonymous"></script>
+  <!--SCRIPTS BOOTSTRAP END   -->
+  <!-- SCRIPT DE ALERTAS CON ESTILO SWEET ALERT -->
+  <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+  <!-- END SWEET ALERT -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+
+
+  <!-- tiny mcs -->
+  <script
+    src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=kjkditphnen1av2wynuz72xcpf4kkxlyj0o0qpn1b82j48oh"></script>
+  <script>
+    tinymce.init({
+      selector: '#mytextarea',
+      plugins: 'image code',
+      toolbar: "insertfile undo redo |image code| bold italic | forecolor backcolor | template codesample | alignleft aligncenter alignright alignjustify | bullist numlist",
+      inline: true,
+      // images_upload_url: '127.0.0.1:1337/crear-modulo',
+      /* we override default upload handler to simulate successful upload*/
+      init_instance_callback: function (editor) {
+        //  window.contenidoTiny =null;
+
+        editor.on('keyup', function (e) { // no reconoce los clicks
+
+          window.contenidoTiny = tinymce.get("mytextarea").getContent()
+          // $('.contenido-tiny').html(window.contenidoTiny);          
+
+        });
+        editor.on('Change', function (e) { //reconoce los clicks sobre el objeto iframe
+
+          window.contenidoTiny = tinymce.get("mytextarea").getContent()
+          // $('.contenido-tiny').html(window.contenidoTiny);          
+        });
+
+      },
+
+      images_upload_handler: function (blobInfo, success, failure) {
+        const formData = new FormData();
+        var _success = success;
+        var _failure = failure;
+        var json;
+
+        formData.append('multimedia', blobInfo.blob(), blobInfo.blob().name);
+        axios({
+          method: 'post',
+          url: '/cargar-imagen',
+          data: formData
+        })
+          .then(
+            (response) => {
+
+              json = response.data;
+
+              _success(json.location);
+            }
+          )
+          .catch(
+            (err) => {
+
+              _failure('Error encontrado' + err);
+            }
+          );
+      }
+    });
+  </script>
+
+  <!-- ANIMACION DE NUMEROS: SE USA AL FINAL DE CAD EVALUACION PARA MOSTRAR LOS NUMEROS CON ANIMACION DE CONTEO -->
+  <!-- fuente vuejs:https://vuejs.org/v2/guide/transitioning-state.html -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/1.20.3/TweenMax.min.js"></script>
+
+  <!--SCRIPTS-->
+  <script src="/dependencies/sails.io.js"></script>
+  <script src="/dependencies/lodash.js"></script>
+  <script src="/dependencies/vue.js"></script>
+  <script src="/dependencies/parasails.js"></script>
+  <script src="/dependencies/notify/notify.js"></script>
+  <script src="/dependencies/toastr/toastr.min.js"></script>
+  <script src="/js/libs/vue-sidebar-menu.js"></script>
+  <script src="/js/components/base-input.js"></script>
+  <script src="/js/components/boton-curso.component.js"></script>
+  <script src="/js/components/modal-detalle-elemento.component.js"></script>
+  <script src="/js/components/modulo-barra-nav.component.js"></script>
+  <script src="/js/components/modulo-contenedor-admin.component.js"></script>
+  <script src="/js/components/modulo-contenedor-curso.component.js"></script>
+  <script src="/js/components/modulo-ev-individual.component.js"></script>
+  <script src="/js/components/modulo-login.component.js"></script>
+  <script src="/js/components/modulo-modal-fin-actv.component.js"></script>
+  <script src="/js/components/modulo-modal-ini-actv.component.js"></script>
+  <script src="/js/components/modulo-modal-inicio.component.js"></script>
+  <script src="/js/components/modulo-panel-derecho.component.js"></script>
+  <script src="/js/components/modulo-side-var-menu.component.js"></script>
+  <script src="/js/pages/401-unauthorized.page.js"></script>
+  <script src="/js/pages/administrador/actualizar-curso.page.js"></script>
+  <script src="/js/pages/administrador/administrar-contenido.page.js"></script>
+  <script src="/js/pages/administrador/administrar-home.page.js"></script>
+  <script src="/js/pages/administrador/administrar-indice.page.js"></script>
+  <script src="/js/pages/administrador/crear-curso.page.js"></script>
+  <script src="/js/pages/administrador/crear-evaluacion.page.js"></script>
+  <script src="/js/pages/administrador/crear-modulo.page.js"></script>
+  <script src="/js/pages/administrador/crear-submodulo.page.js"></script>
+  <script src="/js/pages/administrador/puntaje-estudiante.page.js"></script>
+  <script src="/js/pages/autenticacion/actualizar-usuario.page.js"></script>
+  <script src="/js/pages/autenticacion/login.page.js"></script>
+  <script src="/js/pages/autenticacion/registro-usuario.page.js"></script>
+  <script src="/js/pages/estudiante/indice-estudiante.page.js"></script>
+  <script src="/js/pages/estudiante/inicio.page.js"></script>
+  <script src="/js/pages/estudiante/interfaz-modulos.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-1/m-1-computadora-ev.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-1/m-1-computadora.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-1/m-1-conexion-componentes.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-1/m-1-encender-computadora.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-1/m-1-hardware-mouse.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-1/m-1-hardware-teclado.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-1/m-1-hardware.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-1/m-1-software.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-2/m-2-aplicaciones.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-2/m-2-gestion-archivos.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-2/m-2-navegacion-escritorio.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-2/m-2-papelera.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-3/m-3-area-trabajo.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-3/m-3-barra-acceso-rapido.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-3/m-3-barra-opciones.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-3/m-3-barra-titulo.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-3/m-3-documento-word.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-3/m-3-otras-opciones.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-3/m-3-pantalla-word.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-4/m-4-disenio.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-4/m-4-edicion-word.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-4/m-4-guardar.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-4/m-4-ortografia.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-4/m-4-portapapeles.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-5/m-5-direccion-web.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-5/m-5-motores-navegacion.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-5/m-5-navegador-web.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-5/m-5-navegar-internet.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-5/m-5-nombres-dominio.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-6/m-6-creacion-cuenta.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-6/m-6-cuenta-skype.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-6/m-6-envio-correo.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-6/m-6-medios-comunicacion.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-6/m-6-realizar-videollamada.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-7/m-7-facebook.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-7/m-7-paginas-internet.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-7/m-7-youtube.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-8/m-8-configuracion-basica.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-8/m-8-dispositivos-moviles.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-8/m-8-instalar-app.page.js"></script>
+  <script src="/js/pages/estudiante/modulo-8/m-8-otras-configuraciones.page.js"></script>
+  <script src="/js/pages/homepage.page.js"></script>
+  <!--SCRIPTS END-->
+
+</body>
+
+</html>

@@ -59,7 +59,8 @@ parasails.registerComponent("modulo-login", {
         <input type="submit" value="Iniciar Sesión" class="btn btn-primary">
       </div>
       <div class="form-group">
-        <a class="btn btn-primary" href="/inicio" role="button">Ingresar como visitante</a>
+        <p>¿No está registrad@? </p>
+        <a class="btn btn-primary" href="/inicio" role="button">Ingrese como visitante</a>
       </div>
      </div>
     </form>

@@ -9,7 +9,7 @@ parasails.registerPage('inicio', {
       rol: 'Estudiante',
       id: '1'
     },
-    breadcrumb: [{ nombre: '' }] //se envia un nombre vacio para evaluar si es o no un breadcrumb valido y  segun eso mostrar o no el bredadcrumb
+    breadcrumb: [{ nombre: 'Cursos', id: 1, enlace: '/inicio' }] //se envia un nombre vacio para evaluar si es o no un breadcrumb valido y  segun eso mostrar o no el bredadcrumb
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

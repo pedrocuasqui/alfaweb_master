@@ -20,16 +20,21 @@ parasails.registerComponent('modulo-barra-nav', {
     };
   },
   beforeMount() {
-
-    if (this.breadcrumb[0].nombre != '') {//verifica si existe el objeto 
-
+  
+if( this.breadcrumb[0].nombre){// si existe la propiedad nombre significa que se ha pasado un objeto al breadcrumb
+    if (this.breadcrumb[0].nombre != '') {//verifica si el objeto tiene valores
+      console.log("TIENE  VALOR NOMBRE");
+      this.breadcrumbTieneValores= true;
       if (this.breadcrumb[0].nombre == 'Alfabetización informática') {//el primer elemento siempre sera el curso, por tanto se verifica si el curso es alfabetizacion informatica
         this.isAlfaWeb = true;
         this.cursoAlfaWeb = this.breadcrumb.shift(); //retorna el curso alfaweb
       }
 
-    } else {
+    } 
+    
+  }else {//if (this.breadcrumb[0].enlace==''){
       this.breadcrumbTieneValores = false;
+      console.log("NO TIENE VALORES");
     }
 
 
@@ -42,19 +47,26 @@ parasails.registerComponent('modulo-barra-nav', {
     <div id="breadcrumb">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-        <li v-if="esAdmin" key="homeAdmin" class="breadcrumb-item"><a href="/administrar-home" title="Home"><a class="textoOculto"  href="/administrar-home">home</a><i class="fas fa-home" > </i></a></li>
-          
-          <li  v-else key="homeEst" class="breadcrumb-item"><a href="/inicio" title="Home"><a class="textoOculto"  href="/inicio">home</a><i class="fas fa-home" > </i></a></li>
-          
+        <!--primer elemento del breadcrumb es siempre el home-->
+          <template v-if="esAdmin">  <!--si esta logueado ADMIN-->
+            <li  key="homeAdmin" class="breadcrumb-item"><a href="/administrar-home" title="Home"><a class="textoOculto"  href="/administrar-home">home</a><i class="fas fa-home" > </i></a></li>
+          </template>
+          <template v-else > <!--si esta logueado cualquier OTRO USUARIO-->
+            <li v-if="breadcrumbTieneValores" key="homeEst" class="breadcrumb-item"><a href="/" title="Home"><a class="textoOculto"  href="/inicio">home</a><i class="fas fa-home" > </i></a></li>
+
+            <li v-else key="homeEst" class="breadcrumb-item"><a href="/" title="Home"><a class="textoOculto"  href="/inicio">home</a><i class="fas fa-home" > </i></a></li>
+          </template>
           <template v-if="isAlfaWeb" > <!-- el curso es alfaweb -->
             <li  key="rutaAlfaweb" class="breadcrumb-item"> <a :href="'/indice-estudiante/?cursoId='+cursoAlfaWeb.id"> {{cursoAlfaWeb.nombre}}</a></li>
             <li v-if="breadcrumbTieneValores" class="breadcrumb-item" v-for="item in breadcrumb" key="breadAlfa">
+              <a v-if="item.nombre"  key="inicio" href="/inicio">{{item.nombre}}</a>
               <a v-if="item.nombreModulo"  key="moduloAlfa" :href="'/contenido-alfaweb/?enlace='+item.enlace">{{item.nombreModulo}}</a>
               <a v-if="item.nombreSubmodulo" key="submoduloAlfa" :href="'/contenido-alfaweb/?enlace='+item.enlace">{{item.nombreSubmodulo}}</a>
             </li>
           </template>
           <template v-else-if="esAdmin" > <!-- el curso es alfaweb -->
               <li v-if="breadcrumbTieneValores" class="breadcrumb-item" v-for="item in breadcrumb" key="breadAdmin">
+                <a v-if="item.nombre"  key="inicio" href="/inicio">{{item.nombre}}</a>
                 <a v-if="item.nombreCurso"  key="cursoAdmin" :href="'/administrar-indice/?cursoId='+item.id">{{item.nombreCurso}}</a>
                 <a v-if="item.nombreModulo"  key="moduloAdmin" :href="'/administrar-contenido/?objetoId='+item.id+'&tipoContenido=Modulo'">{{item.nombreModulo}}</a>
                 <a v-if="item.nombreSubmodulo" key="submodulo" :href="'/administrar-contenido/?objetoId='+item.id+'&tipoContenido=Submodulo'">{{item.nombreSubmodulo}}</a>
@@ -62,6 +74,7 @@ parasails.registerComponent('modulo-barra-nav', {
           </template>
           <template v-else> <!--el curso es cualquier otro curso -->
             <li v-if="breadcrumbTieneValores" class="breadcrumb-item" v-for="item in breadcrumb" key="breadEstudiante">
+                <a v-if="item.nombre"  key="inicio" href="/inicio">{{item.nombre}}</a>
                 <a v-if="item.nombreCurso"  key="curso" :href="'/indice-estudiante/?cursoId='+item.id">{{item.nombreCurso}}</a>
                 <a v-if="item.nombreModulo"  key="modulo" :href="'/interfaz-modulos/?objetoId='+item.id+'&tipoContenido=Modulo'">{{item.nombreModulo}}</a>
                 <a v-if="item.nombreSubmodulo" key="submodulo" :href="'/interfaz-modulos/?objetoId='+item.id+'&tipoContenido=Submodulo'">{{item.nombreSubmodulo}}</a>

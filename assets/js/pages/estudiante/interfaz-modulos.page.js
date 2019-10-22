@@ -11,7 +11,8 @@ parasails.registerPage('interfaz-modulos', {
 
     mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
     progreso: {}, //puntos, niveles y medalla actuales,
-    mostrarEvaluacion:false
+    mostrarEvaluacion:false,
+    enlaceCursos:{nombre:"Cursos",texto:"Cursos",id:1, enlace:"/inicio"}
   },
 
   //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -22,11 +23,13 @@ parasails.registerPage('interfaz-modulos', {
     _.extend(this, SAILS_LOCALS);
     if (SAILS_LOCALS.objetoSeleccionado) {
       if (SAILS_LOCALS.objetoSeleccionado.nombreSubmodulo) {
+        this.breadcrumb.push(this.enlaceCursos);
         this.breadcrumb.push(SAILS_LOCALS.curso);
         this.breadcrumb.push(SAILS_LOCALS.moduloPadre);
         this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
 
       } else { //entonces el objeto es un MODULO
+        this.breadcrumb.push(this.enlaceCursos);
         this.breadcrumb.push(SAILS_LOCALS.curso);
         this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
       }

@@ -218,13 +218,22 @@ parasails.registerComponent("modulo-ev-individual", {
 <div class="contenido-evaluacion">
 
 <template  v-if="!finEvaluacion">
+<<<<<<< HEAD
 
+=======
+<div class="contenido-evaluacion">
+>>>>>>> centrar
     
+    <!-- Tiempo restante -->
     <div class="progress">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" :aria-valuenow="totalTimeProgress" aria-valuemin="0.0" aria-valuemax="100" :style="{width: totalTimeProgress+'%'}">{{totalTime}}</div>
     </div>
     
+<<<<<<< HEAD
     <div class="container">
+=======
+<div class="container">
+>>>>>>> centrar
     <!--CUESTIONARIO-->
     <template v-if="tipoEvaluacion=='Cuestionario'">
         <div class="row justify-content-center">
@@ -322,13 +331,20 @@ parasails.registerComponent("modulo-ev-individual", {
             
         </div>
     </template>
+<<<<<<< HEAD
+=======
+    </div>
+>>>>>>> centrar
     </div>
     
 </template>
 
     <template v-else>
         <h3>RESULTADOS:</h3>
+<<<<<<< HEAD
         
+=======
+>>>>>>> centrar
         <div class="container">
         <div><p>Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p></div>
             

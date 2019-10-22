@@ -215,10 +215,9 @@ parasails.registerComponent("modulo-ev-individual", {
 
 
 
-<div class="contenido-evaluacion">
-
 <template  v-if="!finEvaluacion">
-   
+<div class="contenido-evaluacion">
+ 
     <!-- Tiempo restante -->
     <span>
     <img src="./images/otros/evaluacion/reloj.gif" alt="cuenta regresiva">
@@ -327,7 +326,7 @@ parasails.registerComponent("modulo-ev-individual", {
         </div>
     </template>
     </div>
-    
+    </div>
 </template>
 
     <template v-else>
@@ -358,7 +357,7 @@ parasails.registerComponent("modulo-ev-individual", {
            
     </template>
     
-    </div> <!--CLASE contenido-evaluacion-->
+    
     </div>`,
     watch: {
      /*  number: function(newValue) {

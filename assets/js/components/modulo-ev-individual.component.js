@@ -215,19 +215,19 @@ parasails.registerComponent("modulo-ev-individual", {
 
 
 
- 
+<div class="contenido-evaluacion">
+
 <template  v-if="!finEvaluacion">
-<div class="container contenido-evaluacion">
-    
+
     
     <div class="progress">
         <div class="progress-bar progress-bar-striped progress-bar-animated" role="progressbar" :aria-valuenow="totalTimeProgress" aria-valuemin="0.0" aria-valuemax="100" :style="{width: totalTimeProgress+'%'}">{{totalTime}}</div>
     </div>
     
-
+    <div class="container">
     <!--CUESTIONARIO-->
     <template v-if="tipoEvaluacion=='Cuestionario'">
-        <div class="row">
+        <div class="row justify-content-center">
             <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
 
             <div class="list-group">
@@ -244,11 +244,6 @@ parasails.registerComponent("modulo-ev-individual", {
           </div>
           </div>
 
-
-
-
-
-
             <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
             <button v-else @click="clickSiguientePregunta"> Siguiente</button>
             
@@ -264,7 +259,7 @@ parasails.registerComponent("modulo-ev-individual", {
     <!-- EMPAREJAMIENTO -->
     <template v-if="tipoEvaluacion=='Emparejamiento'">
         <div class="container">
-            <div class="row">
+            <div class="row justify-content-center">
                 
                 <!-- usar el siguiente codigo para el estudiante-->
                 <div class="col-sm-4">
@@ -302,11 +297,8 @@ parasails.registerComponent("modulo-ev-individual", {
 
     <!-- SELECCIONAR OBJETO INDICADO -->
     <template v-if="tipoEvaluacion=='Nombre_Objeto'">
-        <div class="row">
+        <div class="row justify-content-center">
             <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
- 
-
-
 
             <div class="list-group">
             <div class="d-flex w-100 justify-content-between">
@@ -330,17 +322,18 @@ parasails.registerComponent("modulo-ev-individual", {
             
         </div>
     </template>
-  
     </div>
+    
 </template>
 
     <template v-else>
         <h3>RESULTADOS:</h3>
-        <div class="container contenido-evaluacion">
+        
+        <div class="container">
         <div><p>Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p></div>
             
                 
-                <div class="row" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
+                <div class="row justify-content-center" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
                     <div v-if="tipoEvaluacion=='Nombre_Objeto'" class="imagen-portada-modulo">
                       <!--El enunciado puede ser cualquier objeto --->
                       <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
@@ -357,9 +350,11 @@ parasails.registerComponent("modulo-ev-individual", {
                 </div>
            
 
-        </div>    
+        </div>
+           
     </template>
-
+    
+    </div> <!--CLASE contenido-evaluacion-->
     </div>`,
     watch: {
      /*  number: function(newValue) {

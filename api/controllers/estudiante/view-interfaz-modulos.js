@@ -71,10 +71,6 @@ module.exports = {
       objetoSeleccionado.color = moduloPadre.color;
 
 
-
-
-
-
     } else {
       return res.status(500).send({ problema: 'no se encontró el tipo de contenido' });
     }

@@ -74,7 +74,7 @@ if( this.breadcrumb[0].nombre){// si existe la propiedad nombre significa que se
           </template>
           <template v-else> <!--el curso es cualquier otro curso -->
             <li v-if="breadcrumbTieneValores" class="breadcrumb-item" v-for="item in breadcrumb" key="breadEstudiante">
-                <a v-if="item.nombre"  key="inicio" href="/inicio">{{item.nombre}}</a>
+                <a v-if="item.nombre"  key="inicio" href="/inicio">{{item.nombre }}</a>
                 <a v-if="item.nombreCurso"  key="curso" :href="'/indice-estudiante/?cursoId='+item.id">{{item.nombreCurso}}</a>
                 <a v-if="item.nombreModulo"  key="modulo" :href="'/interfaz-modulos/?objetoId='+item.id+'&tipoContenido=Modulo'">{{item.nombreModulo}}</a>
                 <a v-if="item.nombreSubmodulo" key="submodulo" :href="'/interfaz-modulos/?objetoId='+item.id+'&tipoContenido=Submodulo'">{{item.nombreSubmodulo}}</a>
@@ -88,6 +88,7 @@ if( this.breadcrumb[0].nombre){// si existe la propiedad nombre significa que se
 
   },
   computed: {
+    
     esAdmin() {
       let esadmin = false;
       //si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador

@@ -14,10 +14,10 @@ module.exports = {
       type: 'string',
       required: true
     },
-    mostrarEvaluacion:{
+    mostrarEvaluacion: {
       type: 'boolean',
       required: false,
-      defaultsTo:false
+      defaultsTo: false
     }
   },
 
@@ -41,7 +41,7 @@ module.exports = {
     var navegarAtras = '';
     var navegarSiguiente = '';
     var moduloPadre = null;
-    var mostrarEvaluacion= inputs.mostrarEvaluacion;
+    var mostrarEvaluacion = inputs.mostrarEvaluacion;
 
     var intentoEvaluacion = { //intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
       puntos: 0,
@@ -61,6 +61,7 @@ module.exports = {
       curso = await sails.helpers.solicitarCursoCompleto(inputs.objetoId).intercept((err) => { sails.log('ERROR EN HELPERS: ' + err); });
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreModulo;
+      objetoSeleccionado.enlace='/interfaz-modulos/?objetoId='+objetoSeleccionado.id+'&tipoContenido=Modulo';
 
     } else if (inputs.tipoContenido == 'Submodulo') {
       objetoSeleccionado = await SubmoduloLibro.findOne({ id: inputs.objetoId });
@@ -69,16 +70,12 @@ module.exports = {
       //la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
       objetoSeleccionado.nombre = objetoSeleccionado.nombreSubmodulo;
       objetoSeleccionado.color = moduloPadre.color;
-
-
-
-
-
-
+      objetoSeleccionado.enlace='/interfaz-modulos/?objetoId='+objetoSeleccionado.id+'&tipoContenido=Submodulo';
     } else {
       return res.status(500).send({ problema: 'no se encontró el tipo de contenido' });
     }
-
+    // se aniade el enlace a si mismo para poder usar en el breadcrubm
+    curso.enlace = '/indice-estudiante/?cursoId=' + curso.id;
     if (!objetoSeleccionado) { //si no se ha encontrado un modulo o submodulo con el id entregado se devuelve un mensaje de error
       var err = new Error();
       err.name = 'objetoNoEncontrado';
@@ -186,7 +183,7 @@ module.exports = {
 
 
 
-    return exits.success({ curso, objetoSeleccionado, moduloPadre, usuario, navegarAtras, navegarSiguiente,mostrarEvaluacion });
+    return exits.success({ curso, objetoSeleccionado, moduloPadre, usuario, navegarAtras, navegarSiguiente, mostrarEvaluacion });
     //el objeto moduloPadre solo contiene valores cuando el objeto seleccionado es SUBMODULO
 
 

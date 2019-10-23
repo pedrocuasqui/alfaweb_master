@@ -397,7 +397,7 @@ parasails.registerPage('m-3-barra-opciones', {
       let estilo = {
         top: this.mouseY + 'px',
         left: this.mouseX + 'px'
-      }
+      };
       return estilo;
     }
   }

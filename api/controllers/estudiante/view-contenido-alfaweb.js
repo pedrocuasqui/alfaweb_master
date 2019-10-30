@@ -147,7 +147,7 @@ if(objetoSeleccionado){ //si el enlace corresponde a un modulo entonces retorna 
       anterior = await SubmoduloLibro.findOne({id:moduloAnteriorConSubmodulos.submodulos[0].id});
     }
     
-
+console.log("MODULO"+stringVista);
   return this.res.view(stringVista, { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: objetoSeleccionado });
 
   
@@ -206,7 +206,7 @@ if(objetoSeleccionado){ //si el enlace corresponde a un modulo entonces retorna 
         });
       
     }
-
+    console.log("SUBMODULO"+stringVista);
   return this.res.view(stringVista, { usuario,mostrarEvaluacion,curso, objetoSeleccionado, siguiente, anterior, modulo: modulo });
 
 }

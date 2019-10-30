@@ -3,7 +3,7 @@ parasails.registerPage('indice-estudiante', {
   //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
   //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
   data: {
-    tituloContenido: "ÍNDICE",
+    tituloContenido: "Seleccione un módulo del curso o pulsa el icono de avanzar",
     descripcionObjeto: '',
     navegarAtras: '/',
     navegarSiguiente: '/contenido-alfaweb/?enlace=/m1-computadora',

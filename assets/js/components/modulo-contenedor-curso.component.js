@@ -83,7 +83,6 @@ parasails.registerComponent("modulo-contenedor-curso", {
   mounted() {
     window.sonido = null;
     window.sonido = window.speechSynthesis;
-  
   },
   template: //html
     `  
@@ -135,7 +134,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 
                                              
                                               
-                         <div  class="col-auto" v-if="navegarSiguiente">
+                         <div id="navegarSiguiente" class="col-auto" v-if="navegarSiguiente">
                          <!--Estoy en un módulo, no se pasa a evaluación-->
                             <template v-if="objetoSeleccionado.nombreModulo">
                                 <a  key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickStop" ><i class="fas fa-chevron-right fa-3x"></i> </a>

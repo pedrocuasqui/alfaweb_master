@@ -66,3 +66,9 @@ Fuente: https://mongodb.github.io/node-mongodb-native/2.2/api/Collection.html#di
 sabado 24 de Agosto 2019
 Como hacer pull de una rama remota y copiar su contenido en una rama local, para luego poder usar este contenido
 https://es.stackoverflow.com/a/193
+ 
+
+Miercoles 30 de Octubre 2019
+//Cannot load page script (`homepage) because a page script has already been loaded on this page.
+
+Hay un elemento dentro de la p'agina con un id quizas repetido, en homepage.ejs se inserta una etiqueta div con ID="inicio" y salta el error

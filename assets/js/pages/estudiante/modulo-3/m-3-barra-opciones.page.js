@@ -80,7 +80,7 @@ parasails.registerPage('m-3-barra-opciones', {
     },
 
     inicio: {
-      id: 'inicio',
+      id: '_inicio',
       titulo: 'Inicio',
       detalle: 'Es la que aparece seleccionada por defecto; en ella se encuentran las principales acciones de un procesador de textos, agrupadas en bloques de iconos: tipo y tamaño de letra, color, negrita, cursiva, efectos de texto y tipografía, sangrado, justificación, inserción de viñetas, numeración, copiar y pegar, copiar formato, etc. Si queremos acceder a más funciones no tendremos más que pulsar en la flecha que aparece en el extremo inferior derecho, y se nos mostrarán en ventana emergente (algo que ocurre en la mayoría de los grupos de comandos del resto de pestañas).',
       leerMas: 'https://emtic.educarex.es/pildoras/pub/cont/archivos/Elementos_basicos_de_Word.pdf',

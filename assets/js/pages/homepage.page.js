@@ -12,14 +12,14 @@ parasails.registerPage('homepage', {
   created: function() {
     // aqui se puede ejecutar código apenas la instancia vue ha sido creada, la propiedad "el" aun no estará disponible
     // mostramos el modal
-    this.mostrarPasos();
+    
   },
   beforeMount: function () {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
   },
   mounted: async function () {
- 
+    // this.mostrarPasos();
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -33,8 +33,11 @@ parasails.registerPage('homepage', {
         $('#modalInicial').modal('show');
       }); */
       // $(window).load(
-     
-        introJs().start();
+        // $(function () {
+          
+        // introJs().start();
+        // introJs().addHints();
+      // });
     },
   }
 });

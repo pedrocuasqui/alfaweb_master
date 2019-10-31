@@ -45,7 +45,7 @@ For more information, see:
 
         <div id="listadoCursosHomepage" class="jumbotron">
           <div class="lista-cursos-disponible">
-          <h1 class="titulo-centrado">CURSOS DISPONIBLES</h1>
+          <h1   class="titulo-centrado"><span data-hintPosition="top-left" data-hint="Seleccione un curso de la lista">CURSOS DISPONIBLES</span></h1>
           <!--list-group-item btn-curso  list-group-item-action flex-column align-items-start-->
           <template v-for="(curso, index) in cursosPublicados">
             <button :id="curso.id" type="button" class=" button " @click="abrirCurso(curso.id)">

@@ -47,6 +47,7 @@ parasails.registerPage('indice-estudiante', {
       this.isAlfaWeb = true;
     }
 
+    introJs().start();
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

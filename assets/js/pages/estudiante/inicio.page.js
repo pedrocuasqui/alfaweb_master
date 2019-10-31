@@ -25,7 +25,7 @@ parasails.registerPage('inicio', {
   },
   mounted: async function () {
     //…
-    
+    introJs().addHints();
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

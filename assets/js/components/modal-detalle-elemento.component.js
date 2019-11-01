@@ -37,7 +37,7 @@ parasails.registerComponent('modal-detalle-elemento', {
       mostrarPlay: true, //el lector de texto empieza en silencio,
       pausado: false,
       msg: null,
-      textoHtml:"",
+      textoHtml: "",
       textoLectura: ""
     };
   },
@@ -78,7 +78,7 @@ parasails.registerComponent('modal-detalle-elemento', {
 
     var _this = this;
     // setTimeout(()=>{ _this.animarBuho=false}, 2000);
-    $('#modal' + this.infoElement.id).on('show.bs.modal', ()=>{
+    $('#modal' + this.infoElement.id).on('show.bs.modal', () => {
       _this.clickLimitarTiempoAnimacion();
     });
 
@@ -91,7 +91,7 @@ parasails.registerComponent('modal-detalle-elemento', {
       audioModal.play();//reproduce el archivo de audio
     });
     //efecto de sonido de CERRAR
-    $('#modal' + this.infoElement.id).on('hide.bs.modal',()=> {
+    $('#modal' + this.infoElement.id).on('hide.bs.modal', () => {
       window.sonido.cancel();
       let audioModal = document.getElementById("audioModalCerrar");
       audioModal.volume = 0.2;
@@ -116,11 +116,16 @@ parasails.registerComponent('modal-detalle-elemento', {
         aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
           <div class="modal-content">
+          
+          <audio id="audioModalAbrir" src="/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3"></audio>
+          <audio id="audioModalCerrar" src="/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3"></audio>
             
+          
           
             <!--HEADER --> 
             <div class="modal-header">
               <h5 class="modal-title" :id="'exampleModalLongTitle'+infoElement.id">{{infoElement.titulo}}</h5>
+              
               <button type="button" class="close" data-dismiss="modal" aria-label="Close" @click="clickStop">
                 <span aria-hidden="true">&times;</span>
               </button>
@@ -128,70 +133,62 @@ parasails.registerComponent('modal-detalle-elemento', {
 
 
             <!--BODY -->
-            <div class="modal-body">
-            <audio id="audioModalAbrir" src="/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3"></audio>
-            <audio id="audioModalCerrar" src="/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3"></audio>
-              
             
-            <div class="d-print-inline-flex text-justify" >
-                <!--<img @click="clickReproducir" @mouseover="clickReproducir" :class="{avatarModalInicio : animarBuho }" id="avatarModal" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
--->
-                <!-- <div class="col-sm-1" id="avatar">-->
-                <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-                <span>
-                <a v-if="mostrarPlay" tabindex="0"  @click="clickReproducir" title="Reproducir" class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-play"></i></a>
-                
-                <a v-else @click="clickPausar" tabindex="0" title="Pausar"  class="iconoAudio audioTag" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-pause"></i></a>
-                <a @click="clickStop" title="Parar" tabindex="0" class="iconoAudio audioTag"><i class="fas fa-stop"></i></a>
-                </span>
 
-
-
-
-
-           <!--  </div>-->
-              <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
-
-                <div ref="printTexto">
-                {{infoElement.detalle}}
-                </div>
-                                
-              </div>
-              <a v-if="leerMas" :href="infoElement.leerMas" target="_blank">Leer más</a>
-              
-              <!--IMAGENES-->
-              <div ref="printImagenes" class="d-flex justify-content-center"><img v-if="imagen" v-for="img in infoElement.imgs" :src="img.src" :title="img.alt"></div>
-
-              <!-- HTML-->
-              <div  ref="printHtml" v-if="html" :id="'htmlContent'+infoElement.id" v-html="infoElement.html"></div>
-
-              <!--CAROUSEL-->
-              <div ref="printCarousel" v-if="ecarousel" :id="idCarousel" class="carousel slide modalDetalle" data-ride="carousel" data-interval="false">
-              <ol class="carousel-indicators carousel-indicators-numbers">
-
-                <li v-for="(elemento,index) in infoElement.carousel"  :key="index" :data-target="'#'+idCarousel" :data-slide-to="index" class="indicador" :class="{active: elemento.posicion==1}" @click="obtenerIndice">{{elemento.posicion}}</li>
-
-              </ol>
-              <div class="carousel-inner">
-
-                <div v-for="(elemento, index) in infoElement.carousel" class="carousel-item" :class="{active: elemento.posicion==1}" >
-                  <img class="d-block w-100" :src="elemento.imagen" :alt="elemento.alt">
-                </div> 
-      
-              </div>
-              <a class="carousel-control-prev" :href="'#'+idCarousel" role="button" data-slide="prev"
-                @click="obtenerIndice">
-                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                <span class="sr-only">Previous</span>
-              </a>
-              <a class="carousel-control-next" :href="'#'+idCarousel" role="button" data-slide="next"
-                @click="obtenerIndice">
-                <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                <span class="sr-only">Next</span>
-              </a>
+            <div class="modal-body">
+            
+            <div id="botones_play_imprimir">
+              <span>
+                <a v-if="mostrarPlay" tabindex="0"  @click="clickReproducir" title="Reproducir" :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-play"></i></a>
+                <a v-else @click="clickPausar" tabindex="0" title="Pausar"  :class="{avatarModalInicio : animarBuho }" ><i class="fas fa-pause"></i></a>
+                <a @click="clickStop" title="Parar" tabindex="0" ><i class="fas fa-stop"></i></a>
+                <a @click="clickImprimir" tabindex="0" title="Imprimir contenido"><i class="fas fa-print"></i></a>
+                </span>  
             </div>
-  
+            
+            <div class="modal_contenedor_descripcion"> <!--BUHO Y TEXTO DESCRIPCION-->
+                <div class="flotante_izquierda">
+                <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+                </div>
+                <div ref="printTexto">   <!--ref: se usa para indicar que contenido se va a imprimir, se usa abajo en los metodos javascript-->
+                {{infoElement.detalle}} <a v-if="leerMas" :href="infoElement.leerMas" target="_blank">Leer más</a>   
+                </div>
+            </div>
+              
+            <div class="modal_contenedor_multimedia">
+                  <!--IMAGENES-->
+                  <div v-if="imagen" ref="printImagenes" ><img v-for="img in infoElement.imgs" :src="img.src" :title="img.alt"></div>
 
+                  <!-- HTML-->
+                  <div  v-if="html" ref="printHtml" :id="'htmlContent'+infoElement.id" v-html="infoElement.html"></div>
+
+                  <!--CAROUSEL-->
+                  <div v-if="ecarousel" ref="printCarousel"  :id="idCarousel" class="carousel slide modalDetalle" data-ride="carousel" data-interval="false">
+                  <ol class="carousel-indicators carousel-indicators-numbers">
+
+                    <li v-for="(elemento,index) in infoElement.carousel"  :key="index" :data-target="'#'+idCarousel" :data-slide-to="index" class="indicador" :class="{active: elemento.posicion==1}" @click="obtenerIndice">{{elemento.posicion}}</li>
+
+                  </ol>
+                  <div class="carousel-inner">
+
+                    <div v-for="(elemento, index) in infoElement.carousel" class="carousel-item" :class="{active: elemento.posicion==1}" >
+                      <img class="d-block w-100" :src="elemento.imagen" :alt="elemento.alt">
+                    </div> 
+          
+                  </div>
+                  <a class="carousel-control-prev" :href="'#'+idCarousel" role="button" data-slide="prev"
+                    @click="obtenerIndice">
+                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Previous</span>
+                  </a>
+                  <a class="carousel-control-next" :href="'#'+idCarousel" role="button" data-slide="next"
+                    @click="obtenerIndice">
+                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                    <span class="sr-only">Next</span>
+                  </a>
+                </div>
+  
+            </div>
 
 
 

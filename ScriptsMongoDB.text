@@ -72,3 +72,24 @@ Miercoles 30 de Octubre 2019
 //Cannot load page script (`homepage) because a page script has already been loaded on this page.
 
 Hay un elemento dentro de la p'agina con un id quizas repetido, en homepage.ejs se inserta una etiqueta div con ID="inicio" y salta el error
+
+
+
+
+
+Viernes 01 de Noviembre de 2019
+//ALINEACION DE ELEMENTOS EN HTML CON CSS 
+*** text-align:center;                  Centra el texto horizontalmente
+***     margin: auto;                   Centra elementos bloque con ancho especifico, horizontalmente
+*** line-height: ...;                   Centra UNA linea de texto verticalmente;
+*** margin-top: ...;margin-top: ...;    Centra verticalmente a partir del margin
+*** flexbox                             Centra horizontalmente o verticlmente cualquier elemento
+
+
+
+////LAS SIGUIENTES SON PROPIEDADES DE FLEXBOX que centran todo el contenido (tipo caja y tipo linea) horizontalmente y verticalmente
+ display:flex;
+ flex-direction: row;
+ flex-wrap:wrap;
+ justify-content: center;
+ align-items: center;

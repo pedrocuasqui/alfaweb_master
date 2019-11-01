@@ -90,6 +90,7 @@ li {
     i.fas.fa-chevron-right,
     i.fas.fa-chevron-left,
     i.fas.fa-lock-open,
+    i.fas.fa-print,
     i.fas.fa-lock,i.fas.fa-play, i.fas.fa-pause, i.fas.fa-stop, a.audioTag{
         color : #0084ff ;
         cursor: pointer;
@@ -111,6 +112,7 @@ li {
     i.fas.fa-chevron-left:hover,
     i.fas.fa-lock-open:hover,
     i.fas.fa-lock:hover,
+    i.fas.fa-print:hover,
     i.fas.fa-play:hover, i.fas.fa-pause:hover, i.fas.fa-stop:hover {
         color: rgb(218, 217, 226);
 
@@ -764,8 +766,22 @@ img.mensaje-bienvenida {
     max-height: 60vh !important;
 }
 
-
-
+.modal_contenedor_descripcion{
+    height: 100px !important; //con respecto a .modal-body 
+    width: auto !important; //con respecto a .modal-body 
+    overflow-y: auto;
+}
+.modal_contenedor_multimedia{ 
+ height: 400px !important; //con respecto a .modal-body 
+ width: auto !important; //con respecto a .modal-body 
+ overflow-y: hidden;
+////LAS SIGUIENTES SON PROPIEDADES DE FLEXBOX
+ display:flex;
+ flex-direction: row;
+ flex-wrap:wrap;
+ justify-content: center;
+ align-items: center;
+}
 
 
 
@@ -1223,8 +1239,8 @@ h5.modal-title{
 }
 
 
-.titulo-centrado{
-    text-align: center;
+.titulo-centrado,.contenido_centrado_horizontalmente{
+    text-align: center;     
 }
 
 // .seccion-inicia-sesion input:focus {
@@ -1275,4 +1291,14 @@ h5.modal-title{
 
     .introjs-tooltiptext{
 color: @colorFuente !important;
+    }
+
+    .flotante_izquierda{
+        float: left;
+    }
+
+    #botones_play_imprimir{
+        position: absolute;
+        top: -10px !important;
+        left: 75px !important;
     }

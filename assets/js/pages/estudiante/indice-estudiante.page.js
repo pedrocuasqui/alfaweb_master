@@ -46,8 +46,15 @@ parasails.registerPage('indice-estudiante', {
       //el primer elemento siempre sera el curso, por tanto se verifica si el curso es alfabetizacion informatica
       this.isAlfaWeb = true;
     }
-
-    introJs().start();
+    // Fuente setOptions : https://introjs.com/docs/intro/options/
+    introJs().setOptions(
+      {
+        "nextLabel": "Siguiente > ",
+        "prevLabel": "< Atrás",
+        "skipLabel": "Omitir",
+        "doneLabel": "Entendido!"
+      }
+    ).start();
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -62,16 +69,16 @@ parasails.registerPage('indice-estudiante', {
       if (this.contenidos.length == 0) {
         contenidoEsVacio = true;
       }
-    
+
       return contenidoEsVacio;
     },
     existeCursoEstudianteyLogueado() {
       let existe = false;
       if (this.cursoEstudiante && this.usuario.nombre != 'Visitante') {
         existe = true;
-        
+
       }
-      
+
 
       return existe;
     },

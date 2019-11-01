@@ -91,7 +91,7 @@ li {
     i.fas.fa-chevron-left,
     i.fas.fa-lock-open,
     i.fas.fa-lock,i.fas.fa-play, i.fas.fa-pause, i.fas.fa-stop, a.audioTag{
-        color : rgb(0, 132, 255) ;
+        color : #0084ff ;
         cursor: pointer;
     }
 
@@ -948,21 +948,37 @@ img {
 
 
 
-g.contenedor1:hover * {
+
+    g.contenedor:hover * {
+        fill  :#e14eca !important;
+        cursor: pointer;
+    }
+
+  //aplica estilo a los elementos de clase g con clase "contenedor", estos elementos contendrán el grupo de graficos svg sobre los cuales se moverá el mouse 
+  g.contenedor0:hover {
+    fill:#e14eca !important;
+  } 
+
+  g.contenedor1:hover * {
     stroke-width  : 1.5px !important;
-    stroke        : #42b883 !important;
+    stroke        : #e14eca !important;
     stroke-opacity: 1;
 }
 
-
-g.contenedor:hover * {
-    fill  :#42b883 !important;
-    cursor: pointer;
+.tooltip {
+    pointer-events:none;//permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
+    opacity:1;
+    display: block;
+    position: fixed; // el origen de coordenadas se toma de la ventana del navegador 
+    border-radius: 3px;
+    // border:#d3d3d3 solid 1px;
+    background: #0084ff ;
+    font-family: Comfortaa, Verdana;
+    font-size: medium;
+    padding: 8px;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
+    max-height: 50px;
 }
-
-
-
-
 
 .tooltip1 {
     pointer-events: none; //permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
@@ -970,9 +986,8 @@ g.contenedor:hover * {
     display       : block;
     position      : fixed; // el origen de coordenadas se toma de la ventana del navegador 
     border-radius : 3px;
-    border        : #d3d3d3 solid 1px;
-    background    : #fff;
-    color         : red;
+    // border        : #d3d3d3 solid 1px;
+    background    : #0084ff ;
     font-family   : Comfortaa, Verdana;
     font-size     : medium;
     padding       : 8px;

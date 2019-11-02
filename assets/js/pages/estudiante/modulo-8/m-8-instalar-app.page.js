@@ -74,7 +74,8 @@ parasails.registerPage('m-8-instalar-app', {
 
     this.usuario = SAILS_LOCALS.usuario;
     this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
-    this.navegarSiguiente = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.siguiente.enlace;
+    // this.navegarSiguiente = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.siguiente.enlace;
+    this.navegarSiguiente = '/'; //este el es ultimo tema, por tanto debe mostrar la pantalla del indice
     this.navegarAtras = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.anterior.enlace;
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);

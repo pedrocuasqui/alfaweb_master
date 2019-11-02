@@ -142,9 +142,9 @@ parasails.registerComponent("modulo-contenedor-curso", {
                             <!--Estoy en un submodulo, paso a evaluacion antes de pasar a otro tema-->
                             <template v-else>   
                             <!--navegacion-siguiente-->
-                                <a v-if="evIndividual" key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickStop" ><i class="fas fa-chevron-right fa-3x"></i> </a>
+                                <a v-if="navegarSiguiente!='/'" key="siguiente"  :href="navegarSiguiente" title="Siguiente tema" @click="clickStop" ><i class="fas fa-chevron-right fa-3x"></i> </a>
                                 <!--navegacion-evaluacion-->
-                                <a v-else key="evaluacion" title="Evaluación" @click.stop="evaluacionIndividual"><i class="fas fa-chevron-right fa-3x"></i> </a> <!--por defecto se muestra este boton-->                  
+                                <!--<a v-else key="evaluacion" title="Evaluación" @click.stop="evaluacionIndividual"><i class="fas fa-chevron-right fa-3x"></i> </a> --><!--por defecto se muestra este boton-->                  
                             </template>
                         </div>
                                           

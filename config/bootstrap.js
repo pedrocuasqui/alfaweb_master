@@ -614,7 +614,7 @@ module.exports.bootstrap = async function (done) {
         nombreSubmodulo: "Instalación de una aplicación móvil",
         descripcion:
           "Una app es una aplicación informática diseñada para ser ejecutada en teléfonos inteligentes, tabletas y otros dispositivos móviles. En internet existen varias aplicaciones de software que permiten al dispositivo móvil ejecutar nuevas tareas",
-        enlace: "m8-app-movil",
+        enlace: "m8-instalar-app",
         multimedia: {},
         contenidoTiny: "<p>Pulse para editar</p>",
         modulo: moduloCreado.id,

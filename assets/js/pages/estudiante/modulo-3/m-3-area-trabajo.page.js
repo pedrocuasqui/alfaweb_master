@@ -37,13 +37,21 @@ parasails.registerPage('m-3-area-trabajo', {
     this.breadcrumb.push(SAILS_LOCALS.curso);
     this.breadcrumb.push(SAILS_LOCALS.modulo);
     this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
-    if(SAILS_LOCALS.mostrarEvaluacion){
+    if (SAILS_LOCALS.mostrarEvaluacion) {
       this.evaluacionIndividual('evaluacion');
     }
   },
   mounted: async function () {
     //…
-
+    // Fuente setOptions : https://introjs.com/docs/intro/options/
+    introJs().setOptions(
+      {
+        "nextLabel": "Siguiente > ",
+        "prevLabel": "< Atrás",
+        "skipLabel": "Omitir",
+        "doneLabel": "Entendido!"
+      }
+    ).start();
   },
 
   //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -72,7 +80,7 @@ parasails.registerPage('m-3-area-trabajo', {
 
     actualizaProgreso(progresoActual) {
       this.progreso = progresoActual;
-      
+
     },
 
 

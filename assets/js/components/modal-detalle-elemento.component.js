@@ -163,7 +163,7 @@ parasails.registerComponent('modal-detalle-elemento', {
                   <div  v-if="html" ref="printHtml" :id="'htmlContent'+infoElement.id" v-html="infoElement.html"></div>
 
                   <!--CAROUSEL-->
-                  <div v-if="ecarousel" ref="printCarousel"  :id="idCarousel" class="carousel slide modalDetalle" data-ride="carousel" data-interval="false">
+                  <div v-if="ecarousel" ref="printCarousel"  :id="idCarousel" class="carousel slide modalDetalle" data-ride="carousel" data-interval="false" data-wrap="false">
                   <ol class="carousel-indicators carousel-indicators-numbers">
 
                     <li v-for="(elemento,index) in infoElement.carousel"  :key="index" :data-target="'#'+idCarousel" :data-slide-to="index" class="indicador" :class="{active: elemento.posicion==1}" @click="obtenerIndice">{{elemento.posicion}}</li>

@@ -77,11 +77,6 @@ module.exports = {
 
 
 
-    var curso = await Curso.findOne({ id: inputs.cursoId }).populate('modulos');
-
-
-    return exits.success({ curso: curso });
-
   }
 
 

@@ -75,7 +75,7 @@ parasails.registerComponent('modulo-side-var-menu', {
                             </template>
                             </template>
 
-                            <template v-else>
+                            <template v-else-if="curso.modulos.length !=0">
                             <template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
                             <a v-if="submodulo.evaluacion"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">  
                             <div class="d-flex w-100 justify-content-between">

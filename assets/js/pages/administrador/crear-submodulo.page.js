@@ -231,6 +231,14 @@ parasails.registerPage('crear-submodulo', {
 
       return '';
 
+    },
+    existeContenidoTiny(){
+      let valor= true;
+      if(window.contenidoTiny || window.contenidoTiny==''){
+        valor=false;
+      }
+      
+      return valor;
     }
   },
 });

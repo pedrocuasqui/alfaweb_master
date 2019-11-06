@@ -8,94 +8,69 @@
             <div class=" formularioCentralSmall jumbotron">
                 <form id="formulario">
 
-                    <div class="form-group">
-                        <label for="nombreModulo">Título del módulo (*)</label>
-                        <input type="text" id="nombreModulo" name="nombreModulo" v-model="nombreModulo"
-                            placeholder="Ej: Modulo 1: la computadora"
-                            :class="[formErrors.nombreModulo ? 'is-invalid' : '']" maxlength="100" autofocus>
-                        <div class="invalid-feedback" v-if="formErrors.nombreModulo">Ingrese un nombre para el módulo.</div>
-                    </div>
-                    <div class="form-group">
-                        <label for="descripcionModulo">Descripción del módulo(*)</label>
-                        <input type="text" id="descripcionModulo" name="descripcionModulo" v-model="descripcionModulo"
-                            placeholder="Ej: Aprende las partes básicas de la computadora"
-                            :class="[formErrors.descripcionModulo ? 'is-invalid' : '']" maxlength="400">
-                        <div class="invalid-feedback" v-if="formErrors.descripcionModulo">Ingrese una descripción para el
-                            módulo.</div>
-                    </div>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-                    <div class="form-group">
-
-                        <label>Imágen de portada (*)</label>
-                        <input type="file" name="multimedia" id="file" class="inputfile" @change="onFileSelected"
-                            accept="image/*" :class="[computedErrorImagen ? 'is-invalid' : '']">
-                        <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
-                                    class="fas fa-plus-circle fa-2x"></i></a></label>
-                        <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un archivo de
-                            imagen para la portada max:20MB.</div>
-                        <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen permitidos:
-                            jpg,/png. max:20MB. </div>
-                        <!-- CARGAR IMAGEN -->
-                        <!-- <div class="row">
-                            <div class="col-sm-2"> -->
-                        <div class="d-flex justify-content-center">
-                            <!-- <div class="row">
-                                <input type="file" name="multimedia" id="file" class="inputfile" @change="onFileSelected"
-                                    accept="image/*" :class="[computedErrorImagen ? 'is-invalid' : '']">
-                                <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i class="fas fa-plus-circle fa-2x"></i></a></label>
-                            </div>
-                            <div class="row">
-                                <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un archivo de
-                                    imagen para la portada max:20MB.</div>
-                                <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen permitidos:
-                                    jpg,/png. max:20MB. </div>
-                            </div> -->
-
-
-                            <!-- </div>
-                            <div class="col-sm-10"> -->
-                            <div class="imagen-portada-modulo">
-                                <!-- error GET al tratar de obtener la imagen obtenido del servidor -->
-                                <div v-if="mostrarSpinner" class="spinner-border m-5" role="status">
-                                    <span class="sr-only">Loading...</span>
-                                </div>
-                                <img v-if="rutaTemporal!=''" :src="rutaTemporal" alt="Previsualización de imágen cargada">
-
-                                <a @click="onBorrarImagen()"><i class="fas fa-trash-alt"></i></a>
-                            </div>
-
+                    <div class="form-group row">
+                        <label for="nombreModulo" class="col-sm-3">Título del módulo (*)</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="nombreModulo" name="nombreModulo" v-model="nombreModulo"
+                                placeholder="Ej: Modulo 1: la computadora"  class="form-control "
+                                :class="[formErrors.nombreModulo && nombreModulo=='' ? 'is-invalid' : '']" maxlength="100" autofocus>
+                            <div class="invalid-feedback" v-if="formErrors.nombreModulo && nombreModulo==''">Ingrese un nombre para el módulo.</div>
                         </div>
-                        <!-- 
-                            </div>
-                        </div> -->
-
-
+                    </div>
+                    
+                    <div class="form-group row">
+                        <label for="descripcionModulo" class="col-sm-3">Descripción del módulo(*)</label>
+                        <div class="col-sm-9">
+                            <input type="text" id="descripcionModulo" name="descripcionModulo" v-model="descripcionModulo"
+                            placeholder="Ej: Aprende las partes básicas de la computadora"  class="form-control"
+                            :class="[formErrors.descripcionModulo && descripcionModulo=='' ? 'is-invalid' : '']" maxlength="400">
+                            <div class="invalid-feedback" v-if="formErrors.descripcionModulo && descripcionModulo==''">Ingrese una descripción para el
+                            módulo.</div>
+                        </div>
                     </div>
 
 
+                    <div class="form-group row">
+                        <label class="col-sm-3">Imágen de portada (*)</label>
+                        <div class="col-sm-9">
+                            <input type="file" name="multimedia" id="file" class="inputfile form-control" @change="onFileSelected"
+                            accept="image/*" :class="[computedErrorImagen && imagenTemporal=={}? 'is-invalid' : '']">
+                        
+                            <!--<label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
+                                    class="fas fa-plus-circle fa-2x"></i></a></label> -->
+                            <div class="invalid-feedback" v-if="formErrors.imagenPortada ">Seleccione un archivo de
+                            imagen para la portada max:20MB.</div>
+                            <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen permitidos:
+                            jpg,/png. max:20MB. </div>
+                        
+                            <!-- CARGAR IMAGEN -->
+             
+                            <div class="">
+                                <div class="imagen-portada-modulo">
+                                    <!-- error GET al tratar de obtener la imagen obtenido del servidor -->
+                                    <div v-if="mostrarSpinner" class="spinner-border m-5" role="status">
+                                        <span class="sr-only">Cargando...</span>
+                                    </div>
+                                    <img v-if="rutaTemporal!=''" :src="rutaTemporal" alt="Previsualización de imágen cargada">
+                                    <!-- <i @click="onBorrarImagen()"><i class="fas fa-trash-alt"></i></a> -->
+                                </div>
+                            </div>
+                        </div>
+       
+                    </div>
 
-
-                    <label for="tinyMce">* Contenido </label>
+                <div class="row">
+                    <label for="tinyMce" class="col-sm-3">* Contenido </label>
                     <!-- Se conserva method="post" de tiny por defecto  -->
-                    <form method="post" id="tinyMce">
-                        <div id="mytextarea" class="contenidoTiny">Pulse para editar</div>
-                        <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
-                        <div class="invalid-feedback" v-if="formErrors.contenidoTiny">Debe ingresar algún contenido </div>
-                    </form>
+                    <div class="col-sm-9">
+                        <form method="post" id="tinyMce">
+                            <div id="mytextarea" class="contenidoTiny form-control" placeholder="Ej: texto"></div>
+                            <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                            <div class="invalid-feedback" v-if="formErrors.contenidoTiny">Debe ingresar algún contenido </div>
+                        </form>
+                    </div>
+                </div>
+                    
                     <!-- FUNCIONALIDAD PARA SELECCIONAR UN COLOR PARA EL FONDO, SE GUARDA EN LA BASE DE DATOS -->
                     <!-- <div class="form-group">
                         <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán

@@ -106,22 +106,24 @@ parasails.registerPage('crear-modulo', {
     onFileSelected(event) {//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
 
       //Añadir las propiedades del objeto seleccionado a la variable imagenPortada
-
-      this.imagenTemporal = event.target.files[0];
-      this.mostrarSpinner = true;
-      //no se usa directamente URL.createObjectURL porque tinymce necesita usar url.create para mostrar las imágenes
-      // this.imagenTemporal.rutaLocal = URL.createObjectURL(this.imagenTemporal);//Visualizar en el navegador la imagen seleccionada
+      if (event.target.files.length != 0) {
+        this.imagenTemporal = event.target.files[0];
+        this.mostrarSpinner = true;
 
 
-      // setTimeout(function () { URL.revokeObjectURL(url); }, 3000);
-      // URL.revokeObjectURL(url); //Cada vez que se llama a createObjectURL(), un nuevo objeto URL es creado, incluso si ya creaste uno para el mismo objeto. Cada uno de estos objetos puede ser liberado usando URL.revokeObjectURL() cuándo ya no lo necesitas. Los navegadores liberan estos objetos cuando el documento es cerrado
-
-      this.formErrors.imagenPortada = false;
-      this.formErrors.typeFile = false;
+        //no se usa directamente URL.createObjectURL porque tinymce necesita usar url.create para mostrar las imágenes
+        // this.imagenTemporal.rutaLocal = URL.createObjectURL(this.imagenTemporal);//Visualizar en el navegador la imagen seleccionada
 
 
-      this.guardarImagenPortada()
+        // setTimeout(function () { URL.revokeObjectURL(url); }, 3000);
+        // URL.revokeObjectURL(url); //Cada vez que se llama a createObjectURL(), un nuevo objeto URL es creado, incluso si ya creaste uno para el mismo objeto. Cada uno de estos objetos puede ser liberado usando URL.revokeObjectURL() cuándo ya no lo necesitas. Los navegadores liberan estos objetos cuando el documento es cerrado
 
+        this.formErrors.imagenPortada = false;
+        this.formErrors.typeFile = false;
+
+
+        this.guardarImagenPortada();
+      }
     },
     guardarImagenPortada() {
       var _this = this;
@@ -144,8 +146,7 @@ parasails.registerPage('crear-modulo', {
         )
         .catch(
           (err) => {
-            alert('Error: consulte a soporte técnico');
-
+            alert('Error: no se ha podido guardar la imágen: ' + err);
           }
         );
     },
@@ -228,9 +229,9 @@ parasails.registerPage('crear-modulo', {
     /**
      * 
      */
-    onBorrarImagen() {
-      this.imagenPortada = {};
-    },
+    /*   onBorrarImagen() {
+        this.imagenPortada = {};
+      }, */
     /*
     evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
       

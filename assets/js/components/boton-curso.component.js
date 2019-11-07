@@ -21,13 +21,13 @@ parasails.registerComponent('boton-curso', {
     <button :id="curso.id" type="button" class=" button list-group-item list-group-item-action flex-column align-items-start">
     <!-- @click="abrirCurso(curso.id)"> -->
     <div class="d-flex w-100 justify-content-between">
-      <input :id="'input'+curso.id" v-if="editarCurso" type="text" v-model="curso.nombre" :class="[formErrors.nombre ? 'is-invalid' : '']">
+      <input :id="'input'+curso.id" v-if="editarCurso" type="text" v-model="curso.nombre" class="form-control" :class="[formErrors.nombre && curso.nombre=='' ? 'is-invalid' : '']" placeholder="Nombre del curso">
       <h5 v-else class="mb-1">{{curso.nombre}}</h5>
-      <div class="invalid-feedback" v-if="formErrors.nombre">El campo no puede estar vacío</div>
+      <div class="invalid-feedback" v-if="formErrors.nombre && curso.nombre==''">El campo no puede estar vacío</div>
       <!--span hace que los contenidos se presenten en linea-->
       <span>
-        <!--EDITAR CURSO-->
-        <a v-if="habilitarEdicion" @click.stop="validarCampos()" title="Editar Curso"><i
+        <!--EDITAR CURSO   habilitarEdicion-->
+        <a v-if="editarCurso" @click.stop="validarCampos()" title="Editar Curso"><i
             class="fas fa-save"></i></a>
         <a v-else-if="noEsInforBasica" @click.stop="mostrarEditarCurso(curso.id)" data-placement="top" title="Editar Curso"> <i
             class="fas fa-edit"></i> </a>
@@ -40,9 +40,11 @@ parasails.registerComponent('boton-curso', {
             class="fas fa-trash-alt"></i></a>
       </span>
     </div>
-    <input v-if="editarCurso" type="text" v-model="curso.descripcion">
-    <p v-else class="mb-1">{{curso.descripcion}}</p>
-    <div class="invalid-feedback" v-if="formErrors.descripcion">El campo no puede estar vacío</div>
+    <div class="d-flex w-100 justify-content-between">
+        <input v-if="editarCurso" type="text" v-model="curso.descripcion" class="form-control" placeholder="Descripción del curso">
+        <p v-else class="mb-1">{{curso.descripcion}}</p>
+        <div class="invalid-feedback" v-if="formErrors.descripcion && curso.descripcion==''">El campo no puede estar vacío</div>
+    </div>
   </button>
 </div>
     `,
@@ -120,14 +122,14 @@ parasails.registerComponent('boton-curso', {
             let respuesta = this.curso.nombre != 'Alfabetización informática';
             return respuesta;
         },
-        habilitarEdicion() {
+        // habilitarEdicion() {
 
-            let respuesta = this.editarCurso;
-            return respuesta
-        },
-        deshabilitarEdicion() {
+        //     let respuesta = this.editarCurso;
+        //     return respuesta
+        // },
+        // deshabilitarEdicion() {
 
-        },
+        // },
         cursoPublicado() {
             let respuesta = this.curso.publicado && this.curso.nombre != 'Alfabetización informática';
             return respuesta;

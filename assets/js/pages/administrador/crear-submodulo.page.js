@@ -33,7 +33,7 @@ parasails.registerPage('crear-submodulo', {
     tipoContenido: 'Submodulo',
     breadcrumb: [],
 
-
+    contTiny: null,
 
     adminCreandoModuloSubmodulo: true
 
@@ -46,12 +46,12 @@ parasails.registerPage('crear-submodulo', {
     // Attach any initial data from the server.
     _.extend(this, SAILS_LOCALS);
     this.curso = SAILS_LOCALS.curso;
-    this.moduloSeleccionado = SAILS_LOCALS.moduloSeleccionado
+    this.moduloSeleccionado = SAILS_LOCALS.moduloSeleccionado;
     this.breadcrumb.push(SAILS_LOCALS.curso);
   },
   mounted: async function () {
     //se crea la variable contenidoTiny para poder guardar el contenido del textarea de contendio 
-    window.contenidoTiny = null;// se establece el contenido
+    this.contTiny = window.contenidoTiny = null;// se establece el contenido
 
   },
 
@@ -110,7 +110,7 @@ parasails.registerPage('crear-submodulo', {
           //pasar el objeto creado, 
           alert('Submodulo creado correctamente');
           this.submoduloCreado = response.data;
-          
+
 
           window.location.replace('/administrar-contenido/?objetoId=' + this.submoduloCreado.id + '&tipoContenido=' + this.tipoContenido);
         })
@@ -121,10 +121,10 @@ parasails.registerPage('crear-submodulo', {
             alert('Ya existe un tema con el mismo nombre');
           } else if (err.response.status == 400) {
             alert('Existen errores en la información suministrada');
-            
+
           } else {
             alert('Error en el servidor');
-            
+
           }
         }
         );
@@ -215,7 +215,11 @@ parasails.registerPage('crear-submodulo', {
     //    console.log('stop resizing');
     //      window.removeEventListener('mousemove', this.startResizing, false);
     //      window.removeEventListener('mouseup', this.stopResizing, false);
-    //  }
+    //  },
+    actualizaContTiny() {
+      this.contTiny = window.contenidoTiny;
+      console.log("esta tipeando");
+    }
   },
   computed: {
     mapaCarrusel() {
@@ -232,13 +236,17 @@ parasails.registerPage('crear-submodulo', {
       return '';
 
     },
-    existeContenidoTiny(){
-      let valor= true;
-      if(window.contenidoTiny || window.contenidoTiny==''){
-        valor=false;
+    existeContenidoTiny() {
+      let existeContenido = true;
+      // si la variabel window.contenidoTiny es null, se evalua como falso, si window.contenidoTiny es '', tambien es falso
+      // si es falso entra al else
+      if (this.contTiny) {  //|| window.contenidoTiny!=''
+        existeContenido = true;
+      } else {
+
+        existeContenido = false;
       }
-      
-      return valor;
+      return existeContenido;
     }
   },
 });

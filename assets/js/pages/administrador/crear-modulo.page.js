@@ -35,7 +35,7 @@ parasails.registerPage('crear-modulo', {
 
     tituloEvaluacion: '',
     evIndividual: false,
-
+    contTiny: null,
 
     adminCreandoModuloSubmodulo: true,
 
@@ -54,7 +54,7 @@ parasails.registerPage('crear-modulo', {
   },
   mounted: async function () {
     //se crea la variable contenidoTiny para poder guardar el contenido del textarea de contendio 
-    window.contenidoTiny = null;// se establece el contenido
+    this.contTiny = window.contenidoTiny = null;// se establece el contenido
 
 
   },
@@ -246,6 +246,10 @@ parasails.registerPage('crear-modulo', {
       
     },
 */
+    actualizaContTiny() {
+      this.contTiny = window.contenidoTiny;
+      console.log("esta tipeando");
+    }
 
   },
   computed: {
@@ -253,7 +257,18 @@ parasails.registerPage('crear-modulo', {
       let error = this.formErrors.imagenPortada || this.formErrors.typeFile;
       return error
     },
+    existeContenidoTiny() {
+      let existeContenido = true;
+      // si la variabel window.contenidoTiny es null, se evalua como falso, si window.contenidoTiny es '', tambien es falso
+      // si es falso entra al else
+      if (this.contTiny) {  //|| window.contenidoTiny!=''
+        existeContenido = true;
+      } else {
 
+        existeContenido = false;
+      }
+      return existeContenido;
+    }
 
   },
 });

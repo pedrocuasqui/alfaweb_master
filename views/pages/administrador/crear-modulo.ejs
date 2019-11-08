@@ -47,7 +47,7 @@
              
                             <div class="">
                                 <div class="imagen-portada-modulo">
-                                    <!-- error GET al tratar de obtener la imagen obtenido del servidor -->
+                                    <!-- error GET al tratar de obtener la imagen obtenido del servidor, sucede porque SAILS CARGA LA IMAGEN AL SERVIDOR Y GRUNT DEBE ACTUALIZAR ESTAS IMAGENES EN LA CARPETA TEMP Y ESO LE TOMA UN POCO DE TIEMPO -->
                                     <div v-if="mostrarSpinner" class="spinner-border m-5" role="status">
                                         <span class="sr-only">Cargando...</span>
                                     </div>

@@ -38,6 +38,7 @@ parasails.registerPage('crear-modulo', {
     contTiny: null,
 
     adminCreandoModuloSubmodulo: true,
+    uploadPercentage:0,
 
   },
 
@@ -106,7 +107,7 @@ parasails.registerPage('crear-modulo', {
     onFileSelected(event) {//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
 
       //Añadir las propiedades del objeto seleccionado a la variable imagenPortada
-      if (event.target.files.length != 0) {
+      if (event.target.files.length != 0) {// si se ha seleccionado un archivo se procede a cargar la imagen, caso contrario no se modifican los valores actuales
         this.imagenTemporal = event.target.files[0];
         this.mostrarSpinner = true;
 
@@ -125,23 +126,49 @@ parasails.registerPage('crear-modulo', {
         this.guardarImagenPortada();
       }
     },
+
+
     guardarImagenPortada() {
+
       var _this = this;
       const formData = new FormData();
       formData.append('multimedia', this.imagenTemporal, this.imagenTemporal.name);
+
+
+
+      
       axios({
         method: 'post',
         url: '/cargar-imagen',
-        data: formData
+        data: formData,
+            // onUploadProgress: function( progressEvent ) {
+            //   this.uploadPercentage = parseInt( Math.round( ( progressEvent.loaded * 100 ) / progressEvent.total ) );
+            //   console.log("UPLOAD A;LSKDJF;ALKSDJ"+ this.uploadPercentage);
+            // }.bind(this)
+            // headers: {
+            //   'Content-Type': file.type,
+            // },
+            headers: {
+              'Content-Type': 'multipart/form-data'
+          },
+            onUploadProgress: progressEvent=> {
+              console.log("ingresa a uploadProgress");
+              const { loaded, total } = progressEvent;
+              
+              var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
+              console.log(loaded/total);
+            }
+          
+        
       })
         .then(
           (response) => {
-
+            
             _this.imagenPortada = response.data;
-            setTimeout(() => {
+            // setTimeout(() => {// buscar la forma de hacer que el servidor indique cuando se haya terminado de cargar la imagen y se encuentre en la carpeta temp
               _this.rutaTemporal = response.data.location;
               _this.mostrarSpinner = false;
-            }, 7000);
+            // }, 7000);
           }
         )
         .catch(

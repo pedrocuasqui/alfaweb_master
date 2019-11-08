@@ -19,13 +19,13 @@ parasails.registerComponent('boton-curso', {
         `  
 <div>
     <button :id="curso.id" type="button" class=" button list-group-item list-group-item-action flex-column align-items-start">
-    <!-- @click="abrirCurso(curso.id)"> -->
+    
     <div class="d-flex w-100 justify-content-between">
       <input :id="'input'+curso.id" v-if="editarCurso" type="text" v-model="curso.nombre" class="form-control" :class="[formErrors.nombre && curso.nombre=='' ? 'is-invalid' : '']" placeholder="Nombre del curso">
       <h5 v-else class="mb-1">{{curso.nombre}}</h5>
       <div class="invalid-feedback" v-if="formErrors.nombre && curso.nombre==''">El campo no puede estar vacío</div>
       <!--span hace que los contenidos se presenten en linea-->
-      <span>
+      <span class="">
         <!--EDITAR CURSO   habilitarEdicion-->
         <a v-if="editarCurso" @click.stop="validarCampos()" title="Editar Curso"><i
             class="fas fa-save"></i></a>

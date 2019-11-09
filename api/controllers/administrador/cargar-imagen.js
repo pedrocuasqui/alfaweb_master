@@ -30,7 +30,7 @@ const fs = require('fs');
       dirname: '../../.tmp/public/images/uploaded',
       
       // don't allow the total upload size to exceed ~20MB
-      maxBytes: 1024 * 1024 * 2000, //20MB,
+      maxBytes: 1024 * 1024 * 200, //20MB,
       // onProgress: status=>{
 
       //   console.log('ESTADO:'+status.written + '/' +status.stream.byteCount);
@@ -56,7 +56,6 @@ const fs = require('fs');
       // destination will be created or overwritten by default.
       fs.copyFile(nuevoArchivo.fd, nuevoArchivo.fd.replace(".tmp\\public","assets"), (err) => {
         if (err) throw err;
-        console.log('File was copied to destination');
       });
 
 

@@ -33,8 +33,9 @@
                     <div class="form-group row">
                         <label class="col-sm-3">Imágen de portada (*)</label>
                         <div class="col-sm-9">
+                                <label for="file" class="btn">Select Image</label>
                             <input type="file" name="multimedia" id="file" class="inputfile form-control" @change="onFileSelected"
-                            accept="image/*" :class="[computedErrorImagen && imagenTemporal=={}? 'is-invalid' : '']">
+                            accept="image/*" :class="[computedErrorImagen && imagenTemporal=={}? 'is-invalid' : '']"  style="visibility:hidden;">
                         
                             <!--<label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
                                     class="fas fa-plus-circle fa-2x"></i></a></label> -->
@@ -46,11 +47,15 @@
                             <!-- CARGAR IMAGEN -->
              
                             <div class="">
+                                <div v-if="mostrarSpinner">
+                                    <div class="progress">
+                                    <div class="progress-bar" role="progressbar" :style="{width:uploadPercentage+'%'}" :aria-valuenow="uploadPercentage" aria-valuemin="0" aria-valuemax="100">{{uploadPercentage}}%</div>
+                                    </div>
+                                </div>
                                 <div class="imagen-portada-modulo">
                                     <!-- error GET al tratar de obtener la imagen obtenido del servidor, sucede porque SAILS CARGA LA IMAGEN AL SERVIDOR Y GRUNT DEBE ACTUALIZAR ESTAS IMAGENES EN LA CARPETA TEMP Y ESO LE TOMA UN POCO DE TIEMPO -->
-                                    <div v-if="mostrarSpinner" class="spinner-border m-5" role="status">
-                                        <span class="sr-only">Cargando...</span>
-                                    </div>
+                                    
+                                   
                                     <img v-if="rutaTemporal!=''" :src="rutaTemporal" alt="Previsualización de imágen cargada">
                                     <!-- <i @click="onBorrarImagen()"><i class="fas fa-trash-alt"></i></a> -->
                                 </div>

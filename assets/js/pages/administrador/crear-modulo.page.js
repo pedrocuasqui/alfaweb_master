@@ -16,13 +16,6 @@ parasails.registerPage('crear-modulo', {
     tipoContenido: 'Modulo',
     breadcrumb: [],
 
-
-
-
-
-
-
-
     seleccionMultimedia: true,
     imagenPortada: {},
     imagenTemporal: {},
@@ -38,7 +31,7 @@ parasails.registerPage('crear-modulo', {
     contTiny: null,
 
     adminCreandoModuloSubmodulo: true,
-    uploadPercentage:0,
+    uploadPercentage: 0,
 
   },
 
@@ -136,38 +129,28 @@ parasails.registerPage('crear-modulo', {
 
 
 
-      
+
       axios({
         method: 'post',
         url: '/cargar-imagen',
         data: formData,
-            // onUploadProgress: function( progressEvent ) {
-            //   this.uploadPercentage = parseInt( Math.round( ( progressEvent.loaded * 100 ) / progressEvent.total ) );
-            //   console.log("UPLOAD A;LSKDJF;ALKSDJ"+ this.uploadPercentage);
-            // }.bind(this)
-            // headers: {
-            //   'Content-Type': file.type,
-            // },
-            headers: {
-              'Content-Type': 'multipart/form-data'
-          },
-            onUploadProgress: progressEvent=> {
-              console.log("ingresa a uploadProgress");
-              const { loaded, total } = progressEvent;
-              
-              var percentCompleted = Math.round( (progressEvent.loaded * 100) / progressEvent.total );
-              console.log(loaded/total);
-            }
-          
-        
+        headers: {
+          'Content-Type': 'multipart/form-data'
+        },
+        onUploadProgress: progressEvent => {
+          this.uploadPercentage = Math.round((progressEvent.loaded * 100) / progressEvent.total);
+          console.log(this.uploadPercentage);
+        }
+
+
       })
         .then(
           (response) => {
-            
+
             _this.imagenPortada = response.data;
             // setTimeout(() => {// buscar la forma de hacer que el servidor indique cuando se haya terminado de cargar la imagen y se encuentre en la carpeta temp
-              _this.rutaTemporal = response.data.location;
-              _this.mostrarSpinner = false;
+            _this.rutaTemporal = response.data.location;
+            _this.mostrarSpinner = false;
             // }, 7000);
           }
         )

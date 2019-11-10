@@ -1,27 +1,17 @@
+/*jshint esversion:8 */
 module.exports = {
+	friendlyName: "View 401 unauthorized",
 
+	description: 'Display "401 unauthorized" page.',
 
-  friendlyName: 'View 401 unauthorized',
+	exits: {
+		success: {
+			viewTemplatePath: "pages/401-unauthorized"
+		}
+	},
 
-
-  description: 'Display "401 unauthorized" page.',
-
-
-  exits: {
-
-    success: {
-      viewTemplatePath: 'pages/401-unauthorized'
-    }
-
-  },
-
-
-  fn: async function () {
-
-    // Respond with view.
-    return {};
-
-  }
-
-
+	fn: async function() {
+		// Respond with view.
+		return {};
+	}
 };

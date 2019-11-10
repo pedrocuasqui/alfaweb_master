@@ -1,22 +1,27 @@
-
+/*jshint esversion:8 */
 parasails.registerComponent('boton-curso', {
-    props: {
+	props: {
+		curso: Object,
+	},
+	data() {
+		return {
+			editarCurso: false,
+			formErrors: {},
+		}
+	},
+	mounted() {
+		var _this = this
+		//se aniade el evento mediante javascript porque el evento @click no permite diferenciar a que boton se le dio click
+		document.getElementById(this.curso.id).addEventListener(
+			'click',
+			(abrir = function() {
+				_this.abrirCurso(_this.curso.id)
+			}),
+			false
+		)
+	},
 
-        curso: Object,
-    },
-    data() {
-        return {
-            editarCurso: false,
-            formErrors: {},
-        };
-    },
-    mounted() {
-        var _this = this;
-        //se aniade el evento mediante javascript porque el evento @click no permite diferenciar a que boton se le dio click 
-        document.getElementById(this.curso.id).addEventListener("click", abrir = function () { _this.abrirCurso(_this.curso.id); }, false);
-    },
-    template://html
-        `  
+	template: /*template */ `  
 <div>
     <button :id="curso.id" type="button" class=" button list-group-item list-group-item-action flex-column align-items-start">
     
@@ -48,94 +53,86 @@ parasails.registerComponent('boton-curso', {
   </button>
 </div>
     `,
-    methods: {
-        mostrarEditarCurso(cursoId) {
+	methods: {
+		mostrarEditarCurso(cursoId) {
+			this.editarCurso = true
+			document
+				.getElementById(cursoId)
+				.removeEventListener('click', abrir, false)
+		},
+		validarCampos() {
+			this.formErrors = {}
 
-            this.editarCurso = true;
-            document.getElementById(cursoId).removeEventListener("click", abrir, false);
+			if (this.curso.nombre == '') {
+				this.formErrors.nombre = true
+			}
+			if (this.curso.descripcion == '') {
+				this.formErrors.descripcion = true
+			}
 
-        },
-        validarCampos() {
-            this.formErrors = {};
+			if (Object.keys(this.formErrors).length > 0) {
+				return false
+			} else {
+				//   this.guardarCurso(curso);
+				this.editarCurso = false
+				this.$emit('guardar-curso', this.curso)
+			}
+		},
+		abrirCurso(cursoId) {
+			window.location.href = '/administrar-indice/?cursoId=' + cursoId
+		},
+		seleccionaCursoEliminar(curso) {
+			this.$emit('selecciona-curso-eliminar', curso)
+		},
+		publicarCurso(cursoId) {
+			axios({
+				url: `/publicar-curso/${cursoId}`,
+				method: 'PUT',
+				data: { publicar: true },
+			})
+				.then(response => {
+					this.curso.publicado = true
+					alert('Curso publicado')
+				})
+				.catch(err => {
+					alert('Error: no se ha podido publicar el curso')
+				})
+		},
+		ocultarCurso(cursoId) {
+			this.curso.publicado = false
+			axios({
+				url: `/publicar-curso/${cursoId}`,
+				method: 'PUT',
+				data: { publicar: false },
+			})
+				.then(response => {
+					this.curso.publicado = false
+					alert('Se ha ocultado el curso a los estudiantes')
+				})
+				.catch(err => {
+					alert('Error: intente más tarde')
+				})
+		},
+	},
+	computed: {
+		noEsInforBasica() {
+			//si el nombre del curso es "Alfabetización informática" entonces no se mostrará el botón eliminar, no se debe por ninguna razón eliminar el curso, en caso de hacerlo, se debe reiniciar el servidor para que se vuelva a crear el curso por defecto, aunque las páginas  html del contenido permanecerán siempre intactas
+			let respuesta = this.curso.nombre != 'Alfabetización informática'
+			return respuesta
+		},
+		// habilitarEdicion() {
 
-            if (this.curso.nombre == '') {
-                this.formErrors.nombre = true;
-            }
-            if (this.curso.descripcion == '') {
-                this.formErrors.descripcion = true;
-            }
+		//     let respuesta = this.editarCurso;
+		//     return respuesta
+		// },
+		// deshabilitarEdicion() {
 
-            if (Object.keys(this.formErrors).length > 0) {
-                return false;
-            } else {
-                //   this.guardarCurso(curso);  
-                this.editarCurso = false;
-                this.$emit('guardar-curso', this.curso);
-            }
-
-
-        }
-        ,
-        abrirCurso(cursoId) {
-            window.location.href = '/administrar-indice/?cursoId=' + cursoId;
-
-        },
-        seleccionaCursoEliminar(curso) {
-            this.$emit('selecciona-curso-eliminar', curso);
-        },
-        publicarCurso(cursoId) {
-
-            axios({
-                url: `/publicar-curso/${cursoId}`,
-                method: 'PUT',
-                data: { publicar: true }
-            }).then(response => {
-                this.curso.publicado = true;
-                alert('Curso publicado');
-
-            }).catch(err => {
-                alert('Error: no se ha podido publicar el curso');
-            });
-
-
-        },
-        ocultarCurso(cursoId) {
-            this.curso.publicado = false;
-            axios({
-                url: `/publicar-curso/${cursoId}`,
-                method: 'PUT',
-                data: { publicar: false }
-            }).then(response => {
-                this.curso.publicado = false;
-                alert('Se ha ocultado el curso a los estudiantes');
-
-            }).catch(err => {
-                alert('Error: intente más tarde');
-            });
-
-        }
-
-    },
-    computed: {
-        noEsInforBasica() {
-            //si el nombre del curso es "Alfabetización informática" entonces no se mostrará el botón eliminar, no se debe por ninguna razón eliminar el curso, en caso de hacerlo, se debe reiniciar el servidor para que se vuelva a crear el curso por defecto, aunque las páginas  html del contenido permanecerán siempre intactas
-            let respuesta = this.curso.nombre != 'Alfabetización informática';
-            return respuesta;
-        },
-        // habilitarEdicion() {
-
-        //     let respuesta = this.editarCurso;
-        //     return respuesta
-        // },
-        // deshabilitarEdicion() {
-
-        // },
-        cursoPublicado() {
-            let respuesta = this.curso.publicado && this.curso.nombre != 'Alfabetización informática';
-            return respuesta;
-        }
-
-
-    }
-
-});
+		// },
+		cursoPublicado() {
+			let respuesta =
+				this.curso.publicado &&
+				this.curso.nombre != 'Alfabetización informática'
+			return respuesta
+		},
+	},
+})

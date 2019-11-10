@@ -1,40 +1,30 @@
+/*jshint esversion:8 */
 module.exports = {
+	friendlyName: "Hash password",
 
+	description: "recibe un password en texto plano y retorna un hash",
 
-  friendlyName: 'Hash password',
+	inputs: {
+		password: {
+			type: "string",
+			required: true
+		}
+	},
 
+	exits: {
+		success: {
+			description: "All done."
+		}
+	},
 
-  description: 'recibe un password en texto plano y retorna un hash',
+	fn: async function(inputs) {
+		const bcrypt = require("bcrypt");
+		const saltRounds = 10;
+		var hashedPassword = bcrypt.hashSync(inputs.password, saltRounds);
+		//   await bcrypt.hash(inputs.password, saltRounds).then(function(hash) {
+		//     return hash;
+		// });
 
-
-  inputs: {
-    password:{
-      type:'string',
-      required:true
-    }
-  },
-
-
-  exits: {
-
-    success: {
-      description: 'All done.',
-    },
-
-  },
-
-
-  fn: async function (inputs) {
-    const bcrypt = require('bcrypt');
-    const saltRounds = 10;
-    var hashedPassword = bcrypt.hashSync(inputs.password, saltRounds);
-  //   await bcrypt.hash(inputs.password, saltRounds).then(function(hash) {
-  //     return hash;
-  // });
-
-    return hashedPassword;
-  }
-
-
+		return hashedPassword;
+	}
 };
-

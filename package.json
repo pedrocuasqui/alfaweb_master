@@ -43,5 +43,18 @@
 	"license": "",
 	"engines": {
 		"node": ">=10.9"
-	}
+	},
+	"languages": [
+		{
+			"id": "javascript",
+			"extensions": [
+				".js",
+				".component.js"
+			],
+			"aliases": [
+				"javascript",
+				"js"
+			]
+		}
+	]
 }

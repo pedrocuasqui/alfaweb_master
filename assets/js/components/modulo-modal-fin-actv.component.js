@@ -1,11 +1,10 @@
-parasails.registerComponent("modulo-modal-fin-actv", {
-  props: ["conteoAciertos", "elementos", "actividadFinaliza"],
-  data() {
-    return {};
-  },
+parasails.registerComponent('modulo-modal-fin-actv', {
+	props: ['conteoAciertos', 'elementos', 'actividadFinaliza'],
+	data() {
+		return {}
+	},
 
-  template://html
-  `
+	template: /*template */ `
     <div v-show="actividadFinaliza" class="modal fade" id="actividadFinalizada" tabindex="-1" role="dialog"
       aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered" role="document">
@@ -27,5 +26,5 @@ parasails.registerComponent("modulo-modal-fin-actv", {
         </div>
       </div>
     </div>`,
-  methods: {}
-});
+	methods: {},
+})

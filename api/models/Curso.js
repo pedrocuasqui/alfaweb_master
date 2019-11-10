@@ -6,55 +6,53 @@
  */
 
 module.exports = {
-  tableName: 'Curso',
-  attributes: {
+	tableName: "Curso",
+	attributes: {
+		//  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
+		//  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
+		//  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
+		nombre: {
+			type: "string",
+			required: true,
+			columnName: "nombre",
+			unique: true
+		},
+		descripcion: {
+			type: "string",
+			defaultsTo: "Curso básico",
+			columnName: "descripcion"
+		},
+		publicado: {
+			type: "boolean",
+			defaultsTo: false,
+			columnName: "publicado"
+		},
 
-    //  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
-    //  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
-    //  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝
-    nombre: {
-      type: 'string',
-      required: true,
-      columnName: 'nombre',
-      unique: true
-    },
-    descripcion: {
-      type: 'string',
-      defaultsTo: 'Curso básico',
-      columnName: 'descripcion'
-    },
-    publicado: {
-      type: 'boolean',
-      defaultsTo: false,
-      columnName: 'publicado'
-    },
+		//  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
+		//  ║╣ ║║║╠╩╗║╣  ║║╚═╗
+		//  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
 
-    //  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
-    //  ║╣ ║║║╠╩╗║╣  ║║╚═╗
-    //  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝
+		//  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
+		//  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
+		//  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
+		modulos: {
+			//Un Curso tiene varios modulos     curso-->modulos
+			collection: "ModuloLibro",
+			via: "curso"
+		},
 
+		//relacion muchos a muchos waterline
+		//un curso puede tener varios estudiante matriculados y un estudiante puede estar matriculado en varios cursos
+		matriculados: {
+			//un estudiante puede seguir varios cursos  estudiante -->curso
+			collection: "estudiante",
+			via: "cursos"
+		},
 
-    //  ╔═╗╔═╗╔═╗╔═╗╔═╗╦╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-    //  ╠═╣╚═╗╚═╗║ ║║  ║╠═╣ ║ ║║ ║║║║╚═╗
-    //  ╩ ╩╚═╝╚═╝╚═╝╚═╝╩╩ ╩ ╩ ╩╚═╝╝╚╝╚═╝
-    modulos: { //Un Curso tiene varios modulos     curso-->modulos
-      collection: 'ModuloLibro',
-      via: 'curso',
-
-    },
-
-    //relacion muchos a muchos waterline
-    //un curso puede tener varios estudiante matriculados y un estudiante puede estar matriculado en varios cursos 
-    matriculados: { //un estudiante puede seguir varios cursos  estudiante -->curso
-      collection: 'estudiante',
-      via: 'cursos',
-    },
-
-    profesor: { //el curso pertenece a un profesor Profesor-->Curso
-      model: 'Profesor',
-      // required: true,
-    }
-  },
-
+		profesor: {
+			//el curso pertenece a un profesor Profesor-->Curso
+			model: "Profesor"
+			// required: true,
+		}
+	}
 };
-

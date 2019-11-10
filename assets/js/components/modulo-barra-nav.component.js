@@ -1,49 +1,49 @@
 parasails.registerComponent('modulo-barra-nav', {
-  props: {
-    breadcrumb: {
-      type: Array,
-      required: true,
-      default: () => { return [{ nombreModulo: '', id: 1, enlace: '' }] }
-    },
-    usuario: {
-      type: Object,
-      required: false,
-      default: () => { return { nombre: 'Visitante', id: 1, rol: 'Estudiante' } }
-    }
+	props: {
+		breadcrumb: {
+			type: Array,
+			required: true,
+			default: () => {
+				return [{ nombreModulo: '', id: 1, enlace: '' }]
+			},
+		},
+		usuario: {
+			type: Object,
+			required: false,
+			default: () => {
+				return { nombre: 'Visitante', id: 1, rol: 'Estudiante' }
+			},
+		},
+	},
+	data() {
+		return {
+			isAlfaWeb: false,
+			cursoAlfaWeb: Object,
+			breadcrumbTieneValores: true,
+		}
+	},
+	beforeMount() {
+		if (this.breadcrumb[0].nombre) {
+			// si existe la propiedad nombre significa que se ha pasado un objeto al breadcrumb
+			if (this.breadcrumb[0].nombre != '') {
+				//verifica si el objeto tiene valores
+				console.log('TIENE  VALOR NOMBRE')
+				this.breadcrumbTieneValores = true
+				if (this.breadcrumb[0].nombre == 'Alfabetización informática') {
+					//el primer elemento siempre sera el curso, por tanto se verifica si el curso es alfabetizacion informatica
+					this.isAlfaWeb = true
+					this.cursoAlfaWeb = this.breadcrumb.shift() //retorna el curso alfaweb
+				}
+			}
+		} else {
+			//if (this.breadcrumb[0].enlace==''){
+			this.breadcrumbTieneValores = false
+			console.log('NO TIENE VALORES')
+		}
+	},
+	mounted() {},
 
-  },
-  data() {
-    return {
-      isAlfaWeb: false,
-      cursoAlfaWeb: Object,
-      breadcrumbTieneValores: true,
-    };
-  },
-  beforeMount() {
-  
-if( this.breadcrumb[0].nombre){// si existe la propiedad nombre significa que se ha pasado un objeto al breadcrumb
-    if (this.breadcrumb[0].nombre != '') {//verifica si el objeto tiene valores
-      console.log("TIENE  VALOR NOMBRE");
-      this.breadcrumbTieneValores= true;
-      if (this.breadcrumb[0].nombre == 'Alfabetización informática') {//el primer elemento siempre sera el curso, por tanto se verifica si el curso es alfabetizacion informatica
-        this.isAlfaWeb = true;
-        this.cursoAlfaWeb = this.breadcrumb.shift(); //retorna el curso alfaweb
-      }
-
-    } 
-    
-  }else {//if (this.breadcrumb[0].enlace==''){
-      this.breadcrumbTieneValores = false;
-      console.log("NO TIENE VALORES");
-    }
-
-
-  },
-  mounted() {
-
-  },
-  template://html
-    `  
+	template: /*template */ `  
     <div id="breadcrumb">
       <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
@@ -83,32 +83,27 @@ if( this.breadcrumb[0].nombre){// si existe la propiedad nombre significa que se
         </ol>
       </nav>
     </div>`,
-  methods: {
+	methods: {},
+	computed: {
+		esAdmin() {
+			let esadmin = false
+			//si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
+			if (
+				(this.usuario.administrador || this.usuario.tutor) &&
+				this.isAlfaWeb == false
+			) {
+				esadmin = true
+			}
+			// si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones
+			//1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
+			//2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
+			else if (this.usuario.rol == 'Estudiante') {
+				esadmin = false
+			} else {
+				esadmin = false
+			}
 
-
-  },
-  computed: {
-    
-    esAdmin() {
-      let esadmin = false;
-      //si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
-      if ((this.usuario.administrador || this.usuario.tutor) && this.isAlfaWeb == false) {
-        esadmin = true;
-      }
-      // si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones 
-      //1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
-      //2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
-      else if (this.usuario.rol == 'Estudiante') {
-        esadmin = false;
-      } else {
-        esadmin = false;
-      }
-
-
-      return esadmin;
-    },
-  }
-
-
-
-});
+			return esadmin
+		},
+	},
+})

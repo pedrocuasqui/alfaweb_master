@@ -1,15 +1,14 @@
-parasails.registerComponent('modulo-modal-ini-actv',{
-    props:[
-        'tituloContenido',
-        'descripcionActividad',
-        'enlaceSiguienteActividad'
+parasails.registerComponent('modulo-modal-ini-actv', {
+	props: [
+		'tituloContenido',
+		'descripcionActividad',
+		'enlaceSiguienteActividad',
+	],
+	data() {
+		return {}
+	},
 
-    ],
-    data(){
-        return {};
-    },
-    template://html 
-    `<div class="modal fade" id="modalInicial" tabindex="-1" role="dialog" aria-labelledby="tituloModalInicial"
+	template: /*template */ `<div class="modal fade" id="modalInicial" tabindex="-1" role="dialog" aria-labelledby="tituloModalInicial"
     aria-hidden="true" data-keyboard="false" data-backdrop="static">
     <div class="modal-dialog modal-dialog-centered" role="document">
       <div class="modal-content">
@@ -28,9 +27,9 @@ parasails.registerComponent('modulo-modal-ini-actv',{
       </div>
     </div>
   </div>`,
-    methods:{
-        empezarEvaluacion(){
-            this.$emit('empezar-evaluacion');
-        },
-    }
-});
+	methods: {
+		empezarEvaluacion() {
+			this.$emit('empezar-evaluacion')
+		},
+	},
+})

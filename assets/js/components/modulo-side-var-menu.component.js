@@ -1,39 +1,43 @@
 parasails.registerComponent('modulo-side-var-menu', {
-    props: {
-        objetoSeleccionado: {
-            type: Object,
-            default: () => { return { id: '1', nombreModulo: 'crearModulo', rol: 'Administrador' } }
-        },
-        curso: {
-            type: Object,
-            required: true
-        },
-        usuario: {
-            type: Object,
-            default: () => { return { nombre: 'Admin', rol: 'Administrador' } }
-        },
-        posicionSeleccionada: null,
-        crearSubmodulo: false
-
-    },
-    data() {
-        return {
-
-            showSidebar: false,
-            cursoInformatica: false,
-            moduloEvaluacion:'', //nombre del modulo que se pasa como parametro a la funcion de mostrar modal
-            indiceModulo:0 //el indice del modulo que se pasa como parametro a la funcion de mostrar modal
-
-        };
-    },
-    mounted() {
-
-        if (this.curso.nombre == 'Alfabetización informática') {
-            this.cursoInformatica = true;
-        }
-    },
-    template: //html
-        `  
+	props: {
+		objetoSeleccionado: {
+			type: Object,
+			default: () => {
+				return {
+					id: '1',
+					nombreModulo: 'crearModulo',
+					rol: 'Administrador',
+				}
+			},
+		},
+		curso: {
+			type: Object,
+			required: true,
+		},
+		usuario: {
+			type: Object,
+			default: () => {
+				return { nombre: 'Admin', rol: 'Administrador' }
+			},
+		},
+		posicionSeleccionada: null,
+		crearSubmodulo: false,
+	},
+	data() {
+		return {
+			showSidebar: false,
+			cursoInformatica: false,
+			moduloEvaluacion: '', //nombre del modulo que se pasa como parametro a la funcion de mostrar modal
+			indiceModulo: 0, //el indice del modulo que se pasa como parametro a la funcion de mostrar modal
+		}
+	},
+	mounted() {
+		if (this.curso.nombre == 'Alfabetización informática') {
+			this.cursoInformatica = true
+		}
+	},
+	//html
+	template: /*template */ `  
     <div >
   
   <!-- Modals -->
@@ -165,128 +169,126 @@ parasails.registerComponent('modulo-side-var-menu', {
         
     </div>
     </div>`,
-    methods: {
-        onClickShowModalEvaluacion(moduloNombre, indice) {
-            this.moduloEvaluacion= moduloNombre;
-            this.indiceModulo = indice;
-            $(function () {
-                $('#modalEnlaceEvaluacion').modal('show');
-            });
-            
-        },
-        onClickLeftCaret() {
-            this.showSidebar = true;
-        },
-        onClickRightCaret() {
-            this.showSidebar = false;
-        },
-        perteneceObjeto(moduloId) {
-            var pertenece = false;
-            if (this.objetoSeleccionado.id == moduloId || this.objetoSeleccionado.modulo == moduloId) {
-                pertenece = true;
-            }
-            return pertenece;
-        },
-        colorModulo(moduloId) {
+	methods: {
+		onClickShowModalEvaluacion(moduloNombre, indice) {
+			this.moduloEvaluacion = moduloNombre
+			this.indiceModulo = indice
+			$(function() {
+				$('#modalEnlaceEvaluacion').modal('show')
+			})
+		},
+		onClickLeftCaret() {
+			this.showSidebar = true
+		},
+		onClickRightCaret() {
+			this.showSidebar = false
+		},
+		perteneceObjeto(moduloId) {
+			var pertenece = false
+			if (
+				this.objetoSeleccionado.id == moduloId ||
+				this.objetoSeleccionado.modulo == moduloId
+			) {
+				pertenece = true
+			}
+			return pertenece
+		},
+		colorModulo(moduloId) {
+			var estilo = {}
+			if (
+				this.objetoSeleccionado.id == moduloId ||
+				this.objetoSeleccionado.modulo == moduloId
+			) {
+				estilo = { backgroundColor: this.objetoSeleccionado.color }
+			}
+			return estilo
+		},
+		objetoPerteneceModulo(moduloId) {
+			let valor = false
+			//primera parte, se evalua que el objeto seleccionado sea un modulo y que sea el modulo del arreglo
+			//la segunda parte se evalua si el objetoSeleccionado es un submodulo y su propiedad modulo corresponda con el modulo actual
+			if (
+				this.moduloId == this.objetoSeleccionado.id ||
+				this.moduloId == this.objetoSeleccionado.modulo
+			) {
+				valor = true
+			}
 
-            var estilo = {};
-            if (this.objetoSeleccionado.id == moduloId || this.objetoSeleccionado.modulo == moduloId) {
-                estilo = { backgroundColor: this.objetoSeleccionado.color };
+			return valor
+		},
+		publicarCurso(cursoId) {
+			axios({
+				url: `/publicar-curso/${cursoId}`,
+				method: 'PUT',
+				data: { publicar: true },
+			})
+				.then(response => {
+					this.curso.publicado = true
+					alert('curso publicado')
+				})
+				.catch(err => {
+					alert('Error, no se ha podido publicar el curso: ' + err)
+				})
+		},
+		ocultarCurso(cursoId) {
+			this.curso.publicado = false
+			axios({
+				url: `/publicar-curso/${cursoId}`,
+				method: 'PUT',
+				data: { publicar: false },
+			})
+				.then(response => {
+					this.curso.publicado = false
+					alert('Se ha ocultado el curso a los estudiantes')
+				})
+				.catch(err => {
+					alert('Error: intente más tarde: ' + err)
+				})
+		},
+	},
+	computed: {
+		esAdmin() {
+			let esadmin = false
+			//si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
 
-            }
-            return estilo;
+			// if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false ){
+			if (this.usuario.administrador || this.usuario.tutor) {
+				//usar la linea anterior para restringir el acceso al curso informatica básica al administrador
+				esadmin = true
+			}
+			// si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones
+			//1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
+			//2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
+			else if (this.usuario.rol == 'Estudiante') {
+				esadmin = false
+			} else {
+				esadmin = false
+			}
 
-        },
-        objetoPerteneceModulo(moduloId) {
-            let valor = false;
-            //primera parte, se evalua que el objeto seleccionado sea un modulo y que sea el modulo del arreglo
-            //la segunda parte se evalua si el objetoSeleccionado es un submodulo y su propiedad modulo corresponda con el modulo actual
-            if (this.moduloId == this.objetoSeleccionado.id || this.moduloId == this.objetoSeleccionado.modulo) {
-                valor = true;
-            }
+			return esadmin
+		},
+		habilitarEdicion() {
+			let edicionHabilitada = false
+			//si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
 
+			if (
+				(this.usuario.administrador || this.usuario.tutor) &&
+				this.cursoInformatica == false
+			) {
+				// if ((this.usuario.administrador || this.usuario.tutor) ) { //usar la linea anterior para restringir el acceso al curso informatica básica al administrador
+				edicionHabilitada = true
+			}
+			// si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones
+			//1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
+			//2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
+			else if (this.usuario.rol == 'Estudiante') {
+				edicionHabilitada = false
+			} else {
+				edicionHabilitada = false
+			}
 
-            return valor;
-        },
-        publicarCurso(cursoId) {
-
-            axios({
-                url: `/publicar-curso/${cursoId}`,
-                method: 'PUT',
-                data: { publicar: true }
-            }).then(response => {
-                this.curso.publicado = true;
-                alert('curso publicado');
-
-
-            }).catch(err => {
-                alert('Error, no se ha podido publicar el curso: ' + err);
-            });
-
-
-        },
-        ocultarCurso(cursoId) {
-            this.curso.publicado = false;
-            axios({
-                url: `/publicar-curso/${cursoId}`,
-                method: 'PUT',
-                data: { publicar: false }
-            }).then(response => {
-                this.curso.publicado = false;
-                alert('Se ha ocultado el curso a los estudiantes');
-
-            }).catch(err => {
-                alert('Error: intente más tarde: ' + err);
-            });
-
-        }
-
-
-    },
-    computed: {
-        esAdmin() {
-            let esadmin = false;
-            //si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
-
-            // if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false ){
-            if ((this.usuario.administrador || this.usuario.tutor)) { //usar la linea anterior para restringir el acceso al curso informatica básica al administrador
-                esadmin = true;
-            }
-            // si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones 
-            //1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
-            //2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
-            else if (this.usuario.rol == 'Estudiante') {
-                esadmin = false;
-            } else {
-                esadmin = false;
-            }
-
-
-            return esadmin;
-        },
-        habilitarEdicion() {
-            let edicionHabilitada = false;
-            //si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
-
-            if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false) {
-                // if ((this.usuario.administrador || this.usuario.tutor) ) { //usar la linea anterior para restringir el acceso al curso informatica básica al administrador
-                edicionHabilitada = true;
-            }
-            // si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones 
-            //1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
-            //2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
-            else if (this.usuario.rol == 'Estudiante') {
-                edicionHabilitada = false;
-            } else {
-                edicionHabilitada = false;
-            }
-
-
-            return edicionHabilitada;
-        },
-        esAlfaweb() {
-
-        }
-    }
-
-});
+			return edicionHabilitada
+		},
+		esAlfaweb() {},
+	},
+})

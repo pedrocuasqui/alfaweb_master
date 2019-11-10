@@ -6,20 +6,20 @@ parasails.registerComponent('modulo-contenedor-curso', {
 		navegarAtras: {
 			type: String,
 			required: false,
-			description: 'la ruta del modulo anterior'
+			description: 'la ruta del modulo anterior',
 		},
 		navegarSiguiente: {
 			type: String,
 			required: false,
-			description: 'la ruta del modulo siguiente'
+			description: 'la ruta del modulo siguiente',
 		},
 		breadcrumb: {
 			type: Array,
-			required: false
+			required: false,
 		},
 		curso: {
 			type: Object,
-			required: true //es necesario para poder cargar el menu lateral
+			required: true, //es necesario para poder cargar el menu lateral
 			// description:'parametro de barra de navegacion lateral'
 		},
 		objetoSeleccionado: {
@@ -29,24 +29,24 @@ parasails.registerComponent('modulo-contenedor-curso', {
 				return {
 					id: '1',
 					nombreModulo: 'crearModulo',
-					rol: 'Administrador'
-				};
-			}
+					rol: 'Administrador',
+				}
+			},
 			// description:'parametro de barra de navegacion, tambien se usa la descripcion cuando el objeto seleccionado es un modulo o submodulo'
 		},
 		tituloTemporal: {
 			type: String,
 			required: false,
 			default: () => {
-				return '';
-			}
+				return ''
+			},
 			// description:'Se debe enviar cuando se crea un modulo o submodulo para reemplzar al titlo del modulo o submodulo'
 		},
 		usuario: {
 			type: Object,
 			default: () => {
-				return { nombre: 'Visitante', rol: 'Estudiante', id: '1' };
-			}
+				return { nombre: 'Visitante', rol: 'Estudiante', id: '1' }
+			},
 		},
 		crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
 		mostrarIconoRepetir: false,
@@ -56,8 +56,8 @@ parasails.registerComponent('modulo-contenedor-curso', {
 			type: Boolean,
 			required: false,
 			default: () => {
-				return false;
-			}
+				return false
+			},
 		},
 		progreso: {
 			type: Object,
@@ -67,11 +67,11 @@ parasails.registerComponent('modulo-contenedor-curso', {
 					nivel: 0, //modulo 1
 					medalla: 'bebe', //medalla mas basica
 					tiempoMaximoPorPregunta: 30, //en segundos por defecto
-					evaluacion: null
-				};
+					evaluacion: null,
+				}
 			},
-			description: 'puntaje, nivel y progreso (medalla) actuales'
-		}
+			description: 'puntaje, nivel y progreso (medalla) actuales',
+		},
 	},
 	data: function() {
 		return {
@@ -81,12 +81,12 @@ parasails.registerComponent('modulo-contenedor-curso', {
 			mostrarPlay: true,
 			pausado: false,
 			sonido: null,
-			silenciarGeneral: false //el audio est'a activado
-		};
+			silenciarGeneral: false, //el audio est'a activado
+		}
 	},
 	mounted() {
-		window.sonido = null;
-		window.sonido = window.speechSynthesis;
+		window.sonido = null
+		window.sonido = window.speechSynthesis
 	},
 
 	template: /*html*/ `
@@ -240,10 +240,10 @@ parasails.registerComponent('modulo-contenedor-curso', {
 
 	methods: {
 		clickAsistenteBuho() {
-			this.$emit('click-asistente-buho');
+			this.$emit('click-asistente-buho')
 		},
 		intentarNuevamente() {
-			this.$emit('intentar-nuevamente');
+			this.$emit('intentar-nuevamente')
 		},
 		evaluacionIndividual(contenido) {
 			if (this.objetoSeleccionado.nombreSubmodulo) {
@@ -251,52 +251,52 @@ parasails.registerComponent('modulo-contenedor-curso', {
 					//Si existe evaluación
 					if (contenido == 'contenido') {
 						//si se envia algo como par'ametro, entonces se retorna
-						this.evIndividual = false;
+						this.evIndividual = false
 					} else {
 						//si no se pasa nada como parametro y ademas el objeto seleccionado  NO es modulo se muestra la evaluacion
 
-						this.evIndividual = true;
+						this.evIndividual = true
 					}
-					this.$emit('evaluacion-individual', contenido);
+					this.$emit('evaluacion-individual', contenido)
 				} else {
 					var r = confirm(
 						'No existe evaluación para este tema. \n ¿Deseas continuar al siguiente tema?'
-					);
+					)
 					if (r == true) {
-						location.assign(this.navegarSiguiente);
-						this.objetoSeleccionado.descripcion = ''; // se vacía la descripción porque ingresa  a una evaluación
+						location.assign(this.navegarSiguiente)
+						this.objetoSeleccionado.descripcion = '' // se vacía la descripción porque ingresa  a una evaluación
 					} else {
 					}
 				}
 			} else {
-				alert('La evaluación se realiza en cada tema');
+				alert('La evaluación se realiza en cada tema')
 			}
-			this.clickStop();
+			this.clickStop()
 		},
 		clickPause() {
-			window.sonido.pause();
-			this.pausado = true;
-			window.mostrarPlay = true;
-			this.mostrarPlay = true;
+			window.sonido.pause()
+			this.pausado = true
+			window.mostrarPlay = true
+			this.mostrarPlay = true
 		},
 		clickStop() {
-			window.sonido.cancel();
-			window.mostrarPlay = true;
-			this.mostrarPlay = true;
-			this.pausado = false;
+			window.sonido.cancel()
+			window.mostrarPlay = true
+			this.mostrarPlay = true
+			this.pausado = false
 		},
 		clickReproducir() {
-			this.mostrarPlay = false;
+			this.mostrarPlay = false
 			if (this.pausado) {
-				window.sonido.resume();
+				window.sonido.resume()
 			} else {
 				// var voices = window.sonido.getVoices();
 				var msg = new SpeechSynthesisUtterance(
 					this.objetoSeleccionado.descripcion
-				);
+				)
 				// msg.voice = voices[7]; // Note: some voices don't support altering params
 				// msg.voice =  window.sonido.getVoices().filter(function(voice) { return voice.name == 'Whisper'; })[0];
-				window.sonido.speak(msg);
+				window.sonido.speak(msg)
 			}
 
 			// Detecta las voces soportadas por speechSynthesis
@@ -306,72 +306,72 @@ parasails.registerComponent('modulo-contenedor-curso', {
       }); */
 		},
 		clickReproducirGeneral() {
-			this.silenciarGeneral = false;
-			$('.audioTag').show();
-			$('.audioTag').show();
+			this.silenciarGeneral = false
+			$('.audioTag').show()
+			$('.audioTag').show()
 			$('#audioMouseOver').attr(
 				'src',
 				'/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3'
-			);
+			)
 			$('#audioModalAbrir').attr(
 				'src',
 				'/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3'
-			);
+			)
 			$('#audioModalCerrar').attr(
 				'src',
 				'/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3'
-			);
+			)
 		},
 		clickSilenciarGeneral() {
-			this.silenciarGeneral = true;
-			this.clickStop();
-			$('.audioTag').hide();
-			$('.audioTag').hide();
-			$('audio').hide();
-			$('audio').attr('src', '');
+			this.silenciarGeneral = true
+			this.clickStop()
+			$('.audioTag').hide()
+			$('.audioTag').hide()
+			$('audio').hide()
+			$('audio').attr('src', '')
 		},
 		clickImprimir() {
-			this.clickStop(); //ultima linea editada en sprint 6
+			this.clickStop() //ultima linea editada en sprint 6
 			// window.print();
 			//fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
 			//para ver como funciona this.$refs revisar la siguiente fuente https://vuejs.org/v2/api/#ref
-			var contenidoBreadcrumb = this.$refs.printBreadcrumb; //https://vuejs.org/v2/api/#ref
-			var contenidoCentral = this.$refs.printContenidoCentral;
-			var contenidoDescripcion = this.$refs.printContenidoDescripcion;
-			var newWin = window.open(''); //abre una variable para escribir sobre ella
-			newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>');
-			newWin.document.write('<h2>Contenido</h2>');
-			newWin.document.write(contenidoBreadcrumb.outerHTML);
-			newWin.document.write(contenidoCentral.outerHTML);
-			newWin.document.write('<h2>Descripción</h2>');
-			newWin.document.write(contenidoDescripcion.outerHTML);
+			var contenidoBreadcrumb = this.$refs.printBreadcrumb //https://vuejs.org/v2/api/#ref
+			var contenidoCentral = this.$refs.printContenidoCentral
+			var contenidoDescripcion = this.$refs.printContenidoDescripcion
+			var newWin = window.open('') //abre una variable para escribir sobre ella
+			newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>')
+			newWin.document.write('<h2>Contenido</h2>')
+			newWin.document.write(contenidoBreadcrumb.outerHTML)
+			newWin.document.write(contenidoCentral.outerHTML)
+			newWin.document.write('<h2>Descripción</h2>')
+			newWin.document.write(contenidoDescripcion.outerHTML)
 			newWin.document.write(
 				'<h5>Sistema "alfaweb" http://www.epn.edu.ec autor: EPN-FIS-Pedro Cuasqui</h5>'
-			);
-			newWin.print();
-			newWin.close();
-			newWin.document.write('<h6>http://www.epn.edu.ec </h6>');
-		}
+			)
+			newWin.print()
+			newWin.close()
+			newWin.document.write('<h6>http://www.epn.edu.ec </h6>')
+		},
 	},
 	computed: {
 		existeDescripcion() {
-			var existe = false;
+			var existe = false
 			if (this.objetoSeleccionado.descripcion) {
-				existe = true;
+				existe = true
 			}
 
-			return existe;
+			return existe
 		},
 		/**
 		 * Se establece el tipo de usuario en caso de ser null
 		 */
 		usuarioRecibido() {
-			var usuarioR = this.usuario;
+			var usuarioR = this.usuario
 			if (!this.usuario) {
 				//si el usuario es null o undefined
-				usuarioR = { nombre: 'Visitante', rol: 'Estudiante' };
+				usuarioR = { nombre: 'Visitante', rol: 'Estudiante' }
 			}
-			return usuarioR;
-		}
-	}
-});
+			return usuarioR
+		},
+	},
+})

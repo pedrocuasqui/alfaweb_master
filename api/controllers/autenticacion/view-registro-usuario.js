@@ -1,26 +1,18 @@
+/*jshint esversion:8 */
 module.exports = {
+	friendlyName: "View registro",
 
+	description: 'Display "Registro" page.',
 
-  friendlyName: 'View registro',
+	exits: {
+		success: {
+			viewTemplatePath: "pages/autenticacion/registro-usuario"
+		}
+	},
 
+	fn: async function(inputs, exits) {
+		// sin inputs en este controlador obtengo un resultado de error
 
-  description: 'Display "Registro" page.',
-
-
-  exits: {
-
-    success: {
-      viewTemplatePath: 'pages/autenticacion/registro-usuario'
-    }
-
-  },
-
-
-  fn: async function (inputs,exits) { // sin inputs en este controlador obtengo un resultado de error
-
-    return exits.success({});
-
-  }
-
-
+		return exits.success({});
+	}
 };

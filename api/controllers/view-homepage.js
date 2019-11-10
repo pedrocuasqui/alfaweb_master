@@ -1,27 +1,17 @@
+/*jshint esversion:8 */
 module.exports = {
+	friendlyName: "View homepage",
 
+	description: 'Display "" page.',
 
-  friendlyName: 'View homepage',
+	exits: {
+		success: {
+			viewTemplatePath: "pages/homepage"
+		}
+	},
 
-
-  description: 'Display "" page.',
-
-
-  exits: {
-
-    success: {
-      viewTemplatePath: 'pages/homepage'
-    }
-
-  },
-
-
-  fn: async function () {
-
-    // Respond with view.
-    return {};
-
-  }
-
-
+	fn: async function() {
+		// Respond with view.
+		return {};
+	}
 };

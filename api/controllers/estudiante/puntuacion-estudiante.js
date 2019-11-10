@@ -1,3 +1,4 @@
+/*jshint esversion:8 */
 module.exports = {
 	friendlyName: "View puntuacion estudiante",
 

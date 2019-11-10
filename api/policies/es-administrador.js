@@ -1,3 +1,4 @@
+/*jshint esversion:8 */
 /**
  *es administrador
  *
@@ -8,21 +9,19 @@
  *   https://sailsjs.com/docs/concepts/policies
  *   https://sailsjs.com/docs/concepts/policies/access-control-and-permissions
  */
-module.exports = async function (req, res, proceed) {
+module.exports = async function(req, res, proceed) {
+	// First, check whether the request comes from a logged-in user.
+	// > For more about where `req.me` comes from, check out this app's
+	// > custom hook (`api/hooks/custom/index.js`).
+	if (!req.session.userId) {
+		return res.unauthorized();
+	} //•
 
-  // First, check whether the request comes from a logged-in user.
-  // > For more about where `req.me` comes from, check out this app's
-  // > custom hook (`api/hooks/custom/index.js`).
-  if (!req.session.userId) {
-    return res.unauthorized();
-  }//•
+	// Then check that this user is a "super admin".
+	// if (!req.me.isSuperAdmin) {
+	//   return res.forbidden();
+	// }//•
 
-  // Then check that this user is a "super admin".
-  // if (!req.me.isSuperAdmin) {
-  //   return res.forbidden();
-  // }//•
-
-  // IWMIH, we've got ourselves a "super admin".
-  return proceed();
-
+	// IWMIH, we've got ourselves a "super admin".
+	return proceed();
 };

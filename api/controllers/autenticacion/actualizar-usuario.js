@@ -1,30 +1,29 @@
+/*jshint esversion:8 */
 module.exports = {
-	friendlyName: 'Actualizar usuario',
-	description: '',
+	friendlyName: "Actualizar usuario",
+	description: "",
 	inputs: {
 		usuarioId: {
-			type: 'string',
+			type: "string",
 			required: true
 		},
-		nombre: {type: 'string',
-			required: true
-		},
+		nombre: { type: "string", required: true },
 		alias: {
-			type: 'string',
+			type: "string",
 			required: true
 		},
 		email: {
-			type: 'string'
+			type: "string"
 		},
 		password: {
-			type: 'string',
+			type: "string",
 			required: true
 		}
 	},
 
 	exits: {
 		success: {
-			description: 'exito'
+			description: "exito"
 		},
 		// redirect: {
 		//   description: 'Redirecciona a otra página despues de registrar al usuario',
@@ -33,16 +32,14 @@ module.exports = {
 		// },
 		aliasoEmailYaEnUso: {
 			statusCode: 409,
-			description: 'alias  o email ya en uso.'
+			description: "alias  o email ya en uso."
 		}
 	},
 
 	fn: async function(inputs, exits) {
 		var res = this.res;
 		var req = this.req;
-		var passwordEncriptada = await sails.helpers.hashPassword(
-			inputs.password
-		);
+		var passwordEncriptada = await sails.helpers.hashPassword(inputs.password);
 		// All done.
 
 		var usuario = null;
@@ -60,7 +57,7 @@ module.exports = {
 
 			if (!usuario) {
 				res.status(401).send({
-					Error: 'EL USUARIO NO SE ENCUENTRA EN LA BASE DE DATOS'
+					Error: "EL USUARIO NO SE ENCUENTRA EN LA BASE DE DATOS"
 				});
 				//respuesta pendiente de modificacion
 			}
@@ -76,18 +73,18 @@ module.exports = {
 					password: passwordEncriptada
 				})
 
-				.intercept('E_UNIQUE', () => {
+				.intercept("E_UNIQUE", () => {
 					//LAS TRES sentencias siguientes son iguales,
 					// la primera toma mas tiempo que la segunda y la tercera
 					// return res.status(409).send();
 					//  return exits.aliasoEmailYaEnUso()
-					return 'aliasoEmailYaEnUso';
+					return "aliasoEmailYaEnUso";
 				})
 				.intercept(err => {
-					sails.log('ERROR GENERAL\n' + err + '\n FIN ERROR GENERAL');
+					sails.log("ERROR GENERAL\n" + err + "\n FIN ERROR GENERAL");
 				});
 
-			sails.log('ADMIN actualizado CORRECTAMENTE');
+			sails.log("ADMIN actualizado CORRECTAMENTE");
 		} else {
 			//registra al usuario en la tabla estudiante
 			await Estudiante.update({ id: usuario.id })
@@ -98,17 +95,17 @@ module.exports = {
 					password: passwordEncriptada
 				})
 
-				.intercept('E_UNIQUE', () => {
+				.intercept("E_UNIQUE", () => {
 					var errores = new Error();
 					errores.message =
-						'Ya existe el usuario con el alias o email provistos';
+						"Ya existe el usuario con el alias o email provistos";
 					return res.status(409).send({ error: errores });
 				})
 				.intercept(err => {
-					sails.log('ERROR GENERAL\n' + err);
+					sails.log("ERROR GENERAL\n" + err);
 				});
 
-			sails.log('ESTUDIANTE CREADO CORRECTAMENTE');
+			sails.log("ESTUDIANTE CREADO CORRECTAMENTE");
 		}
 		delete this.req.session.userId;
 		// return exits.redirect('/view-login');

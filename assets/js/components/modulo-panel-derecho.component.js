@@ -182,7 +182,7 @@ parasails.registerComponent('modulo-panel-derecho', {
                     {{usuario.nombre}}
                     </button>
 
-                    <div class="dropdown-menu">
+                    <div id="boton_desplegable_personalizado" class="dropdown-menu">
                       <a v-if="usuario.nombre =='Visitante'" class="dropdown-item" href="/view-login">Iniciar Sesión</a>
                       <a v-else class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
                       <div class="dropdown-divider"></div>

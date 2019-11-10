@@ -1,3 +1,4 @@
+/*jshint esversion:8 */
 parasails.registerPage("401-unauthorized", {
 	//  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
 	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣

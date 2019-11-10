@@ -27,12 +27,13 @@
 @opacity-8             : rgba(255, 255, 255, .8);
 @font-weight-normal    : 400;
 @colorContenidoCentral :#27293d;
-@borderRadiusMargen    : calc(0.65rem) calc(0.6rem) 0 0;
+@borderRadiusMargen    : 0.65rem 0.6rem 0.6rem 0.6rem;
 @colorFuente           : #c0c1c2;
 @colorTituloModal      :#595959;
 @colorLetraModal       :#222a42;
 @menuSideBar           :linear-gradient(0deg, #389466 0%, #42b883 100%);
 @colorIconos           :#ffffff;
+@color_fondo_pagina     :#1e1e2f;
 // FIN VARIABLES
 
 h1,
@@ -215,7 +216,7 @@ li {
                 //todo el sidebar
                 z-index            : 10;
                 position           : absolute;
-                transition         : all 0.3s ease-in-out;
+                transition         : all 0.4s ease-in-out; //la transicion al mostrar u ocultar
                 text-align         : left;
                 width              : 100%;
                 // background-color: rgb(17, 17, 17, 0.9);
@@ -454,21 +455,26 @@ li {
                     }
                 }
             }
-
+            div.col-derecha-oculta{
+                // background-color: #2EE3AD;
+                margin-top     : -100%; //oculta hacia la izquierda el 90% del andho
+            }
+           
             div.col-derecha {
                 height          : 100%;
-                background-color: #b1cee6;
+                transition         : all 0.4s ease-in-out;
 
                 .barra-lateral {
                     height   : 100%;
                     font-size: 1vw;
 
                     .row.usuario {
+                        position: fixed;
                         height       : 10%;
-                        border-bottom: 1px solid black;
                     }
 
                     .row.progreso {
+                        
                         height       : 30%;
                         border-bottom: 1px solid black;
                         display      : flex;
@@ -708,13 +714,7 @@ img.mensaje-bienvenida {
     }
 }
 
-//COMPONENTE: modulo-indice ---lo anterior
 
-
-.contenidoTiny {
-    background-color: #f1f1f1;
-    border             : 1px solid #a9a9a9;
-}
 
 #avatarModal {
     width : 35px;
@@ -1248,23 +1248,37 @@ h5.modal-title{
     text-align: center;     
 }
 
-// .seccion-inicia-sesion input:focus {
-//     border: red 1px !important;
-//     box-shadow: none !important;
-//   }
+
+
+//COMPONENTE: modulo-indice ---lo anterior
+
+
+    .contenidoTiny {
+        background-color: @colorContenidoCentral;
+        border             : 1px solid #a9a9a9;
+        border-color: #2b3553 !important;
+        border-radius: .4285rem !important;
+        color:@opacity-8 !important;
+        
+        
+    }
 
     .form-control {
-        background-color:@colorContenidoCentral;
-        border: @borderRadiusMargen!important;
+        background-color:@colorContenidoCentral !important;
+        box-shadow: none !important;
+        border-color: #2b3553 !important;
+        border-radius: .4285rem !important;
+        color:@opacity-8 !important;
+    }
+
+    .form-control:focus,.contenidoTiny:focus {
+        background-color:@colorContenidoCentral !important;
+        border:1px solid #12bf75 !important;
+        outline: 0px  !important;  //esta propiedad se implementa para el contenidoTiny
+        color:@opacity-8 !important;
         box-shadow: none !important;
     }
 
-    .form-control:focus {
-        background-color:@colorContenidoCentral;
-        border:1px solid #12bf75 !important;
-        color:@opacity-8;
-        box-shadow: none !important;
-    }
 
 
     .contenido-evaluacion{
@@ -1330,3 +1344,15 @@ color: @colorFuente !important;
         color:#fff;
         font-weight: 600;
     }
+
+
+    .dropdown-menu{
+        border: 1px solid #e14eca;
+        margin-left: -10px !important;
+        width: 15vw !important;
+    }
+     .dropdown-menu, .dropdown-menu *{
+        background: linear-gradient(#222a42,#1d253b) !important;
+        color: @colorFuente !important;     
+        
+     }

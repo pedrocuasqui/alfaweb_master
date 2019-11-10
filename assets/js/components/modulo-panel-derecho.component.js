@@ -78,6 +78,7 @@ parasails.registerComponent('modulo-panel-derecho', {
             intentosEvaluacion: null,
             estudiantesConSusIntentos: [],
             estudiantesConSusIntentosQuickSort: null,
+            mostrar_opciones_de_usuario: true,
         }
 
     },
@@ -89,8 +90,13 @@ parasails.registerComponent('modulo-panel-derecho', {
         ` 
 <div>
 
-
-  <!-- Modals -->
+    <!------------------------------------>
+    <!------------------------------------>
+    <!------------------------------------>
+    <!-- Modals -->
+    <!------------------------------------>
+    <!------------------------------------>
+    <!------------------------------------>
     <!-- Ver puntuacion Historica del estudiante -->
     <div class="modal fade " id="modalPuntuacionEstudiante" tabindex="-1" role="dialog" aria-labelledby="etiquetaModalPuntuacion"
         aria-hidden="true">
@@ -150,52 +156,46 @@ parasails.registerComponent('modulo-panel-derecho', {
         </div>
     </div>
 
-
+    <!------------------------------------>
+    <!------------------------------------>
+    <!------------------------------------>
     <!--Contenido del panel derecho-->
+    <!------------------------------------>
+    <!------------------------------------>
+    <!------------------------------------>
     <div class="container-fluid barra-lateral">
+    
+    <slot >
+    <!--Iconos de silenciar e imprimir-->
+    </slot>
+    <div v-if="existeAvance" >
+        <a v-if="cursoEstudiante.avance.enlace" :href="'/contenido-alfaweb/?enlace='+cursoEstudiante.avance.enlace" >ultimo tema revisado:{{cursoEstudiante.nombre}}</a>
+        <a v-else :href="'/interfaz-modulos/?objetoId='+cursoEstudiante.avance.objetoId+'&tipoContenido='+cursoEstudiante.avance.tipoContenido">ultimo tema revisado:{{cursoEstudiante.nombre}}</a>
+    </div>
+
+
+    
         <div class="row usuario">
                 <div class="col">
-                  
-                      
-                    
-
                     <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="mostrarOpcionesUsuario()">
                     {{usuario.nombre}}
                     </button>
+
                     <div class="dropdown-menu">
                       <a v-if="usuario.nombre =='Visitante'" class="dropdown-item" href="/view-login">Iniciar Sesión</a>
                       <a v-else class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
                       <div class="dropdown-divider"></div>
                       <a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
-                    </div>
-                  </div>
+                      <div v-if="usuario.nombre !='Visitante'" class="dropdown-divider"></div>
 
-
-
-
-
-
-
-
-
-                    <slot ></slot>
-                    
-                    <div v-if="existeAvance" >
-                        <a v-if="cursoEstudiante.avance.enlace" :href="'/contenido-alfaweb/?enlace='+cursoEstudiante.avance.enlace" >ultimo tema revisado:{{cursoEstudiante.nombre}}</a>
-                        <a v-else :href="'/interfaz-modulos/?objetoId='+cursoEstudiante.avance.objetoId+'&tipoContenido='+cursoEstudiante.avance.tipoContenido">ultimo tema revisado:{{cursoEstudiante.nombre}}</a>
-                    </div>
-                </div>
-                
-        </div>
-        
-       
-        <div class="row progreso">
+                      <div class="container-fluid">
+                      <div class="row progreso">
             <div class="col">
                         
                 <div class="puntaje">
                         <div class="row">
-                            <div>Puntos:</div>
+                            <div><span>Puntos:</span></div>
                             <!--<div class="progress icono">    
                                 <div class="progress-bar" role="progressbar" :style="{width:puntajeActual+'%'}" :aria-valuenow="puntajeActual" aria-valuemin="0" aria-valuemax="100">
                                 </div>
@@ -223,7 +223,7 @@ parasails.registerComponent('modulo-panel-derecho', {
 
                 <div class="nivel">
                     <div class="row indicador">
-                            <div>Nivel:</div>
+                            <div><span>Nivel:</span></div>
                             <div class="progress icono" >    
                                <!-- <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100">
                                 </div> -->
@@ -240,7 +240,7 @@ parasails.registerComponent('modulo-panel-derecho', {
 
                 <div class="medallas">
                     <div class="row indicador" >
-                        <div>Progreso:</div>
+                        <div><span>Progreso:</span></div>
                         <div class="progress icono">    
                             <!--<div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100">
                             </div> -->
@@ -278,9 +278,10 @@ parasails.registerComponent('modulo-panel-derecho', {
                 </div>
             </div>            
         </div>
+        
         <div class="row usuarios-conectados">
             <div class="col">
-                <div>Últimos usuarios conectados</div>
+                <div><span>Últimos usuarios conectados</span></div>
                 <ul>
                     <li v-for="usuario in usuariosConectados">{{usuario.nombre}}</li>
                  </ul>
@@ -288,10 +289,115 @@ parasails.registerComponent('modulo-panel-derecho', {
         </div>
         <div class="row soporte">
             <div class="col">
-            <div>soporte</div>
+            <div><span>soporte</span></div>
                 <i class="fas fa-question-circle fa-2x" title="pedro.cuasqui@epn.edu.ec">    </i>   
             </div>
         </div>
+                      
+                      </div>
+                    </div>
+                
+                  </div>
+
+      
+                    
+                </div>
+                
+        </div>
+        
+   <!--    <template  >
+ 
+       <div class="row progreso">
+            <div class="col">
+                        
+                <div class="puntaje">
+                        <div class="row">
+                            <div><span>Puntos:</span></div>
+                           
+                            <div class="progress icono" >
+                                <div class="contenedor-icono ">
+                                    <i class="fas fa-certificate fa-stack-2x" > </i>
+                                    <span class="fa-stack-1x">{{puntajeActual}}</span>
+                                </div>
+
+                                
+                            </div>
+                        </div>
+                </div>  
+                        
+
+
+                <div class="nivel">
+                    <div class="row indicador">
+                            <div><span>Nivel:</span></div>
+                            <div class="progress icono" >    
+                              
+                                <div class="contenedor-icono">
+                                    <i class="fas fa-battery-empty fa-stack-2x"></i>    
+                                    <span class="fa-stack-1x">&nbsp{{nivelActual}}/{{totalNiveles}}</span>
+                                </div>
+                            </div>
+                    </div>
+                    <div class="progress "  style="height: 3px;">    
+                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+                <div class="medallas">
+                    <div class="row indicador" >
+                        <div><span>Progreso:</span></div>
+                        <div class="progress icono">    
+                           
+                            <div class="contenedor-icono">
+                                <img v-if="medallaActual=='bebe'" src="/images/svg/buho_bebe.svg" :alt="medallaActual">
+                                <img v-else-if="medallaActual=='estudiante'" src="/images/svg/buho_original_1.svg" :alt="medallaActual">
+                                <img v-else-if="medallaActual=='estudiante destacado'" src="/images/svg/buho_original_1.svg" :alt="medallaActual">
+                                <img v-else-if="medallaActual=='egresado'" src="/images/svg/buho_sabio.svg" :alt="medallaActual">
+                                <img v-else src="/images/svg/buho_graduado.svg" :alt="medallaActual">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="progress "  style="height: 3px;">
+                        <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100"></div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <div class="row enlaces">
+            <div class="col">
+            
+
+                <div class="evaluacion">
+                    <i class="fas fa-clipboard-check"></i>
+                    <a @click="evaluacionIndividual()" class="estiloLink"><span> Evaluación</span></a>
+                </div>
+
+                <div class="tabla-puntuacion">
+                    <i class="fas fa-chart-bar"></i>
+                    <a @click="clickPuntuacion()" class="estiloLink"><span> Puntuación</span></a>
+                </div>
+            </div>            
+        </div>
+        
+        <div class="row usuarios-conectados">
+            <div class="col">
+                <div><span>Últimos usuarios conectados</span></div>
+                <ul>
+                    <li v-for="usuario in usuariosConectados">{{usuario.nombre}}</li>
+                 </ul>
+            </div>
+        </div>
+        <div class="row soporte">
+            <div class="col">
+            <div><span>soporte</span></div>
+                <i class="fas fa-question-circle fa-2x" title="pedro.cuasqui@epn.edu.ec">    </i>   
+            </div>
+        </div>
+
+        </template>
+
+        -->
     </div>    
 </div>`,
     methods: {
@@ -473,6 +579,9 @@ parasails.registerComponent('modulo-panel-derecho', {
                 return newArray.concat(this.ordenamientoQuickSort(left), estudiantePivot, this.ordenamientoQuickSort(right));
             }
 
+        },
+        mostrarOpcionesUsuario() {
+            this.mostrar_opciones_de_usuario = !this.mostrar_opciones_de_usuario;
         }
 
 

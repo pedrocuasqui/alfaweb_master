@@ -275,41 +275,38 @@
     <div class="div-contenido container-fluid" v-cloak>
         <!--CABECERA-->
         <div class="row" id="div-cabecera">
-            <div class="col-sm-10">
+            <div class="col-sm-8">
                 <modulo-barra-nav :breadcrumb="breadcrumb" :usuario="usuario"></modulo-barra-nav>
             </div>
             <div class="col-sm-2">
                 <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
+            </div>
+            <div class="col-sm-2">
+              <!-- solo si el objetoSeleccionado es submodulo se permite la creacion de una evaluacion -->
+              <modulo-panel-derecho v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuario"
+                  @evaluacion-individual="evaluacionIndividual">
+              </modulo-panel-derecho>
+              <!-- si el objeto Seleccionado es modulo no se escucha la propiedad evaluacion-individual -->
+              <modulo-panel-derecho v-else :usuario="usuario">
+              </modulo-panel-derecho>
             </div>
         </div>
 
         <!--CUERPO-->
         <div class="row" id="div-body">
             <!-- breadcrumb-->
-            <div class="col-sm-2 col-izquierda">
+            <div class="col-sm-1 col-izquierda">
                 <modulo-side-var-menu :curso.sync="curso" :objeto-seleccionado="objetoSeleccionado" :usuario="usuario">
                 </modulo-side-var-menu>
             </div>
             <!-- columna central y lateral derecha del cuerpo -->
-            <div class="col-sm-10" id="columna-contenido-lateral">
-
+            <div class="col-sm-11" id="columna-contenido-lateral">
 
                 <div class="row fila-principal">
 
 
 
                     <!-- Columna central del cuerpo-->
-
-
-
-
-
-
-
-
-
-
-
 
                     <!-- ---------------------------------------------------------------- -->
                     <!-- ---------------------------------------------------------------- -->
@@ -373,17 +370,6 @@
 
                 -->
 
-
-
-
-
-
-
-
-
-
-
-
                     <!-- ---------------------------------------------------------------- -->
                     <!-- ---------------------------------------------------------------- -->
                     <!-------------------------------EVALUACIONES CREADAS------------------->
@@ -392,8 +378,7 @@
 
 
                     <template v-if="evIndividualBandera">
-
-                        <div class="col-sm-10 col-central">
+                        <div class="col-sm-11 col-central">
 
                             <!-- <div class="row"> -->
 
@@ -572,21 +557,7 @@
                             <!-- </div> -->
 
                         </div>
-
                     </template>
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
                     <!-- ---------------------------------------------------------------- -->
@@ -595,8 +566,7 @@
                     <!-- ---------------------------------------------------------------- -->
                     <!-- ---------------------------------------------------------------- -->
                     <template v-else>
-
-                        <div class="col-sm-10 col-central">
+                        <div class="col-sm-11 col-central">
                             <!--botones de navegacion y Titulo-->
                             <div class="row">
 
@@ -719,26 +689,13 @@
                             </div>
 
                         </div>
-
-
-
-
                     </template>
                     <!-- columna derecha -->
 
-                    <div class="col-sm-2 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
-                        <!-- solo si el objetoSeleccionado es submodulo se permite la creacion de una evaluacion -->
-                        <modulo-panel-derecho v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuario"
-                            @evaluacion-individual="evaluacionIndividual">
-                        </modulo-panel-derecho>
-                        <!-- si el objeto Seleccionado es modulo no se escucha la propiedad evaluacion-individual -->
-                        <modulo-panel-derecho v-else :usuario="usuario">
-                        </modulo-panel-derecho>
+                    <div class="col-sm-1 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
+                      
                     </div>
                 </div> <!-- fin fila de contenido central y barra lateral derecha -->
-
-
-
 
             </div>
             <!--fin columna contenido central y barra lateral derecha-->

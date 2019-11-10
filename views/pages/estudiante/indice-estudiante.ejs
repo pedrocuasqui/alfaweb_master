@@ -3,24 +3,34 @@
   <div class="div-contenido container-fluid" v-cloak>
     <div class="row" id="div-cabecera">
 
-      <div class="col-sm-10">
+      <div class="col-sm-8">
         <modulo-barra-nav data-intro="Puedes navegar siguiendo una ruta" data-step="3" :breadcrumb="breadcrumb"></modulo-barra-nav>
       </div>
       <div class="col-sm-2">
         <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
+      </div>
+      <div class="col-sm-2">
+          <modulo-panel-derecho v-if="existeCursoEstudianteyLogueado" key="LogueadoConAvance" :usuario="usuario"
+          :curso-estudiante="cursoEstudiante" :curso="curso" :puntaje-actual="progreso.puntos"
+          :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla"
+          :porcentaje-avance="progreso.porcentajeAvance"></modulo-panel-derecho>
+        <modulo-panel-derecho v-else-if="noExisteCursoEstudianteyLogueado" key="logueadoSinAvance"
+          :usuario="usuario"></modulo-panel-derecho>
+        <modulo-panel-derecho v-else key="visitante"></modulo-panel-derecho>
+
       </div>
     </div>
 
     <!-- Contenedor de contenido -->
     <div class="row" id="div-body">
       <!-- columna izquierda -->
-      <div class="col-sm-2 col-izquierda">
+      <div class="col-sm-1 col-izquierda">
         <!-- aqui normalmente iria el menu lateral pero aqui no es necesario -->
       </div>
-      <div class="col-sm-10" id="columna-contenido-lateral">
+      <div class="col-sm-11" id="columna-contenido-lateral">
         <div class="row fila-principal">
           <!-- Columna central -->
-          <div class="col-sm-10 col-central">
+          <div class="col-sm-11 col-central">
             <div class="row">
               <div data-intro="Puedes pulsar la flecha derecha para empezar a navegar desde el primer módulo" data-step="2" class="navegacion-siguiente">
                 <a :href="navegarSiguiente" data-toggle="tooltip" title="Pulsa para continuar"><i style="position: relative;-webkit-animation: mymove 2.5s 3; 
@@ -66,14 +76,8 @@
             </div>
           </div>
           <!-- columna derecha -->
-          <div class="col-sm-2 col-derecha">
-            <modulo-panel-derecho v-if="existeCursoEstudianteyLogueado" key="LogueadoConAvance" :usuario="usuario"
-              :curso-estudiante="cursoEstudiante" :curso="curso" :puntaje-actual="progreso.puntos"
-              :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla"
-              :porcentaje-avance="progreso.porcentajeAvance"></modulo-panel-derecho>
-            <modulo-panel-derecho v-else-if="noExisteCursoEstudianteyLogueado" key="logueadoSinAvance"
-              :usuario="usuario"></modulo-panel-derecho>
-            <modulo-panel-derecho v-else key="visitante"></modulo-panel-derecho>
+          <div class="col-sm-1 col-derecha">
+            
           </div>
         </div> <!-- fin fila de contenido central y barra lateral derecha -->
       </div>

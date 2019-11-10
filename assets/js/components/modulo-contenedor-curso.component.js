@@ -88,11 +88,42 @@ parasails.registerComponent("modulo-contenedor-curso", {
     `  
 <div class="div-contenido container-fluid"  v-cloak>
     <div class="row" id="div-cabecera"  >
-        <div class="col-sm-10" id="breadcrumbText" ref="printBreadcrumb">
+        <div class="col-sm-8" id="breadcrumbText" ref="printBreadcrumb">
             <modulo-barra-nav :breadcrumb="breadcrumb" :usuario="usuario"></modulo-barra-nav> 
         </div>
         <div class="col-sm-2">
             <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou"  />
+        </div>
+        <div class="col-sm-2">
+            
+              <!--ESTE PRIMER CONTENEDOR SE USA PARA LOS SUBMODULOS-->    
+              <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance" :curso="curso" :objeto-seleccionado="objetoSeleccionado"> 
+              <template >
+              <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
+              <div>    
+                  <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
+                  <a v-else @click="clickSilenciarGeneral" title="Silenciar Todo " ><i class="fas fa-volume-up"></i></a>
+                  <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
+              </div>
+              </template>
+
+          </modulo-panel-derecho>
+          <!--EL SIGUIENTE CONTENEDOR SE USA PARA LOS MODULOS, solo se diferencian en que los modulos no reciben eventos de evaluacion-->    
+          <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"  :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance"
+          :curso="curso"> 
+              <template >
+              <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
+                  <div>
+                  <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
+                  <a v-else @click="clickSilenciarGeneral" title="Silenciar Todo" ><i class="fas fa-volume-up"></i></a>
+                  <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
+                  </div>
+              </template>
+
+          </modulo-panel-derecho>
+          
+
+
         </div>
     </div>
 
@@ -189,33 +220,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
                 </div>
                 <!-- columna derecha -->
                 <div class="col-sm-1 col-derecha" >
-                <!--ESTE PRIMER CONTENEDOR SE USA PARA LOS SUBMODULOS-->    
-                <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance" :curso="curso" :objeto-seleccionado="objetoSeleccionado"> 
-                        <template >
-                        <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
-                        <div>    
-                            <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
-                            <a v-else @click="clickSilenciarGeneral" title="Silenciar Todo " ><i class="fas fa-volume-up"></i></a>
-                            <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
-                        </div>
-                        </template>
-
-                    </modulo-panel-derecho>
-                    <!--EL SIGUIENTE CONTENEDOR SE USA PARA LOS MODULOS, solo se diferencian en que los modulos no reciben eventos de evaluacion-->    
-                    <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"  :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance"
-                    :curso="curso"> 
-                        <template >
-                        <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
-                            <div>
-                            <a v-if="silenciarGeneral" @click="clickReproducirGeneral" title="Reproducir" ><i class="fas fa-volume-mute"></i></a>
-                            <a v-else @click="clickSilenciarGeneral" title="Silenciar Todo" ><i class="fas fa-volume-up"></i></a>
-                            <a @click="clickImprimir" title="Imprimir contenido"><i class="fas fa-print"></i></a>
-                            </div>
-                        </template>
-
-                    </modulo-panel-derecho>
-                    
-
+              
                   
                 </div>
             </div> <!-- fin fila de contenido central y barra lateral derecha -->

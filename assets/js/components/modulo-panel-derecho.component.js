@@ -165,12 +165,14 @@ parasails.registerComponent('modulo-panel-derecho', {
     <!------------------------------------>
     <div class="container-fluid barra-lateral">
     
-    <slot >
-    <!--Iconos de silenciar e imprimir-->
-    </slot>
-    <div v-if="existeAvance" >
-        <a v-if="cursoEstudiante.avance.enlace" :href="'/contenido-alfaweb/?enlace='+cursoEstudiante.avance.enlace" >ultimo tema revisado:{{cursoEstudiante.nombre}}</a>
-        <a v-else :href="'/interfaz-modulos/?objetoId='+cursoEstudiante.avance.objetoId+'&tipoContenido='+cursoEstudiante.avance.tipoContenido">ultimo tema revisado:{{cursoEstudiante.nombre}}</a>
+ 
+    <div  id="alerta_ultimo_tema" v-if="existeAvance" class="alert alert-info alert-dismissible fade show" role="alert">
+        <strong>Último tema revisado: </strong> {{cursoEstudiante.nombre}}.
+        <a v-if="cursoEstudiante.avance.enlace" :href="'/contenido-alfaweb/?enlace='+cursoEstudiante.avance.enlace" >{{cursoEstudiante.nombre}}</a>
+        <a v-else :href="'/interfaz-modulos/?objetoId='+cursoEstudiante.avance.objetoId+'&tipoContenido='+cursoEstudiante.avance.tipoContenido">{{cursoEstudiante.nombre}}</a>
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
 
 
@@ -178,9 +180,14 @@ parasails.registerComponent('modulo-panel-derecho', {
         <div class="row usuario">
                 <div class="col">
                     <div class="btn-group">
-                    <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="mostrarOpcionesUsuario()">
-                    {{usuario.nombre}}
-                    </button>
+                   
+                        <slot >
+                        <!--Iconos de silenciar e imprimir-->
+                        </slot>
+                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="mostrarOpcionesUsuario()">
+                        {{usuario.nombre}}
+                        </button>
+                    
 
                     <div id="boton_desplegable_personalizado" class="dropdown-menu">
                       <a v-if="usuario.nombre =='Visitante'" class="dropdown-item" href="/view-login">Iniciar Sesión</a>

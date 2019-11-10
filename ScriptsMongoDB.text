@@ -93,3 +93,17 @@ Viernes 01 de Noviembre de 2019
  flex-wrap:wrap;
  justify-content: center;
  align-items: center;
+
+
+
+ Domingo 10/11/2019
+ * Para configurar la indentacion, usar prettier  para archivos javascript html, css, ejs,
+ * Para configurar la indentacion automatica, registrar el siguiente codigo en file->Preferences--> Settings (User settings)
+        // Format a file on save. A formatter must be available, the file must not be auto-saved, and editor must not be shutting down.
+        "editor.formatOnSave": true,
+        // Enable/disable default JavaScript formatter (For Prettier)
+        "javascript.format.enable": false,
+        // Use 'prettier-eslint' instead of 'prettier'. Other settings will only be fallbacks in case they could not be inferred from eslint rules.
+        "prettier.eslintIntegration": true
+
+Fuente:https://prettier.io/docs/en/configuration.html

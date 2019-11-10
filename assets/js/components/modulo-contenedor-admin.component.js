@@ -1,11 +1,11 @@
-parasails.registerComponent("modulo-contenedor-admin", {
+parasails.registerComponent('modulo-contenedor-admin', {
   props: {
     breadcrumb: {
       type: Array,
       required: false,
       default: () => {
-        return [{ nombreModulo: "", id: 1, enlace: "" }];
-      }
+        return [{ nombreModulo: '', id: 1, enlace: '' }];
+      },
     },
     // usuarioLogueado:{
     //     type:Boolean,
@@ -14,27 +14,27 @@ parasails.registerComponent("modulo-contenedor-admin", {
     // },
     usuario: {
       type: Object,
-      required: false // required false implica que se acepten nulos, desde contenedor-admin se puede enviar un usuario null
-    }
+      required: false, // required false implica que se acepten nulos, desde contenedor-admin se puede enviar un usuario null
+    },
   },
   // la definicion de clases css para este componente se encuentra en layout-admin.less
-  template://html
-    `  
+
+  template: /*html*/ `
 <div class="div-contenido container-fluid" v-cloak>
     <!-- Barra de navegacion en la parte superior-->
     <div class="row" id="div-cabecera"  >
         <div class="col-sm-8">
-            <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav> 
+            <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav>
         </div>
         <div class="col-sm-2">
             <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou"  />
         </div>
         <div class="col-sm-2">
-             
-            <div v-if="usuario" class="nombre-usuario">      
+
+            <div v-if="usuario" class="nombre-usuario">
             <div class="btn-group">
                 <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                
+
                     <i class="fas fa-user-circle"></i> {{usuario.nombre}} <i class="fas fa-bars"></i>
                 </button>
                 <div class="dropdown-menu">
@@ -43,12 +43,12 @@ parasails.registerComponent("modulo-contenedor-admin", {
                     <a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
                 </div>
             </div>
-    
+
         </div>
 
 
         <div v-else class="nombre-usuario">
-            <a href="/view-login">Inicia Sesión</a> | <a href="/view-registro-usuario">Regístrate</a> 
+            <a href="/view-login">Inicia Sesión</a> | <a href="/view-registro-usuario">Regístrate</a>
         </div>
 
         </div>
@@ -57,16 +57,15 @@ parasails.registerComponent("modulo-contenedor-admin", {
     <!--Contenido -->
     <div class="row" id="div-body">
         <div class="col contenedor-admin-login">
-          <slot></slot>  
-        </div>   
+          <slot></slot>
+        </div>
     </div>
 
 </div>
 
     `,
-
-  data: function () {
+  data: function() {
     return {};
   },
-  methods: {}
+  methods: {},
 });

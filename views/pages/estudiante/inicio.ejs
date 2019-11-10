@@ -18,51 +18,51 @@ For more information, see:
         <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
       </div>
       <div class="col-sm-2">
-          <template v-if="usuario">
-              <div class="nombre-usuario">
-                <div class="btn-group">
-                  <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
-                    aria-expanded="false">
-      
-                    <i class="fas fa-user-circle"></i> {{usuario.nombre}} <i class="fas fa-bars"></i>
-                  </button>
-                  <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
-                    <div class="dropdown-divider"></div>
-                    <a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
-                  </div>
-                </div>
-      
-              </div>
-      
-            </template>
-            <div v-else class="nombre-usuario"> <a href="/view-login">Inicia Sesión</a> | <a
-                href="/view-registro-usuario">Regístrate</a> </div>
-            <div class="col">
-      
-      </div>
-    </div>
+        <template v-if="usuario">
+          <div class="nombre-usuario">
+            <div class="btn-group">
+              <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true"
+                aria-expanded="false">
 
-    <!--Contenido -->
-    <div class="row" id="div-body">
-    
+                <i class="fas fa-user-circle"></i> {{usuario.nombre}} <i class="fas fa-bars"></i>
+              </button>
+              <div class="dropdown-menu">
+                <a class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
+                <div class="dropdown-divider"></div>
+                <a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
+              </div>
+            </div>
+
+          </div>
+
+        </template>
+        <div v-else class="nombre-usuario"> <a href="/view-login">Inicia Sesión</a> | <a
+            href="/view-registro-usuario">Regístrate</a> </div>
+        <div class="col">
+
+        </div>
+      </div>
+      <!--Contenido -->
+      <div class="row" id="div-body">
+
         <div class=" formularioCentralSmall jumbotron">
           <div class="lista-cursos-disponible">
-          <h1   class="titulo-centrado"><span data-hintPosition="top-left" data-hint="Seleccione un curso de la lista">CURSOS DISPONIBLES</span></h1>
-          <!--list-group-item btn-curso  list-group-item-action flex-column align-items-start-->
-          <template v-for="(curso, index) in cursosPublicados">
-            <button :id="curso.id" type="button" class=" button " @click="abrirCurso(curso.id)">
-              <div class="d-flex w-100 justify-content-between">
-                <h5 class="mb-1">{{curso.nombre}}</h5>
-                <!--span hace que los contenidos se presenten en linea-->
-                <span>
-                  {{index+1}}
-                </span>
-              </div>
-              <p class="mb-1 d-flex w-100 justify-content-between">{{curso.descripcion}}</p>
-            </button>
-          </template>
-        </div>
+            <h1 class="titulo-centrado"><span data-hint-position="top-left"
+                data-hint="Seleccione un curso de la lista">CURSOS DISPONIBLES</span></h1>
+            <!--list-group-item btn-curso  list-group-item-action flex-column align-items-start-->
+            <template v-for="(curso, index) in cursosPublicados">
+              <button :id="curso.id" type="button" class=" button " @click="abrirCurso(curso.id)">
+                <div class="d-flex w-100 justify-content-between">
+                  <h5 class="mb-1">{{curso.nombre}}</h5>
+                  <!--span hace que los contenidos se presenten en linea-->
+                  <span>
+                    {{index+1}}
+                  </span>
+                </div>
+                <p class="mb-1 d-flex w-100 justify-content-between">{{curso.descripcion}}</p>
+              </button>
+            </template>
+          </div>
         </div>
       </div>
 

@@ -1,19 +1,18 @@
 #layout-general {
-    //es el body del layout principal
-    //se usa para poder usar elementos con posicion absoluta dentro de este padre
-    height          : 100vh; // vh hace referencia a la centésima parte de la altura del viewport 
-    width           : 100vw; //vw hace referencia al la centésima parte del ancho del viewport
-    // font-family     : 'Roboto', sans-serif;
-    font-family     : 'Poppins', sans-serif;
-    background-color: #1e1e2f;
+	//es el body del layout principal
+	//se usa para poder usar elementos con posicion absoluta dentro de este padre
+	height: 100vh; // vh hace referencia a la centésima parte de la altura del viewport
+	width: 100vw; //vw hace referencia al la centésima parte del ancho del viewport
+	// font-family     : 'Roboto', sans-serif;
+	font-family: "Poppins", sans-serif;
+	background-color: #1e1e2f;
 
-    [v-cloak] * {
-        display: none
-    }
+	[v-cloak] * {
+		display: none;
+	}
 
-    //ocultamos las expresiones vue mientras se cargan en la pagina los valores de los archivos js del cliente
-    // [v-cloak]::before { content: "loading…" } //usar esta etiqueta si se quiere usar loading mientras carga, solo sirve para vuejs, no para carga de imagenes o carga de base de datos
-
+	//ocultamos las expresiones vue mientras se cargan en la pagina los valores de los archivos js del cliente
+	// [v-cloak]::before { content: "loading…" } //usar esta etiqueta si se quiere usar loading mientras carga, solo sirve para vuejs, no para carga de imagenes o carga de base de datos
 }
 
 // /////////////////////////////////////////////////////////////
@@ -22,18 +21,16 @@
 // /////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////
 
-
-
-@opacity-8             : rgba(255, 255, 255, .8);
-@font-weight-normal    : 400;
-@colorContenidoCentral :#27293d;
-@borderRadiusMargen    : 0.65rem 0.6rem 0.6rem 0.6rem;
-@colorFuente           : #c0c1c2;
-@colorTituloModal      :#595959;
-@colorLetraModal       :#222a42;
-@menuSideBar           :linear-gradient(0deg, #389466 0%, #42b883 100%);
-@colorIconos           :#ffffff;
-@color_fondo_pagina     :#1e1e2f;
+@opacity-8 : rgba(255, 255, 255, .8);
+@font-weight-normal : 400;
+@colorcontenidocentral :#27293d;
+@borderradiusmargen : 0.65rem 0.6rem 0.6rem 0.6rem;
+@colorfuente : #c0c1c2;
+@colortitulomodal :#595959;
+@colorletramodal :#222a42;
+@menusidebar :linear-gradient(0deg, #389466 0%, #42b883 100%);
+@coloriconos :#ffffff;
+@color_fondo_pagina :#1e1e2f;
 // FIN VARIABLES
 
 h1,
@@ -47,513 +44,473 @@ p a,
 label,
 span,
 li {
-    font-weight: @font-weight-normal  !important;
-    color      : @opacity-8  !important;
+	font-weight: @font-weight-normal !important;
+	color: @opacity-8 !important;
 }
 
-
-
-#layout-general>div:first-child {
-    padding-left : 1px !important;
-    padding-right: 1px !important;
+#layout-general > div:first-child {
+	padding-left: 1px !important;
+	padding-right: 1px !important;
 }
 
 // COMPONENTES: modulo-contenedor-admin y modulo-contenedor-curso
 .div-contenido {
-    // Estilo de los elementos del componente: modulo-contenedor-admin.component.js, se puede colocar el siguiente codigo dentro del archivo mencionado 
-    //Existen dos opciones para definir estilos para componentes, la primera, DEFINIR GLOBALMENTE (como en este caso), la segunda, definir una etiqueta Style dentro de cada componente
-    //el contenido abarca todo
-    position           : relative;
-    // background-color: palevioletred;
-    padding-left       : 0px;
-    padding-right      : 0px;
-
-
-    //clase usada para mostrar el error en los inputs
-    .invalid-feedback {
-        display   : block;
-        width     : 100%;
-        margin-top: 0.25rem;
-        font-size : 80%;
-        color     : #F05D5E;
-    }
-
-    .is-invalid {
-        box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(240, 93, 94, 0.25);
-    }
-
-    i.fas.fa-save,
-    i.fas.fa-edit,
-    i.fas.fa-trash-alt,
-    i.fas.fa-plus-circle,
-    i.fa-exchange-alt,
-    i.fas.fa-redo-alt,
-    i.fas.fa-arrow-alt-circle-right,
-    i.fas.fa-chevron-right,
-    i.fas.fa-chevron-left,
-    i.fas.fa-lock-open,
-    i.fas.fa-print,
-    i.fas.fa-volume-up,
-    i.fas.fa-volume-mute,
-    i.fas.fa-lock,i.fas.fa-play, i.fas.fa-pause, i.fas.fa-stop, a.audioTag{
-        color : @colorIconos ;
-        cursor: pointer;
-    }
-
-
-    i.fas.fa-play, i.fas.fa-pause, i.fas.fa-stop {
-        font-size: 14px;
-    }
-
-    i.fas.fa-save:hover,
-    i.fas.fa-edit:hover,
-    i.fas.fa-trash-alt:hover,
-    i.fas.fa-plus-circle:hover,
-    i.fa-exchange-alt:hover,
-    i.fas.fa-redo-alt:hover,
-    i.fas.fa-arrow-alt-circle-right:hover,
-    i.fas.fa-chevron-right:hover,
-    i.fas.fa-chevron-left:hover,
-    i.fas.fa-lock-open:hover,
-    i.fas.fa-lock:hover,
-    i.fas.fa-print:hover,
-    i.fas.fa-volume-up:hover,
-    i.fas.fa-volume-mute:hover,
-    i.fas.fa-play:hover, i.fas.fa-pause:hover, i.fas.fa-stop:hover {
-        color: #e44cc4;
-
-    }
-
-    .estiloLink {
-        cursor: pointer;
-    }
-
-
-    ////////////////////////////////////////////////////////////////
-    // /////////////////////////////////////////////////////////////
-    // /////////////////////////////////////////////////////////////
-    // /////////////////////////////////////////////////////////////
-    ////////////////////---CABECERA PRINCIPAL---////////////////////
-    .row#div-cabecera {
-        // background-color: #0460a9;
-        background         : rgba(0, 0, 0, 0.0);
-        width              : 100%;
-        height             : 9vh; //9% del alto de .div-contenido
-        margin             : 0px !important;
-        margin-right       : 0px !important;
-        margin-left        : 0px !important;
-
-        #breadcrumb {
-            //ocupamos el 100% de espacio de ancho para la barra de navegacion
-            width    : 100%;
-            height   : 100%;
-            font-size: 1.15rem;
-
-            nav ol {
-                //eliminamos el margen de los elementos ol de la barra de navegacion
-                margin             : 0 !important;
-                padding-top        : 7px !important;
-                padding-bottom     : 7px !important;
-                // background-color: #0460a9;
-                background         : rgba(0, 0, 0, 0.0);
-
-                a {
-                    color: aliceblue;
-                }
-            }
-
-        }
-
-
-
-    }
-
-    .row#div-cabecera> :first-child {
-        // columna que contiene el breadcrumb
-        height: 100%;
-    }
-
-    .row#div-cabecera>:last-child {
-        //columna que contiene la imagen polhibou
-        height: 100%;
-
-        img {
-            //el ultimo hijo: columna con el logo polhibou
-            height          : 84%;
-            width           : 100%;
-        }
-    }
-
-
-
-    ////////////////////////////////////////////////////////////////
-    // /////////////////////////////////////////////////////////////
-    // /////////////////////////////////////////////////////////////
-    // /////////////////////////////////////////////////////////////
-    ////////////////////---CUERPO PRINCIPAL---////////////////////
-    .row#div-body {
-        height             : 90vh;
-        // background-color: #3e8e41;
-        position           : relative; //necesario para tomar como referencia de "position" hijo a este padre
-        margin-right       : 0px !important;
-        margin-left        : 0px !important;
-        width              : 100%;
-
-
-        // /////////////////////////////////////////////////////////////
-        //////////////////////---SIDE BAR MENU---///////////////////////
-        div.col-izquierda {
-            height: 100%;
-            //ancho definido por col-sm-2
-            position     : relative;
-            // overflow     : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
-            padding-left : 0% !important; //que el contenido se encuentre apegado al margen izquierdo
-            padding-right: 0% !important; //que el contenido se encuentre apegado al margen derecho
-
-
-            .sidebar-oculto {
-                background-color: #2EE3AD;
-                margin-left     : -10vw; //oculta hacia la izquierda el 90% del andho
-            }
-
-            #sidebar-menu {
-                //todo el sidebar
-                z-index            : 10;
-                position           : absolute;
-                transition         : all 0.4s ease-in-out; //la transicion al mostrar u ocultar
-                text-align         : left;
-                width              : 18vw;
-                // background-color: rgb(17, 17, 17, 0.9);
-                background         : @menuSideBar;
-                overflow           : hidden;
-                height             : 100%; // esto estará contenido dentro de la columna izquierda
-                opacity            : 1;
-                border-radius      : 10px;
-
-
-
-                .caret-container {
-                    position: absolute;
-                    right   : 0;
-                    height  : 100%;
-
-                    .caret {
-                        background-color: rgb(157, 162, 167);
-                        display         : flex;
-                        align-items     : center;
-                        height          : 100%;
-                        color           : black;
-                        font-size       : 2rem;
-                        transition      : all 0.3s ease-in-out;
-                        cursor          : pointer; //cambia el icono del puntero a la manito 
-                    }
-
-                    .caret:hover {
-                        background-color: aliceblue;
-                    }
-                }
-
-                #menuContenidos {
-
-                    /*BLOQUE DEL CONTENIDO DEL MENÚ*/
-                    height    : 100%;
-                    float     : left;
-                    width     : 91%;
-                    overflow-y: auto;
-
-
-                    h4,
-                    h5 {
-                        color: white;
-                    }
-
-                    .dropdownModulo {
-                        //contenedor individual del modulo y sus submodulos
-                        position: relative;
-                        display : block;
-                        width   : 100%;
-                        float   : left;
-                    }
-
-                    .dropbtn-modulo {
-                        //el boton que contiene el nombre del modulo
-                        width           : 100%;
-                        background: @menuSideBar ;
-                        color           : white;
-                        padding         : 2px;
-                        font-size       : 1vw;
-                        border          : none;
-                        text-align      : left;
-                        border-bottom   : 1px solid rgb(138, 133, 133);
-
-                    }
-
-                    //esta clase solo se aplica al contenedor del submodulo que corresponde al modulo seleccionado
-                    .dropdown-submodulo {
-                        //contenedor individual del submodulo
-                        display            : block;
-                        // position        : relative; //descomentar esta linea para mostrar el contenido sin mover las demas filas
-                        // background-color   : #f1f1f1;
-                        background:@menuSideBar ;
-                        min-width          : 160px;
-                        // box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-                        z-index            : 1;
-                        margin-left        : 5px;
-
-
-                    }
-
-                    .dropdown-submodulo-deselect {
-                        //contenedor individual del submodulo cuando el su modulo no es el seleccionado
-                        display            : none;
-                        // position        : relative; //descomentar esta linea para mostrar el contenido sin mover las demas filas
-                        // background-color   : #f1f1f1;
-                        background: @menuSideBar ;
-                        min-width          : 160px;
-                        // box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
-                        z-index            : 1;
-                        margin-left        : 5px;
-
-                    }
-
-                    .dropdown-submodulo a,
-                    .submodulo-deseleccionado {
-                        color          : black;
-                        padding        : 10px 16px;
-                        text-decoration: none;
-                        display        : block;
-                        font-size      : 1vw;
-                        border-bottom  : 1px solid rgb(138, 133, 133);
-
-                    }
-
-                    .dropdown-submodulo a:hover,
-                    .submodulo-seleccionado {
-                        background-color: rgb(189, 185, 185);
-                    }
-
-
-                    .dropdownModulo:hover .dropbtn-modulo {
-                        background-color: #777575;
-                        border-width    : 1px 1px 2px 1px;
-                        border-style    : solid;
-                        border-color    : white;
-                    }
-
-                    /// estilos dinamicos en funcion del modulo seleccionado
-                    .modulo-seleccionado {
-                        background-color: #777575;
-                        border-width    : 1px 1px 2px 1px;
-                        border-style    : solid;
-                        border-color    : white;
-                    }
-
-
-
-
-
-                    /*FIN BLOQUE DEL CONTENIDO DEL MENU*/
-                }
-            }
-
-
-
-        }
-
-        // /////////////////////////////////////////////////////////////
-        //////////---PARTE CENTRAL Y BARRA LATERAL DERECHA---///////////
-        #columna-contenido-lateral>.fila-principal {
-            height  : 100%;
-            position: relative;
-
-            div.col-central {
-                // background-color: chocolate;
-                position           : relative; //para poder acomodar los botones en funcion de este padre
-                display            : block;
-                text-align         : center;
-                background-color   : @colorContenidoCentral;
-                // border-radius   :calc(0.2857rem - 0.0225rem) calc(0.2857rem - 0.0225rem) 0 0;
-                border-radius      : @borderRadiusMargen;
-                padding            : 15px;
-
-                //Fila del titulo
-                #titulo-modulo {
-
-                    div.col.nombre-curso a,
-                    h1 {
-                        display: inline-block;
-                    }
-
-                    h1 {
-                        font-size: 2vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
-                        color    : white;
-                    }
-
-                    h6 {
-                        //font-size: 1.1vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
-                        color    : white;
-                    }
-                }
-
-                .navegacion-siguiente {
-                    margin-top : 0;
-                    margin-left: 94%; //muevo este contenedor hacia la derecha del contenedor padre
-                    position   : absolute;
-                    z-index    : 1;
-                    font-size  : 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
-                }
-
-                .navegacion-atras {
-                    margin-top  : 0;
-                    margin-right: 94%; //muevo este contenedor hacia la izquierda del contenedor padre
-                    position    : absolute;
-                    font-size   : 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
-                    z-index     : 1;
-                }
-
-                .row.pie-contenido {
-                    //la ultima fila del contenedor --> avatar y descripcionObjeto
-                    position: absolute;
-                    bottom  : 0.5%;
-                    width   : 100%;
-                    height  : 10%;
-
-                    #avatar {
-                        height  : 100% !important;
-                        width   : 10%;
-                        position: relative;
-
-                        img {
-                            // position: absolute;
-                            height  : auto;
-                            width   : 50%;
-                            bottom  : 0;
-                            left    : 0;
-
-                        }
-                        span{
-                            height  : auto;
-                            width   : 50%;
-                        }
-                        
-                    }
-
-                    #descripcion-objeto {
-                       /* background-image: url("../images/svg/comentario.svg");
+	// Estilo de los elementos del componente: modulo-contenedor-admin.component.js, se puede colocar el siguiente codigo dentro del archivo mencionado
+	//Existen dos opciones para definir estilos para componentes, la primera, DEFINIR GLOBALMENTE (como en este caso), la segunda, definir una etiqueta Style dentro de cada componente
+	//el contenido abarca todo
+	position: relative;
+	// background-color: palevioletred;
+	padding-left: 0px;
+	padding-right: 0px;
+
+	//clase usada para mostrar el error en los inputs
+	.invalid-feedback {
+		display: block;
+		width: 100%;
+		margin-top: 0.25rem;
+		font-size: 80%;
+		color: #f05d5e;
+	}
+
+	.is-invalid {
+		box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(240, 93, 94, 0.25);
+	}
+
+	i.fas.fa-save,
+	i.fas.fa-edit,
+	i.fas.fa-trash-alt,
+	i.fas.fa-plus-circle,
+	i.fa-exchange-alt,
+	i.fas.fa-redo-alt,
+	i.fas.fa-arrow-alt-circle-right,
+	i.fas.fa-chevron-right,
+	i.fas.fa-chevron-left,
+	i.fas.fa-lock-open,
+	i.fas.fa-print,
+	i.fas.fa-volume-up,
+	i.fas.fa-volume-mute,
+	i.fas.fa-lock,
+	i.fas.fa-play,
+	i.fas.fa-pause,
+	i.fas.fa-stop,
+	a.audioTag {
+		color: @colorIconos;
+		cursor: pointer;
+	}
+
+	i.fas.fa-play,
+	i.fas.fa-pause,
+	i.fas.fa-stop {
+		font-size: 14px;
+	}
+
+	i.fas.fa-save:hover,
+	i.fas.fa-edit:hover,
+	i.fas.fa-trash-alt:hover,
+	i.fas.fa-plus-circle:hover,
+	i.fa-exchange-alt:hover,
+	i.fas.fa-redo-alt:hover,
+	i.fas.fa-arrow-alt-circle-right:hover,
+	i.fas.fa-chevron-right:hover,
+	i.fas.fa-chevron-left:hover,
+	i.fas.fa-lock-open:hover,
+	i.fas.fa-lock:hover,
+	i.fas.fa-print:hover,
+	i.fas.fa-volume-up:hover,
+	i.fas.fa-volume-mute:hover,
+	i.fas.fa-play:hover,
+	i.fas.fa-pause:hover,
+	i.fas.fa-stop:hover {
+		color: #e44cc4;
+	}
+
+	.estiloLink {
+		cursor: pointer;
+	}
+
+	////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	////////////////////---CABECERA PRINCIPAL---////////////////////
+	.row#div-cabecera {
+		// background-color: #0460a9;
+		background: rgba(0, 0, 0, 0);
+		width: 100%;
+		height: 9vh; //9% del alto de .div-contenido
+		margin: 0px !important;
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+
+		#breadcrumb {
+			//ocupamos el 100% de espacio de ancho para la barra de navegacion
+			width: 100%;
+			height: 100%;
+			font-size: 1.15rem;
+
+			nav ol {
+				//eliminamos el margen de los elementos ol de la barra de navegacion
+				margin: 0 !important;
+				padding-top: 7px !important;
+				padding-bottom: 7px !important;
+				// background-color: #0460a9;
+				background: rgba(0, 0, 0, 0);
+
+				a {
+					color: aliceblue;
+				}
+			}
+		}
+	}
+
+	.row#div-cabecera > :first-child {
+		// columna que contiene el breadcrumb
+		height: 100%;
+	}
+
+	.row#div-cabecera > :last-child {
+		//columna que contiene la imagen polhibou
+		height: 100%;
+
+		img {
+			//el ultimo hijo: columna con el logo polhibou
+			height: 84%;
+			width: 100%;
+		}
+	}
+
+	////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	////////////////////---CUERPO PRINCIPAL---////////////////////
+	.row#div-body {
+		height: 90vh;
+		// background-color: #3e8e41;
+		position: relative; //necesario para tomar como referencia de "position" hijo a este padre
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+		width: 100%;
+
+		// /////////////////////////////////////////////////////////////
+		//////////////////////---SIDE BAR MENU---///////////////////////
+		div.col-izquierda {
+			height: 100%;
+			//ancho definido por col-sm-2
+			position: relative;
+			// overflow     : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
+			padding-left: 0% !important; //que el contenido se encuentre apegado al margen izquierdo
+			padding-right: 0% !important; //que el contenido se encuentre apegado al margen derecho
+
+			.sidebar-oculto {
+				background-color: #2ee3ad;
+				margin-left: -10vw; //oculta hacia la izquierda el 90% del andho
+			}
+
+			#sidebar-menu {
+				//todo el sidebar
+				z-index: 10;
+				position: absolute;
+				transition: all 0.4s ease-in-out; //la transicion al mostrar u ocultar
+				text-align: left;
+				width: 18vw;
+				// background-color: rgb(17, 17, 17, 0.9);
+				background: @menuSideBar;
+				overflow: hidden;
+				height: 100%; // esto estará contenido dentro de la columna izquierda
+				opacity: 1;
+				border-radius: 10px;
+
+				.caret-container {
+					position: absolute;
+					right: 0;
+					height: 100%;
+
+					.caret {
+						background-color: rgb(157, 162, 167);
+						display: flex;
+						align-items: center;
+						height: 100%;
+						color: black;
+						font-size: 2rem;
+						transition: all 0.3s ease-in-out;
+						cursor: pointer; //cambia el icono del puntero a la manito
+					}
+
+					.caret:hover {
+						background-color: aliceblue;
+					}
+				}
+
+				#menuContenidos {
+					/*BLOQUE DEL CONTENIDO DEL MENÚ*/
+					height: 100%;
+					float: left;
+					width: 91%;
+					overflow-y: auto;
+
+					h4,
+					h5 {
+						color: white;
+					}
+
+					.dropdownModulo {
+						//contenedor individual del modulo y sus submodulos
+						position: relative;
+						display: block;
+						width: 100%;
+						float: left;
+					}
+
+					.dropbtn-modulo {
+						//el boton que contiene el nombre del modulo
+						width: 100%;
+						background: @menuSideBar;
+						color: white;
+						padding: 2px;
+						font-size: 1vw;
+						border: none;
+						text-align: left;
+						border-bottom: 1px solid rgb(138, 133, 133);
+					}
+
+					//esta clase solo se aplica al contenedor del submodulo que corresponde al modulo seleccionado
+					.dropdown-submodulo {
+						//contenedor individual del submodulo
+						display: block;
+						// position        : relative; //descomentar esta linea para mostrar el contenido sin mover las demas filas
+						// background-color   : #f1f1f1;
+						background: @menuSideBar;
+						min-width: 160px;
+						// box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+						z-index: 1;
+						margin-left: 5px;
+					}
+
+					.dropdown-submodulo-deselect {
+						//contenedor individual del submodulo cuando el su modulo no es el seleccionado
+						display: none;
+						// position        : relative; //descomentar esta linea para mostrar el contenido sin mover las demas filas
+						// background-color   : #f1f1f1;
+						background: @menuSideBar;
+						min-width: 160px;
+						// box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+						z-index: 1;
+						margin-left: 5px;
+					}
+
+					.dropdown-submodulo a,
+					.submodulo-deseleccionado {
+						color: black;
+						padding: 10px 16px;
+						text-decoration: none;
+						display: block;
+						font-size: 1vw;
+						border-bottom: 1px solid rgb(138, 133, 133);
+					}
+
+					.dropdown-submodulo a:hover,
+					.submodulo-seleccionado {
+						background-color: rgb(189, 185, 185);
+					}
+
+					.dropdownModulo:hover .dropbtn-modulo {
+						background-color: #777575;
+						border-width: 1px 1px 2px 1px;
+						border-style: solid;
+						border-color: white;
+					}
+
+					/// estilos dinamicos en funcion del modulo seleccionado
+					.modulo-seleccionado {
+						background-color: #777575;
+						border-width: 1px 1px 2px 1px;
+						border-style: solid;
+						border-color: white;
+					}
+
+					/*FIN BLOQUE DEL CONTENIDO DEL MENU*/
+				}
+			}
+		}
+
+		// /////////////////////////////////////////////////////////////
+		//////////---PARTE CENTRAL Y BARRA LATERAL DERECHA---///////////
+		#columna-contenido-lateral > .fila-principal {
+			height: 100%;
+			position: relative;
+
+			div.col-central {
+				// background-color: chocolate;
+				position: relative; //para poder acomodar los botones en funcion de este padre
+				display: block;
+				text-align: center;
+				background-color: @colorContenidoCentral;
+				// border-radius   :calc(0.2857rem - 0.0225rem) calc(0.2857rem - 0.0225rem) 0 0;
+				border-radius: @borderRadiusMargen;
+				padding: 15px;
+
+				//Fila del titulo
+				#titulo-modulo {
+					div.col.nombre-curso a,
+					h1 {
+						display: inline-block;
+					}
+
+					h1 {
+						font-size: 2vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
+						color: white;
+					}
+
+					h6 {
+						//font-size: 1.1vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
+						color: white;
+					}
+				}
+
+				.navegacion-siguiente {
+					margin-top: 0;
+					margin-left: 94%; //muevo este contenedor hacia la derecha del contenedor padre
+					position: absolute;
+					z-index: 1;
+					font-size: 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
+				}
+
+				.navegacion-atras {
+					margin-top: 0;
+					margin-right: 94%; //muevo este contenedor hacia la izquierda del contenedor padre
+					position: absolute;
+					font-size: 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
+					z-index: 1;
+				}
+
+				.row.pie-contenido {
+					//la ultima fila del contenedor --> avatar y descripcionObjeto
+					position: absolute;
+					bottom: 0.5%;
+					width: 100%;
+					height: 10%;
+
+					#avatar {
+						height: 100% !important;
+						width: 10%;
+						position: relative;
+
+						img {
+							// position: absolute;
+							height: auto;
+							width: 50%;
+							bottom: 0;
+							left: 0;
+						}
+						span {
+							height: auto;
+							width: 50%;
+						}
+					}
+
+					#descripcion-objeto {
+						/* background-image: url("../images/svg/comentario.svg");
                         background-size: 90% 100%  !important; 
                         background-repeat:no-repeat;*/
-                        width        : 90% !important;
-                        height       : 100% !important;
-                        border-radius: 50px;
-                        border       : 1px solid white;
-                        padding-left: 10px;
-                        padding-right: 10px;
+						width: 90% !important;
+						height: 100% !important;
+						border-radius: 50px;
+						border: 1px solid white;
+						padding-left: 10px;
+						padding-right: 10px;
 
-                        display: flex;
-                        justify-content: center;
-                        align-items: center;
-                        h6 {
-                            font-size: 1rem;
-                            color    : white;
-                        }
-                    }
-                }
-            }
-            div.col-derecha-oculta{
-                // background-color: #2EE3AD;
-                margin-top     : -100%; //oculta hacia la izquierda el 90% del andho
-            }
-           
-            div.col-derecha {
-                height          : 100%;
-                transition         : all 0.4s ease-in-out;
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						h6 {
+							font-size: 1rem;
+							color: white;
+						}
+					}
+				}
+			}
+			div.col-derecha-oculta {
+				// background-color: #2EE3AD;
+				margin-top: -100%; //oculta hacia la izquierda el 90% del andho
+			}
 
-                .barra-lateral {
-                    height   : 100%;
-                    font-size: 1vw;
+			div.col-derecha {
+				height: 100%;
+				transition: all 0.4s ease-in-out;
 
-                    .row.usuario {
-                        position: fixed;
-                        height       : 10%;
-                    }
+				.barra-lateral {
+					height: 100%;
+					font-size: 1vw;
 
-                    .row.progreso {
-                        
-                        height       : 30%;
-                        border-bottom: 1px solid black;
-                        display      : flex;
-                        align-items  : center;
-                        overflow     : visible; //para el icono
+					.row.usuario {
+						position: fixed;
+						height: 10%;
+					}
 
-                        .col {
-                            height        : 100%;
-                            padding-top   : 2%;
-                            padding-bottom: 2%;
-                            overflow      : visible; //para el icono
-                        }
-                    }
+					.row.progreso {
+						height: 30%;
+						border-bottom: 1px solid black;
+						display: flex;
+						align-items: center;
+						overflow: visible; //para el icono
 
-                    .row.enlaces {
-                        height       : 25%;
-                        border-bottom: 1px solid black;
-                        display      : flex;
-                        align-items  : center;
+						.col {
+							height: 100%;
+							padding-top: 2%;
+							padding-bottom: 2%;
+							overflow: visible; //para el icono
+						}
+					}
 
-                        .col {
+					.row.enlaces {
+						height: 25%;
+						border-bottom: 1px solid black;
+						display: flex;
+						align-items: center;
 
-                            padding-top   : 2%;
-                            padding-bottom: 2%;
-                        }
-                    }
+						.col {
+							padding-top: 2%;
+							padding-bottom: 2%;
+						}
+					}
 
-                    .row.usuarios-conectados {
-                        height       : 25%;
-                        border-bottom: 1px solid black;
-                    }
+					.row.usuarios-conectados {
+						height: 25%;
+						border-bottom: 1px solid black;
+					}
 
-                    .row.soporte {
-                        height             : 10%;
-                        // border-bottom   : 1px solid black;
-                    }
-                }
-
-            }
-
-
-        }
-
-
-    }
-
+					.row.soporte {
+						height: 10%;
+						// border-bottom   : 1px solid black;
+					}
+				}
+			}
+		}
+	}
 }
 
 div.contenedor-slot-principal {
-    background-color: @colorContenidoCentral;
+	background-color: @colorContenidoCentral;
 }
-
 // COMPONENTE:modulo-contenedor-admin
 .nombre-usuario {
-    border-radius   : 0 0 5px 5px;
-    background-color: #b1cee6;
-    position        : absolute;
-    top             : 0;
-    right           : 0;
-    z-index         : 1;
-    opacity         : 1;
-    width           : 15vw;
-
-
+	border-radius: 0 0 5px 5px;
+	background-color: #b1cee6;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	opacity: 1;
+	width: 15vw;
 }
 
 // COMPONENTE: modulo-modal-ini-actv
 #modalInicial {
-    div.modal-content {
-        background-color: darkorange;
-    }
-
+	div.modal-content {
+		background-color: darkorange;
+	}
 }
-
-
 
 // COMPONENTE    : modulo-panel-derecho --en adelante
 @padding-superior: 5%;
@@ -562,104 +519,97 @@ div.contenedor-slot-principal {
 .puntaje,
 .medallas,
 .nivel {
-    padding-top   : @padding-superior;
-    padding-bottom: @padding-inferior;
-    overflow      : visible;
-    position      : relative;
+	padding-top: @padding-superior;
+	padding-bottom: @padding-inferior;
+	overflow: visible;
+	position: relative;
 }
 
-.nivel>.progress>.progress-bar {
-    background-color: rgb(59, 219, 59);
-    //.progress.icono se define mas abajo en este documento
+.nivel > .progress > .progress-bar {
+	background-color: rgb(59, 219, 59);
+	//.progress.icono se define mas abajo en este documento
 }
 
-.puntaje>.progress>.progress-bar {
-    background-color: #0460a9;
+.puntaje > .progress > .progress-bar {
+	background-color: #0460a9;
 }
 
-.medallas>.progress>.progress-bar {
-    background-color: rgb(247, 0, 255);
+.medallas > .progress > .progress-bar {
+	background-color: rgb(247, 0, 255);
 }
 
 .progress.icono {
-    background-color: inherit;
-    overflow        : visible;
+	background-color: inherit;
+	overflow: visible;
 
-
-    .progress-bar {
-        background-color: inherit;
-    }
-
-
+	.progress-bar {
+		background-color: inherit;
+	}
 }
 
 .row.indicador {
-    padding-bottom: 5px;
+	padding-bottom: 5px;
 }
 
 div.contenedor-icono {
-    overflow: visible;
+	overflow: visible;
 
-    i {
-        position   : absolute; //funciona para darle libertad de ubicacion al icono
-        margin-left: 10px;
-        margin-top : -2px;
+	i {
+		position: absolute; //funciona para darle libertad de ubicacion al icono
+		margin-left: 10px;
+		margin-top: -2px;
+	}
 
-    }
+	span {
+		// position      : absolute; //funciona para darle libertad de ubicacion al icono
+		margin-left: 10px;
+		color: white;
+	}
 
-    span {
-        // position      : absolute; //funciona para darle libertad de ubicacion al icono
-        margin-left      : 10px;
-        color            : white;
-    }
-
-    img {
-        height     : 150%;
-        margin-left: 20px;
-        margin-top : 0px;
-    }
+	img {
+		height: 150%;
+		margin-left: 20px;
+		margin-top: 0px;
+	}
 }
 
 // COMPONENTE: modulo-panel-derecho -- lo anterior
 
-//COMPONENTE: modulo-indice 
+//COMPONENTE: modulo-indice
 .row.contenido-menu {
-    background-color: @colorContenidoCentral;
+	background-color: @colorContenidoCentral;
 }
 
 .row.contenido-menu * {
-    background-color: @colorContenidoCentral;
+	background-color: @colorContenidoCentral;
 }
 
 .row.contenido-menu img {
-    border-radius: @borderRadiusMargen ;
+	border-radius: @borderRadiusMargen;
 }
 
 .item-modulo {
-    background-color: rgb(255, 255, 255);
-    padding         : 20px;
-
+	background-color: rgb(255, 255, 255);
+	padding: 20px;
 }
 
 .agregaModulo {
-    display    : flex; // centrar hijos
-    align-items: center; //centrar hijos
+	display: flex; // centrar hijos
+	align-items: center; //centrar hijos
 }
 
-.item-modulo>a {
-    display         : block;
-    background-color: white;
-
+.item-modulo > a {
+	display: block;
+	background-color: white;
 }
 
-.item-modulo>a>img {
-    width : 10vw;
-    height: 10vh;
-
+.item-modulo > a > img {
+	width: 10vw;
+	height: 10vh;
 }
 
 img.mensaje-bienvenida {
-    height: 10vh;
+	height: 10vh;
 }
 
 /* 
@@ -672,463 +622,404 @@ img.mensaje-bienvenida {
 
 /* Safari 4.0 - 8.0 */
 @-webkit-keyframes mymove {
-    0% {
-        top          : 0px;
-        transform    : scale(1);
-        border       : 2.5px rgb(248, 1, 1) solid;
-        border-radius: 50px;
-    }
+	0% {
+		top: 0px;
+		transform: scale(1);
+		border: 2.5px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
 
-    50% {
-        top          : 0px;
-        transform    : scale(1.3);
-        border       : 3px rgb(248, 1, 1) solid;
-        border-radius: 50px;
-    }
+	50% {
+		top: 0px;
+		transform: scale(1.3);
+		border: 3px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
 
-    100% {
-        top          : 0px;
-        transform    : scale(1);
-        border       : 2.5px rgb(248, 1, 1) solid;
-        border-radius: 50px;
-    }
+	100% {
+		top: 0px;
+		transform: scale(1);
+		border: 2.5px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
 }
 
 /* Standard syntax */
 @keyframes mymove {
-    0% {
-        top          : 0px;
-        transform    : scale(1);
-        border       : 2.5px rgb(248, 1, 1) solid;
-        border-radius: 50px;
-    }
+	0% {
+		top: 0px;
+		transform: scale(1);
+		border: 2.5px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
 
-    50% {
-        top          : 0px;
-        transform    : scale(1.3);
-        border       : 3px rgb(248, 1, 1) solid;
-        border-radius: 50px;
-    }
+	50% {
+		top: 0px;
+		transform: scale(1.3);
+		border: 3px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
 
-    100% {
-        top          : 0px;
-        transform    : scale(1);
-        border       : 2.5px rgb(248, 1, 1) solid;
-        border-radius: 50px;
-    }
+	100% {
+		top: 0px;
+		transform: scale(1);
+		border: 2.5px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
 }
-
-
 
 #avatarModal {
-    width : 35px;
-    height: 55px;
+	width: 35px;
+	height: 55px;
 }
-
 
 #avatarModal:hover,
 .iconoAudio:hover {
-    //animacion tomada de https://css-tricks.com/snippets/css/shake-css-keyframe-animation/
-    animation                  : shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
-    transform                  : translate3d(0, 0, 0);
-    backface-visibility        : hidden;
-    perspective                : 1000px;
+	//animacion tomada de https://css-tricks.com/snippets/css/shake-css-keyframe-animation/
+	animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
 }
 
 .avatarModalInicio {
-    animation          : shake 0.82s cubic-bezier(.36, .07, .19, .97) both;
-    transform          : translate3d(0, 0, 0);
-    backface-visibility: hidden;
-    perspective        : 1000px;
+	animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
 }
 
 @keyframes shake {
+	//animacion tomada de https://css-tricks.com/snippets/css/shake-css-keyframe-animation/
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
+	}
 
-    //animacion tomada de https://css-tricks.com/snippets/css/shake-css-keyframe-animation/
-    10%,
-    90% {
-        transform: translate3d(-1px, 0, 0);
-    }
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
+	}
 
-    20%,
-    80% {
-        transform: translate3d(2px, 0, 0);
-    }
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-4px, 0, 0);
+	}
 
-    30%,
-    50%,
-    70% {
-        transform: translate3d(-4px, 0, 0);
-    }
-
-    40%,
-    60% {
-        transform: translate3d(4px, 0, 0);
-    }
+	40%,
+	60% {
+		transform: translate3d(4px, 0, 0);
+	}
 }
-
-
-
 
 .carousel.slide.modalDetalle img {
-    width     : auto !important;
-    max-height: 60vh !important;
+	width: auto !important;
+	max-height: 60vh !important;
 }
 
-.modal_contenedor_descripcion{
-    height: 100px !important; //con respecto a .modal-body 
-    width: auto !important; //con respecto a .modal-body 
-    overflow-y: auto;
+.modal_contenedor_descripcion {
+	height: 100px !important; //con respecto a .modal-body
+	width: auto !important; //con respecto a .modal-body
+	overflow-y: auto;
 }
-.modal_contenedor_multimedia{ 
- height: 400px !important; //con respecto a .modal-body 
- width: auto !important; //con respecto a .modal-body 
- overflow-y: hidden;
-////LAS SIGUIENTES SON PROPIEDADES DE FLEXBOX
- display:flex;
- flex-direction: row;
- flex-wrap:wrap;
- justify-content: center; //centra los elemnentos hijos horizontalmente
- align-items: center; //centra los elementos hijos verticalmente
+.modal_contenedor_multimedia {
+	height: 400px !important; //con respecto a .modal-body
+	width: auto !important; //con respecto a .modal-body
+	overflow-y: hidden;
+	////LAS SIGUIENTES SON PROPIEDADES DE FLEXBOX
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center; //centra los elemnentos hijos horizontalmente
+	align-items: center; //centra los elementos hijos verticalmente
 }
-
-
-
-
-
 
 .carousel-control-prev-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23337ab7' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e") !important;
-
-
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23337ab7' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e") !important;
 }
 
 .carousel-control-next-icon {
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23337ab7' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e") !important;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23337ab7' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e") !important;
 }
 
-
 .textoOculto {
-    position: absolute;
-    z-index : -10;
-    opacity : 0;
+	position: absolute;
+	z-index: -10;
+	opacity: 0;
 }
 
 .respuesta_correcta {
-    background-color: green;
+	background-color: green;
 }
 
 .respuesta_erronea {
-    background-color: red;
+	background-color: red;
 }
 
 .inputfile,
 .input-submit {
-    color: @colorFuente;
+	color: @colorFuente;
 }
 
-
 .contenedor-formulario {
-    height    : 100%;
-    width     : 100%;
-    overflow-y: auto;
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
 }
 
 .contenedor-slot-principal {
-    height    : 100%;
-    width     : 100%;
-    overflow-y: auto;
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
 }
 
-
-
 .typography-line {
-    padding-left : 25%;
-    margin-bottom: 35px;
-    position     : relative;
-    display      : block;
-    width        : 100%;
+	padding-left: 25%;
+	margin-bottom: 35px;
+	position: relative;
+	display: block;
+	width: 100%;
 }
 
 .typography-line span {
-    color            : @colorFuente;
-    display          : block;
-    font-weight      : 400;
-    font-size        : 13px;
-    line-height      : 13px;
-    left             : 0;
-    position         : absolute;
-    // width         : 260px;
-    text-transform   : none;
+	color: @colorFuente;
+	display: block;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 13px;
+	left: 0;
+	position: absolute;
+	// width         : 260px;
+	text-transform: none;
 }
-
-
-
-
-
 
 #lienzo-hardware {
-    display     : block;
-    margin-left : auto;
-    margin-right: auto;
-    text-align  : center;
-    overflow    : visible;
-    /*permite que el tooltip se pueda ver sobre los márgenes*/
-    // background-color:rgb(51, 192, 180);
-    width              : 80%; //width y height son el viewport de el grafico svg
-    height             : auto; //89% del 80vh del contenedor principal, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	overflow: visible;
+	/*permite que el tooltip se pueda ver sobre los márgenes*/
+	// background-color:rgb(51, 192, 180);
+	width: 80%; //width y height son el viewport de el grafico svg
+	height: auto; //89% del 80vh del contenedor principal, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
 }
 
-
-
-
-
-
 #contenedor-lienzo {
-    position: relative;
+	position: relative;
 }
 
 .text-area-editar {
-    position: absolute;
-    top     : 25%;
-    left    : 25%;
-    z-index : 10;
-    width   : 50%;
-    height  : 55%;
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	z-index: 10;
+	width: 50%;
+	height: 55%;
 }
-
-
 
 .lienzo-svg {
-    margin-left        : auto;
-    margin-right       : auto;
-    text-align         : center;
-    overflow           : visible; //permite que el tooltip se pueda ver sobre los márgenes
-    // background-color:rgb(51, 192, 180);
-    width              : 85%; //width y height son el viewport de el grafico svg
-    height             : auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	overflow: visible; //permite que el tooltip se pueda ver sobre los márgenes
+	// background-color:rgb(51, 192, 180);
+	width: 85%; //width y height son el viewport de el grafico svg
+	height: auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
 }
-
-
-
-
-
-
-
 
 //estilo para poner numeros en el carousel
 .carousel-indicators-numbers {
-    li {
-        text-indent     : 0 !important;
-        margin          : 0 2px !important;
-        width           : 30px !important;
-        height          : 30px !important;
-        border          : none !important;
-        border-radius   : 100% !important;
-        line-height     : 30px !important;
-        color           : #fff !important;
-        background-color: #999 !important;
-        transition      : all 0.25s ease;
+	li {
+		text-indent: 0 !important;
+		margin: 0 2px !important;
+		width: 30px !important;
+		height: 30px !important;
+		border: none !important;
+		border-radius: 100% !important;
+		line-height: 30px !important;
+		color: #fff !important;
+		background-color: #999 !important;
+		transition: all 0.25s ease;
 
-        &.active,
-        &:hover {
-            margin          : 0 2px !important;
-            width           : 30px !important;
-            height          : 30px !important;
-            background-color: #337ab7 !important;
-        }
-    }
+		&.active,
+		&:hover {
+			margin: 0 2px !important;
+			width: 30px !important;
+			height: 30px !important;
+			background-color: #337ab7 !important;
+		}
+	}
 }
 
-
 img {
-    margin-left : auto;
-    margin-right: auto;
-    max-width   : 100%;
-    max-height  : 100%
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+	max-height: 100%;
 }
 
 .carousel .carousel-item img {
-    max-height: 54vh;
-    max-width : auto;
+	max-height: 54vh;
+	max-width: auto;
 }
-
-
-
-
 
 /*FINAL*/
 #lienzo-svg {
-    margin-left        : auto;
-    margin-right       : auto;
-    text-align         : center;
-    overflow           : visible; //permite que el tooltip se pueda ver sobre los márgenes
-    // background-color:rgb(51, 192, 180);
-    width              : 75%; //width y height son el viewport de el grafico svg
-    height             : auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+	margin-left: auto;
+	margin-right: auto;
+	text-align: center;
+	overflow: visible; //permite que el tooltip se pueda ver sobre los márgenes
+	// background-color:rgb(51, 192, 180);
+	width: 75%; //width y height son el viewport de el grafico svg
+	height: auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
 }
 
+g.contenedor:hover * {
+	fill: #e14eca !important;
+	cursor: pointer;
+}
 
+//aplica estilo a los elementos de clase g con clase "contenedor", estos elementos contendrán el grupo de graficos svg sobre los cuales se moverá el mouse
+g.contenedor0:hover {
+	fill: #e14eca !important;
+}
 
-
-
-
-
-    g.contenedor:hover * {
-        fill  :#e14eca !important;
-        cursor: pointer;
-    }
-
-  //aplica estilo a los elementos de clase g con clase "contenedor", estos elementos contendrán el grupo de graficos svg sobre los cuales se moverá el mouse 
-  g.contenedor0:hover {
-    fill:#e14eca !important;
-  } 
-
-  g.contenedor1:hover * {
-    stroke-width  : 1.5px !important;
-    stroke        : #e14eca !important;
-    stroke-opacity: 1;
+g.contenedor1:hover * {
+	stroke-width: 1.5px !important;
+	stroke: #e14eca !important;
+	stroke-opacity: 1;
 }
 
 .tooltip {
-    pointer-events:none;//permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
-    opacity:1;
-    display: block;
-    position: fixed; // el origen de coordenadas se toma de la ventana del navegador 
-    border-radius: 3px;
-    // border:#d3d3d3 solid 1px;
-    background: #0084ff ;
-    font-family: Comfortaa, Verdana;
-    font-size: medium;
-    padding: 8px;
-    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); 
-    max-height: 50px;
+	pointer-events: none; //permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
+	opacity: 1;
+	display: block;
+	position: fixed; // el origen de coordenadas se toma de la ventana del navegador
+	border-radius: 3px;
+	// border:#d3d3d3 solid 1px;
+	background: #0084ff;
+	font-family: Comfortaa, Verdana;
+	font-size: medium;
+	padding: 8px;
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	max-height: 50px;
 }
 
 .tooltip1 {
-    pointer-events: none; //permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
-    opacity       : 1;
-    display       : block;
-    position      : fixed; // el origen de coordenadas se toma de la ventana del navegador 
-    border-radius : 3px;
-    // border        : #d3d3d3 solid 1px;
-    background    : #0084ff ;
-    font-family   : Comfortaa, Verdana;
-    font-size     : medium;
-    padding       : 8px;
-    box-shadow    : 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-    max-height    : 50px;
+	pointer-events: none; //permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
+	opacity: 1;
+	display: block;
+	position: fixed; // el origen de coordenadas se toma de la ventana del navegador
+	border-radius: 3px;
+	// border        : #d3d3d3 solid 1px;
+	background: #0084ff;
+	font-family: Comfortaa, Verdana;
+	font-size: medium;
+	padding: 8px;
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	max-height: 50px;
 }
-
 
 .formularioCentralSmall {
-    background-color: @colorContenidoCentral  !important;
-    width: 75%;
-    margin: auto;
-    // text-align: center;
+	background-color: @colorContenidoCentral !important;
+	width: 75%;
+	margin: auto;
+	// text-align: center;
 }
 //computadora, por favor al elemento que tiene un identificador llamado .lista-cursos-disponible centrele con respecto a su padre
-.lista-cursos-disponible{
-    // width: 75%;
-    margin: auto;
-    position: relative;
+.lista-cursos-disponible {
+	// width: 75%;
+	margin: auto;
+	position: relative;
 }
-
-
 
 .button,
 .list-group-item-estudiante {
-    border             : 1px solid;
-    border-color       : #ccc !important;
-    background-color   : @colorContenidoCentral  !important;
-    border-radius      : 0.4285rem !important;
-    // border-radius   : 2rem !important;
-    padding            : 12px 20px !important;
-    width              : 100% !important;
-
+	border: 1px solid;
+	border-color: #ccc !important;
+	background-color: @colorContenidoCentral !important;
+	border-radius: 0.4285rem !important;
+	// border-radius   : 2rem !important;
+	padding: 12px 20px !important;
+	width: 100% !important;
 }
 
 .button:hover,
 .list-group-item-estudiante:hover {
-    background-color   : darken(@colorContenidoCentral, 5%) !important;
-    // background-image: linear-gradient(to bottom right,white, darken(white,20%),white) !important;
-    // background-image: -webkit-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
-    // background-image: -o-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
-    // background-image: -moz-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
-    // color           : white;
+	background-color: darken(@colorContenidoCentral, 5%) !important;
+	// background-image: linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+	// background-image: -webkit-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+	// background-image: -o-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+	// background-image: -moz-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+	// color           : white;
 }
 
 p a:hover {
-    color: white !important;
+	color: white !important;
 }
 
 #homepage,
 .contenedor-principal {
-    height          : inherit; //hereda las propedades del padre, #layout-general
-    width           : inherit;
-    font-family     : inherit;
-    background-color: inherit;
-
-
-
+	height: inherit; //hereda las propedades del padre, #layout-general
+	width: inherit;
+	font-family: inherit;
+	background-color: inherit;
 }
 
 .banner-homepage {
-    height: 20%;
-    background-image: url(/images/homepage/Escuela-Politecnica.jpg);
-    background-size: cover;
-    background-repeat: no-repeat;
+	height: 20%;
+	background-image: url(/images/homepage/Escuela-Politecnica.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
 
-    .col,
-    .col .imagen-banner {
-        height: 100%;
-        width : 100%;
-        border: 1px solid #a9a9a9;
-
-    }
+	.col,
+	.col .imagen-banner {
+		height: 100%;
+		width: 100%;
+		border: 1px solid #a9a9a9;
+	}
 }
 
-
-
 .contenido-homepage {
-    height: 80%;
+	height: 80%;
 }
 
 .contenido-homepage .row {
-    justify-content: center;
+	justify-content: center;
 }
 
 .contenido-homepage .col-sm-6 {
-    padding-top: 20px;
+	padding-top: 20px;
 }
 
 .contenido-homepage .homepage-logo,
-.contenido-homepage .homepage-login{
-    border: 1px solid #a9a9a9;
+.contenido-homepage .homepage-login {
+	border: 1px solid #a9a9a9;
 }
 
-.seccion-inicia-sesion{
-    // border: 1px solid #a9a9a9;
-    // padding: 25px 45px;
+.seccion-inicia-sesion {
+	// border: 1px solid #a9a9a9;
+	// padding: 25px 45px;
 }
-.contenedor-admin-login{
-    position: relative;
+.contenedor-admin-login {
+	position: relative;
 }
-.login-contenedor{
-    width: 40%;
-    margin: auto;
+.login-contenedor {
+	width: 40%;
+	margin: auto;
 }
-
 
 .imagen-derecha-homepage {
-    img {
-        max-height: 300px;
-        max-width : auto;
-    }
+	img {
+		max-height: 300px;
+		max-width: auto;
+	}
 }
 
 .form-group .btn.btn-primary {
-    width: 100% !important;
+	width: 100% !important;
 }
 
 // .contenedor-formulario-registro{
@@ -1138,236 +1029,229 @@ p a:hover {
 // }
 // .contenedor-formulario-registro .fila-contenedor{
 //     width: 150px !important;
-    
+
 // }
 
-
-#svg8{
-    position: absolute;
-    z-index: 1;
-    width        : 90% !important;
-                        height       : 100% !important;
+#svg8 {
+	position: absolute;
+	z-index: 1;
+	width: 90% !important;
+	height: 100% !important;
 }
 
-h5.modal-title{
- color: @colorTituloModal !important;
+h5.modal-title {
+	color: @colorTituloModal !important;
 }
 
-
-.modal-content h1,.modal-content h2,.modal-content h3,.modal-content h4,.modal-content h5,.modal-content h6,.modal-content p, .modal-content .close>span, .modal-content p span {
-    color: @colorLetraModal !important;
+.modal-content h1,
+.modal-content h2,
+.modal-content h3,
+.modal-content h4,
+.modal-content h5,
+.modal-content h6,
+.modal-content p,
+.modal-content .close > span,
+.modal-content p span {
+	color: @colorLetraModal !important;
 }
-
 
 /////////////////////////////////////////////////////
 
 @-webkit-keyframes bounceInDown {
-    from,
-    60%,
-    75%,
-    90%,
-    to {
-      -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-  
-    0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0, -3000px, 0);
-      transform: translate3d(0, -3000px, 0);
-    }
-  
-    60% {
-      opacity: 1;
-      -webkit-transform: translate3d(0, 25px, 0);
-      transform: translate3d(0, 25px, 0);
-    }
-  
-    75% {
-      -webkit-transform: translate3d(0, -10px, 0);
-      transform: translate3d(0, -10px, 0);
-    }
-  
-    90% {
-      -webkit-transform: translate3d(0, 5px, 0);
-      transform: translate3d(0, 5px, 0);
-    }
-  
-    to {
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  
-  @keyframes bounceInDown {
-    from,
-    60%,
-    75%,
-    90%,
-    to {
-      -webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-      animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
-    }
-  
-    0% {
-      opacity: 0;
-      -webkit-transform: translate3d(0, -3000px, 0);
-      transform: translate3d(0, -3000px, 0);
-    }
-  
-    60% {
-      opacity: 1;
-      -webkit-transform: translate3d(0, 25px, 0);
-      transform: translate3d(0, 25px, 0);
-    }
-  
-    75% {
-      -webkit-transform: translate3d(0, -10px, 0);
-      transform: translate3d(0, -10px, 0);
-    }
-  
-    90% {
-      -webkit-transform: translate3d(0, 5px, 0);
-      transform: translate3d(0, 5px, 0);
-    }
-  
-    to {
-      -webkit-transform: translate3d(0, 0, 0);
-      transform: translate3d(0, 0, 0);
-    }
-  }
-  
-  .bounceInDown {
-    -webkit-animation-name: bounceInDown;
-    animation-name: bounceInDown;
-  }
+	from,
+	60%,
+	75%,
+	90%,
+	to {
+		-webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -3000px, 0);
+		transform: translate3d(0, -3000px, 0);
+	}
+
+	60% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 25px, 0);
+		transform: translate3d(0, 25px, 0);
+	}
+
+	75% {
+		-webkit-transform: translate3d(0, -10px, 0);
+		transform: translate3d(0, -10px, 0);
+	}
+
+	90% {
+		-webkit-transform: translate3d(0, 5px, 0);
+		transform: translate3d(0, 5px, 0);
+	}
+
+	to {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes bounceInDown {
+	from,
+	60%,
+	75%,
+	90%,
+	to {
+		-webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -3000px, 0);
+		transform: translate3d(0, -3000px, 0);
+	}
+
+	60% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 25px, 0);
+		transform: translate3d(0, 25px, 0);
+	}
+
+	75% {
+		-webkit-transform: translate3d(0, -10px, 0);
+		transform: translate3d(0, -10px, 0);
+	}
+
+	90% {
+		-webkit-transform: translate3d(0, 5px, 0);
+		transform: translate3d(0, 5px, 0);
+	}
+
+	to {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.bounceInDown {
+	-webkit-animation-name: bounceInDown;
+	animation-name: bounceInDown;
+}
 ////////////////////////////////////////////////////
 
-.evFinPtos{
-    animation : bounceInDown 0.9s;
+.evFinPtos {
+	animation: bounceInDown 0.9s;
 }
 
-
-.titulo-centrado,.contenido_centrado_horizontalmente{
-    text-align: center;     
+.titulo-centrado,
+.contenido_centrado_horizontalmente {
+	text-align: center;
 }
-
-
 
 //COMPONENTE: modulo-indice ---lo anterior
 
-
-    .contenidoTiny {
-        background-color: @colorContenidoCentral;
-        border             : 1px solid #a9a9a9;
-        border-color: #2b3553 !important;
-        border-radius: .4285rem !important;
-        color:@opacity-8 !important;
-        
-        
-    }
-
-    .form-control {
-        background-color:@colorContenidoCentral !important;
-        box-shadow: none !important;
-        border-color: #2b3553 !important;
-        border-radius: .4285rem !important;
-        color:@opacity-8 !important;
-    }
-
-    .form-control:focus,.contenidoTiny:focus {
-        background-color:@colorContenidoCentral !important;
-        border:1px solid #12bf75 !important;
-        outline: 0px  !important;  //esta propiedad se implementa para el contenidoTiny
-        color:@opacity-8 !important;
-        box-shadow: none !important;
-    }
-
-
-
-    .contenido-evaluacion{
-        text-align: center;
-        width: 70%;
-        margin: auto;
-    }
-    .contenido-evaluacion .container{
-        padding-top: 40px;
-    }
-
-    .table{
-        color:@colorFuente !important;
-    }
-
-   
-    .introjs-hint-pulse{
-        border: 5px solid #bb2e0f4a !important;
-        background-color: #54464699 !important;
-    }
-
-    .introjs-hint-dot{
-        border: 10px solid #d81414cc !important;
-        background: #b71d1dc4 !important;
-    }
-    .introjs-tooltip{
-        background-color: @colorContenidoCentral !important;
-    }
-
-    .introjs-tooltiptext{
-color: @colorFuente !important;
-    }
-
-    .flotante_izquierda{
-        float: left;
-    }
-
-    #botones_play_imprimir{
-        position: absolute;
-        top: -10px !important;
-        left: 75px !important;
-    }
-
-
-
-
-    #label_pulse_aqui{
-        color: black !important;
-      }
-
-      .boton_formulario{
-        
-        background-color: #e14eca !important;
-        background-image: linear-gradient(to bottom left,#e14eca,#ba54f5,#e14eca);
-        background-size: 210% 210%;
-        border-width: 0px;
-        border-radius: .4285rem;
-        margin: 4px 1px;
-        margin-top: 1rem !important;
-        padding: 11px 40px;
-        line-height: 1.35em;
-
-        color:#fff;
-        font-weight: 600;
-    }
-
-
-    #boton_desplegable_personalizado.dropdown-menu{
-        border: 1px solid #e14eca;
-        margin-left: -10px !important;
-        width: 15vw !important;
-        transition:all 0.4s ease-in-out !important;  //la transicion al mostrar u ocultar ;
-    }
-     #boton_desplegable_personalizado.dropdown-menu, #boton_desplegable_personalizado.dropdown-menu *{
-        background: linear-gradient(#222a42,#1d253b) !important;
-        color: @colorFuente !important;     
-        
-     }
-.btn-group{
-    // Boton del nombre de usuario
-    width: 100% !important;
+.contenidoTiny {
+	background-color: @colorContenidoCentral;
+	border: 1px solid #a9a9a9;
+	border-color: #2b3553 !important;
+	border-radius: 0.4285rem !important;
+	color: @opacity-8 !important;
 }
 
-#alerta_ultimo_tema{
-    position: absolute;
-    margin-left:-20vw;
-    z-index: 1;
+.form-control {
+	background-color: @colorContenidoCentral !important;
+	box-shadow: none !important;
+	border-color: #2b3553 !important;
+	border-radius: 0.4285rem !important;
+	color: @opacity-8 !important;
+}
+
+.form-control:focus,
+.contenidoTiny:focus {
+	background-color: @colorContenidoCentral !important;
+	border: 1px solid #12bf75 !important;
+	outline: 0px !important; //esta propiedad se implementa para el contenidoTiny
+	color: @opacity-8 !important;
+	box-shadow: none !important;
+}
+
+.contenido-evaluacion {
+	text-align: center;
+	width: 70%;
+	margin: auto;
+}
+.contenido-evaluacion .container {
+	padding-top: 40px;
+}
+
+.table {
+	color: @colorFuente !important;
+}
+
+.introjs-hint-pulse {
+	border: 5px solid #bb2e0f4a !important;
+	background-color: #54464699 !important;
+}
+
+.introjs-hint-dot {
+	border: 10px solid #d81414cc !important;
+	background: #b71d1dc4 !important;
+}
+.introjs-tooltip {
+	background-color: @colorContenidoCentral !important;
+}
+
+.introjs-tooltiptext {
+	color: @colorFuente !important;
+}
+
+.flotante_izquierda {
+	float: left;
+}
+
+#botones_play_imprimir {
+	position: absolute;
+	top: -10px !important;
+	left: 75px !important;
+}
+
+#label_pulse_aqui {
+	color: black !important;
+}
+
+.boton_formulario {
+	background-color: #e14eca !important;
+	background-image: linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
+	background-size: 210% 210%;
+	border-width: 0px;
+	border-radius: 0.4285rem;
+	margin: 4px 1px;
+	margin-top: 1rem !important;
+	padding: 11px 40px;
+	line-height: 1.35em;
+
+	color: #fff;
+	font-weight: 600;
+}
+
+#boton_desplegable_personalizado.dropdown-menu {
+	border: 1px solid #e14eca;
+	margin-left: -10px !important;
+	width: 15vw !important;
+	transition: all 0.4s ease-in-out !important; //la transicion al mostrar u ocultar ;
+}
+#boton_desplegable_personalizado.dropdown-menu,
+#boton_desplegable_personalizado.dropdown-menu * {
+	background: linear-gradient(#222a42, #1d253b) !important;
+	color: @colorFuente !important;
+}
+.btn-group {
+	// Boton del nombre de usuario
+	width: 100% !important;
+}
+
+#alerta_ultimo_tema {
+	position: absolute;
+	margin-left: -20vw;
+	z-index: 1;
 }

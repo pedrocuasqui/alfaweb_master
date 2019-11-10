@@ -206,14 +206,14 @@ li {
             height: 100%;
             //ancho definido por col-sm-2
             position     : relative;
-            overflow     : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
+            // overflow     : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
             padding-left : 0% !important; //que el contenido se encuentre apegado al margen izquierdo
             padding-right: 0% !important; //que el contenido se encuentre apegado al margen derecho
 
 
             .sidebar-oculto {
                 background-color: #2EE3AD;
-                margin-left     : -95%; //oculta hacia la izquierda el 90% del andho
+                margin-left     : -10vw; //oculta hacia la izquierda el 90% del andho
             }
 
             #sidebar-menu {
@@ -222,7 +222,7 @@ li {
                 position           : absolute;
                 transition         : all 0.4s ease-in-out; //la transicion al mostrar u ocultar
                 text-align         : left;
-                width              : 100%;
+                width              : 18vw;
                 // background-color: rgb(17, 17, 17, 0.9);
                 background         : @menuSideBar;
                 overflow           : hidden;

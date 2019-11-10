@@ -105,7 +105,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
         <div class="col-sm-11" id="columna-contenido-lateral">
             <div class="row fila-principal">
                 <!-- Columna central -->
-                <div class="col-sm-10 col-central">
+                <div class="col-sm-11 col-central">
                     <div class="row">
                         
                         <!--"navegacion-atras"-->
@@ -188,7 +188,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 
                 </div>
                 <!-- columna derecha -->
-                <div class="col-sm-2 col-derecha" >
+                <div class="col-sm-1 col-derecha" >
                 <!--ESTE PRIMER CONTENEDOR SE USA PARA LOS SUBMODULOS-->    
                 <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance" :curso="curso" :objeto-seleccionado="objetoSeleccionado"> 
                         <template >

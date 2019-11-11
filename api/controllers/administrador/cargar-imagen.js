@@ -8,8 +8,8 @@ module.exports = {
 
 	exits: {
 		success: {
-			description: "exito al cargar imagen"
-		}
+			description: "exito al cargar imagen",
+		},
 	},
 
 	fn: async function(inputs, exits) {
@@ -19,7 +19,9 @@ module.exports = {
 		const fs = require("fs");
 
 		var nuevoArchivo = {};
+
 		sails.log("ingreso a action: cargar-imagen");
+
 		this.req.file("multimedia").upload(
 			{
 				//por defecto sails usa SKIPPER para recibir archivos y texto, se puede cambiar si es necesario ir a congif/http.js
@@ -27,7 +29,7 @@ module.exports = {
 				dirname: "../../.tmp/public/images/uploaded",
 
 				// don't allow the total upload size to exceed ~20MB
-				maxBytes: 1024 * 1024 * 200 //20MB,
+				maxBytes: 1024 * 1024 * 200, //20MB,
 				// onProgress: status=>{
 
 				//   console.log('ESTADO:'+status.written + '/' +status.stream.byteCount);
@@ -48,7 +50,7 @@ module.exports = {
 					imageBaseUrl +
 					rutaOriginal.substring(
 						rutaOriginal.length - (8 + 4 + 4 + 4 + 12 + 3 + 5),
-						rutaOriginal.length
+						rutaOriginal.length,
 					);
 				sails.log(nuevoArchivo);
 
@@ -60,7 +62,7 @@ module.exports = {
 						if (err) {
 							throw err;
 						}
-					}
+					},
 				);
 
 				if (err) {
@@ -74,7 +76,7 @@ module.exports = {
 					return this.res.status; //Respuesta para axios ERROR EN EL CLIENTE
 				}
 				return this.res.ok(nuevoArchivo);
-			}
+			},
 		);
-	}
+	},
 };

@@ -28,9 +28,10 @@ Fuente: http://patorjk.com/software/taag/#p=display&h=0&v=0&f=3D-ASCII&t=404
   /* Styles included inline since you'll probably be deleting this page anyway */
   .contenido {
     padding: 45px !important;
-    
+
   }
-  .div-contenido{
+
+  .div-contenido {
     background-color: #1e1e2f;
   }
 </style>
@@ -65,8 +66,15 @@ Fuente: http://patorjk.com/software/taag/#p=display&h=0&v=0&f=3D-ASCII&t=404
   <!--Contenido -->
   <div class="row" id="div-body">
 
-    <div class="nombre-usuario"> <a href="/view-login">Inicia Sesión</a> | <a
-        href="/view-registro-usuario">Regístrate</a>
+    <div class="nombre-usuario">
+      <div class="row">
+        <div class="col">
+          <a class="btn btn-primary boton_formulario" role="button" href="/view-login">Inicia Sesión</a>
+        </div>
+        <div class="col">
+          <a class="btn btn-primary boton_formulario" role="button" href="/view-registro-usuario">Regístrate</a>
+        </div>
+      </div>
     </div>
     <div class="col contenido">
       <div class="container">

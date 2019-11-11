@@ -189,7 +189,7 @@ parasails.registerComponent('modulo-panel-derecho', {
                         <slot >
                         <!--Iconos de silenciar e imprimir-->
                         </slot>
-                        <button type="button" class="btn btn-primary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="mostrarOpcionesUsuario()">
+                        <button type="button" class="btn btn-primary dropdown-toggle boton_formulario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="mostrarOpcionesUsuario()">
                         {{usuario.nombre}}
                         </button>
                     

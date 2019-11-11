@@ -22,7 +22,7 @@ parasails.registerComponent('modulo-contenedor-admin', {
 	template: /*html*/ `
 <div class="div-contenido container-fluid" v-cloak>
     <!-- Barra de navegacion en la parte superior-->
-    <div class="row" id="div-cabecera"  >
+    <div class="row" id="div-cabecera" >
         <div class="col-sm-8">
             <modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav>
         </div>
@@ -47,9 +47,19 @@ parasails.registerComponent('modulo-contenedor-admin', {
         </div>
 
 
-        <div v-else class="nombre-usuario">
-            <a href="/view-login">Inicia Sesión</a> | <a href="/view-registro-usuario">Regístrate</a>
+        <div v-else>
+          <div class="row">
+            <div class="col">
+              <a class="btn btn-primary boton_formulario" role="button" href="/view-login">Inicia Sesión</a>
+            </div>
+            <div class="col">
+              <a class="btn btn-primary boton_formulario" role="button" href="/view-registro-usuario">Regístrate</a>
+            </div>
+          </div>
+
         </div>
+
+
 
         </div>
     </div>

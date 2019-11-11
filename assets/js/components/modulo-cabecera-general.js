@@ -23,13 +23,14 @@ parasails.registerComponent('modulo-cabecera-general', {
 
 	template: /*template */ `  
 	<div class="row" id="div-cabecera">
-		<div class="col-sm-6">
+		<div :class="usuario ? 'col-sm-8' : 'col-sm-6'">
 			<modulo-barra-nav :breadcrumb="breadcrumb"></modulo-barra-nav>
 		</div>
 		<div class="col-sm-2">
 			<img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
 		</div>
-		<div class="col-sm-4">
+		
+		<div :class="usuario ? 'col-sm-2':'col-sm-4'">
 			<template v-if="usuario">
 				<div class="btn-group">
 					<button type="button" class="btn btn-primary dropdown-toggle boton_formulario" data-toggle="dropdown"

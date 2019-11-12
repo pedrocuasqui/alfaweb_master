@@ -490,8 +490,11 @@ li {
 	}
 }
 
-div.contenedor-slot-principal {
+.contenedor-slot-principal {
 	background-color: @colorcontenidocentral;
+	height: 100%;
+	width: 100%;
+	overflow-y: auto;
 }
 // COMPONENTE:modulo-contenedor-admin
 .nombre-usuario {
@@ -757,9 +760,13 @@ img.mensaje-bienvenida {
 	background-color: red;
 }
 
-.inputfile,
 .input-submit {
 	color: @colorfuente;
+	position: absolute;
+}
+.inputfile.form-control,
+.inputfile {
+	visibility: hidden;
 	position: absolute;
 }
 
@@ -767,12 +774,6 @@ img.mensaje-bienvenida {
 	height: 100%;
 	width: auto;
 	// overflow-y: visible;
-}
-
-.contenedor-slot-principal {
-	height: 100%;
-	width: 100%;
-	overflow-y: auto;
 }
 
 .typography-line {

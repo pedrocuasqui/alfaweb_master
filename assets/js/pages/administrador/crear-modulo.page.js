@@ -266,7 +266,7 @@ parasails.registerPage("crear-modulo", {
           this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
           this.evIndividual = true;
         }
-      
+   
       
     },
 */
@@ -275,6 +275,10 @@ parasails.registerPage("crear-modulo", {
 			this.contTiny = window.contenidoTiny;
 			console.log("esta tipeando");
 		},
+		/**
+		 * Al dar click en el boton de seleccionar im'agen, se guarda la ruta de la imagen anterior,
+		 * la variable this.rutaImagenAnterior se envia a la accion sails encargada de crear una imagen, evalua si la variable this.rutaImagenAnterior tienen un valor entonces procede a eliminar la imagen y a cargar la nueva
+		 */
 		onClickCambiarImagen() {
 			if (this.rutaTemporal != "") {
 				this.rutaImagenAnterior = this.rutaTemporal;

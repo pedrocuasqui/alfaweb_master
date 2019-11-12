@@ -88,6 +88,7 @@ parasails.registerPage("administrar-contenido", {
 			"#33F318",
 			"#F3DF18",
 		],
+		rutaImagenAnterior: null,
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -319,6 +320,12 @@ parasails.registerPage("administrar-contenido", {
 			this.rutaObjetoCargado = null;
 			var _this = this;
 			const formData = new FormData();
+
+			if (this.rutaImagenAnterior) {
+				//si existe una rutaImagenAnterior se aniade la formulario para eliminar la ruta indicada
+				formData.append("rutaImagenActual", this.rutaImagenAnterior);
+			}
+
 			formData.append(
 				"multimedia",
 				this.imagenTemporal,
@@ -668,6 +675,19 @@ parasails.registerPage("administrar-contenido", {
 					});
 				}
 			}
+		},
+		/**
+		 * Al dar click en el boton de seleccionar im'agen, se guarda la ruta de la imagen anterior,
+		 * la variable this.rutaImagenAnterior se envia a la accion sails encargada de crear una imagen, evalua si la variable this.rutaImagenAnterior tienen un valor entonces procede a eliminar la imagen y a cargar la nueva
+		 */
+		onClickCambiarImagen() {
+			if (this.rutaTemporal != "") {
+				this.rutaImagenAnterior = this.rutaTemporal;
+			}
+		},
+		onClickCancelar() {
+			// this.imagensTiny = window.imagenesTemporalesTiny;
+			window.location.assign("/view-crear-modulo/?cursoId=" + this.curso.id);
 		},
 	},
 	computed: {

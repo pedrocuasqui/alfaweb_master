@@ -25,12 +25,36 @@ module.exports = {
 
 		var nuevoArchivo = {};
 
-		console.log("ËVALUACION DE IMAGEN RECIBIDA");
-		console.log(inputs.rutaImagenActual);
 		if (inputs.rutaImagenActual) {
-			console.log("Se busca la imagen y se elimina");
+			const path1 =
+				"./assets/images/uploaded/" +
+				inputs.rutaImagenActual.substring(
+					inputs.rutaImagenActual.length - (8 + 4 + 4 + 4 + 12 + 3 + 5), // el cinco al final representa los guiones y punto en el string
+					inputs.rutaImagenActual.length,
+				);
+
+			const path2 =
+				"./.tmp/public/images/uploaded/" +
+				inputs.rutaImagenActual.substring(
+					inputs.rutaImagenActual.length - (8 + 4 + 4 + 4 + 12 + 3 + 5), // el cinco al final representa los guiones y punto en el string
+					inputs.rutaImagenActual.length,
+				);
+
+			fs.unlink(path1, err => {
+				if (err) {
+					console.error(err);
+					return;
+				}
+				//file removed
+			});
+			fs.unlink(path2, err => {
+				if (err) {
+					console.error(err);
+					return;
+				}
+				//file removed
+			});
 		}
-		sails.log("ingreso a action: cargar-imagen");
 
 		this.req.file("multimedia").upload(
 			{
@@ -51,7 +75,6 @@ module.exports = {
 				sails.log("exito al recibir");
 				//  `fd` (file descriptor)
 
-				sails.log(uploadedFiles[0]);
 				nuevoArchivo = uploadedFiles[0];
 				// nuevoArchivo.location = uploadedFiles[0].fd;
 				let imageBaseUrl = sails.config.custom.imageBaseUrl;
@@ -59,7 +82,7 @@ module.exports = {
 				nuevoArchivo.location =
 					imageBaseUrl +
 					rutaOriginal.substring(
-						rutaOriginal.length - (8 + 4 + 4 + 4 + 12 + 3 + 5),
+						rutaOriginal.length - (8 + 4 + 4 + 4 + 12 + 3 + 5), // el cinco al final representa los guiones y punto en el string
 						rutaOriginal.length,
 					);
 				sails.log(nuevoArchivo);

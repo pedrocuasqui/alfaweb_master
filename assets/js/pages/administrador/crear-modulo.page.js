@@ -18,8 +18,8 @@ parasails.registerPage("crear-modulo", {
 
 		seleccionMultimedia: true,
 		imagenPortada: {},
-		imagenTemporal: {},
-		rutaTemporal: "",
+		imagenTemporal: {}, //El objeto de imagen que devuelve el elemento input
+		rutaTemporal: "", //la URL que devuelve la funcion cargarImagen desde el servidor
 		color: "",
 
 		tituloEvaluacion: "",
@@ -29,6 +29,7 @@ parasails.registerPage("crear-modulo", {
 		adminCreandoModuloSubmodulo: true,
 		uploadPercentage: 0,
 		rutaImagenAnterior: null,
+		// imagensTiny: [], arreglo de imagenes que se han cargado en tiny que deben ser eliminadas
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -91,14 +92,11 @@ parasails.registerPage("crear-modulo", {
 
 			//Añadir las propiedades del objeto seleccionado a la variable imagenPortada
 			if (event.target.files.length != 0) {
-				// si se ha seleccionado un archivo se procede a cargar la imagen, caso contrario no se modifican los valores actuales
+				// si se ha seleccionado un archivo se procede a cargar el objeto la imagen, caso contrario no se modifican los valores actuales
 				this.imagenTemporal = event.target.files[0];
 
 				//no se usa directamente URL.createObjectURL porque tinymce necesita usar url.create para mostrar las imágenes
 				// this.imagenTemporal.rutaLocal = URL.createObjectURL(this.imagenTemporal);//Visualizar en el navegador la imagen seleccionada
-
-				// setTimeout(function () { URL.revokeObjectURL(url); }, 3000);
-				// URL.revokeObjectURL(url); //Cada vez que se llama a createObjectURL(), un nuevo objeto URL es creado, incluso si ya creaste uno para el mismo objeto. Cada uno de estos objetos puede ser liberado usando URL.revokeObjectURL() cuándo ya no lo necesitas. Los navegadores liberan estos objetos cuando el documento es cerrado
 
 				this.formErrors.imagenPortada = false;
 				this.formErrors.typeFile = false;
@@ -110,12 +108,15 @@ parasails.registerPage("crear-modulo", {
 		guardarImagenPortada() {
 			var _this = this;
 			const formData = new FormData();
+			if (this.rutaImagenAnterior) {
+				//si existe una rutaImagenAnterior se aniade la formulario para eliminar la ruta indicada
+				formData.append("rutaImagenActual", this.rutaImagenAnterior);
+			}
 			formData.append(
 				"multimedia",
 				this.imagenTemporal,
 				this.imagenTemporal.name,
 			);
-			formData.append("rutaImagenActual", this.rutaImagenAnterior);
 
 			axios({
 				method: "post",
@@ -234,11 +235,18 @@ parasails.registerPage("crear-modulo", {
     },
 */
 		actualizaContTiny() {
+			//para verificar que exista contenido Tiny
 			this.contTiny = window.contenidoTiny;
 			console.log("esta tipeando");
 		},
 		onClickCambiarImagen() {
-			this.rutaImagenAnterior = this.imagenTemporal;
+			if (this.rutaTemporal != "") {
+				this.rutaImagenAnterior = this.rutaTemporal;
+			}
+		},
+		onClickCancelar() {
+			// this.imagensTiny = window.imagenesTemporalesTiny;
+			window.location.assign("/view-crear-modulo/?cursoId=" + this.curso.id);
 		},
 	},
 	computed: {

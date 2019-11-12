@@ -29,7 +29,7 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.css"
     integrity="sha256-IvM9nJf/b5l2RoebiFno92E5ONttVyaEEsdemDC6iQA=" crossorigin="anonymous" />
   <!-- <link href="/dependencies/toastr.min.css" rel="stylesheet"/> -->
-  
+
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.css">
 
 
@@ -78,19 +78,14 @@
       /* we override default upload handler to simulate successful upload*/
       init_instance_callback: function (editor) {
         //  window.contenidoTiny =null;
-
         editor.on('keyup', function (e) { // no reconoce los clicks
-
           window.contenidoTiny = tinymce.get("mytextarea").getContent()
           // $('.contenido-tiny').html(window.contenidoTiny);          
-
         });
         editor.on('Change', function (e) { //reconoce los clicks sobre el objeto iframe
-
           window.contenidoTiny = tinymce.get("mytextarea").getContent()
           // $('.contenido-tiny').html(window.contenidoTiny);          
         });
-
       },
 
       images_upload_handler: function (blobInfo, success, failure) {
@@ -106,16 +101,14 @@
           data: formData
         })
           .then(
-            (response) => {
-
+            response => {
               json = response.data;
-
               _success(json.location);
+
             }
           )
           .catch(
-            (err) => {
-
+            err => {
               _failure('Error encontrado' + err);
             }
           );

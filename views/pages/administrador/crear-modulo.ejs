@@ -94,9 +94,23 @@
                             colores por defecto) </label>
                         <input id="colorModulo" type="color" name="color" v-model="color" />
                     </div> -->
-                    <button class="boton_formulario" type="button" id="enviarModulo" @click="validarFormulario"> Guardar
-                        Módulo</button>
+                    <div class="row">
+                        <div class="col-sm-4">
 
+                        </div>
+                        <div class="col-sm-4">
+                            <button class="boton_formulario" type="button" id="enviarModulo" @click="validarFormulario">
+                                Guardar Módulo</button>
+                        </div>
+                        <div class="col-sm-3">
+                            <button class="boton_formulario" type="button" id="cancelarModulo" @click="onClickCancelar">
+                                Cancelar</button>
+                        </div>
+                        <div class="col-sm-1">
+
+                        </div>
+
+                    </div>
 
                     <br>
                     <br>

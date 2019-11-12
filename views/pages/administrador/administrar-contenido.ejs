@@ -179,11 +179,14 @@
 
                     <template>
 
+                        <label v-if="rutaTemporal==''" for="file" class=" boton_formulario">Seleccione una Imágen
+                        </label>
+                        <label v-else for="file" class=" boton_formulario" @click="onClickCambiarImagen">Cambiar
+                            Imágen </label>
                         <input type="file" name="multimedia" id="file" class="inputfile"
                             @change="onFileSelectedEvaluacionNombreObjeto" accept="image/*"
                             :class="[computedErrorImagen ? 'is-invalid' : '']">
-                        <label for="file" title="Imágen de portada (JPG o PNG)"> <a> imagen <i
-                                    class="fas fa-plus-circle fa-2x"></i></a></label>
+
                         <div v-if="mostrarSpinner" id="spinnerEv" class="spinner-border m-5" role="status">
                             <span class="sr-only">Loading...</span>
                         </div>
@@ -656,9 +659,9 @@
                                                 jpg,/png. max:20MB. </div>
 
                                             <div class="imagen-portada-modulo">
-                                                <img v-if="existeImagenTemporal" :src="imagenTemporal"
-                                                    alt="Imágen de portada">
-                                                <img v-else :src="objetoSeleccionado.multimedia.imagen"
+                                                <!-- <img v-if="existeImagenTemporal" :src="imagenTemporal"
+                                                    alt="Imágen de portada"> -->
+                                                <img :src="objetoSeleccionado.multimedia.imagen"
                                                     alt="Imágen de portada">
 
                                             </div>

@@ -21,7 +21,6 @@ parasails.registerPage("crear-modulo", {
 		imagenTemporal: {},
 		rutaTemporal: "",
 		color: "",
-		mostrarSpinner: false,
 
 		tituloEvaluacion: "",
 		evIndividual: false,
@@ -44,6 +43,7 @@ parasails.registerPage("crear-modulo", {
 	mounted: async function() {
 		//se crea la variable contenidoTiny para poder guardar el contenido del textarea de contendio
 		this.contTiny = window.contenidoTiny = null; // se establece el contenido
+		$(".row.pie-contenido").remove();
 	},
 
 	//  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -92,7 +92,6 @@ parasails.registerPage("crear-modulo", {
 			if (event.target.files.length != 0) {
 				// si se ha seleccionado un archivo se procede a cargar la imagen, caso contrario no se modifican los valores actuales
 				this.imagenTemporal = event.target.files[0];
-				this.mostrarSpinner = true;
 
 				//no se usa directamente URL.createObjectURL porque tinymce necesita usar url.create para mostrar las imágenes
 				// this.imagenTemporal.rutaLocal = URL.createObjectURL(this.imagenTemporal);//Visualizar en el navegador la imagen seleccionada
@@ -127,14 +126,14 @@ parasails.registerPage("crear-modulo", {
 					this.uploadPercentage = Math.round(
 						(progressEvent.loaded * 100) / progressEvent.total,
 					);
-					console.log(this.uploadPercentage);
 				},
 			})
 				.then(response => {
 					_this.imagenPortada = response.data;
 					// setTimeout(() => {// buscar la forma de hacer que el servidor indique cuando se haya terminado de cargar la imagen y se encuentre en la carpeta temp
 					_this.rutaTemporal = response.data.location;
-					_this.mostrarSpinner = false;
+					this.uploadPercentage = false;
+
 					// }, 7000);
 				})
 				.catch(err => {

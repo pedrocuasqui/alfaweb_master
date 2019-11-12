@@ -760,6 +760,7 @@ img.mensaje-bienvenida {
 .inputfile,
 .input-submit {
 	color: @colorfuente;
+	position: absolute;
 }
 
 .contenedor-formulario {
@@ -1229,7 +1230,7 @@ h5.modal-title {
 	margin-top: 1rem !important;
 	padding: 11px 40px;
 	line-height: 1.35em;
-	position: absolute;
+	// position: absolute;
 	color: #fff;
 	font-weight: 600;
 }
@@ -1254,4 +1255,13 @@ h5.modal-title {
 	position: absolute;
 	margin-left: -20vw;
 	z-index: 1;
+}
+form label {
+	text-align: left !important;
+	display: flex !important;
+	align-items: center !important;
+}
+
+label.boton_formulario:hover {
+	cursor: pointer;
 }

@@ -4,7 +4,12 @@ module.exports = {
 
 	description: "",
 
-	inputs: {},
+	inputs: {
+		rutaImagenActual: {
+			type: "string",
+			required: false,
+		},
+	},
 
 	exits: {
 		success: {
@@ -20,6 +25,11 @@ module.exports = {
 
 		var nuevoArchivo = {};
 
+		console.log("ËVALUACION DE IMAGEN RECIBIDA");
+		console.log(inputs.rutaImagenActual);
+		if (inputs.rutaImagenActual) {
+			console.log("Se busca la imagen y se elimina");
+		}
 		sails.log("ingreso a action: cargar-imagen");
 
 		this.req.file("multimedia").upload(

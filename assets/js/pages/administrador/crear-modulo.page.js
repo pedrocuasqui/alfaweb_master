@@ -28,6 +28,7 @@ parasails.registerPage("crear-modulo", {
 
 		adminCreandoModuloSubmodulo: true,
 		uploadPercentage: 0,
+		rutaImagenAnterior: null,
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -114,6 +115,7 @@ parasails.registerPage("crear-modulo", {
 				this.imagenTemporal,
 				this.imagenTemporal.name,
 			);
+			formData.append("rutaImagenActual", this.rutaImagenAnterior);
 
 			axios({
 				method: "post",
@@ -234,6 +236,9 @@ parasails.registerPage("crear-modulo", {
 		actualizaContTiny() {
 			this.contTiny = window.contenidoTiny;
 			console.log("esta tipeando");
+		},
+		onClickCambiarImagen() {
+			this.rutaImagenAnterior = this.imagenTemporal;
 		},
 	},
 	computed: {

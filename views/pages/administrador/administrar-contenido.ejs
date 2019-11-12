@@ -282,13 +282,13 @@
                 <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
             </div>
             <div class="col-sm-2">
-              <!-- solo si el objetoSeleccionado es submodulo se permite la creacion de una evaluacion -->
-              <modulo-panel-derecho v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuario"
-                  @evaluacion-individual="evaluacionIndividual">
-              </modulo-panel-derecho>
-              <!-- si el objeto Seleccionado es modulo no se escucha la propiedad evaluacion-individual -->
-              <modulo-panel-derecho v-else :usuario="usuario">
-              </modulo-panel-derecho>
+                <!-- solo si el objetoSeleccionado es submodulo se permite la creacion de una evaluacion -->
+                <modulo-panel-derecho v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuario"
+                    @evaluacion-individual="evaluacionIndividual">
+                </modulo-panel-derecho>
+                <!-- si el objeto Seleccionado es modulo no se escucha la propiedad evaluacion-individual -->
+                <modulo-panel-derecho v-else :usuario="usuario">
+                </modulo-panel-derecho>
             </div>
         </div>
 
@@ -628,11 +628,11 @@
                                                 <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                             </div>
                                         </form>
-                                        <div v-else>NO SE PUEDE EDITAR ESTE CONTENIDO</div>
+                                        <div v-else>NO SE PUEDE EDITAR ESTE CONTENIDO ACCESO RESTRINGIDO</div>
                                         <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
                                             <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
-                                            <input id="colorModulo" type="color" name="color"
-                                                v-model="objetoSeleccionado.color" />
+                                            <!-- <input id="colorModulo" type="color" name="color"
+                                                v-model="objetoSeleccionado.color" /> -->
 
 
 
@@ -693,7 +693,7 @@
                     <!-- columna derecha -->
 
                     <div class="col-sm-1 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
-                      
+
                     </div>
                 </div> <!-- fin fila de contenido central y barra lateral derecha -->
 

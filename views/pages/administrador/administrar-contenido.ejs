@@ -633,7 +633,13 @@
                                             <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
                                             <!-- <input id="colorModulo" type="color" name="color"
                                                 v-model="objetoSeleccionado.color" /> -->
-
+                                            <div class="progress" v-if="uploadPercentage">
+                                                <div class="progress-bar" role="progressbar"
+                                                    :style="{width:uploadPercentage+'%'}"
+                                                    :aria-valuenow="uploadPercentage" aria-valuemin="0"
+                                                    aria-valuemax="100">
+                                                    {{uploadPercentage}}%</div>
+                                            </div>
                                             <label for="file" class=" boton_formulario"
                                                 @click="onClickCambiarImagen">Cambiar
                                                 Imágen </label>
@@ -642,17 +648,19 @@
                                                 @change="onFileSelected" accept="image/*"
                                                 :class="[computedErrorImagen ? 'is-invalid' : '']">
 
-
-
                                             <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
                                                 archivo de
                                                 imagen para la portada max:20MB.</div>
                                             <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
                                                 permitidos:
                                                 jpg,/png. max:20MB. </div>
+
                                             <div class="imagen-portada-modulo">
-                                                <img :src="objetoSeleccionado.multimedia.imagen"
+                                                <img v-if="existeImagenTemporal" :src="imagenTemporal"
                                                     alt="Imágen de portada">
+                                                <img v-else :src="objetoSeleccionado.multimedia.imagen"
+                                                    alt="Imágen de portada">
+
                                             </div>
 
                                         </div>

@@ -14,12 +14,12 @@ parasails.registerPage("administrar-contenido", {
 		navegarAtras: {
 			type: String,
 			required: false,
-			description: "la ruta del modulo anterior",
+			description: "la ruta del modulo anterior"
 		},
 		navegarSiguiente: {
 			type: String,
 			required: false,
-			description: "la ruta del modulo siguiente",
+			description: "la ruta del modulo siguiente"
 		},
 		// breadcrumb: {
 		//     type: Array,
@@ -27,11 +27,11 @@ parasails.registerPage("administrar-contenido", {
 		// },
 		breadcrumb: [],
 		curso: {
-			type: Object,
+			type: Object
 		},
 		usuario: {
 			type: Object,
-			default: { nombre: "Admin", rol: "Administrador" },
+			default: { nombre: "Admin", rol: "Administrador" }
 		},
 		mostrarSpinner: false,
 		imagenTemporal: {},
@@ -49,15 +49,15 @@ parasails.registerPage("administrar-contenido", {
 				opcion1: null,
 				opcion2: null,
 				opcion3: null,
-				opcion4: null,
+				opcion4: null
 			},
 			respuesta: null,
-			pista: null,
+			pista: null
 		},
 		preguntasCuestionario: [],
 		evaluacion: {
 			tipo: "",
-			preguntas: {},
+			preguntas: {}
 		},
 		formErrorsModal: {},
 		modalEdicion: false,
@@ -86,9 +86,10 @@ parasails.registerPage("administrar-contenido", {
 			"#1833F3",
 			"#18E9F3",
 			"#33F318",
-			"#F3DF18",
+			"#F3DF18"
 		],
-		rutaImagenAnterior: null,
+		uploadPercentage: 0,
+		rutaImagenAnterior: null
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -109,7 +110,7 @@ parasails.registerPage("administrar-contenido", {
 			this.tipoEvaluacion = this.objetoSeleccionado.evaluacion.tipo;
 			this.tiempoMaximoPorPregunta = this.objetoSeleccionado.evaluacion.tiempoMaximoPorPregunta;
 			this.preguntasCuestionario = [
-				...this.objetoSeleccionado.evaluacion.preguntas,
+				...this.objetoSeleccionado.evaluacion.preguntas
 			];
 			this.modalEdicion = true;
 		}
@@ -119,7 +120,7 @@ parasails.registerPage("administrar-contenido", {
 		this.establecerContenidoTiny();
 
 		$("#modalCrearPregunta" + this.tipoEvaluacion).on("hide.bs.modal", function(
-			e,
+			e
 		) {
 			this.preguntaEnEdicion = {
 				enunciado: null,
@@ -127,10 +128,10 @@ parasails.registerPage("administrar-contenido", {
 					opcion1: null,
 					opcion2: null,
 					opcion3: null,
-					opcion4: null,
+					opcion4: null
 				},
 				respuesta: null,
-				pista: null,
+				pista: null
 			};
 		});
 	},
@@ -201,7 +202,7 @@ parasails.registerPage("administrar-contenido", {
 			axios({
 				method: "post",
 				url: "/actualizar-modulo",
-				data: formData,
+				data: formData
 			})
 				.then(response => {
 					alert("Modificación Exitosa");
@@ -218,7 +219,7 @@ parasails.registerPage("administrar-contenido", {
 			formData.append("nombreSubmodulo", this.objetoSeleccionado.nombre);
 			formData.append(
 				"descripcionSubmodulo",
-				this.objetoSeleccionado.descripcion,
+				this.objetoSeleccionado.descripcion
 			);
 			formData.append("contenidoTiny", window.contenidoTiny);
 			formData.append("submoduloId", this.objetoSeleccionado.id);
@@ -228,7 +229,7 @@ parasails.registerPage("administrar-contenido", {
 			axios({
 				method: "post",
 				url: "/actualizar-submodulo",
-				data: formData,
+				data: formData
 			})
 				.then(response => {
 					alert("Modificacion Exitosa");
@@ -259,22 +260,22 @@ parasails.registerPage("administrar-contenido", {
 			axios
 				.get("/eliminar-contenido", {
 					params: {
-						id: _this.objetoSeleccionado.id,
-					},
+						id: _this.objetoSeleccionado.id
+					}
 				})
 				.then(response => {
 					alert("Objeto eliminado correctamente");
 					if (response.data.nombreModulo) {
 						//si el objeto eliminado es un modulo entonces se muestra la interfaz crear modulo
 						window.location.replace(
-							"/view-crear-modulo/?cursoId=" + _this.curso.id,
+							"/view-crear-modulo/?cursoId=" + _this.curso.id
 						);
 					} else {
 						// si el objeto eliminado es un submodulo entonces se redirge a la interfaz del modulo padre
 						window.location.replace(
 							"/administrar-contenido/?objetoId=" +
 								_this.objetoSeleccionado.modulo +
-								"&tipoContenido=Modulo",
+								"&tipoContenido=Modulo"
 						);
 					}
 				})
@@ -295,11 +296,6 @@ parasails.registerPage("administrar-contenido", {
 			this.mostrarSpinner = true;
 
 			this.guardarImagenPortada();
-
-			setTimeout(() => {
-				this.objetoSeleccionado.multimedia.imagen = this.rutaObjetoCargado;
-				this.mostrarSpinner = false;
-			}, 7000);
 		},
 		onFileSelectedEvaluacionNombreObjeto(event) {
 			//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
@@ -329,20 +325,25 @@ parasails.registerPage("administrar-contenido", {
 			formData.append(
 				"multimedia",
 				this.imagenTemporal,
-				this.imagenTemporal.name,
+				this.imagenTemporal.name
 			);
 			axios({
 				method: "post",
 				url: "/cargar-imagen",
 				data: formData,
+				headers: {
+					"Content-Type": "multipart/form-data"
+				},
+				onUploadProgress: progressEvent => {
+					this.uploadPercentage = Math.round(
+						(progressEvent.loaded * 100) / progressEvent.total
+					);
+				}
 			})
 				.then(response => {
-					// _this.objetoSeleccionado.multimedia.imagen = response.data.location;
 					_this.rutaObjetoCargado = response.data.location;
-					// setTimeout(() => {
-					//   _this.objetoSeleccionado.multimedia.imagen = _this.rutaObjetoCargado;
-					//   _this.mostrarSpinner = false;
-					// }, 7000);
+					this.objetoSeleccionado.multimedia.imagen = response.data.location;
+					this.uploadPercentage = false;
 				})
 				.catch(err => {
 					alert("No se puede cargar su imágen en este momento.\n Error:" + err);
@@ -392,10 +393,10 @@ parasails.registerPage("administrar-contenido", {
 						opcion1: null,
 						opcion2: null,
 						opcion3: null,
-						opcion4: null,
+						opcion4: null
 					},
 					respuesta: null,
-					pista: null,
+					pista: null
 				};
 			}
 
@@ -423,7 +424,7 @@ parasails.registerPage("administrar-contenido", {
 				this.preguntasCuestionario.splice(
 					this.indicePreguntaEditar,
 					1,
-					this.preguntaEnEdicion,
+					this.preguntaEnEdicion
 				);
 				this.preguntaEnEdicion = {
 					enunciado: null,
@@ -431,9 +432,9 @@ parasails.registerPage("administrar-contenido", {
 						opcion1: null,
 						opcion2: null,
 						opcion3: null,
-						opcion4: null,
+						opcion4: null
 					},
-					respuesta: null,
+					respuesta: null
 				};
 			}
 			this.modalEdicion = false;
@@ -476,7 +477,7 @@ parasails.registerPage("administrar-contenido", {
 					//si la opcion tiene un valor dentro
 					opciones.push({
 						texto: preguntaEnEdicion.opciones[opcion].trim(),
-						id: contador,
+						id: contador
 					});
 				}
 			}
@@ -512,7 +513,7 @@ parasails.registerPage("administrar-contenido", {
 					alert(
 						"Las preguntas: " +
 							JSON.stringify(indicesConError) +
-							"no tienen opciones de respuesta",
+							"no tienen opciones de respuesta"
 					);
 				}
 			}
@@ -538,7 +539,7 @@ parasails.registerPage("administrar-contenido", {
 			axios({
 				url: "/crear-evaluacion",
 				method: "post",
-				data: formDataEv,
+				data: formDataEv
 			})
 				.then(response => {
 					alert("Evaluación creada correctamente");
@@ -569,7 +570,7 @@ parasails.registerPage("administrar-contenido", {
 				this.preguntasCuestionario.splice(
 					this.indicePreguntaEditar,
 					1,
-					this.preguntaEnEdicion,
+					this.preguntaEnEdicion
 				);
 				this.preguntaEnEdicion = {
 					enunciado: null,
@@ -577,10 +578,10 @@ parasails.registerPage("administrar-contenido", {
 						opcion1: null,
 						opcion2: null,
 						opcion3: null,
-						opcion4: null,
+						opcion4: null
 					},
 					respuesta: null,
-					pista: null,
+					pista: null
 				};
 			}
 			this.modalEdicion = false;
@@ -609,10 +610,10 @@ parasails.registerPage("administrar-contenido", {
 						opcion1: null,
 						opcion2: null,
 						opcion3: null,
-						opcion4: null,
+						opcion4: null
 					},
 					respuesta: null,
-					pista: null,
+					pista: null
 				};
 				//quito colores si es que ya hay colores
 				for (let i = 0; i <= this.preguntasCuestionario.length - 1; i++) {
@@ -667,11 +668,11 @@ parasails.registerPage("administrar-contenido", {
 					this.respuestaSeleccionada = indexResp; // esto aplica el estilo a la respuesta seleccionada correctamente
 					$("#Resp" + indexResp).css({
 						"background-color": this.coloresPreguntasEmparejamiento[indexResp],
-						"border-radius": "10px",
+						"border-radius": "10px"
 					});
 					$("#Preg" + this.enunciadoSeleccionado).css({
 						"background-color": this.coloresPreguntasEmparejamiento[indexResp],
-						"border-radius": "10px",
+						"border-radius": "10px"
 					});
 				}
 			}
@@ -681,14 +682,16 @@ parasails.registerPage("administrar-contenido", {
 		 * la variable this.rutaImagenAnterior se envia a la accion sails encargada de crear una imagen, evalua si la variable this.rutaImagenAnterior tienen un valor entonces procede a eliminar la imagen y a cargar la nueva
 		 */
 		onClickCambiarImagen() {
-			if (this.rutaTemporal != "") {
-				this.rutaImagenAnterior = this.rutaTemporal;
-			}
+			this.rutaImagenAnterior = this.objetoSeleccionado.multimedia.imagen;
 		},
 		onClickCancelar() {
 			// this.imagensTiny = window.imagenesTemporalesTiny;
-			window.location.assign("/view-crear-modulo/?cursoId=" + this.curso.id);
-		},
+			window.location.replace(
+				"/administrar-contenido/?objetoId=" +
+					_this.objetoSeleccionado.modulo +
+					"&tipoContenido=Modulo"
+			);
+		}
 	},
 	computed: {
 		computedErrorImagen() {
@@ -700,5 +703,12 @@ parasails.registerPage("administrar-contenido", {
 			let respuesta = this.curso.nombre != "Alfabetización informática";
 			return respuesta;
 		},
-	},
+		existeImagenTemporal() {
+			let existe = true;
+			if (Object.keys(this.imagenTemporal).length == 0) {
+				existe = false;
+			}
+			return existe;
+		}
+	}
 });

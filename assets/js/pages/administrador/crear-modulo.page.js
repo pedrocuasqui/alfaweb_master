@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*jshint esversion:8 */
 parasails.registerPage("crear-modulo", {
 	//  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
@@ -140,7 +141,13 @@ parasails.registerPage("crear-modulo", {
 					// }, 7000);
 				})
 				.catch(err => {
-					alert("Error: no se ha podido guardar la imágen: " + err);
+					swal({
+						icon: "error",
+						title: "Oops...",
+						text: `No se pudo guardar la imágen!\n ${err}`,
+						// footer: "<a href>Why do I have this issue?</a>",
+					});
+					// alert("Error: no se ha podido guardar la imágen: " + err);
 				});
 		},
 		// asignaObjetoRespuesta(response) {
@@ -187,29 +194,58 @@ parasails.registerPage("crear-modulo", {
 				.then(response => {
 					//PASAR COMO PARÁMETRO AL COMPONENTE SIDE-VAR-MENU EL MODULO CREADO
 					//pasar el objeto creado,
-					alert("Módulo creado correctamente");
-
-					// window.replace('');
 					// se guarda el modulo creado en el arreglo de modulos
 					this.moduloCreado = response.data;
 
-					window.location.replace(
-						"/administrar-contenido/?objetoId=" +
-							this.moduloCreado.id +
-							"&tipoContenido=" +
-							this.tipoContenido,
-					);
+					swal({
+						position: "center",
+						icon: "success",
+						title: "Módulo creado correctamente",
+						showConfirmButton: false,
+						timer: 1500,
+					}).then(() => {
+						window.location.replace(
+							"/administrar-contenido/?objetoId=" +
+								this.moduloCreado.id +
+								"&tipoContenido=" +
+								this.tipoContenido,
+						);
+					});
+
 					// this.curso.modulos.push(response.data); //AUN NO SE VALIDA 23-05-2019
 				})
 				.catch(err => {
 					//la respuesta de sails this.res
-
-					if (err.response.status == 409) {
-						alert("Ya existe un modulo con el mismo nombre");
-					} else if (err.response.status == 400) {
-						alert("Existen errores en la información suministrada");
+					if (err.response) {
+						if (err.response.status == 409) {
+							swal({
+								icon: "error",
+								title: "Oops...",
+								text: "Ya existe un módulo con el mismo nombre o título!",
+								// footer: '<a href>Why do I have this issue?</a>'
+							});
+						} else if (err.response.status == 400) {
+							swal({
+								icon: "error",
+								title: "Oops...",
+								text: "Existen errores en la información suministrada",
+								// footer: '<a href>Why do I have this issue?</a>'
+							});
+						} else {
+							swal({
+								icon: "error",
+								title: "Oops...",
+								text: "Error en el servidor",
+								// footer: '<a href>Why do I have this issue?</a>'
+							});
+						}
 					} else {
-						alert("Error en el servidor");
+						swal({
+							icon: "error",
+							title: "Oops...",
+							text: "El servidor no está disponible en este momento",
+							// footer: '<a href>Why do I have this issue?</a>'
+						});
 					}
 				});
 		},

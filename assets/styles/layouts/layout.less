@@ -21,16 +21,16 @@
 // /////////////////////////////////////////////////////////////
 // /////////////////////////////////////////////////////////////
 
-@opacity-8 : rgba(255, 255, 255, .8);
-@font-weight-normal : 400;
-@colorcontenidocentral :#27293d;
-@borderradiusmargen : 0.65rem 0.6rem 0.6rem 0.6rem;
-@colorfuente : #c0c1c2;
-@colortitulomodal :#595959;
-@colorletramodal :#222a42;
-@menusidebar :linear-gradient(0deg, #389466 0%, #42b883 100%);
-@coloriconos :#ffffff;
-@color_fondo_pagina :#1e1e2f;
+@opacity-8: rgba(255, 255, 255, 0.8);
+@font-weight-normal: 400;
+@colorcontenidocentral: #27293d;
+@borderradiusmargen: 0.65rem 0.6rem 0.6rem 0.6rem;
+@colorfuente: #c0c1c2;
+@colortitulomodal: #595959;
+@colorletramodal: #222a42;
+@menusidebar: linear-gradient(0deg, #389466 0%, #42b883 100%);
+@coloriconos: #ffffff;
+@color_fondo_pagina: #1e1e2f;
 // FIN VARIABLES
 
 h1,
@@ -1054,7 +1054,8 @@ h5.modal-title {
 .modal-content h6,
 .modal-content p,
 .modal-content .close > span,
-.modal-content p span {
+.modal-content p span,
+.modal-content label {
 	color: @colorletramodal !important;
 }
 
@@ -1266,4 +1267,9 @@ form label {
 
 label.boton_formulario:hover {
 	cursor: pointer;
+}
+
+.tox-editor-container {
+	z-index: 10000;
+	background-color: #3e3e3e !important	;
 }

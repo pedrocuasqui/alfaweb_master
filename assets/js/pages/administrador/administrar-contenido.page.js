@@ -35,7 +35,6 @@ parasails.registerPage("administrar-contenido", {
 		},
 		mostrarSpinner: false,
 		imagenTemporal: {},
-		rutaObjetoCargado: null,
 
 		tituloEvaluacion: "",
 		evIndividualBandera: false,
@@ -306,15 +305,8 @@ parasails.registerPage("administrar-contenido", {
 			this.mostrarSpinner = true;
 
 			this.guardarImagenPortada();
-
-			setTimeout(() => {
-				this.preguntaEnEdicion.enunciado = this.rutaObjetoCargado;
-				this.mostrarSpinner = false;
-			}, 7000);
 		},
 		guardarImagenPortada() {
-			this.rutaObjetoCargado = null;
-			var _this = this;
 			const formData = new FormData();
 
 			if (this.rutaImagenAnterior) {
@@ -341,8 +333,15 @@ parasails.registerPage("administrar-contenido", {
 				}
 			})
 				.then(response => {
-					_this.rutaObjetoCargado = response.data.location;
-					this.objetoSeleccionado.multimedia.imagen = response.data.location;
+					if (this.evIndividualBandera) {
+						//si esta activa la vista de evaluacion entonces la carga de imagen es para una evaluacion
+						this.preguntaEnEdicion.enunciado = response.data.location;
+					} else {
+						//la carga de imagen es para administrar el modulo
+						this.objetoSeleccionado.multimedia.imagen = response.data.location;
+						this.imagenTemporal = {}; // se usa como bandera para la evaluacion de esta forma los botones de
+					}
+
 					this.uploadPercentage = false;
 				})
 				.catch(err => {
@@ -682,7 +681,11 @@ parasails.registerPage("administrar-contenido", {
 		 * la variable this.rutaImagenAnterior se envia a la accion sails encargada de crear una imagen, evalua si la variable this.rutaImagenAnterior tienen un valor entonces procede a eliminar la imagen y a cargar la nueva
 		 */
 		onClickCambiarImagen() {
-			this.rutaImagenAnterior = this.objetoSeleccionado.multimedia.imagen;
+			if (this.evIndividualBandera) {
+				this.rutaImagenAnterior = this.preguntaEnEdicion.enunciado;
+			} else {
+				this.rutaImagenAnterior = this.objetoSeleccionado.multimedia.imagen;
+			}
 		},
 		onClickCancelar() {
 			// this.imagensTiny = window.imagenesTemporalesTiny;
@@ -705,9 +708,13 @@ parasails.registerPage("administrar-contenido", {
 		},
 		existeImagenTemporal() {
 			let existe = true;
-			if (Object.keys(this.imagenTemporal).length == 0) {
+			if (
+				Object.keys(this.imagenTemporal).length == 0 ||
+				!this.imagenTemporal
+			) {
 				existe = false;
 			}
+
 			return existe;
 		}
 	}

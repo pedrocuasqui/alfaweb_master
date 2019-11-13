@@ -179,7 +179,8 @@
 
                     <template>
 
-                        <label v-if="rutaTemporal==''" for="file" class=" boton_formulario">Seleccione una Imágen
+                        <label v-if="!preguntaEnEdicion.enunciado" for="file" class=" boton_formulario">Seleccione una
+                            Imágen
                         </label>
                         <label v-else for="file" class=" boton_formulario" @click="onClickCambiarImagen">Cambiar
                             Imágen </label>
@@ -187,15 +188,14 @@
                             @change="onFileSelectedEvaluacionNombreObjeto" accept="image/*"
                             :class="[computedErrorImagen ? 'is-invalid' : '']">
 
-                        <div v-if="mostrarSpinner" id="spinnerEv" class="spinner-border m-5" role="status">
-                            <span class="sr-only">Loading...</span>
-                        </div>
                         <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
                             archivo de
                             imagen para la portada max:20MB.</div>
                         <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
                             permitidos:
                             jpg,/png. max:20MB. </div>
+
+
                         <div class="imagen-portada-modulo" v-if="preguntaEnEdicion.enunciado">
                             <!--El enunciado puede ser cualquier objeto --->
                             <img :src="preguntaEnEdicion.enunciado" alt="Imágen de evaluacion">
@@ -659,8 +659,6 @@
                                                 jpg,/png. max:20MB. </div>
 
                                             <div class="imagen-portada-modulo">
-                                                <!-- <img v-if="existeImagenTemporal" :src="imagenTemporal"
-                                                    alt="Imágen de portada"> -->
                                                 <img :src="objetoSeleccionado.multimedia.imagen"
                                                     alt="Imágen de portada">
 

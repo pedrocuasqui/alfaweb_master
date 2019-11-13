@@ -59,8 +59,15 @@
                         <!-- Se conserva method="post" de tiny por defecto  -->
                         <div class="col-sm-9">
                             <form method="post" id="tinyMce">
-                                <div id="mytextarea" class="contenidoTiny" @keyup="actualizaContTiny()"></div>
                                 <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                                <!-- Si la variable preguntaEnEdicion.enunciado no tiene valores -->
+                                <div v-if="!preguntaEnEdicion.enunciado" id="mytextarea" class="contenidoTiny"
+                                    @keyup="actualizaContTiny()"></div>
+                                <div v-else id="mytextarea" class="contenidoTiny" @keyup="actualizaContTiny()"></div>
+                                <div v-else id="mytextarea" class="contenidoTiny" v-html="preguntaEnEdicion.enunciado">
+                                    <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                                </div>
+
                                 <div class="invalid-feedback" v-if="formErrorsModal.enunciado">
                                     Debe ingresar algún contenido </div>
                             </form>
@@ -569,7 +576,6 @@
                                     <div class="contenedor-formulario-administrar">
 
                                         <form method="post" v-if="noEsInforBasica">
-                                            <!-- <textarea id="mytextarea">Escriba aquí el texto</textarea> -->
                                             <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                             <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
                                             <div id="mytextarea" class="contenidoTiny"

@@ -116,7 +116,6 @@ parasails.registerPage("administrar-contenido", {
 		}
 	},
 	mounted: async function() {
-		// $('.contenido-tiny').html(this.objetoSeleccionado.contenidoTiny);
 		this.establecerContenidoTiny();
 
 		$("#modalCrearPregunta" + this.tipoEvaluacion).on("hide.bs.modal", function(
@@ -452,15 +451,17 @@ parasails.registerPage("administrar-contenido", {
 				$(() => {
 					$("#modalCrearPreguntaCuestionario").modal("show");
 				});
+				window.contenidoTiny2 = this.preguntaEnEdicion.enunciado;
 			} else if (this.tipoEvaluacion == "Emparejamiento") {
 				$(() => {
 					$("#modalCrearPreguntaEmparejamiento").modal("show");
 				});
-			} else if (this.tipoEvaluacion == "Nombre_Objeto") {
-				$(() => {
-					$("#modalCrearPreguntaNombre_Objeto").modal("show");
-				});
 			}
+			// else if (this.tipoEvaluacion == "Nombre_Objeto") {
+			// 	$(() => {
+			// 		$("#modalCrearPreguntaNombre_Objeto").modal("show");
+			// 	});
+			// }
 		},
 
 		eliminarPreguntaCuestionario(preguntaSelected, indice) {

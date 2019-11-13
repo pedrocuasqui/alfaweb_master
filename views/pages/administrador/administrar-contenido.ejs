@@ -61,10 +61,9 @@
                             <form method="post" id="tinyMce">
                                 <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                 <!-- Si la variable preguntaEnEdicion.enunciado no tiene valores -->
-                                <div v-if="!preguntaEnEdicion.enunciado" id="mytextarea" class="contenidoTiny"
+                                <div v-if="!preguntaEnEdicion.enunciado" id="mytextarea2" class="contenidoTiny"
                                     @keyup="actualizaContTiny()"></div>
-                                <div v-else id="mytextarea" class="contenidoTiny" @keyup="actualizaContTiny()"></div>
-                                <div v-else id="mytextarea" class="contenidoTiny" v-html="preguntaEnEdicion.enunciado">
+                                <div v-else id="mytextarea2" class="contenidoTiny" v-html="preguntaEnEdicion.enunciado">
                                     <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                 </div>
 

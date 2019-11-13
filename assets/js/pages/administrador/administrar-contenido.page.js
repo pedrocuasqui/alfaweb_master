@@ -289,6 +289,13 @@ parasails.registerPage("administrar-contenido", {
 			window.contenidoTiny = null; // se establece el contenido
 			window.contenidoTiny = this.objetoSeleccionado.contenidoTiny;
 		},
+		/**
+		 * Funcion que se llama cada vez que el usuario escribe contenido dentro del elemnto TinyMice
+		 */
+		actualizaContTiny() {
+			//para verificar que exista contenido Tiny
+			this.preguntaEnEdicion.enunciado = window.contenidoTiny;
+		},
 		onFileSelected(event) {
 			//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
 
@@ -364,6 +371,7 @@ parasails.registerPage("administrar-contenido", {
 		},
 		insertarPreguntaCuestionario() {
 			var errores = "";
+
 			if (!this.preguntaEnEdicion.enunciado) {
 				//se queda
 				this.formErrorsModal.enunciado = true;

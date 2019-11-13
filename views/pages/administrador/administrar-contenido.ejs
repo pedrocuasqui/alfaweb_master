@@ -27,402 +27,442 @@
                 </div>
             </div>
         </div>
-        <!------------------------------------------------------------------------------------------------>
+    </div>
 
 
 
-        <!-- v-if es necesario porque hay un error al invocar v-model="preguntaEnEdicion.respuesta" -->
-        <!------------------------------------------------------------------------------------------------>
-        <!------------------------------------------------------------------------------------------------>
-        <!-- MODAL CREA - EDITA PREGUNTA DE CUESTIONARIO-- ----------------------------------------------->
-        <!------------------------------------------------------------------------------------------------>
-        <!------------------------------------------------------------------------------------------------>
-        <div v-if="tipoEvaluacion=='Cuestionario'" class="modal fade" id="modalCrearPreguntaCuestionario" tabindex="-1"
-            role="dialog" aria-labelledby="modalCrearPreguntaLabel" aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="modalCrearPreguntaLabel">Crear nueva pregunta </h5>
-                        <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                            <span aria-hidden="true">&times;</span>
-                        </button>
+    <!-- v-if es necesario porque hay un error al invocar v-model="preguntaEnEdicion.respuesta" -->
+    <!------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------>
+    <!-- MODAL CREA - EDITA PREGUNTA DE CUESTIONARIO-- ----------------------------------------------->
+    <!------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------>
+    <div v-if="tipoEvaluacion=='Cuestionario'" class="modal fade" id="modalCrearPreguntaCuestionario" tabindex="-1"
+        role="dialog" aria-labelledby="modalCrearPreguntaLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalCrearPreguntaLabel">Crear nueva pregunta </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <!-- Enunciado de la pregunta con Tiny -->
+                    <!-- <div class="row d-flex justify-content-center ">
+                        <label for="enunciado">Enunciado de la pregunta</label>
+                        <input class="inputFull" name="enunciado" type="text" v-model="preguntaEnEdicion.enunciado"
+                            placeholder="Escriba aquí su pregunta">
+                    </div> -->
+                    <div class="row">
+                        <label for="tinyMce" class="col-sm-3">Pregunta (*) </label>
+                        <!-- Se conserva method="post" de tiny por defecto  -->
+                        <div class="col-sm-9">
+                            <form method="post" id="tinyMce">
+                                <div id="mytextarea" class="contenidoTiny" @keyup="actualizaContTiny()"></div>
+                                <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                                <div class="invalid-feedback" v-if="formErrorsModal.enunciado">
+                                    Debe ingresar algún contenido </div>
+                            </form>
+                        </div>
                     </div>
-                    <div class="modal-body">
+                    <!-- Respuestas posibles -->
 
-                        <div class="row d-flex justify-content-center ">
-                            <label for="enunciado">Enunciado de la pregunta</label>
-                            <input class="inputFull" name="enunciado" type="text" v-model="preguntaEnEdicion.enunciado"
-                                placeholder="Escriba aquí su pregunta">
-                        </div>
-                        <div class="row d-flex justify-content-center">
-                            <label for="opcion1">Opción 1</label>
-                            <input class="inputFull" name="opcion1" type="text"
-                                v-model="preguntaEnEdicion.opciones.opcion1" placeholder="opción 1">
-                        </div>
-                        <div class="row d-flex justify-content-center">
-                            <label for="opcion2">Opción 2</label>
-                            <input class="inputFull" name="opcion2" type="text"
-                                v-model="preguntaEnEdicion.opciones.opcion2" placeholder="opción2">
-                        </div>
-                        <div class="row d-flex justify-content-center">
-                            <label for="opcion3">Opción 3</label>
-                            <input class="inputFull" name="opcion3" type="text"
-                                v-model="preguntaEnEdicion.opciones.opcion3" placeholder="opción 3">
-                        </div>
-                        <div class="row d-flex justify-content-center">
-                            <label for="opcion4"> Opción 4</label>
-                            <input class="inputFull" name="opcion4" type="text"
-                                v-model="preguntaEnEdicion.opciones.opcion4" placeholder="opción 4">
-                        </div>
 
-                        <div class="form-group">
-                            <label for="respuestaSelect">Respuesta</label>
-                            <select class="form-control inputFull" id="respuestaSelect"
-                                v-model="preguntaEnEdicion.respuesta">
-                                <option v-for="opcion in opcionesRespuesta(preguntaEnEdicion)"> {{opcion.texto}}
-                                </option>
 
-                            </select>
-                        </div>
-                        <div class="row d-flex justify-content-center">
-                            <label for="pista"> Pista</label>
-                            <input class="inputFull" name="pista" type="text" v-model="preguntaEnEdicion.pista"
-                                placeholder="Pista">
-                        </div>
-
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion1">Opción 1</label>
+                        <input class="inputFull" name="opcion1" type="text" v-model="preguntaEnEdicion.opciones.opcion1"
+                            placeholder="opción 1">
                     </div>
-                    <div class="modal-footer">
-                        <button v-if="modalEdicion" class="btn btn-primary" data-dismiss="modal"
-                            @click.stop="actualizarPreguntaCuestionario()">Aceptar</button>
-                        <button v-else class="btn btn-primary" data-dismiss="modal"
-                            @click.stop="insertarPreguntaCuestionario()">Aceptar</button>
-                        <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion2">Opción 2</label>
+                        <input class="inputFull" name="opcion2" type="text" v-model="preguntaEnEdicion.opciones.opcion2"
+                            placeholder="opción2">
                     </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion3">Opción 3</label>
+                        <input class="inputFull" name="opcion3" type="text" v-model="preguntaEnEdicion.opciones.opcion3"
+                            placeholder="opción 3">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion4"> Opción 4</label>
+                        <input class="inputFull" name="opcion4" type="text" v-model="preguntaEnEdicion.opciones.opcion4"
+                            placeholder="opción 4">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="respuestaSelect">Respuesta</label>
+                        <select class="form-control inputFull" id="respuestaSelect"
+                            v-model="preguntaEnEdicion.respuesta">
+                            <option v-for="opcion in opcionesRespuesta(preguntaEnEdicion)"> {{opcion.texto}}</option>
+
+                        </select>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="pista"> Pista</label>
+                        <input class="inputFull" name="pista" type="text" v-model="preguntaEnEdicion.pista"
+                            placeholder="Pista">
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button v-if="modalEdicion" class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="actualizarPreguntaCuestionario()">Aceptar</button>
+                    <button v-else class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="insertarPreguntaCuestionario()">Aceptar</button>
+                    <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
                 </div>
             </div>
-            <!------------------------------------------------------------------------------------------------>
-
-
-            <!------------------------------------------------------------------------------------------------>
-            <!------------------------------------------------------------------------------------------------>
-            <!-- MODAL CREA - EDITA MBRE OBJETO -------------------------------------------------------------------->
-            <!------------------------------------------------------------------------------------------------>
-            <!------------------------------------------------------------------------------------------------>
-            <div v-if="tipoEvaluacion=='Nombre_Objeto'" class="modal fade" id="modalCrearPreguntaNombre_Objeto"
-                tabindex="-1" role="dialog" aria-labelledby="preguntaNombreObjeto" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="preguntaNombreObjeto">Crear pregunta </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
-
-                            PREGUNTA DE NOMBRE OBJETO
-
-                            <template>
-
-                                <label v-if="!preguntaEnEdicion.enunciado" for="file"
-                                    class=" boton_formulario">Seleccione
-                                    una
-                                    Imágen
-                                </label>
-                                <label v-else for="file" class=" boton_formulario" @click="onClickCambiarImagen">Cambiar
-                                    Imágen </label>
-                                <input type="file" name="multimedia" id="file" class="inputfile"
-                                    @change="onFileSelected" accept="image/*"
-                                    :class="[computedErrorImagen ? 'is-invalid' : '']">
-
-                                <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
-                                    archivo de
-                                    imagen para la portada max:20MB.</div>
-                                <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
-                                    permitidos:
-                                    jpg,/png. max:20MB. </div>
-
-
-                                <div class="imagen-portada-modulo" v-if="preguntaEnEdicion.enunciado">
-                                    <!--El enunciado puede ser cualquier objeto --->
-                                    <img :src="preguntaEnEdicion.enunciado" alt="Imágen de evaluacion">
-                                </div>
-                            </template>
+        </div>
+    </div>
 
 
 
-                            <div class="row d-flex justify-content-center">
-                                <label for="opcion1">Opción 1</label>
-                                <input class="inputFull" name="opcion1" type="text"
-                                    v-model="preguntaEnEdicion.opciones.opcion1" placeholder="opción 1">
-                            </div>
-                            <div class="row d-flex justify-content-center">
-                                <label for="opcion2">Opción 2</label>
-                                <input class="inputFull" name="opcion2" type="text"
-                                    v-model="preguntaEnEdicion.opciones.opcion2" placeholder="opción2">
-                            </div>
-                            <div class="row d-flex justify-content-center">
-                                <label for="opcion3">Opción 3</label>
-                                <input class="inputFull" name="opcion3" type="text"
-                                    v-model="preguntaEnEdicion.opciones.opcion3" placeholder="opción 3">
-                            </div>
-                            <div class="row d-flex justify-content-center">
-                                <label for="opcion4"> Opción 4</label>
-                                <input class="inputFull" name="opcion4" type="text"
-                                    v-model="preguntaEnEdicion.opciones.opcion4" placeholder="opción 4">
-                            </div>
 
-                            <div class="form-group">
-                                <label for="respuestaSelect">Respuesta</label>
-                                <select class="form-control inputFull" id="respuestaSelect"
-                                    v-model="preguntaEnEdicion.respuesta">
-                                    <option v-for="opcion in opcionesRespuesta(preguntaEnEdicion)"> {{opcion.texto}}
-                                    </option>
+    <!------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------>
+    <!-- MODAL CREA- EDITA PREGUNTA DE EMPAREJAMIENTO ------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------>
+    <div v-if="tipoEvaluacion=='Emparejamiento'" class="modal fade" id="modalCrearPreguntaEmparejamiento" tabindex="-1"
+        role="dialog" aria-labelledby="preguntaEmparejar" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="preguntaEmparejar">Crear pregunta </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
 
-                                </select>
-                            </div>
-                            <div class="row d-flex justify-content-center">
-                                <label for="pista"> Pista</label>
-                                <input class="inputFull" name="pista" type="text" v-model="preguntaEnEdicion.pista"
-                                    placeholder="Pista">
-                            </div>
 
-                        </div>
-                        <div class="modal-footer">
-                            <button v-if="modalEdicion" class="btn btn-primary" data-dismiss="modal"
-                                @click.stop="actualizarPreguntaCuestionario()">Aceptar</button>
-                            <button v-else class="btn btn-primary" data-dismiss="modal"
-                                @click.stop="insertarPreguntaCuestionario()">Aceptar</button>
-                            <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
-                        </div>
+                    <div class="row d-flex justify-content-center ">
+                        <label for="enunciado">Enunciado pregunta</label>
+                        <input class="inputFull" name="enunciado" type="text" v-model="preguntaEnEdicion.enunciado"
+                            placeholder="Escriba aquí su pregunta">
                     </div>
+                    <div class="row d-flex justify-content-center ">
+                        <label for="respuestaEmpareja">Respuesta pregunta</label>
+                        <input class="inputFull" name="respuestaEmpareja" type="text"
+                            v-model="preguntaEnEdicion.respuesta" placeholder="Escriba aquí su respuesta">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="pista"> Pista</label>
+                        <input class="inputFull" name="pista" type="text" v-model="preguntaEnEdicion.pista"
+                            placeholder="Pista">
+                    </div>
+
+
+                </div>
+                <div class="modal-footer">
+                    <button v-if="modalEdicion" class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="actualizarPreguntaEmparejamiento()">Aceptar</button>
+                    <button v-else class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="insertarPreguntaEmparejamiento()">Aceptar</button>
+                    <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
                 </div>
             </div>
+        </div>
+    </div>
 
 
-            <!------------------------------------------------------------------------------------------------>
-            <!------------------------------------------------------------------------------------------------>
-            <!-- MODAL CREA - EDITA PREGUNTA DE EMPAREJAMIENTO ------------------------------------------------------------------>
-            <!------------------------------------------------------------------------------------------------>
-            <!------------------------------------------------------------------------------------------------>
-            <div v-if="tipoEvaluacion=='Emparejamiento'" class="modal fade" id="modalCrearPreguntaEmparejamiento"
-                tabindex="-1" role="dialog" aria-labelledby="preguntaEmparejar" aria-hidden="true">
-                <div class="modal-dialog" role="document">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="preguntaEmparejar">Crear pregunta </h5>
-                            <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
-                                <span aria-hidden="true">&times;</span>
-                            </button>
-                        </div>
-                        <div class="modal-body">
 
 
-                            <div class="row d-flex justify-content-center ">
-                                <label for="enunciado">Enunciado pregunta</label>
-                                <input class="inputFull" name="enunciado" type="text"
-                                    v-model="preguntaEnEdicion.enunciado" placeholder="Escriba aquí su pregunta">
-                            </div>
-                            <div class="row d-flex justify-content-center ">
-                                <label for="respuestaEmpareja">Respuesta pregunta</label>
-                                <input class="inputFull" name="respuestaEmpareja" type="text"
-                                    v-model="preguntaEnEdicion.respuesta" placeholder="Escriba aquí su respuesta">
-                            </div>
-                            <div class="row d-flex justify-content-center">
-                                <label for="pista"> Pista</label>
-                                <input class="inputFull" name="pista" type="text" v-model="preguntaEnEdicion.pista"
-                                    placeholder="Pista">
-                            </div>
 
-
-                        </div>
-                        <div class="modal-footer">
-                            <button v-if="modalEdicion" class="btn btn-primary" data-dismiss="modal"
-                                @click.stop="actualizarPreguntaEmparejamiento()">Aceptar</button>
-                            <button v-else class="btn btn-primary" data-dismiss="modal"
-                                @click.stop="insertarPreguntaEmparejamiento()">Aceptar</button>
-                            <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
-                        </div>
-                    </div>
+    <!------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------>
+    <!-- MODAL CREA- EDITA- MBRE OBJETO -------------------------------------------------------------------->
+    <!------------------------------------------------------------------------------------------------>
+    <!------------------------------------------------------------------------------------------------>
+    <!--   <div v-if="tipoEvaluacion=='Nombre_Objeto'" class="modal fade" id="modalCrearPreguntaNombre_Objeto" tabindex="-1"
+        role="dialog" aria-labelledby="preguntaNombreObjeto" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="preguntaNombreObjeto">Crear pregunta </h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
                 </div>
-            </div>
+                <div class="modal-body">
+
+                    PREGUNTA DE NOMBRE OBJETO
+
+                    <template>
+
+                        <label v-if="!preguntaEnEdicion.enunciado" for="file" class=" boton_formulario">Seleccione una
+                            Imágen
+                        </label>
+                        <label v-else for="file" class=" boton_formulario" @click="onClickCambiarImagen">Cambiar
+                            Imágen </label>
+                        <input type="file" name="multimedia" id="file" class="inputfile"
+                            @change="onFileSelectedEvaluacionNombreObjeto" accept="image/*"
+                            :class="[computedErrorImagen ? 'is-invalid' : '']">
+
+                        <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
+                            archivo de
+                            imagen para la portada max:20MB.</div>
+                        <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
+                            permitidos:
+                            jpg,/png. max:20MB. </div>
 
 
-
-
-            <!-- fin modales -->
-
-
-
-
-
-            <!-- ---------------------------------------------------------------- -->
-            <!-- ---------------------------------------------------------------- -->
-            <!-- ---------------------------------------------------------------- -->
-            <!-- ---------------------------------------------------------------- -->
-            <!-- ---------------------------------------------------------------- -->
-            <!------------------- EVALUACIONES Y CONTENIDO ---------------------- -->
-            <!-- ---------------------------------------------------------------- -->
-            <!-- ---------------------------------------------------------------- -->
-            <!-- ---------------------------------------------------------------- -->
-            <!-- ---------------------------------------------------------------- -->
-
-            <div class="div-contenido container-fluid" v-cloak>
-                <!--CABECERA-->
-                <div class="row" id="div-cabecera">
-                    <div class="col-sm-8">
-                        <modulo-barra-nav :breadcrumb="breadcrumb" :usuario="usuario"></modulo-barra-nav>
-                    </div>
-                    <div class="col-sm-2">
-                        <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
-                    </div>
-                    <div class="col-sm-2">
-                        <!-- solo si el objetoSeleccionado es submodulo se permite la creacion de una evaluacion -->
-                        <modulo-panel-derecho v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuario"
-                            @evaluacion-individual="evaluacionIndividual">
-                        </modulo-panel-derecho>
-                        <!-- si el objeto Seleccionado es modulo no se escucha la propiedad evaluacion-individual -->
-                        <modulo-panel-derecho v-else :usuario="usuario">
-                        </modulo-panel-derecho>
-                    </div>
-                </div>
-
-                <!--CUERPO-->
-                <div class="row" id="div-body">
-                    <!-- breadcrumb-->
-                    <div class="col-sm-1 col-izquierda">
-                        <modulo-side-var-menu :curso.sync="curso" :objeto-seleccionado="objetoSeleccionado"
-                            :usuario="usuario">
-                        </modulo-side-var-menu>
-                    </div>
-                    <!-- columna central y lateral derecha del cuerpo -->
-                    <div class="col-sm-11" id="columna-contenido-lateral">
-
-                        <div class="row fila-principal">
-
-
-
-                            <!-- Columna central del cuerpo-->
-
-                            <!-- ---------------------------------------------------------------- -->
-                            <!-- ---------------------------------------------------------------- -->
-                            <!-------------------------------RETO DEL MODULO------------------------>
-                            <!-- ---------------------------------------------------------------- -->
-                            <!-- ---------------------------------------------------------------- -->
-                            <!--
-                    <template v-else-if="">
-                        <div class="col-sm-10 col-central">
-                            <h4>{{objetoSeleccionado.nombre}} - Evaluación - {{tipoEvaluacion}}</h4>
-
-
-                           
-                            <template>
-
-                               
-
-                                <div class="row">
-
-                                    <a @click="clickMostrarModalCreaPregunta()" title="Añadir nueva pregunta"><i
-                                            class="fas fa-plus-circle fa-2x"></i>
-                                    </a>
-                                </div>
-                                <h6>* Las preguntas se mostrarán una por una al estudiante</h6>
-                                <div class="list-group">
-                                    <div class="list-group-item list-group-item-action active"
-                                        v-for="(pregunta, indexPreg) in preguntasCuestionario">
-                                        <div class="d-flex w-100 justify-content-between">
-                                            <h5 class="mb-1">{{pregunta.enunciado}}</h5>
-                                            <small>
-                                                <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
-                                                    data-placement="top" title="Editar pregunta"> <i
-                                                        class="fas fa-edit fa-2x"></i> </a>
-                                                <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
-                                                    data-placement="top" title="Eliminar pregunta"><i
-                                                        class="fas fa-trash-alt fa-2x"></i></a>
-                                            </small>
-                                        </div>
-
-
-                                        <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
-                                            <input type="radio" :id="opcion.id" :value="opcion.texto"
-                                                v-model="pregunta.respuesta" class="custom-control-input">
-                                            <label :for="opcion.id">{{opcion.texto}}</label>
-                                        </div>
-
-                                        <small>Puedes editar la pregunta seleccionando la opción correcta.</small>
-                                    </div>
-                                </div>
-
-                            </template>
-                            <label for="tiempoPorPregunta">* Tiempo máximo para responder cada pregunta o emparejar
-                            </label>
-                            <input id="tiempoPorPregunta" v-model="tiempoMaximoPorPregunta">
-                            <a @click="validarEvaluacion" title="Guardar Evaluación"> <i
-                                    class="fas fa-save fa-2x"></i></a>
-
-
+                        <div class="imagen-portada-modulo" v-if="preguntaEnEdicion.enunciado">
+                            
+                            <img :src="preguntaEnEdicion.enunciado" alt="Imágen de evaluacion">
                         </div>
                     </template>
 
-                -->
-
-                            <!-- ---------------------------------------------------------------- -->
-                            <!-- ---------------------------------------------------------------- -->
-                            <!-------------------------------EVALUACIONES CREADAS------------------->
-                            <!-- ---------------------------------------------------------------- -->
-                            <!-- ---------------------------------------------------------------- -->
 
 
-                            <template v-if="evIndividualBandera">
-                                <div class="col-sm-11 col-central">
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion1">Opción 1</label>
+                        <input class="inputFull" name="opcion1" type="text" v-model="preguntaEnEdicion.opciones.opcion1"
+                            placeholder="opción 1">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion2">Opción 2</label>
+                        <input class="inputFull" name="opcion2" type="text" v-model="preguntaEnEdicion.opciones.opcion2"
+                            placeholder="opción2">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion3">Opción 3</label>
+                        <input class="inputFull" name="opcion3" type="text" v-model="preguntaEnEdicion.opciones.opcion3"
+                            placeholder="opción 3">
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="opcion4"> Opción 4</label>
+                        <input class="inputFull" name="opcion4" type="text" v-model="preguntaEnEdicion.opciones.opcion4"
+                            placeholder="opción 4">
+                    </div>
 
-                                    <!-- <div class="row"> -->
+                    <div class="form-group">
+                        <label for="respuestaSelect">Respuesta</label>
+                        <select class="form-control inputFull" id="respuestaPregNombreObjeto"
+                            v-model="preguntaEnEdicion.respuesta">
+                            <option v-for="opcion in opcionesRespuesta(preguntaEnEdicion)"> {{opcion.texto}}</option>
 
-                                    <h4>{{objetoSeleccionado.nombre}} - Evaluación - {{tipoEvaluacion}}</h4>
+                        </select>
+                    </div>
+                    <div class="row d-flex justify-content-center">
+                        <label for="pista"> Pista</label>
+                        <input class="inputFull" name="pista" type="text" v-model="preguntaEnEdicion.pista"
+                            placeholder="Pista">
+                    </div>
 
-                                    <div class="dropdown">
-                                        <button class="btn btn-secondary dropdown-toggle" type="button"
-                                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
-                                            aria-expanded="false">
-                                            {{tipoEvaluacion}}
-                                        </button>
-                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                            <button class="dropdown-item" @click="mostrarTipoEvaluacion('Cuestionario')"
-                                                type="button">Cuestionario</button>
-                                            <button class="dropdown-item"
-                                                @click="mostrarTipoEvaluacion('Emparejamiento')"
-                                                type="button">Emparejamiento</button>
-                                            <button class="dropdown-item"
-                                                @click="mostrarTipoEvaluacion('Nombre_Objeto')"
-                                                type="button">Nombre_Objeto</button>
+                </div>
+                <div class="modal-footer">
+                    <button v-if="modalEdicion" class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="actualizarPreguntaCuestionario()">Aceptar</button>
+                    <button v-else class="btn btn-primary" data-dismiss="modal"
+                        @click.stop="insertarPreguntaCuestionario()">Aceptar</button>
+                    <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
+                </div>
+            </div>
+        </div>
+    </div>
+-->
 
-                                        </div>
-                                    </div>
-
-                                    <!-- EVALUACIONES -->
-                                    <template>
-                                        <!-- SI LA VARIABLE mostrarMenuTipoEvaluacion ES FALSE SE MUESTRA LA INTERFAZ PARA EDITAR  -->
-
-                                        <div class="contenedor-slot-principal">
-                                            <div class="contenedor-formulario">
-
+    <!-- fin modales -->
 
 
-                                                <!-- CUESTIONARIO -->
-                                                <template v-if="tipoEvaluacion=='Cuestionario'">
-                                                    <div class="row">
 
-                                                        <a @click="clickMostrarModalCreaPregunta()"
-                                                            title="Añadir nueva pregunta"><i
-                                                                class="fas fa-plus-circle fa-2x"></i>
-                                                        </a>
+
+
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!------------------- EVALUACIONES Y CONTENIDO ---------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+    <!-- ---------------------------------------------------------------- -->
+
+    <div class="div-contenido container-fluid" v-cloak>
+        <!--CABECERA-->
+        <div class="row" id="div-cabecera">
+            <div class="col-sm-8">
+                <modulo-barra-nav :breadcrumb="breadcrumb" :usuario="usuario"></modulo-barra-nav>
+            </div>
+            <div class="col-sm-2">
+                <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
+            </div>
+            <div class="col-sm-2">
+                <!-- solo si el objetoSeleccionado es submodulo se permite la creacion de una evaluacion -->
+                <modulo-panel-derecho v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuario"
+                    @evaluacion-individual="evaluacionIndividual">
+                </modulo-panel-derecho>
+                <!-- si el objeto Seleccionado es modulo no se escucha la propiedad evaluacion-individual -->
+                <modulo-panel-derecho v-else :usuario="usuario">
+                </modulo-panel-derecho>
+            </div>
+        </div>
+
+        <!--CUERPO-->
+        <div class="row" id="div-body">
+            <!-- breadcrumb-->
+            <div class="col-sm-1 col-izquierda">
+                <modulo-side-var-menu :curso.sync="curso" :objeto-seleccionado="objetoSeleccionado" :usuario="usuario">
+                </modulo-side-var-menu>
+            </div>
+            <!-- columna central y lateral derecha del cuerpo -->
+            <div class="col-sm-11" id="columna-contenido-lateral">
+
+
+
+                <div class="row fila-principal">
+
+
+
+                    <!-- Columna central del cuerpo-->
+
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-------------------------------EVALUACIONES CREADAS------------------->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-- ---------------------------------------------------------------- -->
+
+
+                    <template v-if="evIndividualBandera">
+                        <div class="col-sm-11 col-central">
+
+                            <!-- <div class="row"> -->
+
+                            <h4>{{objetoSeleccionado.nombre}} - Evaluación - {{tipoEvaluacion}}</h4>
+
+                            <div class="dropdown">
+                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
+                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    {{tipoEvaluacion}}
+                                </button>
+                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                    <button class="dropdown-item" @click="mostrarTipoEvaluacion('Cuestionario')"
+                                        type="button">Cuestionario</button>
+                                    <button class="dropdown-item" @click="mostrarTipoEvaluacion('Emparejamiento')"
+                                        type="button">Emparejamiento</button>
+
+
+                                </div>
+                            </div>
+
+                            <!-- EVALUACIONES -->
+                            <template>
+                                <!-- SI LA VARIABLE mostrarMenuTipoEvaluacion ES FALSE SE MUESTRA LA INTERFAZ PARA EDITAR  -->
+
+                                <div class="contenedor-slot-principal">
+                                    <div class="contenedor-formulario">
+                                        <!-- CUESTIONARIO -->
+                                        <template v-if="tipoEvaluacion=='Cuestionario'">
+                                            <div class="row">
+
+                                                <a @click="clickMostrarModalCreaPregunta()"
+                                                    title="Añadir nueva pregunta"><i
+                                                        class="fas fa-plus-circle fa-2x"></i>
+                                                </a>
+                                            </div>
+                                            <h6>* Las preguntas se mostrarán una por una al estudiante</h6>
+                                            <div class="list-group">
+                                                <div class="list-group-item list-group-item-action active"
+                                                    v-for="(pregunta, indexPreg) in preguntasCuestionario">
+                                                    <div class="d-flex w-100 justify-content-between">
+                                                        <h5 class="mb-1">{{pregunta.enunciado}}</h5>
+                                                        <small>
+                                                            <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
+                                                                data-placement="top" title="Editar pregunta"> <i
+                                                                    class="fas fa-edit fa-2x"></i> </a>
+                                                            <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
+                                                                data-placement="top" title="Eliminar pregunta"><i
+                                                                    class="fas fa-trash-alt fa-2x"></i></a>
+                                                        </small>
                                                     </div>
-                                                    <h6>* Las preguntas se mostrarán una por una al estudiante</h6>
+
+
+                                                    <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
+                                                        <input type="radio" :id="opcion.id" :value="opcion.texto"
+                                                            v-model="pregunta.respuesta" class="custom-control-input">
+                                                        <label :for="opcion.id">{{opcion.texto}}</label>
+                                                    </div>
+
+                                                    <small>Puedes editar la pregunta seleccionando la opción
+                                                        correcta.</small>
+                                                </div>
+                                            </div>
+
+                                        </template>
+
+
+
+
+
+
+                                        <!-- EMPAREJAMIENTO -->
+                                        <template v-if="tipoEvaluacion=='Emparejamiento'">
+                                            <div class="row">
+                                                <a @click="clickMostrarModalCreaPregunta()"
+                                                    title="Añadir nueva pregunta"><i
+                                                        class="fas fa-plus-circle fa-2x"></i>
+                                                </a>
+                                                <div class="col-sm-8">
+                                                    <div class="row"
+                                                        v-for="(pregunta,indexPreg) in preguntasCuestionario">
+
+
+                                                        <div class="col-sm-4" :id="'Preg'+indexPreg"
+                                                            key="'Preg'+indexPreg">
+                                                            {{pregunta.enunciado}}
+
+                                                        </div>
+
+                                                        <div class="col-sm-4" :id="'Resp'+indexPreg"
+                                                            key="'Resp'+indexPreg">
+                                                            {{pregunta.respuesta}}
+
+                                                        </div>
+                                                        <small>
+                                                            <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
+                                                                data-placement="top" title="Editar pregunta"> <i
+                                                                    class="fas fa-edit fa-2x"></i> </a>
+                                                            <a @click.stop="eliminarPreguntaEmparejar(pregunta,indexPreg)"
+                                                                data-placement="top" title="Eliminar pregunta"><i
+                                                                    class="fas fa-trash-alt fa-2x"></i></a>
+                                                        </small>
+
+                                                    </div>
+                                                </div>
+
+                                            </div>
+                                        </template>
+
+
+
+
+                                        <!-- SELECCIONAR OBJETO INDICADO -->
+                                        <template v-if="tipoEvaluacion=='Nombre_Objeto'">
+                                            <div class="row">
+                                                <div class="col">
+                                                    <a @click="clickMostrarModalCreaPregunta()"
+                                                        title="Añadir nueva pregunta"><i
+                                                            class="fas fa-plus-circle fa-2x"></i>
+                                                    </a>
+                                                </div>
+                                            </div>
+                                            <h6>* Las preguntas se mostrarán una por una al estudiante</h6>
+                                            <div class="row">
+                                                <div class="col">
                                                     <div class="list-group">
                                                         <div class="list-group-item list-group-item-action active"
                                                             v-for="(pregunta, indexPreg) in preguntasCuestionario">
                                                             <div class="d-flex w-100 justify-content-between">
-                                                                <h5 class="mb-1">{{pregunta.enunciado}}</h5>
+
+                                                                <div class="imagen-portada-modulo">
+                                                                    <!--El enunciado puede ser cualquier objeto --->
+                                                                    <img :src="pregunta.enunciado"
+                                                                        alt="Imágen de evaluacion">
+                                                                </div>
                                                                 <small>
                                                                     <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
                                                                         data-placement="top" title="Editar pregunta"> <i
@@ -437,283 +477,184 @@
 
                                                             <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
                                                                 <input type="radio" :id="opcion.id"
-                                                                    :value="opcion.texto" v-model="pregunta.respuesta"
-                                                                    class="custom-control-input">
+                                                                    :value="opcion.texto" v-model="pregunta.respuesta">
                                                                 <label :for="opcion.id">{{opcion.texto}}</label>
                                                             </div>
 
-                                                            <small>Puedes editar la pregunta seleccionando la opción
+                                                            <small>Puedes editar la pregunta seleccionando la
+                                                                opción
                                                                 correcta.</small>
                                                         </div>
                                                     </div>
 
-                                                </template>
-                                                <!-- SELECCIONAR OBJETO INDICADO -->
-                                                <template v-if="tipoEvaluacion=='Nombre_Objeto'">
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <a @click="clickMostrarModalCreaPregunta()"
-                                                                title="Añadir nueva pregunta"><i
-                                                                    class="fas fa-plus-circle fa-2x"></i>
-                                                            </a>
-                                                        </div>
-                                                    </div>
-                                                    <h6>* Las preguntas se mostrarán una por una al estudiante</h6>
-                                                    <div class="row">
-                                                        <div class="col">
-                                                            <div class="list-group">
-                                                                <div class="list-group-item list-group-item-action active"
-                                                                    v-for="(pregunta, indexPreg) in preguntasCuestionario">
-                                                                    <div class="d-flex w-100 justify-content-between">
-
-                                                                        <div class="imagen-portada-modulo">
-                                                                            <!--El enunciado puede ser cualquier objeto --->
-                                                                            <img :src="pregunta.enunciado"
-                                                                                alt="Imágen de evaluacion">
-                                                                        </div>
-                                                                        <small>
-                                                                            <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
-                                                                                data-placement="top"
-                                                                                title="Editar pregunta"> <i
-                                                                                    class="fas fa-edit fa-2x"></i> </a>
-                                                                            <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
-                                                                                data-placement="top"
-                                                                                title="Eliminar pregunta"><i
-                                                                                    class="fas fa-trash-alt fa-2x"></i></a>
-                                                                        </small>
-                                                                    </div>
-
-
-                                                                    <div
-                                                                        v-for="(opcion,index) in opcionesRespuesta(pregunta)">
-                                                                        <input type="radio" :id="opcion.id"
-                                                                            :value="opcion.texto"
-                                                                            v-model="pregunta.respuesta">
-                                                                        <label :for="opcion.id">{{opcion.texto}}</label>
-                                                                    </div>
-
-                                                                    <small>Puedes editar la pregunta seleccionando la
-                                                                        opción
-                                                                        correcta.</small>
-                                                                </div>
-                                                            </div>
-
-                                                        </div>
-                                                    </div>
-
-
-                                                </template>
-
-
-                                                <!-- EMPAREJAMIENTO -->
-                                                <template v-if="tipoEvaluacion=='Emparejamiento'">
-                                                    <div class="row">
-                                                        <a @click="clickMostrarModalCreaPregunta()"
-                                                            title="Añadir nueva pregunta"><i
-                                                                class="fas fa-plus-circle fa-2x"></i>
-                                                        </a>
-                                                        <div class="col-sm-8">
-                                                            <div class="row"
-                                                                v-for="(pregunta,indexPreg) in preguntasCuestionario">
-
-
-                                                                <div class="col-sm-4" :id="'Preg'+indexPreg"
-                                                                    key="'Preg'+indexPreg">
-                                                                    {{pregunta.enunciado}}
-
-                                                                </div>
-
-                                                                <div class="col-sm-4" :id="'Resp'+indexPreg"
-                                                                    key="'Resp'+indexPreg">
-                                                                    {{pregunta.respuesta}}
-
-                                                                </div>
-                                                                <small>
-                                                                    <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
-                                                                        data-placement="top" title="Editar pregunta"> <i
-                                                                            class="fas fa-edit fa-2x"></i> </a>
-                                                                    <a @click.stop="eliminarPreguntaEmparejar(pregunta,indexPreg)"
-                                                                        data-placement="top"
-                                                                        title="Eliminar pregunta"><i
-                                                                            class="fas fa-trash-alt fa-2x"></i></a>
-                                                                </small>
-
-                                                            </div>
-                                                        </div>
-
-                                                    </div>
-                                                </template>
-
-
-                                            </div>
-                                        </div>
-
-                                    </template>
-                                    <label for="tiempoPorPregunta">* Tiempo máximo para responder cada pregunta o
-                                        emparejar
-                                    </label>
-                                    <input id="tiempoPorPregunta" v-model="tiempoMaximoPorPregunta">
-                                    <a @click="validarEvaluacion" title="Guardar Evaluación"> <i
-                                            class="fas fa-save fa-2x"></i></a>
-
-                                    <!-- </div> -->
-
-                                </div>
-                            </template>
-
-
-                            <!-- ---------------------------------------------------------------- -->
-                            <!-- ---------------------------------------------------------------- -->
-                            <!----------------CONTENIDO DEL MODULO O SUBMODULO---------------------->
-                            <!-- ---------------------------------------------------------------- -->
-                            <!-- ---------------------------------------------------------------- -->
-                            <template v-else>
-                                <div class="col-sm-11 col-central">
-                                    <!--botones de navegacion y Titulo-->
-                                    <div class="row">
-
-                                        <!--atras-->
-                                        <div class="col-auto">
-                                            <a :href="navegarAtras"> <i class="fas fa-chevron-left fa-3x"></i> </a>
-                                        </div>
-
-                                        <!--titulo-->
-                                        <div class="col" id="titulo-modulo">
-                                            <div class="form-group">
-                                                <!-- <label for="nombre">* Título del módulo</label> -->
-                                                <div class="row ">
-                                                    <div class="col tituloObjeto">
-
-                                                        <input v-if="editarNombre" type="text" id="nombre-objeto"
-                                                            name="nombre" v-model="objetoSeleccionado.nombre"
-                                                            placeholder="Ej: Modulo 1: la computadora"
-                                                            :class="[formErrors.nombre ? 'is-invalid' : '']"
-                                                            v-on:keyup.enter="editarNombre=false" maxlength="100"
-                                                            autofocus>
-                                                        <h2 v-else>{{objetoSeleccionado.nombre}}</h2>
-                                                        <a v-if="editarNombre" @click="actualizarNombre"
-                                                            title="Guardar Nombre"><i class="fas fa-save"></i></a>
-                                                        <a v-else @click="mostrarEditarNombre"><i
-                                                                class="fas fa-edit"></i></a>
-                                                        <a data-toggle="modal" data-target="#modalConfirmaEliminar"
-                                                            data-placement="top" title="Eliminar Objeto"><i
-                                                                class="fas fa-trash-alt"></i></a>
-
-                                                    </div>
-                                                    <!--col-->
                                                 </div>
-                                                <!--row-->
-
-                                                <div class="invalid-feedback" v-if="formErrors.nombre">Ingrese un nombre
-                                                    para
-                                                    el módulo.</div>
                                             </div>
-                                        </div>
 
 
-                                        <!--siguiente-->
-                                        <div class="col-auto">
-                                            <a :href="navegarSiguiente"><i class="fas fa-chevron-right fa-3x"></i>
-                                            </a>
-                                        </div>
+                                        </template>
                                     </div>
-                                    <!--contenido principal-->
-                                    <div class="row">
-
-                                        <div class="contenedor-slot-principal">
-                                            <div class="contenedor-formulario-administrar">
-
-                                                <form method="post" v-if="noEsInforBasica">
-                                                    <!-- <textarea id="mytextarea">Escriba aquí el texto</textarea> -->
-                                                    <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
-                                                    <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
-                                                    <div id="mytextarea" class="contenidoTiny"
-                                                        v-html="objetoSeleccionado.contenidoTiny">
-                                                        <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
-                                                    </div>
-                                                </form>
-                                                <div v-else>NO SE PUEDE EDITAR ESTE CONTENIDO ACCESO RESTRINGIDO</div>
-                                                <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
-                                                    <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
-                                                    <!-- <input id="colorModulo" type="color" name="color"
-                                                v-model="objetoSeleccionado.color" /> -->
-                                                    <div class="progress" v-if="uploadPercentage">
-                                                        <div class="progress-bar" role="progressbar"
-                                                            :style="{width:uploadPercentage+'%'}"
-                                                            :aria-valuenow="uploadPercentage" aria-valuemin="0"
-                                                            aria-valuemax="100">
-                                                            {{uploadPercentage}}%</div>
-                                                    </div>
-                                                    <label for="file" class=" boton_formulario"
-                                                        @click="onClickCambiarImagen">Cambiar
-                                                        Imágen </label>
-
-                                                    <input type="file" name="multimedia" id="file" class="inputfile"
-                                                        @change="onFileSelected" accept="image/*"
-                                                        :class="[computedErrorImagen ? 'is-invalid' : '']">
-
-                                                    <div class="invalid-feedback" v-if="formErrors.imagenPortada">
-                                                        Seleccione
-                                                        un
-                                                        archivo de
-                                                        imagen para la portada max:20MB.</div>
-                                                    <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de
-                                                        imágen
-                                                        permitidos:
-                                                        jpg,/png. max:20MB. </div>
-
-                                                    <div class="imagen-portada-modulo">
-                                                        <img :src="objetoSeleccionado.multimedia.imagen"
-                                                            alt="Imágen de portada">
-
-                                                    </div>
-
-                                                </div>
-                                                <button type="button" id="enviarModulo" @click.stop="validarFormulario">
-                                                    Guardar
-                                                    Cambios
-                                                </button>
-                                            </div>
-                                        </div>
-
-                                    </div>
-
-                                    <!--Contenido pie de página-->
-                                    <div class="row pie-contenido">
-                                        <div class="col-sm-1" id="avatar">
-                                            <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-                                        </div>
-
-                                        <div class="col-sm-11" id="descripcion-objeto">
-
-
-                                            <input v-if="editarDescripcion" type="text" id="descripcion"
-                                                name="descripcion" v-model="objetoSeleccionado.descripcion"
-                                                placeholder="Ej: En este módulo aprenderás a manejar un computador"
-                                                :class="[formErrors.descripcion ? 'is-invalid' : '']"
-                                                v-on:keyup.enter="editarDescripcion=false" maxlength="400">
-                                            <h6 v-else>{{objetoSeleccionado.descripcion}}</h6>
-
-
-
-                                            <a v-if="editarDescripcion" @click="actualizarDescripcion"
-                                                title="Guardar descripcion"><i class="fas fa-save"></i></a>
-                                            <a v-else @click="mostrarEditarDescripcion"><i class="fas fa-edit"></i></a>
-                                        </div>
-                                    </div>
-
                                 </div>
-                            </template>
-                            <!-- columna derecha -->
 
-                            <div class="col-sm-1 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
+                            </template>
+                            <label for="tiempoPorPregunta">* Tiempo máximo para responder cada pregunta o
+                                emparejar
+                            </label>
+                            <input id="tiempoPorPregunta" v-model="tiempoMaximoPorPregunta">
+                            <a @click="validarEvaluacion" title="Guardar Evaluación"> <i
+                                    class="fas fa-save fa-2x"></i></a>
+
+                            <!-- </div> -->
+
+                        </div>
+                    </template>
+
+
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!----------------CONTENIDO DEL MODULO O SUBMODULO---------------------->
+                    <!-- ---------------------------------------------------------------- -->
+                    <!-- ---------------------------------------------------------------- -->
+                    <template v-else>
+                        <div class="col-sm-11 col-central">
+                            <!--botones de navegacion y Titulo-->
+                            <div class="row">
+
+                                <!--atras-->
+                                <div class="col-auto">
+                                    <a :href="navegarAtras"> <i class="fas fa-chevron-left fa-3x"></i> </a>
+                                </div>
+
+                                <!--titulo-->
+                                <div class="col" id="titulo-modulo">
+                                    <div class="form-group">
+                                        <!-- <label for="nombre">* Título del módulo</label> -->
+                                        <div class="row ">
+                                            <div class="col tituloObjeto">
+
+                                                <input v-if="editarNombre" type="text" id="nombre-objeto" name="nombre"
+                                                    v-model="objetoSeleccionado.nombre"
+                                                    placeholder="Ej: Modulo 1: la computadora"
+                                                    :class="[formErrors.nombre ? 'is-invalid' : '']"
+                                                    v-on:keyup.enter="editarNombre=false" maxlength="100" autofocus>
+                                                <h2 v-else>{{objetoSeleccionado.nombre}}</h2>
+                                                <a v-if="editarNombre" @click="actualizarNombre"
+                                                    title="Guardar Nombre"><i class="fas fa-save"></i></a>
+                                                <a v-else @click="mostrarEditarNombre"><i class="fas fa-edit"></i></a>
+                                                <a data-toggle="modal" data-target="#modalConfirmaEliminar"
+                                                    data-placement="top" title="Eliminar Objeto"><i
+                                                        class="fas fa-trash-alt"></i></a>
+
+                                            </div>
+                                            <!--col-->
+                                        </div>
+                                        <!--row-->
+
+                                        <div class="invalid-feedback" v-if="formErrors.nombre">Ingrese un nombre
+                                            para
+                                            el módulo.</div>
+                                    </div>
+                                </div>
+
+
+                                <!--siguiente-->
+                                <div class="col-auto">
+                                    <a :href="navegarSiguiente"><i class="fas fa-chevron-right fa-3x"></i>
+                                    </a>
+                                </div>
+                            </div>
+                            <!--contenido principal-->
+                            <div class="row">
+
+                                <div class="contenedor-slot-principal">
+                                    <div class="contenedor-formulario-administrar">
+
+                                        <form method="post" v-if="noEsInforBasica">
+                                            <!-- <textarea id="mytextarea">Escriba aquí el texto</textarea> -->
+                                            <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                                            <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
+                                            <div id="mytextarea" class="contenidoTiny"
+                                                v-html="objetoSeleccionado.contenidoTiny">
+                                                <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                                            </div>
+                                        </form>
+                                        <div v-else>NO SE PUEDE EDITAR ESTE CONTENIDO ACCESO RESTRINGIDO</div>
+                                        <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
+                                            <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
+                                            <!-- <input id="colorModulo" type="color" name="color"
+                                                    v-model="objetoSeleccionado.color" /> -->
+                                            <div class="progress" v-if="uploadPercentage">
+                                                <div class="progress-bar" role="progressbar"
+                                                    :style="{width:uploadPercentage+'%'}"
+                                                    :aria-valuenow="uploadPercentage" aria-valuemin="0"
+                                                    aria-valuemax="100">
+                                                    {{uploadPercentage}}%</div>
+                                            </div>
+                                            <label for="file" class=" boton_formulario"
+                                                @click="onClickCambiarImagen">Cambiar
+                                                Imágen </label>
+
+                                            <input type="file" name="multimedia" id="file" class="inputfile"
+                                                @change="onFileSelected" accept="image/*"
+                                                :class="[computedErrorImagen ? 'is-invalid' : '']">
+
+                                            <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
+                                                archivo de
+                                                imagen para la portada max:20MB.</div>
+                                            <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
+                                                permitidos:
+                                                jpg,/png. max:20MB. </div>
+
+                                            <div class="imagen-portada-modulo">
+                                                <img :src="objetoSeleccionado.multimedia.imagen"
+                                                    alt="Imágen de portada">
+
+                                            </div>
+
+                                        </div>
+                                        <button type="button" id="enviarModulo" @click.stop="validarFormulario"> Guardar
+                                            Cambios
+                                        </button>
+                                    </div>
+                                </div>
 
                             </div>
-                        </div> <!-- fin fila de contenido central y barra lateral derecha -->
+
+                            <!--Contenido pie de página-->
+                            <div class="row pie-contenido">
+                                <div class="col-sm-1" id="avatar">
+                                    <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+                                </div>
+
+                                <div class="col-sm-11" id="descripcion-objeto">
+
+
+                                    <input v-if="editarDescripcion" type="text" id="descripcion" name="descripcion"
+                                        v-model="objetoSeleccionado.descripcion"
+                                        placeholder="Ej: En este módulo aprenderás a manejar un computador"
+                                        :class="[formErrors.descripcion ? 'is-invalid' : '']"
+                                        v-on:keyup.enter="editarDescripcion=false" maxlength="400">
+                                    <h6 v-else>{{objetoSeleccionado.descripcion}}</h6>
+
+
+
+                                    <a v-if="editarDescripcion" @click="actualizarDescripcion"
+                                        title="Guardar descripcion"><i class="fas fa-save"></i></a>
+                                    <a v-else @click="mostrarEditarDescripcion"><i class="fas fa-edit"></i></a>
+                                </div>
+                            </div>
+
+                        </div>
+                    </template>
+                    <!-- columna derecha -->
+
+                    <div class="col-sm-1 col-derecha" :style="{backgroundColor: objetoSeleccionado.color}">
 
                     </div>
-                    <!--fin columna contenido central y barra lateral derecha-->
-                </div>
+                </div> <!-- fin fila de contenido central y barra lateral derecha -->
+
             </div>
+            <!--fin columna contenido central y barra lateral derecha-->
         </div>
-        <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
+    </div>
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

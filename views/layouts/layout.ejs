@@ -69,6 +69,41 @@
   <script
     src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=kjkditphnen1av2wynuz72xcpf4kkxlyj0o0qpn1b82j48oh"></script>
   <script>
+
+    var funcionCargaImagen = function (blobInfo, success, failure) {
+      const formData = new FormData();
+      var _success = success;
+      var _failure = failure;
+      var json;
+
+      formData.append('multimedia', blobInfo.blob(), blobInfo.blob().name);
+      axios({
+        method: 'post',
+        url: '/cargar-imagen',
+        data: formData,
+        headers: {
+          "Content-Type": "multipart/form-data"
+        },
+        onUploadProgress: progressEvent => {
+          this.uploadPercentage = Math.round(
+            (progressEvent.loaded * 100) / progressEvent.total
+          );
+        }
+      })
+        .then(
+          response => {
+            json = response.data;
+            _success(json.location);
+
+          }
+        )
+        .catch(
+          err => {
+            _failure('Error encontrado' + err);
+          }
+        );
+    };
+
     tinymce.init({
       selector: '#mytextarea',
       plugins: 'image code',
@@ -88,31 +123,33 @@
         });
       },
 
-      images_upload_handler: function (blobInfo, success, failure) {
-        const formData = new FormData();
-        var _success = success;
-        var _failure = failure;
-        var json;
+      images_upload_handler: funcionCargaImagen
+    });
 
-        formData.append('multimedia', blobInfo.blob(), blobInfo.blob().name);
-        axios({
-          method: 'post',
-          url: '/cargar-imagen',
-          data: formData
-        })
-          .then(
-            response => {
-              json = response.data;
-              _success(json.location);
 
-            }
-          )
-          .catch(
-            err => {
-              _failure('Error encontrado' + err);
-            }
-          );
-      }
+    // MANTENER ESTA SEGUNDA ISTANCIA PARA SABER QUE PASA CON LA CREACION DE LA EVALUACION
+
+    tinymce.init({
+      selector: '#mytextarea2',
+      plugins: 'image code',
+      toolbar: "insertfile undo redo |image code| bold italic | forecolor backcolor | template codesample | alignleft aligncenter alignright alignjustify | bullist numlist",
+      inline: true,
+      // images_upload_url: '127.0.0.1:1337/crear-modulo',
+      /* we override default upload handler to simulate successful upload*/
+      init_instance_callback: function (editor) {
+        //  window.contenidoTiny =null;
+        editor.on('keyup', function (e) { // no reconoce los clicks
+          window.contenidoTiny2 = tinymce.get("mytextarea2").getContent()
+          // $('.contenido-tiny').html(window.contenidoTiny);          
+        });
+        editor.on('Change', function (e) { //reconoce los clicks sobre el objeto iframe
+          window.contenidoTiny2 = tinymce.get("mytextarea2").getContent()
+          // $('.contenido-tiny').html(window.contenidoTiny);          
+        });
+
+      },
+
+      images_upload_handler: funcionCargaImagen
     });
   </script>
 

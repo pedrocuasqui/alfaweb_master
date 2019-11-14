@@ -38,22 +38,48 @@
     <!------------------------------------------------------------------------------------------------>
     <!------------------------------------------------------------------------------------------------>
     <div v-if="tipoEvaluacion=='Cuestionario'" class="modal fade" id="modalCrearPreguntaCuestionario" tabindex="-1"
-        role="dialog" aria-labelledby="modalCrearPreguntaLabel" aria-hidden="true">
+        role="dialog" aria-labelledby="modalCrearPreguntaLabel" aria-hidden="true" data-keyboard="false"
+        data-backdrop="static">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="modalCrearPreguntaLabel">Crear nueva pregunta </h5>
+                    <h5 v-if="!modalEdicion" class="modal-title" id="modalCrearPreguntaLabel">Crear nueva pregunta </h5>
+                    <h5 v-else class="modal-title" id="modalCrearPreguntaLabel">Editar pregunta
+                        {{indicePreguntaEditar+1}} </h5>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                         <span aria-hidden="true">&times;</span>
                     </button>
                 </div>
                 <div class="modal-body">
-
-                    <div class="row d-flex justify-content-center ">
+                    <!-- Enunciado de la pregunta con Tiny -->
+                    <!-- <div class="row d-flex justify-content-center ">
                         <label for="enunciado">Enunciado de la pregunta</label>
                         <input class="inputFull" name="enunciado" type="text" v-model="preguntaEnEdicion.enunciado"
                             placeholder="Escriba aquí su pregunta">
+                    </div> -->
+                    <div class="row">
+                        <label for="tinyMce" class="col-sm-3">Pregunta (*) </label>
+                        <!-- Se conserva method="post" de tiny por defecto  -->
+                        <div class="col-sm-9">
+                            <form method="post" id="tinyMce">
+                                <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                                <!-- Si la variable preguntaEnEdicion.enunciado no tiene valores -->
+                                <!-- es necesario usar la otra instancia para poder identificar al objeto tinymce y limpiarlo -->
+                                <div v-if="!modalEdicion" id="mytextarea2" class="contenidoTiny"
+                                    @keyup="actualizaContTiny()"></div>
+                                <div v-else id="mytextarea2" class="contenidoTiny" v-html="preguntaEnEdicion.enunciado">
+                                    <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                                </div>
+
+                                <div class="invalid-feedback" v-if="formErrorsModal.enunciado">
+                                    Debe ingresar algún contenido </div>
+                            </form>
+                        </div>
                     </div>
+                    <!-- Respuestas posibles -->
+
+
+
                     <div class="row d-flex justify-content-center">
                         <label for="opcion1">Opción 1</label>
                         <input class="inputFull" name="opcion1" type="text" v-model="preguntaEnEdicion.opciones.opcion1"
@@ -160,7 +186,7 @@
     <!-- MODAL CREA- EDITA- MBRE OBJETO -------------------------------------------------------------------->
     <!------------------------------------------------------------------------------------------------>
     <!------------------------------------------------------------------------------------------------>
-    <div v-if="tipoEvaluacion=='Nombre_Objeto'" class="modal fade" id="modalCrearPreguntaNombre_Objeto" tabindex="-1"
+    <!--   <div v-if="tipoEvaluacion=='Nombre_Objeto'" class="modal fade" id="modalCrearPreguntaNombre_Objeto" tabindex="-1"
         role="dialog" aria-labelledby="preguntaNombreObjeto" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
@@ -194,7 +220,7 @@
 
 
                         <div class="imagen-portada-modulo" v-if="preguntaEnEdicion.enunciado">
-                            <!--El enunciado puede ser cualquier objeto --->
+                            
                             <img :src="preguntaEnEdicion.enunciado" alt="Imágen de evaluacion">
                         </div>
                     </template>
@@ -247,7 +273,7 @@
             </div>
         </div>
     </div>
-
+-->
 
     <!-- fin modales -->
 
@@ -328,8 +354,7 @@
                                         type="button">Cuestionario</button>
                                     <button class="dropdown-item" @click="mostrarTipoEvaluacion('Emparejamiento')"
                                         type="button">Emparejamiento</button>
-                                    <button class="dropdown-item" @click="mostrarTipoEvaluacion('Nombre_Objeto')"
-                                        type="button">Nombre_Objeto</button>
+
 
                                 </div>
                             </div>
@@ -354,7 +379,7 @@
                                                 <div class="list-group-item list-group-item-action active"
                                                     v-for="(pregunta, indexPreg) in preguntasCuestionario">
                                                     <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1">{{pregunta.enunciado}}</h5>
+                                                        <h5 class="mb-1" v-html="pregunta.enunciado"></h5>
                                                         <small>
                                                             <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
                                                                 data-placement="top" title="Editar pregunta"> <i
@@ -554,7 +579,6 @@
                                     <div class="contenedor-formulario-administrar">
 
                                         <form method="post" v-if="noEsInforBasica">
-                                            <!-- <textarea id="mytextarea">Escriba aquí el texto</textarea> -->
                                             <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                             <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
                                             <div id="mytextarea" class="contenidoTiny"
@@ -566,7 +590,7 @@
                                         <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
                                             <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
                                             <!-- <input id="colorModulo" type="color" name="color"
-                                                v-model="objetoSeleccionado.color" /> -->
+                                                    v-model="objetoSeleccionado.color" /> -->
                                             <div class="progress" v-if="uploadPercentage">
                                                 <div class="progress-bar" role="progressbar"
                                                     :style="{width:uploadPercentage+'%'}"

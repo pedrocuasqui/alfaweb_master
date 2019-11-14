@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable no-undef */
 /*jshint esversion:8 */
 parasails.registerPage("administrar-contenido", {
@@ -115,7 +116,6 @@ parasails.registerPage("administrar-contenido", {
 		}
 	},
 	mounted: async function() {
-		// $('.contenido-tiny').html(this.objetoSeleccionado.contenidoTiny);
 		this.establecerContenidoTiny();
 
 		$("#modalCrearPregunta" + this.tipoEvaluacion).on("hide.bs.modal", function(
@@ -279,12 +279,21 @@ parasails.registerPage("administrar-contenido", {
 					}
 				})
 				.catch(error => {
-					alert("Error, no se ha podido eliminar el objeto solicitado");
+					alert(
+						"Error, no se ha podido eliminar el objeto solicitado: " + error
+					);
 				});
 		},
 		establecerContenidoTiny() {
 			window.contenidoTiny = null; // se establece el contenido
 			window.contenidoTiny = this.objetoSeleccionado.contenidoTiny;
+		},
+		/**
+		 * Funcion que se llama cada vez que el usuario escribe contenido dentro del elemnto TinyMice
+		 */
+		actualizaContTiny() {
+			//para verificar que exista contenido Tiny
+			this.preguntaEnEdicion.enunciado = window.contenidoTiny2;
 		},
 		onFileSelected(event) {
 			//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
@@ -296,16 +305,7 @@ parasails.registerPage("administrar-contenido", {
 
 			this.guardarImagenPortada();
 		},
-		onFileSelectedEvaluacionNombreObjeto(event) {
-			//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
 
-			//Añadir las propiedades del objeto seleccionado a la variable imagenPortada
-
-			this.imagenTemporal = event.target.files[0];
-			this.mostrarSpinner = true;
-
-			this.guardarImagenPortada();
-		},
 		guardarImagenPortada() {
 			const formData = new FormData();
 
@@ -335,7 +335,7 @@ parasails.registerPage("administrar-contenido", {
 				.then(response => {
 					if (this.evIndividualBandera) {
 						//si esta activa la vista de evaluacion entonces la carga de imagen es para una evaluacion
-						this.preguntaEnEdicion.enunciado = response.data.location;
+						this.preguntaEnEdicion.enunciado = response.data.location; //SE VA
 					} else {
 						//la carga de imagen es para administrar el modulo
 						this.objetoSeleccionado.multimedia.imagen = response.data.location;
@@ -370,7 +370,9 @@ parasails.registerPage("administrar-contenido", {
 		},
 		insertarPreguntaCuestionario() {
 			var errores = "";
+
 			if (!this.preguntaEnEdicion.enunciado) {
+				//se queda
 				this.formErrorsModal.enunciado = true;
 				errores += "\n .Ingrese un enunciado";
 			}
@@ -397,13 +399,18 @@ parasails.registerPage("administrar-contenido", {
 					respuesta: null,
 					pista: null
 				};
+
+				// window.contenidoTiny = null;// esto no pone el campo en
+				$("#mytextarea2").html("<p></p>");
 			}
 
 			this.formErrorsModal = {};
 		},
 		actualizarPreguntaCuestionario() {
 			var errores = "";
+			this.preguntaEnEdicion.enunciado = window.contenidoTiny2;
 			if (!this.preguntaEnEdicion.enunciado) {
+				//SE QUEDA
 				this.formErrorsModal.enunciado = true;
 				errores += "\n .Ingrese un enunciado";
 			}
@@ -411,6 +418,7 @@ parasails.registerPage("administrar-contenido", {
 				this.formErrorsModal.opciones = true;
 				errores += "\n .alert('Registre al menos dos opciones";
 			}
+
 			if (!this.preguntaEnEdicion.respuesta) {
 				this.formErrorsModal.respuesta = true;
 				errores += "\n .Seleccione una respuesta";
@@ -448,15 +456,17 @@ parasails.registerPage("administrar-contenido", {
 				$(() => {
 					$("#modalCrearPreguntaCuestionario").modal("show");
 				});
+				window.contenidoTiny2 = this.preguntaEnEdicion.enunciado;
 			} else if (this.tipoEvaluacion == "Emparejamiento") {
 				$(() => {
 					$("#modalCrearPreguntaEmparejamiento").modal("show");
 				});
-			} else if (this.tipoEvaluacion == "Nombre_Objeto") {
-				$(() => {
-					$("#modalCrearPreguntaNombre_Objeto").modal("show");
-				});
 			}
+			// else if (this.tipoEvaluacion == "Nombre_Objeto") {
+			// 	$(() => {
+			// 		$("#modalCrearPreguntaNombre_Objeto").modal("show");
+			// 	});
+			// }
 		},
 
 		eliminarPreguntaCuestionario(preguntaSelected, indice) {
@@ -555,6 +565,7 @@ parasails.registerPage("administrar-contenido", {
 		},
 		actualizarPreguntaEmparejamiento() {
 			if (!this.preguntaEnEdicion.enunciado) {
+				//SE QUEDA
 				this.formErrorsModal.enunciado = true;
 				alert("Ingrese un enunciado");
 			}
@@ -591,6 +602,8 @@ parasails.registerPage("administrar-contenido", {
 			var errores = "";
 
 			if (!this.preguntaEnEdicion.enunciado) {
+				// SE QUEDA
+				//SE QUEDA
 				this.formErrorsModal.enunciado = true;
 				errores += "\n .Ingrese un enunciado";
 			}
@@ -682,7 +695,7 @@ parasails.registerPage("administrar-contenido", {
 		 */
 		onClickCambiarImagen() {
 			if (this.evIndividualBandera) {
-				this.rutaImagenAnterior = this.preguntaEnEdicion.enunciado;
+				this.rutaImagenAnterior = this.preguntaEnEdicion.enunciado; // SE VA, PORQUE YA NO SE CARGAN LAS IMAGENES CON LA FUNCION ARRIBA
 			} else {
 				this.rutaImagenAnterior = this.objetoSeleccionado.multimedia.imagen;
 			}

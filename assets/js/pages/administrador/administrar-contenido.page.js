@@ -293,7 +293,7 @@ parasails.registerPage("administrar-contenido", {
 		 */
 		actualizaContTiny() {
 			//para verificar que exista contenido Tiny
-			this.preguntaEnEdicion.enunciado = window.contenidoTiny;
+			this.preguntaEnEdicion.enunciado = window.contenidoTiny2;
 		},
 		onFileSelected(event) {
 			//guarda el archivo seleccionado por el explorador de windows en un arreglo de imágenes.
@@ -399,12 +399,16 @@ parasails.registerPage("administrar-contenido", {
 					respuesta: null,
 					pista: null
 				};
+
+				// window.contenidoTiny = null;// esto no pone el campo en
+				$("#mytextarea2").html("<p></p>");
 			}
 
 			this.formErrorsModal = {};
 		},
 		actualizarPreguntaCuestionario() {
 			var errores = "";
+			this.preguntaEnEdicion.enunciado = window.contenidoTiny2;
 			if (!this.preguntaEnEdicion.enunciado) {
 				//SE QUEDA
 				this.formErrorsModal.enunciado = true;
@@ -414,6 +418,7 @@ parasails.registerPage("administrar-contenido", {
 				this.formErrorsModal.opciones = true;
 				errores += "\n .alert('Registre al menos dos opciones";
 			}
+
 			if (!this.preguntaEnEdicion.respuesta) {
 				this.formErrorsModal.respuesta = true;
 				errores += "\n .Seleccione una respuesta";

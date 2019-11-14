@@ -127,7 +127,7 @@
     });
 
 
-
+    // MANTENER ESTA SEGUNDA ISTANCIA PARA SABER QUE PASA CON LA CREACION DE LA EVALUACION
 
     tinymce.init({
       selector: '#mytextarea2',
@@ -146,6 +146,7 @@
           window.contenidoTiny2 = tinymce.get("mytextarea2").getContent()
           // $('.contenido-tiny').html(window.contenidoTiny);          
         });
+
       },
 
       images_upload_handler: funcionCargaImagen

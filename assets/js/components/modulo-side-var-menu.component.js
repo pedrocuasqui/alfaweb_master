@@ -1,39 +1,39 @@
-parasails.registerComponent('modulo-side-var-menu', {
+parasails.registerComponent("modulo-side-var-menu", {
 	props: {
 		objetoSeleccionado: {
 			type: Object,
 			default: () => {
 				return {
-					id: '1',
-					nombreModulo: 'crearModulo',
-					rol: 'Administrador',
-				}
-			},
+					id: "1",
+					nombreModulo: "crearModulo",
+					rol: "Administrador"
+				};
+			}
 		},
 		curso: {
 			type: Object,
-			required: true,
+			required: true
 		},
 		usuario: {
 			type: Object,
 			default: () => {
-				return { nombre: 'Admin', rol: 'Administrador' }
-			},
+				return { nombre: "Admin", rol: "Administrador" };
+			}
 		},
 		posicionSeleccionada: null,
-		crearSubmodulo: false,
+		crearSubmodulo: false
 	},
 	data() {
 		return {
 			showSidebar: false,
 			cursoInformatica: false,
-			moduloEvaluacion: '', //nombre del modulo que se pasa como parametro a la funcion de mostrar modal
-			indiceModulo: 0, //el indice del modulo que se pasa como parametro a la funcion de mostrar modal
-		}
+			moduloEvaluacion: "", //nombre del modulo que se pasa como parametro a la funcion de mostrar modal
+			indiceModulo: 0 //el indice del modulo que se pasa como parametro a la funcion de mostrar modal
+		};
 	},
 	mounted() {
-		if (this.curso.nombre == 'Alfabetización informática') {
-			this.cursoInformatica = true
+		if (this.curso.nombre == "Alfabetización informática") {
+			this.cursoInformatica = true;
 		}
 	},
 	//html
@@ -63,11 +63,10 @@ parasails.registerComponent('modulo-side-var-menu', {
                             
                                 <div class="d-flex w-100 justify-content-between">
                                     <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
-                                    <small >{{submodulo.evaluacion.tipo =='Nombre_Objeto'? 'Cuestionario de imagenes': submodulo.evaluacion.tipo}}</small>
+                                    <small >{{submodulo.evaluacion.tipo}}</small>
                                 </div>
                             
-                                <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Nombre_Objeto'">Identifica la imágen y selecciona la respuesta correcta</p>
-                                <p class="mb-1" v-else-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
+                                <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
                                 <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'">Empareje el término con el concepto correcto</p>
                             </a> 
                             <a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
@@ -84,10 +83,10 @@ parasails.registerComponent('modulo-side-var-menu', {
                             <a v-if="submodulo.evaluacion"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">  
                             <div class="d-flex w-100 justify-content-between">
                                 <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
-                                <small>{{submodulo.evaluacion.tipo =='Nombre_Objeto'? 'Cuestionario de imagenes': submodulo.evaluacion.tipo}}</small>
+                                <small>{{submodulo.evaluacion.tipo}}</small>
                                 </div>
-                                <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Nombre_Objeto'">Identifica la imágen y selecciona la respuesta correcta</p>
-                                <p class="mb-1" v-else-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
+                                
+                                <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
                                 <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'">Empareje el término con el concepto correcto</p>
                             </a> 
                             <a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
@@ -171,104 +170,104 @@ parasails.registerComponent('modulo-side-var-menu', {
     </div>`,
 	methods: {
 		onClickShowModalEvaluacion(moduloNombre, indice) {
-			this.moduloEvaluacion = moduloNombre
-			this.indiceModulo = indice
+			this.moduloEvaluacion = moduloNombre;
+			this.indiceModulo = indice;
 			$(function() {
-				$('#modalEnlaceEvaluacion').modal('show')
-			})
+				$("#modalEnlaceEvaluacion").modal("show");
+			});
 		},
 		onClickLeftCaret() {
-			this.showSidebar = true
+			this.showSidebar = true;
 		},
 		onClickRightCaret() {
-			this.showSidebar = false
+			this.showSidebar = false;
 		},
 		perteneceObjeto(moduloId) {
-			var pertenece = false
+			var pertenece = false;
 			if (
 				this.objetoSeleccionado.id == moduloId ||
 				this.objetoSeleccionado.modulo == moduloId
 			) {
-				pertenece = true
+				pertenece = true;
 			}
-			return pertenece
+			return pertenece;
 		},
 		colorModulo(moduloId) {
-			var estilo = {}
+			var estilo = {};
 			if (
 				this.objetoSeleccionado.id == moduloId ||
 				this.objetoSeleccionado.modulo == moduloId
 			) {
-				estilo = { backgroundColor: this.objetoSeleccionado.color }
+				estilo = { backgroundColor: this.objetoSeleccionado.color };
 			}
-			return estilo
+			return estilo;
 		},
 		objetoPerteneceModulo(moduloId) {
-			let valor = false
+			let valor = false;
 			//primera parte, se evalua que el objeto seleccionado sea un modulo y que sea el modulo del arreglo
 			//la segunda parte se evalua si el objetoSeleccionado es un submodulo y su propiedad modulo corresponda con el modulo actual
 			if (
 				this.moduloId == this.objetoSeleccionado.id ||
 				this.moduloId == this.objetoSeleccionado.modulo
 			) {
-				valor = true
+				valor = true;
 			}
 
-			return valor
+			return valor;
 		},
 		publicarCurso(cursoId) {
 			axios({
 				url: `/publicar-curso/${cursoId}`,
-				method: 'PUT',
-				data: { publicar: true },
+				method: "PUT",
+				data: { publicar: true }
 			})
 				.then(response => {
-					this.curso.publicado = true
-					alert('curso publicado')
+					this.curso.publicado = true;
+					alert("curso publicado");
 				})
 				.catch(err => {
-					alert('Error, no se ha podido publicar el curso: ' + err)
-				})
+					alert("Error, no se ha podido publicar el curso: " + err);
+				});
 		},
 		ocultarCurso(cursoId) {
-			this.curso.publicado = false
+			this.curso.publicado = false;
 			axios({
 				url: `/publicar-curso/${cursoId}`,
-				method: 'PUT',
-				data: { publicar: false },
+				method: "PUT",
+				data: { publicar: false }
 			})
 				.then(response => {
-					this.curso.publicado = false
-					alert('Se ha ocultado el curso a los estudiantes')
+					this.curso.publicado = false;
+					alert("Se ha ocultado el curso a los estudiantes");
 				})
 				.catch(err => {
-					alert('Error: intente más tarde: ' + err)
-				})
-		},
+					alert("Error: intente más tarde: " + err);
+				});
+		}
 	},
 	computed: {
 		esAdmin() {
-			let esadmin = false
+			let esadmin = false;
 			//si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
 
 			// if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false ){
 			if (this.usuario.administrador || this.usuario.tutor) {
 				//usar la linea anterior para restringir el acceso al curso informatica básica al administrador
-				esadmin = true
+				esadmin = true;
 			}
 			// si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones
 			//1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
 			//2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
-			else if (this.usuario.rol == 'Estudiante') {
-				esadmin = false
+			else if (this.usuario.rol == "Estudiante") {
+				esadmin = false;
 			} else {
-				esadmin = false
+				esadmin = false;
 			}
 
-			return esadmin
+			return esadmin;
 		},
 		habilitarEdicion() {
-			let edicionHabilitada = false
+			let edicionHabilitada = false;
 			//si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
 
 			if (
@@ -276,19 +275,19 @@ parasails.registerComponent('modulo-side-var-menu', {
 				this.cursoInformatica == false
 			) {
 				// if ((this.usuario.administrador || this.usuario.tutor) ) { //usar la linea anterior para restringir el acceso al curso informatica básica al administrador
-				edicionHabilitada = true
+				edicionHabilitada = true;
 			}
 			// si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones
 			//1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
 			//2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
-			else if (this.usuario.rol == 'Estudiante') {
-				edicionHabilitada = false
+			else if (this.usuario.rol == "Estudiante") {
+				edicionHabilitada = false;
 			} else {
-				edicionHabilitada = false
+				edicionHabilitada = false;
 			}
 
-			return edicionHabilitada
+			return edicionHabilitada;
 		},
-		esAlfaweb() {},
-	},
-})
+		esAlfaweb() {}
+	}
+});

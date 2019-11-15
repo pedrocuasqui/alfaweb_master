@@ -53,7 +53,9 @@
         <!-- COLUMNA DERECHA: GRAFICO DE AVANCE -->
         <div class="col">
           <h3>Gráfico de puntuaciones por evaluación</h3>
-          <div><p> Puntuación de las últimas evaluaciones</p> </div>
+          <div>
+            <p> Puntuación de las últimas evaluaciones</p>
+          </div>
           <canvas id="graficoPuntuacionHistorica"></canvas>
 
         </div>
@@ -103,7 +105,7 @@
                     <template v-if="intento.evaluacion.tipo=='Cuestionario'">
 
                       <div class="row" v-for="(pregunta, index) in intento.evaluacion.preguntas">
-                        <div class="col-sm-3"> {{pregunta.enunciado}}</div>
+                        <div class="col-sm-3" v-html="pregunta.enunciado"></div>
                         <div class="col-sm-3">
                           <p
                             :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">
@@ -124,20 +126,7 @@
                         </div>
                       </div>
                     </template>
-                    <template v-else>
-                      <div class="row" v-for="(pregunta, index) in intento.evaluacion.preguntas">
-                        <div class="imagen-portada-modulo">
-                          <!--El enunciado puede ser cualquier objeto --->
-                          <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
-                        </div>
-                        <div class="col-sm-3">
-                          <p
-                            :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">
-                            Tu respuesta: {{pregunta.respuestaEstudiante}}</p>
-                          <p>Respuesta correcta:{{pregunta.respuesta}}</p>
-                        </div>
-                      </div>
-                    </template>
+
                   </div>
 
 

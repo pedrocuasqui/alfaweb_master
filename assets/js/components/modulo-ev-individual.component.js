@@ -125,10 +125,7 @@ parasails.registerComponent("modulo-ev-individual", {
 		}
 		this.mostrarModalInicial();
 
-		if (
-			this.tipoEvaluacion == "Cuestionario" ||
-			this.tipoEvaluacion == "Nombre_Objeto"
-		) {
+		if (this.tipoEvaluacion == "Cuestionario") {
 			this.tiempoRespuestaInicio = this.totalTime;
 		}
 
@@ -295,40 +292,6 @@ parasails.registerComponent("modulo-ev-individual", {
     </template>
 
 
-
-
-
-
-    <!-- SELECCIONAR OBJETO INDICADO -->
-    <template v-if="tipoEvaluacion=='Nombre_Objeto'">
-        <div class="row justify-content-center">
-            <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
- 
-
-
-
-            <div class="list-group">
-            <div class="d-flex w-100 justify-content-between">
-
-                        <div class="imagen-portada-modulo">
-                            
-                            <img :src="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado" alt="Imágen de evaluacion">
-                        </div>
-                       
-            </div>
-            <div class="custom-control custom-radio" v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
-            <input type="radio" :id="index" class="custom-control-input"  :name="index" :value="opcion.texto" v-model=" preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"  :key="index" @click.stop="respuestaCuestionarioSeleccionada">
-            <label class="custom-control-label" :for="index">{{opcion.texto}}</label>
-          </div>
-             </div>
-
-
-
-            <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
-            <button v-else @click="clickSiguientePregunta"> Siguiente</button>
-            
-        </div>
-    </template>
     </div>
     </div>
 </template>
@@ -340,13 +303,8 @@ parasails.registerComponent("modulo-ev-individual", {
             
                 
                 <div class="row justify-content-center" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
-                    <div v-if="tipoEvaluacion=='Nombre_Objeto'" class="imagen-portada-modulo">
-                      <!--El enunciado puede ser cualquier objeto --->
-                      <img :src="pregunta.enunciado" alt="Imágen de evaluacion">
-                    </div>    
-
-                
-                    <div v-else class="col-sm-3"><p>{{pregunta.enunciado}}</p></div> 
+                                   
+                    <div v-else class="col-sm-3" v-html="pregunta.enunciado"></div> 
                     
                     
                     <div class="col-sm-3"> 
@@ -636,10 +594,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			// document.getElementById('countdown').innerHTML = totalTime;
 			if (this.totalTime == 0.0) {
 				alert("Se agotó el tiempo");
-				if (
-					this.tipoEvaluacion == "Cuestionario" ||
-					this.tipoEvaluacion == "Nombre_Objeto"
-				) {
+				if (this.tipoEvaluacion == "Cuestionario") {
 					this.finalizarCuestionario();
 					//desde finalizarCuestionario() se llama a calcularPuntuacion
 				} else {

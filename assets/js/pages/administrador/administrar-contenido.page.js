@@ -112,7 +112,7 @@ parasails.registerPage("administrar-contenido", {
 			this.preguntasCuestionario = [
 				...this.objetoSeleccionado.evaluacion.preguntas
 			];
-			this.modalEdicion = true;
+			// this.modalEdicion = true;
 		}
 	},
 	mounted: async function() {
@@ -370,6 +370,7 @@ parasails.registerPage("administrar-contenido", {
 				$("#modalCrearPregunta" + nombreModal).on("shown.bs.modal", () => {
 					$(document).off("focusin.modal");
 				});
+				// fuente: https://stackoverflow.com/questions/36279941/using-tinymce-in-a-modal-dialog
 			});
 		},
 		insertarPreguntaCuestionario() {
@@ -404,7 +405,7 @@ parasails.registerPage("administrar-contenido", {
 					pista: null
 				};
 
-				// window.contenidoTiny = null;// esto no pone el campo en
+				//Se establece el contenido del objeto itnymce para una nueva pregunta
 				$("#mytextarea2").html("<p></p>");
 			}
 
@@ -473,11 +474,6 @@ parasails.registerPage("administrar-contenido", {
 					});
 				});
 			}
-			// else if (this.tipoEvaluacion == "Nombre_Objeto") {
-			// 	$(() => {
-			// 		$("#modalCrearPreguntaNombre_Objeto").modal("show");
-			// 	});
-			// }
 		},
 
 		eliminarPreguntaCuestionario(preguntaSelected, indice) {
@@ -506,10 +502,7 @@ parasails.registerPage("administrar-contenido", {
 		validarEvaluacion() {
 			this.formErrors = {};
 			//vALIDA QUE TODAS LAS PREGUNTAS TENGA OPCIONES, ESTA VALIDACION FUNCIONA CUANDO SE CAMBIA EL TIPO DE EVALUACION DE "EMPAREJAMIENTO" A "CUESTIONARIO"
-			if (
-				this.tipoEvaluacion == "Cuestionario" ||
-				this.tipoEvaluacion == "Nombre_Objeto"
-			) {
+			if (this.tipoEvaluacion == "Cuestionario") {
 				var indice = 0; //contador de posiciones
 				var indicesConError = []; //guarda la posicion de la pregunta con error
 				this.preguntasCuestionario.forEach(pregunta => {

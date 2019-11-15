@@ -58,9 +58,9 @@
                             placeholder="Escriba aquí su pregunta">
                     </div> -->
                     <div class="row">
-                        <label for="tinyMce" class="col-sm-3">Pregunta (*) </label>
+                        <label for="tinyMce" class="col-sm-2">Pregunta (*) </label>
                         <!-- Se conserva method="post" de tiny por defecto  -->
-                        <div class="col-sm-9">
+                        <div class="col-sm-10">
                             <form method="post" id="tinyMce">
                                 <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                 <!-- Si la variable preguntaEnEdicion.enunciado no tiene valores -->
@@ -339,70 +339,87 @@
 
                     <template v-if="evIndividualBandera">
                         <div class="col-sm-11 col-central">
-
                             <!-- <div class="row"> -->
-
                             <h4>{{objetoSeleccionado.nombre}} - Evaluación - {{tipoEvaluacion}}</h4>
+                            <div class="row padding_bottom">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-3">
+                                    <div class="dropdown">
+                                        <button class="btn btn-secondary dropdown-toggle" type="button"
+                                            id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true"
+                                            aria-expanded="false">
+                                            {{tipoEvaluacion}}
+                                        </button>
+                                        <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                                            <button class="dropdown-item" @click="mostrarTipoEvaluacion('Cuestionario')"
+                                                type="button">Cuestionario</button>
+                                            <button class="dropdown-item"
+                                                @click="mostrarTipoEvaluacion('Emparejamiento')"
+                                                type="button">Emparejamiento</button>
 
-                            <div class="dropdown">
-                                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2"
-                                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    {{tipoEvaluacion}}
-                                </button>
-                                <div class="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                    <button class="dropdown-item" @click="mostrarTipoEvaluacion('Cuestionario')"
-                                        type="button">Cuestionario</button>
-                                    <button class="dropdown-item" @click="mostrarTipoEvaluacion('Emparejamiento')"
-                                        type="button">Emparejamiento</button>
 
-
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-sm-1 boton_centrado">
+                                    <div>
+                                        <a @click="clickMostrarModalCreaPregunta()" title="Añadir nueva pregunta"><i
+                                                class="fas fa-plus-circle fa-2x"></i>
+                                        </a>
+                                    </div>
+                                </div>
+                                <div class="col-sm-5">
+                                    <h6><small>* Las preguntas se mostrarán una por una al estudiante</small></h6>
                                 </div>
                             </div>
-
                             <!-- EVALUACIONES -->
-                            <template>
+                            <div class="row">
                                 <!-- SI LA VARIABLE mostrarMenuTipoEvaluacion ES FALSE SE MUESTRA LA INTERFAZ PARA EDITAR  -->
 
                                 <div class="contenedor-slot-principal">
                                     <div class="contenedor-formulario">
                                         <!-- CUESTIONARIO -->
-                                        <template v-if="tipoEvaluacion=='Cuestionario'">
-                                            <div class="row">
+                                        <div v-if="tipoEvaluacion=='Cuestionario'">
 
-                                                <a @click="clickMostrarModalCreaPregunta()"
-                                                    title="Añadir nueva pregunta"><i
-                                                        class="fas fa-plus-circle fa-2x"></i>
-                                                </a>
-                                            </div>
-                                            <h6>* Las preguntas se mostrarán una por una al estudiante</h6>
-                                            <div class="list-group">
-                                                <div class="list-group-item list-group-item-action active"
-                                                    v-for="(pregunta, indexPreg) in preguntasCuestionario">
-                                                    <div class="d-flex w-100 justify-content-between">
-                                                        <h5 class="mb-1" v-html="pregunta.enunciado"></h5>
-                                                        <small>
-                                                            <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
-                                                                data-placement="top" title="Editar pregunta"> <i
-                                                                    class="fas fa-edit fa-2x"></i> </a>
-                                                            <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
-                                                                data-placement="top" title="Eliminar pregunta"><i
-                                                                    class="fas fa-trash-alt fa-2x"></i></a>
-                                                        </small>
+
+
+                                            <div class="row pregunta_evaluacion"
+                                                v-for="(pregunta, indexPreg) in preguntasCuestionario">
+                                                <div class="col-sm-4" v-html="pregunta.enunciado"> </div>
+                                                <div class="col-sm-6">
+                                                    <template v-for="(opcion,index) in opcionesRespuesta(pregunta)">
+                                                        <div class="row">
+                                                            <div class="col-sm-2 centra_vertical">
+                                                                <input type="radio" :id="opcion.id"
+                                                                    :value="opcion.texto" v-model="pregunta.respuesta"
+                                                                    class="custom-control-input">
+                                                            </div>
+                                                            <div class="col-sm-10 alinea_left">
+                                                                <label :for="opcion.id">{{opcion.texto}}</label>
+                                                            </div>
+                                                        </div>
+                                                    </template>
+                                                    <div class="alinea_left">
+                                                        <p><small>Puedes editar la pregunta
+                                                                seleccionando la opción
+                                                                correcta.</small></p>
                                                     </div>
-
-
-                                                    <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
-                                                        <input type="radio" :id="opcion.id" :value="opcion.texto"
-                                                            v-model="pregunta.respuesta" class="custom-control-input">
-                                                        <label :for="opcion.id">{{opcion.texto}}</label>
-                                                    </div>
-
-                                                    <small>Puedes editar la pregunta seleccionando la opción
-                                                        correcta.</small>
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <small>
+                                                        <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
+                                                            data-placement="top" title="Editar pregunta"> <i
+                                                                class="fas fa-edit fa-2x"></i> </a>
+                                                        <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
+                                                            data-placement="top" title="Eliminar pregunta"><i
+                                                                class="fas fa-trash-alt fa-2x"></i></a>
+                                                    </small>
                                                 </div>
                                             </div>
 
-                                        </template>
+
+
+                                        </div>
 
 
 
@@ -411,11 +428,9 @@
 
                                         <!-- EMPAREJAMIENTO -->
                                         <template v-if="tipoEvaluacion=='Emparejamiento'">
-                                            <div class="row">
-                                                <a @click="clickMostrarModalCreaPregunta()"
-                                                    title="Añadir nueva pregunta"><i
-                                                        class="fas fa-plus-circle fa-2x"></i>
-                                                </a>
+                                            <div class="row boton_centrado">
+
+
                                                 <div class="col-sm-8">
                                                     <div class="row"
                                                         v-for="(pregunta,indexPreg) in preguntasCuestionario">
@@ -449,72 +464,17 @@
 
 
 
-
-                                        <!-- SELECCIONAR OBJETO INDICADO -->
-                                        <template v-if="tipoEvaluacion=='Nombre_Objeto'">
-                                            <div class="row">
-                                                <div class="col">
-                                                    <a @click="clickMostrarModalCreaPregunta()"
-                                                        title="Añadir nueva pregunta"><i
-                                                            class="fas fa-plus-circle fa-2x"></i>
-                                                    </a>
-                                                </div>
-                                            </div>
-                                            <h6>* Las preguntas se mostrarán una por una al estudiante</h6>
-                                            <div class="row">
-                                                <div class="col">
-                                                    <div class="list-group">
-                                                        <div class="list-group-item list-group-item-action active"
-                                                            v-for="(pregunta, indexPreg) in preguntasCuestionario">
-                                                            <div class="d-flex w-100 justify-content-between">
-
-                                                                <div class="imagen-portada-modulo">
-                                                                    <!--El enunciado puede ser cualquier objeto --->
-                                                                    <img :src="pregunta.enunciado"
-                                                                        alt="Imágen de evaluacion">
-                                                                </div>
-                                                                <small>
-                                                                    <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
-                                                                        data-placement="top" title="Editar pregunta"> <i
-                                                                            class="fas fa-edit fa-2x"></i> </a>
-                                                                    <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
-                                                                        data-placement="top"
-                                                                        title="Eliminar pregunta"><i
-                                                                            class="fas fa-trash-alt fa-2x"></i></a>
-                                                                </small>
-                                                            </div>
-
-
-                                                            <div v-for="(opcion,index) in opcionesRespuesta(pregunta)">
-                                                                <input type="radio" :id="opcion.id"
-                                                                    :value="opcion.texto" v-model="pregunta.respuesta">
-                                                                <label :for="opcion.id">{{opcion.texto}}</label>
-                                                            </div>
-
-                                                            <small>Puedes editar la pregunta seleccionando la
-                                                                opción
-                                                                correcta.</small>
-                                                        </div>
-                                                    </div>
-
-                                                </div>
-                                            </div>
-
-
-                                        </template>
                                     </div>
                                 </div>
 
-                            </template>
+                            </div>
                             <label for="tiempoPorPregunta">* Tiempo máximo para responder cada pregunta o
                                 emparejar
                             </label>
                             <input id="tiempoPorPregunta" v-model="tiempoMaximoPorPregunta">
                             <a @click="validarEvaluacion" title="Guardar Evaluación"> <i
                                     class="fas fa-save fa-2x"></i></a>
-
                             <!-- </div> -->
-
                         </div>
                     </template>
 
@@ -627,7 +587,6 @@
                                 </div>
 
                             </div>
-
                             <!--Contenido pie de página-->
                             <div class="row pie-contenido">
                                 <div class="col-sm-1" id="avatar">

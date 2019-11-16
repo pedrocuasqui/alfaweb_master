@@ -370,7 +370,12 @@
                                     </div>
                                 </div>
                                 <div class="col-sm-5">
-                                    <h6><small>* Las preguntas se mostrarán una por una al estudiante</small></h6>
+                                    <h6>
+                                        <small v-if="tipoEvaluacion=='Emparejamiento'">*Las preguntas se mostrarán al
+                                            estudiante todas a la vez, con respuestas en orden aleatorio</small>
+                                        <small v-else>* Las preguntas se mostrarán una por una al estudiante</small>
+
+                                    </h6>
                                 </div>
                             </div>
                             <!-- EVALUACIONES -->

@@ -67,6 +67,7 @@
                                 <!-- es necesario usar la otra instancia para poder identificar al objeto tinymce y limpiarlo -->
                                 <div v-if="!modalEdicion" id="mytextarea2" class="contenidoTiny"
                                     @keyup="actualizaContTiny()"></div>
+                                <!-- el metodo @keyup permite que se actualice la variable preguntaEnEdicion.enunciado para validar el campo antes de pulsar en guardar -->
                                 <div v-else id="mytextarea2" class="contenidoTiny" v-html="preguntaEnEdicion.enunciado">
                                     <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                 </div>
@@ -385,7 +386,11 @@
 
                                             <div class="row pregunta_evaluacion"
                                                 v-for="(pregunta, indexPreg) in preguntasCuestionario">
-                                                <div class="col-sm-4" v-html="pregunta.enunciado"> </div>
+                                                <div class="col-sm-4">
+                                                    <div v-html="pregunta.enunciado">
+
+                                                    </div>
+                                                </div>
                                                 <div class="col-sm-6">
                                                     <template v-for="(opcion,index) in opcionesRespuesta(pregunta)">
                                                         <div class="row">
@@ -438,13 +443,13 @@
 
                                                         <div class="col-sm-4" :id="'Preg'+indexPreg"
                                                             key="'Preg'+indexPreg">
-                                                            {{pregunta.enunciado}}
+                                                            <div v-html="pregunta.enunciado"></div>
 
                                                         </div>
 
                                                         <div class="col-sm-4" :id="'Resp'+indexPreg"
                                                             key="'Resp'+indexPreg">
-                                                            {{pregunta.respuesta}}
+                                                            <p>{{pregunta.respuesta}}</p>
 
                                                         </div>
                                                         <small>

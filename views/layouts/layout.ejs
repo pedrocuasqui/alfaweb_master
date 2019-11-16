@@ -116,10 +116,12 @@
         editor.on('keyup', function (e) { // no reconoce los clicks
           window.contenidoTiny = tinymce.get("mytextarea").getContent()
           // $('.contenido-tiny').html(window.contenidoTiny);          
+
         });
         editor.on('Change', function (e) { //reconoce los clicks sobre el objeto iframe
           window.contenidoTiny = tinymce.get("mytextarea").getContent()
           // $('.contenido-tiny').html(window.contenidoTiny);          
+
         });
       },
 

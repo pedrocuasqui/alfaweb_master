@@ -6,6 +6,7 @@ parasails.registerPage("administrar-contenido", {
 	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
 	//  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
 	data: {
+		myArray: ["elem1", "elem2"],
 		formErrors: {},
 		objetoSeleccionado: Object,
 		editarNombre: false,

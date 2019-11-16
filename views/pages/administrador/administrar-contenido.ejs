@@ -378,7 +378,7 @@
                                     </h6>
                                 </div>
                             </div>
-                            <!-- EVALUACIONES -->
+                            <!-- PREGUNTAS EVALUACIONES  -->
                             <div class="row">
                                 <!-- SI LA VARIABLE mostrarMenuTipoEvaluacion ES FALSE SE MUESTRA LA INTERFAZ PARA EDITAR  -->
 
@@ -386,8 +386,6 @@
                                     <div class="contenedor-formulario">
                                         <!-- CUESTIONARIO -->
                                         <div v-if="tipoEvaluacion=='Cuestionario'">
-
-
 
                                             <div class="row pregunta_evaluacion"
                                                 v-for="(pregunta, indexPreg) in preguntasCuestionario">
@@ -417,12 +415,28 @@
                                                 </div>
                                                 <div class="col-sm-2">
                                                     <small>
-                                                        <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
-                                                            data-placement="top" title="Editar pregunta"> <i
-                                                                class="fas fa-edit fa-2x"></i> </a>
-                                                        <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
-                                                            data-placement="top" title="Eliminar pregunta"><i
-                                                                class="fas fa-trash-alt fa-2x"></i></a>
+                                                        <div class="row">
+                                                            <div class="col-sm-6">
+                                                                <p>{{indexPreg}}</p>
+                                                            </div>
+                                                            <div class="col-sm-6">
+                                                                <draggable v-model="myArray" group="people"
+                                                                    @start="drag=true" @end="drag=false">
+                                                                    <div v-for="element in myArray" :key="element.id">
+                                                                        {{element.name}}</div>
+                                                                </draggable>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
+                                                                data-placement="top" title="Editar pregunta"> <i
+                                                                    class="fas fa-edit fa-2x"></i> </a>
+                                                            <a @click.stop="eliminarPreguntaCuestionario(pregunta,indexPreg)"
+                                                                data-placement="top" title="Eliminar pregunta"><i
+                                                                    class="fas fa-trash-alt fa-2x"></i></a>
+                                                        </div>
+
                                                     </small>
                                                 </div>
                                             </div>

@@ -2,14 +2,14 @@
 parasails.registerComponent("modulo-ev-individual", {
 	props: {
 		submodulo: {
-			type: Object
+			type: Object,
 		},
 		curso: {
-			type: Object
+			type: Object,
 		},
 		usuario: {
-			type: Object
-		}
+			type: Object,
+		},
 	},
 	data() {
 		return {
@@ -36,7 +36,7 @@ parasails.registerComponent("modulo-ev-individual", {
 				"#1833F3",
 				"#18E9F3",
 				"#33F318",
-				"#F3DF18"
+				"#F3DF18",
 			],
 
 			totalTime: null,
@@ -69,7 +69,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			siguientePreguntaCuestionario: true,
 
 			respuestaAnterior: [],
-			respuestaCuestionarioPreguntaPrueba: ""
+			respuestaCuestionarioPreguntaPrueba: "",
 		};
 	},
 	beforeMount() {
@@ -91,7 +91,7 @@ parasails.registerComponent("modulo-ev-individual", {
 
 		this.numeroSubmodulosCurso = this.usuario.numeroSubmodulosCurso;
 		this.submodulosAprobadosPorCurso = [
-			...this.usuario.submodulosAprobadosPorCurso
+			...this.usuario.submodulosAprobadosPorCurso,
 		];
 
 		// this.usuario.submodulosAprobadosPorCurso.forEach(elemento => {
@@ -339,7 +339,7 @@ parasails.registerComponent("modulo-ev-individual", {
 					//si la opcion tiene un valor dentro
 					opciones.push({
 						texto: preguntaActual.opciones[opcion].trim(),
-						id: contador
+						id: contador,
 					});
 				}
 			}
@@ -445,7 +445,7 @@ parasails.registerComponent("modulo-ev-individual", {
 				this.tiempoRespuestaInicio = this.totalTime; //copia el tiempo en el que se encuentra actualmente para despues restar del tiempo final cuando responda correctamente y obtener el tiempo que se demoró en responde
 				$("#Preg" + this.enunciadoSeleccionado).css({
 					"background-color": this.coloresPreguntasEmparejamiento[indexPreg],
-					"border-radius": "10px"
+					"border-radius": "10px",
 				});
 
 				//   reseteo valores para la siguiente pregunta
@@ -464,7 +464,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			if (this.respuestaAnterior.length) {
 				//si existe una respuesta anterior se la despinta
 				$("#Resp" + this.respuestaAnterior[0]).css({
-					"background-color": "#27293d"
+					"background-color": "#27293d",
 				});
 				this.respuestaAnterior.pop();
 			}
@@ -485,7 +485,7 @@ parasails.registerComponent("modulo-ev-individual", {
 						) {
 							// Se quita el estilo de color al enunciado
 							$("#Preg" + p).css({
-								"background-color": "#27293d"
+								"background-color": "#27293d",
 							});
 
 							//Se establece en null la respuestaEstudiante de la pregunta de indice p
@@ -502,7 +502,7 @@ parasails.registerComponent("modulo-ev-individual", {
 					"background-color": this.coloresPreguntasEmparejamiento[
 						this.enunciadoSeleccionado
 					],
-					"border-radius": "10px"
+					"border-radius": "10px",
 				});
 
 				this.tiempoRespuestaFin = this.totalTime;
@@ -611,7 +611,7 @@ parasails.registerComponent("modulo-ev-individual", {
 				this.totalTime = this.totalTime.toFixed(1);
 				this.bucleCuentaRegresiva = setTimeout(
 					this.actualizaCuentaRegresiva,
-					100
+					100,
 				);
 			}
 		},
@@ -735,7 +735,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			// DEBE IR AQUI PORQUE EN ESTE PUNTO YA SE SABE CUANTOS PUNTOS OBTENIDOS HAY
 			TweenLite.to(this.$data, 3, {
 				puntosOtenidosInterpolados: this.puntosObtenidos,
-				puntosInterpolados: this.puntos
+				puntosInterpolados: this.puntos,
 			}); //puntosObtenidosInterpolados recibe el maximo valor  que puede tener
 		},
 		reiniciarValores() {
@@ -804,7 +804,7 @@ parasails.registerComponent("modulo-ev-individual", {
 				tipo: this.tipoEvaluacion,
 				aciertos: this.aciertos,
 				preguntas: this.preguntasCuestionarioRespuestas,
-				puntosObtenidos: this.puntosObtenidos
+				puntosObtenidos: this.puntosObtenidos,
 			};
 
 			var formData = new FormData();
@@ -822,7 +822,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			axios({
 				method: "post",
 				url: "/crear-intento-evaluacion",
-				data: formData
+				data: formData,
 			})
 				.then(response => {
 					this.usuario.ultimoIntento = response.data.intentoEvaluacionCreado;
@@ -850,7 +850,7 @@ parasails.registerComponent("modulo-ev-individual", {
 					if (this.preguntaSeleccionadaJuegoEmparejamiento) {
 						//ha sido seleccionada la pregunta
 						alert(
-							"Pista: " + this.preguntaSeleccionadaJuegoEmparejamiento.pista
+							"Pista: " + this.preguntaSeleccionadaJuegoEmparejamiento.pista,
 						);
 					} else {
 						alert("Seleccione un enunciado primero");
@@ -860,11 +860,11 @@ parasails.registerComponent("modulo-ev-individual", {
 						"Pista: " +
 							this.preguntasCuestionarioRespuestas[
 								this.indicePreguntaCuestionario
-							].pista
+							].pista,
 					);
 				}
 			}
-		}
+		},
 	},
 	computed: {
 		totalTimeProgress() {
@@ -893,8 +893,8 @@ parasails.registerComponent("modulo-ev-individual", {
 		},
 		puntosAnimados: function() {
 			return this.puntosInterpolados.toFixed(0);
-		}
-	}
+		},
+	},
 });
 
 /*

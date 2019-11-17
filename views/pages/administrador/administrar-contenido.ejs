@@ -385,10 +385,10 @@
                                 <div class="contenedor-slot-principal">
                                     <div class="contenedor-formulario">
                                         <!-- CUESTIONARIO -->
-                                        <div v-if="tipoEvaluacion=='Cuestionario'">
+                                        <div v-if="tipoEvaluacion=='Cuestionario'" id="preguntaEvaluacion">
 
                                             <div class="row pregunta_evaluacion"
-                                                v-for="(pregunta, indexPreg) in preguntasCuestionario">
+                                                v-for="(pregunta, indexPreg) in preguntasCuestionario" :key="indexPreg">
                                                 <div class="col-sm-4">
                                                     <div v-html="pregunta.enunciado">
 
@@ -407,6 +407,7 @@
                                                             </div>
                                                         </div>
                                                     </template>
+
                                                     <div class="alinea_left">
                                                         <p><small>Puedes editar la pregunta
                                                                 seleccionando la opción
@@ -420,11 +421,8 @@
                                                                 <p>{{indexPreg}}</p>
                                                             </div>
                                                             <div class="col-sm-6">
-                                                                <draggable v-model="myArray" group="people"
-                                                                    @start="drag=true" @end="drag=false">
-                                                                    <div v-for="element in myArray" :key="element.id">
-                                                                        {{element.name}}</div>
-                                                                </draggable>
+
+
                                                             </div>
                                                         </div>
 
@@ -444,9 +442,6 @@
 
 
                                         </div>
-
-
-
 
 
 
@@ -611,6 +606,9 @@
                                 </div>
 
                             </div>
+
+
+
                             <!--Contenido pie de página-->
                             <div class="row pie-contenido">
                                 <div class="col-sm-1" id="avatar">

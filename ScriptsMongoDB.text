@@ -107,3 +107,7 @@ Viernes 01 de Noviembre de 2019
         "prettier.eslintIntegration": true
 
 Fuente:https://prettier.io/docs/en/configuration.html
+
+
+//usar para instalar "breaking changes"
+npm audit fix --force

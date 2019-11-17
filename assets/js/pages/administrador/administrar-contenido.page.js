@@ -92,6 +92,19 @@ parasails.registerPage("administrar-contenido", {
 		uploadPercentage: 0,
 		rutaImagenAnterior: null,
 	},
+	watch: {
+		preguntaEnEdicion: function() {
+			this.agregaFuncionalidadDraggable();
+			console.log("se recrea el objeo dragabble");
+		},
+		evIndividualBandera: function(valorNuevo, ValorAntiguo) {
+			if (valorNuevo && this.preguntasCuestionario.length > 0) {
+				//esta verificacion se lo hace para cuando existe ya una evaluacion en el submodulo
+				//si el nuevo valor es true significa que se muestra la evaluacion
+				this.agregaFuncionalidadDraggable();
+			}
+		},
+	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
 	//  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
@@ -712,6 +725,27 @@ parasails.registerPage("administrar-contenido", {
 					_this.objetoSeleccionado.modulo +
 					"&tipoContenido=Modulo",
 			);
+		},
+		swapPreguntas(indexA, indexB) {
+			var temp = this.preguntasCuestionario[indexA];
+
+			this.preguntasCuestionario[indexA] = this.preguntasCuestionario[indexB];
+			this.preguntasCuestionario[indexB] = temp;
+		},
+		agregaFuncionalidadDraggable() {
+			var _this = this;
+			$(function() {
+				// do this after dom is ready
+				var preguntaCreada = document.getElementById("preguntaEvaluacion");
+				new Sortable(preguntaCreada, {
+					animation: 150,
+					ghostClass: "blue-background-class",
+					onEnd: evt => {
+						// let itemEl = evt.item; // dragged HTMLElement
+						_this.swapPreguntas(evt.newIndex, evt.oldIndex);
+					},
+				});
+			});
 		},
 	},
 	computed: {

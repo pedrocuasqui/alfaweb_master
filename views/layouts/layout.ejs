@@ -32,6 +32,9 @@
 
   <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/introjs.css">
 
+  <!-- modulos empaquetados con brouserify -->
+  <!-- <link src="/js/browserify-include.js">
+  </link> -->
 
 </head>
 
@@ -41,6 +44,7 @@
   <!-- JQUERY -->
   <script src="https://code.jquery.com/jquery-3.4.1.js" integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
     crossorigin="anonymous"></script>
+  <!-- POPPER NECESARIO PARA BOOTSTRAP -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"
     integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
     crossorigin="anonymous"></script>
@@ -60,8 +64,6 @@
   <!-- SCRIPT DE ALERTAS CON ESTILO SWEET ALERT -->
   <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
   <!-- END SWEET ALERT -->
-
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
 
 
 
@@ -163,11 +165,13 @@
   <!-- INTRO JS -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/intro.js/2.9.3/intro.js"> </script>
 
-  <script src="//cdnjs.cloudflare.com/ajax/libs/vue/2.5.2/vue.min.js"></script>
   <!-- CDNJS :: Sortable (https://cdnjs.com/) -->
+
   <script src="//cdn.jsdelivr.net/npm/sortablejs@1.8.4/Sortable.min.js"></script>
-  <!-- CDNJS :: Vue.Draggable (https://cdnjs.com/) -->
-  <script src="//cdnjs.cloudflare.com/ajax/libs/Vue.Draggable/2.20.0/vuedraggable.umd.min.js"></script>
+  <!-- <script src="https://raw.githack.com/SortableJS/Sortable/master/Sortable.js"></script> -->
+  <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.1/Sortable.min.js"></script> -->
+
+
 
 
 
@@ -179,6 +183,7 @@
   <script src="/dependencies/notify/notify.js"></script>
   <script src="/dependencies/toastr/toastr.min.js"></script>
   <script src="/js/libs/vue-sidebar-menu.js"></script>
+  <script src="/js/browserify-include.js"></script>
   <script src="/js/components/base-input.js"></script>
   <script src="/js/components/boton-curso.component.js"></script>
   <script src="/js/components/modal-detalle-elemento.component.js"></script>

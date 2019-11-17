@@ -31,6 +31,7 @@
 @menusidebar: linear-gradient(0deg, #389466 0%, #42b883 100%);
 @coloriconos: #ffffff;
 @color_fondo_pagina: #1e1e2f;
+@colorbordeformulario: #2b3553;
 // FIN VARIABLES
 
 h1,
@@ -1158,7 +1159,7 @@ h5.modal-title {
 .contenidoTiny {
 	background-color: @colorcontenidocentral;
 	border: 1px solid #a9a9a9;
-	border-color: #2b3553 !important;
+	border-color: @colorbordeformulario !important;
 	border-radius: 0.4285rem !important;
 	color: @opacity-8 !important;
 	p {
@@ -1291,8 +1292,11 @@ label.boton_formulario:hover {
 
 div.pregunta_evaluacion {
 	padding: 11px;
-	// background-color: #595959;
 	border-bottom: 1px solid @colorfuente;
+}
+div.pregunta_evaluacion:hover {
+	border: 1px solid @colorbordeformulario;
+	background-color: @colorbordeformulario;
 }
 
 div.row.pregunta_evaluacion .alinea_left,
@@ -1301,12 +1305,14 @@ div.alinea_left {
 }
 
 div.row.pregunta_evaluacion .centra_vertical,
-div.row.pregunta_evaluacion .alinea_left {
+div.row.pregunta_evaluacion .alinea_left,
+.centrado_vertical {
 	display: flex;
-	align-items: center;
+	align-items: center; //centra verticalmente
 }
 
-div.row.boton_centrado {
+div.row.boton_centrado,
+.centrado_horizontal {
 	display: flex;
 	justify-content: center;
 }
@@ -1316,4 +1322,8 @@ div.padding_bottom {
 }
 .col-sm-10.alinea_left {
 	word-break: break-all;
+}
+
+.margen_interno {
+	border: 1px solid @colorfuente;
 }

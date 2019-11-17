@@ -34,19 +34,38 @@
 @colorbordeformulario: #2b3553;
 // FIN VARIABLES
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6,
-p,
-p a,
-label,
-span,
+div:not(.contenidoTiny) h1,
+div:not(.contenidoTiny) h2,
+div:not(.contenidoTiny) h3,
+div:not(.contenidoTiny) h4,
+div:not(.contenidoTiny) h5,
+div:not(.contenidoTiny) h6,
+div:not(.contenidoTiny) p,
+div:not(.contenidoTiny) a,
+div:not(.contenidoTiny) label,
+div:not(.contenidoTiny) span,
+div:not(.contenidoTiny) li,
+form:not(#tinyMce) span,
 li {
 	font-weight: @font-weight-normal !important;
-	color: @opacity-8 !important;
+	color: @opacity-8;
+}
+
+// .modal-content div:not(.contenidoTiny) h1,
+// .modal-content div:not(.contenidoTiny) h2,
+// .modal-content div:not(.contenidoTiny) h3,
+// .modal-content div:not(.contenidoTiny) h4,
+// .modal-content div:not(.contenidoTiny) h5,
+// .modal-content div:not(.contenidoTiny) h6,
+// .modal-content div:not(.contenidoTiny) p,
+// .modal-content .close > span,
+// .modal-content div:not(.contenidoTiny) p span,
+// .modal-content div:not(.contenidoTiny) label
+.modal-content .col-sm-2 label {
+	color: @colorletramodal !important;
+}
+
+.contenidoTiny {
 }
 
 #layout-general > div:first-child {
@@ -1046,19 +1065,6 @@ p a:hover {
 
 h5.modal-title {
 	color: @colortitulomodal !important;
-}
-
-.modal-content h1,
-.modal-content h2,
-.modal-content h3,
-.modal-content h4,
-.modal-content h5,
-.modal-content h6,
-.modal-content p,
-.modal-content .close > span,
-.modal-content p span,
-.modal-content label {
-	color: @colorletramodal !important;
 }
 
 /////////////////////////////////////////////////////

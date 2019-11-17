@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-sm-10">
                             <!-- Se conserva method="post" de tiny por defecto  -->
-                            <form method="post" id="tinyMce">
+                            <form method="post" id="tinyMce" ref="tinyEditorCuestionario">
                                 <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                 <!-- Si la variable preguntaEnEdicion.enunciado no tiene valores -->
                                 <!-- es necesario usar la otra instancia tinymce en layout.ejs para poder identificar al objeto tinymce y limpiarlo -->
@@ -68,9 +68,6 @@
                                 <div v-else id="mytextarea2" class="contenidoTiny" v-html="preguntaEnEdicion.enunciado">
                                     <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                 </div>
-
-                                <div class="invalid-feedback" v-if="formErrorsModal.enunciado">
-                                    Debe ingresar algún contenido </div>
                             </form>
                         </div>
                     </div>
@@ -186,7 +183,7 @@
                         </div>
                         <div class="col-sm-10">
                             <!-- Se conserva method="post" de tiny por defecto  -->
-                            <form method="post" id="tinyMce">
+                            <form method="post" id="tinyMce" ref="tinyEditorEmparejamiento">
                                 <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                 <!-- Si la variable preguntaEnEdicion.enunciado no tiene valores -->
                                 <!-- es necesario usar la otra instancia tinymce en layout.ejs para poder identificar al objeto tinymce y limpiarlo -->
@@ -196,9 +193,6 @@
                                 <div v-else id="mytextarea2" class="contenidoTiny" v-html="preguntaEnEdicion.enunciado">
                                     <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                 </div>
-
-                                <div class="invalid-feedback" v-if="formErrorsModal.enunciado">
-                                    Debe ingresar algún contenido </div>
                             </form>
                         </div>
                     </div>
@@ -348,19 +342,19 @@
                                 <div class="contenedor-slot-principal">
                                     <div class="contenedor-formulario">
                                         <!-- CUESTIONARIO -->
-                                        <div v-if="tipoEvaluacion=='Cuestionario'" id="preguntaEvaluacion">
-                                            <!-- encabezado  -->
-                                            <div class="row margen_interno centrado_vertical">
-                                                <div class="col-sm-4">
-                                                    <p>ENUNCIADO</p>
-                                                </div>
-                                                <div class="col-sm-6">
-                                                    <p>RESPUESTAS</p>
-                                                </div>
-                                                <div class="col-sm-2">
-                                                    <p>OPCIONES DE PREGUNTA</p>
-                                                </div>
+                                        <!-- encabezado  -->
+                                        <div class="row margen_interno centrado_vertical">
+                                            <div class="col-sm-4">
+                                                <p>ENUNCIADO</p>
                                             </div>
+                                            <div class="col-sm-6">
+                                                <p>RESPUESTAS</p>
+                                            </div>
+                                            <div class="col-sm-2">
+                                                <p>OPCIONES DE PREGUNTA</p>
+                                            </div>
+                                        </div>
+                                        <div v-if="tipoEvaluacion=='Cuestionario'" id="preguntaEvaluacion">
                                             <!-- Preguntas -->
                                             <div class="row pregunta_evaluacion"
                                                 v-for="(pregunta, indexPreg) in preguntasCuestionario" :key="indexPreg">

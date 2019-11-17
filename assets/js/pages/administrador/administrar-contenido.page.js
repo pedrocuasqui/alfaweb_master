@@ -389,23 +389,34 @@ parasails.registerPage("administrar-contenido", {
 			this.preguntaEnEdicion.enunciado = window.contenidoTiny2; //Esta linea es necesaria para que la imagen cargada tambien se incluya en la variable preguntaEnEdicion.enunciado, la otra opción (No probada) es que inlcuya en el elemento tiny un evento que detecte la imagen cargada y complemente al onkeyup del mytextarea2
 			if (!this.preguntaEnEdicion.enunciado) {
 				//se queda
-				this.formErrorsModal.enunciado = true;
-				errores += "\n .Ingrese un enunciado";
+				errores += "\n . Ingrese un enunciado";
 			}
 			if (this.opcionesRespuesta(this.preguntaEnEdicion).length < 2) {
-				this.formErrorsModal.opciones = true;
-				errores += "\n .alert('Registre al menos dos opciones";
+				errores += "\n . Registre al menos dos opciones de respuesta";
 			}
 			if (!this.preguntaEnEdicion.respuesta) {
-				this.formErrorsModal.respuesta = true;
-				errores += "\n .Seleccione una respuesta";
+				errores += "\n . Seleccione la respuesta correcta";
 			}
-			alert(errores);
-			errores = "";
-			if (Object.keys(this.formErrorsModal).length == 0) {
+			if (errores != "") {
+				swal({
+					position: "center",
+					icon: "warning",
+					title: `Realice las siguientes correcciones!`,
+					text: `${errores}`,
+					showConfirmButton: true,
+				});
+			} else {
 				this.preguntaEnEdicion.pregNumero =
 					this.preguntasCuestionario.length + 1;
 				this.preguntasCuestionario.push(this.preguntaEnEdicion);
+				swal({
+					position: "center",
+					icon: "success",
+					title: `Pregunta agregada correctamente!`,
+					showConfirmButton: true,
+					timer: 1500,
+				});
+				this.$refs.tinyEditorCuestionario.focus();
 				this.preguntaEnEdicion = {
 					enunciado: null,
 					opciones: {
@@ -419,6 +430,7 @@ parasails.registerPage("administrar-contenido", {
 					pregNumero: null,
 				};
 
+				errores = "";
 				//Se establece el contenido del objeto itnymce para una nueva pregunta
 				$("#mytextarea2").html("<p></p>");
 				if (this.preguntasCuestionario.length == 1) {
@@ -434,22 +446,24 @@ parasails.registerPage("administrar-contenido", {
 			this.preguntaEnEdicion.enunciado = window.contenidoTiny2;
 			if (!this.preguntaEnEdicion.enunciado) {
 				//SE QUEDA
-				this.formErrorsModal.enunciado = true;
 				errores += "\n .Ingrese un enunciado";
 			}
 			if (this.opcionesRespuesta(this.preguntaEnEdicion).length < 2) {
-				this.formErrorsModal.opciones = true;
-				errores += "\n .alert('Registre al menos dos opciones";
+				errores += "\n .Registre al menos dos opciones";
 			}
-
 			if (!this.preguntaEnEdicion.respuesta) {
-				this.formErrorsModal.respuesta = true;
 				errores += "\n .Seleccione una respuesta";
 			}
 
-			alert(errores);
-			errores = "";
-			if (Object.keys(this.formErrorsModal).length == 0) {
+			if (errores != "") {
+				swal({
+					position: "center",
+					icon: "warning",
+					title: `Realice las siguientes correcciones!`,
+					text: `${errores}`,
+					showConfirmButton: true,
+				});
+			} else {
 				//actualiza el contenido del arreglo de preguntas, remueve el elemento de la  posicion del la pregunta que se edita (indicePreguntaEditar) y se coloca la nueva pregunta editada (preguntaEnEdicion).
 				this.preguntasCuestionario.splice(
 					this.indicePreguntaEditar,
@@ -465,8 +479,11 @@ parasails.registerPage("administrar-contenido", {
 						opcion4: null,
 					},
 					respuesta: null,
+					pista: null,
+					pregNumero: null,
 				};
 			}
+			errores = "";
 			this.modalEdicion = false;
 			this.indicePreguntaEditar = null;
 			this.formErrorsModal = {};
@@ -573,10 +590,30 @@ parasails.registerPage("administrar-contenido", {
 				data: formDataEv,
 			})
 				.then(response => {
-					alert("Evaluación creada correctamente");
+					let cuestionarioVacio = "";
+					let icono = "success";
+					if (this.preguntasCuestionario.length == 0) {
+						cuestionarioVacio = ", No se registraron preguntas";
+						icono = "info";
+					} else {
+						swal({
+							position: "center",
+							icon: icono,
+							title: `Evaluación creada correctamente${cuestionarioVacio}`,
+							showConfirmButton: false,
+							timer: 1500,
+						});
+					}
 				})
 				.catch(err => {
-					alert("Error no se puedo crear la evaluación:\n" + err);
+					swal({
+						title: `No se ha podido crear la evaluación`,
+						icon: "error",
+						type: "error",
+						text: err,
+						confirmButtonClass: "btn-danger",
+						// buttonsStyling: false
+					});
 				});
 		},
 
@@ -586,18 +623,26 @@ parasails.registerPage("administrar-contenido", {
 			this.preguntasCuestionario.splice(indice, 1);
 		},
 		actualizarPreguntaEmparejamiento() {
+			var errores = "";
+
 			if (!this.preguntaEnEdicion.enunciado) {
-				//SE QUEDA
-				this.formErrorsModal.enunciado = true;
-				alert("Ingrese un enunciado");
+				// SE QUEDA
+				errores += "\n . Ingrese un enunciado";
 			}
 
 			if (!this.preguntaEnEdicion.respuesta) {
-				this.formErrorsModal.respuesta = true;
-				alert("Seleccione una respuesta");
+				errores += "\n . Ingrese una respuesta";
 			}
 
-			if (Object.keys(this.formErrorsModal).length == 0) {
+			if (errores != "") {
+				swal({
+					position: "center",
+					icon: "warning",
+					title: `Realice las siguientes correcciones!`,
+					text: `${errores}`,
+					showConfirmButton: true,
+				});
+			} else {
 				//actualiza el contenido del arreglo de preguntas, remueve el elemento de la  posicion del la pregunta que se edita (indicePreguntaEditar) y se coloca la nueva pregunta editada (preguntaEnEdicion).
 				this.preguntasCuestionario.splice(
 					this.indicePreguntaEditar,
@@ -625,21 +670,32 @@ parasails.registerPage("administrar-contenido", {
 
 			if (!this.preguntaEnEdicion.enunciado) {
 				// SE QUEDA
-				//SE QUEDA
-				this.formErrorsModal.enunciado = true;
-				errores += "\n .Ingrese un enunciado";
+				errores += "\n . Ingrese un enunciado";
 			}
 
 			if (!this.preguntaEnEdicion.respuesta) {
-				this.formErrorsModal.respuesta = true;
-				errores += "\n .Ingrese una respuesta";
+				errores += "\n . Ingrese una respuesta";
 			}
-			alert(errores);
-			errores = "";
-			if (Object.keys(this.formErrorsModal).length == 0) {
+			if (errores != "") {
+				swal({
+					position: "center",
+					icon: "warning",
+					title: `Realice las siguientes correcciones!`,
+					text: `${errores}`,
+					showConfirmButton: true,
+				});
+			} else {
 				this.preguntaEnEdicion.pregNumero =
 					this.preguntasCuestionario.length + 1;
 				this.preguntasCuestionario.push(this.preguntaEnEdicion);
+				swal({
+					position: "center",
+					icon: "success",
+					title: `Pregunta agregada correctamente!`,
+					showConfirmButton: true,
+					timer: 1500,
+				});
+				this.$refs.tinyEditorEmparejamiento.focus();
 				this.preguntaEnEdicion = {
 					enunciado: null,
 					opciones: {
@@ -660,6 +716,7 @@ parasails.registerPage("administrar-contenido", {
 
 				this.randomPreguntasEmparejamiento(); //randomizo las opciones de respuesta con la misma funcion del cuestionario
 			}
+			errores = "";
 
 			this.formErrorsModal = {};
 		},

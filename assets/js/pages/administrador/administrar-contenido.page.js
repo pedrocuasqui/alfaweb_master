@@ -93,14 +93,11 @@ parasails.registerPage("administrar-contenido", {
 		rutaImagenAnterior: null,
 	},
 	watch: {
-		preguntaEnEdicion: function() {
-			this.agregaFuncionalidadDraggable();
-			console.log("se recrea el objeo dragabble");
-		},
+		preguntaEnEdicion: function() {},
 		evIndividualBandera: function(valorNuevo, ValorAntiguo) {
 			if (valorNuevo && this.preguntasCuestionario.length > 0) {
 				//esta verificacion se lo hace para cuando existe ya una evaluacion en el submodulo
-				//si el nuevo valor es true significa que se muestra la evaluacion
+				//si el nuevo valor es true significa que se muestra la evaluacion(para el dom se crea nuevamente cada vez que cambia), por tanto es necesario volver a agregar esta funcionalidad cada vez que se muestra la evaluacion
 				this.agregaFuncionalidadDraggable();
 			}
 		},
@@ -406,6 +403,8 @@ parasails.registerPage("administrar-contenido", {
 			alert(errores);
 			errores = "";
 			if (Object.keys(this.formErrorsModal).length == 0) {
+				this.preguntaEnEdicion.pregNumero =
+					this.preguntasCuestionario.length + 1;
 				this.preguntasCuestionario.push(this.preguntaEnEdicion);
 				this.preguntaEnEdicion = {
 					enunciado: null,
@@ -417,10 +416,15 @@ parasails.registerPage("administrar-contenido", {
 					},
 					respuesta: null,
 					pista: null,
+					pregNumero: null,
 				};
 
 				//Se establece el contenido del objeto itnymce para una nueva pregunta
 				$("#mytextarea2").html("<p></p>");
+				if (this.preguntasCuestionario.length == 1) {
+					//se a~nade la funcionalidad draggable una sola vez cuando se crea la primera pregunta
+					this.agregaFuncionalidadDraggable();
+				}
 			}
 
 			this.formErrorsModal = {};
@@ -633,6 +637,8 @@ parasails.registerPage("administrar-contenido", {
 			alert(errores);
 			errores = "";
 			if (Object.keys(this.formErrorsModal).length == 0) {
+				this.preguntaEnEdicion.pregNumero =
+					this.preguntasCuestionario.length + 1;
 				this.preguntasCuestionario.push(this.preguntaEnEdicion);
 				this.preguntaEnEdicion = {
 					enunciado: null,
@@ -644,6 +650,7 @@ parasails.registerPage("administrar-contenido", {
 					},
 					respuesta: null,
 					pista: null,
+					pregNumero: null,
 				};
 				//quito colores si es que ya hay colores
 				for (let i = 0; i <= this.preguntasCuestionario.length - 1; i++) {
@@ -726,15 +733,23 @@ parasails.registerPage("administrar-contenido", {
 					"&tipoContenido=Modulo",
 			);
 		},
+		/**
+		 *
+		 * @param {* int} indexA  //posicion a la cual se mueve el objeto
+		 * @param {* int} indexB  //posicion desde donde se mueve el objeto
+		 */
 		swapPreguntas(indexA, indexB) {
 			var temp = this.preguntasCuestionario[indexA];
 
 			this.preguntasCuestionario[indexA] = this.preguntasCuestionario[indexB];
 			this.preguntasCuestionario[indexB] = temp;
+
+			// this.preguntasCuestionario[indexA].pregNumero = indexA + 1; //se asigna la nueva posicion que tendra
+			// this.preguntasCuestionario[indexB].pregNumero = indexB + 1; //se asigna la nueva posision que tendra
 		},
 		agregaFuncionalidadDraggable() {
 			var _this = this;
-			$(function() {
+			$(() => {
 				// do this after dom is ready
 				var preguntaCreada = document.getElementById("preguntaEvaluacion");
 				new Sortable(preguntaCreada, {
@@ -742,7 +757,8 @@ parasails.registerPage("administrar-contenido", {
 					ghostClass: "blue-background-class",
 					onEnd: evt => {
 						// let itemEl = evt.item; // dragged HTMLElement
-						_this.swapPreguntas(evt.newIndex, evt.oldIndex);
+
+						this.swapPreguntas(evt.newIndex, evt.oldIndex);
 					},
 				});
 			});

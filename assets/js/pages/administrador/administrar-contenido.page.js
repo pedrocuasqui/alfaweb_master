@@ -595,15 +595,16 @@ parasails.registerPage("administrar-contenido", {
 					if (this.preguntasCuestionario.length == 0) {
 						cuestionarioVacio = ", No se registraron preguntas";
 						icono = "info";
-					} else {
-						swal({
-							position: "center",
-							icon: icono,
-							title: `Evaluación creada correctamente${cuestionarioVacio}`,
-							showConfirmButton: false,
-							timer: 1500,
-						});
 					}
+
+					swal({
+						position: "center",
+						icon: icono,
+						title: `Evaluación creada correctamente`,
+						text: cuestionarioVacio,
+						showConfirmButton: false,
+						timer: 1500,
+					});
 				})
 				.catch(err => {
 					swal({

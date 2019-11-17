@@ -740,7 +740,6 @@ parasails.registerPage("administrar-contenido", {
 		 */
 		swapPreguntas(indexA, indexB) {
 			var temp = this.preguntasCuestionario[indexA];
-
 			this.preguntasCuestionario[indexA] = this.preguntasCuestionario[indexB];
 			this.preguntasCuestionario[indexB] = temp;
 
@@ -762,6 +761,23 @@ parasails.registerPage("administrar-contenido", {
 					},
 				});
 			});
+		},
+		onClickCancelarEvaluacion() {
+			//se cierra la vista de evaluación
+			this.evIndividualBandera = false;
+			// se muestra el objeto en edicion vacio
+			this.preguntaEnEdicion = {
+				enunciado: null,
+				opciones: {
+					opcion1: null,
+					opcion2: null,
+					opcion3: null,
+					opcion4: null,
+				},
+				respuesta: null,
+				pista: null,
+				pregNumero: null,
+			};
 		},
 	},
 	computed: {

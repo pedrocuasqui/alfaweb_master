@@ -362,14 +362,14 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-sm-1 boton_centrado">
+                                <div class="col-sm-3">
                                     <div>
                                         <a @click="clickMostrarModalCreaPregunta()" title="Añadir nueva pregunta"><i
                                                 class="fas fa-plus-circle fa-2x"></i>
                                         </a>
                                     </div>
                                 </div>
-                                <div class="col-sm-5">
+                                <div class="col-sm-3">
                                     <h6>
                                         <small v-if="tipoEvaluacion=='Emparejamiento'">*Las preguntas se mostrarán al
                                             estudiante todas a la vez, con respuestas en orden aleatorio</small>
@@ -378,7 +378,7 @@
                                     </h6>
                                 </div>
                             </div>
-                            <!-- PREGUNTAS EVALUACIONES  -->
+                            <!-- Preguntas -->
                             <div class="row">
                                 <!-- SI LA VARIABLE mostrarMenuTipoEvaluacion ES FALSE SE MUESTRA LA INTERFAZ PARA EDITAR  -->
 
@@ -386,7 +386,6 @@
                                     <div class="contenedor-formulario">
                                         <!-- CUESTIONARIO -->
                                         <div v-if="tipoEvaluacion=='Cuestionario'" id="preguntaEvaluacion">
-
                                             <div class="row pregunta_evaluacion"
                                                 v-for="(pregunta, indexPreg) in preguntasCuestionario" :key="indexPreg">
                                                 <div class="col-sm-4">
@@ -438,12 +437,7 @@
                                                     </small>
                                                 </div>
                                             </div>
-
-
-
                                         </div>
-
-
 
                                         <!-- EMPAREJAMIENTO -->
                                         <template v-if="tipoEvaluacion=='Emparejamiento'">
@@ -481,19 +475,44 @@
                                             </div>
                                         </template>
 
-
-
                                     </div>
                                 </div>
 
                             </div>
-                            <label for="tiempoPorPregunta">* Tiempo máximo para responder cada pregunta o
-                                emparejar
-                            </label>
-                            <input id="tiempoPorPregunta" v-model="tiempoMaximoPorPregunta">
-                            <a @click="validarEvaluacion" title="Guardar Evaluación"> <i
-                                    class="fas fa-save fa-2x"></i></a>
-                            <!-- </div> -->
+                            <!-- inserta duracion de la pregunta -->
+                            <div class="row">
+                                <div class="col-sm-3"></div>
+                                <div class="col-sm-3">
+                                    <label v-if="tipoEvaluacion=='Cuestionario'" for="tiempoPorPregunta">Tiempo máximo
+                                        para
+                                        responder cada pregunta (*):</label>
+                                    <label v-else for="tiempoPorPregunta">Tiempo máximo para emparejar todos los
+                                        términos (*):
+                                    </label>
+                                </div>
+                                <div class="col-sm-3">
+
+                                    <input id="tiempoPorPregunta" v-model="tiempoMaximoPorPregunta">
+                                </div>
+                                <div class="col-sm-3"></div>
+                            </div>
+                            <!-- botones guardar y cancelar -->
+                            <div class="row">
+                                <div class="col-sm-3">
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="boton_formulario" type="button" id="enviarModulo"
+                                        @click="validarEvaluacion">
+                                        Guardar Evaluación</button>
+                                </div>
+                                <div class="col-sm-3">
+                                    <button class="boton_formulario" type="button" id="cancelarModulo"
+                                        @click="onClickCancelarEvaluacion">
+                                        Cancelar</button>
+                                </div>
+                                <div class="col-sm-3">
+                                </div>
+                            </div>
                         </div>
                     </template>
 

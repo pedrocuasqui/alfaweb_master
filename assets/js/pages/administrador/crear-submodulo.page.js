@@ -110,18 +110,20 @@ parasails.registerPage("crear-submodulo", {
 					//pasar el objeto creado,
 					swal({
 						icon: "success",
-						tittle: "Tema creado correctamente",
+						title: "Tema creado correctamente",
 						showConfirmButton: true,
 						timer: 2000,
-					});
-					this.submoduloCreado = response.data;
+					}).then(val => {
+						//retorna el submodulo creado
+						this.submoduloCreado = response.data;
 
-					window.location.replace(
-						"/administrar-contenido/?objetoId=" +
-							this.submoduloCreado.id +
-							"&tipoContenido=" +
-							this.tipoContenido,
-					);
+						window.location.replace(
+							"/administrar-contenido/?objetoId=" +
+								this.submoduloCreado.id +
+								"&tipoContenido=" +
+								this.tipoContenido,
+						);
+					});
 				})
 				.catch(err => {
 					//la respuesta de sails this.res
@@ -129,21 +131,21 @@ parasails.registerPage("crear-submodulo", {
 					if (err.response.status == 409) {
 						swal({
 							icon: "error",
-							tittle: "Ya existe un tema con el mismo nombre",
+							title: "Ya existe un tema con el mismo nombre",
 							showConfirmButton: true,
 							timer: 2000,
 						});
 					} else if (err.response.status == 400) {
 						swal({
 							icon: "error",
-							tittle: "Existen errores en la información suministrada",
+							title: "Existen errores en la información suministrada",
 							showConfirmButton: true,
 							timer: 2000,
 						});
 					} else {
 						swal({
 							icon: "error",
-							tittle: `Error: ${err}`,
+							title: `Error: ${err}`,
 							showConfirmButton: true,
 							timer: 2000,
 						});

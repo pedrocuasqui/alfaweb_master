@@ -58,7 +58,7 @@
                         </div>
                         <div class="col-sm-10">
                             <!-- Se conserva method="post" de tiny por defecto  -->
-                            <form method="post" id="tinyMce" ref="tinyEditorCuestionario">
+                            <form method="post" id="tinyMce">
                                 <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                 <!-- Si la variable preguntaEnEdicion.enunciado no tiene valores -->
                                 <!-- es necesario usar la otra instancia tinymce en layout.ejs para poder identificar al objeto tinymce y limpiarlo -->
@@ -187,7 +187,7 @@
                         </div>
                         <div class="col-sm-10">
                             <!-- Se conserva method="post" de tiny por defecto  -->
-                            <form method="post" id="tinyMce" ref="tinyEditorEmparejamiento">
+                            <form method="post" id="tinyMce">
                                 <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                 <!-- Si la variable preguntaEnEdicion.enunciado no tiene valores -->
                                 <!-- es necesario usar la otra instancia tinymce en layout.ejs para poder identificar al objeto tinymce y limpiarlo -->
@@ -345,7 +345,6 @@
                             <!-- Lista de preguntas -->
                             <div class="row">
                                 <!-- SI LA VARIABLE mostrarMenuTipoEvaluacion ES FALSE SE MUESTRA LA INTERFAZ PARA EDITAR  -->
-
                                 <div class="contenedor-slot-principal">
                                     <div class="contenedor-formulario">
                                         <!-- CUESTIONARIO -->
@@ -510,141 +509,134 @@
                     <!----------------CONTENIDO DEL MODULO O SUBMODULO---------------------->
                     <!-- ---------------------------------------------------------------- -->
                     <!-- ---------------------------------------------------------------- -->
-                    <template v-else>
-                        <div class="col-sm-11 col-central">
-                            <!--botones de navegacion y Titulo-->
-                            <div class="row">
 
-                                <!--atras-->
-                                <div class="col-auto">
-                                    <a :href="navegarAtras"> <i class="fas fa-chevron-left fa-3x"></i> </a>
-                                </div>
+                    <div class="col-sm-11 col-central" v-show="!evIndividualBandera">
+                        <!--botones atras y adelante y Titulo-->
+                        <div class="row">
+                            <!--botton atras-->
+                            <div class="col-auto">
+                                <a :href="navegarAtras"> <i class="fas fa-chevron-left fa-3x"></i> </a>
+                            </div>
 
-                                <!--titulo-->
-                                <div class="col" id="titulo-modulo">
-                                    <div class="form-group">
-                                        <!-- <label for="nombre">* Título del módulo</label> -->
-                                        <div class="row ">
-                                            <div class="col tituloObjeto">
-
-                                                <input v-if="editarNombre" type="text" id="nombre-objeto" name="nombre"
-                                                    v-model="objetoSeleccionado.nombre"
-                                                    placeholder="Ej: Modulo 1: la computadora"
-                                                    :class="[formErrors.nombre ? 'is-invalid' : '']"
-                                                    v-on:keyup.enter="editarNombre=false" maxlength="100" autofocus>
-                                                <h2 v-else>{{objetoSeleccionado.nombre}}</h2>
-                                                <a v-if="editarNombre" @click="actualizarNombre"
-                                                    title="Guardar Nombre"><i class="fas fa-save"></i></a>
-                                                <a v-else @click="mostrarEditarNombre"><i class="fas fa-edit"></i></a>
-                                                <a data-toggle="modal" data-target="#modalConfirmaEliminar"
-                                                    data-placement="top" title="Eliminar Objeto"><i
-                                                        class="fas fa-trash-alt"></i></a>
-
-                                            </div>
-                                            <!--col-->
+                            <!-- titulo modulo o submodulo-->
+                            <div class="col" id="titulo-modulo">
+                                <div class="form-group">
+                                    <div class="row ">
+                                        <div class="col tituloObjeto">
+                                            <input v-if="editarNombre" type="text" id="nombre-objeto" name="nombre"
+                                                v-model="objetoSeleccionado.nombre"
+                                                placeholder="Ej: Modulo 1: la computadora"
+                                                :class="[formErrors.nombre ? 'is-invalid' : '']"
+                                                v-on:keyup.enter="editarNombre=false" maxlength="100" autofocus>
+                                            <h2 v-else>{{objetoSeleccionado.nombre}}</h2>
+                                            <a v-if="editarNombre" @click="actualizarNombre" title="Guardar Nombre"><i
+                                                    class="fas fa-save"></i></a>
+                                            <a v-else @click="mostrarEditarNombre"><i class="fas fa-edit"></i></a>
+                                            <a data-toggle="modal" data-target="#modalConfirmaEliminar"
+                                                data-placement="top" title="Eliminar Objeto"><i
+                                                    class="fas fa-trash-alt"></i></a>
                                         </div>
-                                        <!--row-->
-
-                                        <div class="invalid-feedback" v-if="formErrors.nombre">Ingrese un nombre
-                                            para
-                                            el módulo.</div>
                                     </div>
-                                </div>
 
 
-                                <!--siguiente-->
-                                <div class="col-auto">
-                                    <a :href="navegarSiguiente"><i class="fas fa-chevron-right fa-3x"></i>
-                                    </a>
+                                    <div class="invalid-feedback" v-if="formErrors.nombre">Ingrese un nombre
+                                        para
+                                        el módulo.</div>
                                 </div>
                             </div>
-                            <!--contenido tiny-->
-                            <div class="row">
 
-                                <div class="contenedor-slot-principal">
-                                    <div class="contenedor-formulario-administrar">
-                                        <!-- para cualquier caso que no sea el curso de informatica se puede ver esta seccion -->
-                                        <form method="post" v-if="noEsInforBasica">
+
+                            <!--siguiente-->
+                            <div class="col-auto">
+                                <a :href="navegarSiguiente"><i class="fas fa-chevron-right fa-3x"></i>
+                                </a>
+                            </div>
+                        </div>
+                        <!--contenido tiny-->
+                        <div class="row">
+                            <div class="contenedor-slot-principal">
+                                <div class="contenedor-formulario-administrar">
+                                    <!-- para cualquier caso que no sea el curso de informatica se puede ver esta seccion -->
+                                    <form method="post" v-if="noEsInforBasica" id="tinyMce">
+                                        <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                                        <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
+                                        <div id="mytextarea" class="contenidoTiny mce-content-body"
+                                            contenteditable="true" style="position: relative;" spellcheck="false"
+                                            v-html="objetoSeleccionado.contenidoTiny">
                                             <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
-                                            <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
-                                            <div id="mytextarea" class="contenidoTiny"
-                                                v-html="objetoSeleccionado.contenidoTiny">
-                                                <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
-                                            </div>
-                                        </form>
-                                        <!-- en caso de  que se intente modificar el curso de informatica basica-->
-                                        <div v-else>
-                                            <h2> NO SE PUEDE EDITAR ESTE CONTENIDO ACCESO RESTRINGIDO</h2>
                                         </div>
-                                        <!-- si se trata de un objeto modulo se muestran las opciones para cargar imágen  -->
-                                        <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
-                                            <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
-                                            <!-- <input id="colorModulo" type="color" name="color"
-                                                    v-model="objetoSeleccionado.color" /> -->
-                                            <div class="progress" v-if="uploadPercentage">
-                                                <div class="progress-bar" role="progressbar"
-                                                    :style="{width:uploadPercentage+'%'}"
-                                                    :aria-valuenow="uploadPercentage" aria-valuemin="0"
-                                                    aria-valuemax="100">
-                                                    {{uploadPercentage}}%</div>
-                                            </div>
-                                            <label for="file" class=" boton_formulario"
-                                                @click="onClickCambiarImagen">Cambiar
-                                                Imágen </label>
-
-                                            <input type="file" name="multimedia" id="file" class="inputfile"
-                                                @change="onFileSelected" accept="image/*"
-                                                :class="[computedErrorImagen ? 'is-invalid' : '']">
-
-                                            <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
-                                                archivo de
-                                                imagen para la portada max:20MB.</div>
-                                            <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
-                                                permitidos:
-                                                jpg,/png. max:20MB. </div>
-
-                                            <div class="imagen-portada-modulo">
-                                                <img :src="objetoSeleccionado.multimedia.imagen"
-                                                    alt="Imágen de portada">
-
-                                            </div>
-
-                                        </div>
-                                        <!-- bboton para guardar los cambios -->
-                                        <button type="button" id="enviarModulo" class="boton_formulario"
-                                            @click.stop="validarFormulario"> Guardar
-                                            Cambios
-                                        </button>
+                                    </form>
+                                    <!-- en caso de  que se intente modificar el curso de informatica basica-->
+                                    <div v-else>
+                                        <h2> NO SE PUEDE EDITAR ESTE CONTENIDO ACCESO RESTRINGIDO</h2>
                                     </div>
-                                </div>
+                                    <!-- si se trata de un objeto modulo se muestran las opciones para cargar imágen  -->
+                                    <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
+                                        <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
+                                        <!-- <input id="colorModulo" type="color" name="color"
+                                                    v-model="objetoSeleccionado.color" /> -->
+                                        <div class="progress" v-if="uploadPercentage">
+                                            <div class="progress-bar" role="progressbar"
+                                                :style="{width:uploadPercentage+'%'}" :aria-valuenow="uploadPercentage"
+                                                aria-valuemin="0" aria-valuemax="100">
+                                                {{uploadPercentage}}%</div>
+                                        </div>
+                                        <label for="file" class=" boton_formulario"
+                                            @click="onClickCambiarImagen">Cambiar
+                                            Imágen </label>
 
-                            </div>
-                            <!--Contenido pie de página-->
-                            <div class="row pie-contenido">
-                                <div class="col-sm-1" id="avatar">
-                                    <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-                                </div>
+                                        <input type="file" name="multimedia" id="file" class="inputfile"
+                                            @change="onFileSelected" accept="image/*"
+                                            :class="[computedErrorImagen ? 'is-invalid' : '']">
 
-                                <div class="col-sm-11" id="descripcion-objeto">
+                                        <div class="invalid-feedback" v-if="formErrors.imagenPortada">Seleccione un
+                                            archivo de
+                                            imagen para la portada max:20MB.</div>
+                                        <div class="invalid-feedback" v-if="formErrors.typeFile">Formatos de imágen
+                                            permitidos:
+                                            jpg,/png. max:20MB. </div>
 
+                                        <div class="imagen-portada-modulo">
+                                            <img :src="objetoSeleccionado.multimedia.imagen" alt="Imágen de portada">
 
-                                    <input v-if="editarDescripcion" type="text" id="descripcion" name="descripcion"
-                                        v-model="objetoSeleccionado.descripcion"
-                                        placeholder="Ej: En este módulo aprenderás a manejar un computador"
-                                        :class="[formErrors.descripcion ? 'is-invalid' : '']"
-                                        v-on:keyup.enter="editarDescripcion=false" maxlength="400">
-                                    <h6 v-else>{{objetoSeleccionado.descripcion}}</h6>
+                                        </div>
 
-
-
-                                    <a v-if="editarDescripcion" @click="actualizarDescripcion"
-                                        title="Guardar descripcion"><i class="fas fa-save"></i></a>
-                                    <a v-else @click="mostrarEditarDescripcion"><i class="fas fa-edit"></i></a>
+                                    </div>
+                                    <!-- bboton para guardar los cambios -->
+                                    <button type="button" id="enviarModulo" class="boton_formulario"
+                                        @click.stop="validarFormulario"> Guardar
+                                        Cambios
+                                    </button>
                                 </div>
                             </div>
 
                         </div>
-                    </template>
+                        <!--Contenido pie de página-->
+                        <div class="row pie-contenido">
+                            <div class="col-sm-1" id="avatar">
+                                <img src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
+                            </div>
+
+                            <div class="col-sm-11" id="descripcion-objeto">
+
+
+                                <input v-if="editarDescripcion" type="text" id="descripcion" name="descripcion"
+                                    v-model="objetoSeleccionado.descripcion"
+                                    placeholder="Ej: En este módulo aprenderás a manejar un computador"
+                                    :class="[formErrors.descripcion ? 'is-invalid' : '']"
+                                    v-on:keyup.enter="editarDescripcion=false" maxlength="400">
+                                <h6 v-else>{{objetoSeleccionado.descripcion}}</h6>
+
+
+
+                                <a v-if="editarDescripcion" @click="actualizarDescripcion"
+                                    title="Guardar descripcion"><i class="fas fa-save"></i></a>
+                                <a v-else @click="mostrarEditarDescripcion"><i class="fas fa-edit"></i></a>
+                            </div>
+                        </div>
+
+                    </div>
+
                     <!-- columna derecha -->
 
                     <div class="col-sm-1 col-derecha">
@@ -656,5 +648,178 @@
             <!--fin columna contenido central y barra lateral derecha-->
         </div>
     </div>
+
+
+    <!-- <template v-show="!evIndividualBandera">
+
+        <div role="application" tabindex="-1"
+            class="tox tox-tinymce tox-tinymce-inline tox-toolbar-dock-transition tox-toolbar-dock-fadein"
+            style="visibility: hidden; position: absolute; top: 31px; left: 130px; display: none;">
+            <div class="tox-editor-container">
+                <div role="menubar" data-alloy-tabstop="true" class="tox-menubar"><button aria-haspopup="true"
+                        role="menuitem" type="button" data-alloy-tabstop="true" unselectable="on" tabindex="-1"
+                        aria-expanded="false" class="tox-mbtn tox-mbtn--select" style="user-select: none;"><span
+                            class="tox-mbtn__select-label">File</span>
+                        <div class="tox-mbtn__select-chevron"><svg width="10" height="10">
+                                <path
+                                    d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z"
+                                    fill-rule="nonzero"></path>
+                            </svg></div>
+                    </button><button aria-haspopup="true" role="menuitem" type="button" data-alloy-tabstop="true"
+                        unselectable="on" tabindex="-1" aria-expanded="false" class="tox-mbtn tox-mbtn--select"
+                        style="user-select: none;"><span class="tox-mbtn__select-label">Edit</span>
+                        <div class="tox-mbtn__select-chevron"><svg width="10" height="10">
+                                <path
+                                    d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z"
+                                    fill-rule="nonzero"></path>
+                            </svg></div>
+                    </button><button aria-haspopup="true" role="menuitem" type="button" data-alloy-tabstop="true"
+                        unselectable="on" tabindex="-1" aria-expanded="false" class="tox-mbtn tox-mbtn--select"
+                        style="user-select: none;"><span class="tox-mbtn__select-label">View</span>
+                        <div class="tox-mbtn__select-chevron"><svg width="10" height="10">
+                                <path
+                                    d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z"
+                                    fill-rule="nonzero"></path>
+                            </svg></div>
+                    </button><button aria-haspopup="true" role="menuitem" type="button" data-alloy-tabstop="true"
+                        unselectable="on" tabindex="-1" aria-expanded="false" class="tox-mbtn tox-mbtn--select"
+                        style="user-select: none;"><span class="tox-mbtn__select-label">Insert</span>
+                        <div class="tox-mbtn__select-chevron"><svg width="10" height="10">
+                                <path
+                                    d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z"
+                                    fill-rule="nonzero"></path>
+                            </svg></div>
+                    </button><button aria-haspopup="true" role="menuitem" type="button" data-alloy-tabstop="true"
+                        unselectable="on" tabindex="-1" aria-expanded="false" class="tox-mbtn tox-mbtn--select"
+                        style="user-select: none;"><span class="tox-mbtn__select-label">Format</span>
+                        <div class="tox-mbtn__select-chevron"><svg width="10" height="10">
+                                <path
+                                    d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z"
+                                    fill-rule="nonzero"></path>
+                            </svg></div>
+                    </button><button aria-haspopup="true" role="menuitem" type="button" data-alloy-tabstop="true"
+                        unselectable="on" tabindex="-1" aria-expanded="false" class="tox-mbtn tox-mbtn--select"
+                        style="user-select: none;"><span class="tox-mbtn__select-label">Tools</span>
+                        <div class="tox-mbtn__select-chevron"><svg width="10" height="10">
+                                <path
+                                    d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z"
+                                    fill-rule="nonzero"></path>
+                            </svg></div>
+                    </button></div>
+                <div role="group" class="tox-toolbar">
+                    <div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group">
+                        <button aria-label="Undo" title="Undo" type="button" tabindex="-1" aria-disabled="true"
+                            class="tox-tbtn tox-tbtn--disabled"><span class="tox-icon tox-tbtn__icon-wrap"><svg
+                                    width="24" height="24">
+                                    <path
+                                        d="M6.4 8H12c3.7 0 6.2 2 6.8 5.1.6 2.7-.4 5.6-2.3 6.8a1 1 0 0 1-1-1.8c1.1-.6 1.8-2.7 1.4-4.6-.5-2.1-2.1-3.5-4.9-3.5H6.4l3.3 3.3a1 1 0 1 1-1.4 1.4l-5-5a1 1 0 0 1 0-1.4l5-5a1 1 0 0 1 1.4 1.4L6.4 8z"
+                                        fill-rule="nonzero"></path>
+                                </svg></span></button><button aria-label="Redo" title="Redo" type="button" tabindex="-1"
+                            aria-disabled="true" class="tox-tbtn tox-tbtn--disabled"><span
+                                class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24">
+                                    <path
+                                        d="M17.6 10H12c-2.8 0-4.4 1.4-4.9 3.5-.4 2 .3 4 1.4 4.6a1 1 0 1 1-1 1.8c-2-1.2-2.9-4.1-2.3-6.8.6-3 3-5.1 6.8-5.1h5.6l-3.3-3.3a1 1 0 1 1 1.4-1.4l5 5a1 1 0 0 1 0 1.4l-5 5a1 1 0 0 1-1.4-1.4l3.3-3.3z"
+                                        fill-rule="nonzero"></path>
+                                </svg></span></button></div>
+                    <div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group">
+                        <button aria-label="Insert/edit image" title="Insert/edit image" type="button" tabindex="-1"
+                            aria-pressed="false" class="tox-tbtn"><span class="tox-icon tox-tbtn__icon-wrap"><svg
+                                    width="24" height="24">
+                                    <path
+                                        d="M5 15.7l3.3-3.2c.3-.3.7-.3 1 0L12 15l4.1-4c.3-.4.8-.4 1 0l2 1.9V5H5v10.7zM5 18V19h3l2.8-2.9-2-2L5 17.9zm14-3l-2.5-2.4-6.4 6.5H19v-4zM4 3h16c.6 0 1 .4 1 1v16c0 .6-.4 1-1 1H4a1 1 0 0 1-1-1V4c0-.6.4-1 1-1zm6 8a2 2 0 1 0 0-4 2 2 0 0 0 0 4z"
+                                        fill-rule="nonzero"></path>
+                                </svg></span></button><button aria-label="Source code" title="Source code" type="button"
+                            tabindex="-1" class="tox-tbtn"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24"
+                                    height="24">
+                                    <g fill-rule="nonzero">
+                                        <path
+                                            d="M9.8 15.7c.3.3.3.8 0 1-.3.4-.9.4-1.2 0l-4.4-4.1a.8.8 0 0 1 0-1.2l4.4-4.2c.3-.3.9-.3 1.2 0 .3.3.3.8 0 1.1L6 12l3.8 3.7zM14.2 15.7c-.3.3-.3.8 0 1 .4.4.9.4 1.2 0l4.4-4.1c.3-.3.3-.9 0-1.2l-4.4-4.2a.8.8 0 0 0-1.2 0c-.3.3-.3.8 0 1.1L18 12l-3.8 3.7z">
+                                        </path>
+                                    </g>
+                                </svg></span></button></div>
+                    <div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group">
+                        <button aria-label="Bold" title="Bold" type="button" tabindex="-1" aria-pressed="false"
+                            class="tox-tbtn"><span class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24">
+                                    <path
+                                        d="M7.8 19c-.3 0-.5 0-.6-.2l-.2-.5V5.7c0-.2 0-.4.2-.5l.6-.2h5c1.5 0 2.7.3 3.5 1 .7.6 1.1 1.4 1.1 2.5a3 3 0 0 1-.6 1.9c-.4.6-1 1-1.6 1.2.4.1.9.3 1.3.6s.8.7 1 1.2c.4.4.5 1 .5 1.6 0 1.3-.4 2.3-1.3 3-.8.7-2.1 1-3.8 1H7.8zm5-8.3c.6 0 1.2-.1 1.6-.5.4-.3.6-.7.6-1.3 0-1.1-.8-1.7-2.3-1.7H9.3v3.5h3.4zm.5 6c.7 0 1.3-.1 1.7-.4.4-.4.6-.9.6-1.5s-.2-1-.7-1.4c-.4-.3-1-.4-2-.4H9.4v3.8h4z"
+                                        fill-rule="evenodd"></path>
+                                </svg></span></button><button aria-label="Italic" title="Italic" type="button"
+                            tabindex="-1" aria-pressed="false" class="tox-tbtn"><span
+                                class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24">
+                                    <path
+                                        d="M16.7 4.7l-.1.9h-.3c-.6 0-1 0-1.4.3-.3.3-.4.6-.5 1.1l-2.1 9.8v.6c0 .5.4.8 1.4.8h.2l-.2.8H8l.2-.8h.2c1.1 0 1.8-.5 2-1.5l2-9.8.1-.5c0-.6-.4-.8-1.4-.8h-.3l.2-.9h5.8z"
+                                        fill-rule="evenodd"></path>
+                                </svg></span></button></div>
+                    <div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group">
+                        <div aria-pressed="false" aria-label="Text color" title="Text color" role="button"
+                            aria-haspopup="true" tabindex="-1" aria-expanded="false"
+                            aria-describedby="aria_8633368331401574115589921" class="tox-split-button"><span
+                                role="presentation" tabindex="-1" class="tox-tbtn"><span
+                                    class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24">
+                                        <g fill-rule="evenodd">
+                                            <path id="tox-icon-text-color__color" d="M3 18h18v3H3z"></path>
+                                            <path
+                                                d="M8.7 16h-.8a.5.5 0 0 1-.5-.6l2.7-9c.1-.3.3-.4.5-.4h2.8c.2 0 .4.1.5.4l2.7 9a.5.5 0 0 1-.5.6h-.8a.5.5 0 0 1-.4-.4l-.7-2.2c0-.3-.3-.4-.5-.4h-3.4c-.2 0-.4.1-.5.4l-.7 2.2c0 .3-.2.4-.4.4zm2.6-7.6l-.6 2a.5.5 0 0 0 .5.6h1.6a.5.5 0 0 0 .5-.6l-.6-2c0-.3-.3-.4-.5-.4h-.4c-.2 0-.4.1-.5.4z">
+                                            </path>
+                                        </g>
+                                    </svg></span></span><span role="presentation" tabindex="-1"
+                                class="tox-tbtn tox-split-button__chevron"><svg width="10" height="10">
+                                    <path
+                                        d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z"
+                                        fill-rule="nonzero"></path>
+                                </svg></span><span aria-hidden="true" id="aria_8633368331401574115589921"
+                                style="display: none;">To open the popup, press Shift+Enter</span></div>
+                        <div aria-pressed="false" aria-label="Background color" title="Background color" role="button"
+                            aria-haspopup="true" tabindex="-1" aria-expanded="false"
+                            aria-describedby="aria_3295254531421574115589922" class="tox-split-button"><span
+                                role="presentation" tabindex="-1" class="tox-tbtn"><span
+                                    class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24">
+                                        <g fill-rule="evenodd">
+                                            <path id="tox-icon-highlight-bg-color__color" d="M3 18h18v3H3z"></path>
+                                            <path fill-rule="nonzero"
+                                                d="M7.7 16.7H3l3.3-3.3-.7-.8L10.2 8l4 4.1-4 4.2c-.2.2-.6.2-.8 0l-.6-.7-1.1 1.1zm5-7.5L11 7.4l3-2.9a2 2 0 0 1 2.6 0L18 6c.7.7.7 2 0 2.7l-2.9 2.9-1.8-1.8-.5-.6">
+                                            </path>
+                                        </g>
+                                    </svg></span></span><span role="presentation" tabindex="-1"
+                                class="tox-tbtn tox-split-button__chevron"><svg width="10" height="10">
+                                    <path
+                                        d="M8.7 2.2c.3-.3.8-.3 1 0 .4.4.4.9 0 1.2L5.7 7.8c-.3.3-.9.3-1.2 0L.2 3.4a.8.8 0 0 1 0-1.2c.3-.3.8-.3 1.1 0L5 6l3.7-3.8z"
+                                        fill-rule="nonzero"></path>
+                                </svg></span><span aria-hidden="true" id="aria_3295254531421574115589922"
+                                style="display: none;">To open the popup, press Shift+Enter</span></div>
+                    </div>
+                    <div title="" role="toolbar" data-alloy-tabstop="true" tabindex="-1" class="tox-toolbar__group">
+                        <button aria-label="Align left" title="Align left" type="button" tabindex="-1"
+                            aria-pressed="false" class="tox-tbtn"><span class="tox-icon tox-tbtn__icon-wrap"><svg
+                                    width="24" height="24">
+                                    <path
+                                        d="M5 5h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm0 4h8c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm0 8h8c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2zm0-4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2z"
+                                        fill-rule="evenodd"></path>
+                                </svg></span></button><button aria-label="Align center" title="Align center"
+                            type="button" tabindex="-1" aria-pressed="false" class="tox-tbtn"><span
+                                class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24">
+                                    <path
+                                        d="M5 5h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm3 4h8c.6 0 1 .4 1 1s-.4 1-1 1H8a1 1 0 1 1 0-2zm0 8h8c.6 0 1 .4 1 1s-.4 1-1 1H8a1 1 0 0 1 0-2zm-3-4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2z"
+                                        fill-rule="evenodd"></path>
+                                </svg></span></button><button aria-label="Align right" title="Align right" type="button"
+                            tabindex="-1" aria-pressed="false" class="tox-tbtn"><span
+                                class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24">
+                                    <path
+                                        d="M5 5h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm6 4h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2zm0 8h8c.6 0 1 .4 1 1s-.4 1-1 1h-8a1 1 0 0 1 0-2zm-6-4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2z"
+                                        fill-rule="evenodd"></path>
+                                </svg></span></button><button aria-label="Justify" title="Justify" type="button"
+                            tabindex="-1" aria-pressed="false" class="tox-tbtn"><span
+                                class="tox-icon tox-tbtn__icon-wrap"><svg width="24" height="24">
+                                    <path
+                                        d="M5 5h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm0 4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 1 1 0-2zm0 4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2zm0 4h14c.6 0 1 .4 1 1s-.4 1-1 1H5a1 1 0 0 1 0-2z"
+                                        fill-rule="evenodd"></path>
+                                </svg></span></button></div>
+                </div>
+                <div class="tox-anchorbar"></div>
+            </div>
+            <div aria-hidden="true" class="tox-throbber" style="display: none;"></div>
+        </div>
+        <div class="tox tox-silver-sink tox-tinymce-aux" style="position: relative; display: none;"></div>
+    </template> -->
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

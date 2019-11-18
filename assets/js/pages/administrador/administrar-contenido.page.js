@@ -429,7 +429,7 @@ parasails.registerPage("administrar-contenido", {
 					showConfirmButton: true,
 					timer: 1500,
 				});
-				this.$refs.tinyEditorCuestionario.focus();
+
 				this.preguntaEnEdicion = {
 					enunciado: null,
 					opciones: {
@@ -736,7 +736,6 @@ parasails.registerPage("administrar-contenido", {
 					showConfirmButton: true,
 					timer: 1500,
 				});
-				this.$refs.tinyEditorEmparejamiento.focus();
 				this.preguntaEnEdicion = {
 					enunciado: null,
 					opciones: {

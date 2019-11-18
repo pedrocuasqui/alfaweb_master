@@ -117,6 +117,7 @@
         //  window.contenidoTiny =null;
         editor.on('keyup', function (e) { // no reconoce los clicks
           window.contenidoTiny = tinymce.get("mytextarea").getContent()
+          console.log("esta escribiendo");
           // $('.contenido-tiny').html(window.contenidoTiny);          
 
         });
@@ -155,6 +156,8 @@
 
       images_upload_handler: funcionCargaImagen
     });
+
+
   </script>
 
   <!-- ANIMACION DE NUMEROS: SE USA AL FINAL DE CAD EVALUACION PARA MOSTRAR LOS NUMEROS CON ANIMACION DE CONTEO -->

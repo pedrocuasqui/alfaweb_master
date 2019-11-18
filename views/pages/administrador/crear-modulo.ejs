@@ -10,7 +10,10 @@
                 <form id="formulario">
                     <!-- ingresa titulo del modulo -->
                     <div class="form-group row">
-                        <label for="nombreModulo" class="col-sm-3">Título del módulo: (*)</label>
+                        <div class="col-sm-3">
+                            <label for="nombreModulo">Título del módulo: (*)</label>
+                        </div>
+
                         <div class="col-sm-9">
                             <input type="text" id="nombreModulo" name="nombreModulo" v-model="nombreModulo"
                                 placeholder="Ej: Modulo 1: la computadora" class="form-control "
@@ -22,7 +25,10 @@
                     </div>
                     <!-- ingresa descripcin del modulo -->
                     <div class="form-group row">
-                        <label for="descripcionModulo" class="col-sm-3">Descripción del módulo:(*)</label>
+                        <div class="col-sm-3">
+                            <label for="descripcionModulo">Descripción del módulo:(*)</label>
+                        </div>
+
                         <div class="col-sm-9">
                             <input type="text" id="descripcionModulo" name="descripcionModulo"
                                 v-model="descripcionModulo"
@@ -36,7 +42,9 @@
                     </div>
                     <!-- ingresa imagen de portada -->
                     <div class="form-group row">
-                        <label class="col-sm-3">Imágen de portada: (*)</label>
+                        <div class="col-sm-3">
+                            <label>Imágen de portada: (*)</label>
+                        </div>
                         <div class="col-sm-3">
                             <label v-if="rutaTemporal==''" for="file" class=" boton_formulario">Seleccione una Imágen
                             </label>
@@ -75,7 +83,10 @@
                     </div>
                     <!-- Ingresa contenido tiny -->
                     <div class="form group row">
-                        <label for="tinyMce" class="col-sm-3">Contenido (*) </label>
+                        <div class="col-sm-3">
+                            <label for="tinyMce">Contenido: (*) </label>
+                        </div>
+
                         <!-- Se conserva method="post" de tiny por defecto  -->
                         <div class="col-sm-9">
                             <form method="post" id="tinyMce">

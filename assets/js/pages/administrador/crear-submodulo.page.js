@@ -213,6 +213,11 @@ parasails.registerPage("crear-submodulo", {
 			this.contTiny = window.contenidoTiny;
 			console.log("esta tipeando");
 		},
+		onClickCancelar() {
+			// this.imagensTiny = window.imagenesTemporalesTiny;
+			window.location.assign("/view-crear-modulo/?cursoId=" + this.curso.id);
+			// /view-crear-submodulo/?moduloId='+modulo.id
+		},
 	},
 	computed: {
 		mapaCarrusel() {

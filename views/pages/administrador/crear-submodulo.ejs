@@ -70,8 +70,11 @@
     <div class="contenedor-formulario">
       <div class=" formularioCentralSmall">
         <form id="formulario">
-          <div :class="{'minimizar-campos': seleccionTipoAprendizaje, }" class="form-group row">
-            <label for="nombreSubmodulo" class="col-sm-3">* Título del submódulo</label>
+          <!-- ingresa el titulo del submodulo -->
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label for="nombreSubmodulo">Título del submódulo: (*)</label>
+            </div>
             <div class="col-sm-9">
               <input type="text" id="nombreSubmodulo" v-model="nombreSubmodulo"
                 placeholder="Ej: Partes de la computadora " class="form-control"
@@ -81,9 +84,11 @@
                 para el submódulo.</div>
             </div>
           </div>
-
-          <div :class="{'minimizar-campos': seleccionTipoAprendizaje}" class="form-group row">
-            <label for="descripcionSubmodulo" class="col-sm-3">* Descripción General/Específica</label>
+          <!-- ingresa la descripcion del submodulo -->
+          <div class="form-group row">
+            <div class="col-sm3">
+              <label for="descripcionSubmodulo">Breve descripción o instrucciones: (*) </label>
+            </div>
             <div class="col-sm-9">
               <input type="text" id="descripcionSubmodulo" v-model="descripcionSubmodulo"
                 placeholder="Ej: Las partes de la computadora son todos los accesorios que se conectan a ella"
@@ -95,28 +100,40 @@
                 Submódulo.</div>
             </div>
           </div>
-
-
-
           <!-- EDITOR DE CONTENIDOS TINYMCE -->
-          <div class="row">
-            <label for="tinyMce" class="col-sm-3">Contenido (*)</label>
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label for="tinyMce">Contenido: (*)</label>
+            </div>
+
             <div class="col-sm-9">
               <form method="post" id="tinyMce">
                 <!-- post para que las imágenes se carguen con la funcionalidad por defecto de tinymce-->
-                <div id="mytextarea" class="contenidoTiny form-control" @keyup="actualizaContTiny()"> </div>
+                <div id="mytextarea" class="contenidoTiny " @keyup="actualizaContTiny()"> </div>
                 <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                 <div class="invalid-feedback" v-if="formErrors.contenidoTiny && !existeContenidoTiny">Debe ingresar
                   algún contenido </div>
               </form>
             </div>
           </div>
-          <div class="contenido-tiny"></div>
-          <div id="contenido-recibido"></div>
+
+
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button class="boton_formulario" type="button" id="enviarModulo" @click="validarFormulario">
+                Guardar Módulo</button>
+            </div>
+            <div class="col-sm-3">
+              <button class="boton_formulario" type="button" id="cancelarModulo" @click="onClickCancelar">
+                Cancelar</button>
+            </div>
+            <div class="col-sm-1"></div>
+
+          </div>
 
 
 
-          <a @click="validarFormulario" title="Guardar submódulo"> <i class="fas fa-save fa-2x"></i></a>
           <br>
           <br>
         </form>

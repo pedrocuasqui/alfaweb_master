@@ -406,50 +406,57 @@
                                                                         title="Eliminar pregunta"><i
                                                                             class="fas fa-trash-alt fa-2x"></i></a>
                                                                 </p>
-
                                                             </div>
                                                             <div class="col-sm-4"></div>
-
                                                         </div>
-
                                                     </small>
                                                 </div>
                                             </div>
                                         </div>
 
                                         <!-- EMPAREJAMIENTO -->
-                                        <template v-if="tipoEvaluacion=='Emparejamiento'">
-                                            <div class="row boton_centrado">
-                                                <div class="col-sm-8">
-                                                    <div class="row"
-                                                        v-for="(pregunta,indexPreg) in preguntasCuestionario">
-
-
-                                                        <div class="col-sm-4" :id="'Preg'+indexPreg"
-                                                            key="'Preg'+indexPreg">
-                                                            <div v-html="pregunta.enunciado"></div>
-
-                                                        </div>
-
-                                                        <div class="col-sm-4" :id="'Resp'+indexPreg"
-                                                            key="'Resp'+indexPreg">
-                                                            <p>{{pregunta.respuesta}}</p>
-
-                                                        </div>
-                                                        <small>
-                                                            <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
-                                                                data-placement="top" title="Editar pregunta"> <i
-                                                                    class="fas fa-edit fa-2x"></i> </a>
-                                                            <a @click.stop="eliminarPreguntaEmparejar(pregunta,indexPreg)"
-                                                                data-placement="top" title="Eliminar pregunta"><i
-                                                                    class="fas fa-trash-alt fa-2x"></i></a>
-                                                        </small>
-
-                                                    </div>
+                                        <div v-if="tipoEvaluacion=='Emparejamiento'">
+                                            <div class="row" v-for="(pregunta,indexPreg) in preguntasCuestionario">
+                                                <div class="col-sm-4" :id="'Preg'+indexPreg" key="'Preg'+indexPreg">
+                                                    <div v-html="pregunta.enunciado"></div>
                                                 </div>
 
+                                                <div class="col-sm-6" :id="'Resp'+indexPreg" key="'Resp'+indexPreg">
+                                                    <p>{{pregunta.respuesta}}</p>
+
+                                                </div>
+                                                <div class="col-sm-2">
+                                                    <small>
+                                                        <div class="row">
+                                                            <div class="col-sm-4"></div>
+                                                            <div class="col-sm-4">
+                                                                <p>{{pregunta.pregNumero}}</p>
+                                                            </div>
+                                                            <div class="col-sm-4"></div>
+                                                        </div>
+
+                                                        <div class="row">
+                                                            <div class="col-sm-4"></div>
+                                                            <div class="col-sm-4">
+                                                                <p>
+                                                                    <a @click.stop="mostrarEditarPreguntaEvaluacion(pregunta,indexPreg)"
+                                                                        data-placement="top" title="Editar pregunta"> <i
+                                                                            class="fas fa-edit fa-2x"></i> </a>
+                                                                </p>
+
+                                                                <p>
+                                                                    <a @click.stop="eliminarPreguntaEmparejar(pregunta,indexPreg)"
+                                                                        data-placement="top"
+                                                                        title="Eliminar pregunta"><i
+                                                                            class="fas fa-trash-alt fa-2x"></i></a>
+                                                                </p>
+                                                            </div>
+                                                            <div class="col-sm-4"></div>
+                                                        </div>
+                                                    </small>
+                                                </div>
                                             </div>
-                                        </template>
+                                        </div>
 
                                     </div>
                                 </div>

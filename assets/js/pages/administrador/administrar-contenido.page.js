@@ -376,6 +376,7 @@ parasails.registerPage("administrar-contenido", {
 			if (contenido == "contenido") {
 				this.tituloEvaluacion = this.objetoSeleccionado.nombre;
 				this.evIndividualBandera = false;
+				this.onClickCancelarEvaluacion();
 			} else {
 				this.tituloEvaluacion = this.objetoSeleccionado.nombre;
 				this.evIndividualBandera = true;
@@ -863,7 +864,25 @@ parasails.registerPage("administrar-contenido", {
 			});
 		},
 		onClickCancelarEvaluacion() {
+			this.verificaExistenciaCambios();
+
+			// se muestra el objeto en edicion vacio
+			this.preguntaEnEdicion = {
+				enunciado: null,
+				opciones: {
+					opcion1: null,
+					opcion2: null,
+					opcion3: null,
+					opcion4: null,
+				},
+				respuesta: null,
+				pista: null,
+				pregNumero: null,
+			};
+		},
+		verificaExistenciaCambios() {
 			var _this = this;
+			//la variable cambiosEnPreguntas se modifica en el watcher de preguntasCuestionario, para notificar al ususario de que la clase e
 			if (this.cambiosEnPreguntas) {
 				swal({
 					position: "center",
@@ -877,7 +896,7 @@ parasails.registerPage("administrar-contenido", {
 							text: "Si, guardar cambios!",
 							value: true,
 						},
-						cancel: "No, cerrar", //retona null
+						cancel: "No, cerrar!", //retona null
 					},
 				}).then(valor => {
 					if (valor) {
@@ -893,20 +912,6 @@ parasails.registerPage("administrar-contenido", {
 			} else {
 				this.evIndividualBandera = false;
 			}
-
-			// se muestra el objeto en edicion vacio
-			this.preguntaEnEdicion = {
-				enunciado: null,
-				opciones: {
-					opcion1: null,
-					opcion2: null,
-					opcion3: null,
-					opcion4: null,
-				},
-				respuesta: null,
-				pista: null,
-				pregNumero: null,
-			};
 		},
 		onClickCerraModal() {
 			if (this.tipoEvaluacion == "Emparejamiento") {

@@ -1,29 +1,31 @@
-parasails.registerComponent('modulo-panel-derecho', {
+/* eslint-disable no-undef */
+/*jshint esversion:8 */
+parasails.registerComponent("modulo-panel-derecho", {
 	props: {
 		usuario: {
 			type: Object,
 			default: () => {
-				return { nombre: 'Visitante', rol: 'Estudiante', id: '1' }
+				return { nombre: "Visitante", rol: "Estudiante", id: "1" };
 			},
 		},
 		cursoEstudiante: {
 			type: Object,
 			required: false,
 			default: () => {
-				return null
+				return null;
 			},
 			description:
-				'un objeo de tipo CursoEstudiante, este objeto guarda el lúltimo tema o módulo revisado por el estudiante,  se usa en la interfaz indice de estudiante para poder redireccionar al último tema revisado  ',
+				"un objeo de tipo CursoEstudiante, este objeto guarda el lúltimo tema o módulo revisado por el estudiante,  se usa en la interfaz indice de estudiante para poder redireccionar al último tema revisado  ",
 		},
 
 		curso: {
 			type: Object,
 			required: false,
 			default: () => {
-				return null
+				return null;
 			},
 			description:
-				'un objeto de tipo Curso, se usa para buscar la puntuacion (intentoEvaluacion) actual del estudiante ',
+				"un objeto de tipo Curso, se usa para buscar la puntuacion (intentoEvaluacion) actual del estudiante ",
 		},
 		puntajeActual: {
 			type: Number,
@@ -39,7 +41,7 @@ parasails.registerComponent('modulo-panel-derecho', {
 		},
 		medallaActual: {
 			type: String,
-			default: 'bebe',
+			default: "bebe",
 		},
 		porcentajeAvance: {
 			type: Number,
@@ -52,16 +54,16 @@ parasails.registerComponent('modulo-panel-derecho', {
 				//comentar este bloque default cuando se pasen los datos como parámetro a este componente
 				return [
 					{
-						nombre: 'Pedro',
-						apellido: 'Cuasqui',
-						Nivel: '4',
+						nombre: "Pedro",
+						apellido: "Cuasqui",
+						Nivel: "4",
 					},
 					{
-						nombre: 'Estevan',
-						apellido: 'Pérez',
-						Nivel: '5',
+						nombre: "Estevan",
+						apellido: "Pérez",
+						Nivel: "5",
 					},
-				]
+				];
 			},
 		},
 
@@ -69,14 +71,14 @@ parasails.registerComponent('modulo-panel-derecho', {
 			type: Boolean,
 			required: false,
 			default: () => {
-				return false
+				return false;
 			},
 		},
 		objetoSeleccionado: {
 			type: Object,
 			// required: true,//no necesario para señalar el modulo o submodulo seleccionado en el menu lateral porque el menu ya contiene su definicion por defecto
 			default: () => {
-				return { id: '1' }
+				return { id: "1" };
 			}, // se usa el mismo id por defecto que se usa en modulo-contenedor-curso
 			// description:'parametro de barra de navegacion, tambien se usa la descripcion cuando el objeto seleccionado es un modulo o submodulo'
 		},
@@ -88,7 +90,7 @@ parasails.registerComponent('modulo-panel-derecho', {
 			estudiantesConSusIntentos: [],
 			estudiantesConSusIntentosQuickSort: null,
 			mostrar_opciones_de_usuario: true,
-		}
+		};
 	},
 	mounted() {},
 
@@ -414,21 +416,26 @@ parasails.registerComponent('modulo-panel-derecho', {
 </div>`,
 	methods: {
 		mostrarModalPuntuacion() {
-			$(function() {
-				$('#modalPuntuacionEstudiante').modal('show')
-			})
+			$(() => {
+				$("#modalPuntuacionEstudiante").modal("show");
+			});
 		},
 		evaluacionIndividual(contenido) {
 			if (this.adminCreandoModuloSubmodulo) {
-				alert('Primero debe crear el tema')
+				swal({
+					icon: "info",
+					tittle: "Debe crear el tema primero",
+					showConfirmButton: true,
+					timer: 2000,
+				});
 			} else {
 				if (this.proximaRedireccionAContenido) {
-					contenido = 'contenido'
-					this.$emit('evaluacion-individual', contenido)
-					this.proximaRedireccionAContenido = false
+					contenido = "contenido";
+					this.$emit("evaluacion-individual", contenido);
+					this.proximaRedireccionAContenido = false;
 				} else {
-					this.$emit('evaluacion-individual', contenido)
-					this.proximaRedireccionAContenido = true
+					this.$emit("evaluacion-individual", contenido);
+					this.proximaRedireccionAContenido = true;
 				}
 			}
 		},
@@ -445,61 +452,56 @@ parasails.registerComponent('modulo-panel-derecho', {
 		clickPuntuacion() {
 			if (this.curso) {
 				//Siempre debe existir un curso, no es posible acceder hasta esta ventana sin pasar por la seleccion de un curso
-				if (this.usuario.nombre != 'Visitante') {
+				if (this.usuario.nombre != "Visitante") {
 					axios({
-						url: '/puntuacion-estudiante',
-						method: 'get',
+						url: "/puntuacion-estudiante",
+						method: "get",
 						params: { cursoId: this.curso.id },
 					})
 						.then(response => {
 							// Los intentos del usuario logueado, ordenados ascendentemente por fecha de creacion
-							this.intentosEvaluacion =
-								response.data.intentosEvaluacion
+							this.intentosEvaluacion = response.data.intentosEvaluacion;
 							// funcion para seleccinar solo los estudiantes que tienen evaluaciones es decir que la propiedad intentosEvaluacion tenga una longitud mayor a cero
 							this.estudiantesConSusIntentos =
-								response.data.estudiantesConSusIntentos
-							this.seleccionarEstudiantesConIntentos()
+								response.data.estudiantesConSusIntentos;
+							this.seleccionarEstudiantesConIntentos();
 							this.estudiantesConSusIntentosQuickSort = this.ordenamientoQuickSort(
-								this.estudiantesConSusIntentos
-							)
-							this.definirGraficoPuntuacion()
-							this.mostrarModalPuntuacion()
+								this.estudiantesConSusIntentos,
+							);
+							this.definirGraficoPuntuacion();
+							this.mostrarModalPuntuacion();
 						})
 						.catch(err => {
-							alert(
-								'Error: no se puede mostrar la puntuación en este momento'
-							)
-						})
+							alert("Error: no se puede mostrar la puntuación en este momento");
+						});
 				} else {
-					alert(
-						'No puede acceder a esta información como usuario Visitante'
-					)
+					alert("No puede acceder a esta información como usuario Visitante");
 				}
 			}
 		},
 		definirGraficoPuntuacion() {
-			var labels = []
-			var datasetLabel = 'Curso: ' + this.curso.nombre
-			var datasetData = []
-			let contadorEvaluaciones = 0
-			let limiteEvaluaciones = 30
+			var labels = [];
+			var datasetLabel = "Curso: " + this.curso.nombre;
+			var datasetData = [];
+			let contadorEvaluaciones = 0;
+			let limiteEvaluaciones = 30;
 			this.intentosEvaluacion.forEach(element => {
 				// con un contador limitar el número de evaluaciones que se muestran, para no sobrecargar el gráfico, solo se muestran 30 evaluaciones
-				contadorEvaluaciones += 1
+				contadorEvaluaciones += 1;
 				if (contadorEvaluaciones <= limiteEvaluaciones) {
 					// convierto la fecha de tipo Datetime a date
-					let fechaUltimoAcceso = new Date(element.createdAt)
+					let fechaUltimoAcceso = new Date(element.createdAt);
 					let fecha =
 						fechaUltimoAcceso.getDate() +
-						'/' +
+						"/" +
 						fechaUltimoAcceso.getMonth() +
-						'/' +
-						fechaUltimoAcceso.getFullYear()
+						"/" +
+						fechaUltimoAcceso.getFullYear();
 					// Agrego al arreglo de etiquetas, la fecha concatenada con el nombre del submodulo al uqe pertenece la evaluacion
-					labels.push(fecha + ' ' + element.submodulo.nombreSubmodulo)
-					datasetData.push(element.evaluacion.puntosObtenidos)
+					labels.push(fecha + " " + element.submodulo.nombreSubmodulo);
+					datasetData.push(element.evaluacion.puntosObtenidos);
 				}
-			})
+			});
 			// QUE DATA SE TOMARÁ PARA EL GRAFICO
 			//OPCIONES"
 			// 0) graficar el puntaje obtenido, en cada evaluacion por fecha(probado)
@@ -516,11 +518,11 @@ parasails.registerComponent('modulo-panel-derecho', {
 			// pros: se sumarian los puntos de un intervalo de tiempo, por ejemplo de cada dia, el grafico mostraria la cantidad de puntos alcanzados en cada dia desde el inicio del curso, hasta hoy y ademas se vería la frecuencia de
 
 			var ctx = document
-				.getElementById('graficoPuntuacionHistorica')
-				.getContext('2d')
+				.getElementById("graficoPuntuacionHistorica")
+				.getContext("2d");
 			var chart = new Chart(ctx, {
 				// The type of chart we want to create
-				type: 'line',
+				type: "line",
 
 				// The data for our dataset
 				data: {
@@ -529,8 +531,8 @@ parasails.registerComponent('modulo-panel-derecho', {
 					datasets: [
 						{
 							label: datasetLabel,
-							backgroundColor: 'rgb(255, 99, 132)',
-							borderColor: 'rgb(255, 99, 132)',
+							backgroundColor: "rgb(255, 99, 132)",
+							borderColor: "rgb(255, 99, 132)",
 							data: datasetData,
 						},
 					],
@@ -538,7 +540,7 @@ parasails.registerComponent('modulo-panel-derecho', {
 
 				// Configuration options go here
 				options: {},
-			})
+			});
 		},
 
 		seleccionarEstudiantesConIntentos() {
@@ -550,63 +552,63 @@ parasails.registerComponent('modulo-panel-derecho', {
 						//intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
 						puntos: 0,
 						nivel: 0, //modulo 1
-						medalla: 'bebe', //medalla mas basica
+						medalla: "bebe", //medalla mas basica
 						tiempoMaximoPorPregunta: 30, //en segundos por defecto
 						evaluacion: null,
-					})
+					});
 				}
-			})
+			});
 		},
 		ordenamientoQuickSort(origArray) {
 			if (origArray.length <= 1) {
-				return origArray
+				return origArray;
 			} else {
-				var left = []
-				var right = []
-				var newArray = []
-				var estudiantePivot = origArray.pop()
-				var pivot = estudiantePivot.intentosEvaluacion[0].puntos
-				var length = origArray.length
+				var left = [];
+				var right = [];
+				var newArray = [];
+				var estudiantePivot = origArray.pop();
+				var pivot = estudiantePivot.intentosEvaluacion[0].puntos;
+				var length = origArray.length;
 
 				for (var i = 0; i < length; i++) {
 					if (origArray[i].intentosEvaluacion[0].puntos >= pivot) {
-						left.push(origArray[i])
+						left.push(origArray[i]);
 					} else {
-						right.push(origArray[i])
+						right.push(origArray[i]);
 					}
 				}
 
 				return newArray.concat(
 					this.ordenamientoQuickSort(left),
 					estudiantePivot,
-					this.ordenamientoQuickSort(right)
-				)
+					this.ordenamientoQuickSort(right),
+				);
 			}
 		},
 		mostrarOpcionesUsuario() {
-			this.mostrar_opciones_de_usuario = !this.mostrar_opciones_de_usuario
+			this.mostrar_opciones_de_usuario = !this.mostrar_opciones_de_usuario;
 		},
 	},
 	computed: {
 		porcentajeAvanceNiveles() {
-			let porcentaje = 0
+			let porcentaje = 0;
 			if (this.nivelActual && this.totalNiveles) {
 				if (this.totalNiveles != 0) {
-					porcentaje = (this.nivelActual / this.totalNiveles) * 100
+					porcentaje = (this.nivelActual / this.totalNiveles) * 100;
 				}
 			}
-			return porcentaje
+			return porcentaje;
 		},
 		existeAvance() {
-			let avance = false
+			let avance = false;
 
 			if (this.cursoEstudiante) {
 				if (this.cursoEstudiante.avance) {
-					avance = true
+					avance = true;
 				}
 			}
 
-			return avance
+			return avance;
 		},
 	},
-})
+});

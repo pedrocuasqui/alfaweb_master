@@ -149,7 +149,11 @@
                         @click.stop="actualizarPreguntaCuestionario()">Aceptar</button>
                     <button v-else class="btn btn-primary" data-dismiss="modal"
                         @click.stop="insertarPreguntaCuestionario()">Aceptar</button>
-                    <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
+                    <button class="btn btn-primary" @click.stop="onClickCerraModal()"
+                        data-dismiss="modal">Cerrar</button>
+
+                    <!-- <a class="btn btn-primary" href="" @click.stop="onClickLimpiarCampos()" data-dismiss="modal"
+                        role="button">Cerrar</a> -->
                 </div>
             </div>
         </div>
@@ -226,7 +230,10 @@
                         @click.stop="actualizarPreguntaEmparejamiento()">Aceptar</button>
                     <button v-else class="btn btn-primary" data-dismiss="modal"
                         @click.stop="insertarPreguntaEmparejamiento()">Aceptar</button>
-                    <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cerrar</a>
+                    <button class="btn btn-primary" @click.stop="onClickCerraModal()"
+                        data-dismiss="modal">Cerrar</button>
+                    <!-- <a class="btn btn-primary" @click.stop="onClickLimpiarCampos()" href="" data-dismiss="modal"
+                        role="button">Cerrar</a> -->
                 </div>
             </div>
         </div>
@@ -416,7 +423,8 @@
 
                                         <!-- EMPAREJAMIENTO -->
                                         <div v-if="tipoEvaluacion=='Emparejamiento'">
-                                            <div class="row" v-for="(pregunta,indexPreg) in preguntasCuestionario">
+                                            <div class="row pregunta_evaluacion"
+                                                v-for="(pregunta,indexPreg) in preguntasCuestionario">
                                                 <div class="col-sm-4" :id="'Preg'+indexPreg" key="'Preg'+indexPreg">
                                                     <div v-html="pregunta.enunciado"></div>
                                                 </div>
@@ -434,7 +442,6 @@
                                                             </div>
                                                             <div class="col-sm-4"></div>
                                                         </div>
-
                                                         <div class="row">
                                                             <div class="col-sm-4"></div>
                                                             <div class="col-sm-4">

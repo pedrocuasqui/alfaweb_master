@@ -93,7 +93,11 @@ parasails.registerPage("administrar-contenido", {
 		rutaImagenAnterior: null,
 	},
 	watch: {
-		preguntaEnEdicion: function() {},
+		tipoEvaluacion: function(nuevo, antiguo) {
+			if (nuevo == "Cuestionario") {
+				this.agregaFuncionalidadDraggable();
+			}
+		},
 		evIndividualBandera: function(valorNuevo, ValorAntiguo) {
 			if (valorNuevo && this.preguntasCuestionario.length > 0) {
 				//esta verificacion se lo hace para cuando existe ya una evaluacion en el submodulo
@@ -551,7 +555,7 @@ parasails.registerPage("administrar-contenido", {
 						}
 					});
 					if (opcionesEnNull >= 3) {
-						indicesConError.push(indice);
+						indicesConError.push(indice + 1);
 					}
 					indice += 1; //la posicion incrementa en uno
 				});
@@ -563,9 +567,9 @@ parasails.registerPage("administrar-contenido", {
 						icon: "warning",
 						title: `Realice las siguientes correcciones`,
 						text:
-							"Las preguntas: " +
+							"La(s) pregunta(s) No: " +
 							JSON.stringify(indicesConError) +
-							"no tienen opciones de respuesta",
+							" no tienen opciones de respuesta",
 						showConfirmButton: false,
 						timer: 1500,
 					});
@@ -609,7 +613,7 @@ parasails.registerPage("administrar-contenido", {
 						title: `Evaluación creada correctamente`,
 						text: cuestionarioVacio,
 						showConfirmButton: false,
-						timer: 1500,
+						timer: 2000,
 					});
 				})
 				.catch(err => {
@@ -715,6 +719,9 @@ parasails.registerPage("administrar-contenido", {
 					pista: null,
 					pregNumero: null,
 				};
+
+				//Se establece el contenido del objeto itnymce para una nueva pregunta
+				$("#mytextarea2").html("<p></p>");
 				//quito colores si es que ya hay colores
 				for (let i = 0; i <= this.preguntasCuestionario.length - 1; i++) {
 					$("#Preg" + i).css("background-color", "");
@@ -830,6 +837,27 @@ parasails.registerPage("administrar-contenido", {
 			//se cierra la vista de evaluación
 			this.evIndividualBandera = false;
 			// se muestra el objeto en edicion vacio
+			this.preguntaEnEdicion = {
+				enunciado: null,
+				opciones: {
+					opcion1: null,
+					opcion2: null,
+					opcion3: null,
+					opcion4: null,
+				},
+				respuesta: null,
+				pista: null,
+				pregNumero: null,
+			};
+		},
+		onClickCerraModal() {
+			if (this.tipoEvaluacion == "Emparejamiento") {
+				$("#modalCrearPreguntaEmparejamiento").modal("hide");
+			} else {
+				$("#modalCrearPreguntaCuestionario").modal("hide");
+			}
+			//Se establece el contenido del objeto itnymce para una nueva pregunta
+			$("#mytextarea2").html("<p></p>");
 			this.preguntaEnEdicion = {
 				enunciado: null,
 				opciones: {

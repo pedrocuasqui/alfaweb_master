@@ -8,9 +8,9 @@
         <div class="contenedor-formulario">
             <div class=" formularioCentralSmall">
                 <form id="formulario">
-
+                    <!-- ingresa titulo del modulo -->
                     <div class="form-group row">
-                        <label for="nombreModulo" class="col-sm-3">Título del módulo (*)</label>
+                        <label for="nombreModulo" class="col-sm-3">Título del módulo: (*)</label>
                         <div class="col-sm-9">
                             <input type="text" id="nombreModulo" name="nombreModulo" v-model="nombreModulo"
                                 placeholder="Ej: Modulo 1: la computadora" class="form-control "
@@ -20,9 +20,9 @@
                                 nombre para el módulo.</div>
                         </div>
                     </div>
-
+                    <!-- ingresa descripcin del modulo -->
                     <div class="form-group row">
-                        <label for="descripcionModulo" class="col-sm-3">Descripción del módulo(*)</label>
+                        <label for="descripcionModulo" class="col-sm-3">Descripción del módulo:(*)</label>
                         <div class="col-sm-9">
                             <input type="text" id="descripcionModulo" name="descripcionModulo"
                                 v-model="descripcionModulo"
@@ -34,10 +34,9 @@
                                 módulo.</div>
                         </div>
                     </div>
-
-
+                    <!-- ingresa imagen de portada -->
                     <div class="form-group row">
-                        <label class="col-sm-3">Imágen de portada (*)</label>
+                        <label class="col-sm-3">Imágen de portada: (*)</label>
                         <div class="col-sm-3">
                             <label v-if="rutaTemporal==''" for="file" class=" boton_formulario">Seleccione una Imágen
                             </label>
@@ -74,8 +73,8 @@
                         </div>
 
                     </div>
-
-                    <div class="row">
+                    <!-- Ingresa contenido tiny -->
+                    <div class="form group row">
                         <label for="tinyMce" class="col-sm-3">Contenido (*) </label>
                         <!-- Se conserva method="post" de tiny por defecto  -->
                         <div class="col-sm-9">
@@ -94,10 +93,8 @@
                             colores por defecto) </label>
                         <input id="colorModulo" type="color" name="color" v-model="color" />
                     </div> -->
-                    <div class="row">
-                        <div class="col-sm-4">
-
-                        </div>
+                    <div class="form-group row">
+                        <div class="col-sm-4"></div>
                         <div class="col-sm-4">
                             <button class="boton_formulario" type="button" id="enviarModulo" @click="validarFormulario">
                                 Guardar Módulo</button>
@@ -106,9 +103,7 @@
                             <button class="boton_formulario" type="button" id="cancelarModulo" @click="onClickCancelar">
                                 Cancelar</button>
                         </div>
-                        <div class="col-sm-1">
-
-                        </div>
+                        <div class="col-sm-1"></div>
 
                     </div>
 

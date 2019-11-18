@@ -558,12 +558,12 @@
                                     </a>
                                 </div>
                             </div>
-                            <!--contenido principal-->
+                            <!--contenido tiny-->
                             <div class="row">
 
                                 <div class="contenedor-slot-principal">
                                     <div class="contenedor-formulario-administrar">
-
+                                        <!-- para cualquier caso que no sea el curso de informatica se puede ver esta seccion -->
                                         <form method="post" v-if="noEsInforBasica">
                                             <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                             <!-- <input id="guardaTiny" type="submit" value="Guardar Tiny"> -->
@@ -572,7 +572,11 @@
                                                 <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
                                             </div>
                                         </form>
-                                        <div v-else>NO SE PUEDE EDITAR ESTE CONTENIDO ACCESO RESTRINGIDO</div>
+                                        <!-- en caso de  que se intente modificar el curso de informatica basica-->
+                                        <div v-else>
+                                            <h2> NO SE PUEDE EDITAR ESTE CONTENIDO ACCESO RESTRINGIDO</h2>
+                                        </div>
+                                        <!-- si se trata de un objeto modulo se muestran las opciones para cargar imágen  -->
                                         <div v-if="objetoSeleccionado.nombreModulo" class="form-group">
                                             <!-- <label for="colorModulo">* Color de módulo (Si no selecciona un color se usarán colores por defecto) </label> -->
                                             <!-- <input id="colorModulo" type="color" name="color"
@@ -606,7 +610,9 @@
                                             </div>
 
                                         </div>
-                                        <button type="button" id="enviarModulo" @click.stop="validarFormulario"> Guardar
+                                        <!-- bboton para guardar los cambios -->
+                                        <button type="button" id="enviarModulo" class="boton_formulario"
+                                            @click.stop="validarFormulario"> Guardar
                                             Cambios
                                         </button>
                                     </div>

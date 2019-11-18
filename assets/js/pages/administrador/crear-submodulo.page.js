@@ -215,8 +215,7 @@ parasails.registerPage("crear-submodulo", {
 		},
 		onClickCancelar() {
 			// this.imagensTiny = window.imagenesTemporalesTiny;
-			window.location.assign("/view-crear-modulo/?cursoId=" + this.curso.id);
-			// /view-crear-submodulo/?moduloId='+modulo.id
+			window.location.assign("/administrar-indice/?cursoId=" + this.curso.id);
 		},
 	},
 	computed: {

@@ -134,11 +134,9 @@ parasails.registerPage("crear-modulo", {
 			})
 				.then(response => {
 					_this.imagenPortada = response.data;
-					// setTimeout(() => {// buscar la forma de hacer que el servidor indique cuando se haya terminado de cargar la imagen y se encuentre en la carpeta temp
+
 					_this.rutaTemporal = response.data.location;
 					this.uploadPercentage = false;
-
-					// }, 7000);
 				})
 				.catch(err => {
 					swal({
@@ -147,7 +145,6 @@ parasails.registerPage("crear-modulo", {
 						text: `No se pudo guardar la imágen!\n ${err}`,
 						// footer: "<a href>Why do I have this issue?</a>",
 					});
-					// alert("Error: no se ha podido guardar la imágen: " + err);
 				});
 		},
 		// asignaObjetoRespuesta(response) {
@@ -250,26 +247,6 @@ parasails.registerPage("crear-modulo", {
 				});
 		},
 
-		/**
-		 *
-		 */
-		/*   onBorrarImagen() {
-        this.imagenPortada = {};
-      }, */
-		/*
-    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-      
-        if (contenido == 'contenido') {
-          this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-          this.evIndividual = false;
-        } else {
-          this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-          this.evIndividual = true;
-        }
-   
-      
-    },
-*/
 		actualizaContTiny() {
 			//para verificar que exista contenido Tiny
 			this.contTiny = window.contenidoTiny;

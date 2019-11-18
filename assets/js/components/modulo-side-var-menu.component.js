@@ -1,3 +1,5 @@
+/* eslint-disable no-undef */
+/*jshint esversion:8 */
 parasails.registerComponent("modulo-side-var-menu", {
 	props: {
 		objetoSeleccionado: {
@@ -6,29 +8,29 @@ parasails.registerComponent("modulo-side-var-menu", {
 				return {
 					id: "1",
 					nombreModulo: "crearModulo",
-					rol: "Administrador"
+					rol: "Administrador",
 				};
-			}
+			},
 		},
 		curso: {
 			type: Object,
-			required: true
+			required: true,
 		},
 		usuario: {
 			type: Object,
 			default: () => {
 				return { nombre: "Admin", rol: "Administrador" };
-			}
+			},
 		},
 		posicionSeleccionada: null,
-		crearSubmodulo: false
+		crearSubmodulo: false,
 	},
 	data() {
 		return {
 			showSidebar: false,
 			cursoInformatica: false,
 			moduloEvaluacion: "", //nombre del modulo que se pasa como parametro a la funcion de mostrar modal
-			indiceModulo: 0 //el indice del modulo que se pasa como parametro a la funcion de mostrar modal
+			indiceModulo: 0, //el indice del modulo que se pasa como parametro a la funcion de mostrar modal
 		};
 	},
 	mounted() {
@@ -219,14 +221,26 @@ parasails.registerComponent("modulo-side-var-menu", {
 			axios({
 				url: `/publicar-curso/${cursoId}`,
 				method: "PUT",
-				data: { publicar: true }
+				data: { publicar: true },
 			})
-				.then(response => {
+				.then(() => {
 					this.curso.publicado = true;
-					alert("curso publicado");
+					swal({
+						icon: "success",
+						title: "Curso publicado correctamente",
+
+						showConfirmButton: true,
+						timer: 2000,
+					});
 				})
 				.catch(err => {
-					alert("Error, no se ha podido publicar el curso: " + err);
+					swal({
+						icon: "error",
+						title: "Error: no se ha podido publicar el curso",
+						text: err,
+						showConfirmButton: true,
+						timer: 2000,
+					});
 				});
 		},
 		ocultarCurso(cursoId) {
@@ -234,16 +248,26 @@ parasails.registerComponent("modulo-side-var-menu", {
 			axios({
 				url: `/publicar-curso/${cursoId}`,
 				method: "PUT",
-				data: { publicar: false }
+				data: { publicar: false },
 			})
 				.then(response => {
 					this.curso.publicado = false;
-					alert("Se ha ocultado el curso a los estudiantes");
+					swal({
+						icon: "info",
+						title: "Se ha ocultado el curso a los estudiantes",
+						showConfirmButton: true,
+						timer: 2000,
+					});
 				})
 				.catch(err => {
-					alert("Error: intente más tarde: " + err);
+					swal({
+						icon: "error",
+						title: "Error: intente más tarde",
+						text: err,
+						showConfirmButton: true,
+					});
 				});
-		}
+		},
 	},
 	computed: {
 		esAdmin() {
@@ -288,6 +312,6 @@ parasails.registerComponent("modulo-side-var-menu", {
 
 			return edicionHabilitada;
 		},
-		esAlfaweb() {}
-	}
+		esAlfaweb() {},
+	},
 });

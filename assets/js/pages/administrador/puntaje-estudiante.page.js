@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*jshint esversion:8 */
 
 parasails.registerPage("puntaje-estudiante", {
@@ -59,14 +60,22 @@ parasails.registerPage("puntaje-estudiante", {
 							this.definirGraficoPuntuacion();
 						})
 						.catch(err => {
-							alert(
-								"Error: " +
-									err +
-									"/n Contacte con el administrador del sistema",
-							);
+							swal({
+								icon: "error",
+								title: "Error!, contacto con el administrador del sistema",
+								text: err,
+								showConfirmButton: true,
+								timer: 2000,
+							});
 						});
 				} else {
-					alert("No puede acceder a esta información como usuario Visitante");
+					swal({
+						icon: "warning",
+						title: "No puede acceder a esta información como usuario visitante",
+						text: err,
+						showConfirmButton: true,
+						timer: 2000,
+					});
 				}
 			}
 		},
@@ -140,18 +149,6 @@ parasails.registerPage("puntaje-estudiante", {
 				// Configuration options go here
 				options: {},
 			});
-
-			/*       $("#graficoPuntuacionHistorica").click(
-        function (evt) {
-          var activePoints = chart.getElementsAtEvent(evt);
-          // var url = "http://example.com/?label=" + activePoints[0].label + "&value=" + activePoints[0].value;
-          if (activePoints[0]) {
-            var selectedIndex = activePoints[0]._index;
-          }
-
-          // alert(url);
-        }
-      ); */
 		},
 		seleccionarEstudiantesConIntentos() {
 			//se recorre el arreglo recibido del servidor con los estudiantes y sus evaluaciones

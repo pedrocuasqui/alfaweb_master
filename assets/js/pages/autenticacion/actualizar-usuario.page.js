@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*jshint esversion:8 */
 parasails.registerPage("actualizar-usuario", {
 	//  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
@@ -80,14 +81,31 @@ parasails.registerPage("actualizar-usuario", {
 				data: formData,
 			})
 				.then(response => {
-					alert("Vuelve a ingresar con tu nueva contraseña");
-					window.location.replace("/view-login");
+					swal({
+						icon: "success",
+						title: "Actualización exitosa",
+						text: "Vuelve a ingresar con tu nueva contraseña",
+						showConfirmButton: true,
+						timer: 2000,
+					}).then(() => {
+						window.location.replace("/view-login");
+					});
 				})
 				.catch(err => {
 					if (err.response.status == 409) {
-						alert("Error: El usuario ya se encuentra creado");
+						swal({
+							icon: "error",
+							title: "El usuario ya se encuentra creado",
+							text: err,
+							showConfirmButton: true,
+						});
 					} else {
-						alert("Error: No se puede actualizar en este momento");
+						swal({
+							icon: "error",
+							title: "No se puede actualizar en este momento",
+							text: err,
+							showConfirmButton: true,
+						});
 					}
 
 					// return false;

@@ -89,7 +89,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 			intentosEvaluacion: null,
 			estudiantesConSusIntentos: [],
 			estudiantesConSusIntentosQuickSort: null,
-			mostrar_opciones_de_usuario: true,
+			mostrarOpcionesDeUsuario: true,
 		};
 	},
 	mounted() {},
@@ -439,15 +439,6 @@ parasails.registerComponent("modulo-panel-derecho", {
 				}
 			}
 		},
-		/* se omite el reto, se considera redundante puesto que las evaluaciones son por tema
-        reto() { //pendiente desarrollar el reto
-            if (this.adminCreandoModuloSubmodulo) {
-                alert('Es necesario crear primero el objeto (módulo o submódulo) actual');
-            } else {
-                this.$emit('reto', contenido);
-            }
-        },
-        */
 
 		clickPuntuacion() {
 			if (this.curso) {
@@ -472,10 +463,21 @@ parasails.registerComponent("modulo-panel-derecho", {
 							this.mostrarModalPuntuacion();
 						})
 						.catch(err => {
-							alert("Error: no se puede mostrar la puntuación en este momento");
+							swal({
+								icon: "error",
+								title:
+									"Error: no se puede mostrar la puntuación en este momento",
+								text: err,
+								showConfirmButton: true,
+							});
 						});
 				} else {
-					alert("No puede acceder a esta información como usuario Visitante");
+					swal({
+						icon: "error",
+						title: "No puede acceder a esta información como usuario Visitante",
+						text: err,
+						showConfirmButton: true,
+					});
 				}
 			}
 		},
@@ -586,7 +588,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 			}
 		},
 		mostrarOpcionesUsuario() {
-			this.mostrar_opciones_de_usuario = !this.mostrar_opciones_de_usuario;
+			this.mostrarOpcionesDeUsuario = !this.mostrarOpcionesDeUsuario;
 		},
 	},
 	computed: {

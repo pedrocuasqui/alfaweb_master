@@ -1,5 +1,6 @@
+/* eslint-disable no-undef */
 /*jshint esversion:8 */
-parasails.registerComponent('boton-curso', {
+parasails.registerComponent("boton-curso", {
 	props: {
 		curso: Object,
 	},
@@ -7,18 +8,18 @@ parasails.registerComponent('boton-curso', {
 		return {
 			editarCurso: false,
 			formErrors: {},
-		}
+		};
 	},
 	mounted() {
-		var _this = this
+		var _this = this;
 		//se aniade el evento mediante javascript porque el evento @click no permite diferenciar a que boton se le dio click
 		document.getElementById(this.curso.id).addEventListener(
-			'click',
+			"click",
 			(abrir = function() {
-				_this.abrirCurso(_this.curso.id)
+				_this.abrirCurso(_this.curso.id);
 			}),
-			false
-		)
+			false,
+		);
 	},
 
 	template: /*template */ `  
@@ -55,70 +56,92 @@ parasails.registerComponent('boton-curso', {
     `,
 	methods: {
 		mostrarEditarCurso(cursoId) {
-			this.editarCurso = true
+			this.editarCurso = true;
 			document
 				.getElementById(cursoId)
-				.removeEventListener('click', abrir, false)
+				.removeEventListener("click", abrir, false);
 		},
 		validarCampos() {
-			this.formErrors = {}
+			this.formErrors = {};
 
-			if (this.curso.nombre == '') {
-				this.formErrors.nombre = true
+			if (this.curso.nombre == "") {
+				this.formErrors.nombre = true;
 			}
-			if (this.curso.descripcion == '') {
-				this.formErrors.descripcion = true
+			if (this.curso.descripcion == "") {
+				this.formErrors.descripcion = true;
 			}
 
 			if (Object.keys(this.formErrors).length > 0) {
-				return false
+				return false;
 			} else {
 				//   this.guardarCurso(curso);
-				this.editarCurso = false
-				this.$emit('guardar-curso', this.curso)
+				this.editarCurso = false;
+				this.$emit("guardar-curso", this.curso);
 			}
 		},
 		abrirCurso(cursoId) {
-			window.location.href = '/administrar-indice/?cursoId=' + cursoId
+			window.location.href = "/administrar-indice/?cursoId=" + cursoId;
 		},
 		seleccionaCursoEliminar(curso) {
-			this.$emit('selecciona-curso-eliminar', curso)
+			this.$emit("selecciona-curso-eliminar", curso);
 		},
 		publicarCurso(cursoId) {
 			axios({
 				url: `/publicar-curso/${cursoId}`,
-				method: 'PUT',
+				method: "PUT",
 				data: { publicar: true },
 			})
-				.then(response => {
-					this.curso.publicado = true
-					alert('Curso publicado')
+				.then(() => {
+					this.curso.publicado = true;
+					swal({
+						icon: "success",
+						title: "Curso publicado",
+						showConfirmButton: true,
+						timer: 2000,
+					});
 				})
 				.catch(err => {
-					alert('Error: no se ha podido publicar el curso')
-				})
+					swal({
+						icon: "error",
+						title: "Error: no se ha podido publicar el curso",
+						text: err,
+						showConfirmButton: true,
+						timer: 2000,
+					});
+				});
 		},
 		ocultarCurso(cursoId) {
-			this.curso.publicado = false
+			this.curso.publicado = false;
 			axios({
 				url: `/publicar-curso/${cursoId}`,
-				method: 'PUT',
+				method: "PUT",
 				data: { publicar: false },
 			})
-				.then(response => {
-					this.curso.publicado = false
-					alert('Se ha ocultado el curso a los estudiantes')
+				.then(() => {
+					this.curso.publicado = false;
+					swal({
+						icon: "success",
+						title: "Se ha ocultado el curso a los estudiantes",
+						showConfirmButton: true,
+						timer: 2000,
+					});
 				})
 				.catch(err => {
-					alert('Error: intente más tarde')
-				})
+					swal({
+						icon: "error",
+						title: "Error: intente más tarde",
+						text: err,
+						showConfirmButton: true,
+						timer: 2000,
+					});
+				});
 		},
 	},
 	computed: {
 		noEsInforBasica() {
 			//si el nombre del curso es "Alfabetización informática" entonces no se mostrará el botón eliminar, no se debe por ninguna razón eliminar el curso, en caso de hacerlo, se debe reiniciar el servidor para que se vuelva a crear el curso por defecto, aunque las páginas  html del contenido permanecerán siempre intactas
-			let respuesta = this.curso.nombre != 'Alfabetización informática'
-			return respuesta
+			let respuesta = this.curso.nombre != "Alfabetización informática";
+			return respuesta;
 		},
 		// habilitarEdicion() {
 
@@ -131,8 +154,8 @@ parasails.registerComponent('boton-curso', {
 		cursoPublicado() {
 			let respuesta =
 				this.curso.publicado &&
-				this.curso.nombre != 'Alfabetización informática'
-			return respuesta
+				this.curso.nombre != "Alfabetización informática";
+			return respuesta;
 		},
 	},
-})
+});

@@ -193,7 +193,6 @@ parasails.registerPage("administrar-contenido", {
 
 			// SI EXISTE ALGUN ERROR SE RETORNA FALSE Y LA PAGINA SE REFRESCA SIN QUE SEA PERCEPTIBLE
 			if (Object.keys(this.formErrors).length > 0) {
-				alert("Corrija los errores antes de continuar");
 				return false;
 			}
 			//SI LOS VALORES INGRESADOS SON CORRECTOS SE carga la imagen, en then se carga el resto de campos
@@ -227,12 +226,23 @@ parasails.registerPage("administrar-contenido", {
 				data: formData,
 			})
 				.then(response => {
-					alert("Modificación Exitosa");
+					swal({
+						icon: "success",
+						title: "Modificación exitosa",
+						showConfirmButton: true,
+						timer: 2000,
+					});
 					this.editarNombre = false;
 					this.editarDescripcion = false;
 				})
 				.catch(err => {
-					alert("Error: no se ha podido actualizar el módulo" + err);
+					swal({
+						icon: "error",
+						title: "Error: no se ha podido actualizar el módulo",
+						text: err,
+						showConfirmButton: true,
+						timer: 2000,
+					});
 				});
 		},
 		actualizarSubmodulo() {
@@ -254,12 +264,22 @@ parasails.registerPage("administrar-contenido", {
 				data: formData,
 			})
 				.then(response => {
-					alert("Modificacion Exitosa");
+					swal({
+						icon: "success",
+						title: "Modificación exitosa",
+						showConfirmButton: true,
+						timer: 2000,
+					});
 					this.editarNombre = false;
 					this.editarDescripcion = false;
 				})
 				.catch(err => {
-					alert("Error: no se ha podido actualizar el tema" + err);
+					swal({
+						icon: "error",
+						title: "Error: no se ha podido actualizar el submódulo",
+						text: err,
+						showConfirmButton: true,
+					});
 				});
 		},
 
@@ -286,25 +306,34 @@ parasails.registerPage("administrar-contenido", {
 					},
 				})
 				.then(response => {
-					alert("Objeto eliminado correctamente");
-					if (response.data.nombreModulo) {
-						//si el objeto eliminado es un modulo entonces se muestra la interfaz crear modulo
-						window.location.replace(
-							"/view-crear-modulo/?cursoId=" + _this.curso.id,
-						);
-					} else {
-						// si el objeto eliminado es un submodulo entonces se redirge a la interfaz del modulo padre
-						window.location.replace(
-							"/administrar-contenido/?objetoId=" +
-								_this.objetoSeleccionado.modulo +
-								"&tipoContenido=Modulo",
-						);
-					}
+					swal({
+						icon: "succes",
+						title: "Objeto eliminado correctamente",
+						showConfirmButton: true,
+						timer: 2000,
+					}).then(() => {
+						if (response.data.nombreModulo) {
+							//si el objeto eliminado es un modulo entonces se muestra la interfaz crear modulo
+							window.location.replace(
+								"/view-crear-modulo/?cursoId=" + _this.curso.id,
+							);
+						} else {
+							// si el objeto eliminado es un submodulo entonces se redirge a la interfaz del modulo padre
+							window.location.replace(
+								"/administrar-contenido/?objetoId=" +
+									_this.objetoSeleccionado.modulo +
+									"&tipoContenido=Modulo",
+							);
+						}
+					});
 				})
 				.catch(error => {
-					alert(
-						"Error, no se ha podido eliminar el objeto solicitado: " + error,
-					);
+					swal({
+						icon: "error",
+						title: "Error: no se ha podido eliminar el objeto seleccionado",
+						text: error,
+						showConfirmButton: true,
+					});
 				});
 		},
 		establecerContenidoTiny() {
@@ -368,7 +397,12 @@ parasails.registerPage("administrar-contenido", {
 					this.uploadPercentage = false;
 				})
 				.catch(err => {
-					alert("No se puede cargar su imágen en este momento.\n Error:" + err);
+					swal({
+						icon: "error",
+						title: "No se puede cargar la imágen en este momento",
+						text: err,
+						showConfirmButton: true,
+					});
 				});
 		},
 		evaluacionIndividual(contenido) {
@@ -587,7 +621,6 @@ parasails.registerPage("administrar-contenido", {
 							JSON.stringify(indicesConError) +
 							" no tienen opciones de respuesta",
 						showConfirmButton: false,
-						timer: 1500,
 					});
 				}
 			}

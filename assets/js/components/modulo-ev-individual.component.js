@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*jshint esversion:6*/
 parasails.registerComponent("modulo-ev-individual", {
 	props: {
@@ -540,7 +541,12 @@ parasails.registerComponent("modulo-ev-individual", {
 				}
 
 				if (this.haFinalizadoEvaluacionAntes()) {
-					alert("¡Bien hecho, terminaste antes de tiempo!");
+					swal({
+						icon: "success",
+						title: "Bien hecho, terminaste antes de tiempo",
+						showConfirmButton: true,
+						timer: 2000,
+					});
 					this.calcularPuntuacion(); //aun si es visitante se muestra el puntaje obtenido //tambien se invoca a guardar dentro de esta funcion
 				}
 			}
@@ -593,7 +599,13 @@ parasails.registerComponent("modulo-ev-individual", {
 		actualizaCuentaRegresiva() {
 			// document.getElementById('countdown').innerHTML = totalTime;
 			if (this.totalTime == 0.0) {
-				alert("Se agotó el tiempo");
+				swal({
+					icon: "info",
+					title: "Lástima!! ",
+					text: "Se terminó el tiempo",
+					showConfirmButton: true,
+					timer: 2000,
+				});
 				if (this.tipoEvaluacion == "Cuestionario") {
 					this.finalizarCuestionario();
 					//desde finalizarCuestionario() se llama a calcularPuntuacion
@@ -828,7 +840,13 @@ parasails.registerComponent("modulo-ev-individual", {
 					this.usuario.ultimoIntento = response.data.intentoEvaluacionCreado;
 				})
 				.catch(err => {
-					alert("Error: no se puede guardar el avance en este momento: " + err);
+					swal({
+						icon: "error",
+						title: "Error: no se puede guardar el avance en este momento",
+						text: err,
+						showConfirmButton: true,
+						timer: 2000,
+					});
 				});
 		},
 		actualizaProgreso() {
@@ -849,19 +867,29 @@ parasails.registerComponent("modulo-ev-individual", {
 				if (this.tipoEvaluacion == "Emparejamiento") {
 					if (this.preguntaSeleccionadaJuegoEmparejamiento) {
 						//ha sido seleccionada la pregunta
-						alert(
-							"Pista: " + this.preguntaSeleccionadaJuegoEmparejamiento.pista,
-						);
+						swal({
+							icon: "info",
+							title: "Pista!!!!!",
+							text: this.preguntaSeleccionadaJuegoEmparejamiento.pista,
+							showConfirmButton: true,
+						});
 					} else {
-						alert("Seleccione un enunciado primero");
+						swal({
+							icon: "info",
+							title: "Primero seleccione un enunciado",
+							showConfirmButton: true,
+							timer: 3000,
+						});
 					}
 				} else {
-					alert(
-						"Pista: " +
-							this.preguntasCuestionarioRespuestas[
-								this.indicePreguntaCuestionario
-							].pista,
-					);
+					swal({
+						icon: "info",
+						title: "Pista!!!!!",
+						text: this.preguntasCuestionarioRespuestas[
+							this.indicePreguntaCuestionario
+						].pista,
+						showConfirmButton: true,
+					});
 				}
 			}
 		},

@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*jshint esversion:8 */
 parasails.registerPage("administrar-indice", {
 	//  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
@@ -30,18 +31,23 @@ parasails.registerPage("administrar-indice", {
 	//  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
 	methods: {
 		eliminarDocumento() {
-			var _this = this;
 			axios
 				.get("/eliminar-curso", {
 					params: {
 						cursoId: this.curso.id,
 					},
 				})
-				.then(function(response) {
+				.then(() => {
 					location.replace("/administrar-home");
 				})
-				.catch(function(error) {
-					alert("Error: consulte a soporte técnico");
+				.catch(error => {
+					swal({
+						icon: "error",
+						title: "No se ha podido eliminar el curso",
+						text: error,
+						showConfirmButton: true,
+						timer: 2000,
+					});
 				});
 		},
 	},

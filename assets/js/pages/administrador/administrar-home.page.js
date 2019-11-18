@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*jshint esversion:8 */
 parasails.registerPage("administrar-home", {
 	//  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
@@ -53,7 +54,7 @@ parasails.registerPage("administrar-home", {
 		},
 		seleccionaCursoEliminar(curso) {
 			this.cursoEliminar = curso;
-			$(function() {
+			$(() => {
 				$("#modalConfirmaEliminar").modal("show");
 			});
 		},
@@ -65,11 +66,16 @@ parasails.registerPage("administrar-home", {
 						cursoId: this.cursoEliminar.id,
 					},
 				})
-				.then(function(response) {
+				.then(() => {
 					_this.consultarCursos();
 				})
-				.catch(function(error) {
-					alert("Error: consultar a soporte técnico");
+				.catch(error => {
+					swal({
+						icon: "error",
+						title: "No se pudo eliminar el curso",
+						text: error,
+						showConfirmButton: true,
+					});
 				});
 		},
 
@@ -77,11 +83,16 @@ parasails.registerPage("administrar-home", {
 			var _this = this;
 			axios
 				.get("/consulta-cursos") //llamada a la ruta curso por defecto
-				.then(function(response) {
+				.then(response => {
 					_this.cursos = response.data;
 				})
-				.catch(function(error) {
-					alert("Error: consultar a soporte técnico");
+				.catch(error => {
+					swal({
+						icon: "error",
+						title: "No se ha podido consultar los cursos",
+						text: error,
+						showConfirmButton: true,
+					});
 				});
 		},
 		abrirCurso(cursoId) {
@@ -122,10 +133,20 @@ parasails.registerPage("administrar-home", {
 				data: formData,
 			})
 				.then(response => {
-					alert("Curso guardado correctamente");
+					swal({
+						icon: "success",
+						title: "Curso guardado correctamente",
+						showConfirmButton: true,
+						timer: 2000,
+					});
 				})
 				.catch(err => {
-					alert("Error: consulte a soporte técnico");
+					swal({
+						icon: "error",
+						title: "Error: no se ha podido actualizar el curso",
+						text: err,
+						showConfirmButton: true,
+					});
 				});
 
 			// finalmente habilitar el evento click nuevamente

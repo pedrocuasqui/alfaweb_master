@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*jshint esversion:8 */
 parasails.registerPage("crear-submodulo", {
 	//  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
@@ -107,7 +108,12 @@ parasails.registerPage("crear-submodulo", {
 				.then(response => {
 					//PASAR COMO PARÁMETRO AL COMPONENTE SIDE-VAR-MENU EL MODULO CREADO
 					//pasar el objeto creado,
-					alert("Submodulo creado correctamente");
+					swal({
+						icon: "success",
+						tittle: "Tema creado correctamente",
+						showConfirmButton: true,
+						timer: 2000,
+					});
 					this.submoduloCreado = response.data;
 
 					window.location.replace(
@@ -121,11 +127,26 @@ parasails.registerPage("crear-submodulo", {
 					//la respuesta de sails this.res
 
 					if (err.response.status == 409) {
-						alert("Ya existe un tema con el mismo nombre");
+						swal({
+							icon: "error",
+							tittle: "Ya existe un tema con el mismo nombre",
+							showConfirmButton: true,
+							timer: 2000,
+						});
 					} else if (err.response.status == 400) {
-						alert("Existen errores en la información suministrada");
+						swal({
+							icon: "error",
+							tittle: "Existen errores en la información suministrada",
+							showConfirmButton: true,
+							timer: 2000,
+						});
 					} else {
-						alert("Error en el servidor");
+						swal({
+							icon: "error",
+							tittle: `Error: ${err}`,
+							showConfirmButton: true,
+							timer: 2000,
+						});
 					}
 				});
 		},

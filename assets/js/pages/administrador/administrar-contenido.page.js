@@ -91,14 +91,22 @@ parasails.registerPage("administrar-contenido", {
 		],
 		uploadPercentage: 0,
 		rutaImagenAnterior: null,
+		cambiosEnPreguntas: false,
+		guardaDesdeBotonCerrar: false,
 	},
 	watch: {
+		preguntasCuestionario: function(nuevoValor, antiq) {
+			this.cambiosEnPreguntas = true;
+			console.log(nuevoValor);
+		},
 		tipoEvaluacion: function(nuevo, antiguo) {
 			if (nuevo == "Cuestionario") {
 				this.agregaFuncionalidadDraggable();
 			}
 		},
 		evIndividualBandera: function(valorNuevo, ValorAntiguo) {
+			this.guardaDesdeBotonCerrar = false;
+			this.cambiosEnPreguntas = false;
 			if (valorNuevo && this.preguntasCuestionario.length > 0) {
 				//esta verificacion se lo hace para cuando existe ya una evaluacion en el submodulo
 				//si el nuevo valor es true significa que se muestra la evaluacion(para el dom se crea nuevamente cada vez que cambia), por tanto es necesario volver a agregar esta funcionalidad cada vez que se muestra la evaluacion
@@ -238,7 +246,7 @@ parasails.registerPage("administrar-contenido", {
 			formData.append("contenidoTiny", window.contenidoTiny);
 			formData.append("submoduloId", this.objetoSeleccionado.id);
 			formData.append("color", this.objetoSeleccionado.color);
-			formData.append("evaluacion", this.objetoSeleccionado.evaluacion);
+			// formData.append("evaluacion", this.objetoSeleccionado.evaluacion);
 			// no se envia el id del curso
 			axios({
 				method: "post",
@@ -474,6 +482,13 @@ parasails.registerPage("administrar-contenido", {
 					1,
 					this.preguntaEnEdicion,
 				);
+				swal({
+					position: "center",
+					icon: "success",
+					title: `Pregunta editada correctamente!`,
+					showConfirmButton: true,
+					timer: 1500,
+				});
 				this.preguntaEnEdicion = {
 					enunciado: null,
 					opciones: {
@@ -615,6 +630,13 @@ parasails.registerPage("administrar-contenido", {
 						showConfirmButton: false,
 						timer: 2000,
 					});
+
+					this.cambiosEnPreguntas = false;
+					if (this.guardaDesdeBotonCerrar) {
+						//se cierra la vista de evaluación
+						this.evIndividualBandera = false;
+						this.guardaDesdeBotonCerrar = false;
+					}
 				})
 				.catch(err => {
 					swal({
@@ -660,6 +682,13 @@ parasails.registerPage("administrar-contenido", {
 					1,
 					this.preguntaEnEdicion,
 				);
+				swal({
+					position: "center",
+					icon: "success",
+					title: `Pregunta editada correctamente!`,
+					showConfirmButton: true,
+					timer: 1500,
+				});
 				this.preguntaEnEdicion = {
 					enunciado: null,
 					opciones: {
@@ -834,8 +863,37 @@ parasails.registerPage("administrar-contenido", {
 			});
 		},
 		onClickCancelarEvaluacion() {
-			//se cierra la vista de evaluación
-			this.evIndividualBandera = false;
+			var _this = this;
+			if (this.cambiosEnPreguntas) {
+				swal({
+					position: "center",
+					icon: "warning",
+					title: `Existen cambios en la evaluación, desea guardarlos?`,
+					text: "",
+					closeOnConfirm: false,
+					closeOnCancel: false,
+					buttons: {
+						confirm: {
+							text: "Si, guardar cambios!",
+							value: true,
+						},
+						cancel: "No, cerrar", //retona null
+					},
+				}).then(valor => {
+					if (valor) {
+						//se cierra la vista de evaluación
+						this.guardaDesdeBotonCerrar = true;
+						_this.guardarEvaluacion();
+					} else {
+						//se cierra la vista de evaluación
+						this.evIndividualBandera = false;
+						this.cambiosEnPreguntas = false;
+					}
+				});
+			} else {
+				this.evIndividualBandera = false;
+			}
+
 			// se muestra el objeto en edicion vacio
 			this.preguntaEnEdicion = {
 				enunciado: null,
@@ -858,6 +916,7 @@ parasails.registerPage("administrar-contenido", {
 			}
 			//Se establece el contenido del objeto itnymce para una nueva pregunta
 			$("#mytextarea2").html("<p></p>");
+			this.modalEdicion = false;
 			this.preguntaEnEdicion = {
 				enunciado: null,
 				opciones: {

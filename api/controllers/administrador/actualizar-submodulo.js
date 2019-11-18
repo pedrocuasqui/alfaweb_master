@@ -7,28 +7,29 @@ module.exports = {
 	inputs: {
 		nombreSubmodulo: {
 			type: "string",
-			required: true
+			required: true,
 		},
 		descripcionSubmodulo: {
 			type: "string",
-			required: true
+			required: true,
 		},
 
 		contenidoTiny: {
 			type: "string",
-			required: false
+			required: false,
 		},
 		submoduloId: {
 			type: "string",
-			required: true
+			required: true,
 		},
 		color: {
 			type: "string",
-			required: false
+			required: false,
 		},
 		evaluacion: {
-			type: "json"
-		}
+			type: "json",
+			required: false,
+		},
 	},
 
 	exits: {},
@@ -38,20 +39,20 @@ module.exports = {
 		// var cursoRecibido = JSON.parse(inputs.curso);
 		try {
 			await SubmoduloLibro.update({
-				id: inputs.submoduloId
+				id: inputs.submoduloId,
 			}).set({
 				nombreSubmodulo: inputs.nombreSubmodulo,
 				descripcion: inputs.descripcionSubmodulo,
 				contenidoTiny: inputs.contenidoTiny,
 				color: inputs.color,
-				evaluacion: inputs.evaluacion
+				evaluacion: inputs.evaluacion,
 			});
 		} catch (e) {
 			sails.log(
 				"Error al intentar actualizar el submodulo:" +
 					inputs.nombreSubmodulo +
 					"\n" +
-					e
+					e,
 			);
 			if (e.CODE == "E_UNIQUE") {
 				return res.status(409).send({ error: e });
@@ -63,5 +64,5 @@ module.exports = {
 			}
 		}
 		return; // no remitir ningun codigo porque da error
-	}
+	},
 };

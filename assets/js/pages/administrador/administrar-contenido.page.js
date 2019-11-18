@@ -558,11 +558,17 @@ parasails.registerPage("administrar-contenido", {
 
 				if (indicesConError.length > 0) {
 					this.formErrors.opciones = true;
-					alert(
-						"Las preguntas: " +
+					swal({
+						position: "center",
+						icon: "warning",
+						title: `Realice las siguientes correcciones`,
+						text:
+							"Las preguntas: " +
 							JSON.stringify(indicesConError) +
 							"no tienen opciones de respuesta",
-					);
+						showConfirmButton: false,
+						timer: 1500,
+					});
 				}
 			}
 			// si el administrador borró el campo y olvidó escribir un valor para tiempo máximo, este se asigna por defecto

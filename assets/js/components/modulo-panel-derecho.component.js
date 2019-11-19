@@ -170,249 +170,145 @@ parasails.registerComponent("modulo-panel-derecho", {
     <!------------------------------------>
     <!------------------------------------>
     <!------------------------------------>
-    <div class="container-fluid barra-lateral">
-    
- 
-    <div  id="alerta_ultimo_tema" v-if="existeAvance" class="alert alert-info alert-dismissible fade show" role="alert">
-        <strong>Último tema revisado: </strong> {{cursoEstudiante.nombre}}.
-        <a v-if="cursoEstudiante.avance.enlace" :href="'/contenido-alfaweb/?enlace='+cursoEstudiante.avance.enlace" >{{cursoEstudiante.nombre}}</a>
-        <a v-else :href="'/interfaz-modulos/?objetoId='+cursoEstudiante.avance.objetoId+'&tipoContenido='+cursoEstudiante.avance.tipoContenido">{{cursoEstudiante.nombre}}</a>
-        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-            <span aria-hidden="true">&times;</span>
-        </button>
-    </div>
+		<div class="container-fluid barra-lateral">
 
+		<div id="alerta_ultimo_tema" v-if="existeAvance" class="alert alert-info alert-dismissible fade show" role="alert">
+			<strong>Último tema revisado: </strong> {{cursoEstudiante.nombre}}.
+			<a v-if="cursoEstudiante.avance.enlace"
+				:href="'/contenido-alfaweb/?enlace='+cursoEstudiante.avance.enlace">{{cursoEstudiante.nombre}}</a>
+			<a v-else
+				:href="'/interfaz-modulos/?objetoId='+cursoEstudiante.avance.objetoId+'&tipoContenido='+cursoEstudiante.avance.tipoContenido">{{cursoEstudiante.nombre}}</a>
+			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
+				<span aria-hidden="true">&times;</span>
+			</button>
+		</div>
+	
+	
+	
+		<div class="row usuario">
+			<div class="col">
+				<div class="btn-group">
+					<slot>
+						<!--Iconos de silenciar e imprimir-->
+					</slot>
+					<button type="button" class="btn btn-primary dropdown-toggle boton_formulario" data-toggle="dropdown"
+						aria-haspopup="true" aria-expanded="false" @click="mostrarOpcionesUsuario()">
+						{{usuario.nombre}}
+					</button>
+	
+	
+					<div id="boton_desplegable_personalizado" class="dropdown-menu">
+						<a v-if="usuario.nombre =='Visitante'" class="dropdown-item" href="/view-login">Iniciar Sesión</a>
+						<a v-else class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
+						<div class="dropdown-divider"></div>
+						<a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
+						<div v-if="usuario.nombre !='Visitante'" class="dropdown-divider"></div>
+	
+						<div class="container-fluid">
+	
+							<!-- Seccion progreso(puntos, nivel, progreso) del estudiante -->
+							<div class="row progreso" v-if="!esAdmin">
+								<div class="col">
+	
+									<div class="puntaje">
+										<div class="row">
+											<div><span>Puntos:</span></div>
+											<div class="progress icono">
+												<div class="contenedor-icono ">
+													<i class="fas fa-certificate fa-stack-2x"> </i>
+													<span class="fa-stack-1x">{{puntajeActual}}</span>
+												</div>
+											</div>
+										</div>
+									</div>
+	
+									<div class="nivel">
+										<div class="row indicador">
+											<div><span>Nivel:</span></div>
+											<div class="progress icono">
+	
+												<div class="contenedor-icono">
+													<i class="fas fa-battery-empty fa-stack-2x"></i>
+													<span class="fa-stack-1x">&nbsp{{nivelActual}}/{{totalNiveles}}</span>
+												</div>
+											</div>
+										</div>
+										<div class="progress " style="height: 3px;">
+											<div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}"
+												:aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+									</div>
+	
+									<div class="medallas">
+										<div class="row indicador">
+											<div><span>Progreso:</span></div>
+											<div class="progress icono">
 
-    
-        <div class="row usuario">
-                <div class="col">
-                    <div class="btn-group">
-                   
-                        <slot >
-                        <!--Iconos de silenciar e imprimir-->
-                        </slot>
-                        <button type="button" class="btn btn-primary dropdown-toggle boton_formulario" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" @click="mostrarOpcionesUsuario()">
-                        {{usuario.nombre}}
-                        </button>
-                    
+												<div class="contenedor-icono">
+													<img v-if="medallaActual=='bebe'" src="/images/svg/buho_bebe.svg" :alt="medallaActual">
+													<img v-else-if="medallaActual=='estudiante'" src="/images/svg/buho_original_1.svg"
+														:alt="medallaActual">
+													<img v-else-if="medallaActual=='estudiante destacado'" src="/images/svg/buho_original_1.svg"
+														:alt="medallaActual">
+													<img v-else-if="medallaActual=='egresado'" src="/images/svg/buho_sabio.svg"
+														:alt="medallaActual">
+													<img v-else src="/images/svg/buho_graduado.svg" :alt="medallaActual">
+												</div>
+											</div>
+										</div>
+										<div class="progress " style="height: 3px;">
+											<div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}"
+												:aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100"></div>
+										</div>
+									</div>
+	
+								</div>
+							</div>
+							<!-- Seccion de evaluacion y puntaje -->
+							<div class="row enlaces">
+								<div class="col">
 
-                    <div id="boton_desplegable_personalizado" class="dropdown-menu">
-                      <a v-if="usuario.nombre =='Visitante'" class="dropdown-item" href="/view-login">Iniciar Sesión</a>
-                      <a v-else class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
-                      <div class="dropdown-divider"></div>
-                      <a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
-                      <div v-if="usuario.nombre !='Visitante'" class="dropdown-divider"></div>
-
-                      <div class="container-fluid">
-                      <div class="row progreso">
-            <div class="col">
-                        
-                <div class="puntaje">
-                        <div class="row">
-                            <div><span>Puntos:</span></div>
-                            <!--<div class="progress icono">    
-                                <div class="progress-bar" role="progressbar" :style="{width:puntajeActual+'%'}" :aria-valuenow="puntajeActual" aria-valuemin="0" aria-valuemax="100">
-                                </div>
-                                <div class="contenedor-icono fa-stack">
-                                    <i class="fas fa-certificate fa-stack-2x" > </i>
-                                    <span class="fa-stack-1x">{{puntajeActual}}</span>
-                                </div>
-                            </div>
-                            <div class="progress ">
-                                <div class="progress-bar" role="progressbar" :style="{width:puntajeActual+'%'}" :aria-valuenow="puntajeActual" aria-valuemin="0" aria-valuemax="100">Puntos</div>
-                            </div>
-                            -->
-                            <div class="progress icono" >
-                                <div class="contenedor-icono ">
-                                    <i class="fas fa-certificate fa-stack-2x" > </i>
-                                    <span class="fa-stack-1x">{{puntajeActual}}</span>
-                                </div>
-
-                                
-                            </div>
-                        </div>
-                </div>  
-                        
-
-
-                <div class="nivel">
-                    <div class="row indicador">
-                            <div><span>Nivel:</span></div>
-                            <div class="progress icono" >    
-                               <!-- <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100">
-                                </div> -->
-                                <div class="contenedor-icono">
-                                    <i class="fas fa-battery-empty fa-stack-2x"></i>    
-                                    <span class="fa-stack-1x">&nbsp{{nivelActual}}/{{totalNiveles}}</span>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="progress "  style="height: 3px;">    
-                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-
-                <div class="medallas">
-                    <div class="row indicador" >
-                        <div><span>Progreso:</span></div>
-                        <div class="progress icono">    
-                            <!--<div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100">
-                            </div> -->
-                            <div class="contenedor-icono">
-                                <img v-if="medallaActual=='bebe'" src="/images/svg/buho_bebe.svg" :alt="medallaActual">
-                                <img v-else-if="medallaActual=='estudiante'" src="/images/svg/buho_original_1.svg" :alt="medallaActual">
-                                <img v-else-if="medallaActual=='estudiante destacado'" src="/images/svg/buho_original_1.svg" :alt="medallaActual">
-                                <img v-else-if="medallaActual=='egresado'" src="/images/svg/buho_sabio.svg" :alt="medallaActual">
-                                <img v-else src="/images/svg/buho_graduado.svg" :alt="medallaActual">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress "  style="height: 3px;">
-                        <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="row enlaces">
-            <div class="col">
-                <!--<div class="reto">
-                    <i class="fas fa-dice"></i>
-                    <span> Reto</span>
-                </div>-->
-
-                <div class="evaluacion">
-                    <i class="fas fa-clipboard-check"></i>
-                    <a @click="evaluacionIndividual()" class="estiloLink"><span> Evaluación</span></a>
-                </div>
-
-                <div class="tabla-puntuacion">
-                    <i class="fas fa-chart-bar"></i>
-                    <a @click="clickPuntuacion()" class="estiloLink"><span> Puntuación</span></a>
-                </div>
-            </div>            
-        </div>
-        
-        <div class="row usuarios-conectados">
-            <div class="col">
-                <div><span>Últimos usuarios conectados</span></div>
-                <ul>
-                    <li v-for="usuario in usuariosConectados">{{usuario.nombre}}</li>
-                 </ul>
-            </div>
-        </div>
-        <div class="row soporte">
-            <div class="col">
-            <div><span>soporte</span></div>
-                <i class="fas fa-question-circle fa-2x" title="pedro.cuasqui@epn.edu.ec">    </i>   
-            </div>
-        </div>
-                      
-                      </div>
-                    </div>
-                
-                  </div>
-
-      
-                    
-                </div>
-                
-        </div>
-        
-   <!--    <template  >
- 
-       <div class="row progreso">
-            <div class="col">
-                        
-                <div class="puntaje">
-                        <div class="row">
-                            <div><span>Puntos:</span></div>
-                           
-                            <div class="progress icono" >
-                                <div class="contenedor-icono ">
-                                    <i class="fas fa-certificate fa-stack-2x" > </i>
-                                    <span class="fa-stack-1x">{{puntajeActual}}</span>
-                                </div>
-
-                                
-                            </div>
-                        </div>
-                </div>  
-                        
-
-
-                <div class="nivel">
-                    <div class="row indicador">
-                            <div><span>Nivel:</span></div>
-                            <div class="progress icono" >    
-                              
-                                <div class="contenedor-icono">
-                                    <i class="fas fa-battery-empty fa-stack-2x"></i>    
-                                    <span class="fa-stack-1x">&nbsp{{nivelActual}}/{{totalNiveles}}</span>
-                                </div>
-                            </div>
-                    </div>
-                    <div class="progress "  style="height: 3px;">    
-                            <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}" :aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-
-                <div class="medallas">
-                    <div class="row indicador" >
-                        <div><span>Progreso:</span></div>
-                        <div class="progress icono">    
-                           
-                            <div class="contenedor-icono">
-                                <img v-if="medallaActual=='bebe'" src="/images/svg/buho_bebe.svg" :alt="medallaActual">
-                                <img v-else-if="medallaActual=='estudiante'" src="/images/svg/buho_original_1.svg" :alt="medallaActual">
-                                <img v-else-if="medallaActual=='estudiante destacado'" src="/images/svg/buho_original_1.svg" :alt="medallaActual">
-                                <img v-else-if="medallaActual=='egresado'" src="/images/svg/buho_sabio.svg" :alt="medallaActual">
-                                <img v-else src="/images/svg/buho_graduado.svg" :alt="medallaActual">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="progress "  style="height: 3px;">
-                        <div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}" :aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100"></div>
-                    </div>
-                </div>
-
-            </div>
-        </div>
-        <div class="row enlaces">
-            <div class="col">
-            
-
-                <div class="evaluacion">
-                    <i class="fas fa-clipboard-check"></i>
-                    <a @click="evaluacionIndividual()" class="estiloLink"><span> Evaluación</span></a>
-                </div>
-
-                <div class="tabla-puntuacion">
-                    <i class="fas fa-chart-bar"></i>
-                    <a @click="clickPuntuacion()" class="estiloLink"><span> Puntuación</span></a>
-                </div>
-            </div>            
-        </div>
-        
-        <div class="row usuarios-conectados">
-            <div class="col">
-                <div><span>Últimos usuarios conectados</span></div>
-                <ul>
-                    <li v-for="usuario in usuariosConectados">{{usuario.nombre}}</li>
-                 </ul>
-            </div>
-        </div>
-        <div class="row soporte">
-            <div class="col">
-            <div><span>soporte</span></div>
-                <i class="fas fa-question-circle fa-2x" title="pedro.cuasqui@epn.edu.ec">    </i>   
-            </div>
-        </div>
-
-        </template>
-
-        -->
-    </div>    
+									<div class="evaluacion">
+										<i class="fas fa-clipboard-check"></i>
+										<a @click="evaluacionIndividual()" class="estiloLink"><span> Evaluación</span></a>
+									</div>
+	
+									<div class="tabla-puntuacion">
+										<i class="fas fa-chart-bar"></i>
+										<a @click="clickPuntuacion()" class="estiloLink"><span> Puntuación</span></a>
+									</div>
+								</div>
+							</div>
+							<!-- Seccion usuarios conectados -->
+							<div class="row usuarios-conectados" v-if="!esAdmin">
+								<div class="col">
+									<div><span>Últimos usuarios conectados</span></div>
+									<ul>
+										<li v-for="usuario in usuariosConectados">{{usuario.nombre}}</li>
+									</ul>
+								</div>
+							</div>
+							<!-- SeccionSoporte -->
+							<div class="row soporte">
+								<div class="col">
+									<div><span>soporte</span></div>
+									<i class="fas fa-question-circle fa-2x" title="pedro.cuasqui@epn.edu.ec"> </i>
+								</div>
+							</div>
+	
+						</div>
+					</div>
+	
+				</div>
+	
+	
+	
+			</div>
+	
+		</div>
+	
+		
+	</div>   
 </div>`,
 	methods: {
 		mostrarModalPuntuacion() {
@@ -611,6 +507,26 @@ parasails.registerComponent("modulo-panel-derecho", {
 			}
 
 			return avance;
+		},
+		esAdmin() {
+			let esadmin = false;
+			//si el usuario es administrador pero no ha seleccionado el curso de informatica basica, se le da permiso de administrador
+
+			// if ((this.usuario.administrador || this.usuario.tutor) && this.cursoInformatica == false ){
+			if (this.usuario.administrador || this.usuario.tutor) {
+				//usar la linea anterior para restringir el acceso al curso informatica básica al administrador
+				esadmin = true;
+			}
+			// si el usuario es estudiante entonces se le niega el permiso de administrador, asi que hay dos opciones
+			//1) seleccionó curso 'Informática báscia' --> se habilita solo el curso informática básica
+			//2) seleccionó cualquier otro curso --> se habilita la última opcion de modulos que corresponde a solo visualizar el contenido creado por un administrador
+			else if (this.usuario.rol == "Estudiante") {
+				esadmin = false;
+			} else {
+				esadmin = false;
+			}
+
+			return esadmin;
 		},
 	},
 });

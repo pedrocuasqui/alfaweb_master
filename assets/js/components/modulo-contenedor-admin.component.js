@@ -1,10 +1,10 @@
-parasails.registerComponent('modulo-contenedor-admin', {
+parasails.registerComponent("modulo-contenedor-admin", {
 	props: {
 		breadcrumb: {
 			type: Array,
 			required: false,
 			default: () => {
-				return [{ nombreModulo: '', id: 1, enlace: '' }]
+				return [{ nombreModulo: "", id: 1, enlace: "" }];
 			},
 		},
 		// usuarioLogueado:{
@@ -36,7 +36,7 @@ parasails.registerComponent('modulo-contenedor-admin', {
 
     `,
 	data: function() {
-		return {}
+		return {};
 	},
 	methods: {},
-})
+});

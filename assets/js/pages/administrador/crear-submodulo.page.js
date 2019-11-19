@@ -53,6 +53,8 @@ parasails.registerPage("crear-submodulo", {
 	mounted: async function() {
 		//se crea la variable contenidoTiny para poder guardar el contenido del textarea de contendio
 		this.contTiny = window.contenidoTiny = null; // se establece el contenido
+		// elimino el elemento con la clase .row.pie-contenido
+		$(".row.pie-contenido").remove();
 	},
 
 	//  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

@@ -67,6 +67,12 @@ parasails.registerPage("administrar-home", {
 					},
 				})
 				.then(() => {
+					swal({
+						icon: "success",
+						title: "Curso eliminado",
+						showConfirmButton: true,
+						timer: 2000,
+					});
 					_this.consultarCursos();
 				})
 				.catch(error => {

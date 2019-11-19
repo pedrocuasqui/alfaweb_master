@@ -1,22 +1,22 @@
-parasails.registerComponent('modulo-cabecera-general', {
+parasails.registerComponent("modulo-cabecera-general", {
 	props: {
 		breadcrumb: {
 			type: Array,
 			required: true,
 			default: () => {
-				return [{ nombreModulo: '', id: 1, enlace: '' }]
+				return [{ nombreModulo: "", id: 1, enlace: "" }];
 			},
 		},
 		usuario: {
 			type: Object,
 			required: false,
 			default: () => {
-				return { nombre: 'Visitante', id: 1, rol: 'Estudiante' }
+				return { nombre: "Visitante", id: 1, rol: "Estudiante" };
 			},
 		},
 	},
 	data() {
-		return {}
+		return {};
 	},
 	beforeMount() {},
 	mounted() {},
@@ -33,11 +33,11 @@ parasails.registerComponent('modulo-cabecera-general', {
 		<div :class="usuario ? 'col-sm-2':'col-sm-4'">
 			<template v-if="usuario">
 				<div class="btn-group">
-					<button type="button" class="btn btn-primary dropdown-toggle boton_formulario" data-toggle="dropdown"
+					<button type="button" class="btn dropdown-toggle boton_formulario" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">
 						<i class="fas fa-user-circle"></i> {{usuario.nombre}} <i class="fas fa-bars"></i>
 					</button>
-					<div class="dropdown-menu">
+					<div id="boton_desplegable_personalizado" class="dropdown-menu">
 						<a class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
 						<div class="dropdown-divider"></div>
 						<a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
@@ -59,4 +59,4 @@ parasails.registerComponent('modulo-cabecera-general', {
 </div>`,
 	methods: {},
 	computed: {},
-})
+});

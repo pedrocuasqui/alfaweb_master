@@ -11,8 +11,11 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Quieres eliminar el curso: <strong>{{curso.nombre}}</strong></p>
-          <p>Se eliminarán también sus módulos asociados</p>
+          <div class="modal_pregunta">
+            <p>Quieres eliminar el curso: <strong>{{curso.nombre}}</strong></p>
+            <p>Se eliminarán también sus módulos asociados</p>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button class="btn btn-primary" data-dismiss="modal" @click="eliminarDocumento()">Aceptar</button>
@@ -34,7 +37,7 @@
         <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
       </div>
       <div class="col-sm-2">
-          <modulo-panel-derecho :usuario="usuario"></modulo-panel-derecho>
+        <modulo-panel-derecho :usuario="usuario"></modulo-panel-derecho>
       </div>
     </div>
 
@@ -71,8 +74,8 @@
 
                     <!-- <a v-if="editarNombre" @click="guardarNombre" title="Editar Curso"><i class="fas fa-save"></i></a>
                     <a v-else @click="mostrarCajaEditar" ><i class="fas fa-edit"></i></a> -->
-                    <a data-toggle="modal" v-if="noEsInforBasica" data-target="#modalConfirmaEliminar" data-placement="top"
-                      title="Eliminar Curso"><i class="fas fa-trash-alt"></i></a>
+                    <a data-toggle="modal" v-if="noEsInforBasica" data-target="#modalConfirmaEliminar"
+                      data-placement="top" title="Eliminar Curso"><i class="fas fa-trash-alt"></i></a>
 
                   </div>
 
@@ -108,7 +111,7 @@
           </div>
           <!-- columna derecha -->
           <div class="col-sm-1 col-derecha">
-            
+
           </div>
         </div> <!-- fin fila de contenido central y barra lateral derecha -->
       </div>

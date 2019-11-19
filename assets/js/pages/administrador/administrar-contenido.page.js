@@ -307,7 +307,7 @@ parasails.registerPage("administrar-contenido", {
 				})
 				.then(response => {
 					swal({
-						icon: "succes",
+						icon: "success",
 						title: "Objeto eliminado correctamente",
 						showConfirmButton: true,
 						timer: 2000,

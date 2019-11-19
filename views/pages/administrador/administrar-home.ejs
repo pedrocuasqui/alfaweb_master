@@ -12,8 +12,11 @@
           </button>
         </div>
         <div class="modal-body">
-          <p>Quieres eliminar el curso: <strong>{{cursoEliminar.nombre}}</strong></p>
-          <p>Se eliminarán también sus módulos asociados</p>
+          <div class="modal_pregunta">
+            <p>Quieres eliminar el curso: <strong>{{cursoEliminar.nombre}}</strong></p>
+            <p>Se eliminarán también sus módulos asociados</p>
+          </div>
+
         </div>
         <div class="modal-footer">
           <button class="btn btn-primary" data-dismiss="modal" @click="eliminarDocumento()">Aceptar</button>

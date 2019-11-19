@@ -265,7 +265,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 								</div>
 							</div>
 							<!-- Seccion de evaluacion y puntaje -->
-							<div class="row enlaces">
+							<div class="row enlaces" v-if="!esAdmin">
 								<div class="col">
 
 									<div class="evaluacion">
@@ -369,9 +369,8 @@ parasails.registerComponent("modulo-panel-derecho", {
 						});
 				} else {
 					swal({
-						icon: "error",
+						icon: "warning",
 						title: "No puede acceder a esta información como usuario Visitante",
-						text: err,
 						showConfirmButton: true,
 					});
 				}

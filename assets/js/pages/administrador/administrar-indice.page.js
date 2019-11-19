@@ -38,7 +38,14 @@ parasails.registerPage("administrar-indice", {
 					},
 				})
 				.then(() => {
-					location.replace("/administrar-home");
+					swal({
+						icon: "success",
+						title: "Curso eliminado",
+						showConfirmButton: true,
+						timer: 2000,
+					}).then(() => {
+						location.replace("/administrar-home");
+					});
 				})
 				.catch(error => {
 					swal({

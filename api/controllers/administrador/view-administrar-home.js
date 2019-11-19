@@ -6,13 +6,13 @@ module.exports = {
 
 	exits: {
 		success: {
-			viewTemplatePath: "pages/administrador/administrar-home"
+			viewTemplatePath: "pages/administrador/administrar-home",
 		},
 		redirect: {
 			description: "Redirecciona a la página indicada",
-			responseType: "redirect" // Los diferentes tipos de response buscar en la siguiente página https://sailsjs.com/documentation/reference/response-res
+			responseType: "redirect", // Los diferentes tipos de response buscar en la siguiente página https://sailsjs.com/documentation/reference/response-res
 			//ejemplos: responseType:'ok'  responseType:'view'
-		}
+		},
 	},
 
 	fn: async function(input, exits) {
@@ -26,16 +26,13 @@ module.exports = {
 			return res.forbidden();
 		} else {
 			usuario = await Profesor.findOne({ id: req.session.userId }); // deberá encontrar un Profesor
-			sails.log("USUARIO LOGUEADO");
-			sails.log(usuario);
-
 			if (!usuario) {
 				return res.forbidden();
 			}
 			if (usuario.administrador) {
 				//busqueda del curso alfaweb para todos los administradores
 				cursoInforBasica = await Curso.findOne({
-					nombre: "Alfabetización informática"
+					nombre: "Alfabetización informática",
 				});
 			}
 
@@ -49,8 +46,8 @@ module.exports = {
 			return exits.success({
 				cursos,
 				estudiantes,
-				usuario
+				usuario,
 			});
 		}
-	}
+	},
 };

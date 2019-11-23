@@ -3,14 +3,14 @@
 parasails.registerComponent("modulo-ev-individual", {
 	props: {
 		submodulo: {
-			type: Object,
+			type: Object
 		},
 		curso: {
-			type: Object,
+			type: Object
 		},
 		usuario: {
-			type: Object,
-		},
+			type: Object
+		}
 	},
 	data() {
 		return {
@@ -37,7 +37,7 @@ parasails.registerComponent("modulo-ev-individual", {
 				"#1833F3",
 				"#18E9F3",
 				"#33F318",
-				"#F3DF18",
+				"#F3DF18"
 			],
 
 			totalTime: null,
@@ -70,7 +70,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			siguientePreguntaCuestionario: true,
 
 			respuestaAnterior: [],
-			respuestaCuestionarioPreguntaPrueba: "",
+			respuestaCuestionarioPreguntaPrueba: ""
 		};
 	},
 	beforeMount() {
@@ -78,7 +78,7 @@ parasails.registerComponent("modulo-ev-individual", {
 		this.tiempoMaximoPorPregunta = this.submodulo.evaluacion.tiempoMaximoPorPregunta;
 		this.preguntasCuestionario = [...this.submodulo.evaluacion.preguntas];
 		this.preguntasCuestionario.forEach(pregunta => {
-			//agrego todas las preguntas de la evaluacion al arrreglo para despues reemplazar cada pregunta por su pregunta , este se guardará en la collection IntentoEvaluacioncon respuestas
+			//agrego todas las respuestas de la evaluacion al arrreglo para despues reemplazar cada pregunta por su pregunta c , este se guardará en la collection IntentoEvaluacion con respuestas
 			let respuestaIntento = pregunta;
 			respuestaIntento.errores = null;
 			respuestaIntento.tiempoDeRespuesta = null;
@@ -90,15 +90,15 @@ parasails.registerComponent("modulo-ev-individual", {
 		this.nivel = this.usuario.ultimoIntento.nivel;
 		this.medalla = this.usuario.ultimoIntento.medalla;
 
-		this.numeroSubmodulosCurso = this.usuario.numeroSubmodulosCurso;
+		this.numeroSubmodulosCurso = this.usuario.numeroSubmodulosCurso; //numero total de submodulos por curso
 		this.submodulosAprobadosPorCurso = [
-			...this.usuario.submodulosAprobadosPorCurso,
+			...this.usuario.submodulosAprobadosPorCurso
 		];
 
 		// this.usuario.submodulosAprobadosPorCurso.forEach(elemento => {
 		//     this.submodulosAprobadosPorCurso.push(elemento.toString());
 		// });
-
+		//se ordena aleatoriamente las respuestas de emparejamiento
 		if (this.tipoEvaluacion == "Emparejamiento") {
 			this.randomPreguntasEmparejamiento();
 		}
@@ -132,9 +132,9 @@ parasails.registerComponent("modulo-ev-individual", {
 
 		// empieza la evaluaci'on despues de que se cierra el modal de inicio
 
-		var _this = this;
-		$("#modalInstrucciones").on("hidden.bs.modal", function(e) {
-			_this.empezarEvaluacion();
+		// eslint-disable-next-line no-unused-vars
+		$("#modalInstrucciones").on("hidden.bs.modal", e => {
+			this.empezarEvaluacion();
 		});
 	},
 
@@ -186,7 +186,7 @@ parasails.registerComponent("modulo-ev-individual", {
         <p class="evFinPtos">Puntos de la evaluación: {{puntosOtenidosAnimados}} </p>  <!--Puntos Obtenidos:{{puntosObtenidos}}-->
         <p class="evFinPtos">Acumulas un total de : {{puntosAnimados}}</p> <!--puntos-->
         <template  v-if="usuario.nombre!='Visitante'"> 
-            <p v-if="subeDeNivel_Comp"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
+            <p v-if="subeDeNivelComp"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
             <p v-else>Nivel actual: {{nivel}}</p>
             <p v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, HAS COMPLETADO TODOS LOS MODULOS, TE HAS GRADUADO!!</p>
             <!--<p v-else>Eres un: {{medalla}}</p>-->
@@ -226,26 +226,20 @@ parasails.registerComponent("modulo-ev-individual", {
     <template v-if="tipoEvaluacion=='Cuestionario'">
         <div class="row justify-content-center">
             <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
-
-            <div class="list-group">
+						<div class="list-group">
+						<!--Enunciado-->
                 <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1">{{preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado}}</h5>   
+                    <h5 class="mb-1" v-html="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado"></h5>   
                 </div>
 
             <div class="custom-control custom-radio" v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
             <input type="radio" :id="opcion.id" class="custom-control-input"  :name="opcion.id" :value="opcion.texto" 
-            v-model=" preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"
+            v-model="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"
             @click.stop="respuestaCuestionarioSeleccionada">
             <!--v-model="respuestaCuestionarioPreguntaPrueba"-->
             <label class="custom-control-label" :for="opcion.id">{{opcion.texto}}</label>
           </div>
           </div>
-
-
-
-
-
-
             <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
             <button v-else @click="clickSiguientePregunta"> Siguiente</button>
             
@@ -340,7 +334,7 @@ parasails.registerComponent("modulo-ev-individual", {
 					//si la opcion tiene un valor dentro
 					opciones.push({
 						texto: preguntaActual.opciones[opcion].trim(),
-						id: contador,
+						id: contador
 					});
 				}
 			}
@@ -446,7 +440,7 @@ parasails.registerComponent("modulo-ev-individual", {
 				this.tiempoRespuestaInicio = this.totalTime; //copia el tiempo en el que se encuentra actualmente para despues restar del tiempo final cuando responda correctamente y obtener el tiempo que se demoró en responde
 				$("#Preg" + this.enunciadoSeleccionado).css({
 					"background-color": this.coloresPreguntasEmparejamiento[indexPreg],
-					"border-radius": "10px",
+					"border-radius": "10px"
 				});
 
 				//   reseteo valores para la siguiente pregunta
@@ -465,7 +459,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			if (this.respuestaAnterior.length) {
 				//si existe una respuesta anterior se la despinta
 				$("#Resp" + this.respuestaAnterior[0]).css({
-					"background-color": "#27293d",
+					"background-color": "#27293d"
 				});
 				this.respuestaAnterior.pop();
 			}
@@ -486,7 +480,7 @@ parasails.registerComponent("modulo-ev-individual", {
 						) {
 							// Se quita el estilo de color al enunciado
 							$("#Preg" + p).css({
-								"background-color": "#27293d",
+								"background-color": "#27293d"
 							});
 
 							//Se establece en null la respuestaEstudiante de la pregunta de indice p
@@ -503,7 +497,7 @@ parasails.registerComponent("modulo-ev-individual", {
 					"background-color": this.coloresPreguntasEmparejamiento[
 						this.enunciadoSeleccionado
 					],
-					"border-radius": "10px",
+					"border-radius": "10px"
 				});
 
 				this.tiempoRespuestaFin = this.totalTime;
@@ -545,7 +539,7 @@ parasails.registerComponent("modulo-ev-individual", {
 						icon: "success",
 						title: "Bien hecho, terminaste antes de tiempo",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 					this.calcularPuntuacion(); //aun si es visitante se muestra el puntaje obtenido //tambien se invoca a guardar dentro de esta funcion
 				}
@@ -579,9 +573,7 @@ parasails.registerComponent("modulo-ev-individual", {
 		 */
 		randomPreguntasEmparejamiento() {
 			//
-
 			this.arregloRandom = [];
-
 			this.preguntasCuestionario.forEach(pregunta => {
 				let posicionAleatorio = Math.floor(Math.random() * 10); //numero aleatorio entre 0 y 10(cualquier valor entero)
 				let modulo = posicionAleatorio % 2;
@@ -603,8 +595,7 @@ parasails.registerComponent("modulo-ev-individual", {
 					icon: "info",
 					title: "Lástima!! ",
 					text: "Se terminó el tiempo",
-					showConfirmButton: true,
-					timer: 2000,
+					showConfirmButton: true
 				});
 				if (this.tipoEvaluacion == "Cuestionario") {
 					this.finalizarCuestionario();
@@ -623,7 +614,7 @@ parasails.registerComponent("modulo-ev-individual", {
 				this.totalTime = this.totalTime.toFixed(1);
 				this.bucleCuentaRegresiva = setTimeout(
 					this.actualizaCuentaRegresiva,
-					100,
+					100
 				);
 			}
 		},
@@ -729,17 +720,17 @@ parasails.registerComponent("modulo-ev-individual", {
 		},
 
 		empezarEvaluacion() {
-			setTimeout(this.actualizaCuentaRegresiva, 200); //tarda un doscientos milisegundos en empezar la cuenta regresiva
+			setTimeout(this.actualizaCuentaRegresiva, 200); //tarda doscientos milisegundos en empezar la cuenta regresiva
 		},
 
 		mostrarModalInicial() {
 			this.totalTime = this.tiempoMaximoPorPregunta;
-			$(function() {
+			$(() => {
 				$("#modalInstrucciones").modal("show");
 			});
 		},
 		mostrarModalActividadFinalizada() {
-			$(function() {
+			$(() => {
 				$("#actividadFinalizada").modal("show");
 			});
 
@@ -747,7 +738,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			// DEBE IR AQUI PORQUE EN ESTE PUNTO YA SE SABE CUANTOS PUNTOS OBTENIDOS HAY
 			TweenLite.to(this.$data, 3, {
 				puntosOtenidosInterpolados: this.puntosObtenidos,
-				puntosInterpolados: this.puntos,
+				puntosInterpolados: this.puntos
 			}); //puntosObtenidosInterpolados recibe el maximo valor  que puede tener
 		},
 		reiniciarValores() {
@@ -756,20 +747,15 @@ parasails.registerComponent("modulo-ev-individual", {
 			this.enunciadoSeleccionado = null;
 			// this.respuestasSeleccionadas = [];
 			this.preguntaSeleccionadaJuegoEmparejamiento = null;
-
 			this.totalTime = this.tiempoMaximoPorPregunta;
-
 			this.tiempoRespuestaInici = null; // almacena el valor de totalTime  al momento de dar clic en un enunciado
 			this.tiempoRespuestaFin = null;
 			this.erroresRespuesta = 0;
 			this.aciertos = [];
 			this.preguntasCuestionarioRespuestas = [];
-
 			//los puntos actuales ya se encuentran en la variable this.puntos
 			//nivel y medallas se encuentran actualizadas
-
 			this.apruebaEvaluacion = 0;
-
 			this.bucleCuentaRegresiva = null;
 			this.preguntasCuestionario.forEach(pregunta => {
 				//agrego todas las preguntas al arrreglo para despues reemplazar cada pregunta por su pregunta , este se guardará en la collection IntentoEvaluacioncon respuestas
@@ -816,7 +802,7 @@ parasails.registerComponent("modulo-ev-individual", {
 				tipo: this.tipoEvaluacion,
 				aciertos: this.aciertos,
 				preguntas: this.preguntasCuestionarioRespuestas,
-				puntosObtenidos: this.puntosObtenidos,
+				puntosObtenidos: this.puntosObtenidos
 			};
 
 			var formData = new FormData();
@@ -834,7 +820,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			axios({
 				method: "post",
 				url: "/crear-intento-evaluacion",
-				data: formData,
+				data: formData
 			})
 				.then(response => {
 					this.usuario.ultimoIntento = response.data.intentoEvaluacionCreado;
@@ -845,7 +831,7 @@ parasails.registerComponent("modulo-ev-individual", {
 						title: "Error: no se puede guardar el avance en este momento",
 						text: err,
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 				});
 		},
@@ -871,14 +857,14 @@ parasails.registerComponent("modulo-ev-individual", {
 							icon: "info",
 							title: "Pista!!!!!",
 							text: this.preguntaSeleccionadaJuegoEmparejamiento.pista,
-							showConfirmButton: true,
+							showConfirmButton: true
 						});
 					} else {
 						swal({
 							icon: "info",
 							title: "Primero seleccione un enunciado",
 							showConfirmButton: true,
-							timer: 3000,
+							timer: 3000
 						});
 					}
 				} else {
@@ -888,18 +874,18 @@ parasails.registerComponent("modulo-ev-individual", {
 						text: this.preguntasCuestionarioRespuestas[
 							this.indicePreguntaCuestionario
 						].pista,
-						showConfirmButton: true,
+						showConfirmButton: true
 					});
 				}
 			}
-		},
+		}
 	},
 	computed: {
 		totalTimeProgress() {
 			let porcentaje = (this.totalTime / this.tiempoMaximoPorPregunta) * 100;
 			return porcentaje;
 		},
-		subeDeNivel_Comp() {
+		subeDeNivelComp() {
 			let retorno = this.apruebaEvaluacion == 1 && !this.submoduloAprobado;
 			return retorno;
 		},
@@ -921,8 +907,8 @@ parasails.registerComponent("modulo-ev-individual", {
 		},
 		puntosAnimados: function() {
 			return this.puntosInterpolados.toFixed(0);
-		},
-	},
+		}
+	}
 });
 
 /*

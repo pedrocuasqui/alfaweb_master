@@ -16,12 +16,12 @@ parasails.registerPage("administrar-contenido", {
 		navegarAtras: {
 			type: String,
 			required: false,
-			description: "la ruta del modulo anterior",
+			description: "la ruta del modulo anterior"
 		},
 		navegarSiguiente: {
 			type: String,
 			required: false,
-			description: "la ruta del modulo siguiente",
+			description: "la ruta del modulo siguiente"
 		},
 		// breadcrumb: {
 		//     type: Array,
@@ -29,11 +29,11 @@ parasails.registerPage("administrar-contenido", {
 		// },
 		breadcrumb: [],
 		curso: {
-			type: Object,
+			type: Object
 		},
 		usuario: {
 			type: Object,
-			default: { nombre: "Admin", rol: "Administrador" },
+			default: { nombre: "Admin", rol: "Administrador" }
 		},
 		mostrarSpinner: false,
 		imagenTemporal: {},
@@ -50,15 +50,15 @@ parasails.registerPage("administrar-contenido", {
 				opcion1: null,
 				opcion2: null,
 				opcion3: null,
-				opcion4: null,
+				opcion4: null
 			},
 			respuesta: null,
-			pista: null,
+			pista: null
 		},
 		preguntasCuestionario: [],
 		evaluacion: {
 			tipo: "",
-			preguntas: {},
+			preguntas: {}
 		},
 		formErrorsModal: {},
 		modalEdicion: false,
@@ -87,12 +87,12 @@ parasails.registerPage("administrar-contenido", {
 			"#1833F3",
 			"#18E9F3",
 			"#33F318",
-			"#F3DF18",
+			"#F3DF18"
 		],
 		uploadPercentage: 0,
 		rutaImagenAnterior: null,
 		cambiosEnPreguntas: false,
-		guardaDesdeBotonCerrar: false,
+		guardaDesdeBotonCerrar: false
 	},
 	watch: {
 		preguntasCuestionario: function(nuevoValor, antiq) {
@@ -107,12 +107,16 @@ parasails.registerPage("administrar-contenido", {
 		evIndividualBandera: function(valorNuevo, ValorAntiguo) {
 			this.guardaDesdeBotonCerrar = false;
 			this.cambiosEnPreguntas = false;
-			if (valorNuevo && this.preguntasCuestionario.length > 0) {
+			if (
+				valorNuevo &&
+				this.preguntasCuestionario.length > 0 &&
+				this.tipoEvaluacion == "Cuestionario"
+			) {
 				//esta verificacion se lo hace para cuando existe ya una evaluacion en el submodulo
 				//si el nuevo valor es true significa que se muestra la evaluacion(para el dom se crea nuevamente cada vez que cambia), por tanto es necesario volver a agregar esta funcionalidad cada vez que se muestra la evaluacion
 				this.agregaFuncionalidadDraggable();
 			}
-		},
+		}
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -133,7 +137,7 @@ parasails.registerPage("administrar-contenido", {
 			this.tipoEvaluacion = this.objetoSeleccionado.evaluacion.tipo;
 			this.tiempoMaximoPorPregunta = this.objetoSeleccionado.evaluacion.tiempoMaximoPorPregunta;
 			this.preguntasCuestionario = [
-				...this.objetoSeleccionado.evaluacion.preguntas,
+				...this.objetoSeleccionado.evaluacion.preguntas
 			];
 			// this.modalEdicion = true;
 		}
@@ -142,7 +146,7 @@ parasails.registerPage("administrar-contenido", {
 		this.establecerContenidoTiny();
 
 		$("#modalCrearPregunta" + this.tipoEvaluacion).on("hide.bs.modal", function(
-			e,
+			e
 		) {
 			this.preguntaEnEdicion = {
 				enunciado: null,
@@ -150,10 +154,10 @@ parasails.registerPage("administrar-contenido", {
 					opcion1: null,
 					opcion2: null,
 					opcion3: null,
-					opcion4: null,
+					opcion4: null
 				},
 				respuesta: null,
-				pista: null,
+				pista: null
 			};
 		});
 	},
@@ -223,14 +227,14 @@ parasails.registerPage("administrar-contenido", {
 			axios({
 				method: "post",
 				url: "/actualizar-modulo",
-				data: formData,
+				data: formData
 			})
 				.then(response => {
 					swal({
 						icon: "success",
 						title: "Modificación exitosa",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 					this.editarNombre = false;
 					this.editarDescripcion = false;
@@ -241,7 +245,7 @@ parasails.registerPage("administrar-contenido", {
 						title: "Error: no se ha podido actualizar el módulo",
 						text: err,
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 				});
 		},
@@ -251,7 +255,7 @@ parasails.registerPage("administrar-contenido", {
 			formData.append("nombreSubmodulo", this.objetoSeleccionado.nombre);
 			formData.append(
 				"descripcionSubmodulo",
-				this.objetoSeleccionado.descripcion,
+				this.objetoSeleccionado.descripcion
 			);
 			formData.append("contenidoTiny", window.contenidoTiny);
 			formData.append("submoduloId", this.objetoSeleccionado.id);
@@ -261,14 +265,14 @@ parasails.registerPage("administrar-contenido", {
 			axios({
 				method: "post",
 				url: "/actualizar-submodulo",
-				data: formData,
+				data: formData
 			})
 				.then(response => {
 					swal({
 						icon: "success",
 						title: "Modificación exitosa",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 					this.editarNombre = false;
 					this.editarDescripcion = false;
@@ -278,7 +282,7 @@ parasails.registerPage("administrar-contenido", {
 						icon: "error",
 						title: "Error: no se ha podido actualizar el submódulo",
 						text: err,
-						showConfirmButton: true,
+						showConfirmButton: true
 					});
 				});
 		},
@@ -302,27 +306,27 @@ parasails.registerPage("administrar-contenido", {
 			axios
 				.get("/eliminar-contenido", {
 					params: {
-						id: _this.objetoSeleccionado.id,
-					},
+						id: _this.objetoSeleccionado.id
+					}
 				})
 				.then(response => {
 					swal({
 						icon: "success",
 						title: "Objeto eliminado correctamente",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					}).then(() => {
 						if (response.data.nombreModulo) {
 							//si el objeto eliminado es un modulo entonces se muestra la interfaz crear modulo
 							window.location.replace(
-								"/view-crear-modulo/?cursoId=" + _this.curso.id,
+								"/view-crear-modulo/?cursoId=" + _this.curso.id
 							);
 						} else {
 							// si el objeto eliminado es un submodulo entonces se redirge a la interfaz del modulo padre
 							window.location.replace(
 								"/administrar-contenido/?objetoId=" +
 									_this.objetoSeleccionado.modulo +
-									"&tipoContenido=Modulo",
+									"&tipoContenido=Modulo"
 							);
 						}
 					});
@@ -332,7 +336,7 @@ parasails.registerPage("administrar-contenido", {
 						icon: "error",
 						title: "Error: no se ha podido eliminar el objeto seleccionado",
 						text: error,
-						showConfirmButton: true,
+						showConfirmButton: true
 					});
 				});
 		},
@@ -369,20 +373,20 @@ parasails.registerPage("administrar-contenido", {
 			formData.append(
 				"multimedia",
 				this.imagenTemporal,
-				this.imagenTemporal.name,
+				this.imagenTemporal.name
 			);
 			axios({
 				method: "post",
 				url: "/cargar-imagen",
 				data: formData,
 				headers: {
-					"Content-Type": "multipart/form-data",
+					"Content-Type": "multipart/form-data"
 				},
 				onUploadProgress: progressEvent => {
 					this.uploadPercentage = Math.round(
-						(progressEvent.loaded * 100) / progressEvent.total,
+						(progressEvent.loaded * 100) / progressEvent.total
 					);
-				},
+				}
 			})
 				.then(response => {
 					if (this.evIndividualBandera) {
@@ -401,7 +405,7 @@ parasails.registerPage("administrar-contenido", {
 						icon: "error",
 						title: "No se puede cargar la imágen en este momento",
 						text: err,
-						showConfirmButton: true,
+						showConfirmButton: true
 					});
 				});
 		},
@@ -450,7 +454,7 @@ parasails.registerPage("administrar-contenido", {
 					icon: "warning",
 					title: `Realice las siguientes correcciones!`,
 					text: `${errores}`,
-					showConfirmButton: true,
+					showConfirmButton: true
 				});
 			} else {
 				this.preguntaEnEdicion.pregNumero =
@@ -461,7 +465,7 @@ parasails.registerPage("administrar-contenido", {
 					icon: "success",
 					title: `Pregunta agregada correctamente!`,
 					showConfirmButton: true,
-					timer: 1500,
+					timer: 1500
 				});
 
 				this.preguntaEnEdicion = {
@@ -470,11 +474,11 @@ parasails.registerPage("administrar-contenido", {
 						opcion1: null,
 						opcion2: null,
 						opcion3: null,
-						opcion4: null,
+						opcion4: null
 					},
 					respuesta: null,
 					pista: null,
-					pregNumero: null,
+					pregNumero: null
 				};
 
 				errores = "";
@@ -508,21 +512,21 @@ parasails.registerPage("administrar-contenido", {
 					icon: "warning",
 					title: `Realice las siguientes correcciones!`,
 					text: `${errores}`,
-					showConfirmButton: true,
+					showConfirmButton: true
 				});
 			} else {
 				//actualiza el contenido del arreglo de preguntas, remueve el elemento de la  posicion del la pregunta que se edita (indicePreguntaEditar) y se coloca la nueva pregunta editada (preguntaEnEdicion).
 				this.preguntasCuestionario.splice(
 					this.indicePreguntaEditar,
 					1,
-					this.preguntaEnEdicion,
+					this.preguntaEnEdicion
 				);
 				swal({
 					position: "center",
 					icon: "success",
 					title: `Pregunta editada correctamente!`,
 					showConfirmButton: true,
-					timer: 1500,
+					timer: 1500
 				});
 				this.preguntaEnEdicion = {
 					enunciado: null,
@@ -530,11 +534,11 @@ parasails.registerPage("administrar-contenido", {
 						opcion1: null,
 						opcion2: null,
 						opcion3: null,
-						opcion4: null,
+						opcion4: null
 					},
 					respuesta: null,
 					pista: null,
-					pregNumero: null,
+					pregNumero: null
 				};
 			}
 			errores = "";
@@ -582,7 +586,7 @@ parasails.registerPage("administrar-contenido", {
 					//si la opcion tiene un valor dentro
 					opciones.push({
 						texto: preguntaEnEdicion.opciones[opcion].trim(),
-						id: contador,
+						id: contador
 					});
 				}
 			}
@@ -620,7 +624,7 @@ parasails.registerPage("administrar-contenido", {
 							"La(s) pregunta(s) No: " +
 							JSON.stringify(indicesConError) +
 							" no tienen opciones de respuesta",
-						showConfirmButton: false,
+						showConfirmButton: false
 					});
 				}
 			}
@@ -646,7 +650,7 @@ parasails.registerPage("administrar-contenido", {
 			axios({
 				url: "/crear-evaluacion",
 				method: "post",
-				data: formDataEv,
+				data: formDataEv
 			})
 				.then(response => {
 					let cuestionarioVacio = "";
@@ -659,10 +663,10 @@ parasails.registerPage("administrar-contenido", {
 					swal({
 						position: "center",
 						icon: icono,
-						title: `Evaluación creada correctamente`,
+						title: `Evaluación guardada correctamente`,
 						text: cuestionarioVacio,
 						showConfirmButton: false,
-						timer: 2000,
+						timer: 2000
 					});
 
 					this.cambiosEnPreguntas = false;
@@ -678,7 +682,7 @@ parasails.registerPage("administrar-contenido", {
 						icon: "error",
 						type: "error",
 						text: err,
-						confirmButtonClass: "btn-danger",
+						confirmButtonClass: "btn-danger"
 						// buttonsStyling: false
 					});
 				});
@@ -707,21 +711,21 @@ parasails.registerPage("administrar-contenido", {
 					icon: "warning",
 					title: `Realice las siguientes correcciones!`,
 					text: `${errores}`,
-					showConfirmButton: true,
+					showConfirmButton: true
 				});
 			} else {
 				//actualiza el contenido del arreglo de preguntas, remueve el elemento de la  posicion del la pregunta que se edita (indicePreguntaEditar) y se coloca la nueva pregunta editada (preguntaEnEdicion).
 				this.preguntasCuestionario.splice(
 					this.indicePreguntaEditar,
 					1,
-					this.preguntaEnEdicion,
+					this.preguntaEnEdicion
 				);
 				swal({
 					position: "center",
 					icon: "success",
 					title: `Pregunta editada correctamente!`,
 					showConfirmButton: true,
-					timer: 1500,
+					timer: 1500
 				});
 				this.preguntaEnEdicion = {
 					enunciado: null,
@@ -729,10 +733,10 @@ parasails.registerPage("administrar-contenido", {
 						opcion1: null,
 						opcion2: null,
 						opcion3: null,
-						opcion4: null,
+						opcion4: null
 					},
 					respuesta: null,
-					pista: null,
+					pista: null
 				};
 			}
 			this.modalEdicion = false;
@@ -756,7 +760,7 @@ parasails.registerPage("administrar-contenido", {
 					icon: "warning",
 					title: `Realice las siguientes correcciones!`,
 					text: `${errores}`,
-					showConfirmButton: true,
+					showConfirmButton: true
 				});
 			} else {
 				this.preguntaEnEdicion.pregNumero =
@@ -767,7 +771,7 @@ parasails.registerPage("administrar-contenido", {
 					icon: "success",
 					title: `Pregunta agregada correctamente!`,
 					showConfirmButton: true,
-					timer: 1500,
+					timer: 1500
 				});
 				this.preguntaEnEdicion = {
 					enunciado: null,
@@ -775,11 +779,11 @@ parasails.registerPage("administrar-contenido", {
 						opcion1: null,
 						opcion2: null,
 						opcion3: null,
-						opcion4: null,
+						opcion4: null
 					},
 					respuesta: null,
 					pista: null,
-					pregNumero: null,
+					pregNumero: null
 				};
 
 				//Se establece el contenido del objeto itnymce para una nueva pregunta
@@ -838,11 +842,11 @@ parasails.registerPage("administrar-contenido", {
 					this.respuestaSeleccionada = indexResp; // esto aplica el estilo a la respuesta seleccionada correctamente
 					$("#Resp" + indexResp).css({
 						"background-color": this.coloresPreguntasEmparejamiento[indexResp],
-						"border-radius": "10px",
+						"border-radius": "10px"
 					});
 					$("#Preg" + this.enunciadoSeleccionado).css({
 						"background-color": this.coloresPreguntasEmparejamiento[indexResp],
-						"border-radius": "10px",
+						"border-radius": "10px"
 					});
 				}
 			}
@@ -863,7 +867,7 @@ parasails.registerPage("administrar-contenido", {
 			window.location.replace(
 				"/administrar-contenido/?objetoId=" +
 					_this.objetoSeleccionado.modulo +
-					"&tipoContenido=Modulo",
+					"&tipoContenido=Modulo"
 			);
 		},
 		/**
@@ -889,9 +893,8 @@ parasails.registerPage("administrar-contenido", {
 					ghostClass: "blue-background-class",
 					onEnd: evt => {
 						// let itemEl = evt.item; // dragged HTMLElement
-
 						this.swapPreguntas(evt.newIndex, evt.oldIndex);
-					},
+					}
 				});
 			});
 		},
@@ -905,11 +908,11 @@ parasails.registerPage("administrar-contenido", {
 					opcion1: null,
 					opcion2: null,
 					opcion3: null,
-					opcion4: null,
+					opcion4: null
 				},
 				respuesta: null,
 				pista: null,
-				pregNumero: null,
+				pregNumero: null
 			};
 		},
 		verificaExistenciaCambios() {
@@ -926,10 +929,10 @@ parasails.registerPage("administrar-contenido", {
 					buttons: {
 						confirm: {
 							text: "Si, guardar cambios!",
-							value: true,
+							value: true
 						},
-						cancel: "No, cerrar!", //retona null
-					},
+						cancel: "No, cerrar!" //retona null
+					}
 				}).then(valor => {
 					if (valor) {
 						//se cierra la vista de evaluación
@@ -960,13 +963,13 @@ parasails.registerPage("administrar-contenido", {
 					opcion1: null,
 					opcion2: null,
 					opcion3: null,
-					opcion4: null,
+					opcion4: null
 				},
 				respuesta: null,
 				pista: null,
-				pregNumero: null,
+				pregNumero: null
 			};
-		},
+		}
 	},
 	computed: {
 		computedErrorImagen() {
@@ -988,6 +991,6 @@ parasails.registerPage("administrar-contenido", {
 			}
 
 			return existe;
-		},
-	},
+		}
+	}
 });

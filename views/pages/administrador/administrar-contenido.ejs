@@ -424,7 +424,7 @@
                                         </div>
 
                                         <!-- EMPAREJAMIENTO -->
-                                        <div v-if="tipoEvaluacion=='Emparejamiento'">
+                                        <div v-else>
                                             <div class="row pregunta_evaluacion"
                                                 v-for="(pregunta,indexPreg) in preguntasCuestionario">
                                                 <div class="col-sm-4" :id="'Preg'+indexPreg" key="'Preg'+indexPreg">

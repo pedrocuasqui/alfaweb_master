@@ -111,3 +111,7 @@ Fuente:https://prettier.io/docs/en/configuration.html
 
 //usar para instalar "breaking changes"
 npm audit fix --force
+
+
+//uso de Sortable
+https://github.com/SortableJS/Sortable

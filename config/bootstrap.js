@@ -935,7 +935,8 @@ module.exports.bootstrap = async function(done) {
 				tiempoMaximoPorPregunta: 1000,
 				preguntas: [
 					{
-						enunciado: "Un modelo de entidad relación es: ",
+						enunciado:
+							'<p><span style="color: #ecf0f1;">Un modelo de entidad relaci&oacute;n es:</span></p>',
 						opciones: {
 							opcion1: null,
 							opcion2: null,
@@ -946,7 +947,7 @@ module.exports.bootstrap = async function(done) {
 						pista: "Modelado de datos"
 					},
 					{
-						enunciado: "Entidad",
+						enunciado: '<p><span style="color: #ecf0f1;">Entidad</span></p>',
 						opciones: {
 							opcion1: null,
 							opcion2: null,
@@ -957,7 +958,7 @@ module.exports.bootstrap = async function(done) {
 						pista: "Representa una cosa, objeto o concepto"
 					},
 					{
-						enunciado: "Atributos",
+						enunciado: '<p><span style="color: #ecf0f1;">Atributos</span></p>',
 						opciones: {
 							opcion1: null,
 							opcion2: null,
@@ -1087,7 +1088,8 @@ module.exports.bootstrap = async function(done) {
 				tiempoMaximoPorPregunta: "1000",
 				preguntas: [
 					{
-						enunciado: "Un campo corresponde al nombre de:",
+						enunciado:
+							'<p><span style="color: #ecf0f1;">Un campo corresponde al nombre de:</span></p>',
 						opciones: {
 							opcion1: null,
 							opcion2: "Una fila",
@@ -1098,7 +1100,8 @@ module.exports.bootstrap = async function(done) {
 						pista: "Columna"
 					},
 					{
-						enunciado: "Una tabla es...",
+						enunciado:
+							'<p><span style="color: #ecf0f1;">Una tabla es...</span></p>',
 						opciones: {
 							opcion1: "Una herramienta para eliminar información",
 							opcion2: "Una herramienta para almacenar la información",

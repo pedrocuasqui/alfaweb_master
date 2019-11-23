@@ -15,7 +15,7 @@ parasails.registerPage("indice-estudiante", {
 		contenidos: null,
 		isAlfaWeb: false,
 		cursoEstudiante: false,
-		progreso: {}, //puntos, niveles y medalla actuales
+		progreso: {} //puntos, niveles y medalla actuales
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -51,7 +51,7 @@ parasails.registerPage("indice-estudiante", {
 				nextLabel: "Siguiente > ",
 				prevLabel: "< Atrás",
 				skipLabel: "Omitir",
-				doneLabel: "Entendido!",
+				doneLabel: "Entendido!"
 			})
 			.start();
 	},
@@ -83,10 +83,9 @@ parasails.registerPage("indice-estudiante", {
 			let existe = false;
 			if (!this.cursoEstudiante && this.usuario.nombre != "Visitante") {
 				existe = true;
-				ß;
 			}
 
 			return existe;
-		},
-	},
+		}
+	}
 });

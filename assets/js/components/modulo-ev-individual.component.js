@@ -188,7 +188,7 @@ parasails.registerComponent("modulo-ev-individual", {
         <template  v-if="usuario.nombre!='Visitante'"> 
             <p class="mintrucciones" v-if="subeDeNivelComp"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
             <p class="mintrucciones" v-else>Nivel actual: {{nivel}}</p>
-            <p class="mintrucciones" v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, HAS COMPLETADO TODOS LOS MODULOS, TE HAS GRADUADO!!</p>
+            <p class="mintrucciones" v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, YA HAS COMPLETADO TODOS LOS MODULOS, ERES UN GRADUADO!!</p>
             <!--<p v-else>Eres un: {{medalla}}</p>-->
             <p class="mintrucciones">Tu progreso es: {{porcentajeAvanceSubmodulos}} %</p>
         </template>

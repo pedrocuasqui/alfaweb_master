@@ -612,14 +612,14 @@
                                     <!-- bboton para guardar los cambios -->
                                     <div class="row">
                                         <div class="col-sm-3"></div>
-                                        <div class="col-sm-3">
+                                        <div :class="[objetoSeleccionado.nombreSubmodulo ? 'col-sm-3': 'col-sm-6']">
                                             <button type="button" id="enviarModulo" class="boton_formulario"
                                                 @click.stop="validarFormulario"> Guardar
                                                 Cambios
                                             </button>
                                         </div>
-                                        <div class="col-sm-3">
-                                            <button type="button" id="crearEvaluacion" class="boton_formulario"
+                                        <div v-if="objetoSeleccionado.nombreSubmodulo" class="col-sm-3">
+                                            <button v-if="" type="button" id="crearEvaluacion" class="boton_formulario"
                                                 @click.stop="evaluacionIndividual()"> Evaluación
                                             </button>
                                         </div>

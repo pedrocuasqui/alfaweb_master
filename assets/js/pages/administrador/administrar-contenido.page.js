@@ -695,7 +695,7 @@ parasails.registerPage("administrar-contenido", {
 		},
 		actualizarPreguntaEmparejamiento() {
 			var errores = "";
-
+			this.preguntaEnEdicion.enunciado = window.contenidoTiny2;
 			if (!this.preguntaEnEdicion.enunciado) {
 				// SE QUEDA
 				errores += "\n . Ingrese un enunciado";
@@ -745,7 +745,7 @@ parasails.registerPage("administrar-contenido", {
 		},
 		insertarPreguntaEmparejamiento() {
 			var errores = "";
-
+			this.preguntaEnEdicion.enunciado = window.contenidoTiny2; //Esta linea es necesaria para que la imagen cargada tambien se incluya en la variable preguntaEnEdicion.enunciado, la otra opción (No probada) es que inlcuya en el elemento tiny un evento que detecte la imagen cargada y complemente al onkeyup del mytextarea2
 			if (!this.preguntaEnEdicion.enunciado) {
 				// SE QUEDA
 				errores += "\n . Ingrese un enunciado";

@@ -366,20 +366,24 @@
                                         <div v-if="tipoEvaluacion=='Cuestionario'" id="preguntaEvaluacion">
                                             <!-- Preguntas -->
                                             <div class="row pregunta_evaluacion"
-                                                v-for="(pregunta, indexPreg) in preguntasCuestionario" :key="indexPreg">
+                                                v-for="(pregunta, indexPreg) in preguntasCuestionario"
+                                                :key="`preg_${indexPreg}`">
                                                 <div class="col-sm-4">
                                                     <div v-html="pregunta.enunciado">
                                                     </div>
                                                 </div>
                                                 <div class="col-sm-6 ">
                                                     <template v-for="(opcion,index) in opcionesRespuesta(pregunta)">
-                                                        <div class="row ">
+                                                        <div class="row custom-control custom-radio">
                                                             <div class="col-sm-2 centrado_vertical">
-                                                                <input type="radio" :id="opcion.id"
-                                                                    :value="opcion.texto" v-model="pregunta.respuesta">
+
                                                             </div>
                                                             <div class="col-sm-10 alinea_left">
-                                                                <label :for="opcion.id">{{opcion.texto}}</label>
+                                                                <input class="custom-control-input" type="radio"
+                                                                    :id="`${indexPreg}_${opcion.id}`"
+                                                                    :value="opcion.texto" v-model="pregunta.respuesta">
+                                                                <label class="custom-control-label"
+                                                                    :for="`${indexPreg}_${opcion.id}`">{{opcion.texto}}</label>
                                                             </div>
                                                         </div>
                                                     </template>

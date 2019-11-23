@@ -109,18 +109,18 @@ parasails.registerComponent("modulo-ev-individual", {
 		// mostrar el modal con las instrucciones para la evaluacion
 		if (this.tipoEvaluacion == "Cuestionario") {
 			this.descripcionActividad =
-				"<p>Lee atentamente el enunciado y selecciona la respuesta correcta.</p><p>Tienes <strong>" +
+				"<p class='mintrucciones'>Lee atentamente el enunciado y selecciona la respuesta correcta.</p><p class='mintrucciones'>Tienes <strong>" +
 				this.tiempoMaximoPorPregunta +
 				" segundos </strong> para responder la pregunta. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>";
 		} else if (this.tipoEvaluacion == "Emparejamiento") {
 			this.descripcionActividad =
-				"<p>Primero selecciona una opción de la columna izquierda.</p><p>Luego selecciona la respuesta correcta de la columna derecha</p>" +
-				"<p>Tienes <strong>" +
+				"<p class='mintrucciones'>Primero selecciona una opción de la columna izquierda.</p><p class='mintrucciones'>Luego selecciona la respuesta correcta de la columna derecha</p>" +
+				"<p class='mintrucciones'>Tienes <strong>" +
 				this.tiempoMaximoPorPregunta +
 				" segundos  </strong> para responder la pregunta. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>";
 		} else {
 			this.descripcionActividad =
-				"<p>Mira atentamente la imágen y selecciona la respuesta correcta.</p><p>Tienes <strong>" +
+				"<p class='mintrucciones'>Mira atentamente la imágen y selecciona la respuesta correcta.</p><p class='mintrucciones'>Tienes <strong>" +
 				this.tiempoMaximoPorPregunta +
 				" segundos </strong> para escoger la respuesta correcta. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>";
 		}
@@ -156,7 +156,7 @@ parasails.registerComponent("modulo-ev-individual", {
       
         <div id="descripcion" v-html="descripcionActividad">
         </div>
-        <div v-if="usuario.nombre=='Visitante'"> <p><em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></p></div>
+        <div v-if="usuario.nombre=='Visitante'"> <p class='mintrucciones'><em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></p></div>
         
       </div>
       <div class="modal-footer">
@@ -182,15 +182,15 @@ parasails.registerComponent("modulo-ev-individual", {
       </div>
       <div class="modal-body">
       
-        <p class="evFinPtos">Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p>
-        <p class="evFinPtos">Puntos de la evaluación: {{puntosOtenidosAnimados}} </p>  <!--Puntos Obtenidos:{{puntosObtenidos}}-->
-        <p class="evFinPtos">Acumulas un total de : {{puntosAnimados}}</p> <!--puntos-->
+        <p class="evFinPtos mintrucciones">Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p>
+        <p class="evFinPtos mintrucciones">Puntos de la evaluación: {{puntosOtenidosAnimados}} </p>  <!--Puntos Obtenidos:{{puntosObtenidos}}-->
+        <p class="evFinPtos mintrucciones">Acumulas un total de : {{puntosAnimados}}</p> <!--puntos-->
         <template  v-if="usuario.nombre!='Visitante'"> 
-            <p v-if="subeDeNivelComp"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
-            <p v-else>Nivel actual: {{nivel}}</p>
-            <p v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, HAS COMPLETADO TODOS LOS MODULOS, TE HAS GRADUADO!!</p>
+            <p class="mintrucciones" v-if="subeDeNivelComp"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
+            <p class="mintrucciones" v-else>Nivel actual: {{nivel}}</p>
+            <p class="mintrucciones" v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, HAS COMPLETADO TODOS LOS MODULOS, TE HAS GRADUADO!!</p>
             <!--<p v-else>Eres un: {{medalla}}</p>-->
-            <p>Tu progreso es: {{porcentajeAvanceSubmodulos}} %</p>
+            <p class="mintrucciones">Tu progreso es: {{porcentajeAvanceSubmodulos}} %</p>
         </template>
  
         
@@ -233,12 +233,16 @@ parasails.registerComponent("modulo-ev-individual", {
                 </div>
 
             <div class="custom-control custom-radio" v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
-            <input type="radio" :id="opcion.id" class="custom-control-input"  :name="opcion.id" :value="opcion.texto" 
+            <input type="radio" :id="opcion.id" class="custom-control-input" :value="opcion.texto" 
             v-model="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"
             @click.stop="respuestaCuestionarioSeleccionada">
-            <!--v-model="respuestaCuestionarioPreguntaPrueba"-->
+						<!--v-model="respuestaCuestionarioPreguntaPrueba"  :name="opcion.id"  -->
+						<!--<input type="radio" :id="opcion.id" class="custom-control-input" :value="opcion.texto" v-model="pregunta.respuesta" >-->
+
+
+
             <label class="custom-control-label" :for="opcion.id">{{opcion.texto}}</label>
-          </div>
+          	</div>
           </div>
             <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
             <button v-else @click="clickSiguientePregunta"> Siguiente</button>
@@ -265,9 +269,8 @@ parasails.registerComponent("modulo-ev-individual", {
                         :class="[enunciadoSeleccionado == indexPreg ? 'enunSelected': '' ]"
                         :id="'Preg'+indexPreg" key="indexPreg"
                         v-for="(pregunta,indexPreg) in preguntasCuestionario">
-                        <p>
-                        {{pregunta.enunciado}}
-                        </p>
+                        <div v-html="pregunta.enunciado">
+                        </div>
                     </div>
                 </div>
                 
@@ -299,7 +302,7 @@ parasails.registerComponent("modulo-ev-individual", {
                 
                 <div class="row justify-content-center" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
                                    
-                    <div v-else class="col-sm-3" v-html="pregunta.enunciado"></div> 
+                    <div class="col-sm-3" v-html="pregunta.enunciado"></div> 
                     
                     
                     <div class="col-sm-3"> 

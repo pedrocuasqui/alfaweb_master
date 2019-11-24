@@ -11,7 +11,7 @@ parasails.registerPage("crear-modulo", {
 		descripcionModulo: "",
 		formErrors: {},
 		moduloCreado: {
-			type: Object,
+			type: Object
 		},
 		tituloTemporal: "Agregar Nuevo Módulo",
 		tipoContenido: "Modulo",
@@ -29,7 +29,7 @@ parasails.registerPage("crear-modulo", {
 
 		adminCreandoModuloSubmodulo: true,
 		uploadPercentage: 0,
-		rutaImagenAnterior: null,
+		rutaImagenAnterior: null
 		// imagensTiny: [], arreglo de imagenes que se han cargado en tiny que deben ser eliminadas
 	},
 
@@ -71,7 +71,9 @@ parasails.registerPage("crear-modulo", {
 			} else {
 				// Expresion regular que evalua si la imagen tiene cualquier tipo
 
-				var regExpImage = new RegExp("image.(jpg)|image.(png)|image.(jpeg)");
+				var regExpImage = new RegExp(
+					"image.(jpg)|image.(png)|image.(jpeg)|image.(gif)"
+				);
 
 				if (!regExpImage.exec(this.imagenPortada.type)) {
 					this.formErrors.typeFile = true;
@@ -117,7 +119,7 @@ parasails.registerPage("crear-modulo", {
 			formData.append(
 				"multimedia",
 				this.imagenTemporal,
-				this.imagenTemporal.name,
+				this.imagenTemporal.name
 			);
 
 			axios({
@@ -125,13 +127,13 @@ parasails.registerPage("crear-modulo", {
 				url: "/cargar-imagen",
 				data: formData,
 				headers: {
-					"Content-Type": "multipart/form-data",
+					"Content-Type": "multipart/form-data"
 				},
 				onUploadProgress: progressEvent => {
 					this.uploadPercentage = Math.round(
-						(progressEvent.loaded * 100) / progressEvent.total,
+						(progressEvent.loaded * 100) / progressEvent.total
 					);
-				},
+				}
 			})
 				.then(response => {
 					_this.imagenPortada = response.data;
@@ -143,7 +145,7 @@ parasails.registerPage("crear-modulo", {
 					swal({
 						icon: "error",
 						title: "Oops...",
-						text: `No se pudo guardar la imágen!\n ${err}`,
+						text: `No se pudo guardar la imágen!\n ${err}`
 						// footer: "<a href>Why do I have this issue?</a>",
 					});
 				});
@@ -186,7 +188,7 @@ parasails.registerPage("crear-modulo", {
 			axios({
 				method: "post",
 				url: "/crear-modulo",
-				data: formData,
+				data: formData
 				// config
 			})
 				.then(response => {
@@ -200,13 +202,13 @@ parasails.registerPage("crear-modulo", {
 						icon: "success",
 						title: "Módulo creado correctamente",
 						showConfirmButton: false,
-						timer: 1500,
+						timer: 1500
 					}).then(() => {
 						window.location.replace(
 							"/administrar-contenido/?objetoId=" +
 								this.moduloCreado.id +
 								"&tipoContenido=" +
-								this.tipoContenido,
+								this.tipoContenido
 						);
 					});
 
@@ -219,21 +221,21 @@ parasails.registerPage("crear-modulo", {
 							swal({
 								icon: "error",
 								title: "Oops...",
-								text: "Ya existe un módulo con el mismo nombre o título!",
+								text: "Ya existe un módulo con el mismo nombre o título!"
 								// footer: '<a href>Why do I have this issue?</a>'
 							});
 						} else if (err.response.status == 400) {
 							swal({
 								icon: "error",
 								title: "Oops...",
-								text: "Existen errores en la información suministrada",
+								text: "Existen errores en la información suministrada"
 								// footer: '<a href>Why do I have this issue?</a>'
 							});
 						} else {
 							swal({
 								icon: "error",
 								title: "Oops...",
-								text: "Error en el servidor",
+								text: "Error en el servidor"
 								// footer: '<a href>Why do I have this issue?</a>'
 							});
 						}
@@ -241,7 +243,7 @@ parasails.registerPage("crear-modulo", {
 						swal({
 							icon: "error",
 							title: "Oops...",
-							text: "El servidor no está disponible en este momento",
+							text: "El servidor no está disponible en este momento"
 							// footer: '<a href>Why do I have this issue?</a>'
 						});
 					}
@@ -264,7 +266,7 @@ parasails.registerPage("crear-modulo", {
 		onClickCancelar() {
 			// this.imagensTiny = window.imagenesTemporalesTiny;
 			window.location.assign("/administrar-indice/?cursoId=" + this.curso.id);
-		},
+		}
 	},
 	computed: {
 		computedErrorImagen() {
@@ -282,6 +284,6 @@ parasails.registerPage("crear-modulo", {
 				existeContenido = false;
 			}
 			return existeContenido;
-		},
-	},
+		}
+	}
 });

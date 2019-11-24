@@ -38,9 +38,11 @@ parasails.registerComponent("modulo-cabecera-general", {
 						<i class="fas fa-user-circle"></i> {{usuario.nombre}} <i class="fas fa-bars"></i>
 					</button>
 					<div id="boton_desplegable_personalizado" class="dropdown-menu">
-						<a class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
-						<div class="dropdown-divider"></div>
-						<a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
+						<template  v-if="usuario.nombre !='Visitante'">
+							<a class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="/logout">Cerrar sesión</a>
+						</template>
 					</div>
 				</div>
 			</template>

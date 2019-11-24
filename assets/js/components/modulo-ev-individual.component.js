@@ -225,7 +225,7 @@ parasails.registerComponent("modulo-ev-individual", {
     <!--CUESTIONARIO-->
     <template v-if="tipoEvaluacion=='Cuestionario'">
         <div class="row justify-content-center">
-            <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"> Atrás</button>
+            <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"  class="boton_formulario" > Atrás</button>
 						<div class="list-group">
 						<!--Enunciado-->
                 <div class="d-flex w-100 justify-content-between">
@@ -244,8 +244,8 @@ parasails.registerComponent("modulo-ev-individual", {
             <label class="custom-control-label" :for="opcion.id">{{opcion.texto}}</label>
           	</div>
           </div>
-            <button v-if="esUltimaPregunta" @click="finalizarCuestionario"> Finalizar</button>
-            <button v-else @click="clickSiguientePregunta"> Siguiente</button>
+            <button v-if="esUltimaPregunta" @click="finalizarCuestionario" class="boton_formulario"> Finalizar</button>
+            <button v-else @click="clickSiguientePregunta" class="boton_formulario"> Siguiente</button>
             
             
         </div>

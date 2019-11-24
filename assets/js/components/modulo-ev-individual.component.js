@@ -246,8 +246,6 @@ parasails.registerComponent("modulo-ev-individual", {
           </div>
             <button v-if="esUltimaPregunta" @click="finalizarCuestionario" class="boton_formulario"> Finalizar</button>
             <button v-else @click="clickSiguientePregunta" class="boton_formulario"> Siguiente</button>
-            
-            
         </div>
     </template>
 

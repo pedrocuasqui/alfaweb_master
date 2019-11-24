@@ -63,11 +63,13 @@ parasails.registerComponent("modulo-side-var-menu", {
                             <template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
                             <a v-if="submodulo.evaluacion"  :href="'/contenido-alfaweb/?enlace='+submodulo.enlace+'&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">
                             
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
-                                    <small >{{submodulo.evaluacion.tipo}}</small>
+																<div class="d-flex w-100 justify-content-between">
+                                  <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+                                  <small > Última evaluación: </small>
                                 </div>
-                            
+																<div class="d-flex w-100 justify-content-between">
+																	<h6 class="mb-1">Tipo: {{submodulo.evaluacion.tipo}}</h6>
+															</div>
                                 <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
                                 <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'">Empareje el término con el concepto correcto</p>
                             </a> 

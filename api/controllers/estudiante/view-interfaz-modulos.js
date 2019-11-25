@@ -48,13 +48,13 @@ module.exports = {
 		};
 		var numeroSubmodulosCurso = 0; //sirve para enviar en el usuario y comprobar el porcentaje de evaluaciones realizadas de todo el curso
 
+		curso = await sails.helpers
+			.solicitarCursoCompleto(inputs.objetoId)
+			.intercept(err => {
+				sails.log("ERROR EN HELPERS: " + err);
+			});
 		if (inputs.tipoContenido == "Modulo") {
 			objetoSeleccionado = await ModuloLibro.findOne({ id: inputs.objetoId });
-			curso = await sails.helpers
-				.solicitarCursoCompleto(inputs.objetoId)
-				.intercept(err => {
-					sails.log("ERROR EN HELPERS: " + err);
-				});
 			//la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
 			objetoSeleccionado.nombre = objetoSeleccionado.nombreModulo;
 			objetoSeleccionado.enlace =
@@ -65,11 +65,6 @@ module.exports = {
 			objetoSeleccionado = await SubmoduloLibro.findOne({
 				id: inputs.objetoId
 			});
-			curso = await sails.helpers
-				.solicitarCursoCompleto(inputs.objetoId)
-				.intercept(err => {
-					sails.log("ERROR EN HELPERS: " + err);
-				});
 			moduloPadre = await ModuloLibro.findOne({
 				id: objetoSeleccionado.modulo
 			});
@@ -213,14 +208,16 @@ module.exports = {
 					});
 				});
 
+			var ultimasEvaluaciones = await IntentoEvaluacion.find({
+				where: {
+					submodulos: submoduloSeleccionado.id, //los submodulos del modulo seleccionado
+					estudiante: usuario.id
+				}
+			}).sort("createdAt DESC");
+			//consultar las evaluaciones del estudiante en el curso actual y modulo seleccionado
+			//ordenar las evaluaciones por cada subomodulo y obtener la mas reciente de cada lista
 
-
-
-
-				/*var ultimasEvaluaciones = await IntentoEvaluacion.find({where:{
-					submodulos:[]//los submodulos del modulo seleccionado
-					estudiante:usuario.id
-				}})*/
+			//consultar el intento evaluacion de
 		}
 
 		return exits.success({

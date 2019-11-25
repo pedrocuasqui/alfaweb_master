@@ -85,7 +85,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			respuestaIntento.respuestaEstudiante = null;
 			this.preguntasCuestionarioRespuestas.push(respuestaIntento);
 		});
-//El objeto ultimo intento guarda la información de puntos, nivel y medalla para mostrar al usuario
+		//El objeto ultimo intento guarda la información de puntos, nivel y medalla para mostrar al usuario
 		this.puntos = this.usuario.ultimoIntento.puntos;
 		this.nivel = this.usuario.ultimoIntento.nivel;
 		this.medalla = this.usuario.ultimoIntento.medalla;
@@ -95,9 +95,6 @@ parasails.registerComponent("modulo-ev-individual", {
 			...this.usuario.submodulosAprobadosPorCurso
 		];
 
-		// this.usuario.submodulosAprobadosPorCurso.forEach(elemento => {
-		//     this.submodulosAprobadosPorCurso.push(elemento.toString());
-		// });
 		//se ordena aleatoriamente las respuestas de emparejamiento
 		if (this.tipoEvaluacion == "Emparejamiento") {
 			this.randomPreguntasEmparejamiento();

@@ -185,9 +185,6 @@ parasails.registerComponent("modulo-contenedor-curso", {
                             </template>
                         </div>
 
-
-
-
                     </div>
 
                     <div class="row">

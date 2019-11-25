@@ -8,29 +8,29 @@ parasails.registerComponent("modulo-side-var-menu", {
 				return {
 					id: "1",
 					nombreModulo: "crearModulo",
-					rol: "Administrador",
+					rol: "Administrador"
 				};
-			},
+			}
 		},
 		curso: {
 			type: Object,
-			required: true,
+			required: true
 		},
 		usuario: {
 			type: Object,
 			default: () => {
 				return { nombre: "Admin", rol: "Administrador" };
-			},
+			}
 		},
 		posicionSeleccionada: null,
-		crearSubmodulo: false,
+		crearSubmodulo: false
 	},
 	data() {
 		return {
 			showSidebar: false,
 			cursoInformatica: false,
 			moduloEvaluacion: "", //nombre del modulo que se pasa como parametro a la funcion de mostrar modal
-			indiceModulo: 0, //el indice del modulo que se pasa como parametro a la funcion de mostrar modal
+			indiceModulo: 0 //el indice del modulo que se pasa como parametro a la funcion de mostrar modal
 		};
 	},
 	mounted() {
@@ -58,7 +58,7 @@ parasails.registerComponent("modulo-side-var-menu", {
                     <div class = "container">
                         
                         <div class="list-group">
-                       
+                      	 		<!--Para curso informática básica-->
                             <template v-if="cursoInformatica">
                             <template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
                             <a v-if="submodulo.evaluacion"  :href="'/contenido-alfaweb/?enlace='+submodulo.enlace+'&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">
@@ -67,9 +67,7 @@ parasails.registerComponent("modulo-side-var-menu", {
                                   <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
                                   <small > Última evaluación: </small>
                                 </div>
-																<div class="d-flex w-100 justify-content-between">
-																	<h6 class="mb-1">Tipo: {{submodulo.evaluacion.tipo}}</h6>
-															</div>
+																<p class="mb-1" ><small>Tipo: {{submodulo.evaluacion.tipo}}</small></p>
                                 <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
                                 <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'">Empareje el término con el concepto correcto</p>
                             </a> 
@@ -81,15 +79,15 @@ parasails.registerComponent("modulo-side-var-menu", {
                             </a> 
                             </template>
                             </template>
-
+														<!--para curso que no es informatica basica-->
                             <template v-else-if="curso.modulos.length !=0">
                             <template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
                             <a v-if="submodulo.evaluacion"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">  
-                            <div class="d-flex w-100 justify-content-between">
-                                <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
-                                <small>{{submodulo.evaluacion.tipo}}</small>
+                            		<div class="d-flex w-100 justify-content-between">
+																	<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+																	<small>Ultima evaluación: {{ultimaEvaluacion(submodulo.id)}}</small>
                                 </div>
-                                
+																<p class="mb-1" ><small>Tipo: {{submodulo.evaluacion.tipo}}</small></p>
                                 <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
                                 <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'">Empareje el término con el concepto correcto</p>
                             </a> 
@@ -223,7 +221,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 			axios({
 				url: `/publicar-curso/${cursoId}`,
 				method: "PUT",
-				data: { publicar: true },
+				data: { publicar: true }
 			})
 				.then(() => {
 					this.curso.publicado = true;
@@ -232,7 +230,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 						title: "Curso publicado correctamente",
 
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 				})
 				.catch(err => {
@@ -241,7 +239,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 						title: "Error: no se ha podido publicar el curso",
 						text: err,
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 				});
 		},
@@ -250,7 +248,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 			axios({
 				url: `/publicar-curso/${cursoId}`,
 				method: "PUT",
-				data: { publicar: false },
+				data: { publicar: false }
 			})
 				.then(response => {
 					this.curso.publicado = false;
@@ -258,7 +256,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 						icon: "info",
 						title: "Se ha ocultado el curso a los estudiantes",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 				})
 				.catch(err => {
@@ -266,10 +264,32 @@ parasails.registerComponent("modulo-side-var-menu", {
 						icon: "error",
 						title: "Error: intente más tarde",
 						text: err,
-						showConfirmButton: true,
+						showConfirmButton: true
 					});
 				});
 		},
+		ultimaEvaluacion(submoduloId) {
+			var fecha = "No realizada";
+			var submodulo = null;
+
+			submodulo = this.usuario.ultimasEvaluaciones.find(submodulor => {
+				return submodulor.id === submoduloId;
+			});
+			console.log(submodulo);
+			if (submodulo.intentosEvaluacion.length > 0) {
+				let fechaUltimaEv = "01-01-1970";
+				fechaUltimaEv = new Date(submodulo.intentosEvaluacion[0].createdAt);
+				// let fecha= fechaUltimaEv.toString();
+				fecha =
+					fechaUltimaEv.getDate() +
+					"/" +
+					fechaUltimaEv.getMonth() +
+					"/" +
+					fechaUltimaEv.getFullYear();
+			}
+
+			return fecha;
+		}
 	},
 	computed: {
 		esAdmin() {
@@ -314,6 +334,6 @@ parasails.registerComponent("modulo-side-var-menu", {
 
 			return edicionHabilitada;
 		},
-		esAlfaweb() {},
-	},
+		esAlfaweb() {}
+	}
 });

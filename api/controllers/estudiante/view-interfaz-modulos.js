@@ -212,6 +212,15 @@ module.exports = {
 						usuario.submodulosAprobadosPorCurso.push(elemento.toString());
 					});
 				});
+
+
+
+
+
+				/*var ultimasEvaluaciones = await IntentoEvaluacion.find({where:{
+					submodulos:[]//los submodulos del modulo seleccionado
+					estudiante:usuario.id
+				}})*/
 		}
 
 		return exits.success({

@@ -10,7 +10,7 @@ parasails.registerPage("actualizar-curso", {
 		formErrors: {
 			/* … */
 		},
-		curso: {},
+		curso: {}
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -51,6 +51,6 @@ parasails.registerPage("actualizar-curso", {
 				//si se encuentran errores no se recarga la página
 				e.preventDefault();
 			}
-		},
-	},
+		}
+	}
 });

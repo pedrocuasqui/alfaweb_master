@@ -9,14 +9,14 @@ parasails.registerPage("administrar-home", {
 		// cursos:Object, //esta variable será sobreescrita con el contenido de Windows.SAILS_LOCALS.cursos //vue no reconoce la variable cuando no está declarada
 		cursoEliminar: {
 			nombre: "",
-			id: "",
+			id: ""
 		},
 
 		editarCurso: false,
 		formErrors: {},
 		cursos: Object,
 		estudiantes: null,
-		usuario: null,
+		usuario: null
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -44,7 +44,7 @@ parasails.registerPage("administrar-home", {
 					(abrir = function() {
 						_this.abrirCurso(element.id);
 					}),
-					false,
+					false
 				);
 			});
 
@@ -63,15 +63,15 @@ parasails.registerPage("administrar-home", {
 			axios
 				.get("/eliminar-curso", {
 					params: {
-						cursoId: this.cursoEliminar.id,
-					},
+						cursoId: this.cursoEliminar.id
+					}
 				})
 				.then(() => {
 					swal({
 						icon: "success",
 						title: "Curso eliminado",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 					_this.consultarCursos();
 				})
@@ -80,7 +80,7 @@ parasails.registerPage("administrar-home", {
 						icon: "error",
 						title: "No se pudo eliminar el curso",
 						text: error,
-						showConfirmButton: true,
+						showConfirmButton: true
 					});
 				});
 		},
@@ -97,7 +97,7 @@ parasails.registerPage("administrar-home", {
 						icon: "error",
 						title: "No se ha podido consultar los cursos",
 						text: error,
-						showConfirmButton: true,
+						showConfirmButton: true
 					});
 				});
 		},
@@ -136,14 +136,14 @@ parasails.registerPage("administrar-home", {
 			axios({
 				method: "post",
 				url: "/actualizar-curso",
-				data: formData,
+				data: formData
 			})
 				.then(response => {
 					swal({
 						icon: "success",
 						title: "Curso guardado correctamente",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 				})
 				.catch(err => {
@@ -151,7 +151,7 @@ parasails.registerPage("administrar-home", {
 						icon: "error",
 						title: "Error: no se ha podido actualizar el curso",
 						text: err,
-						showConfirmButton: true,
+						showConfirmButton: true
 					});
 				});
 
@@ -161,7 +161,7 @@ parasails.registerPage("administrar-home", {
 				(abrir = function() {
 					_this.abrirCurso(curso.id);
 				}),
-				false,
+				false
 			);
 		},
 		fechaUltimoAccesoEstudiante(estudiante) {
@@ -177,7 +177,7 @@ parasails.registerPage("administrar-home", {
 
 			// return fecha.substring(1, 12);
 			return fecha;
-		},
+		}
 	},
-	computed: {},
+	computed: {}
 });

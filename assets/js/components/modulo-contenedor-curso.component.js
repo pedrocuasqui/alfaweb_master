@@ -8,20 +8,20 @@ parasails.registerComponent("modulo-contenedor-curso", {
 		navegarAtras: {
 			type: String,
 			required: false,
-			description: "la ruta del modulo anterior",
+			description: "la ruta del modulo anterior"
 		},
 		navegarSiguiente: {
 			type: String,
 			required: false,
-			description: "la ruta del modulo siguiente",
+			description: "la ruta del modulo siguiente"
 		},
 		breadcrumb: {
 			type: Array,
-			required: false,
+			required: false
 		},
 		curso: {
 			type: Object,
-			required: true, //es necesario para poder cargar el menu lateral
+			required: true //es necesario para poder cargar el menu lateral
 			// description:'parametro de barra de navegacion lateral'
 		},
 		objetoSeleccionado: {
@@ -31,9 +31,9 @@ parasails.registerComponent("modulo-contenedor-curso", {
 				return {
 					id: "1",
 					nombreModulo: "crearModulo",
-					rol: "Administrador",
+					rol: "Administrador"
 				};
-			},
+			}
 			// description:'parametro de barra de navegacion, tambien se usa la descripcion cuando el objeto seleccionado es un modulo o submodulo'
 		},
 		tituloTemporal: {
@@ -41,14 +41,14 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			required: false,
 			default: () => {
 				return "";
-			},
+			}
 			// description:'Se debe enviar cuando se crea un modulo o submodulo para reemplzar al titlo del modulo o submodulo'
 		},
 		usuario: {
 			type: Object,
 			default: () => {
 				return { nombre: "Visitante", rol: "Estudiante", id: "1" };
-			},
+			}
 		},
 		crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
 		mostrarIconoRepetir: false,
@@ -59,7 +59,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			required: false,
 			default: () => {
 				return false;
-			},
+			}
 		},
 		progreso: {
 			type: Object,
@@ -69,11 +69,11 @@ parasails.registerComponent("modulo-contenedor-curso", {
 					nivel: 0, //modulo 1
 					medalla: "bebe", //medalla mas basica
 					tiempoMaximoPorPregunta: 30, //en segundos por defecto
-					evaluacion: null,
+					evaluacion: null
 				};
 			},
-			description: "puntaje, nivel y progreso (medalla) actuales",
-		},
+			description: "puntaje, nivel y progreso (medalla) actuales"
+		}
 	},
 	data: function() {
 		return {
@@ -83,7 +83,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			mostrarPlay: true,
 			pausado: false,
 			sonido: null,
-			silenciarGeneral: false, //el audio est'a activado
+			silenciarGeneral: false //el audio est'a activado
 		};
 	},
 	mounted() {
@@ -91,7 +91,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 		window.sonido = window.speechSynthesis;
 	},
 
-	template: /*html*/ `
+	template: /*template*/ `
 <div class="div-contenido container-fluid"  v-cloak>
     <div class="row" id="div-cabecera"  >
         <div class="col-sm-8" id="breadcrumbText" ref="printBreadcrumb">
@@ -200,8 +200,6 @@ parasails.registerComponent("modulo-contenedor-curso", {
                                 </div>
 
                     </div>
-
-
                     <div class="row pie-contenido" >
                         <div  id="avatar">
                                 <img  @click="clickAsistenteBuho" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
@@ -211,16 +209,9 @@ parasails.registerComponent("modulo-contenedor-curso", {
                                 <a @click="clickStop" title="Parar" class="audioTag"><i class="fas fa-stop"></i></a>
                                 </span>
                         </div>
-
-
                       <div id="descripcion-objeto" ref="printContenidoDescripcion">
-
-
-
                         <h6 v-if="existeDescripcion  && tituloTemporal==''" class="typography-line"><span>{{objetoSeleccionado.descripcion}}</span></h6>
-
-
-                        </div>
+                      </div>
                     </div>
 
                 </div>
@@ -262,7 +253,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 					this.$emit("evaluacion-individual", contenido);
 				} else {
 					var r = confirm(
-						"No existe evaluación para este tema. \n ¿Deseas continuar al siguiente tema?",
+						"No existe evaluación para este tema. \n ¿Deseas continuar al siguiente tema?"
 					);
 					if (r == true) {
 						location.assign(this.navegarSiguiente);
@@ -275,7 +266,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 					icon: "info",
 					title: "La evaluación se realiza solo en los submódulos",
 					showConfirmButton: true,
-					timer: 2000,
+					timer: 2000
 				});
 			}
 			this.clickStop();
@@ -299,7 +290,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			} else {
 				// var voices = window.sonido.getVoices();
 				var msg = new SpeechSynthesisUtterance(
-					this.objetoSeleccionado.descripcion,
+					this.objetoSeleccionado.descripcion
 				);
 				// msg.voice = voices[7]; // Note: some voices don't support altering params
 				// msg.voice =  window.sonido.getVoices().filter(function(voice) { return voice.name == 'Whisper'; })[0];
@@ -318,15 +309,15 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			$(".audioTag").show();
 			$("#audioMouseOver").attr(
 				"src",
-				"/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3",
+				"/audio/mouseOverElementos/zapsplat_multimedia_game_designed_water_drip_onto_surface_004_26337.mp3"
 			);
 			$("#audioModalAbrir").attr(
 				"src",
-				"/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3",
+				"/audio/zapsplat_multimedia_game_sound_retro_blip_026_29558.mp3"
 			);
 			$("#audioModalCerrar").attr(
 				"src",
-				"/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3",
+				"/audio/zapsplat_multimedia_game_sound_retro_blip_015_29547.mp3"
 			);
 		},
 		clickSilenciarGeneral() {
@@ -353,12 +344,12 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			newWin.document.write("<h2>Descripción</h2>");
 			newWin.document.write(contenidoDescripcion.outerHTML);
 			newWin.document.write(
-				'<h5>Sistema "alfaweb" http://www.epn.edu.ec autor: EPN-FIS-Pedro Cuasqui</h5>',
+				'<h5>Sistema "alfaweb" http://www.epn.edu.ec autor: EPN-FIS-Pedro Cuasqui</h5>'
 			);
 			newWin.print();
 			newWin.close();
 			newWin.document.write("<h6>http://www.epn.edu.ec </h6>");
-		},
+		}
 	},
 	computed: {
 		existeDescripcion() {
@@ -379,6 +370,6 @@ parasails.registerComponent("modulo-contenedor-curso", {
 				usuarioR = { nombre: "Visitante", rol: "Estudiante" };
 			}
 			return usuarioR;
-		},
-	},
+		}
+	}
 });

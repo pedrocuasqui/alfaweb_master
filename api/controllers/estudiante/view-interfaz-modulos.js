@@ -57,6 +57,7 @@ module.exports = {
 			objetoSeleccionado = await ModuloLibro.findOne({ id: inputs.objetoId });
 			//la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
 			objetoSeleccionado.nombre = objetoSeleccionado.nombreModulo;
+			moduloPadre = objetoSeleccionado;
 			objetoSeleccionado.enlace =
 				"/interfaz-modulos/?objetoId=" +
 				objetoSeleccionado.id +
@@ -165,8 +166,6 @@ module.exports = {
 				nombre: "Visitante",
 				rol: "Estudiante"
 			};
-			// var cursos = await Curso.find();
-			// usuario.cursos = cursos;
 		}
 
 		// retorno de ultimo intentoEvaluacion para mostrar la puntuacion actual
@@ -208,17 +207,23 @@ module.exports = {
 					});
 				});
 
-			var ultimasEvaluaciones = await IntentoEvaluacion.find({
-				where: {
-					submodulos: submoduloSeleccionado.id, //los submodulos del modulo seleccionado
-					estudiante: usuario.id
-				}
-			}).sort("createdAt DESC");
 			//consultar las evaluaciones del estudiante en el curso actual y modulo seleccionado
 			//ordenar las evaluaciones por cada subomodulo y obtener la mas reciente de cada lista
 
 			//consultar el intento evaluacion de
 		}
+
+		var ultimasEvaluaciones = await SubmoduloLibro.find({
+			modulo: moduloPadre.id
+		}).populate("intentosEvaluacion", {
+			where: {
+				estudiante: usuario.id
+			},
+			limit: 1,
+			sort: "createdAt DESC"
+		});
+
+		usuario.ultimasEvaluaciones = ultimasEvaluaciones;
 
 		return exits.success({
 			curso,

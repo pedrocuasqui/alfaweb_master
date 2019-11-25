@@ -1,61 +1,61 @@
 {
-  "name": "alfabetizaweb",
-  "private": true,
-  "version": "1.0.0",
-  "description": "alfaweb: es una aplicación pensada para enseñar nociones básicas de informática básica",
-  "keywords": [],
-  "dependencies": {
-    "@sailshq/connect-redis": "^3.2.1",
-    "@sailshq/lodash": "^3.10.3",
-    "@sailshq/socket.io-redis": "^5.2.0",
-    "@tinymce/tinymce-vue": "^2.0.0",
-    "async": "2.0.1",
-    "bcrypt": "^3.0.6",
-    "formidable": "^1.2.1",
-    "grunt-sync": "^0.8.1",
-    "sails": "^1.2.3",
-    "sails-hook-orm": "^2.0.0-16",
-    "sails-hook-sockets": "^1.4.0",
-    "sails-mongo": "^1.0.1",
-    "sortablejs": "^1.10.1",
-    "vue-sidebar-menu": "^3.5.0"
-  },
-  "devDependencies": {
-    "@sailshq/eslint": "^4.19.3",
-    "grunt": "^1.0.4",
-    "grunt-browserify": "^5.3.0",
-    "jshint": "^2.10.2",
-    "nodemon": "^1.18.10",
-    "sails-hook-grunt": "git+https://github.com/dannysuryadi/sails-hook-grunt.git",
-    "toastr": "^2.1.4"
-  },
-  "scripts": {
-    "start": "NODE_ENV=production node app.js",
-    "test": "npm run lint && npm run custom-tests && echo 'Done.'",
-    "lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
-    "custom-tests": "echo \"(No other custom tests yet.)\" && echo"
-  },
-  "main": "app.js",
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/anonymous node/sails user/alfabetizaweb.git"
-  },
-  "author": "anonymous node/sails user",
-  "license": "ISC",
-  "engines": {
-    "node": ">=10.9"
-  },
-  "languages": [
-    {
-      "id": "javascript",
-      "extensions": [
-        ".js",
-        ".component.js"
-      ],
-      "aliases": [
-        "javascript",
-        "js"
-      ]
-    }
-  ]
+	"name": "alfabetizaweb",
+	"private": true,
+	"version": "1.0.0",
+	"description": "alfaweb: es una aplicación pensada para enseñar nociones básicas de informática básica",
+	"keywords": [],
+	"dependencies": {
+		"@sailshq/connect-redis": "^3.2.1",
+		"@sailshq/lodash": "^3.10.3",
+		"@sailshq/socket.io-redis": "^5.2.0",
+		"@tinymce/tinymce-vue": "^2.0.0",
+		"async": "2.0.1",
+		"bcrypt": "^3.0.6",
+		"formidable": "^1.2.1",
+		"grunt": "^1.0.4",
+		"grunt-sync": "^0.8.1",
+		"node-pre-gyp": "^0.14.0",
+		"sails": "^1.2.3",
+		"sails-hook-orm": "^2.0.0-16",
+		"sails-hook-sockets": "^1.4.0",
+		"sails-mongo": "^1.0.1",
+		"sortablejs": "^1.10.1",
+		"vue-sidebar-menu": "^3.5.0"
+	},
+	"devDependencies": {
+		"@sailshq/eslint": "^4.19.3",
+		"jshint": "^2.10.2",
+		"nodemon": "^1.18.10",
+		"sails-hook-grunt": "git+https://github.com/dannysuryadi/sails-hook-grunt.git",
+		"toastr": "^2.1.4"
+	},
+	"scripts": {
+		"start": "NODE_ENV=production node app.js",
+		"test": "npm run lint && npm run custom-tests && echo 'Done.'",
+		"lint": "eslint . --max-warnings=0 --report-unused-disable-directives && echo '✔  Your .js files look good.'",
+		"custom-tests": "echo \"(No other custom tests yet.)\" && echo"
+	},
+	"main": "app.js",
+	"repository": {
+		"type": "git",
+		"url": "git://github.com/anonymous node/sails user/alfabetizaweb.git"
+	},
+	"author": "anonymous node/sails user",
+	"license": "ISC",
+	"engines": {
+		"node": ">=10.9"
+	},
+	"languages": [
+		{
+			"id": "javascript",
+			"extensions": [
+				".js",
+				".component.js"
+			],
+			"aliases": [
+				"javascript",
+				"js"
+			]
+		}
+	]
 }

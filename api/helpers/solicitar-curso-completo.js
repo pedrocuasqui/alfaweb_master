@@ -56,15 +56,9 @@ module.exports = {
 			//if (Object.keys(modulo).lenght > 0) {
 			if (modulo) {
 				curso = await Curso.findOne({ id: modulo.curso });
-				modulos = await ModuloLibro.find({ curso: modulo.curso })
-					.populate("submodulos")
-					.populate("intentosEvaluacion", {
-						where: {
-							estudiante: inputs.usuarioId
-						},
-						limit: 1,
-						sort: "createdAt DESC"
-					});
+				modulos = await ModuloLibro.find({ curso: modulo.curso }).populate(
+					"submodulos"
+				);
 
 				curso.modulos = modulos;
 				curso.nombreCurso = curso.nombre; //solo se usa en breadcrumb para saber que es un curso y que al dar clic redirija a la p'agina del indice

@@ -65,11 +65,11 @@ parasails.registerComponent("modulo-side-var-menu", {
                             
 																<div class="d-flex w-100 justify-content-between">
                                   <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
-                                  <small > Última evaluación: </small>
                                 </div>
-																<p class="mb-1" ><small>Tipo: {{submodulo.evaluacion.tipo}}</small></p>
-                                <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
-                                <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'">Empareje el término con el concepto correcto</p>
+																<p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Lea la pregunta y escoja la respuesta correcta)</small></p>
+                                <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Empareje el término con el concepto correcto)</small></p>
+																<p class="mb-1" ><small>Ultima evaluación: {{ultimaEvaluacion(submodulo.id)}}</small></p>
+																<p class="mb-1" ><small>Aprobada: {{apruebaUltimaEvaluacion(submodulo.id)}}</small></p>
                             </a> 
                             <a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
                                 <div class="d-flex w-100 justify-content-between">
@@ -85,11 +85,12 @@ parasails.registerComponent("modulo-side-var-menu", {
                             <a v-if="submodulo.evaluacion"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">  
                             		<div class="d-flex w-100 justify-content-between">
 																	<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
-																	<small>Ultima evaluación: {{ultimaEvaluacion(submodulo.id)}}</small>
-                                </div>
-																<p class="mb-1" ><small>Tipo: {{submodulo.evaluacion.tipo}}</small></p>
-                                <p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'">Lea la pregunta y escoja la respuesta correcta</p>
-                                <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'">Empareje el término con el concepto correcto</p>
+																</div>
+																<p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Lea la pregunta y escoja la respuesta correcta)</small></p>
+                                <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Empareje el término con el concepto correcto)</small></p>
+																<p class="mb-1" ><small>Ultima evaluación: {{ultimaEvaluacion(submodulo.id)}}</small></p>
+																<p class="mb-1" ><small>Aprobada: {{apruebaUltimaEvaluacion(submodulo.id)}}</small></p>
+                                
                             </a> 
                             <a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
                                 <div class="d-flex w-100 justify-content-between">
@@ -270,12 +271,12 @@ parasails.registerComponent("modulo-side-var-menu", {
 		},
 		ultimaEvaluacion(submoduloId) {
 			var fecha = "No realizada";
-			var submodulo = null;
+			let submodulo = null;
 
 			submodulo = this.usuario.ultimasEvaluaciones.find(submodulor => {
 				return submodulor.id === submoduloId;
 			});
-			console.log(submodulo);
+
 			if (submodulo.intentosEvaluacion.length > 0) {
 				let fechaUltimaEv = "01-01-1970";
 				fechaUltimaEv = new Date(submodulo.intentosEvaluacion[0].createdAt);
@@ -289,6 +290,27 @@ parasails.registerComponent("modulo-side-var-menu", {
 			}
 
 			return fecha;
+		},
+		apruebaUltimaEvaluacion(submoduloId) {
+			let submodulo = null;
+			let aprueba = "NO";
+			submodulo = this.usuario.ultimasEvaluaciones.find(submodulor => {
+				return submodulor.id === submoduloId;
+			});
+			if (submodulo.intentosEvaluacion[0].apruebaEvaluacion == 1) {
+				aprueba = "SI";
+			}
+
+			return aprueba;
+		},
+		numeroIntentosEvaluacion(submoduloId) {
+			let submodulo = null;
+
+			submodulo = this.usuario.ultimasEvaluaciones.find(submodulor => {
+				return submodulor.id === submoduloId;
+			});
+
+			return submodulo.intentosEvaluacion.length;
 		}
 	},
 	computed: {

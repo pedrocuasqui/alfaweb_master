@@ -219,7 +219,7 @@ module.exports = {
 			where: {
 				estudiante: usuario.id
 			},
-			limit: 1,
+			// limit: 1,
 			sort: "createdAt DESC"
 		});
 

@@ -297,8 +297,12 @@ parasails.registerComponent("modulo-side-var-menu", {
 			submodulo = this.usuario.ultimasEvaluaciones.find(submodulor => {
 				return submodulor.id === submoduloId;
 			});
-			if (submodulo.intentosEvaluacion[0].apruebaEvaluacion == 1) {
-				aprueba = "SI";
+			if (submodulo.intentosEvaluacion.length > 0) {
+				if (submodulo.intentosEvaluacion[0].apruebaEvaluacion == 1) {
+					aprueba = "SI";
+				}
+			} else {
+				aprueba = "No aplica para visitantes";
 			}
 
 			return aprueba;

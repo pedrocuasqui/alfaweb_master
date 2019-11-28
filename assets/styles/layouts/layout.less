@@ -1334,3 +1334,72 @@ div.padding_bottom {
 .margen_interno {
 	border: 1px solid @colorfuente;
 }
+
+.talkbubble {
+	// width: 120px;
+	// height: 80px;
+	background: rgb(231, 202, 202);
+	position: relative;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+.talkbubble:before {
+	content: "";
+	position: absolute;
+	right: 83%;
+	top: 100px;
+	width: 0;
+	height: 0;
+
+	border-top: 26px solid rgb(231, 202, 202);
+	border-right: 13px solid transparent;
+	border-bottom: 13px solid transparent;
+	border-left: 13px solid transparent;
+}
+
+#modalInstrucciones .modal-content {
+	background: linear-gradient(
+			rgba(255, 255, 255, 0.5),
+			rgba(245, 240, 240, 0.226)
+		),
+		url("/images/otros/win2.jpg") no-repeat center fixed;
+	background-size: contain;
+}
+#modalInstruccionesLabel,
+#actividadFinalizadaLabel {
+	color: white !important;
+}
+#modalInstrucciones .modal-header,
+#actividadFinalizada .modal-header {
+	border-bottom: 0px;
+}
+#modalInstrucciones .modal-footer,
+#actividadFinalizada .modal-footer {
+	border-top: 0px;
+}
+
+#actividadFinalizada .modal-content {
+	background: linear-gradient(
+			rgba(235, 224, 224, 0.637),
+			rgba(206, 202, 202, 0.328)
+		),
+		url("/images/otros/fondo_1.jpg") no-repeat center fixed;
+	background-size: contain;
+}
+
+.fas.fa-star,
+.fas.fa-sad-tear,
+.fas.fa-smile {
+	font-size: 2em;
+}
+.fas.fa-star.color,
+.fas.fa-sad-tear,
+.fas.fa-smile {
+	color: #ffd800;
+}
+
+.puntos_final {
+	width: 60px;
+	height: auto;
+}

@@ -106,20 +106,17 @@ parasails.registerComponent("modulo-ev-individual", {
 		// mostrar el modal con las instrucciones para la evaluacion
 		if (this.tipoEvaluacion == "Cuestionario") {
 			this.descripcionActividad =
-				"<p class='mintrucciones'>Lee atentamente el enunciado y selecciona la respuesta correcta.</p><p class='mintrucciones'>Tienes <strong>" +
-				this.tiempoMaximoPorPregunta +
-				" segundos </strong> para responder la pregunta. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>";
+				// "<p class='mintrucciones'>Lee atentamente el enunciado y selecciona la respuesta correcta.</p><p class='mintrucciones'>Tienes <strong>" +
+				// this.tiempoMaximoPorPregunta +
+				// " segundos </strong> para responder todas las preguntas. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>";
+				`<p class='mintrucciones'>Lee atentamente el enunciado y selecciona la respuesta correcta.  <br> Tienes <strong>
+				${this.tiempoMaximoPorPregunta} segundos </strong> para responder todas las preguntas. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>`;
 		} else if (this.tipoEvaluacion == "Emparejamiento") {
 			this.descripcionActividad =
 				"<p class='mintrucciones'>Primero selecciona una opción de la columna izquierda.</p><p class='mintrucciones'>Luego selecciona la respuesta correcta de la columna derecha</p>" +
 				"<p class='mintrucciones'>Tienes <strong>" +
 				this.tiempoMaximoPorPregunta +
-				" segundos  </strong> para responder la pregunta. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>";
-		} else {
-			this.descripcionActividad =
-				"<p class='mintrucciones'>Mira atentamente la imágen y selecciona la respuesta correcta.</p><p class='mintrucciones'>Tienes <strong>" +
-				this.tiempoMaximoPorPregunta +
-				" segundos </strong> para escoger la respuesta correcta. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>";
+				" segundos  </strong> para responder todas las preguntas. <br> ¡Mientras más rápido respondas, más puntos ganas!</p>";
 		}
 		this.mostrarModalInicial();
 
@@ -152,8 +149,21 @@ parasails.registerComponent("modulo-ev-individual", {
       <div class="modal-body">
       
         <div id="descripcion" v-html="descripcionActividad">
-        </div>
-        <div v-if="usuario.nombre=='Visitante'"> <p class='mintrucciones'><em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></p></div>
+				</div>
+				
+				<img src="/images/otros/iconos_evaluacion/tenor.gif" alt="Imágen de exito" height="50px" width="auto">
+
+				<div class="talkbubble" v-if="usuario.nombre=='Visitante'"> <p class='mintrucciones'><em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></p></div>
+				<div class="row">
+				<div class="col-sm-3">
+				<img src="/images/svg/buho_original_1.svg" alt="avatar buho" height="50px" width="auto">
+				</div>
+				<div class="col-sm-6">
+				
+				</div>
+				<div class="col-sm-3"></div>
+
+				</div>
         
       </div>
       <div class="modal-footer">
@@ -178,22 +188,34 @@ parasails.registerComponent("modulo-ev-individual", {
         </button>
       </div>
       <div class="modal-body">
-      
-        <p class="evFinPtos mintrucciones">Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p>
-        <p class="evFinPtos mintrucciones">Puntos de la evaluación: {{puntosOtenidosAnimados}} </p>  <!--Puntos Obtenidos:{{puntosObtenidos}}-->
-        <p class="evFinPtos mintrucciones">Acumulas un total de : {{puntosAnimados}}</p> <!--puntos-->
+			
+				<p v-if="this.apruebaEvaluacion" class=" mintrucciones">Evaluación aprobada  <i class="fas fa-smile"></i></p>
+				<p v-else class=" mintrucciones">Evaluación reprobada <i class="fas fa-sad-tear"></i></p>
+        <p class="evFinPtos mintrucciones">Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}} <i v-for="stars in aciertos.length" class="fas fa-star color"></i><i v-for="star in preguntasCuestionarioRespuestas.length-aciertos.length" class="fas fa-star"></i></p>
+        <p class="evFinPtos mintrucciones">Puntos de la evaluación: {{puntosOtenidosAnimados}} <img class="puntos_final" src="/images/otros/iconos_evaluacion/lingote-de-oro.svg" > </p>  <!--Puntos Obtenidos:{{puntosObtenidos}}-->
+        <p class="evFinPtos mintrucciones">Acumulas un total de : {{puntosAnimados}} <img class="puntos_final" src="/images/otros/iconos_evaluacion/gold-ingot.svg"></p> <!--puntos-->
         <template  v-if="usuario.nombre!='Visitante'"> 
-            <p class="mintrucciones" v-if="subeDeNivelComp"> Has pasado al siguiente nivel {{nivel}} / {{numeroSubmodulosCurso}}</p>
-            <p class="mintrucciones" v-else>Nivel actual: {{nivel}}</p>
+            <p class="mintrucciones" v-if="subeDeNivelComp"> Has pasado al siguiente nivel</p>
+            <p class="mintrucciones" v-else>Nivel actual: {{nivel}} / {{numeroSubmodulosCurso}}</p>
             <p class="mintrucciones" v-if="porcentajeAvanceSubmodulos==100"> FELICIDADES, YA HAS COMPLETADO TODOS LOS MODULOS, ERES UN GRADUADO!!</p>
             <!--<p v-else>Eres un: {{medalla}}</p>-->
-            <p class="mintrucciones">Tu progreso es: {{porcentajeAvanceSubmodulos}} %</p>
+						<div>
+							<p class="mintrucciones">Tu progreso del curso es : {{porcentajeAvanceSubmodulos}} %</p> 
+							<div class="progress">
+								<div class="progress-bar" role="progressbar" :style="'width:'+porcentajeAvanceSubmodulos+'%'" :aria-valuenow="porcentajeAvanceSubmodulos" aria-valuemin="0" aria-valuemax="100"></div>
+						</div> 
+					</div>
         </template>
  
         
-        <div v-if="usuario.nombre=='Visitante'"> <em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em>
-        </div>
-
+				<div class="talkbubble" v-if="usuario.nombre=='Visitante'"> <p class='mintrucciones'><em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></p></div>
+				<div class="row">
+					<div class="col-sm-3">
+					<img src="/images/svg/buho_original_1.svg" alt="avatar buho" height="50px" width="auto">
+					</div>
+					<div class="col-sm-6"></div>
+					<div class="col-sm-3"></div>
+				</div>
 
 
         <p></p>
@@ -673,7 +695,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			//calculo el porcentaje de avance incluyendo la evaluacion actual
 
 			this.porcentajeAvanceSubmodulos =
-				(numeroSubmoduloAprobadosPorCurso / this.numeroSubmodulosCurso) * 100;
+				(this.nivel / this.numeroSubmodulosCurso) * 100;
 
 			if (
 				this.porcentajeAvanceSubmodulos > 0 &&

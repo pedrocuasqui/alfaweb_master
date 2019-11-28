@@ -168,6 +168,10 @@ parasails.registerComponent("modulo-ev-individual", {
 					<p class='mintrucciones'><em><b>NOTA: Ya aprobaste esta evaluación, los puntajes obtenidos por realizar esta evaluación no se guardarán</b></em>
 					</p>
 				</div>
+				<div class="talkbubble" v-if="usuario.nombre!='Visitante' && !submoduloAprobado"> 
+					<p class='mintrucciones'><em><b>NOTA: Puedes intentar la evaluación las veces que quieras, una vez aprobada la evaluación dejamos de guardar tus intentos en la evaluación aprobada</b></em>
+					</p>
+				</div>
 				<div class="row">
 				<div class="col-sm-3">
 				<img src="/images/svg/buho_original_1.svg" alt="avatar buho" height="50px" width="auto">

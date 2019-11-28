@@ -6,7 +6,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 			type: Object,
 			default: () => {
 				return { nombre: "Visitante", rol: "Estudiante", id: "1" };
-			},
+			}
 		},
 		cursoEstudiante: {
 			type: Object,
@@ -15,7 +15,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 				return null;
 			},
 			description:
-				"un objeo de tipo CursoEstudiante, este objeto guarda el lúltimo tema o módulo revisado por el estudiante,  se usa en la interfaz indice de estudiante para poder redireccionar al último tema revisado  ",
+				"un objeo de tipo CursoEstudiante, este objeto guarda el lúltimo tema o módulo revisado por el estudiante,  se usa en la interfaz indice de estudiante para poder redireccionar al último tema revisado  "
 		},
 
 		curso: {
@@ -25,27 +25,27 @@ parasails.registerComponent("modulo-panel-derecho", {
 				return null;
 			},
 			description:
-				"un objeto de tipo Curso, se usa para buscar la puntuacion (intentoEvaluacion) actual del estudiante ",
+				"un objeto de tipo Curso, se usa para buscar la puntuacion (intentoEvaluacion) actual del estudiante "
 		},
 		puntajeActual: {
 			type: Number,
-			default: 0,
+			default: 0
 		},
 		nivelActual: {
 			type: Number,
-			default: 0,
+			default: 0
 		},
 		totalNiveles: {
 			type: Number,
-			default: 0,
+			default: 0
 		},
 		medallaActual: {
 			type: String,
-			default: "bebe",
+			default: "bebe"
 		},
 		porcentajeAvance: {
 			type: Number,
-			default: 0,
+			default: 0
 		},
 		usuariosConectados: {
 			type: Array,
@@ -56,15 +56,15 @@ parasails.registerComponent("modulo-panel-derecho", {
 					{
 						nombre: "Pedro",
 						apellido: "Cuasqui",
-						Nivel: "4",
+						Nivel: "4"
 					},
 					{
 						nombre: "Estevan",
 						apellido: "Pérez",
-						Nivel: "5",
-					},
+						Nivel: "5"
+					}
 				];
-			},
+			}
 		},
 
 		adminCreandoModuloSubmodulo: {
@@ -72,16 +72,16 @@ parasails.registerComponent("modulo-panel-derecho", {
 			required: false,
 			default: () => {
 				return false;
-			},
+			}
 		},
 		objetoSeleccionado: {
 			type: Object,
 			// required: true,//no necesario para señalar el modulo o submodulo seleccionado en el menu lateral porque el menu ya contiene su definicion por defecto
 			default: () => {
 				return { id: "1" };
-			}, // se usa el mismo id por defecto que se usa en modulo-contenedor-curso
+			} // se usa el mismo id por defecto que se usa en modulo-contenedor-curso
 			// description:'parametro de barra de navegacion, tambien se usa la descripcion cuando el objeto seleccionado es un modulo o submodulo'
-		},
+		}
 	},
 	data() {
 		return {
@@ -89,7 +89,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 			intentosEvaluacion: null,
 			estudiantesConSusIntentos: [],
 			estudiantesConSusIntentosQuickSort: null,
-			mostrarOpcionesDeUsuario: true,
+			mostrarOpcionesDeUsuario: true
 		};
 	},
 	mounted() {},
@@ -198,6 +198,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 	
 	
 					<div id="boton_desplegable_personalizado" class="dropdown-menu">
+						<p class="dropdown-item">Rol: {{usuario.administrador && usuario.nombre !='Visitante'? "Administrador":"Estudiante"}}</p>
 						<a v-if="usuario.nombre =='Visitante'" class="dropdown-item" href="/view-login">Iniciar Sesión</a>
 						<a v-else class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
 						<div class="dropdown-divider"></div>
@@ -322,7 +323,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 					icon: "info",
 					tittle: "Debe crear el tema primero",
 					showConfirmButton: true,
-					timer: 2000,
+					timer: 2000
 				});
 			} else {
 				if (this.proximaRedireccionAContenido) {
@@ -343,7 +344,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 					axios({
 						url: "/puntuacion-estudiante",
 						method: "get",
-						params: { cursoId: this.curso.id },
+						params: { cursoId: this.curso.id }
 					})
 						.then(response => {
 							// Los intentos del usuario logueado, ordenados ascendentemente por fecha de creacion
@@ -353,7 +354,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 								response.data.estudiantesConSusIntentos;
 							this.seleccionarEstudiantesConIntentos();
 							this.estudiantesConSusIntentosQuickSort = this.ordenamientoQuickSort(
-								this.estudiantesConSusIntentos,
+								this.estudiantesConSusIntentos
 							);
 							this.definirGraficoPuntuacion();
 							this.mostrarModalPuntuacion();
@@ -364,14 +365,14 @@ parasails.registerComponent("modulo-panel-derecho", {
 								title:
 									"Error: no se puede mostrar la puntuación en este momento",
 								text: err,
-								showConfirmButton: true,
+								showConfirmButton: true
 							});
 						});
 				} else {
 					swal({
 						icon: "warning",
 						title: "No puede acceder a esta información como usuario Visitante",
-						showConfirmButton: true,
+						showConfirmButton: true
 					});
 				}
 			}
@@ -430,13 +431,13 @@ parasails.registerComponent("modulo-panel-derecho", {
 							label: datasetLabel,
 							backgroundColor: "rgb(255, 99, 132)",
 							borderColor: "rgb(255, 99, 132)",
-							data: datasetData,
-						},
-					],
+							data: datasetData
+						}
+					]
 				},
 
 				// Configuration options go here
-				options: {},
+				options: {}
 			});
 		},
 
@@ -451,7 +452,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 						nivel: 0, //modulo 1
 						medalla: "bebe", //medalla mas basica
 						tiempoMaximoPorPregunta: 30, //en segundos por defecto
-						evaluacion: null,
+						evaluacion: null
 					});
 				}
 			});
@@ -478,13 +479,13 @@ parasails.registerComponent("modulo-panel-derecho", {
 				return newArray.concat(
 					this.ordenamientoQuickSort(left),
 					estudiantePivot,
-					this.ordenamientoQuickSort(right),
+					this.ordenamientoQuickSort(right)
 				);
 			}
 		},
 		mostrarOpcionesUsuario() {
 			this.mostrarOpcionesDeUsuario = !this.mostrarOpcionesDeUsuario;
-		},
+		}
 	},
 	computed: {
 		porcentajeAvanceNiveles() {
@@ -526,6 +527,6 @@ parasails.registerComponent("modulo-panel-derecho", {
 			}
 
 			return esadmin;
-		},
-	},
+		}
+	}
 });

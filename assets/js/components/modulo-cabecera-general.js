@@ -5,15 +5,15 @@ parasails.registerComponent("modulo-cabecera-general", {
 			required: true,
 			default: () => {
 				return [{ nombreModulo: "", id: 1, enlace: "" }];
-			},
+			}
 		},
 		usuario: {
 			type: Object,
 			required: false,
 			default: () => {
 				return { nombre: "Visitante", id: 1, rol: "Estudiante" };
-			},
-		},
+			}
+		}
 	},
 	data() {
 		return {};
@@ -35,9 +35,10 @@ parasails.registerComponent("modulo-cabecera-general", {
 				<div class="btn-group">
 					<button type="button" class="btn dropdown-toggle boton_formulario" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false">
-						<i class="fas fa-user-circle"></i> {{usuario.nombre}} <i class="fas fa-bars"></i>
+						<i class="fas fa-user-circle"></i> <span > {{usuario.nombre}} </span>
 					</button>
 					<div id="boton_desplegable_personalizado" class="dropdown-menu">
+					<p class="dropdown-item">Rol: {{usuario.administrador && usuario.nombre !='Visitante'? "Administrador":"Estudiante"}}</p>
 						<template  v-if="usuario.nombre !='Visitante'">
 							<a class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
 							<div class="dropdown-divider"></div>
@@ -60,5 +61,5 @@ parasails.registerComponent("modulo-cabecera-general", {
 		</div>
 </div>`,
 	methods: {},
-	computed: {},
+	computed: {}
 });

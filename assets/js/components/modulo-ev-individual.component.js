@@ -124,6 +124,13 @@ parasails.registerComponent("modulo-ev-individual", {
 			this.tiempoRespuestaInicio = this.totalTime;
 		}
 
+		// verificamos si la evaluacion ya ha sido aprobada con anterioridad, se almacena el valor 1 en la variable submoduloAprobado en caso de ser positivo
+
+		this.submodulosAprobadosPorCurso.forEach(idSubmodulo => {
+			if (this.submodulo.id == idSubmodulo) {
+				this.submoduloAprobado = true;
+			}
+		});
 		// empieza la evaluaci'on despues de que se cierra el modal de inicio
 
 		// eslint-disable-next-line no-unused-vars
@@ -153,7 +160,14 @@ parasails.registerComponent("modulo-ev-individual", {
 				
 				<img src="/images/otros/iconos_evaluacion/tenor.gif" alt="Imágen de exito" height="50px" width="auto">
 
-				<div class="talkbubble" v-if="usuario.nombre=='Visitante'"> <p class='mintrucciones'><em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em></p></div>
+				<div class="talkbubble" v-if="usuario.nombre=='Visitante'"> 
+					<p class='mintrucciones'><em><b>NOTA: No estás logueado, si quieres guardar tu evaluación, debes registrarte o ingresar como estudiante</b></em>
+					</p>
+				</div>
+				<div class="talkbubble" v-if="submoduloAprobado"> 
+					<p class='mintrucciones'><em><b>NOTA: Ya aprobaste esta evaluación, los puntajes obtenidos por realizar esta evaluación no se guardarán</b></em>
+					</p>
+				</div>
 				<div class="row">
 				<div class="col-sm-3">
 				<img src="/images/svg/buho_original_1.svg" alt="avatar buho" height="50px" width="auto">
@@ -193,7 +207,7 @@ parasails.registerComponent("modulo-ev-individual", {
 				<p v-else class=" mintrucciones">Evaluación reprobada <i class="fas fa-sad-tear"></i></p>
         <p class="evFinPtos mintrucciones">Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}} <i v-for="stars in aciertos.length" class="fas fa-star color"></i><i v-for="star in preguntasCuestionarioRespuestas.length-aciertos.length" class="fas fa-star"></i></p>
         <p class="evFinPtos mintrucciones">Puntos de la evaluación: {{puntosOtenidosAnimados}} <img class="puntos_final" src="/images/otros/iconos_evaluacion/lingote-de-oro.svg" > </p>  <!--Puntos Obtenidos:{{puntosObtenidos}}-->
-        <p class="evFinPtos mintrucciones">Acumulas un total de : {{puntosAnimados}} <img class="puntos_final" src="/images/otros/iconos_evaluacion/gold-ingot.svg"></p> <!--puntos-->
+        <p class="evFinPtos mintrucciones">Tus puntos acumulados son : {{puntosAnimados}} <img class="puntos_final" src="/images/otros/iconos_evaluacion/gold-ingot.svg"></p> <!--puntos-->
         <template  v-if="usuario.nombre!='Visitante'"> 
             <p class="mintrucciones" v-if="subeDeNivelComp"> Has pasado al siguiente nivel</p>
             <p class="mintrucciones" v-else>Nivel actual: {{nivel}} / {{numeroSubmodulosCurso}}</p>
@@ -664,17 +678,10 @@ parasails.registerComponent("modulo-ev-individual", {
 				this.apruebaEvaluacion = 0;
 			}
 
-			// verificamos si la evaluacion ya ha sido aprobada con anterioridad, se almacena el valor 1 en la variable submoduloAprobado en caso de ser positivo
-
-			this.submodulosAprobadosPorCurso.forEach(idSubmodulo => {
-				if (this.submodulo.id == idSubmodulo) {
-					this.submoduloAprobado = true;
-				}
-			});
-
+			// teer en cuenta que el estudiante puede realizar la evaluacion las veces que quiera
 			var numeroSubmoduloAprobadosPorCurso = this.submodulosAprobadosPorCurso
 				.length;
-			/*sube de nivel cuando hay una sola evaluacion aprobada y cumple con el parametro para subir de nivel*/
+			/*sube de nivel cuando es la primera vez que se aprueba la evaluacion  y cumple con el parametro para subir de nivel*/
 			if (this.apruebaEvaluacion == 1 && !this.submoduloAprobado) {
 				//si aprueba la evaluacion y el submodulo no ha sido aprobado quiere decir que es la primera vez que se aprueba esta evaluacion,se guarda en el array de submodulosAprobados por tanto el numero de modulos aprobados sera uno mas
 
@@ -724,7 +731,8 @@ parasails.registerComponent("modulo-ev-individual", {
 			//4) guardar en la base de datos
 
 			if (this.usuario) {
-				if (this.usuario.nombre != "Visitante") {
+				// solo se guardan los intentos hasta que se apruebe la evaluacion, por tanto si el submodulo ya fue aprobado anteriormente ya no se permite guardar
+				if (this.usuario.nombre != "Visitante" && !this.submoduloAprobado) {
 					this.guardarIntentoEvaluacion();
 
 					//si el usuario es estudiante se guardan los resultados de la evaluacion

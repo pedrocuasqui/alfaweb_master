@@ -1167,10 +1167,10 @@ module.exports.bootstrap = async function(done) {
 				nivel: 3,
 				medalla: "estudiante",
 				tiempoMaximoPorPregunta: 40,
-				apruebaEvaluacion: 1,
+				apruebaEvaluacion: 0,
 				evaluacion: {
 					tipo: "Cuestionario",
-					aciertos: [0, 1],
+					aciertos: [0],
 					preguntas: [
 						{
 							enunciado: "Un campo corresponde al nombre de:",
@@ -1198,8 +1198,7 @@ module.exports.bootstrap = async function(done) {
 							pista: "Herramientas para almacenar ...",
 							errores: null,
 							tiempoDeRespuesta: 1.7999999999999972,
-							respuestaEstudiante:
-								"Una herramienta para almacenar la información"
+							respuestaEstudiante: "Una herramienta para eliminar información"
 						}
 					],
 					puntosObtenidos: 7000

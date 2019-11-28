@@ -298,6 +298,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 				return submodulor.id === submoduloId;
 			});
 			if (submodulo.intentosEvaluacion.length > 0) {
+				//Los intentos evaluacion estan ordenados en orden descendente por tanto la última evaluacion estará en la posicion 0
 				if (submodulo.intentosEvaluacion[0].apruebaEvaluacion == 1) {
 					aprueba = "SI";
 				}

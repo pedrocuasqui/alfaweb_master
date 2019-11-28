@@ -169,7 +169,8 @@ parasails.registerComponent("modulo-ev-individual", {
 					</p>
 				</div>
 				<div class="talkbubble" v-if="usuario.nombre!='Visitante' && !submoduloAprobado"> 
-					<p class='mintrucciones'><em><b>NOTA: Puedes intentar la evaluación las veces que quieras, una vez aprobada la evaluación dejamos de guardar tus intentos en la evaluación aprobada</b></em>
+					<p class='mintrucciones'><em><b>Hemos detectado que aún no apruebas esta evaluación, puedes intentar la evaluación las veces que quieras incluso si ya la aprobaste, pero recuerda que una vez aprobada ya no guardamos el intento en nuesta base de datos
+					</b></em>
 					</p>
 				</div>
 				<div class="row">

@@ -43,7 +43,7 @@ parasails.registerComponent("modulo-side-var-menu", {
     <div >
   
   <!-- Modals -->
-    <!-- Ver puntuacion Historica del estudiante -->
+    <!-- Lista de evaluaciones -->
     <div class="modal fade " id="modalEnlaceEvaluacion" tabindex="-1" role="dialog" aria-labelledby="etiquetaModalEnlaceEvaluacion"
         aria-hidden="true">
         <div class="modal-dialog modal-l" role="document">
@@ -60,45 +60,45 @@ parasails.registerComponent("modulo-side-var-menu", {
                         <div class="list-group">
                       	 		<!--Para curso informática básica-->
                             <template v-if="cursoInformatica">
-                            <template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
-                            <a v-if="submodulo.evaluacion"  :href="'/contenido-alfaweb/?enlace='+submodulo.enlace+'&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">
-                            
-																<div class="d-flex w-100 justify-content-between">
-                                  <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
-                                </div>
-																<p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Lea la pregunta y escoja la respuesta correcta)</small></p>
-                                <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Empareje el término con el concepto correcto)</small></p>
-																<p class="mb-1" ><small>Ultima evaluación: {{ultimaEvaluacion(submodulo.id)}}</small></p>
-																<p class="mb-1" ><small>Aprobada: {{apruebaUltimaEvaluacion(submodulo.id)}}</small></p>
-                            </a> 
-                            <a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
-                                </div>
-                                <p class="mb-1" >Evaluación no disponible</p>
-                            </a> 
-                            </template>
+															<template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
+															<a v-if="submodulo.evaluacion"  :href="'/contenido-alfaweb/?enlace='+submodulo.enlace+'&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">
+															
+																	<div class="d-flex w-100 justify-content-between">
+																		<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+																	</div>
+																	<p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Lea la pregunta y escoja la respuesta correcta)</small></p>
+																	<p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Empareje el término con el concepto correcto)</small></p>
+																	<p class="mb-1" ><small>Ultima evaluación: {{ultimaEvaluacion(submodulo.id)}}</small></p>
+																	<p class="mb-1" ><small>Aprobada: {{apruebaUltimaEvaluacion(submodulo.id)}}</small></p>
+															</a> 
+															<a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
+																	<div class="d-flex w-100 justify-content-between">
+																			<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+																	</div>
+																	<p class="mb-1" >Evaluación no disponible</p>
+															</a> 
+															</template>
                             </template>
 														<!--para curso que no es informatica basica-->
                             <template v-else-if="curso.modulos.length !=0">
-                            <template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
-                            <a v-if="submodulo.evaluacion"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">  
-                            		<div class="d-flex w-100 justify-content-between">
-																	<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
-																</div>
-																<p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Lea la pregunta y escoja la respuesta correcta)</small></p>
-                                <p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Empareje el término con el concepto correcto)</small></p>
-																<p class="mb-1" ><small>Ultima evaluación: {{ultimaEvaluacion(submodulo.id)}}</small></p>
-																<p class="mb-1" ><small>Aprobada: {{apruebaUltimaEvaluacion(submodulo.id)}}</small></p>
-                                
-                            </a> 
-                            <a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
-                                <div class="d-flex w-100 justify-content-between">
-                                    <h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
-                                </div>
-                                <p class="mb-1" >Evaluación no disponible</p>
-                            </a> 
-                            </template>
+															<template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
+															<a v-if="submodulo.evaluacion"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start " :class="[{evaluacion_deshabilitada:!submodulo.evaluacion.publicada}]">  
+																	<div class="d-flex w-100 justify-content-between">
+																		<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+																	</div>
+																	<p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Lea la pregunta y escoja la respuesta correcta)</small></p>
+																	<p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Empareje el término con el concepto correcto)</small></p>
+																	<p class="mb-1" ><small>Ultima evaluación: {{ultimaEvaluacion(submodulo.id)}}</small></p>
+																	<p class="mb-1" ><small>Aprobada: {{apruebaUltimaEvaluacion(submodulo.id)}}</small></p>
+																	<p v-if="!submodulo.evaluacion.publicada"> EVALUACIÓN DESHABILITADA </p>
+															</a> 
+															<a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
+																	<div class="d-flex w-100 justify-content-between">
+																			<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+																	</div>
+																	<p class="mb-1" >Evaluación no disponible</p>
+															</a> 
+															</template>
                             </template>
                         </div>
                         

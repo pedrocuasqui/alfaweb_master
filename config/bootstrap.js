@@ -741,6 +741,7 @@ module.exports.bootstrap = async function(done) {
 			ordenNavegacion: 0,
 			evaluacion: {
 				tipo: "Cuestionario",
+				publicada: true,
 				tiempoMaximoPorPregunta: 20,
 				preguntas: [
 					{
@@ -932,6 +933,7 @@ module.exports.bootstrap = async function(done) {
 			ordenNavegacion: 0,
 			evaluacion: {
 				tipo: "Emparejamiento",
+				publicada: true,
 				tiempoMaximoPorPregunta: 1000,
 				preguntas: [
 					{
@@ -1085,7 +1087,8 @@ module.exports.bootstrap = async function(done) {
 			ordenNavegacion: 0,
 			evaluacion: {
 				tipo: "Cuestionario",
-				tiempoMaximoPorPregunta: "1000",
+				publicada: true,
+				tiempoMaximoPorPregunta: "100",
 				preguntas: [
 					{
 						enunciado:

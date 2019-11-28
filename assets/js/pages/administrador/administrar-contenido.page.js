@@ -92,7 +92,8 @@ parasails.registerPage("administrar-contenido", {
 		uploadPercentage: 0,
 		rutaImagenAnterior: null,
 		cambiosEnPreguntas: false,
-		guardaDesdeBotonCerrar: false
+		guardaDesdeBotonCerrar: false,
+		publicarEvaluacion: false
 	},
 	watch: {
 		preguntasCuestionario: function(nuevoValor, antiq) {
@@ -139,7 +140,7 @@ parasails.registerPage("administrar-contenido", {
 			this.preguntasCuestionario = [
 				...this.objetoSeleccionado.evaluacion.preguntas
 			];
-			// this.modalEdicion = true;
+			this.publicarEvaluacion = this.objetoSeleccionado.evaluacion.publicada;
 		}
 	},
 	mounted: async function() {
@@ -592,6 +593,14 @@ parasails.registerPage("administrar-contenido", {
 			}
 			return opciones;
 		},
+		onClickPublicarEvaluacion() {
+			this.publicarEvaluacion = true;
+			this.validarEvaluacion();
+		},
+		onClickDeshabilitarEvaluacion() {
+			this.publicarEvaluacion = false;
+			this.validarEvaluacion();
+		},
 		validarEvaluacion() {
 			this.formErrors = {};
 			//vALIDA QUE TODAS LAS PREGUNTAS TENGA OPCIONES, ESTA VALIDACION FUNCIONA CUANDO SE CAMBIA EL TIPO DE EVALUACION DE "EMPAREJAMIENTO" A "CUESTIONARIO"
@@ -643,20 +652,28 @@ parasails.registerPage("administrar-contenido", {
 			this.evaluacion.tipo = this.tipoEvaluacion; //el tipo de evaluacion en la base será el tipo de evaluacion seleccionado
 			this.evaluacion.tiempoMaximoPorPregunta = this.tiempoMaximoPorPregunta;
 			this.evaluacion.preguntas = this.preguntasCuestionario; //incluyen la pista
+			this.evaluacion.publicada = this.publicarEvaluacion; // se guarda como privada por defecto,
 
 			const formDataEv = new FormData();
 			formDataEv.append("objetoId", this.objetoSeleccionado.id);
 			formDataEv.append("evaluacion", JSON.stringify(this.evaluacion));
 			axios({
-				url: "/crear-evaluacion",
+				url: "/crear-evaluacion", //la action actualiza al submodulo creado, es decir crea la evaluacion al actualizar el submodulo
 				method: "post",
 				data: formDataEv
 			})
 				.then(response => {
-					let cuestionarioVacio = "";
+					let textoSwal = "";
 					let icono = "success";
+					if (!this.objetoSeleccionado.evaluacion) {
+						// este if solo se realiza para habilitar o inhabilitar el boton de publicar evaluacion
+						this.objetoSeleccionado.evaluacion = this.evaluacion;
+						textoSwal =
+							"Recuerda publicar(activar) la evaluación para que los estudiantes tengan acceso a ella";
+					}
+
 					if (this.preguntasCuestionario.length == 0) {
-						cuestionarioVacio = ", No se registraron preguntas";
+						textoSwal = ", No se registraron preguntas";
 						icono = "info";
 					}
 
@@ -664,9 +681,9 @@ parasails.registerPage("administrar-contenido", {
 						position: "center",
 						icon: icono,
 						title: `Evaluación guardada correctamente`,
-						text: cuestionarioVacio,
-						showConfirmButton: false,
-						timer: 2000
+						text: textoSwal,
+						showConfirmButton: false
+						// timer: 2000
 					});
 
 					this.cambiosEnPreguntas = false;

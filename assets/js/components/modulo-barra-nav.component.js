@@ -66,16 +66,16 @@ parasails.registerComponent("modulo-barra-nav", {
           </template>
           <template v-else-if="esAdmin" > <!-- el curso es alfaweb -->
               <li v-if="breadcrumbTieneValores" class="breadcrumb-item" v-for="item in breadcrumb" key="breadAdmin">
-                <a v-if="item.nombre"  key="inicio" href="/inicio">{{item.nombre}}</a>
-                <a v-if="item.nombreCurso"  key="cursoAdmin" :href="'/administrar-indice/?cursoId='+item.id">{{item.nombreCurso}}</a>
+                <a v-if="item.nombre"  key="inicio" :href="item.nombre=='Cursos'? '/inicio': '/administrar-indice/?cursoId='+item.id">{{item.nombre}}</a>
+                <!--<a v-if="item.nombreCurso"  key="cursoAdmin" :href="'/administrar-indice/?cursoId='+item.id">{{item.nombreCurso}}</a>-->
                 <a v-if="item.nombreModulo"  key="moduloAdmin" :href="'/administrar-contenido/?objetoId='+item.id+'&tipoContenido=Modulo'">{{item.nombreModulo}}</a>
                 <a v-if="item.nombreSubmodulo" key="submodulo" :href="'/administrar-contenido/?objetoId='+item.id+'&tipoContenido=Submodulo'">{{item.nombreSubmodulo}}</a>
             </li>
           </template>
           <template v-else> <!--el curso es cualquier otro curso -->
             <li v-if="breadcrumbTieneValores" class="breadcrumb-item" v-for="item in breadcrumb" key="breadEstudiante">
-                <a v-if="item.nombre"  key="inicio" :href="item.nombre=='Cursos'? '/inicio': item.enlace">{{item.nombre }}</a>
-                <a v-if="item.nombreCurso"  key="curso" :href="'/indice-estudiante/?cursoId='+item.id">{{item.nombreCurso}}</a>
+                <a v-if="item.nombre && !item.nombreModulo && !item.nombreSubmodulo"  key="inicio" :href="item.nombre=='Cursos'? '/inicio': item.enlace">{{item.nombre }}</a>
+                <!--<a v-if="item.nombreCurso"  key="curso" :href="'/indice-estudiante/?cursoId='+item.id">{{item.nombreCurso}}</a>-->
                 <a v-if="item.nombreModulo"  key="modulo" :href="'/interfaz-modulos/?objetoId='+item.id+'&tipoContenido=Modulo'">{{item.nombreModulo}}</a>
                 <a v-if="item.nombreSubmodulo" key="submodulo" :href="'/interfaz-modulos/?objetoId='+item.id+'&tipoContenido=Submodulo'">{{item.nombreSubmodulo}}</a>
               </li>

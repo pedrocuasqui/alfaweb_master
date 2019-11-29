@@ -76,6 +76,7 @@ module.exports = {
 			//la propiedad nombre sirve para identificar indistintamente si es modulo o submodulo
 			objetoSeleccionado.nombre = objetoSeleccionado.nombreSubmodulo;
 			objetoSeleccionado.color = moduloPadre.color;
+			objetoSeleccionado.nombrePadre = moduloPadre.nombreModulo;
 		} else {
 			return res
 				.status(500)

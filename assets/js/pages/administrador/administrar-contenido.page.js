@@ -23,11 +23,8 @@ parasails.registerPage("administrar-contenido", {
 			required: false,
 			description: "la ruta del modulo siguiente"
 		},
-		// breadcrumb: {
-		//     type: Array,
-		//     required: false,
-		// },
-		breadcrumb: [],
+
+		breadcrumb: [{ nombre: "Cursos", id: 1, enlace: "/inicio" }],
 		curso: {
 			type: Object
 		},
@@ -128,7 +125,17 @@ parasails.registerPage("administrar-contenido", {
 		_.extend(this, SAILS_LOCALS);
 		this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
 		this.curso = SAILS_LOCALS.curso;
+
 		this.breadcrumb.push(SAILS_LOCALS.curso);
+		if (this.objetoSeleccionado.nombreModulo) {
+			this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
+		} else if (this.objetoSeleccionado.nombreSubmodulo) {
+			this.breadcrumb.push({
+				nombreModulo: SAILS_LOCALS.objetoSeleccionado.nombrePadre,
+				id: SAILS_LOCALS.objetoSeleccionado.modulo
+			});
+			this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
+		}
 
 		if (
 			this.objetoSeleccionado.nombreSubmodulo &&

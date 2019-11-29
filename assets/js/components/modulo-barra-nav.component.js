@@ -66,7 +66,7 @@ parasails.registerComponent("modulo-barra-nav", {
           </template>
           <template v-else-if="esAdmin" > <!-- el curso es alfaweb -->
               <li v-if="breadcrumbTieneValores" class="breadcrumb-item" v-for="item in breadcrumb" key="breadAdmin">
-                <a v-if="item.nombre"  key="inicio" :href="item.nombre=='Cursos'? '/inicio': '/administrar-indice/?cursoId='+item.id">{{item.nombre}}</a>
+                <a v-if="item.nombre && !item.nombreModulo && !item.nombreSubmodulo"  key="inicio" :href="item.nombre=='Cursos'? '/inicio': '/administrar-indice/?cursoId='+item.id">{{item.nombre}}</a>
                 <!--<a v-if="item.nombreCurso"  key="cursoAdmin" :href="'/administrar-indice/?cursoId='+item.id">{{item.nombreCurso}}</a>-->
                 <a v-if="item.nombreModulo"  key="moduloAdmin" :href="'/administrar-contenido/?objetoId='+item.id+'&tipoContenido=Modulo'">{{item.nombreModulo}}</a>
                 <a v-if="item.nombreSubmodulo" key="submodulo" :href="'/administrar-contenido/?objetoId='+item.id+'&tipoContenido=Submodulo'">{{item.nombreSubmodulo}}</a>

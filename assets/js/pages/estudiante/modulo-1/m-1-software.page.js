@@ -3,7 +3,7 @@ parasails.registerPage("m-1-software", {
 	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
 	//  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
 	data: {
-		breadcrumb: [],
+		breadcrumb: [{ nombre: "Cursos", id: 1, enlace: "/inicio" }],
 
 		usuario: Object,
 		navegarSiguiente: "",
@@ -17,7 +17,7 @@ parasails.registerPage("m-1-software", {
 		mostrarToolTip: false,
 		textoToolTip: {
 			type: String,
-			default: "software",
+			default: "software"
 		},
 
 		adobe: {
@@ -30,9 +30,9 @@ parasails.registerPage("m-1-software", {
 				{
 					src:
 						"https://www.softzone.es/app/uploads/2015/10/Adobe-Portada1.jpg?x=634&y=309",
-					alt: "Adobe ",
-				},
-			],
+					alt: "Adobe "
+				}
+			]
 		},
 		eset: {
 			id: "Eset",
@@ -43,9 +43,9 @@ parasails.registerPage("m-1-software", {
 			imgs: [
 				{
 					src: "https://cdn1.esetstatic.com/ESET/ES/OG_images/b2c.jpg",
-					alt: "Eset",
-				},
-			],
+					alt: "Eset"
+				}
+			]
 		},
 		linux: {
 			id: "Linux",
@@ -56,9 +56,9 @@ parasails.registerPage("m-1-software", {
 			imgs: [
 				{
 					src: "https://i.blogs.es/4137ee/linux3/450_1000.png",
-					alt: "Gnu Linux",
-				},
-			],
+					alt: "Gnu Linux"
+				}
+			]
 		},
 		kaspersky: {
 			id: "Kaspersky",
@@ -70,9 +70,9 @@ parasails.registerPage("m-1-software", {
 				{
 					src:
 						"https://upload.wikimedia.org/wikipedia/commons/thumb/e/ea/Kaspersky_virlab.JPG/1024px-Kaspersky_virlab.JPG",
-					alt: "Kaspersky",
-				},
-			],
+					alt: "Kaspersky"
+				}
+			]
 		},
 		debian: {
 			id: "Debian",
@@ -84,9 +84,9 @@ parasails.registerPage("m-1-software", {
 				{
 					src:
 						"https://upload.wikimedia.org/wikipedia/commons/thumb/4/4a/Debian-OpenLogo.svg/245px-Debian-OpenLogo.svg.png",
-					alt: "Debian",
-				},
-			],
+					alt: "Debian"
+				}
+			]
 		},
 		windows: {
 			id: "Windows",
@@ -98,12 +98,12 @@ parasails.registerPage("m-1-software", {
 				{
 					src:
 						"https://as01.epimg.net/meristation/imagenes/2019/03/21/betech/1553186102_297628_1553194488_noticia_normal.jpg",
-					alt: "Windows",
-				},
-			],
+					alt: "Windows"
+				}
+			]
 		},
 		mostrarIconoRepetir: false, //se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
-		progreso: {}, //puntos, niveles y medalla actuales
+		progreso: {} //puntos, niveles y medalla actuales
 
 		// elemento:{
 		//   id:'',
@@ -192,7 +192,7 @@ parasails.registerPage("m-1-software", {
 						"transform-box": "fill-box",
 						"transform-origin": "center",
 						"transition-timing-function": "ease-out",
-						fill: "chartreuse",
+						fill: "chartreuse"
 					});
 				},
 				//funcion que se ejecuta "onmouseleave" --> vuelve a su estado original
@@ -203,9 +203,9 @@ parasails.registerPage("m-1-software", {
 						"transform-box": "fill-box",
 						"transform-origin": "center",
 						"transition-timing-function": "ease-out",
-						fill: "",
+						fill: ""
 					});
-				},
+				}
 			);
 		},
 		evaluacionIndividual(contenido) {
@@ -269,7 +269,7 @@ parasails.registerPage("m-1-software", {
 			audioMouseOver.volume = 0.2;
 			// audioMouseOver.load(); //carga el archivo, esto implica detener la reproduccion actual
 			audioMouseOver.play(); //reproduce el archivo de audio
-		},
+		}
 	},
 	computed: {
 		styleToolTip() {
@@ -278,9 +278,9 @@ parasails.registerPage("m-1-software", {
 			//{ transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
 			let estilo = {
 				top: this.mouseY + "px",
-				left: this.mouseX + "px",
+				left: this.mouseX + "px"
 			};
 			return estilo;
-		},
-	},
+		}
+	}
 });

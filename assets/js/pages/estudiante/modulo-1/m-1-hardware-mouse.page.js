@@ -3,7 +3,7 @@ parasails.registerPage("m-1-hardware-mouse", {
 	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
 	//  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
 	data: {
-		breadcrumb: [],
+		breadcrumb: [{ nombre: "Cursos", id: 1, enlace: "/inicio" }],
 
 		usuario: Object,
 		navegarSiguiente: "",
@@ -17,7 +17,7 @@ parasails.registerPage("m-1-hardware-mouse", {
 		mostrarToolTip: false,
 		textoToolTip: {
 			type: String,
-			default: "software",
+			default: "software"
 		},
 
 		clic_derecho: {
@@ -32,16 +32,16 @@ parasails.registerPage("m-1-hardware-mouse", {
 						'El clic derecho del ratón o mouse es la acción de presionar (hacer clic) sobre el botón derecho del mouse. Esta acción suele utilizarse para abrir el menú de opciones, este será diferente dependiendo de donde se posa el cursor del mouse en ese momento. Si el mouse está configurado para zurdos, el clic derecho será en ese caso el botón de la izquierda. La animación de abajo muestra la acción "clic derecho".',
 					imagen:
 						"https://4.bp.blogspot.com/-bUIk7H52CJg/WvIgCwe00cI/AAAAAAAAAC4/FK9bXoH0yAgLBzFlZOeZppZ5vt9TEuRLwCLcBGAs/s400/mouse.gif",
-					alt: "Clic derecho",
+					alt: "Clic derecho"
 				},
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
 						"Algunos usos concretos del clic derecho del ratón:- En un programa editor de texto, como bloc de notas o Microsoft Word, se puede seleccionar una porción del texto, después se presiona clic derecho sobre la selección y se abrirá un menú con distintas opciones que podemos hacer con ese texto: copiar, cortar, reemplazar, buscar sinónimos, etcétera. También aparecerán funciones relacionadas al documento y no necesariamente para el texto seleccionado. Vea la animación debajo como ejemplo.",
 					imagen: "https://i.stack.imgur.com/dtS3o.gif",
-					alt: "Clic derecho sobre word",
-				},
-			],
+					alt: "Clic derecho sobre word"
+				}
+			]
 		},
 		clic_izquierdo: {
 			id: "ClicIzquierdo",
@@ -53,9 +53,9 @@ parasails.registerPage("m-1-hardware-mouse", {
 				{
 					src:
 						"https://media1.tenor.com/images/b5e07d01440eb593dcb28f01116d7ec8/tenor.gif",
-					alt: "Clic izquierdo",
-				},
-			],
+					alt: "Clic izquierdo"
+				}
+			]
 		},
 		scroll: {
 			id: "Scroll",
@@ -66,9 +66,9 @@ parasails.registerPage("m-1-hardware-mouse", {
 			imgs: [
 				{
 					src: "https://i.imgur.com/MlbJHpi.gif",
-					alt: "Scroll",
-				},
-			],
+					alt: "Scroll"
+				}
+			]
 		},
 		mouse: {
 			id: "mouse",
@@ -81,7 +81,7 @@ parasails.registerPage("m-1-hardware-mouse", {
 					detalle:
 						"El mouse es un elemento que permite controlar al ordenador usando una mano por medio de un puntero",
 					imagen: "https://media.giphy.com/media/l0HlQXlQ3nHyLMvte/giphy.gif",
-					alt: "Mouse en movimiento",
+					alt: "Mouse en movimiento"
 				},
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
@@ -89,13 +89,13 @@ parasails.registerPage("m-1-hardware-mouse", {
 						"Existen diferentes tipos de mouse, los más comunes son: 1) El mouse mecánico, funciona con una esfera que al moverse indica la posición del puntero en la pantalla, actualmente ya no se usan. 2) El mouse Óptico, funciona con una luz en lugar de una esfera. 3)El mouse láser, es el más usado actualmente y funciona con una haz de luz parecido al mouse óptico. 4) Trackball, es un mouse especial que se utilizan en una variedad de campos, desde el control del tráfico aéreo, el trabajo de diseño o juegos. 5) Touch, es un mouse sensible al tacto, se usa generalmente en los computadores portátiles.",
 					imagen:
 						"https://image.slidesharecdn.com/innovacionestecnolgicas-151108234626-lva1-app6891/95/innovaciones-tecnolgicas-3-638.jpg",
-					alt: "Diferentes tipos de mouse",
-				},
-			],
+					alt: "Diferentes tipos de mouse"
+				}
+			]
 		},
 
 		mostrarIconoRepetir: false, //se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
-		progreso: {}, //puntos, niveles y medalla actuales
+		progreso: {} //puntos, niveles y medalla actuales
 
 		// elemento:{
 		//   id:'',
@@ -210,7 +210,7 @@ parasails.registerPage("m-1-hardware-mouse", {
 			audioMouseOver.volume = 0.2;
 			// audioMouseOver.load(); //carga el archivo, esto implica detener la reproduccion actual
 			audioMouseOver.play(); //reproduce el archivo de audio
-		},
+		}
 	},
 	computed: {
 		styleToolTip() {
@@ -219,9 +219,9 @@ parasails.registerPage("m-1-hardware-mouse", {
 			//{ transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
 			let estilo = {
 				top: this.mouseY + "px",
-				left: this.mouseX + "px",
+				left: this.mouseX + "px"
 			};
 			return estilo;
-		},
-	},
+		}
+	}
 });

@@ -3,7 +3,7 @@ parasails.registerPage("m-1-encender-computadora", {
 	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
 	//  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
 	data: {
-		breadcrumb: [],
+		breadcrumb: [{ nombre: "Cursos", id: 1, enlace: "/inicio" }],
 		usuario: Object,
 		navegarSiguiente: "",
 		navegarAtras: "",
@@ -16,36 +16,36 @@ parasails.registerPage("m-1-encender-computadora", {
 		mostrarToolTip: false,
 		textoToolTip: {
 			type: String,
-			default: "software",
+			default: "software"
 		},
 
 		indice: null,
 		indicaciones: [
 			{
 				descripcion:
-					"Para encender el equipo siga los siguientes pasos. Paso 1: Encender el CPU, para ello diríjase al botón de encendido del equipo, por lo general es un circulo con una línea en el centro ",
+					"Para encender el equipo siga los siguientes pasos. Paso 1: Encender el CPU, para ello diríjase al botón de encendido del equipo, por lo general es un circulo con una línea en el centro "
 			},
 			{
 				descripcion:
-					"Paso 2: Encender el monitor, para ello diríjase hacia la parte inferior derecha de la pantalla que es donde generalmente se encuentra el botón de encendido, presiónelo una sola vez y suéltelo, espere hasta que encienda ",
+					"Paso 2: Encender el monitor, para ello diríjase hacia la parte inferior derecha de la pantalla que es donde generalmente se encuentra el botón de encendido, presiónelo una sola vez y suéltelo, espere hasta que encienda "
 			},
 			{
 				descripcion:
-					"Paso 3: Seleccionar un usuario, la computadora require que cada persona se identifique como usuario, por ello debe seleccionar un usuario para poder acceder y esperar a que inicie el computador",
+					"Paso 3: Seleccionar un usuario, la computadora require que cada persona se identifique como usuario, por ello debe seleccionar un usuario para poder acceder y esperar a que inicie el computador"
 			},
 			{
 				descripcion:
-					"Paso 4: Pantalla de inicio, una vez que la computadora se enciende, carga los programas y muestra accesos directos en el escritorio",
+					"Paso 4: Pantalla de inicio, una vez que la computadora se enciende, carga los programas y muestra accesos directos en el escritorio"
 			},
 			{
 				descripcion:
-					"Para apagar el computador, ir al botón de inicio y seleccionar la opción apagar. Recuerde que esta acción tambien cierra todos los programas abiertos",
-			},
+					"Para apagar el computador, ir al botón de inicio y seleccionar la opción apagar. Recuerde que esta acción tambien cierra todos los programas abiertos"
+			}
 		],
 		silenciar: true,
 
 		mostrarIconoRepetir: false, //se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
-		progreso: {}, //puntos, niveles y medalla actuales
+		progreso: {} //puntos, niveles y medalla actuales
 
 		// elemento:{
 		//   nombre:'',
@@ -170,7 +170,7 @@ parasails.registerPage("m-1-encender-computadora", {
 				_this.objetoSeleccionado.descripcion =
 					_this.indicaciones[posicion].descripcion;
 			});
-		},
+		}
 	},
 	computed: {
 		styleToolTip() {
@@ -179,9 +179,9 @@ parasails.registerPage("m-1-encender-computadora", {
 			//{ transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
 			let estilo = {
 				top: this.mouseY + "px",
-				left: this.mouseX + "px",
+				left: this.mouseX + "px"
 			};
 			return estilo;
-		},
-	},
+		}
+	}
 });

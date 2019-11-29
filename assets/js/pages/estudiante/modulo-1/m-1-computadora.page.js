@@ -6,7 +6,7 @@ parasails.registerPage("m-1-computadora", {
 	data: {
 		descripcionActividad:
 			"BIENVENIDO!!! \n Pasa el mouse sobre las imágenes para que puedas ver el nombre de los objetos.",
-		breadcrumb: [],
+		breadcrumb: [{ nombre: "Cursos", id: 1, enlace: "/inicio" }],
 
 		// modulo:{
 		//   nombreModulo: 'Módulo 1- La computadora ',
@@ -23,7 +23,7 @@ parasails.registerPage("m-1-computadora", {
 		mostrarToolTip: false,
 		textoToolTip: {
 			type: String,
-			default: "computador",
+			default: "computador"
 		},
 
 		cpu: {
@@ -37,9 +37,9 @@ parasails.registerPage("m-1-computadora", {
 				{
 					src:
 						"https://http2.mlstatic.com/cpucore-i3-8100-octava-generacion-4gb-ssd-120gb-case-halion-D_NQ_NP_955885-MPE29189916004_012019-Q.jpg",
-					alt: "CPU",
-				},
-			],
+					alt: "CPU"
+				}
+			]
 		},
 		teclado: {
 			id: "Teclado",
@@ -52,9 +52,9 @@ parasails.registerPage("m-1-computadora", {
 				{
 					src:
 						"https://store-images.s-microsoft.com/image/apps.45987.13510798885202450.fa37ac85-50b7-40bf-94be-f7c318f9764a.99d963b7-7b48-481e-b0a6-3d01efab7b7c?w=672&h=378&q=80&mode=letterbox&background=%23FFE4E4E4&format=jpg",
-					alt: "El teclado",
-				},
-			],
+					alt: "El teclado"
+				}
+			]
 		},
 		mouse: {
 			id: "Mouse",
@@ -67,9 +67,9 @@ parasails.registerPage("m-1-computadora", {
 				{
 					src:
 						"https://image.slidesharecdn.com/presentationcomputeers-120213062438-phpapp02/95/presentation-computeers-8-728.jpg",
-					alt: "Mouse",
-				},
-			],
+					alt: "Mouse"
+				}
+			]
 		},
 		monitor: {
 			id: "Monitor",
@@ -89,25 +89,25 @@ parasails.registerPage("m-1-computadora", {
 						"con la computadora.",
 					imagen:
 						"https://www.asus.com/media/global/products/Em0Dz3MjS9JKYM88/P_setting_fff_1_90_end_500.png",
-					alt: "Monitor",
+					alt: "Monitor"
 				},
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
 						"Los monitores han cambiado su forma desde que fueron inventados, Inicialmente los monitores usaban un Tubo de Rayos Catódicos para proyectar la imágen en la pantalla, por tanto eran muy grandes (1981-1989). Actualmente los monitores son planos gracias a la tecnología que utilizan, ésta puede ser: plasma, LCD o LED (1990-2019). ",
 					imagen: "https://aticser.files.wordpress.com/2011/06/monitor1.jpg",
-					alt: "Historia de los monitores",
+					alt: "Historia de los monitores"
 				},
 				{
 					posicion: "3", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
 						"Las partes más importantes del monitor son: 1) Pantalla: es la zona donde se despliegan las imágenes. 2) Panel de controles: se encargan de modificar la posición de la pantalla, el brillo, etcétera. 3) Botón de encendido: prende y apaga el monitor de manera digital",
 					imagen: "/images/informaticabasica/modulo1/computadora/monitor.png",
-					alt: "",
-				},
-			],
+					alt: ""
+				}
+			]
 		},
-		usuario: null,
+		usuario: null
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -210,7 +210,7 @@ parasails.registerPage("m-1-computadora", {
 			audioMouseOver.volume = 0.2;
 			// audioMouseOver.load(); //carga el archivo, esto implica detener la reproduccion actual
 			audioMouseOver.play(); //reproduce el archivo de audio
-		},
+		}
 	},
 	computed: {
 		styleToolTip() {
@@ -219,9 +219,9 @@ parasails.registerPage("m-1-computadora", {
 			//{ transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
 			let estilo = {
 				top: this.mouseY + "px",
-				left: this.mouseX + "px",
+				left: this.mouseX + "px"
 			};
 			return estilo;
-		},
-	},
+		}
+	}
 });

@@ -3,7 +3,7 @@ parasails.registerPage("m-1-hardware", {
 	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
 	//  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
 	data: {
-		breadcrumb: [],
+		breadcrumb: [{ nombre: "Cursos", id: 1, enlace: "/inicio" }],
 
 		usuario: Object,
 		navegarSiguiente: "",
@@ -17,7 +17,7 @@ parasails.registerPage("m-1-hardware", {
 		mostrarToolTip: false,
 		textoToolTip: {
 			type: String,
-			default: "Hardware",
+			default: "Hardware"
 		},
 		cpu: {
 			id: "Cpu",
@@ -30,9 +30,9 @@ parasails.registerPage("m-1-hardware", {
 				{
 					src:
 						"https://http2.mlstatic.com/cpucore-i3-8100-octava-generacion-4gb-ssd-120gb-case-halion-D_NQ_NP_955885-MPE29189916004_012019-Q.jpg",
-					alt: "CPU",
-				},
-			],
+					alt: "CPU"
+				}
+			]
 		},
 		teclado: {
 			id: "Teclado",
@@ -45,9 +45,9 @@ parasails.registerPage("m-1-hardware", {
 				{
 					src:
 						"https://store-images.s-microsoft.com/image/apps.45987.13510798885202450.fa37ac85-50b7-40bf-94be-f7c318f9764a.99d963b7-7b48-481e-b0a6-3d01efab7b7c?w=672&h=378&q=80&mode=letterbox&background=%23FFE4E4E4&format=jpg",
-					alt: "El teclado",
-				},
-			],
+					alt: "El teclado"
+				}
+			]
 		},
 		mouse: {
 			id: "Mouse",
@@ -60,9 +60,9 @@ parasails.registerPage("m-1-hardware", {
 				{
 					src:
 						"https://product-images.www8-hp.com/digmedialib/prodimg/lowres/c03330229.png",
-					alt: "Mouse",
-				},
-			],
+					alt: "Mouse"
+				}
+			]
 		},
 		monitor: {
 			id: "Monitor",
@@ -82,23 +82,23 @@ parasails.registerPage("m-1-hardware", {
 						"con la computadora.",
 					imagen:
 						"https://www.asus.com/media/global/products/Em0Dz3MjS9JKYM88/P_setting_fff_1_90_end_500.png",
-					alt: "Monitor",
+					alt: "Monitor"
 				},
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
 						"Los monitores han cambiado su forma desde que fueron inventados, Inicialmente los monitores usaban un Tubo de Rayos Catódicos para proyectar la imágen en la pantalla, por tanto eran muy grandes como los monitores que se ven a la izquierda de la imágen. Actualmente los monitores son planos gracias a la tecnología que utilizan, ésta puede ser: plasma, LCD o LED como los monitores que se ven a la derecha. ",
 					imagen: "https://aticser.files.wordpress.com/2011/06/monitor1.jpg",
-					alt: "Historia de los monitores",
+					alt: "Historia de los monitores"
 				},
 				{
 					posicion: "3", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
 						"Las partes más importantes del monitor son: 1) Pantalla: es la zona donde se despliegan las imágenes. 2) Panel de controles: se encargan de modificar la posición de la pantalla, el brillo, etcétera. 3) Botón de encendido: prende y apaga el monitor de manera digital",
 					imagen: "/images/informaticabasica/modulo1/computadora/monitor.png",
-					alt: "",
-				},
-			],
+					alt: ""
+				}
+			]
 		},
 		impresora: {
 			id: "Impresora",
@@ -107,7 +107,7 @@ parasails.registerPage("m-1-hardware", {
 				"La impresora es un objeto auxiliar, que está conectado a una unidad central de procesamiento de una computadora, su función es hacer hacer una copia de aquellos documentos que han sido almacenados en un formato electrónico. Estos documentos pueden ser textos o imágenes que son impresos en una hoja o transparencia utilizando cartuchos de tintas o tecnología láser. Vea el siguiente video que muestra como sacar una copia usando una impresora epson",
 			leerMas: "https://conceptodefinicion.de/impresora/",
 			html:
-				'<iframe width="560" height="315" src="https://www.youtube.com/embed/QKIOlpO4j9c?start=87" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>',
+				'<iframe width="560" height="315" src="https://www.youtube.com/embed/QKIOlpO4j9c?start=87" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>'
 		},
 		usb: {
 			id: "Usb",
@@ -119,12 +119,12 @@ parasails.registerPage("m-1-hardware", {
 				{
 					src:
 						"https://userscontent2.emaze.com/images/1396c703-d396-4136-a1a2-080acfff0b48/2b9cad36-bcd9-4445-8e3b-1d85112da0d7image3.jpeg",
-					alt: "Ejemplo de memorias usb",
-				},
-			],
+					alt: "Ejemplo de memorias usb"
+				}
+			]
 		},
 		mostrarIconoRepetir: false, //se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
-		progreso: {}, //puntos, niveles y medalla actuales
+		progreso: {} //puntos, niveles y medalla actuales
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -235,7 +235,7 @@ parasails.registerPage("m-1-hardware", {
 			audioMouseOver.volume = 0.2;
 			// audioMouseOver.load(); //carga el archivo, esto implica detener la reproduccion actual
 			audioMouseOver.play(); //reproduce el archivo de audio
-		},
+		}
 	},
 	computed: {
 		styleToolTip() {
@@ -244,9 +244,9 @@ parasails.registerPage("m-1-hardware", {
 			//{ transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
 			let estilo = {
 				top: this.mouseY + "px",
-				left: this.mouseX + "px",
+				left: this.mouseX + "px"
 			};
 			return estilo;
-		},
-	},
+		}
+	}
 });

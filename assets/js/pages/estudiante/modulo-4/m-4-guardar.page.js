@@ -1,241 +1,234 @@
-parasails.registerPage('m-4-guardar', {
-  //  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
-  //  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
-  //  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
-  data: {
-    breadcrumb: [],
+parasails.registerPage("m-4-guardar", {
+	//  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
+	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
+	//  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
+	data: {
+		breadcrumb: [{ nombre: "Cursos", id: 1, enlace: "/inicio" }],
 
-    usuario: Object,
-    navegarSiguiente: '',
-    navegarAtras: '',
-    tituloEvaluacion: '',
-    evIndividual: false,
-    objetoSeleccionado: '',
+		usuario: Object,
+		navegarSiguiente: "",
+		navegarAtras: "",
+		tituloEvaluacion: "",
+		evIndividual: false,
+		objetoSeleccionado: "",
 
-    mouseX: 0,
-    mouseY: 0,
-    mostrarToolTip: false,
-    textoToolTip: {
-      type: String,
-      default: "software"
-    },
+		mouseX: 0,
+		mouseY: 0,
+		mostrarToolTip: false,
+		textoToolTip: {
+			type: String,
+			default: "software"
+		},
 
-    /// /images/informaticabasica/modulo4/guardar/revisar/0.png
-    guardar: {
-      id: 'guardar',
-      titulo: 'Guardar documento',
-      detalle: 'Para guardar el documento: ',
-      leerMas: '',
-      carousel: [
-        {
-          posicion: '1', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'Para guardar un documento siga los siguientes pasos: 1.Terminar de escribir el documento.',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/1.png',
-          alt: 'Terminar de redactar el documento',
+		/// /images/informaticabasica/modulo4/guardar/revisar/0.png
+		guardar: {
+			id: "guardar",
+			titulo: "Guardar documento",
+			detalle: "Para guardar el documento: ",
+			leerMas: "",
+			carousel: [
+				{
+					posicion: "1", //siempre empezar en uno para poder identificar a los elementos
+					detalle:
+						"Para guardar un documento siga los siguientes pasos: 1.Terminar de escribir el documento.",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/1.png",
+					alt: "Terminar de redactar el documento"
+				},
+				{
+					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
+					detalle:
+						"2.	Se puede guardar un documento de 3 maneras diferentes: a)	En la parte superior de la pantalla de windows con el icono en forma de disquete ",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/2.png",
+					alt: "Botón guardar"
+				},
+				{
+					posicion: "3", //siempre empezar en uno para poder identificar a los elementos
+					detalle:
+						"a) Dar clic izquierdo en el ícono disquete y aparecerá la siguiente interfaz, que pide el nombre del documento a guardar.",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/3.png",
+					alt: "Seleccionar la ruta para guardar el documento"
+				},
+				{
+					posicion: "4", //siempre empezar en uno para poder identificar a los elementos
+					detalle:
+						"b)	Utilizando en acceso desde “Archivo”, clic en guardar o guardar como",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/4.png",
+					alt: "Opción archivo"
+				},
+				{
+					posicion: "5", //siempre empezar en uno para poder identificar a los elementos
+					detalle:
+						"b)	Seleccionar el lugar para guardar y darle un nombre al archivo",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/5.png",
+					alt: "Seleccionar la ruta para guardar el documento"
+				},
+				{
+					posicion: "6", //siempre empezar en uno para poder identificar a los elementos
+					detalle: "c)	Utilizando conmandos del teclado",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/6.png",
+					alt: "Atajo de teclado para guardar un documento "
+				}
+			]
+		},
+		imprimir: {
+			id: "imprimir",
+			titulo: "Imprimir documento",
+			detalle: "Para imprimir un documento:",
+			leerMas: "",
+			carousel: [
+				{
+					posicion: "1", //siempre empezar en uno para poder identificar a los elementos
+					detalle: "1. Terminar de escribir el documento",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/7.png",
+					alt: "Terminar de redactar"
+				},
+				{
+					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
+					detalle:
+						"2. Podemos imprimir un documento de 2 maneras diferentes: a)	Clic en Archivo",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/8.png",
+					alt: "Clic en archivo"
+				},
+				{
+					posicion: "3", //siempre empezar en uno para poder identificar a los elementos
+					detalle:
+						"Luego aparecerá la siguiente interfaz que permite la impresión del documento, eligiendo en primer lugar ciertas características a tomar en cuenta para el documento:",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/9.png",
+					alt: "Opciones de impresión"
+				},
+				{
+					posicion: "4", //siempre empezar en uno para poder identificar a los elementos
+					detalle: "b)	Utilizando comandos del teclado",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/10.png",
+					alt: "tajo de teclado para imprimir un documento"
+				},
+				{
+					posicion: "5", //siempre empezar en uno para poder identificar a los elementos
+					detalle:
+						"A continuación, se muestra la siguiente interfaz que permite trabajar la configuración del documento:",
+					imagen:
+						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/11.png",
+					alt: "Opciones de impresión"
+				}
+			]
+		},
+		mostrarIconoRepetir: false, //se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
+		progreso: {} //puntos, niveles y medalla actuales
+	},
 
-        },
-        {
-          posicion: '2', //siempre empezar en uno para poder identificar a los elementos
-          detalle: '2.	Se puede guardar un documento de 3 maneras diferentes: a)	En la parte superior de la pantalla de windows con el icono en forma de disquete ',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/2.png',
-          alt: 'Botón guardar',
+	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
+	//  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
+	//  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
+	beforeMount: function() {
+		// Attach any initial data from the server.
+		_.extend(this, SAILS_LOCALS);
 
-        },
-        {
-          posicion: '3', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'a) Dar clic izquierdo en el ícono disquete y aparecerá la siguiente interfaz, que pide el nombre del documento a guardar.',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/3.png',
-          alt: 'Seleccionar la ruta para guardar el documento',
+		this.usuario = SAILS_LOCALS.usuario;
+		this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
+		this.navegarSiguiente =
+			"/contenido-alfaweb/?enlace=" + SAILS_LOCALS.siguiente.enlace;
+		this.navegarAtras =
+			"/contenido-alfaweb/?enlace=" + SAILS_LOCALS.anterior.enlace;
+		this.breadcrumb.push(SAILS_LOCALS.curso);
+		this.breadcrumb.push(SAILS_LOCALS.modulo);
+		this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
+		if (SAILS_LOCALS.mostrarEvaluacion) {
+			this.evaluacionIndividual("evaluacion");
+		}
+	},
+	mounted: async function() {
+		//…
+	},
 
-        },
-        {
-          posicion: '4', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'b)	Utilizando en acceso desde “Archivo”, clic en guardar o guardar como',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/4.png',
-          alt: 'Opción archivo',
+	//  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
+	//  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
+	//  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
+	methods: {
+		/**
+		 * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
+		 */
+		intentarNuevamente() {
+			this.$refs.componenteEvaluacion.intentarNuevamente();
+		},
+		clickMostrarPista() {
+			if (this.evIndividual) {
+				this.$refs.componenteEvaluacion.mostrarPista();
+			}
+		},
 
-        },
-        {
-          posicion: '5', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'b)	Seleccionar el lugar para guardar y darle un nombre al archivo',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/5.png',
-          alt: 'Seleccionar la ruta para guardar el documento',
+		finalizaEvaluacion(valor) {
+			this.mostrarIconoRepetir = valor; //true o false
+		},
 
-        },
-        {
-          posicion: '6', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'c)	Utilizando conmandos del teclado',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/6.png',
-          alt: 'Atajo de teclado para guardar un documento ',
+		actualizaProgreso(progresoActual) {
+			this.progreso = progresoActual;
+		},
 
-        }
-      ]
-    },
-    imprimir: {
-      id: 'imprimir',
-      titulo: 'Imprimir documento',
-      detalle: 'Para imprimir un documento:',
-      leerMas: '',
-      carousel: [
-        {
-          posicion: '1', //siempre empezar en uno para poder identificar a los elementos
-          detalle: '1. Terminar de escribir el documento',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/7.png',
-          alt: 'Terminar de redactar',
+		evaluacionIndividual(contenido) {
+			//funcion recibida del componente modulo-contenedor-curso
+			if (contenido == "contenido") {
+				this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
+				this.evIndividual = false;
+			} else {
+				this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
+				this.evIndividual = true;
+			}
+		},
 
-        },
-        {
-          posicion: '2', //siempre empezar en uno para poder identificar a los elementos
-          detalle: '2. Podemos imprimir un documento de 2 maneras diferentes: a)	Clic en Archivo',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/8.png',
-          alt: 'Clic en archivo',
+		infoObjeto(idObjeto) {
+			if (idObjeto == "guardar") {
+				$(function() {
+					$("#modalguardar").modal("show");
+				});
+			} else if (idObjeto == "imprimir") {
+				$(function() {
+					$("#modalimprimir").modal("show");
+				});
+			}
+		},
+		mouseMovePc(event) {
+			// clientX/Y obtiene las coordenadas del elemento con respecto al elemento padre, en este caso las coordenadas con respecto a <div id="m1-computadora"
 
-        },
-        {
-          posicion: '3', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'Luego aparecerá la siguiente interfaz que permite la impresión del documento, eligiendo en primer lugar ciertas características a tomar en cuenta para el documento:',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/9.png',
-          alt: 'Opciones de impresión',
+			this.mouseX = event.clientX;
+			this.mouseY = event.clientY;
 
-        },
-        {
-          posicion: '4', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'b)	Utilizando comandos del teclado',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/10.png',
-          alt: 'tajo de teclado para imprimir un documento',
+			// El text del tooltip se basa en valor de la propiedad ""id"" de cada elemento ""
+			let elementoSeleccionado = event.target.parentNode.id;
+			this.textoToolTip = elementoSeleccionado.toString().toUpperCase();
 
-        },
-        {
-          posicion: '5', //siempre empezar en uno para poder identificar a los elementos
-          detalle: 'A continuación, se muestra la siguiente interfaz que permite trabajar la configuración del documento:',
-          imagen: '/images/informaticabasica/modulo4/guardar/guardar_imprimir/11.png',
-          alt: 'Opciones de impresión',
+			//una vez que los valores para x y y del texto del tooltip han sido establecidos, se muestra en la pantalla
+			this.mostrarToolTip = true;
+		},
+		mouseOutPc(evet) {
+			this.mostrarToolTip = false;
 
-        }
-      ]
-    },
-    mostrarIconoRepetir: false,//se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
-    progreso: {} //puntos, niveles y medalla actuales
-
-
-  },
-
-  //  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
-  //  ║  ║╠╣ ║╣ ║  ╚╦╝║  ║  ║╣
-  //  ╩═╝╩╚  ╚═╝╚═╝ ╩ ╚═╝╩═╝╚═╝
-  beforeMount: function () {
-    // Attach any initial data from the server.
-    _.extend(this, SAILS_LOCALS);
-
-    this.usuario = SAILS_LOCALS.usuario;
-    this.objetoSeleccionado = SAILS_LOCALS.objetoSeleccionado;
-    this.navegarSiguiente = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.siguiente.enlace;
-    this.navegarAtras = '/contenido-alfaweb/?enlace=' + SAILS_LOCALS.anterior.enlace;
-    this.breadcrumb.push(SAILS_LOCALS.curso);
-    this.breadcrumb.push(SAILS_LOCALS.modulo);
-    this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
-    if(SAILS_LOCALS.mostrarEvaluacion){
-      this.evaluacionIndividual('evaluacion');
-    }
-  },
-  mounted: async function () {
-    //…
-  },
-
-  //  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
-  //  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
-  //  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
-  methods: {
-    /**
-  * LLamado desde modulo-contenedor-curso cuando se pulse el icono de repetir la evaluacion
-  */
-    intentarNuevamente() {
-
-      this.$refs.componenteEvaluacion.intentarNuevamente();
-
-    },
-    clickMostrarPista() {
-      if (this.evIndividual) {
-        this.$refs.componenteEvaluacion.mostrarPista();
-      }
-
-    },
-    
-    finalizaEvaluacion(valor) {
-
-      this.mostrarIconoRepetir = valor; //true o false
-    },
-
-    actualizaProgreso(progresoActual) {
-      this.progreso = progresoActual;
-      
-    },
-
-
-    
-    evaluacionIndividual(contenido) { //funcion recibida del componente modulo-contenedor-curso
-      if (contenido == 'contenido') {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = false;
-      } else {
-        this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
-        this.evIndividual = true;
-      }
-    },
-
-    infoObjeto(idObjeto) {
-      if (idObjeto == 'guardar') {
-        $(function () {
-          $('#modalguardar').modal('show');
-        });
-
-      }
-      else if (idObjeto == 'imprimir') {
-        $(function () {
-          $('#modalimprimir').modal('show');
-        });
-
-      }
-
-
-
-
-
-    },
-    mouseMovePc(event) {
-      // clientX/Y obtiene las coordenadas del elemento con respecto al elemento padre, en este caso las coordenadas con respecto a <div id="m1-computadora"
-
-      this.mouseX = event.clientX;
-      this.mouseY = event.clientY;
-
-
-      // El text del tooltip se basa en valor de la propiedad ""id"" de cada elemento ""
-      let elementoSeleccionado = event.target.parentNode.id;
-      this.textoToolTip = elementoSeleccionado.toString().toUpperCase();
-
-      //una vez que los valores para x y y del texto del tooltip han sido establecidos, se muestra en la pantalla
-      this.mostrarToolTip = true;
-    },
-    mouseOutPc(evet) {
-      this.mostrarToolTip = false;
-      
-      // El audio se encuentra en el componente modulo-contenedor-curso.component
-      let audioMouseOver = document.getElementById("audioMouseOver");
-      audioMouseOver.volume = 0.2;
-      // audioMouseOver.load(); //carga el archivo, esto implica detener la reproduccion actual
-      audioMouseOver.play(); //reproduce el archivo de audio
-    },
-  },
-  computed: {
-    styleToolTip() {
-      // translate define cuanto se moverá el objeto a partir de su posicion original
-      // funciona solo con comillas dobles
-      //{ transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
-      let estilo = {
-        top: this.mouseY + 'px',
-        left: this.mouseX + 'px'
-      }
-      return estilo;
-    }
-  }
+			// El audio se encuentra en el componente modulo-contenedor-curso.component
+			let audioMouseOver = document.getElementById("audioMouseOver");
+			audioMouseOver.volume = 0.2;
+			// audioMouseOver.load(); //carga el archivo, esto implica detener la reproduccion actual
+			audioMouseOver.play(); //reproduce el archivo de audio
+		}
+	},
+	computed: {
+		styleToolTip() {
+			// translate define cuanto se moverá el objeto a partir de su posicion original
+			// funciona solo con comillas dobles
+			//{ transform: "translate(" + this.mouseX + "px," + this.mouseY + "px)" };
+			let estilo = {
+				top: this.mouseY + "px",
+				left: this.mouseX + "px"
+			};
+			return estilo;
+		}
+	}
 });

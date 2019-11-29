@@ -3,7 +3,7 @@ parasails.registerPage("m-1-conexion-componentes", {
 	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
 	//  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
 	data: {
-		breadcrumb: [],
+		breadcrumb: [{ nombre: "Cursos", id: 1, enlace: "/inicio" }],
 
 		usuario: Object,
 		navegarSiguiente: "",
@@ -17,11 +17,11 @@ parasails.registerPage("m-1-conexion-componentes", {
 		mostrarToolTip: false,
 		textoToolTip: {
 			type: String,
-			default: "software",
+			default: "software"
 		},
 
 		mostrarIconoRepetir: false, //se establece en true cuando se termina la evaluación, se modifica desde el componente raiz
-		progreso: {}, //puntos, niveles y medalla actuales
+		progreso: {} //puntos, niveles y medalla actuales
 
 		// elemento:{
 		//   nombre:'',
@@ -94,7 +94,7 @@ parasails.registerPage("m-1-conexion-componentes", {
 				this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
 				this.evIndividual = true;
 			}
-		},
+		}
 	},
-	computed: {},
+	computed: {}
 });

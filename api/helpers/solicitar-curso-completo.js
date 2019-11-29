@@ -37,7 +37,7 @@ module.exports = {
 				);
 				//guardo los modulos consultados en la propiedad curso.modulos
 				curso.modulos = modulosCurso;
-				curso.nombreCurso = curso.nombre; //solo se usa en breadcrumb para saber que es un curso y que al dar clic redirija a la p'agina del indice
+				// curso.nombreCurso = curso.nombre; //solo se usa en breadcrumb para saber que es un curso y que al dar clic redirija a la p'agina del indice
 				return curso;
 			}
 		} catch (e) {
@@ -61,7 +61,7 @@ module.exports = {
 				);
 
 				curso.modulos = modulos;
-				curso.nombreCurso = curso.nombre; //solo se usa en breadcrumb para saber que es un curso y que al dar clic redirija a la p'agina del indice
+				// curso.nombreCurso = curso.nombre; //solo se usa en breadcrumb para saber que es un curso y que al dar clic redirija a la p'agina del indice
 				return curso;
 			}
 		} catch (e) {
@@ -83,7 +83,7 @@ module.exports = {
 				curso = await Curso.findOne({ id: modulo.curso });
 				// agrego los modulos cargados en el curso
 				curso.modulos = modulos;
-				curso.nombreCurso = curso.nombre; //solo se usa en breadcrumb para saber que es un curso y que al dar clic redirija a la p'agina del indice
+				// curso.nombreCurso = curso.nombre; //solo se usa en breadcrumb para saber que es un curso y que al dar clic redirija a la p'agina del indice
 				return curso;
 			}
 		} catch (e) {

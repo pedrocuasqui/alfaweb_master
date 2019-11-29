@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*jshint esversion:8 */
 parasails.registerPage("indice-estudiante", {
 	//  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
@@ -39,6 +40,12 @@ parasails.registerPage("indice-estudiante", {
 				SAILS_LOCALS.usuario.numeroSubmodulosCurso) *
 			100;
 		this.progreso.totalNiveles = SAILS_LOCALS.usuario.numeroSubmodulosCurso;
+
+		// this.curso.nombreCurso = this.curso.nombre;
+		this.breadcrumb = [
+			{ nombre: "Cursos", id: 1, enlace: "/inicio" },
+			this.curso
+		];
 	},
 	mounted: async function() {
 		if (this.curso.nombre == "Alfabetización informática") {

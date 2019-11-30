@@ -13,11 +13,15 @@ module.exports = {
 	},
 
 	fn: async function(inputs, exits) {
-		sails.sockets.join(this.req, "estudiantesLogueados");
-		sails.sockets.broadcast("estudiantesLogueados", {
-			datosDifundidosChat: this.req.session.usuario
-		});
-		console.log("SOCKET CREADO Y USUARIO ADJUNTADO");
+		if (this.req.isSocket === true) {
+			console.log(this.req);
+			sails.sockets.join(this.req, "estudiantesLogueados");
+			sails.sockets.broadcast("estudiantesLogueados", {
+				datosDifundidosChat: sails.sockets
+			});
+			console.log("SOCKET CREADO Y USUARIO ADJUNTADO");
+		}
+
 		return exits.success({});
 	}
 };

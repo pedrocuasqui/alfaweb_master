@@ -84,7 +84,8 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			pausado: false,
 			sonido: null,
 			silenciarGeneral: false, //el audio est'a activado,
-			p: null
+			p: null,
+			usuariosConectados: []
 		};
 	},
 	mounted() {
@@ -106,7 +107,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
         <div class="col-sm-2">
 
               <!--ESTE PRIMER CONTENEDOR SE USA PARA LOS SUBMODULOS-->
-              <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance" :curso="curso" :objeto-seleccionado="objetoSeleccionado">
+              <modulo-panel-derecho  v-if="objetoSeleccionado.nombreSubmodulo" :usuario="usuarioRecibido" @evaluacion-individual="evaluacionIndividual" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo" :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :usuarios-conectados.sync="usuariosConectados">
         	 <template >
               <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
               <div>
@@ -119,7 +120,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
           </modulo-panel-derecho>
           <!--EL SIGUIENTE CONTENEDOR SE USA PARA LOS MODULOS, solo se diferencian en que los modulos no reciben eventos de evaluacion-->
           <modulo-panel-derecho  v-else :usuario="usuarioRecibido" :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo"  :puntaje-actual="progreso.puntos" :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla" :porcentaje-avance="progreso.porcentajeAvance"
-          :curso="curso">
+          :curso="curso" :usuarios-conectados.sync="usuariosConectados">
               <template >
               <!--el scope de modulo-contenedor-curso funciona en el contenido que se envia dentro de modulo-panel-derecho, desde aqui no se puede acceder al scope de modulo-panel-derecho-->
                   <div>
@@ -376,6 +377,8 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			console.log("SE DECLARA LA RESPUESTA DEL SOCKET");
 			io.socket.on("message", data => {
 				console.log("nuevo usuario conectado");
+				// console.log(data.datosDifundidosChat);
+				this.usuariosConectados.push(data.datosDifundidosChat);
 				console.log(data.datosDifundidosChat);
 			});
 		}

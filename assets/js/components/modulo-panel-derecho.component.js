@@ -59,7 +59,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 						Nivel: "4"
 					},
 					{
-						nombre: "Estevan",
+						nombre: "Emilio",
 						apellido: "Pérez",
 						Nivel: "5"
 					}

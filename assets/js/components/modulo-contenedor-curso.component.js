@@ -293,11 +293,11 @@ parasails.registerComponent("modulo-contenedor-curso", {
 				// msg.voice =  window.sonido.getVoices().filter(function(voice) { return voice.name == 'Whisper'; })[0];
 				msg.onend = event => {
 					this.clickStop();
-					console.log(
-						"Utterance has finished being spoken after " +
-							event.elapsedTime +
-							" milliseconds."
-					);
+					// console.log(
+					// 	"Utterance has finished being spoken after " +
+					// 		event.elapsedTime +
+					// 		" milliseconds."
+					// );
 				};
 				window.sonido.speak(msg);
 			}

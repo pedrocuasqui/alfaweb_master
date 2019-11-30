@@ -74,13 +74,14 @@ parasails.registerComponent("modal-detalle-elemento", {
 		this.sonido = window.speechSynthesis;
 
 		var _this = this;
-		// setTimeout(()=>{ _this.animarBuho=false}, 2000);
+
 		$("#modal" + this.infoElement.id).on("show.bs.modal", () => {
 			_this.clickLimitarTiempoAnimacion();
 		});
 
 		//efecto de sonido de ABRIR
 		$("#modal" + this.infoElement.id).on("show.bs.modal", () => {
+			window.sonido.cancel();
 			// do something...
 			let audioModal = document.getElementById("audioModalAbrir");
 			audioModal.volume = 0.2;
@@ -89,12 +90,12 @@ parasails.registerComponent("modal-detalle-elemento", {
 		});
 		//efecto de sonido de CERRAR
 		$("#modal" + this.infoElement.id).on("hide.bs.modal", () => {
+			this.clickStop();
 			window.sonido.cancel();
 			let audioModal = document.getElementById("audioModalCerrar");
 			audioModal.volume = 0.2;
 			audioModal.load(); //carga el archivo, esto implica detener la reproduccion actual
 			audioModal.play(); //reproduce el archivo de audio
-			this.clickStop();
 		});
 
 		//Obtiene el texto de las etiquetas dentro de filter
@@ -223,7 +224,6 @@ parasails.registerComponent("modal-detalle-elemento", {
 			this.sonido.pause();
 			this.mostrarPlay = true;
 			this.pausado = true;
-			console.log("pausado");
 		},
 
 		/**
@@ -233,9 +233,7 @@ parasails.registerComponent("modal-detalle-elemento", {
 			if (this.pausado) {
 				this.sonido.resume();
 				this.mostrarPlay = false;
-				console.log("resume");
 			} else {
-				console.log("reproduciendo");
 				// var synth = window.speechSynthesis;
 				//  var voices = synth.getVoices();
 

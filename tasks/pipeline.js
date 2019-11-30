@@ -36,7 +36,7 @@ var cssFilesToInject = [
 	// All of the rest of your custom `.css` files will be injected here,
 	// in no particular order.  To customize the ordering, add additional
 	// items here, _above_ this one.
-	"styles/**/*.css",
+	"styles/**/*.css"
 ];
 
 //   ██████╗██╗     ██╗███████╗███╗   ██╗████████╗   ███████╗██╗██████╗ ███████╗
@@ -57,7 +57,7 @@ var cssFilesToInject = [
 //
 var jsFilesToInject = [
 	// Load `sails.io` before everything else.
-	"dependencies/sails.io.js",
+	// "dependencies/sails.io.js",
 
 	// Bring in `.js` files for any other client-side JavaScript dependencies.
 	// (e.g. Lodash, Vue.js, jQuery, Bootstrap, Ember, Angular, etc.)
@@ -65,16 +65,18 @@ var jsFilesToInject = [
 
 	// se cargan las dependencias en el siguiente orden
 	"dependencies/lodash.js",
-	"dependencies/jquery.min.js",
 	"dependencies/vue.js",
-	"dependencies/*.js",
-	"dependencies/**/*.js",
+	"dependencies/parasails.js",
+	"dependencies/jquery.min.js",
+
+	// "dependencies/*.js",
+	// "dependencies/**/*.js",
 
 	// All of the rest of your custom client-side js files will be injected here,
 	// in no particular order.  To customize the ordering, add additional items
 	// here, _above_ this one.
 	"js/libs/*.js",
-	"js/**/*.js",
+	"js/**/*.js"
 ];
 
 //   ██████╗██╗     ██╗███████╗███╗   ██╗████████╗   ███████╗██╗██████╗ ███████╗

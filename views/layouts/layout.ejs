@@ -15,7 +15,6 @@
 
   <!-- ESTILOS DE BOOTSTRAP END-->
   <!--STYLES-->
-  <link rel="stylesheet" href="/dependencies/toastr/toastr.min.css">
   <link rel="stylesheet" href="/styles/importer.css">
   <!--STYLES END-->
 
@@ -71,6 +70,7 @@
   <script
     src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=kjkditphnen1av2wynuz72xcpf4kkxlyj0o0qpn1b82j48oh"></script>
   <script>
+
 
     var funcionCargaImagen = function (blobInfo, success, failure) {
       const formData = new FormData();
@@ -176,16 +176,14 @@
   <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/Sortable/1.10.1/Sortable.min.js"></script> -->
 
 
+  <!--auto-connect="false" environment="production"
+    headers='{ "x-csrf-token": "<%= typeof _csrf !== 'undefined' ? _csrf : '' %>" }' -->
 
-
-
-  <!--SCRIPTS-->
   <script src="/dependencies/sails.io.js"></script>
+  <!--SCRIPTS-->
   <script src="/dependencies/lodash.js"></script>
   <script src="/dependencies/vue.js"></script>
   <script src="/dependencies/parasails.js"></script>
-  <script src="/dependencies/notify/notify.js"></script>
-  <script src="/dependencies/toastr/toastr.min.js"></script>
   <script src="/js/libs/vue-sidebar-menu.js"></script>
   <script src="/js/components/base-input.js"></script>
   <script src="/js/components/boton-curso.component.js"></script>
@@ -260,6 +258,27 @@
   <script src="/js/pages/estudiante/modulo-8/m-8-otras-configuraciones.page.js"></script>
   <script src="/js/pages/homepage.page.js"></script>
   <!--SCRIPTS END-->
+
+  <script type="text/javascript">
+    // conexion de socket cliente fuente:https://sailsjs.com/documentation/reference/web-sockets/socket-client
+
+    /*    console.log("COMIENZA DECLARACION DE SOCKET");
+       io.sails.url = "http://localhost:1337";
+       io.socket.get("http://localhost:1337/chat", function responseFromServer(body, response) {
+         console.log("The server responded with status " + response.statusCode + " and said: ", body);
+       });
+   
+       console.log("SE DECLARA LA RESPUESTA DEL SOCKET");
+       io.socket.on('message', function (data) {
+         console.log("nuevo usuario conectado");
+         console.log(data.datosDifundidosChat);
+       }); */
+
+    // var mySocket = io.sails.connect();
+    // mySocket.on('connect', function onConnect() {
+    //   console.log("Socket connected!");
+    // });
+  </script>
 
 </body>
 

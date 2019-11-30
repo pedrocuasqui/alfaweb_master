@@ -83,12 +83,15 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			mostrarPlay: true,
 			pausado: false,
 			sonido: null,
-			silenciarGeneral: false //el audio est'a activado
+			silenciarGeneral: false, //el audio est'a activado,
+			p: null
 		};
 	},
 	mounted() {
 		window.sonido = null;
 		window.sonido = window.speechSynthesis;
+		// se conecta a sockets de Sails js
+		this.unirseSalaChat();
 	},
 
 	template: /*template*/ `
@@ -354,6 +357,27 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			newWin.print();
 			newWin.close();
 			newWin.document.write("<h6>http://www.epn.edu.ec </h6>");
+		},
+		unirseSalaChat() {
+			console.log("COMIENZA DECLARACION DE SOCKET");
+			io.sails.url = "http://localhost:1337";
+			io.socket.get("http://localhost:1337/chat", function responseFromServer(
+				body,
+				response
+			) {
+				console.log(
+					"The server responded with status " +
+						response.statusCode +
+						" and said: ",
+					body
+				);
+			});
+
+			console.log("SE DECLARA LA RESPUESTA DEL SOCKET");
+			io.socket.on("message", data => {
+				console.log("nuevo usuario conectado");
+				console.log(data.datosDifundidosChat);
+			});
 		}
 	},
 	computed: {

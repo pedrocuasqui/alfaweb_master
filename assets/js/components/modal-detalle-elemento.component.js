@@ -1,31 +1,32 @@
-parasails.registerComponent('modal-detalle-elemento', {
+/*jshint esversion:8 */
+parasails.registerComponent("modal-detalle-elemento", {
 	props: {
 		infoElement: {
 			type: Object,
 			default: () => {
 				return {
-					id: 'ComponenteVacio',
-					titulo: 'Componente Vacío',
-					detalle: 'No se encontró detalle para este componente',
-					leerMas: '',
+					id: "ComponenteVacio",
+					titulo: "Componente Vacío",
+					detalle: "No se encontró detalle para este componente",
+					leerMas: "",
 					imgs: [
 						{
-							src: '',
-							alt: 'No existe imagen ',
-						},
+							src: "",
+							alt: "No existe imagen "
+						}
 					],
-					html: '',
+					html: "",
 					carousel: [
 						{
-							posicion: '1', //siempre empezar en uno para poder identificar a los elementos
-							detalle: '',
-							imagen: '',
-							alt: '',
-						},
-					],
-				}
-			},
-		},
+							posicion: "1", //siempre empezar en uno para poder identificar a los elementos
+							detalle: "",
+							imagen: "",
+							alt: ""
+						}
+					]
+				};
+			}
+		}
 	},
 	data() {
 		return {
@@ -38,71 +39,71 @@ parasails.registerComponent('modal-detalle-elemento', {
 			mostrarPlay: true, //el lector de texto empieza en silencio,
 			pausado: false,
 			msg: null,
-			textoHtml: '',
-			textoLectura: '',
-		}
+			textoHtml: "",
+			textoLectura: ""
+		};
 	},
 
 	mounted() {
 		if (this.infoElement.leerMas) {
-			if (this.infoElement.leerMas != '') {
-				this.leerMas = true
+			if (this.infoElement.leerMas != "") {
+				this.leerMas = true;
 			}
 		}
 
 		if (this.infoElement.imgs) {
 			// en caso de existir la propiedad imágenes
-			if (this.infoElement.imgs[0].src == '') {
-				this.imagen = false
+			if (this.infoElement.imgs[0].src == "") {
+				this.imagen = false;
 			}
 		} else {
-			this.imagen = false
+			this.imagen = false;
 		}
 
 		//si existe una propeidad html en el elemento pasado por parámetro, entonces se muestra la etiqueta que contrendrá el html
 		if (this.infoElement.html) {
-			this.html = true
+			this.html = true;
 		}
 		//si existe la propiedad carousel en el objeto recbido entonces se despliega el carousel bootstrap
 		if (this.infoElement.carousel) {
-			this.ecarousel = true
-			this.infoElement.detalle = this.infoElement.carousel[0].detalle
+			this.ecarousel = true;
+			this.infoElement.detalle = this.infoElement.carousel[0].detalle;
 		}
 
 		//se invoca al objeto speedchSynthesis de la ventana
-		this.sonido = window.speechSynthesis
+		this.sonido = window.speechSynthesis;
 
-		var _this = this
+		var _this = this;
 		// setTimeout(()=>{ _this.animarBuho=false}, 2000);
-		$('#modal' + this.infoElement.id).on('show.bs.modal', () => {
-			_this.clickLimitarTiempoAnimacion()
-		})
+		$("#modal" + this.infoElement.id).on("show.bs.modal", () => {
+			_this.clickLimitarTiempoAnimacion();
+		});
 
 		//efecto de sonido de ABRIR
-		$('#modal' + this.infoElement.id).on('show.bs.modal', () => {
+		$("#modal" + this.infoElement.id).on("show.bs.modal", () => {
 			// do something...
-			let audioModal = document.getElementById('audioModalAbrir')
-			audioModal.volume = 0.2
-			audioModal.load() //carga el archivo, esto implica detener la reproduccion actual
-			audioModal.play() //reproduce el archivo de audio
-		})
+			let audioModal = document.getElementById("audioModalAbrir");
+			audioModal.volume = 0.2;
+			audioModal.load(); //carga el archivo, esto implica detener la reproduccion actual
+			audioModal.play(); //reproduce el archivo de audio
+		});
 		//efecto de sonido de CERRAR
-		$('#modal' + this.infoElement.id).on('hide.bs.modal', () => {
-			window.sonido.cancel()
-			let audioModal = document.getElementById('audioModalCerrar')
-			audioModal.volume = 0.2
-			audioModal.load() //carga el archivo, esto implica detener la reproduccion actual
-			audioModal.play() //reproduce el archivo de audio
-			this.clickStop()
-		})
+		$("#modal" + this.infoElement.id).on("hide.bs.modal", () => {
+			window.sonido.cancel();
+			let audioModal = document.getElementById("audioModalCerrar");
+			audioModal.volume = 0.2;
+			audioModal.load(); //carga el archivo, esto implica detener la reproduccion actual
+			audioModal.play(); //reproduce el archivo de audio
+			this.clickStop();
+		});
 
 		//Obtiene el texto de las etiquetas dentro de filter
-		this.textoHtml = $('#htmlContent' + this.infoElement.id)
+		this.textoHtml = $("#htmlContent" + this.infoElement.id)
 			.contents()
-			.filter('h1, h2,h3, h4, h5, h6, p')
-			.text()
+			.filter("h1, h2,h3, h4, h5, h6, p")
+			.text();
 		// Obtiene el texto del elemento infoElement.detalle pasado como parametro al modal
-		this.textoLectura = this.infoElement.detalle + ' ' + this.textoHtml
+		this.textoLectura = this.infoElement.detalle + " " + this.textoHtml;
 	},
 
 	template: /*template*/ `
@@ -202,27 +203,27 @@ parasails.registerComponent('modal-detalle-elemento', {
   `,
 	methods: {
 		clickReestablecerModal() {
-			this.animarBuho = true
-			this.clickReproducir()
+			this.animarBuho = true;
+			this.clickReproducir();
 		},
 		clickLimitarTiempoAnimacion() {
-			var _this = this
+			var _this = this;
 			setTimeout(() => {
-				_this.animarBuho = false
-			}, 1000)
+				_this.animarBuho = false;
+			}, 1000);
 		},
 
 		clickStop() {
-			this.sonido.cancel()
-			this.mostrarPlay = true
-			this.pausado = false
+			this.sonido.cancel();
+			this.mostrarPlay = true;
+			this.pausado = false;
 		},
 
 		clickPausar() {
-			this.sonido.pause()
-			this.mostrarPlay = true
-			this.pausado = true
-			console.log('pausado')
+			this.sonido.pause();
+			this.mostrarPlay = true;
+			this.pausado = true;
+			console.log("pausado");
 		},
 
 		/**
@@ -230,80 +231,94 @@ parasails.registerComponent('modal-detalle-elemento', {
 		 */
 		clickReproducir() {
 			if (this.pausado) {
-				this.sonido.resume()
-				this.mostrarPlay = false
-				console.log('resume')
+				this.sonido.resume();
+				this.mostrarPlay = false;
+				console.log("resume");
 			} else {
-				console.log('reproduciendo')
+				console.log("reproduciendo");
 				// var synth = window.speechSynthesis;
 				//  var voices = synth.getVoices();
-				this.mostrarPlay = false
-				this.msg = new SpeechSynthesisUtterance(this.textoLectura)
+
+				this.mostrarPlay = false;
+				this.msg = new SpeechSynthesisUtterance(this.textoLectura);
 				// this.msg.voice = voices[2]; // Note: some voices don't support altering params
-				this.sonido.speak(this.msg)
+				// EL CODIGO COMENTADO A CONTINUACION TAMBIEN FUNCIONA PARA SABER CUANDO EMPIEZA Y CUANDO TERMINA EL NARRADOR
+				// Fuente:https://stackoverflow.com/questions/23483990/speechsynthesis-api-onend-callback-not-working
+				// this.msg.addEventListener("start", () => {
+				// 	console.log("started");
+				// });
+
+				// this.msg.addEventListener("end", () => {
+				// 	console.log("stopped");
+				// });
+				this.msg.onend = event => {
+					this.clickStop();
+					// console.log(
+					// 	"Utterance has finished being spoken after " +
+					// 		event.elapsedTime +
+					// 		" milliseconds."
+					// );
+				};
+
+				this.sonido.speak(this.msg);
 			}
 		},
 		obtenerIndice() {
-			var _this = this
-			this.clickStop()
+			var _this = this;
+			this.clickStop();
 			// this.$refs.curso.clickStop();
 			//slide.bs.carousel	This event fires immediately when the slide instance method is invoked.
 			//slid.bs.carousel	This event is fired when the carousel has completed its slide transition.
 
-			$('#carousel' + _this.infoElement.id).on(
-				'slid.bs.carousel',
-				function() {
-					//se hace la selaccion con el nombre del carousel porque cuando hay mas de un carousel, puesto que habrian  mas de un objeto .indicador.active
-					let indice = $(
-						'#carousel' +
-							_this.infoElement.id +
-							' .indicador.active'
-					).text() //obtiene el indice del indicador actual
+			$("#carousel" + _this.infoElement.id).on("slid.bs.carousel", () => {
+				//se hace la selaccion con el nombre del carousel porque cuando hay mas de un carousel, puesto que habrian  mas de un objeto .indicador.active
+				let indice = $(
+					"#carousel" + _this.infoElement.id + " .indicador.active"
+				).text(); //obtiene el indice del indicador actual
 
-					let posicion = parseInt(indice) - 1
+				let posicion = parseInt(indice) - 1;
 
-					_this.infoElement.detalle =
-						_this.infoElement.carousel[posicion].detalle
-				}
-			)
+				_this.infoElement.detalle =
+					_this.infoElement.carousel[posicion].detalle;
+			});
 		},
 		clickImprimir() {
 			// window.print();
 			//fuente de este codigo: https://www.youtube.com/watch?v=pePlEaUQEbc
-			var contenidoBreadcrumb1 = document.getElementById('breadcrumbText')
+			var contenidoBreadcrumb1 = document.getElementById("breadcrumbText");
 
-			var contenidoTexto = this.$refs.printTexto
-			var contenidoImagenes = this.$refs.printImagenes
-			var contenidoHtml = this.$refs.printHtml
-			var contenidoCarousel = this.$refs.printCarousel
+			var contenidoTexto = this.$refs.printTexto;
+			var contenidoImagenes = this.$refs.printImagenes;
+			var contenidoHtml = this.$refs.printHtml;
+			var contenidoCarousel = this.$refs.printCarousel;
 
-			var newWin = window.open('') //abre una variable para escribir sobre ella
-			newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>')
+			var newWin = window.open(""); //abre una variable para escribir sobre ella
+			newWin.document.write('<h1>Sistema "alfaweb" EPN-FIS</h1>');
 
 			newWin.document.write(
-				'<h2>Contenido: ' + this.infoElement.titulo + '</h2>'
-			)
-			newWin.document.write(contenidoBreadcrumb1.outerHTML)
-			newWin.document.write(contenidoTexto.outerHTML)
+				"<h2>Contenido: " + this.infoElement.titulo + "</h2>"
+			);
+			newWin.document.write(contenidoBreadcrumb1.outerHTML);
+			newWin.document.write(contenidoTexto.outerHTML);
 			if (this.html) {
-				newWin.document.write(contenidoHtml.outerHTML)
+				newWin.document.write(contenidoHtml.outerHTML);
 			}
 			if (this.imagen) {
-				newWin.document.write(contenidoImagenes.outerHTML)
+				newWin.document.write(contenidoImagenes.outerHTML);
 			}
 			if (this.ecarousel) {
-				newWin.document.write(contenidoCarousel.outerHTML)
+				newWin.document.write(contenidoCarousel.outerHTML);
 			}
-			newWin.document.write('<h6>http://www.epn.edu.ec </h6>')
+			newWin.document.write("<h6>http://www.epn.edu.ec </h6>");
 
-			newWin.print()
-			newWin.close()
-		},
+			newWin.print();
+			newWin.close();
+		}
 	},
 	computed: {
 		idCarousel() {
-			let carouselId = 'carousel' + this.infoElement.id
-			return carouselId
-		},
-	},
-})
+			let carouselId = "carousel" + this.infoElement.id;
+			return carouselId;
+		}
+	}
+});

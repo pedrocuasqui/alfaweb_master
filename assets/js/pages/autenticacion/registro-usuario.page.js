@@ -86,7 +86,7 @@ parasails.registerPage("registro-usuario", {
 						title: `Usuario creado correctamente!`,
 						icon: "success",
 						type: "success",
-						text: `El usuario \" ${response.data.usuarioCreado.nombre} \" ha sido creado correctamente`, // html: `<p><span>El usuario </span><em>${response.data.usuarioCreado.nombre}</em> ha sido creado correctamente</p>`,
+						text: `El usuario \" ${response.data.usuarioCreado.nombre} \" con alias \" ${response.data.usuarioCreado.alias} \" ha sido creado correctamente`, // html: `<p><span>El usuario </span><em>${response.data.usuarioCreado.nombre}</em> ha sido creado correctamente</p>`,
 						// html:"<div>hola</div>",
 
 						confirmButtonClass: "btn btn-success btn-fill",

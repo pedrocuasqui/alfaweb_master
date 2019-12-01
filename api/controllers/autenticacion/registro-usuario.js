@@ -47,7 +47,25 @@ module.exports = {
 		var passwordEncriptada = await sails.helpers.hashPassword(inputs.password);
 		// All done.
 		var usuarioCreado = null;
+		var existeUsuario = null;
+		// Busca en tablas profesor y estudiante el alias, el correo se puede repetir, menos el alias
+		try {
+			existeUsuario = await Estudiante.findOne({ alias: inputs.alias });
+			if (existeUsuario) {
+				return res.status(409).send();
+			}
 
+			existeUsuario = await Profesor.findOne({ alias: inputs.alias });
+			if (existeUsuario) {
+				return res.status(409).send();
+			}
+		} catch (err) {
+			return res.status(500).send({ err });
+		}
+
+		//
+		// a continuacion se crea el usuario una vez confirmado que no existe ya un alias creado
+		//
 		if (inputs.rol == "estudiante") {
 			//registra al usuario en la tabla estudiante
 			usuarioCreado = await Estudiante.create({
@@ -95,27 +113,7 @@ module.exports = {
 
 			sails.log("ADMIN CREADO CORRECTAMENTE");
 		}
-		//  else if (inputs.rol == 'tutor') {
-		//   //registra al usuario en la coleccion profesor
-		//   usuarioCreado=await Profesor.create({
-		//     nombre: inputs.nombre,
-		//     alias: inputs.alias,
-		//     email: inputs.email.toLowerCase(),
-		//     password: passwordEncriptada,
-		//     administrador: false,
-		//     tutor: true,
-		//   }).fetch()
-		//     .intercept('E_UNIQUE', () => {
-		//       var errores = new Error();
-		//       errores.message = 'Ya existe el usuario con el alias o email provistos';
-		//       return res.status(409).send({ error: errores });
-		//     })
-		//     .intercept((err) => { sails.log('ERROR GENERAL\n' + err); });
 
-		//   sails.log('TUTOR CREADO CORRECTAMENTE');
-		// }
-
-		// return exits.redirect('/view-login');
 		return res.status(200).send({ usuarioCreado }); // es necesario retornar algo para que axios sepa que realizar
 	}
 };

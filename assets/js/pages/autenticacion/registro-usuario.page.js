@@ -9,7 +9,7 @@ parasails.registerPage("registro-usuario", {
 		// > Has property set to `true` for each invalid property in `formData`.
 		formErrors: {
 			/* … */
-		},
+		}
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -69,7 +69,7 @@ parasails.registerPage("registro-usuario", {
 		registrarUsuario() {
 			// var _this=this;
 			var formData = new FormData();
-			formData.append("nombre", this.formData.alias);
+			formData.append("nombre", this.formData.nombre);
 			formData.append("alias", this.formData.alias);
 			formData.append("email", this.formData.email);
 			formData.append("password", this.formData.password);
@@ -79,7 +79,7 @@ parasails.registerPage("registro-usuario", {
 			axios({
 				url: "/registro-usuario",
 				method: "post",
-				data: formData,
+				data: formData
 			})
 				.then(response => {
 					swal({
@@ -90,7 +90,7 @@ parasails.registerPage("registro-usuario", {
 						// html:"<div>hola</div>",
 
 						confirmButtonClass: "btn btn-success btn-fill",
-						buttonsStyling: false,
+						buttonsStyling: false
 					}).then(() => {
 						window.location.replace("/view-login");
 					});
@@ -98,11 +98,11 @@ parasails.registerPage("registro-usuario", {
 				.catch(err => {
 					if (err.response.status == 409) {
 						swal({
-							title: `No se ha podido registrar!`,
+							title: `¡No se ha podido registrar!`,
 							icon: "error",
 							type: "error",
-							text: `El usuario "${this.formData.alias}" ya se encuentra registrado`,
-							confirmButtonClass: "btn-danger",
+							text: `El alias de usuario "${this.formData.alias}" ya se encuentra registrado`,
+							confirmButtonClass: "btn-danger"
 							// buttonsStyling: false
 						}).then(() => {
 							// window.location.replace("/view-login");
@@ -112,7 +112,7 @@ parasails.registerPage("registro-usuario", {
 							title: `No se puede registrar en este momento, intente más tarde!`,
 							icon: "error",
 							type: "error",
-							confirmButtonClass: "btn-danger",
+							confirmButtonClass: "btn-danger"
 						});
 					}
 
@@ -122,6 +122,6 @@ parasails.registerPage("registro-usuario", {
 		validEmail: function(email) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(email);
-		},
-	},
+		}
+	}
 });

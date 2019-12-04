@@ -230,42 +230,66 @@ p.mintrucciones,
 				//todo el sidebar
 				z-index: 10;
 				position: absolute;
-				transition: all 0.4s ease-in-out; //la transicion al mostrar u ocultar
+				transition: all 0.2s ease-in-out; //la transicion al mostrar u ocultar
 				text-align: left;
-				width: 18vw;
-				// background-color: rgb(17, 17, 17, 0.9);
+				// width: 18vw;
+				width: 9vw;
+				//por default se usa el sidebar pequeño
+				// margin-left: -10vw;
 				background: @menusidebar;
 				overflow: hidden;
 				height: 100%; // esto estará contenido dentro de la columna izquierda
 				opacity: 1;
 				border-radius: 10px;
 
-				.caret-container {
-					position: absolute;
-					right: 0;
-					height: 100%;
+				// .caret-container {
+				// 	position: absolute;
+				// 	right: 0;
+				// 	height: 100%;
 
-					.caret {
-						background-color: rgb(157, 162, 167);
-						display: flex;
-						align-items: center;
-						height: 100%;
-						color: black;
-						font-size: 2rem;
-						transition: all 0.3s ease-in-out;
-						cursor: pointer; //cambia el icono del puntero a la manito
-					}
+				// 	.caret {
+				// 		background-color: rgb(157, 162, 167);
+				// 		display: flex;
+				// 		align-items: center;
+				// 		height: 100%;
+				// 		color: black;
+				// 		font-size: 2rem;
+				// 		transition: all 0.3s ease-in-out;
+				// 		cursor: pointer; //cambia el icono del puntero a la manito
+				// 	}
 
-					.caret:hover {
-						background-color: aliceblue;
-					}
+				// 	.caret:hover {
+				// 		background-color: aliceblue;
+				// 	}
+				// }
+
+				/* width */
+				::-webkit-scrollbar {
+					width: 20px;
+				}
+
+				/* Track */
+				::-webkit-scrollbar-track {
+					// box-shadow: inset 0 0 5px grey;
+					// border-radius: 10px;
+				}
+
+				/* Handle */
+				::-webkit-scrollbar-thumb {
+					background: #145836;
+					border-radius: 10px;
+				}
+
+				/* Handle on hover */
+				::-webkit-scrollbar-thumb:hover {
+					background: #145836c4;
 				}
 
 				#menuContenidos {
 					/*BLOQUE DEL CONTENIDO DEL MENÚ*/
 					height: 100%;
 					float: left;
-					width: 91%;
+					width: 100%;
 					overflow-y: auto;
 
 					h4,
@@ -284,13 +308,14 @@ p.mintrucciones,
 					.dropbtn-modulo {
 						//el boton que contiene el nombre del modulo
 						width: 100%;
-						background: @menusidebar;
+						background-color: rgba(0, 0, 0, 0);
+						opacity: 1;
 						color: white;
 						padding: 2px;
 						font-size: 1vw;
 						border: none;
 						text-align: left;
-						border-bottom: 1px solid rgb(138, 133, 133);
+						// border-bottom: 1px solid rgb(138, 133, 133);
 					}
 
 					//esta clase solo se aplica al contenedor del submodulo que corresponde al modulo seleccionado
@@ -335,17 +360,18 @@ p.mintrucciones,
 
 					.dropdownModulo:hover .dropbtn-modulo {
 						background-color: #777575;
-						border-width: 1px 1px 2px 1px;
 						border-style: solid;
-						border-color: white;
+						border-width: 0px 0px 0px 0px;
+						// border-color: #5f5d5d;
 					}
 
 					/// estilos dinamicos en funcion del modulo seleccionado
 					.modulo-seleccionado {
 						background-color: #777575;
-						border-width: 1px 1px 2px 1px;
+
 						border-style: solid;
-						border-color: white;
+						border-width: 0px 0px 0px 0px;
+						// border-color: white;
 					}
 
 					/*FIN BLOQUE DEL CONTENIDO DEL MENU*/
@@ -508,6 +534,15 @@ p.mintrucciones,
 			}
 		}
 	}
+}
+
+#sidebar-menu:hover {
+	// position: absolute !important;
+	z-index: 10;
+	width: 18vw !important;
+}
+.dropdown-submodulo a:before {
+	content: ">  ";
 }
 
 .contenedor-slot-principal {

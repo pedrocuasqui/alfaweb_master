@@ -198,74 +198,80 @@ parasails.registerComponent("modulo-panel-derecho", {
 	
 	
 					<div id="boton_desplegable_personalizado" class="dropdown-menu">
-						<p class="dropdown-item">Rol: {{usuario.administrador && usuario.nombre !='Visitante'? "Administrador":"Estudiante"}}</p>
-						<a v-if="usuario.nombre =='Visitante'" class="dropdown-item" href="/view-login">Iniciar Sesión</a>
-						<a v-else class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
+						<a class="dropdown-item centrado_horizontal ">Rol: {{usuario.administrador && usuario.nombre !='Visitante'? "Administrador":"Estudiante"}}</a>
+						<a v-if="usuario.nombre =='Visitante'" class="dropdown-item centrado_horizontal " href="/view-login">Iniciar Sesión</a>
+						<a v-else class="dropdown-item centrado_horizontal " href="/view-actualizar-usuario">Cambiar contraseña</a>
+						<a v-if="usuario.nombre !='Visitante'" class="dropdown-item centrado_horizontal " href="/logout">Cerrar sesión</a>
+						
 						<div class="dropdown-divider"></div>
-						<a v-if="usuario.nombre !='Visitante'" class="dropdown-item" href="/logout">Cerrar sesión</a>
-						<div v-if="usuario.nombre !='Visitante'" class="dropdown-divider"></div>
-	
 						<div class="container-fluid">
 	
 							<!-- Seccion progreso(puntos, nivel, progreso) del estudiante -->
 							<div class="row progreso" v-if="!esAdmin">
-								<div class="col">
-	
-									<div class="puntaje">
+								<div class="col-sm-12">
 										<div class="row">
-											<div><span>Puntos:</span></div>
-											<div class="progress icono">
-												<div class="contenedor-icono ">
-													<i class="fas fa-certificate fa-stack-2x"> </i>
-													<span class="fa-stack-1x">{{puntajeActual}}</span>
+											<div class="col-sm-7">
+												<span>Puntos:</span>
+											</div>
+											<div class="col-sm-5">
+													<!--<i class="fas fa-certificate fa-stack-2x"> </i>-->
+													<span>{{puntajeActual}}</span>
+											</div>
+										</div>
+	
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="row">
+												<div class="col-sm-7">
+													<span>Nivel:</span>
 												</div>
+												<div class="col-sm-5">
+													<!--<i class="fas fa-battery-empty fa-stack-2x"></i>-->
+													<span >&nbsp{{nivelActual}}/{{totalNiveles}}</span>
+												</div>
+											</div>
+											<div class="row progress" style="height: 3px;">
+												<div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}"
+													:aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100"></div>
 											</div>
 										</div>
 									</div>
 	
-									<div class="nivel">
-										<div class="row indicador">
-											<div><span>Nivel:</span></div>
-											<div class="progress icono">
-	
-												<div class="contenedor-icono">
-													<i class="fas fa-battery-empty fa-stack-2x"></i>
-													<span class="fa-stack-1x">&nbsp{{nivelActual}}/{{totalNiveles}}</span>
+									<div class="row">
+										<div class="col-sm-12">
+											<div class="row">
+												<div class="col-sm-7">
+													<span>Progreso:</span>
 												</div>
-											</div>
-										</div>
-										<div class="progress " style="height: 3px;">
-											<div class="progress-bar" role="progressbar" :style="{width:porcentajeAvanceNiveles+'%'}"
-												:aria-valuenow="porcentajeAvanceNiveles" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
-									</div>
-	
-									<div class="medallas">
-										<div class="row indicador">
-											<div><span>Progreso:</span></div>
-											<div class="progress icono">
+												<div class="col-sm-5 contenedor-icono">
 
-												<div class="contenedor-icono">
-													<img v-if="medallaActual=='bebe'" src="/images/svg/buho_bebe.svg" :alt="medallaActual">
-													<img v-else-if="medallaActual=='estudiante'" src="/images/svg/buho_original_1.svg"
-														:alt="medallaActual">
-													<img v-else-if="medallaActual=='estudiante destacado'" src="/images/svg/buho_original_1.svg"
-														:alt="medallaActual">
-													<img v-else-if="medallaActual=='egresado'" src="/images/svg/buho_sabio.svg"
-														:alt="medallaActual">
-													<img v-else src="/images/svg/buho_graduado.svg" :alt="medallaActual">
+													
+														<img v-if="medallaActual=='bebe'" src="/images/svg/buho_bebe.svg" :alt="medallaActual">
+														<img v-else-if="medallaActual=='estudiante'" src="/images/svg/buho_original_1.svg"
+															:alt="medallaActual">
+														<img v-else-if="medallaActual=='estudiante destacado'" src="/images/svg/buho_original_1.svg"
+															:alt="medallaActual">
+														<img v-else-if="medallaActual=='egresado'" src="/images/svg/buho_sabio.svg"
+															:alt="medallaActual">
+														<img v-else src="/images/svg/buho_graduado.svg" :alt="medallaActual">
+													
 												</div>
 											</div>
+										
+											<div class=" row progress " style="height: 3px;">
+												<div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}"
+													:aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100"></div>
+											</div>
+
 										</div>
-										<div class="progress " style="height: 3px;">
-											<div class="progress-bar" role="progressbar" :style="{width:porcentajeAvance+'%'}"
-												:aria-valuenow="porcentajeAvance" aria-valuemin="0" aria-valuemax="100"></div>
-										</div>
+
+
 									</div>
 	
 								</div>
 							</div>
 							<!-- Seccion de evaluacion y puntaje -->
+							<div class="dropdown-divider"></div>
 							<div class="row enlaces" v-if="!esAdmin">
 								<div class="col">
 

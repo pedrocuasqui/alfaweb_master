@@ -574,62 +574,62 @@ p.mintrucciones,
 @padding-superior: 5%;
 @padding-inferior: 5%;
 
-.puntaje,
-.medallas,
-.nivel {
-	padding-top: @padding-superior;
-	padding-bottom: @padding-inferior;
-	overflow: visible;
-	position: relative;
-}
+// .puntaje,
+// .medallas,
+// .nivel {
+// 	padding-top: @padding-superior;
+// 	padding-bottom: @padding-inferior;
+// 	overflow: visible;
+// 	position: relative;
+// }
 
-.nivel > .progress > .progress-bar {
-	background-color: rgb(59, 219, 59);
-	//.progress.icono se define mas abajo en este documento
-}
+// .nivel > .progress > .progress-bar {
+// 	background-color: rgb(59, 219, 59);
+// 	//.progress.icono se define mas abajo en este documento
+// }
 
-.puntaje > .progress > .progress-bar {
-	background-color: #0460a9;
-}
+// .puntaje > .progress > .progress-bar {
+// 	background-color: #0460a9;
+// }
 
-.medallas > .progress > .progress-bar {
-	background-color: rgb(247, 0, 255);
-}
+// .medallas > .progress > .progress-bar {
+// 	background-color: rgb(247, 0, 255);
+// }
 
-.progress.icono {
-	background-color: inherit;
-	overflow: visible;
+// .progress.icono {
+// 	background-color: inherit;
+// 	overflow: visible;
 
-	.progress-bar {
-		background-color: inherit;
-	}
-}
+// 	.progress-bar {
+// 		background-color: inherit;
+// 	}
+// }
 
 .row.indicador {
 	padding-bottom: 5px;
 }
 
-div.contenedor-icono {
-	overflow: visible;
+// div.contenedor-icono {
+// 	overflow: visible;
 
-	i {
-		position: absolute; //funciona para darle libertad de ubicacion al icono
-		margin-left: 10px;
-		margin-top: -2px;
-	}
+// 	i {
+// 		position: absolute; //funciona para darle libertad de ubicacion al icono
+// 		margin-left: 10px;
+// 		margin-top: -2px;
+// 	}
 
-	span {
-		// position      : absolute; //funciona para darle libertad de ubicacion al icono
-		margin-left: 10px;
-		color: white;
-	}
+// 	span {
+// 		// position      : absolute; //funciona para darle libertad de ubicacion al icono
+// 		margin-left: 10px;
+// 		color: white;
+// 	}
 
-	img {
-		height: 150%;
-		margin-left: 20px;
-		margin-top: 0px;
-	}
-}
+// 	img {
+// 		height: 150%;
+// 		margin-left: 20px;
+// 		margin-top: 0px;
+// 	}
+// }
 
 // COMPONENTE: modulo-panel-derecho -- lo anterior
 
@@ -1299,11 +1299,14 @@ h5.modal-title {
 	width: 15vw !important;
 	transition: all 0.4s ease-in-out !important; //la transicion al mostrar u ocultar ;
 	transform: translate3d(0px, 59px, 0px) !important;
-}
-#boton_desplegable_personalizado.dropdown-menu,
-#boton_desplegable_personalizado.dropdown-menu * {
 	background: linear-gradient(#222a42, #1d253b) !important;
+}
+#boton_desplegable_personalizado.dropdown-menu * {
+	background-color: rgba(0, 0, 0, 0) !important;
 	color: @colorfuente !important;
+}
+#boton_desplegable_personalizado.dropdown-item {
+	text-align: center;
 }
 .btn-group {
 	// Boton del nombre de usuario
@@ -1452,4 +1455,9 @@ div.padding_bottom {
 }
 .btn.dropdown-toggle.boton_formulario {
 	word-wrap: break-word;
+}
+
+.nopadding {
+	padding: 0 !important;
+	margin: 0 !important;
 }

@@ -9,7 +9,7 @@ parasails.registerPage("indice-estudiante", {
 			"Seleccione un módulo del curso o pulsa el icono de avanzar",
 		descripcionObjeto: "",
 		navegarAtras: "/",
-		navegarSiguiente: "/contenido-alfaweb/?enlace=/m1-computadora",
+		navegarSiguiente: "/contenido-alfaweb/?enlace=m1-computadora",
 
 		breadcrumb: [{ id: "", texto: "indice", enlace: "/indice-estudiante" }],
 		usuario: { nombre: "Visitante", rol: "Estudiante", id: "1" },

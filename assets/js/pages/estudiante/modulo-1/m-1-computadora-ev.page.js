@@ -7,12 +7,12 @@ parasails.registerPage("m-1-computadora-ev", {
 		objetoSeleccionado: {
 			id: "1",
 			nombreModulo: "Módulo 1- La computadora- Evaluación",
-			descripcion: "",
+			descripcion: ""
 		},
 		descripcionActividad:
 			"Tienes 12 segundos para seleccionar el objeto que se te indica. Si necesitas ayuda presiona el avatar... Suerte!",
 
-		navegarAtras: "/contenido-alfaweb/?enlace=/m1-computadora",
+		navegarAtras: "/contenido-alfaweb/?enlace=m1-computadora",
 		navegarSiguiente: "/m1-sistema-informatico",
 		accion: "Da clic sobre el: ",
 		elementos: [],
@@ -30,10 +30,10 @@ parasails.registerPage("m-1-computadora-ev", {
 			{
 				id: "",
 				texto: "La computadora - evaluacion",
-				enlace: "/m1-computadora",
-			},
+				enlace: "/m1-computadora"
+			}
 		],
-		mostrarIconoRepetir: false,
+		mostrarIconoRepetir: false
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -135,7 +135,7 @@ parasails.registerPage("m-1-computadora-ev", {
 				) {
 					this.idElementoSeleccionado.setAttribute(
 						"style",
-						"fill: chartreuse;",
+						"fill: chartreuse;"
 					);
 					this.conteoAciertos++;
 					this.contadorTimer++;
@@ -170,7 +170,7 @@ parasails.registerPage("m-1-computadora-ev", {
 		intentarNuevamente() {
 			this.mostrarModal();
 			//volver los colores como al inicio
-		},
+		}
 	},
-	computed: {},
+	computed: {}
 });

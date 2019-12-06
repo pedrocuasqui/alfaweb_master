@@ -107,7 +107,7 @@ module.exports = {
 		var contenidos = curso.modulos;
 		if (curso.modulos.length != 0) {
 			if (curso.nombre == "Alfabetización informática") {
-				navegarSiguiente = "/contenido-alfaweb/?enlace=/m1-computadora";
+				navegarSiguiente = "/contenido-alfaweb/?enlace=m1-computadora";
 			} else {
 				navegarSiguiente =
 					"/interfaz-modulos/?objetoId=" +

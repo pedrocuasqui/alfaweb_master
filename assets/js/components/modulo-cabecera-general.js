@@ -38,11 +38,10 @@ parasails.registerComponent("modulo-cabecera-general", {
 						<i class="fas fa-user-circle"></i> <span > {{usuario.nombre}} </span>
 					</button>
 					<div id="boton_desplegable_personalizado" class="dropdown-menu">
-					<p class="dropdown-item">Rol: {{usuario.administrador && usuario.nombre !='Visitante'? "Administrador":"Estudiante"}}</p>
+						<a class="dropdown-item  ">Rol: {{usuario.administrador && usuario.nombre !='Visitante'? "Administrador":"Estudiante"}}</a>
 						<template  v-if="usuario.nombre !='Visitante'">
-							<a class="dropdown-item" href="/view-actualizar-usuario">Cambiar contraseña</a>
-							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="/logout">Cerrar sesión</a>
+							<a class="dropdown-item  " href="/view-actualizar-usuario">Cambiar contraseña</a>
+							<a class="dropdown-item  " href="/logout">Cerrar sesión</a>
 						</template>
 					</div>
 				</div>

@@ -198,10 +198,10 @@ parasails.registerComponent("modulo-panel-derecho", {
 	
 	
 					<div id="boton_desplegable_personalizado" class="dropdown-menu">
-						<a class="dropdown-item centrado_horizontal ">Rol: {{usuario.administrador && usuario.nombre !='Visitante'? "Administrador":"Estudiante"}}</a>
-						<a v-if="usuario.nombre =='Visitante'" class="dropdown-item centrado_horizontal " href="/view-login">Iniciar Sesión</a>
-						<a v-else class="dropdown-item centrado_horizontal " href="/view-actualizar-usuario">Cambiar contraseña</a>
-						<a v-if="usuario.nombre !='Visitante'" class="dropdown-item centrado_horizontal " href="/logout">Cerrar sesión</a>
+						<a class="dropdown-item  ">Rol: {{usuario.administrador && usuario.nombre !='Visitante'? "Administrador":"Estudiante"}}</a>
+						<a v-if="usuario.nombre =='Visitante'" class="dropdown-item  " href="/view-login">Iniciar Sesión</a>
+						<a v-else class="dropdown-item  " href="/view-actualizar-usuario">Cambiar contraseña</a>
+						<a v-if="usuario.nombre !='Visitante'" class="dropdown-item  " href="/logout">Cerrar sesión</a>
 						
 						<div class="dropdown-divider"></div>
 						<div class="container-fluid">
@@ -287,6 +287,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 								</div>
 							</div>
 							<!-- Seccion usuarios conectados -->
+							<div class="dropdown-divider"></div>
 							<div class="row usuarios-conectados" v-if="!esAdmin">
 								<div class="col">
 									<div><span>Últimos usuarios conectados</span></div>

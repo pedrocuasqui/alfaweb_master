@@ -27,14 +27,30 @@ parasails.registerComponent("modulo-login", {
       <!--SLOT  PARA BOTON DE REGISRATE-->
       <slot>
       </slot>
-      <div class="seccion-inicia-sesion">
-      <p>Inicia Sesión</p>
-      <input type="radio" id="seleccionar_alias" value="alias" v-model="usuario">
-      <label for="alias">Alias</label>
+			<div class="seccion-inicia-sesion">
+			<div>
+			<h3 class="centrado_horizontal">Inicia Sesión</h3>
+			</div>
+			
+			<div class="container-fluid">
+				<div class="row">
+					
+					<div class="col-sm-3 nopadding">
+						<input type="radio" id="seleccionar_alias" value="alias" v-model="usuario">
+						<label for="seleccionar_alias">Alias</label>
+					</div>
+					<div class="col-sm-3">
+						<input type="radio" id="seleccionar_email" value="email" v-model="usuario">
+						<label for="seleccionar_email">Email</label>		
+					</div>
+					<div class="col-sm-3"></div>
+					<div class="col-sm-3"></div>
+				
+				</div>
+			</div>
+     
       
-      <input type="radio" id="seleccionar_email" value="email" v-model="usuario">
-      <label for="email">Email</label>
-
+     
       <div v-if="usuario=='alias'" class="form-group">
         <label for="alias">Alias de usuario</label>
         <input name="alias" class="form-control" id="alias" autofocus type="text"
@@ -60,7 +76,8 @@ parasails.registerComponent("modulo-login", {
 
       <div class="form-group">
         <input type="submit" value="Iniciar Sesión" class="btn btn-primary">
-      </div>
+			</div>
+			<p><a href="">¿Olvidaste tu contraseña?</a> </p>
       <div class="form-group">
         <p>¿Quieres ingresar sin registrarte? </p>
         <a class="btn btn-primary" href="/inicio" role="button">Ingresa como visitante</a>

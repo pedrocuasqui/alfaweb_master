@@ -55,6 +55,9 @@ module.exports.routes = {
 	"GET /logout": {
 		action: "autenticacion/logout"
 	},
+	"GET /confirmar-usuario": {
+		action: "autenticacion/view-confirmar-usuario"
+	},
 
 	/* RUTAS DE ADMINISTRADOR*/
 

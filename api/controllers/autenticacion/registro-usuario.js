@@ -63,6 +63,34 @@ module.exports = {
 			return res.status(500).send({ err });
 		}
 
+		/*SE DEFINE LA FUNCION QUE envia correo de confirmacion de cuenta con nodemailer */
+		const nodemailer = require("nodemailer");
+		// async..await is not allowed in global scope, must use a wrapper
+		async function enviarCorreo() {
+			// se crea el transporter con la cuenta de gmail
+			let transporter = nodemailer.createTransport({
+				service: "gmail",
+				auth: {
+					// previo a general el password para especific- app es necesario configurar la autenticacion en dos pasos de gmail
+					user: "pedro.cuasqui@gmail.com", // usuario
+					pass: "mtggfotrvzxcfmfd" // password para una app especifica, esta configuracion se realiza en la cuenta de google
+				}
+			});
+
+			// send mail with defined transport object
+			let info = await transporter.sendMail({
+				from: "pedro.cuasqui@gmail.com", // sender address
+				to: inputs.email.toLowerCase(), // list of receivers
+				subject: 'Confirma tu cuenta "alfaweb" ✔', // Subject line
+				text:
+					'Has creado una cuenta en "alfaweb", abre este correo para confirmar', // plain text body
+				html: `<div style="background-color:#27293d; color:#c0c1c2;"><h1>Bienvenido ${inputs.nombre},</h1><h2>Confirma tu cuenta para acceder a la plataforma</h2> <p>Da click en CONFIRMAR, se abrirá una ventana en tu navegador y podrás acceder a tu cuenta</p> </div> <a style="font-size:2em; background-color:white" href="${sails.config.custom.baseUrl}/confirmar-usuario"> CONFIRMAR</a> ` // html body
+			});
+
+			console.log("Message sent: %s", info.messageId);
+			// Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
+		}
+
 		//
 		// a continuacion se crea el usuario una vez confirmado que no existe ya un alias creado
 		//
@@ -86,6 +114,9 @@ module.exports = {
 				.intercept(err => {
 					sails.log("ERROR GENERAL\n" + err);
 				});
+			if (inputs.email) {
+				enviarCorreo().catch(console.error);
+			}
 
 			sails.log("ESTUDIANTE CREADO CORRECTAMENTE");
 		} else if (inputs.rol == "administrador") {
@@ -110,7 +141,9 @@ module.exports = {
 				.intercept(err => {
 					sails.log("ERROR GENERAL\n" + err + "\n FIN ERROR GENERAL");
 				});
-
+			if (inputs.email) {
+				enviarCorreo().catch(console.error);
+			}
 			sails.log("ADMIN CREADO CORRECTAMENTE");
 		}
 

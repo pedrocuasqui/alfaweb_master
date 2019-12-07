@@ -1,3 +1,4 @@
+/* eslint-disable no-undef */
 /*jshint esversion:8 */
 parasails.registerPage("registro-usuario", {
 	//  ╦╔╗╔╦╔╦╗╦╔═╗╦    ╔═╗╔╦╗╔═╗╔╦╗╔═╗
@@ -44,7 +45,9 @@ parasails.registerPage("registro-usuario", {
 				this.formErrors.password = true;
 			}
 
-			if (argins.email) {
+			if (!argins.email) {
+				this.formErrors.email = true;
+			} else {
 				if (!this.validEmail(argins.email)) {
 					this.formErrors.email = true;
 				}

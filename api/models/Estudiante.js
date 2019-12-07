@@ -18,10 +18,21 @@ module.exports = {
 			required: true,
 			unique: true
 		},
-		email: { type: "string", columnName: "email", unique: false },
+		email: {
+			type: "string",
+			columnName: "email",
+			unique: false,
+			required: true
+		},
 		password: {
 			type: "string",
 			columnName: "password",
+			required: true,
+			unique: false
+		},
+		confirmado: {
+			type: "boolean",
+			columnName: "confirmado",
 			required: true,
 			unique: false
 		},

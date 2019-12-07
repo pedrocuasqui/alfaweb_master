@@ -637,7 +637,8 @@ module.exports.bootstrap = async function(done) {
 			nombre: "Elsa Cando",
 			alias: "els",
 			email: "elsa.cando@gmail.com",
-			password: "$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie"
+			password: "$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie",
+			confirmado: true
 		}).fetch();
 
 		credenciales = { cursoId: curso.id, usuarioId: estudiante.id };
@@ -648,7 +649,8 @@ module.exports.bootstrap = async function(done) {
 			nombre: "Pedro Cuasqui",
 			alias: "Pedroc",
 			email: "pedro.cuasqui@gmail.com",
-			password: "$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie"
+			password: "$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie",
+			confirmado: true
 		}).fetch();
 
 		credenciales = { cursoId: curso.id, usuarioId: estudiante.id };
@@ -666,7 +668,8 @@ module.exports.bootstrap = async function(done) {
 			email: "m@m.com",
 			password: "$2b$10$dnUGZGpto1RdygwQ2bWDdeLRceCbCuU8Q2vz4RmZD8eXOyg.qrVqe",
 			administrador: true,
-			tutor: false
+			tutor: false,
+			confirmado: true
 		}).fetch();
 
 		//CURSO PROGRAMACION BASICA
@@ -684,10 +687,11 @@ module.exports.bootstrap = async function(done) {
 		var profesorCreado = await Profesor.create({
 			nombre: "j",
 			alias: "j",
-			email: "",
+			email: "j@gmail.com",
 			password: "$2b$10$dnUGZGpto1RdygwQ2bWDdeLRceCbCuU8Q2vz4RmZD8eXOyg.qrVqe",
 			administrador: true,
-			tutor: false
+			tutor: false,
+			confirmado: true
 		}).fetch();
 
 		//CURSO BASE DE DATOS

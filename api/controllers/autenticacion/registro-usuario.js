@@ -66,7 +66,7 @@ module.exports = {
 		/*SE DEFINE LA FUNCION QUE envia correo de confirmacion de cuenta con nodemailer */
 		const nodemailer = require("nodemailer");
 		// async..await is not allowed in global scope, must use a wrapper
-		async function enviarCorreo() {
+		async function enviarCorreo(usuarioCreado) {
 			// se crea el transporter con la cuenta de gmail
 			let transporter = nodemailer.createTransport({
 				service: "gmail",
@@ -84,7 +84,7 @@ module.exports = {
 				subject: 'Confirma tu cuenta "alfaweb" ✔', // Subject line
 				text:
 					'Has creado una cuenta en "alfaweb", abre este correo para confirmar', // plain text body
-				html: `<div style="background-color:#27293d; color:#c0c1c2;"><h1>Bienvenido ${inputs.nombre},</h1><h2>Confirma tu cuenta para acceder a la plataforma</h2> <p>Da click en CONFIRMAR, se abrirá una ventana en tu navegador y podrás acceder a tu cuenta</p> </div> <a style="font-size:2em; background-color:white" href="${sails.config.custom.baseUrl}/confirmar-usuario"> CONFIRMAR</a> ` // html body
+				html: `<div style="background-color:#27293d; color:#c0c1c2;"><h1>Bienvenido ${inputs.nombre},</h1><h2>Confirma tu cuenta para acceder a la plataforma</h2> <p>Da click en CONFIRMAR, se abrirá una ventana en tu navegador y podrás acceder a tu cuenta</p> </div> <a style="font-size:2em; background-color:white" href="${sails.config.custom.baseUrl}/confirmar-usuario/?usuarioId=${usuarioCreado.id}"> CONFIRMAR</a> ` // html body
 			});
 
 			console.log("Message sent: %s", info.messageId);
@@ -100,7 +100,8 @@ module.exports = {
 				nombre: inputs.nombre,
 				alias: inputs.alias,
 				email: inputs.email.toLowerCase(),
-				password: passwordEncriptada
+				password: passwordEncriptada,
+				confirmado: false
 				// ultimoAcceso:Date.now(), //solo para crear
 				// avance:{} //inicia vacio
 			})
@@ -114,8 +115,9 @@ module.exports = {
 				.intercept(err => {
 					sails.log("ERROR GENERAL\n" + err);
 				});
-			if (inputs.email) {
-				enviarCorreo().catch(console.error);
+			if (inputs.email && usuarioCreado) {
+				// El correo ya no es opcional, es necesario para validar la creacion de cuentas del usuario, si el usuario ingresa sin correo deberia habilitarse por defecto el ingreso y si no registra correo tienen que ingresar con alias pero deber'ia por defecto tener permiso aun sin validar
+				enviarCorreo(usuarioCreado).catch(console.error);
 			}
 
 			sails.log("ESTUDIANTE CREADO CORRECTAMENTE");
@@ -127,7 +129,8 @@ module.exports = {
 				email: inputs.email.toLowerCase(),
 				password: passwordEncriptada,
 				administrador: true,
-				tutor: false
+				tutor: false,
+				confirmado: false
 			})
 				.fetch()
 
@@ -141,8 +144,9 @@ module.exports = {
 				.intercept(err => {
 					sails.log("ERROR GENERAL\n" + err + "\n FIN ERROR GENERAL");
 				});
-			if (inputs.email) {
-				enviarCorreo().catch(console.error);
+			if (inputs.email && usuarioCreado) {
+				// El correo ya no es opcional, es necesario para validar la creacion de cuentas del usuario, si el usuario ingresa sin correo deberia habilitarse por defecto el ingreso y si no registra correo tienen que ingresar con alias pero deber'ia por defecto tener permiso aun sin validar
+				enviarCorreo(usuarioCreado).catch(console.error);
 			}
 			sails.log("ADMIN CREADO CORRECTAMENTE");
 		}

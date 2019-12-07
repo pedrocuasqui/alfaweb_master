@@ -34,6 +34,11 @@ module.exports = {
 		passwordIncorrecto: {
 			statusCode: 409, //409 Conflict: Conflicto en el request, como cuando se actualizan al mismo tiempo dos recursos.
 			description: "no se ha encontrado el password"
+		},
+		bloqueado: {
+			statusCode: 423, //423 Bloqued(WEVDAV),
+			description:
+				"El usuario debe confirmar su cuenta mediante el correo electrónico"
 		}
 	},
 
@@ -71,6 +76,11 @@ module.exports = {
 			objetoError.message = "No se encuentra el usuario solicitado";
 			return res.status(objetoError.code).send({ error: objetoError });
 			// return exits.noAutorizado();
+		}
+		// Se valida si el usuario ya confirmo o no su cuenta mediante el correo electrónico,
+		// este bloque de codigo debe ir antes de la validacion de la contraseña porque de lo contrario se asumiria que el usuario puede loguearse y eso no es correcto
+		if (!usuario.confirmado) {
+			return exits.bloqueado();
 		}
 
 		//si se encuentra el usuario se verifca que el password sea correcto

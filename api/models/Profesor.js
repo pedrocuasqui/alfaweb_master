@@ -25,7 +25,7 @@ module.exports = {
 		email: {
 			type: "string",
 			columnName: "email",
-			required: false,
+			required: true,
 			unique: false
 		},
 		password: {
@@ -42,6 +42,12 @@ module.exports = {
 			type: "boolean",
 			columnName: "tutor",
 			required: true
+		},
+		confirmado: {
+			type: "boolean",
+			columnName: "confirmado",
+			required: true,
+			unique: false
 		},
 
 		//  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗

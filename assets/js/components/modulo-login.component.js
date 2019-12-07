@@ -1,22 +1,24 @@
-parasails.registerComponent('modulo-login', {
+/* eslint-disable no-undef */
+/*jshint esversion:8 */
+parasails.registerComponent("modulo-login", {
 	props: {},
 	data() {
 		return {
 			formData: {
 				alias: null,
 				email: null,
-				password: null,
+				password: null
 			},
 			// For tracking client-side validation errors in our form.
 			// > Has property set to `true` for each invalid property in `formData`.
 			formErrors: {
 				/* … */
 			},
-			usuario: 'alias',
+			usuario: "alias",
 			aliasIncorrecto: false,
 			correoIncorrecto: false,
-			passwordIncorrecto: false,
-		}
+			passwordIncorrecto: false
+		};
 	},
 
 	template: /*template */ `<div>
@@ -67,84 +69,76 @@ parasails.registerComponent('modulo-login', {
     </form>
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
   </div>
   `,
 	methods: {
 		validarFormulario(e) {
 			// Clear out any pre-existing error messages.
-			this.formErrors = {}
+			this.formErrors = {};
 
-			var argins = this.formData
+			var argins = this.formData;
 
 			// Valida que exista alias de usuario:
-			if (this.usuario == 'alias' && !argins.alias) {
-				this.formErrors.alias = true
+			if (this.usuario == "alias" && !argins.alias) {
+				this.formErrors.alias = true;
 			}
 			// Valida que exista correo de usuario:
-			if (this.usuario == 'email' && !argins.email) {
-				this.formErrors.email = true
+			if (this.usuario == "email" && !argins.email) {
+				this.formErrors.email = true;
 			}
 			// Valida exista password:
 			if (!argins.password) {
-				this.formErrors.password = true
+				this.formErrors.password = true;
 			}
 
 			/*INSERTAR LA VALIDACION DE CORREO ELECTRONICO VALIDO */
 			//  si el objeto formErrors se encuentra vacío, entonces continuar, caso contrario no recargar la página
 			if (Object.keys(this.formErrors).length == 0) {
-				this.valor = 'hola'
+				this.valor = "hola";
 				// e.preventDefault();
 
-				this.intentarEnvio()
+				this.intentarEnvio();
 			}
 		},
 		intentarEnvio() {
 			//establezco los sigueintes valores en false para que se oculten los mensajes de error en la vista
-			this.aliasIncorrecto = false
-			this.correoIncorrecto = false
-			this.passwordIncorrecto = false
+			this.aliasIncorrecto = false;
+			this.correoIncorrecto = false;
+			this.passwordIncorrecto = false;
 			// REVISAR USO DE btoa y atoa de javascript para codificar y decodificar el password
 			axios
-				.post('/login', {
+				.post("/login", {
 					//por defecto esto se manda en el body del request http
 					alias: this.formData.alias,
 					email: this.formData.email,
-					password: this.formData.password,
+					password: this.formData.password
 				})
 				.then(response => {
 					if (
 						response.data.usuario.administrador ||
 						response.data.usuario.tutor
 					) {
-						window.location.replace('/administrar-home')
+						window.location.replace("/administrar-home");
 					} else {
-						window.location.replace('/inicio')
+						window.location.replace("/inicio");
 					}
 				})
 				.catch(err => {
 					if (err.response.status == 401) {
-						this.aliasIncorrecto = true
-						this.correoIncorrecto = true
+						this.aliasIncorrecto = true;
+						this.correoIncorrecto = true;
 					} else if (err.response.status == 409) {
-						this.passwordIncorrecto = true
+						this.passwordIncorrecto = true;
+					} else if (err.response.status == 423) {
+						swal({
+							icon: "info",
+							title: "Acción requerida!!",
+							text:
+								" Debe confirmar su cuenta en el correo electrónico con el que se registró",
+							showConfirmButton: true
+						});
 					}
-				})
-		},
-	},
-})
+				});
+		}
+	}
+});

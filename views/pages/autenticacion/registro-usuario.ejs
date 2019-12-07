@@ -20,7 +20,7 @@
               <div class="invalid-feedback" v-if="formErrors.alias">Ingrese un alias de usuario válido.</div>
             </div>
             <div class="form-group">
-              <label for="email">Correo electrónico (opcional)</label>
+              <label for="email">Correo electrónico (*)</label>
               <input name="email" class="form-control" id="email" type="email"
                 :class="[formErrors.email ? 'is-invalid' : '']" v-model.trim="formData.email"
                 placeholder="pepito@example.com">

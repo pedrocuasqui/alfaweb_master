@@ -73,27 +73,55 @@ module.exports = {
 
 		/*SE DEFINE LA FUNCION QUE envia correo de confirmacion de cuenta con nodemailer */
 		const nodemailer = require("nodemailer");
-		// async..await is not allowed in global scope, must use a wrapper
+
+		// correo para el usuario Creado
 		async function enviarCorreo(usuarioCreado) {
 			// se crea el transporter con la cuenta de gmail
 			let transporter = nodemailer.createTransport({
 				service: "gmail",
 				auth: {
 					// previo a general el password para especific- app es necesario configurar la autenticacion en dos pasos de gmail
-					user: "pedro.cuasqui@gmail.com", // usuario
+					user: sails.config.custom.correoAdministrador, // usuario
 					pass: "mtggfotrvzxcfmfd" // password para una app especifica, esta configuracion se realiza en la cuenta de google
 				}
 			});
 
 			// send mail with defined transport object
-			let info = await transporter.sendMail({
-				from: "pedro.cuasqui@gmail.com", // sender address
-				to: inputs.email.toLowerCase(), // list of receivers
-				subject: 'Confirma tu cuenta "alfaweb" ✔', // Subject line
-				text:
-					'Has creado una cuenta en "alfaweb", abre este correo para confirmar', // plain text body
-				html: `<div style="background-color:#27293d; color:#c0c1c2;"><h1>Bienvenido ${inputs.nombre},</h1><h2>Confirma tu cuenta para acceder a la plataforma</h2> <p>Da click en CONFIRMAR, se abrirá una ventana en tu navegador y podrás acceder a tu cuenta</p> </div> <a style="font-size:2em; background-color:white" href="${sails.config.custom.baseUrl}/confirmar-usuario/?usuarioId=${usuarioCreado.id}"> CONFIRMAR</a> ` // html body
-			});
+			if (!usuarioCreado.administrador) {
+				// si el usuario creado NO ES ADMINISTRADOR, puede confirmar su cuenta
+				let info = await transporter.sendMail({
+					from: sails.config.custom.correoAdministrador, // sender address
+					to: inputs.email.toLowerCase(), // list of receivers
+					subject: 'Confirma tu cuenta "alfaweb" ✔', // Subject line
+					text:
+						'Has creado una cuenta en "alfaweb", abre este correo para confirmar', // plain text body
+					html: `<div style="background-color:#27293d; color:#c0c1c2;padding:10px;"><h1>Bienvenido ${inputs.nombre},</h1><h2>Confirma tu cuenta para acceder a la plataforma</h2> <p>Da click en CONFIRMAR, se abrirá una ventana en tu navegador y podrás acceder a tu cuenta</p> </div> <a style="font-size:2em; background-color:white" href="${sails.config.custom.baseUrl}/confirmar-usuario/?usuarioId=${usuarioCreado.id}"> CONFIRMAR</a> ` // html body
+				});
+			} else {
+				// si el usuario es administrador, requiere permiso del administrador del grupo
+				// 				sails.config.custom.correoAdministrador;
+
+				let info = await transporter.sendMail({
+					from: sails.config.custom.correoAdministrador, // sender address
+					to: sails.config.custom.correoAdministrador, // list of receivers
+					subject:
+						'"alfaweb" - Nuevo usuario requiere permiso de administrador 🔑', // Subject line
+					html: `<div style="background-color:#27293d; color:#c0c1c2; padding:10px;">
+					<p>El usuario <b>${
+						usuarioCreado.nombre
+					}</b> con correo ${inputs.email.toLowerCase()} ha solicitado permiso para acceder como administrador a la plataforma "alfaweb" </p>
+					<br>
+					<p> Ingresa a tu cuenta de administrador si quieres habilitar su cuenta ...</p>
+					</div> ` // html body
+				});
+
+				info = await transporter.sendMail({
+					from: sails.config.custom.correoAdministrador, // sender address
+					to: inputs.email.toLowerCase(), // list of receivers
+					subject: 'Cuenta "alfaweb"  creada ✔', // Subject line
+					html: `<div style="background-color:#27293d; color:#c0c1c2; padding:10px;"><h1>Bienvenido ${inputs.nombre},</h1><h2>Has creado una cuenta como administrador</h2> <p>Por seguridad, otro usuario <b>Administrador</b> debe concederte el permiso para ingresar con esta cuenta</p>  <br> <p>Se ha enviado un correo a <b> ${sails.config.custom.correoAdministrador} </b>para que confirme tu cuenta</p></div> ` // html body
+				});
+			}
 
 			console.log("Message sent: %s", info.messageId);
 			// Message sent: <b658f8ca-6296-ccf4-8306-87d57a0b4321@example.com>
@@ -127,8 +155,6 @@ module.exports = {
 				// El correo ya no es opcional, es necesario para validar la creacion de cuentas del usuario, si el usuario ingresa sin correo deberia habilitarse por defecto el ingreso y si no registra correo tienen que ingresar con alias pero deber'ia por defecto tener permiso aun sin validar
 				enviarCorreo(usuarioCreado).catch(console.error);
 			}
-
-			sails.log("ESTUDIANTE CREADO CORRECTAMENTE");
 		} else if (inputs.rol == "administrador") {
 			//registra al usuario en la coleccion profesor
 			usuarioCreado = await Profesor.create({
@@ -150,7 +176,7 @@ module.exports = {
 					return "aliasoEmailYaEnUso";
 				})
 				.intercept(err => {
-					sails.log("ERROR GENERAL\n" + err + "\n FIN ERROR GENERAL");
+					return res.status(500).send({ err });
 				});
 			if (inputs.email && usuarioCreado) {
 				// El correo ya no es opcional, es necesario para validar la creacion de cuentas del usuario, si el usuario ingresa sin correo deberia habilitarse por defecto el ingreso y si no registra correo tienen que ingresar con alias pero deber'ia por defecto tener permiso aun sin validar

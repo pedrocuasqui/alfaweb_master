@@ -52,20 +52,20 @@ module.exports = {
 		try {
 			existeUsuario = await Estudiante.findOne({ alias: inputs.alias });
 			if (existeUsuario) {
-				return res.status(409).send();
+				return res.status(409).send({ tipo: "alias" });
 			}
 			existeUsuario = await Estudiante.findOne({ email: inputs.email });
 			if (existeUsuario) {
-				return res.status(410).send({ tipo: "email" });
+				return res.status(409).send({ tipo: "email" });
 			}
 
 			existeUsuario = await Profesor.findOne({ alias: inputs.alias });
 			if (existeUsuario) {
-				return res.status(409).send();
+				return res.status(409).send({ tipo: "alias" });
 			}
 			existeUsuario = await Profesor.findOne({ email: inputs.email });
 			if (existeUsuario) {
-				return res.status(410).send();
+				return res.status(409).send({ tipo: "email" });
 			}
 		} catch (err) {
 			return res.status(500).send({ err });

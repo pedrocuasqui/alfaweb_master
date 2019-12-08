@@ -163,9 +163,13 @@ parasails.registerComponent("modulo-login", {
 				icon: "info",
 				title: "Restauración de contraseña!!",
 				text: "Introduce el correo electrónico con el que te registraste (*)",
-				type: "input",
-				// closeOnConfirm: false,
-				// closeOnCancel: false,
+				content: {
+					element: "input",
+					attributes: {
+						placeholder: "Ej: nombre@dominio.com",
+						type: "email"
+					}
+				},
 				buttons: {
 					confirm: {
 						text: "Enviar",
@@ -180,6 +184,7 @@ parasails.registerComponent("modulo-login", {
 				}
 				// Si se ingresa un correo electrónico se envia la peticion de enviar, el controlador verifica que el correo se encuentre registraod, de lo contrario retorno un error 409,
 				if (inputValue) {
+					console.log(`correo de recuperacion: ${inputValue}`);
 					var formData = new FormData();
 					formData.append("correoRecuperacion", inputValue);
 					axios({
@@ -190,7 +195,7 @@ parasails.registerComponent("modulo-login", {
 						.then(response => {
 							swal({
 								icon: "success",
-								title: "Correo Enviado correctamente",
+								title: "Correo enviado correctamente",
 								showConfirmButton: true,
 								timer: 2000
 							});
@@ -199,15 +204,15 @@ parasails.registerComponent("modulo-login", {
 							if (err.response.status == 409) {
 								swal({
 									icon: "error",
-									title: "Error: El usuario no se encuentra registrado",
-									text: err,
+									title: `Error: El usuario con correo ${inputValue} no se encuentra registrado`,
+									text: `${err}`,
 									showConfirmButton: true
 								});
 							} else {
 								swal({
 									icon: "error",
 									title: `Error en el servidor ${err.response.status} `,
-									text: err,
+									text: `${err}`,
 									showConfirmButton: true
 								});
 							}

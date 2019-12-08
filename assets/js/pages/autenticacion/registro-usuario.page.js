@@ -99,7 +99,7 @@ parasails.registerPage("registro-usuario", {
 					});
 				})
 				.catch(err => {
-					if (err.response.status == 409) {
+					if (err.response.status == 409 && err.response.data.tipo == "alias") {
 						swal({
 							title: `¡No se ha podido registrar!`,
 							icon: "error",
@@ -108,8 +108,10 @@ parasails.registerPage("registro-usuario", {
 							confirmButtonClass: "btn-danger"
 							// buttonsStyling: false
 						});
-					} else if (err.response.status == 410) {
-						console.log(err.response);
+					} else if (
+						err.response.status == 409 &&
+						err.response.data.tipo == "email"
+					) {
 						swal({
 							title: `¡No se ha podido registrar!`,
 							icon: "error",

@@ -11,9 +11,15 @@ module.exports = {
 		}
 	},
 
-	exits: {},
+	exits: {
+		success: {
+			statusCode: 200,
+			message: "logueado correctamente"
+		}
+	},
 
-	fn: async function(inputs) {
+	fn: async function(inputs, exits) {
+		console.log("LLEGADA A enviar-correo-recuperacion");
 		var res = this.res;
 		var usuarioRecuperacion = null;
 		var passwordTemporalPlano = null;
@@ -74,8 +80,14 @@ module.exports = {
 			}
 
 			if (!usuarioRecuperacion) {
+				console.log(
+					`no existe usuario con correo ${inputs.correoRecuperacion}`
+				);
 				return res.status(409).send();
 			} else {
+				console.log(
+					`Existe usuario con correo  ${inputs.correoRecuperacion}, y es ${usuarioEs}`
+				);
 				if (usuarioEs == "Estudiante") {
 					await Estudiante.update({ id: usuarioRecuperacion.id }).set({
 						password: passwordTemporalEncriptada
@@ -95,6 +107,6 @@ module.exports = {
 
 		// pendiente buscar el correo en la base de datos
 		// despues enviar el correo
-		return res.status(200).send();
+		return exits.success();
 	}
 };

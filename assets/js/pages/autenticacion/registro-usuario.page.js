@@ -78,7 +78,9 @@ parasails.registerPage("registro-usuario", {
 			formData.append("password", this.formData.password);
 			formData.append("rol", this.formData.rol);
 
-			// eslint-disable-next-line no-undef
+			// se envian los datos de registro,
+			// si se necesita usar html en swal, es necesario crear objetos tipo nodo html
+			// https://sweetalert.js.org/docs/#content
 			axios({
 				url: "/registro-usuario",
 				method: "post",

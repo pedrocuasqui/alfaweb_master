@@ -107,8 +107,16 @@ parasails.registerPage("registro-usuario", {
 							text: `El alias de usuario "${this.formData.alias}" ya se encuentra registrado`,
 							confirmButtonClass: "btn-danger"
 							// buttonsStyling: false
-						}).then(() => {
-							// window.location.replace("/view-login");
+						});
+					} else if (err.response.status == 410) {
+						console.log(err.response);
+						swal({
+							title: `¡No se ha podido registrar!`,
+							icon: "error",
+							type: "error",
+							text: `El correo "${this.formData.email}" ya se encuentra registrado`,
+							confirmButtonClass: "btn-danger"
+							// buttonsStyling: false
 						});
 					} else {
 						swal({

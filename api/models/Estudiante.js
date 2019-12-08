@@ -21,7 +21,7 @@ module.exports = {
 		email: {
 			type: "string",
 			columnName: "email",
-			unique: false,
+			unique: true,
 			required: true
 		},
 		password: {

@@ -48,16 +48,24 @@ module.exports = {
 		// All done.
 		var usuarioCreado = null;
 		var existeUsuario = null;
-		// Busca en tablas profesor y estudiante el alias, el correo se puede repetir, menos el alias
+		// Busca en tablas profesor y estudiante el alias y el correo, si existe algun alias o correo ya registrado, se retorna error
 		try {
 			existeUsuario = await Estudiante.findOne({ alias: inputs.alias });
 			if (existeUsuario) {
 				return res.status(409).send();
 			}
+			existeUsuario = await Estudiante.findOne({ email: inputs.email });
+			if (existeUsuario) {
+				return res.status(410).send({ tipo: "email" });
+			}
 
 			existeUsuario = await Profesor.findOne({ alias: inputs.alias });
 			if (existeUsuario) {
 				return res.status(409).send();
+			}
+			existeUsuario = await Profesor.findOne({ email: inputs.email });
+			if (existeUsuario) {
+				return res.status(410).send();
 			}
 		} catch (err) {
 			return res.status(500).send({ err });

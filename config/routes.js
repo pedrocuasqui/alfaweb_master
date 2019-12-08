@@ -58,6 +58,9 @@ module.exports.routes = {
 	"GET /confirmar-usuario": {
 		action: "autenticacion/view-confirmar-usuario"
 	},
+	"POST /enviar-correo-recuperacion": {
+		action: "autenticacion/enviar-correo-recuperacion"
+	},
 
 	/* RUTAS DE ADMINISTRADOR*/
 

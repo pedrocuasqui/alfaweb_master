@@ -77,7 +77,7 @@ parasails.registerComponent("modulo-login", {
       <div class="form-group">
         <input type="submit" value="Iniciar Sesión" class="btn btn-primary">
 			</div>
-			<p><a href="">¿Olvidaste tu contraseña?</a> </p>
+			<p class="enlace" @click="clickRecuperarContrasenia()">¿Olvidaste tu contraseña? </p>
       <div class="form-group">
         <p>¿Quieres ingresar sin registrarte? </p>
         <a class="btn btn-primary" href="/inicio" role="button">Ingresa como visitante</a>
@@ -156,6 +156,64 @@ parasails.registerComponent("modulo-login", {
 						});
 					}
 				});
+		},
+		clickRecuperarContrasenia() {
+			swal({
+				position: "center",
+				icon: "info",
+				title: "Restauración de contraseña!!",
+				text: "Introduce el correo electrónico con el que te registraste (*)",
+				type: "input",
+				// closeOnConfirm: false,
+				// closeOnCancel: false,
+				buttons: {
+					confirm: {
+						text: "Enviar",
+						value: true
+					},
+					cancel: "Cancelar!" //retona null siempre
+				}
+			}).then(inputValue => {
+				if (inputValue === "") {
+					swal.showInputError("Debes ingresar un correo electrónico");
+					return false;
+				}
+				// Si se ingresa un correo electrónico se envia la peticion de enviar, el controlador verifica que el correo se encuentre registraod, de lo contrario retorno un error 409,
+				if (inputValue) {
+					var formData = new FormData();
+					formData.append("correoRecuperacion", inputValue);
+					axios({
+						method: "post",
+						url: "/enviar-correo-recuperacion",
+						data: formData
+					})
+						.then(response => {
+							swal({
+								icon: "success",
+								title: "Correo Enviado correctamente",
+								showConfirmButton: true,
+								timer: 2000
+							});
+						})
+						.catch(err => {
+							if (err.response.status == 409) {
+								swal({
+									icon: "error",
+									title: "Error: El usuario no se encuentra registrado",
+									text: err,
+									showConfirmButton: true
+								});
+							} else {
+								swal({
+									icon: "error",
+									title: `Error en el servidor ${err.response.status} `,
+									text: err,
+									showConfirmButton: true
+								});
+							}
+						});
+				}
+			});
 		}
 	}
 });

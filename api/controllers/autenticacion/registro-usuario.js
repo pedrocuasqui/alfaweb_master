@@ -111,7 +111,7 @@ module.exports = {
 						usuarioCreado.nombre
 					}</b> con correo ${inputs.email.toLowerCase()} ha solicitado permiso para acceder como administrador a la plataforma "alfaweb" </p>
 					<br>
-					<p> Ingresa a tu cuenta de administrador si quieres habilitar su cuenta ...</p>
+					<p> Ingresa a tu cuenta de administrador si quieres habilitar un nuevo administrador</p>
 					</div> ` // html body
 				});
 
@@ -119,7 +119,7 @@ module.exports = {
 					from: sails.config.custom.correoAdministrador, // sender address
 					to: inputs.email.toLowerCase(), // list of receivers
 					subject: 'Cuenta "alfaweb"  creada ✔', // Subject line
-					html: `<div style="background-color:#27293d; color:#c0c1c2; padding:10px;"><h1>Bienvenido ${inputs.nombre},</h1><h2>Has creado una cuenta como administrador</h2> <p>Por seguridad, otro usuario <b>Administrador</b> debe concederte el permiso para ingresar con esta cuenta</p>  <br> <p>Se ha enviado un correo a <b> ${sails.config.custom.correoAdministrador} </b>para que confirme tu cuenta</p></div> ` // html body
+					html: `<div style="background-color:#27293d; color:#c0c1c2; padding:10px;"><h1>Bienvenido ${inputs.nombre},</h1><h2>Has creado una cuenta como administrador</h2> <p>Por seguridad, otro usuario <b>Administrador</b> debe concederte el permiso para ingresar con esta cuenta</p> <p>Se ha enviado un correo al administrador  <b> ${sails.config.custom.correoAdministrador} </b>para que confirme tu cuenta</p></div> ` // html body
 				});
 			}
 

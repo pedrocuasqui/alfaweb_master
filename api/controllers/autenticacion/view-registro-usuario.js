@@ -12,7 +12,8 @@ module.exports = {
 
 	fn: async function(inputs, exits) {
 		// sin inputs en este controlador obtengo un resultado de error
-
-		return exits.success({});
+		var correoUsuarioAdministrador = sails.config.custom.correoAdministrador;
+		console.log(`correo admin: ${correoUsuarioAdministrador}`);
+		return exits.success({ correoUsuarioAdministrador });
 	}
 };

@@ -8,6 +8,7 @@ parasails.registerPage("registro-usuario", {
 		formData: {},
 		// For tracking client-side validation errors in our form.
 		// > Has property set to `true` for each invalid property in `formData`.
+		correoUsuarioAdministrador: "Marco Santórum",
 		formErrors: {
 			/* … */
 		}
@@ -20,11 +21,14 @@ parasails.registerPage("registro-usuario", {
 		// Attach any initial data from the server.
 		_.extend(this, SAILS_LOCALS);
 	},
-	mounted: async function() {},
+	mounted: async function() {
+		this.correoUsuarioAdministrador = SAILS_LOCALS.correoUsuarioAdministrador;
+	},
 
 	//  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
 	//  ║║║║ ║ ║╣ ╠╦╝╠═╣║   ║ ║║ ║║║║╚═╗
 	//  ╩╝╚╝ ╩ ╚═╝╩╚═╩ ╩╚═╝ ╩ ╩╚═╝╝╚╝╚═╝
+
 	methods: {
 		validarFormulario(e) {
 			// Clear out any pre-existing error messages.
@@ -97,11 +101,18 @@ parasails.registerPage("registro-usuario", {
 					// pTag.appendChild(bNode);
 					// pTag.appendChild(document.createTextNode("con alias"));
 					//CODIGO COMENTADO PRODUCE: El usuariorywtcon alias
+
+					let texto = "";
+					if (this.formData.rol == "administrador") {
+						texto = `El usuario \"${response.data.usuarioCreado.nombre}\" de tipo Administrador, con alias  \"${response.data.usuarioCreado.alias}\" ha sido creado correctamente. \nPara poder ingresar, el usuario ${this.correoUsuarioAdministrador} debe habilitar tu cuenta`;
+					} else {
+						texto = `El usuario \"${response.data.usuarioCreado.nombre}\" con alias  \"${response.data.usuarioCreado.alias}\" ha sido creado correctamente. \n Ingresa al correo electrónico \"${response.data.usuarioCreado.email}\" y confirma tu cuenta `;
+					}
 					swal({
 						title: `Usuario creado correctamente!`,
 						icon: "success",
 						type: "success",
-						text: `El usuario \"${response.data.usuarioCreado.nombre}\" con alias  \"${response.data.usuarioCreado.alias}\" ha sido creado correctamente. \nPara poder ingresar, confirma tu cuenta en tu correo electrónico\"${response.data.usuarioCreado.email}\"`,
+						text: texto,
 
 						confirmButtonClass: "btn btn-success btn-fill",
 						buttonsStyling: false

@@ -81,18 +81,27 @@ parasails.registerPage("registro-usuario", {
 			// se envian los datos de registro,
 			// si se necesita usar html en swal, es necesario crear objetos tipo nodo html
 			// https://sweetalert.js.org/docs/#content
+
 			axios({
 				url: "/registro-usuario",
 				method: "post",
 				data: formData
 			})
 				.then(response => {
+					// var pTag = document.createElement("p");
+					// pTag.appendChild(document.createTextNode("El usuario"));
+					// let bNode = document.createElement("b");
+					// bNode.appendChild(
+					// 	document.createTextNode(response.data.usuarioCreado.nombre)
+					// );
+					// pTag.appendChild(bNode);
+					// pTag.appendChild(document.createTextNode("con alias"));
+					//CODIGO COMENTADO PRODUCE: El usuariorywtcon alias
 					swal({
 						title: `Usuario creado correctamente!`,
 						icon: "success",
 						type: "success",
-						text: `El usuario \"${response.data.usuarioCreado.nombre}\" con alias  \"${response.data.usuarioCreado.alias}\" ha sido creado correctamente. \nPara poder ingresar, confirma tu cuenta en tu correo electrónico\"${response.data.usuarioCreado.email}\"`, // html: `<p><span>El usuario </span><em>${response.data.usuarioCreado.nombre}</em> ha sido creado correctamente</p>`,
-						// html: "<div>hola</div>",
+						text: `El usuario \"${response.data.usuarioCreado.nombre}\" con alias  \"${response.data.usuarioCreado.alias}\" ha sido creado correctamente. \nPara poder ingresar, confirma tu cuenta en tu correo electrónico\"${response.data.usuarioCreado.email}\"`,
 
 						confirmButtonClass: "btn btn-success btn-fill",
 						buttonsStyling: false

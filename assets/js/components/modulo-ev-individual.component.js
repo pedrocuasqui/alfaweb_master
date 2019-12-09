@@ -862,7 +862,7 @@ parasails.registerComponent("modulo-ev-individual", {
 					swal({
 						icon: "error",
 						title: "Error: no se puede guardar el avance en este momento",
-						text: err,
+						text: `${err}`,
 						showConfirmButton: true,
 						timer: 2000
 					});

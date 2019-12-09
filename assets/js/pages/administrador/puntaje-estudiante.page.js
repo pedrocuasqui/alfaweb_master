@@ -63,7 +63,7 @@ parasails.registerPage("puntaje-estudiante", {
 							swal({
 								icon: "error",
 								title: "Error!, contacto con el administrador del sistema",
-								text: err,
+								text: `${err}`,
 								showConfirmButton: true,
 								timer: 2000,
 							});
@@ -72,7 +72,7 @@ parasails.registerPage("puntaje-estudiante", {
 					swal({
 						icon: "warning",
 						title: "No puede acceder a esta información como usuario visitante",
-						text: err,
+						text: `${err}`,
 						showConfirmButton: true,
 						timer: 2000,
 					});

@@ -131,7 +131,9 @@ module.exports.routes = {
 	"GET /view-puntaje-estudiante": {
 		action: "administrador/view-puntaje-estudiante"
 	},
-
+	"POST /habilitar-admin": {
+		action: "administrador/habilitar-admin"
+	},
 	/** RUTAS DE ESTUDIANTE */
 	// modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
 	// estudiante

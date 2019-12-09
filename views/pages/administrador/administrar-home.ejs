@@ -65,10 +65,11 @@
                   <li
                     class="list-group-item d-flex justify-content-between align-items-center list-group-item-profesor">
                     {{admin.nombre}}
-                    <span>
-                      <input type="checkbox" :checked="admin.confirmado" data-toggle="toggle" data-on="Habilitado"
-                        data-off="Bloqueado">
-                    </span>
+
+                    <input type="checkbox" :checked="admin.confirmado" v-model="admin.confirmado" data-toggle="toggle"
+                      data-on="Habilitado" data-off="Bloqueado" data-onstyle="success" data-offstyle="danger"
+                      @click="clickOnOffAdmin(admin)">
+
                   </li>
 
 

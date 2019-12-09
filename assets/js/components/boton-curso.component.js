@@ -104,7 +104,7 @@ parasails.registerComponent("boton-curso", {
 					swal({
 						icon: "error",
 						title: "Error: no se ha podido publicar el curso",
-						text: err,
+						text: `${err}`,
 						showConfirmButton: true,
 						timer: 2000
 					});
@@ -130,7 +130,7 @@ parasails.registerComponent("boton-curso", {
 					swal({
 						icon: "error",
 						title: "Error: intente más tarde",
-						text: err,
+						text: `${err}`,
 						showConfirmButton: true,
 						timer: 2000
 					});

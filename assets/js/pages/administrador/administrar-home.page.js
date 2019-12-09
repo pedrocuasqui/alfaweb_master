@@ -16,7 +16,8 @@ parasails.registerPage("administrar-home", {
 		formErrors: {},
 		cursos: Object,
 		estudiantes: null,
-		usuario: null
+		usuario: null,
+		administradores: null
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -28,6 +29,7 @@ parasails.registerPage("administrar-home", {
 		this.cursos = SAILS_LOCALS.cursos;
 		this.estudiantes = SAILS_LOCALS.estudiantes;
 		this.usuario = SAILS_LOCALS.usuario;
+		this.administradores = SAILS_LOCALS.administradores;
 	},
 	mounted: async function() {
 		// this.asignarEventoClick();
@@ -150,7 +152,7 @@ parasails.registerPage("administrar-home", {
 					swal({
 						icon: "error",
 						title: "Error: no se ha podido actualizar el curso",
-						text: err,
+						text: `${err}`,
 						showConfirmButton: true
 					});
 				});
@@ -177,6 +179,43 @@ parasails.registerPage("administrar-home", {
 
 			// return fecha.substring(1, 12);
 			return fecha;
+		},
+		clickOnOffAdmin(admin) {
+			const formData = new FormData();
+			formData.append("adminId", admin.id);
+			formData.append("habilitar", admin.confirmado);
+			let texto = "";
+			let titulo = "";
+			if (admin.confirmado) {
+				texto = `El administrador ${admin.nombre} Ha sido habilitado exitosamente`;
+				titulo = "Administrador Habilitado";
+			} else {
+				texto = `El administrador ${admin.nombre} Ha sido deshabilitado exitosamente`;
+				titulo = "Administrador Deshabilitado";
+			}
+			axios({
+				method: "post",
+				url: "/habilitar-admin",
+				data: formData
+			})
+				.then(response => {
+					swal({
+						icon: "success",
+						title: titulo,
+						text: texto,
+						showConfirmButton: true,
+						timer: 3000
+					});
+				})
+				.catch(err => {
+					swal({
+						icon: "error",
+						title: "Error: No se ha podido habilitar al usuario",
+						text: `${err}`,
+						showConfirmButton: true,
+						timer: 2000
+					});
+				});
 		}
 	},
 	computed: {}

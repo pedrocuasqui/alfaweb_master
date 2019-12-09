@@ -96,14 +96,14 @@ parasails.registerPage("actualizar-usuario", {
 						swal({
 							icon: "error",
 							title: "El usuario ya se encuentra creado",
-							text: err,
+							text: `${err}`,
 							showConfirmButton: true,
 						});
 					} else {
 						swal({
 							icon: "error",
 							title: "No se puede actualizar en este momento",
-							text: err,
+							text: `${err}`,
 							showConfirmButton: true,
 						});
 					}

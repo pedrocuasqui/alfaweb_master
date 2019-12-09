@@ -371,7 +371,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 								icon: "error",
 								title:
 									"Error: no se puede mostrar la puntuación en este momento",
-								text: err,
+								text: `${err}`,
 								showConfirmButton: true
 							});
 						});

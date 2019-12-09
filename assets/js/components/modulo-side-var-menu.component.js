@@ -238,7 +238,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 					swal({
 						icon: "error",
 						title: "Error: no se ha podido publicar el curso",
-						text: err,
+						text: `${err}`,
 						showConfirmButton: true,
 						timer: 2000
 					});
@@ -264,7 +264,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 					swal({
 						icon: "error",
 						title: "Error: intente más tarde",
-						text: err,
+						text: `${err}`,
 						showConfirmButton: true
 					});
 				});

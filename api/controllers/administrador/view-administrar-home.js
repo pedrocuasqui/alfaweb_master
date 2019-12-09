@@ -48,6 +48,7 @@ module.exports = {
 				email: { "!=": sails.config.custom.correoAdministrador }
 			}).sort("createdAt DESC");
 
+			console.log(`${JSON.stringify(administradores)}`);
 			return exits.success({
 				cursos,
 				estudiantes,

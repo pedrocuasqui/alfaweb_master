@@ -251,7 +251,7 @@ parasails.registerPage("administrar-contenido", {
 					swal({
 						icon: "error",
 						title: "Error: no se ha podido actualizar el módulo",
-						text: err,
+						text: `${err}`,
 						showConfirmButton: true,
 						timer: 2000
 					});
@@ -289,7 +289,7 @@ parasails.registerPage("administrar-contenido", {
 					swal({
 						icon: "error",
 						title: "Error: no se ha podido actualizar el submódulo",
-						text: err,
+						text: `${err}`,
 						showConfirmButton: true
 					});
 				});
@@ -412,7 +412,7 @@ parasails.registerPage("administrar-contenido", {
 					swal({
 						icon: "error",
 						title: "No se puede cargar la imágen en este momento",
-						text: err,
+						text: `${err}`,
 						showConfirmButton: true
 					});
 				});
@@ -705,7 +705,7 @@ parasails.registerPage("administrar-contenido", {
 						title: `No se ha podido crear la evaluación`,
 						icon: "error",
 						type: "error",
-						text: err,
+						text: `${err}`,
 						confirmButtonClass: "btn-danger"
 						// buttonsStyling: false
 					});

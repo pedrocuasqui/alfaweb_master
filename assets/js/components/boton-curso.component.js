@@ -2,12 +2,12 @@
 /*jshint esversion:8 */
 parasails.registerComponent("boton-curso", {
 	props: {
-		curso: Object,
+		curso: Object
 	},
 	data() {
 		return {
 			editarCurso: false,
-			formErrors: {},
+			formErrors: {}
 		};
 	},
 	mounted() {
@@ -18,13 +18,13 @@ parasails.registerComponent("boton-curso", {
 			(abrir = function() {
 				_this.abrirCurso(_this.curso.id);
 			}),
-			false,
+			false
 		);
 	},
 
 	template: /*template */ `  
 <div>
-    <button :id="curso.id" type="button" class=" button list-group-item list-group-item-action flex-column align-items-start">
+    <button :id="curso.id" type="button" class=" button list-group-item list-group-item-action flex-column align-items-start list-group-item-profesor">
     
     <div class="d-flex w-100 justify-content-between">
       <input :id="'input'+curso.id" v-if="editarCurso" type="text" v-model="curso.nombre" class="form-control" :class="[formErrors.nombre && curso.nombre=='' ? 'is-invalid' : '']" placeholder="Nombre del curso">
@@ -89,7 +89,7 @@ parasails.registerComponent("boton-curso", {
 			axios({
 				url: `/publicar-curso/${cursoId}`,
 				method: "PUT",
-				data: { publicar: true },
+				data: { publicar: true }
 			})
 				.then(() => {
 					this.curso.publicado = true;
@@ -97,7 +97,7 @@ parasails.registerComponent("boton-curso", {
 						icon: "success",
 						title: "Curso publicado",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 				})
 				.catch(err => {
@@ -106,7 +106,7 @@ parasails.registerComponent("boton-curso", {
 						title: "Error: no se ha podido publicar el curso",
 						text: err,
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 				});
 		},
@@ -115,7 +115,7 @@ parasails.registerComponent("boton-curso", {
 			axios({
 				url: `/publicar-curso/${cursoId}`,
 				method: "PUT",
-				data: { publicar: false },
+				data: { publicar: false }
 			})
 				.then(() => {
 					this.curso.publicado = false;
@@ -123,7 +123,7 @@ parasails.registerComponent("boton-curso", {
 						icon: "success",
 						title: "Se ha ocultado el curso a los estudiantes",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 				})
 				.catch(err => {
@@ -132,10 +132,10 @@ parasails.registerComponent("boton-curso", {
 						title: "Error: intente más tarde",
 						text: err,
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					});
 				});
-		},
+		}
 	},
 	computed: {
 		noEsInforBasica() {
@@ -156,6 +156,6 @@ parasails.registerComponent("boton-curso", {
 				this.curso.publicado &&
 				this.curso.nombre != "Alfabetización informática";
 			return respuesta;
-		},
-	},
+		}
+	}
 });

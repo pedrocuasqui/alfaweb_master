@@ -995,18 +995,18 @@ g.contenedor1:hover * {
 }
 
 .button,
-.list-group-item-estudiante {
-	border: 1px solid;
+.list-group-item-estudiante,
+.list-group-item-profesor {
+	border-bottom: 1px solid;
 	border-color: #ccc !important;
 	background-color: @colorcontenidocentral !important;
-	border-radius: 0.4285rem !important;
-	// border-radius   : 2rem !important;
 	padding: 12px 20px !important;
 	width: 100% !important;
 }
 
 .button:hover,
-.list-group-item-estudiante:hover {
+.list-group-item-estudiante:hover,
+.list-group-item-profesor:hover {
 	background-color: darken(@colorcontenidocentral, 5%) !important;
 	// background-image: linear-gradient(to bottom right,white, darken(white,20%),white) !important;
 	// background-image: -webkit-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
@@ -1014,6 +1014,13 @@ g.contenedor1:hover * {
 	// background-image: -moz-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
 	// color           : white;
 }
+// .list-group-item-profesor {
+// 	border-bottom: 1px solid;
+// 	border-color: #ccc !important;
+// 	background-color: @colorcontenidocentral !important;
+// 	padding: 12px 20px !important;
+// 	width: 100% !important;
+// }
 
 p a:hover {
 	color: white !important;
@@ -1469,4 +1476,13 @@ div.padding_bottom {
 	cursor: pointer;
 	color: #2ee3ad;
 	margin-bottom: 1px solid #2ee3ad;
+}
+
+.filaEstudiantesLogueados {
+	height: 60vh !important;
+	overflow-y: auto;
+}
+.filaAdministradores {
+	// height: 25vh !important;
+	// overflow-y: auto;
 }

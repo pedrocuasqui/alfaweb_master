@@ -33,10 +33,10 @@ module.exports = {
 			return res.forbidden();
 		} else {
 			usuario = await Profesor.findOne({ id: req.session.userId }); // deberá encontrar un Profesor
-			sails.log("USUARIO LOGUEADO");
-			sails.log(usuario);
 
 			if (!usuario) {
+				return res.forbidden();
+			} else if (!usuario.confirmado) {
 				return res.forbidden();
 			}
 

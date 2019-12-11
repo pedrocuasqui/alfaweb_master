@@ -46,6 +46,8 @@ module.exports = {
 			if (!usuario) {
 				// res.status(404).send({ mensaje: 'Necesita permisos de Administrador' })
 				return res.forbidden();
+			} else if (!usuario.confirmado) {
+				return res.forbidden();
 			}
 		} else {
 			// res.status(404).send({ mensaje: 'Necesita permisos de Administrador' })

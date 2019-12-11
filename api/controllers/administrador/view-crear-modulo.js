@@ -49,6 +49,9 @@ module.exports = {
 
 			if (!usuario) {
 				return res.forbidden();
+			} else if (!usuario.confirmado) {
+				// si existe un usuario pero no esta confirmado se retorna forbidden
+				return res.forbidden();
 			}
 
 			var curso = await Curso.findOne({ id: inputs.cursoId }).populate(

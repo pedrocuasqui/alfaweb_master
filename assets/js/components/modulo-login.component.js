@@ -151,7 +151,7 @@ parasails.registerComponent("modulo-login", {
 							icon: "info",
 							title: "Acción requerida!!",
 							text:
-								" Debe confirmar su cuenta en el correo electrónico con el que se registró",
+								"Confirma la creación de tu cuenta en el correo electrónico, o \n si eres Administrador debes solicitar el acceso al SuperAdmin del sitio.",
 							showConfirmButton: true
 						});
 					}

@@ -32,6 +32,9 @@ module.exports = {
 			usuario = await Profesor.findOne({ id: req.session.userId });
 			if (!usuario) {
 				return res.forbidden();
+			} else if (!usuario.confirmado) {
+				// si existe un usuario pero no esta confirmado se retorna forbidden
+				return res.forbidden();
 			}
 		} else {
 			return res.forbidden();

@@ -22,12 +22,26 @@ module.exports = {
 	},
 
 	fn: async function(inputs) {
-		var res = this.res;
-
 		var submoduloEliminado;
 		var moduloEliminado;
 		var objetoError;
 		var objetoEliminado;
+		var req = this.req;
+		var res = this.res;
+		var usuario = null;
+		//si se encuentra el usuario, se remite la información del usuario logueado para poder mostrar su nombre y validar su rol
+
+		if (req.session.userId) {
+			usuario = await Profesor.findOne({ id: req.session.userId });
+			if (!usuario) {
+				return res.forbidden();
+			} else if (!usuario.confirmado) {
+				// si existe un usuario pero no esta confirmado se retorna forbidden
+				return res.forbidden();
+			}
+		} else {
+			return res.forbidden();
+		}
 		try {
 			//intentar eliminar el modulo
 			moduloEliminado = await ModuloLibro.destroyOne({ id: inputs.id }); // el metodo destoyOne siempre retorna un solo elemento o undefined si no se eliminó nada

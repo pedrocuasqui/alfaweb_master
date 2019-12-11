@@ -33,7 +33,7 @@
       <div class="row">
         <!-- COLUMNA IZQUIERDA: ESTUDIANTES -->
         <div class="col">
-          <div class="row filaEstudiantesLogueados">
+          <div class="row " :class="[superAdminEmail == usuario.email ? 'filaEstudiantesLogueados' :'']">
             <div class="col-sm-12 nopadding">
               <h3>Últimos estudiantes logueados</h3>
               <div class="list-group list-group-flush">
@@ -55,7 +55,7 @@
               </div>
             </div>
           </div>
-          <div class="row filaAdministradores">
+          <div v-if="superAdminEmail == usuario.email" class="row filaAdministradores">
             <div class="col-sm-12 nopadding">
               <h3>Administradores</h3>
               <div class="list-group">

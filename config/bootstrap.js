@@ -646,9 +646,9 @@ module.exports.bootstrap = async function(done) {
 		await sails.helpers.registrarAvanceEstudiante(credenciales, avance); //la fecha de acceso es creada dentro
 
 		estudiante = await Estudiante.create({
-			nombre: "Pedro Cuasqui",
+			nombre: "Pedro Estudiante",
 			alias: "Pedroc",
-			email: "pedro.cuasqui@gmail.com",
+			email: "pedroc160710@gmail.com",
 			password: "$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie",
 			confirmado: true
 		}).fetch();
@@ -685,9 +685,9 @@ module.exports.bootstrap = async function(done) {
 		//
 		//
 		var profesorCreado = await Profesor.create({
-			nombre: "j",
+			nombre: "Pedro Cuasqui",
 			alias: "j",
-			email: "j@gmail.com",
+			email: "pedro.cuasqui@gmail.com",
 			password: "$2b$10$dnUGZGpto1RdygwQ2bWDdeLRceCbCuU8Q2vz4RmZD8eXOyg.qrVqe",
 			administrador: true,
 			tutor: false,

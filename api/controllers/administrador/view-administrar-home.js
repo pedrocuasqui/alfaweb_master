@@ -28,6 +28,8 @@ module.exports = {
 			usuario = await Profesor.findOne({ id: req.session.userId }); // deberá encontrar un Profesor
 			if (!usuario) {
 				return res.forbidden();
+			} else if (!usuario.confirmado) {
+				return res.forbidden();
 			}
 			if (usuario.administrador) {
 				//busqueda del curso alfaweb para todos los administradores
@@ -48,12 +50,13 @@ module.exports = {
 				email: { "!=": sails.config.custom.correoAdministrador }
 			}).sort("createdAt DESC");
 
-			console.log(`${JSON.stringify(administradores)}`);
+			var superAdminEmail = sails.config.custom.correoAdministrador;
 			return exits.success({
 				cursos,
 				estudiantes,
 				usuario,
-				administradores
+				administradores,
+				superAdminEmail
 			});
 		}
 	}

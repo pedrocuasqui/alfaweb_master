@@ -35,6 +35,13 @@
                 placeholder="••••••••">
               <div class="invalid-feedback" v-if="formErrors.password">Ingrese un password.</div>
             </div>
+            <div class="form-group">
+              <label for="password">Confirme su password (*)</label>
+              <input name="password" class="form-control" id="passwordConfirm" type="password"
+                :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.passwordConfirm"
+                placeholder="••••••••">
+              <div class="invalid-feedback" v-if="formErrors.passwordConfirm">El password no coincide</div>
+            </div>
             <label>Seleccione un tipo de usuario (*)</label>
             <br>
             <div class="form-check form-check-inline">

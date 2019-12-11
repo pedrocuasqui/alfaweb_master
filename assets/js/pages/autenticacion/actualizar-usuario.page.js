@@ -8,7 +8,7 @@ parasails.registerPage("actualizar-usuario", {
 		formData: null,
 		formErrors: {
 			/* … */
-		},
+		}
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -45,6 +45,10 @@ parasails.registerPage("actualizar-usuario", {
 			if (!argins.password) {
 				this.formErrors.password = true;
 			}
+			// Valida password confirmación:
+			if (this.formData.passwordConfirm != this.formData.password) {
+				this.formErrors.passwordConfirm = true;
+			}
 
 			if (argins.email) {
 				if (!this.validEmail(argins.email)) {
@@ -78,7 +82,7 @@ parasails.registerPage("actualizar-usuario", {
 			axios({
 				url: "/actualizar-usuario",
 				method: "post",
-				data: formData,
+				data: formData
 			})
 				.then(response => {
 					swal({
@@ -86,7 +90,7 @@ parasails.registerPage("actualizar-usuario", {
 						title: "Actualización exitosa",
 						text: "Vuelve a ingresar con tu nueva contraseña",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					}).then(() => {
 						window.location.replace("/view-login");
 					});
@@ -97,14 +101,14 @@ parasails.registerPage("actualizar-usuario", {
 							icon: "error",
 							title: "El usuario ya se encuentra creado",
 							text: `${err}`,
-							showConfirmButton: true,
+							showConfirmButton: true
 						});
 					} else {
 						swal({
 							icon: "error",
 							title: "No se puede actualizar en este momento",
 							text: `${err}`,
-							showConfirmButton: true,
+							showConfirmButton: true
 						});
 					}
 
@@ -114,6 +118,6 @@ parasails.registerPage("actualizar-usuario", {
 		validEmail: function(email) {
 			var re = /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 			return re.test(email);
-		},
-	},
+		}
+	}
 });

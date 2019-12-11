@@ -48,6 +48,10 @@ parasails.registerPage("registro-usuario", {
 			if (!argins.password) {
 				this.formErrors.password = true;
 			}
+			// Valida password confirmación:
+			if (this.formData.passwordConfirm != this.formData.password) {
+				this.formErrors.passwordConfirm = true;
+			}
 
 			if (!argins.email) {
 				this.formErrors.email = true;

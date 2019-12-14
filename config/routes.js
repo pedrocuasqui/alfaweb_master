@@ -61,7 +61,9 @@ module.exports.routes = {
 	"POST /enviar-correo-recuperacion": {
 		action: "autenticacion/enviar-correo-recuperacion"
 	},
-
+	"GET /clave-recuperacion-cuenta": {
+		action: "autenticacion/view-clave-recuperacion-cuenta"
+	},
 	/* RUTAS DE ADMINISTRADOR*/
 
 	"GET /administrar-home": {
@@ -134,6 +136,7 @@ module.exports.routes = {
 	"POST /habilitar-admin": {
 		action: "administrador/habilitar-admin"
 	},
+
 	/** RUTAS DE ESTUDIANTE */
 	// modificar las rutas cuando se complemente con los links desde el indice de administrador o estudiante
 	// estudiante

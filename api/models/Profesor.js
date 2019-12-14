@@ -49,11 +49,11 @@ module.exports = {
 			required: true,
 			unique: false
 		},
-		// codigoRecuperacion: {
-		// 	type: "string",
-		// 	columnName: "codigoRecuperacion",
-		// 	required: false
-		// },
+		codigoRecuperacion: {
+			type: "string",
+			columnName: "codigoRecuperacion",
+			required: false
+		},
 		//  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
 		//  ║╣ ║║║╠╩╗║╣  ║║╚═╗
 		//  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝

@@ -43,7 +43,7 @@ module.exports = {
 				from: "pedro.cuasqui@gmail.com", // sender address
 				to: inputs.correoRecuperacion.toLowerCase(), // list of receivers
 				subject: '"alfaweb" - Restauración de contraseña" 🔐', // Subject line
-				html: `<div style="background-color:#27293d; color:#c0c1c2;"><h1>Hola, ${usuarioRecuperacion.nombre},</h1><h6>Hemos recibido una solicitud para restablecer la contraseña de tu cuenta de <b>alfaweb</b>, si no fuiste tú ignora este mensaje, de lo contrario ingresa con la siguiente contraseña temporal: ${generatePassword}</h6> ` // html body
+				html: `<div style="background-color:#27293d; color:#c0c1c2;"><h1>Hola, ${usuarioRecuperacion.nombre},</h1><h6>Hemos recibido una solicitud para reestablecer tu cuenta <b>alfaweb</b>, si no fuiste tú ignora este mensaje, de lo contrario ingresa con la siguiente contraseña temporal: ${generatePassword}</h6> ` // html body
 			});
 
 			console.log("Message sent: %s", info.messageId);
@@ -53,9 +53,8 @@ module.exports = {
 		 * la funcion genera un password aleatorio que será enviado por correo y que actualizará el password del usuario
 		 */
 		function generatePassword() {
-			var length = 8;
-			var charset =
-				"abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789";
+			var length = 6;
+			var charset = "0123456789";
 			var retVal = "";
 			for (var i = 0, n = charset.length; i < length; ++i) {
 				retVal += charset.charAt(Math.floor(Math.random() * n));
@@ -63,9 +62,9 @@ module.exports = {
 			return retVal;
 		}
 		passwordTemporalPlano = generatePassword();
-		passwordTemporalEncriptada = await sails.helpers.hashPassword(
-			passwordTemporalPlano
-		);
+		// passwordTemporalEncriptada = await sails.helpers.hashPassword(
+		// 	passwordTemporalPlano
+		// );
 		try {
 			usuarioRecuperacion = await Estudiante.findOne({
 				email: inputs.correoRecuperacion
@@ -83,11 +82,11 @@ module.exports = {
 			} else {
 				if (usuarioEs == "Estudiante") {
 					await Estudiante.update({ id: usuarioRecuperacion.id }).set({
-						password: passwordTemporalEncriptada
+						codigoRecuperacion: passwordTemporalPlano
 					});
 				} else if (usuarioEs == "Profesor") {
 					await Profesor.update({ id: usuarioRecuperacion.id }).set({
-						password: passwordTemporalEncriptada
+						codigoRecuperacion: passwordTemporalPlano
 					});
 				} else {
 					return res.status(500).send();

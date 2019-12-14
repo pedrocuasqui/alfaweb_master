@@ -2,6 +2,7 @@
   <modulo-contenedor-admin :usuario="usuario">
 
     <form @submit.prevent="validarFormulario">
+      <h3 class="centrado_horizontal">Actualización de usuario</h3>
       <div class="form-group">
         <label for="nombre">Nombre de usuario (*)</label>
         <input name="nombre" class="form-control" id="nombre" type="text" autofocus
@@ -41,6 +42,7 @@
       </div>
 
     </form>
+
   </modulo-contenedor-admin>
 </div>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

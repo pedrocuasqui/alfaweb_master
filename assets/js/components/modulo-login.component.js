@@ -198,6 +198,10 @@ parasails.registerComponent("modulo-login", {
 								title: "Correo enviado correctamente",
 								showConfirmButton: true,
 								timer: 2000
+							}).then(() => {
+								window.location.href =
+									"/clave-recuperacion-cuenta/?correoRecuperacion=" +
+									inputValue;
 							});
 						})
 						.catch(err => {

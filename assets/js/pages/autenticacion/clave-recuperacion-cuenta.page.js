@@ -33,24 +33,48 @@ parasails.registerPage("clave-recuperacion-cuenta", {
 
 			var argins = this.formData;
 
-			// Valida exista password:
-			if (!argins.password) {
-				this.formErrors.password = true;
+			// Valida exista codigoTemporal:
+			if (!argins.codigoTemporal) {
+				this.formErrors.codigoTemporal = true;
 			}
 
 			//  si el objeto que almacena errores se encuentra vacío, entonces continuar, caso contrario no recargar la página
 			if (Object.keys(this.formErrors).length == 0) {
-				this.actualizarUsuario();
+				this.verificarCodigoTemporal();
 			} else {
 				//si se encuentran errores no se recarga la página
 				return false;
 				// e.preventDefault();
 			}
 		},
-		actualizarUsuario() {
+		validarContrasenia(e) {
+			// Clear out any pre-existing error messages.
+			this.formErrors = {};
+
+			var argins = this.formData;
+
+			// Valida exista password:
+			if (!argins.password) {
+				this.formErrors.password = true;
+			}
+			// Valida password confirmación:
+			if (this.formData.passwordConfirm != this.formData.password) {
+				this.formErrors.passwordConfirm = true;
+			}
+
+			//  si el objeto que almacena errores se encuentra vacío, entonces continuar, caso contrario no recargar la página
+			if (Object.keys(this.formErrors).length == 0) {
+				this.clickCambiarContrasenia();
+			} else {
+				//si se encuentran errores no se recarga la página
+				return false;
+				// e.preventDefault();
+			}
+		},
+		verificarCodigoTemporal() {
 			// var _this=this;
 			var formData = new FormData();
-			formData.append("password", this.formData.password);
+			formData.append("codigoTemporal", this.formData.codigoTemporal);
 			formData.append("usuarioRecuperacion", this.usuarioRecuperacion);
 
 			axios({
@@ -69,10 +93,24 @@ parasails.registerPage("clave-recuperacion-cuenta", {
 							text: `${err}`,
 							showConfirmButton: true
 						});
-					} else {
+					} else if (err.response.status == 401) {
+						swal({
+							icon: "error",
+							title: "PIN incorrecto",
+							text: `${err}`,
+							showConfirmButton: true
+						});
+					} else if (err.response.status == 403) {
 						swal({
 							icon: "error",
 							title: "No se ha solicitado la recuperación de contraseña",
+							text: `${err}`,
+							showConfirmButton: true
+						});
+					} else {
+						swal({
+							icon: "error",
+							title: "ERROR EN EL SERVIDOR",
 							text: `${err}`,
 							showConfirmButton: true
 						});
@@ -80,6 +118,15 @@ parasails.registerPage("clave-recuperacion-cuenta", {
 
 					// return false;
 				});
+		},
+		clickCambiarContrasenia() {
+			swal({
+				icon: "success",
+				title: "CONTRASENIA CAMBIADA",
+				text:
+					"1) Crear action para actualizar el password 2) enviar la peticion para cambiar contrase~na del usuario \n 3) setear a null la propiedad codigoRecuperacion del usuario",
+				showConfirmButton: true
+			});
 		}
 	}
 });

@@ -9,8 +9,8 @@ module.exports = {
 			type: "string",
 			required: true
 		},
-		usuarioRecuperacion: {
-			type: "json",
+		usuarioRecuperacionId: {
+			type: "string",
 			required: true
 		}
 	},
@@ -20,18 +20,21 @@ module.exports = {
 	fn: async function(inputs) {
 		var res = this.res;
 		var usuarioEs = null;
+		var usuarioRecuperacion = null;
+
+		console.log("llega a verificar-clave-recuperacion-cuenta");
 		try {
 			usuarioRecuperacion = await Estudiante.findOne({
-				id: inputs.usuarioRecuperacion.id
+				id: inputs.usuarioRecuperacionId
 			});
 			usuarioEs = "Estudiante";
 			if (!usuarioRecuperacion) {
 				usuarioRecuperacion = await Profesor.findOne({
-					id: inputs.usuarioRecuperacion.id
+					id: inputs.usuarioRecuperacionId
 				});
 				usuarioEs = "Profesor";
 			}
-
+			console.log(`Se encuentra el usuario ${usuarioRecuperacion}`);
 			if (!usuarioRecuperacion) {
 				return res.status(409).send();
 			} else {
@@ -39,8 +42,7 @@ module.exports = {
 					//se verifica que el usuario haya tenga un codigo de recuperacion diferente de nulo
 					return res.status(403).send(); //Acceso denegado, el usuaio no ha solicitado ningun cambio de contrase~na
 				} else if (
-					inputs.usuarioRecuperacion.codigoRecuperacion !=
-					usuarioRecuperacion.codigoRecuperacion
+					usuarioRecuperacion.codigoRecuperacion != inputs.codigoTemporal
 				) {
 					//se verifica que el codigo ingresado sea el mismo
 					return res.status(401).send(); //Acceso denegado, pin incorrecto

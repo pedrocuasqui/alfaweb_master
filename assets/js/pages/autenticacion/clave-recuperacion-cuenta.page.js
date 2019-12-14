@@ -5,11 +5,11 @@ parasails.registerPage("clave-recuperacion-cuenta", {
 	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
 	//  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
 	data: {
-		formData: null,
+		formData: {},
 		formErrors: {
 			/* … */
 		},
-		mostrarCamposContrasenia: true
+		mostrarCamposContrasenia: false
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -20,7 +20,7 @@ parasails.registerPage("clave-recuperacion-cuenta", {
 		_.extend(this, SAILS_LOCALS);
 	},
 	mounted: async function() {
-		this.usuarioRecuperacion = SAILS_LOCALS.usuarioRecuperacion;
+		this.usuarioRecuperacionId = SAILS_LOCALS.usuarioRecuperacion.id;
 	},
 
 	//  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -47,35 +47,12 @@ parasails.registerPage("clave-recuperacion-cuenta", {
 				// e.preventDefault();
 			}
 		},
-		validarContrasenia(e) {
-			// Clear out any pre-existing error messages.
-			this.formErrors = {};
 
-			var argins = this.formData;
-
-			// Valida exista password:
-			if (!argins.password) {
-				this.formErrors.password = true;
-			}
-			// Valida password confirmación:
-			if (this.formData.passwordConfirm != this.formData.password) {
-				this.formErrors.passwordConfirm = true;
-			}
-
-			//  si el objeto que almacena errores se encuentra vacío, entonces continuar, caso contrario no recargar la página
-			if (Object.keys(this.formErrors).length == 0) {
-				this.clickCambiarContrasenia();
-			} else {
-				//si se encuentran errores no se recarga la página
-				return false;
-				// e.preventDefault();
-			}
-		},
 		verificarCodigoTemporal() {
 			// var _this=this;
 			var formData = new FormData();
 			formData.append("codigoTemporal", this.formData.codigoTemporal);
-			formData.append("usuarioRecuperacion", this.usuarioRecuperacion);
+			formData.append("usuarioRecuperacionId", this.usuarioRecuperacionId);
 
 			axios({
 				url: "/verificar-clave-recuperacion-cuenta",
@@ -118,6 +95,30 @@ parasails.registerPage("clave-recuperacion-cuenta", {
 
 					// return false;
 				});
+		},
+		validarContrasenia(e) {
+			// Clear out any pre-existing error messages.
+			this.formErrors = {};
+
+			var argins = this.formData;
+
+			// Valida exista password:
+			if (!argins.password) {
+				this.formErrors.password = true;
+			}
+			// Valida password confirmación:
+			if (this.formData.passwordConfirm != this.formData.password) {
+				this.formErrors.passwordConfirm = true;
+			}
+
+			//  si el objeto que almacena errores se encuentra vacío, entonces continuar, caso contrario no recargar la página
+			if (Object.keys(this.formErrors).length == 0) {
+				this.clickCambiarContrasenia();
+			} else {
+				//si se encuentran errores no se recarga la página
+				return false;
+				// e.preventDefault();
+			}
 		},
 		clickCambiarContrasenia() {
 			swal({

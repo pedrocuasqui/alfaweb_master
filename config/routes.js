@@ -64,6 +64,10 @@ module.exports.routes = {
 	"GET /clave-recuperacion-cuenta": {
 		action: "autenticacion/view-clave-recuperacion-cuenta"
 	},
+	"POST /verificar-clave-recuperacion-cuenta": {
+		action: "autenticacion/verificar-clave-recuperacion-cuenta"
+	},
+
 	/* RUTAS DE ADMINISTRADOR*/
 
 	"GET /administrar-home": {

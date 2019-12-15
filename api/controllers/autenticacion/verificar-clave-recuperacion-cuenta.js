@@ -17,7 +17,7 @@ module.exports = {
 
 	exits: {},
 
-	fn: async function(inputs) {
+	fn: async function(inputs, exits) {
 		var res = this.res;
 		var usuarioEs = null;
 		var usuarioRecuperacion = null;

@@ -67,6 +67,9 @@ module.exports.routes = {
 	"POST /verificar-clave-recuperacion-cuenta": {
 		action: "autenticacion/verificar-clave-recuperacion-cuenta"
 	},
+	"POST /actualizar-password-usuario": {
+		action: "autenticacion/actualizar-password-usuario"
+	},
 
 	/* RUTAS DE ADMINISTRADOR*/
 

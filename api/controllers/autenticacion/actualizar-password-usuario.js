@@ -1,3 +1,4 @@
+/*jshint esversion:8 */
 module.exports = {
 	friendlyName: "Actualizar password usuario",
 
@@ -16,10 +17,11 @@ module.exports = {
 
 	exits: {},
 
-	fn: async function(inputs) {
+	fn: async function(inputs, exits) {
 		var res = this.res;
 		var usuarioEs = null;
 		var passwordEncriptada = await sails.helpers.hashPassword(inputs.password);
+		var usuarioRecuperacion = null;
 		// All done.
 		usuarioRecuperacion = await Estudiante.findOne({
 			id: inputs.usuarioRecuperacionId
@@ -39,7 +41,17 @@ module.exports = {
 		if (usuarioEs == "Profesor") {
 			try {
 				await Profesor.update({ id: inputs.usuarioRecuperacionId }).set({
-					codigoRecuperacion: null,
+					codigoRecuperacion: "",
+					password: passwordEncriptada
+				});
+			} catch (e) {
+				return res.status(500).send({ error: e });
+			}
+		} else {
+			// es estudiante
+			try {
+				await Estudiante.update({ id: inputs.usuarioRecuperacionId }).set({
+					codigoRecuperacion: "",
 					password: passwordEncriptada
 				});
 			} catch (e) {

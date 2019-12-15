@@ -52,7 +52,8 @@ module.exports = {
 		codigoRecuperacion: {
 			type: "string",
 			columnName: "codigoRecuperacion",
-			required: false
+			required: false,
+			unique: false
 		},
 		//  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
 		//  ║╣ ║║║╠╩╗║╣  ║║╚═╗

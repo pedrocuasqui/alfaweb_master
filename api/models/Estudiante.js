@@ -39,7 +39,8 @@ module.exports = {
 		codigoRecuperacion: {
 			type: "string",
 			columnName: "codigoRecuperacion",
-			required: false
+			required: false,
+			unique: false
 		},
 		// ultimoAcceso: { type: 'string', columnName: 'ultimoAcceso', required: true }, //fecha de ultimo acceso
 		// avance:{type:'json', columnName: 'avance', required:false},

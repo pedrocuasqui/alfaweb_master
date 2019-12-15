@@ -130,7 +130,7 @@ parasails.registerPage("clave-recuperacion-cuenta", {
 			// });
 
 			var formData = new FormData();
-			formData.append("password", this.formData.codigoTemporal);
+			formData.append("password", this.formData.password);
 			formData.append("usuarioRecuperacionId", this.usuarioRecuperacionId);
 
 			axios({

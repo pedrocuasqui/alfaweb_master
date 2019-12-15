@@ -121,13 +121,50 @@ parasails.registerPage("clave-recuperacion-cuenta", {
 			}
 		},
 		clickCambiarContrasenia() {
-			swal({
-				icon: "success",
-				title: "CONTRASENIA CAMBIADA",
-				text:
-					"1) Crear action para actualizar el password 2) enviar la peticion para cambiar contrase~na del usuario \n 3) setear a null la propiedad codigoRecuperacion del usuario",
-				showConfirmButton: true
-			});
+			// swal({
+			// 	icon: "success",
+			// 	title: "CONTRASENIA CAMBIADA",
+			// 	text:
+			// 		"1) Crear action para actualizar el password 2) enviar la peticion para cambiar contrase~na del usuario \n 3) setear a null la propiedad codigoRecuperacion del usuario",
+			// 	showConfirmButton: true
+			// });
+
+			var formData = new FormData();
+			formData.append("password", this.formData.codigoTemporal);
+			formData.append("usuarioRecuperacionId", this.usuarioRecuperacionId);
+
+			axios({
+				url: "/actualizar-password-usuario",
+				method: "post",
+				data: formData
+			})
+				.then(response => {
+					swal({
+						icon: "success",
+						title: "CONTRASEÑA ACTUALIZADA",
+						text: "La contraseña se ha actualizado correctamente",
+						showConfirmButton: true
+					}).then(() => {
+						window.location.replace("/view-login");
+					});
+				})
+				.catch(err => {
+					if (err.response.status == 409) {
+						swal({
+							icon: "error",
+							title: "El usuario no existe",
+							text: `${err}`,
+							showConfirmButton: true
+						});
+					} else {
+						swal({
+							icon: "error",
+							title: "ERROR EN EL SERVIDOR",
+							text: `${err}`,
+							showConfirmButton: true
+						});
+					}
+				});
 		}
 	}
 });

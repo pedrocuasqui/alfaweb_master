@@ -22,7 +22,6 @@ module.exports = {
 		var usuarioEs = null;
 		var usuarioRecuperacion = null;
 
-		console.log("llega a verificar-clave-recuperacion-cuenta");
 		try {
 			usuarioRecuperacion = await Estudiante.findOne({
 				id: inputs.usuarioRecuperacionId
@@ -34,7 +33,6 @@ module.exports = {
 				});
 				usuarioEs = "Profesor";
 			}
-			console.log(`Se encuentra el usuario ${usuarioRecuperacion}`);
 			if (!usuarioRecuperacion) {
 				return res.status(409).send();
 			} else {

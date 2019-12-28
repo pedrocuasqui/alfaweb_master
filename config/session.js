@@ -40,7 +40,7 @@ module.exports.session = {
 	collection: "sessions",
 	auto_reconnect: false,
 	ssl: false,
-	stringify: true
+	stringify: false
 
 	// adapter: 'sails-mongo',
 	// url: 'mongodb://localhost:27017/alfabetizaweb'

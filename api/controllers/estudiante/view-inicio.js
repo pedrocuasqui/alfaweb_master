@@ -50,14 +50,21 @@ module.exports = {
 					.send({ Error: "EL USUARIO NO SE ENCUENTRA EN LA BASE DE DATOS" });
 				//respuesta pendiente de modificacion
 			}
-		} //SI NO EXISTE EL USUARIO SE REMITE NULL, DEL LADO DEL CLIENTE SE USA EL NOMBRE DE USUARIO VISITANTE, NADA MAS
+		} else {
+			//SI NO EXISTE EL USUARIO SE REMITE NULL, DEL LADO DEL CLIENTE SE USA EL NOMBRE DE USUARIO VISITANTE, NADA MAS
+			usuario = {
+				nombre: "Visitante",
+				rol: "Estudiante",
+				id: "1"
+			};
+		}
 
 		var cursosPublicados = await Curso.find({ where: { publicado: true } });
 
 		if (esAdmin) {
 			return exits.redirect("/administrar-home");
 		} else {
-			exits.success({ usuario, cursosPublicados });
+			return exits.success({ usuario, cursosPublicados });
 		}
 	}
 };

@@ -98,8 +98,12 @@ module.exports = {
 		// sails.log('ESTAS LOGUEADO');
 
 		req.session.userId = usuario.id;
+		req.userId = usuario.id;
 		req.session.usuario = usuario;
 		req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
+		// Nota: la propiedad(userId, usuario, cookie.maxAge) no se almacenará en el almacén de la sesión, ni estará disponible para otras solicitudes hasta que se envíe la respuesta; fuente: https://sailsjs.com/documentation/concepts/sessions
+		var usuariosLogueado = await Sessions.find();
+		console.log(`USUARIOS: ${JSON.stringify(usuariosLogueado)}`);
 		return res.status(200).send({ usuario: usuario });
 	}
 };

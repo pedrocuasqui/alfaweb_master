@@ -22,26 +22,13 @@ module.exports = {
 	},
 
 	fn: async function(inputs, exits) {
-		// Clear the `userId` property from this session.
-		//la coleccion session debe estar ligada a un modelo de sails para poder usar waterline
-		var datastoreSails = sails.getDatastore().manager;
-		//buscar en intentoEvaluacion las evaluaciones en cada modulo que pertenecen al curso solicitado y que han sido aprobadas
-		// let ObjectId = require("mongodb").ObjectID;
-		// let estudianteObjectId = ObjectId(this.req.session.userId);
-		console.log(
-			`intento eliminar session id usuario:  .*${this.req.session.userId}.*`
-		);
-		var expresion = `.*${this.req.session.userId}.*`;
-		// await datastoreSails.collection("sessions").findOneAndDelete({
-		// 	session: { usuario: { id: this.req.session.userId } }
-		// });
-		// await Sessions.destroy({
-		// 	session: { usuario: { id: this.req.session.userId } }
-		// });
-
-		var sesiones = await Sessions.find();
-		console.log(`SESSIONES: ${JSON.stringify(sesiones)}`);
-		delete this.req.session.userId;
+		// Elimina la sesion del usuario
+		// delete this.req.session;
+		this.req.session.destroy(err => {
+			if (err) {
+				return res.forbidden();
+			}
+		});
 		return exits.redirect("/");
 	}
 };

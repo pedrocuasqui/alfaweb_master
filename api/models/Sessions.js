@@ -8,6 +8,10 @@
 module.exports = {
 	tableName: "sessions",
 	attributes: {
+		session: {
+			type: "json",
+			columnName: "session"
+		}
 		//  ╔═╗╦═╗╦╔╦╗╦╔╦╗╦╦  ╦╔═╗╔═╗
 		//  ╠═╝╠╦╝║║║║║ ║ ║╚╗╔╝║╣ ╚═╗
 		//  ╩  ╩╚═╩╩ ╩╩ ╩ ╩ ╚╝ ╚═╝╚═╝

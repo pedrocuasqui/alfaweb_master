@@ -120,7 +120,7 @@ parasails.registerComponent("modulo-panel-derecho", {
                         <div class="row">
                             <div class="col-sm-4">
                             <!--COLUMNA DE TABLA DE PUNTUACION ACTUAL, posicion en funcion del puntaje-->
-                            <div> Tabla de puntuación </div>
+                            <div class="centrado_horizontal"> Tabla de puntuación </div>
                             <table class="table">
                                 <thead class="thead-dark">
                                     <tr>
@@ -144,10 +144,13 @@ parasails.registerComponent("modulo-panel-derecho", {
                                 </tbody>
                           </table>
 
-                            </div>
-                            <div class="col-sm-8">
-                            <!--COLUMNA DE GRÁFICO DE AVANCE-->
-                            <div><p> Puntuación de las últimas evaluaciones </p></div>
+														</div>
+														<div class="col-sm-1">
+														</div>
+                            <div class="col-sm-7">
+														<!--COLUMNA DE GRÁFICO DE AVANCE-->
+														<div class="centrado_horizontal"> Puntuación de las últimas evaluaciones </div>
+                            
                             <canvas id="graficoPuntuacionHistorica" width="1200" height="600"></canvas>
 
                             </div>

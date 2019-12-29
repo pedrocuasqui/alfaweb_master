@@ -13,7 +13,7 @@ module.exports = {
 			type: "string",
 			required: false,
 			description:
-				"esta propiedad se remite solo desde la vista del administrador cuando busca la información de un usuario"
+				"esta propiedad se remite desde la vista del administrador o del estudiante cuando busca la información de un estudiante (caso del administrador) o de si mismo (caso del estudiante)"
 		}
 	},
 
@@ -53,7 +53,8 @@ module.exports = {
 		if (inputs.estudianteId) {
 			estudianteId = inputs.estudianteId;
 		} else {
-			estudianteId = inputs.usuario.id;
+			//caso contrario la consulta la realiza el mismo estudiante
+			estudianteId = usuario.id;
 		}
 		// Se retorna el historico de intentosEvaluacion por el estudiante en ese curso
 
@@ -69,7 +70,7 @@ module.exports = {
 		}
 
 		// retornar la puntuacion actual de todos los usuarios para construir la tabla de puntuacion
-		// Se busca a todos los estudiantes y se poblan sus intentosEvaluacion ordenados por descendentemente por fecha de creacion
+		// Se busca a todos los estudiantes y se poblan sus intentosEvaluacion ordenados descendentemente por fecha de creacion
 		// Despues de esto se deben ordenar todos los estudiantes en funcion del puntaje de la evaluacion mas reciente, WATERLINE NO PERMITE SUBQUERYS EN POPULATE por tanto se debe usar un algoritmo de ordenamiento de arreglos, el algoritmo se usa en el lado del cliente
 		var estudiantesConSusIntentos = await Estudiante.find().populate(
 			"intentosEvaluacion",

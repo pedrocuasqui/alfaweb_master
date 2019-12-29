@@ -176,10 +176,10 @@ parasails.registerComponent("modulo-panel-derecho", {
 		<div class="container-fluid barra-lateral">
 
 		<div id="alerta_ultimo_tema" v-if="existeAvance" class="alert alert-info alert-dismissible fade show" role="alert">
-			<strong>Último tema revisado: </strong> {{cursoEstudiante.nombre}}.
-			<a v-if="cursoEstudiante.avance.enlace"
+			<strong>Último tema revisado: </strong> 
+				<a  v-if="cursoEstudiante.avance.enlace"
 				:href="'/contenido-alfaweb/?enlace='+cursoEstudiante.avance.enlace">{{cursoEstudiante.nombre}}</a>
-			<a v-else
+				<a v-else
 				:href="'/interfaz-modulos/?objetoId='+cursoEstudiante.avance.objetoId+'&tipoContenido='+cursoEstudiante.avance.tipoContenido">{{cursoEstudiante.nombre}}</a>
 			<button type="button" class="close" data-dismiss="alert" aria-label="Close">
 				<span aria-hidden="true">&times;</span>

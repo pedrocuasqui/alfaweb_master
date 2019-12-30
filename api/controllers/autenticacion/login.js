@@ -46,6 +46,7 @@ module.exports = {
 		var res = this.res;
 		var req = this.req;
 		var objetoError = new Error();
+		var usuarioEs = null;
 		// sails.log(this.req.headers.authorization);
 
 		// REVISAR USO DE btoa y atoa de javascript para codificar y decodificar el password
@@ -53,17 +54,25 @@ module.exports = {
 		// si se envia el alias
 		if (inputs.alias) {
 			//buscar por alias, tanto en estudiante como en profesor
-			usuario = await Estudiante.findOne({ alias: inputs.alias });
+			usuario = await Estudiante.findOne({ alias: inputs.alias }).populate(
+				"cursos"
+			);
+			usuarioEs = "Estudiante";
 			if (!usuario) {
 				usuario = await Profesor.findOne({ alias: inputs.alias });
+				usuarioEs = "Profesor";
 			}
 		}
 		// si se envia un correo
 		else if (inputs.email) {
 			//buscar por correo tanto en estudiante como en profesor
-			usuario = await Estudiante.findOne({ email: inputs.email });
+			usuario = await Estudiante.findOne({ email: inputs.email }).populate(
+				"cursos"
+			);
+			usuarioEs = "Estudiante";
 			if (!usuario) {
 				usuario = await Profesor.findOne({ email: inputs.email });
+				usuarioEs = "Profesor";
 			}
 		}
 
@@ -96,14 +105,20 @@ module.exports = {
 
 		//si se encuentra el usuario y el password coincide se remite el mensaje
 		// sails.log('ESTAS LOGUEADO');
+		let d = new Date();
+		let fechaActual = d.getTime();
 
 		req.session.userId = usuario.id;
-		req.userId = usuario.id;
 		req.session.usuario = usuario;
+		req.session.fechaLogin = fechaActual;
 		req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
+		req.session.usuarioEs = usuarioEs;
+
 		// Nota: la propiedad(userId, usuario, cookie.maxAge) no se almacenará en el almacén de la sesión, ni estará disponible para otras solicitudes hasta que se envíe la respuesta; fuente: https://sailsjs.com/documentation/concepts/sessions
-		var usuariosLogueado = await Sessions.find();
-		console.log(`USUARIOS: ${JSON.stringify(usuariosLogueado)}`);
+		// var usuariosLogueado = await Sessions.find().sort(
+		// 	"session.fechaLogin DESC"
+		// );
+		// console.log(`USUARIOS: ${JSON.stringify(usuariosLogueado)}`);
 		return res.status(200).send({ usuario: usuario });
 	}
 };

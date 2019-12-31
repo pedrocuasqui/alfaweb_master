@@ -137,3 +137,9 @@ https://sailsjs.com/documentation/reference/configuration/sails-config-session
 //otras opciones de configuracion:
 https://stackoverflow.com/questions/47777385/replacing-sails-js-redis-session-store-with-cookies-or-localstorage\
 **Tener en cuenta que no funciona con las versiones actuales de connect-mongo, usar SIEMPRE la version 1.1 la que indica SAILSJS 
+
+
+
+/*30-12-2019*/
+MAQUINAS EN NODEJS
+http://node-machine.org/

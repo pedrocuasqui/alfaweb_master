@@ -186,9 +186,15 @@ module.exports.routes = {
 	//  ╩ ╩╩╚═╝╚═╝
 	/**usar funciones de redireccion */
 	"GET /acerca": { view: "pages/acerca-de" },
-
-	// WEB SOCKETS
+	// ************************************
+	// ************************************
+	// ************* WEB SOCKETS***********
+	// ************************************
+	// ************************************
 	"GET /chat": {
 		action: "estudiante/chat"
+	},
+	"GET /chat_out": {
+		action: "estudiante/chat_out"
 	}
 };

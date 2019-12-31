@@ -1,6 +1,6 @@
 /*jshint esversion:8 */
 module.exports = {
-	friendlyName: "Crear intento evaluacion",
+	friendlyName: "Socket abandona la sala de logueados",
 
 	description: "",
 
@@ -36,13 +36,13 @@ module.exports = {
 
 			//
 			console.log(`ESTUDIANTES: ${estudiantes}`);
-			sails.sockets.join(this.req, "estudiantesLogueados");
+			sails.sockets.leave(this.req, "estudiantesLogueados");
 			// El nombre único del evento utilizado por el cliente para identificar este mensaje. Por defecto es 'message'.
 			sails.sockets.broadcast("estudiantesLogueados", {
 				//Fuente: https://sailsjs.com/documentation/reference/web-sockets/sails-sockets/broadcast  ,,, LEER LAS NOTAS AL FI
 				datosDifundidosChat: estudiantes
 			});
-			console.log("SOCKET CREADO Y USUARIO ADJUNTO");
+			console.log("SOCKET ELIMINADO");
 		}
 
 		return exits.success({});

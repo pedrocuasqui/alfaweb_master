@@ -360,7 +360,9 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			newWin.document.write("<h6>http://www.epn.edu.ec </h6>");
 		},
 		unirseSalaChat() {
-			console.log("COMIENZA DECLARACION DE SOCKET");
+			console.log(
+				"FUNCION unirseSalaChat DE modulo-contenedor-curso, DECLARACION DE SOCKET EN CLIENTE"
+			);
 			io.sails.url = "http://localhost:1337";
 			io.socket.get("http://localhost:1337/chat", function responseFromServer(
 				body,
@@ -375,10 +377,14 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			});
 
 			console.log("SE DECLARA LA RESPUESTA DEL SOCKET");
+			// El nombre único del evento utilizado por el cliente para identificar este mensaje. Por defecto es 'message'.
 			io.socket.on("message", data => {
 				console.log("nuevo usuario conectado");
+
+				console.log(`VERBO: ${data.verb}`);
 				// console.log(data.datosDifundidosChat);
-				this.usuariosConectados.push(data.datosDifundidosChat);
+				// this.usuariosConectados.push(data.datosDifundidosChat);
+				this.usuariosConectados = [...data.datosDifundidosChat];
 				console.log(data.datosDifundidosChat);
 			});
 		}

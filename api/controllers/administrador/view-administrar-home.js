@@ -39,7 +39,7 @@ module.exports = {
 			}
 
 			var cursos = await Curso.find({ profesor: usuario.id }); //devuelve un arreglo con los cursos encotrados que pertenecen al profesor
-			//Modificar la consulta para retornar los estudiantes logueados
+
 			var estudiantes = null;
 			var estudiantesSessions = await Sessions.find({}); //pendiente ordenar por fecha de logueo
 			if (estudiantesSessions) {

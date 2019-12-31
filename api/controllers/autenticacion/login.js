@@ -113,6 +113,9 @@ module.exports = {
 		req.session.fechaLogin = fechaActual;
 		req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
 		req.session.usuarioEs = usuarioEs;
+		if (usuarioEs == "Estudiante") {
+			Estudiante.subscribe(this.req, usuario.id);
+		}
 
 		// Nota: la propiedad(userId, usuario, cookie.maxAge) no se almacenará en el almacén de la sesión, ni estará disponible para otras solicitudes hasta que se envíe la respuesta; fuente: https://sailsjs.com/documentation/concepts/sessions
 		// var usuariosLogueado = await Sessions.find().sort(

@@ -193,8 +193,5 @@ module.exports.routes = {
 	// ************************************
 	"GET /chat": {
 		action: "estudiante/chat"
-	},
-	"GET /chat_out": {
-		action: "estudiante/chat_out"
 	}
 };

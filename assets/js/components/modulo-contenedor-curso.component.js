@@ -360,7 +360,10 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			newWin.document.write("<h6>http://www.epn.edu.ec </h6>");
 		},
 		unirseSalaChat() {
-			console.log(
+			io.socket.on("estudiante", function(msg) {
+				console.log("Got a message about a Louie: ", msg);
+			});
+			/*console.log(
 				"FUNCION unirseSalaChat DE modulo-contenedor-curso, DECLARACION DE SOCKET EN CLIENTE"
 			);
 			io.sails.url = "http://localhost:1337";
@@ -386,7 +389,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 				// this.usuariosConectados.push(data.datosDifundidosChat);
 				this.usuariosConectados = [...data.datosDifundidosChat];
 				console.log(data.datosDifundidosChat);
-			});
+			}); */
 		}
 	},
 	computed: {

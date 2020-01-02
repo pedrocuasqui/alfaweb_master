@@ -114,7 +114,54 @@ module.exports = {
 		req.session.cookie.maxAge = sails.config.custom.rememberMeCookieMaxAge;
 		req.session.usuarioEs = usuarioEs;
 		if (usuarioEs == "Estudiante") {
-			Estudiante.subscribe(this.req, usuario.id);
+			Sessions.subscribe(this.req, usuario.id);
+			console.log("Usuario estudiante suscrito ");
+			//si no retorna nada, entonces probar con
+
+			var estudiantes = null;
+			var estudiantesids = null;
+			var estudiantesSessions = await Sessions.find({}); //pendiente ordenar por fecha de logueo
+			if (estudiantesSessions) {
+				estudiantes = estudiantesSessions
+					.filter(item => {
+						if (item.session.usuario) {
+							item.session.usuario.fechaLogin = item.session.fechaLogin;
+						}
+						if (item.session.usuarioEs == "Estudiante") {
+							return true;
+						} else {
+							return false;
+						}
+					})
+					.map(item => {
+						return item.session.usuario.id;
+					});
+			}
+
+			console.log(
+				` ESTUDIANTES CONIENNE ${JSON.stringify(estudiantes)} y contiene ${
+					Object.keys(estudiantes).length
+				} elementos, longitu del arreglo ${estudiantes[0]}`
+			);
+			// este if debe ir fuera del  if que evalua si hay o no sesiones
+			if (!estudiantes || !estudiantes[0]) {
+				//si no existe un arreglo de estudiantes logueados entonces se retorna un arreglo vacio
+				estudiantes = [];
+			} else {
+				// estudiantesids = estudiantes.map(estudiante => {
+				// 	return estudiante.id;
+				// });
+			}
+
+			// if (!estudiantesids) {
+			// 	//si no existe un arreglo de estudiantes logueados entonces se retorna un arreglo vacio
+			// 	estudiantesids = [];
+			// }
+
+			Sessions.publish(estudiantes, {
+				verb: "publicado",
+				theSecret: "secret"
+			});
 		}
 
 		// Nota: la propiedad(userId, usuario, cookie.maxAge) no se almacenará en el almacén de la sesión, ni estará disponible para otras solicitudes hasta que se envíe la respuesta; fuente: https://sailsjs.com/documentation/concepts/sessions
@@ -122,6 +169,7 @@ module.exports = {
 		// 	"session.fechaLogin DESC"
 		// );
 		// console.log(`USUARIOS: ${JSON.stringify(usuariosLogueado)}`);
+		console.log("finaliza la publcacion");
 		return res.status(200).send({ usuario: usuario });
 	}
 };

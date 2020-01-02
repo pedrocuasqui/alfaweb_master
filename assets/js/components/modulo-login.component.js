@@ -135,6 +135,9 @@ parasails.registerComponent("modulo-login", {
 					console.log(
 						`SUSCRITO CORRECTAMENTE: ${jwRes.statusCode}\n RESDATA: \n: ${resData}`
 					);
+					console.log(
+						`VERIFICA SI ESTAMOS CONECTADOS A UN SERVIDOR ${io.socket.isConnected()}`
+					);
 
 					if (jwRes.statusCode == 401) {
 						this.aliasIncorrecto = true;
@@ -152,12 +155,17 @@ parasails.registerComponent("modulo-login", {
 					}
 
 					if (resData.usuario.administrador || resData.usuario.tutor) {
-						window.location.replace("/administrar-home");
+						// window.location.replace("/administrar-home");
 					} else {
-						// si es un estudiante se crea un socket con su usuario
-
-						window.location.replace("/inicio");
+						// si es un estudiante se crea un socket con su usuario (en el servidor)
+						console.log(
+							`VERIFICA SI ESTAMOS CONECTADOS A UN SERVIDOR _____${io.socket.isConnected()}`
+						);
+						// window.location.replace("/inicio");
 					}
+					io.socket.on("sessions", function(msg) {
+						console.log("SE CREA UNA NUEVA SESION: ", msg);
+					});
 				}
 			);
 			/* axios

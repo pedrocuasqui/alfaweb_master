@@ -262,6 +262,11 @@
   <script src="/js/pages/homepage.page.js"></script>
   <!--SCRIPTS END-->
 
+  <script>
+    io.socket.on("sessions", function (msg) {
+      console.log("SE CREA UNA NUEVA SESION: ", msg);
+    });
+  </script>
 </body>
 
 </html>

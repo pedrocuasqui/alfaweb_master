@@ -371,7 +371,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 					);
 				}
 			);
-			io.socket.on("sessions", function(msg) {
+			io.socket.on("http://localhost:1337/sessions", function(msg) {
 				console.log("SE CREA UNA NUEVA SESION: ", msg);
 			});
 

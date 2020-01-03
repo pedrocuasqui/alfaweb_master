@@ -163,9 +163,9 @@ parasails.registerComponent("modulo-login", {
 						);
 						// window.location.replace("/inicio");
 					}
-					io.socket.on("sessions", function(msg) {
-						console.log("SE CREA UNA NUEVA SESION: ", msg);
-					});
+					// io.socket.on("sessions", function(msg) {
+					// 	console.log("SE CREA UNA NUEVA SESION: ", msg);
+					// });
 				}
 			);
 			/* axios

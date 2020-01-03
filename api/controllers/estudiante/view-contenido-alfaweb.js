@@ -41,10 +41,9 @@ module.exports = {
 		var curso = await Curso.findOne({
 			nombre: "Alfabetización informática"
 		}).populate("modulos");
-		let modulos = await ModuloLibro.find({ curso: curso.id }).populate(
-			"submodulos",
-			{ sort: "createdAt ASC" }
-		);
+		let modulos = await ModuloLibro.find({
+			curso: curso.id
+		}).populate("submodulos", { sort: "createdAt ASC" });
 		curso.modulos = modulos;
 		curso.enlace = "/indice-estudiante/?cursoId=" + curso.id;
 		if (req.session.userId) {
@@ -158,17 +157,18 @@ module.exports = {
 					id: moduloAnteriorConSubmodulos.submodulos[0].id
 				});
 			}
+			modulo = objetoSeleccionado;
 
 			console.log("MODULO" + stringVista);
-			return this.res.view(stringVista, {
-				usuario,
-				mostrarEvaluacion,
-				curso,
-				objetoSeleccionado,
-				siguiente,
-				anterior,
-				modulo: objetoSeleccionado
-			});
+			// return this.res.view(stringVista, {
+			// 	usuario,
+			// 	mostrarEvaluacion,
+			// 	curso,
+			// 	objetoSeleccionado,
+			// 	siguiente,
+			// 	anterior,
+			// 	modulo: modulo
+			// });
 		} else {
 			//entonces es submodulo
 			// buscar el submodulo por enlace
@@ -231,16 +231,28 @@ module.exports = {
 					}
 				});
 			}
-
-			return this.res.view(stringVista, {
-				usuario,
-				mostrarEvaluacion,
-				curso,
-				objetoSeleccionado,
-				siguiente,
-				anterior,
-				modulo: modulo
-			});
 		}
+
+		// busqueda de evaluaciones del usuario
+		console.log(`el id del modulo solicitado es: ${JSON.stringify(modulo)}`);
+		var ultimasEvaluaciones = await SubmoduloLibro.find({
+			modulo: modulo.id
+		}).populate("intentosEvaluacion", {
+			where: {
+				estudiante: usuario.id
+			},
+			// limit: 1,
+			sort: "createdAt DESC"
+		});
+		usuario.ultimasEvaluaciones = ultimasEvaluaciones;
+		return this.res.view(stringVista, {
+			usuario,
+			mostrarEvaluacion,
+			curso,
+			objetoSeleccionado,
+			siguiente,
+			anterior,
+			modulo: modulo
+		});
 	}
 };

@@ -116,13 +116,13 @@ parasails.registerComponent("modulo-side-var-menu", {
     <div id="sidebar-menu" v-bind:class="{'sidebar-oculto':showSidebar}" >
         <div id="menuContenidos" >
         <span><h4 class="col text-center">{{curso.nombre}}</h4>   
-          <template v-if="esAdmin">
+          
+        </span>
+			 <div v-if="esAdmin && !cursoInformatica" class="centrado_horizontal">
         <!--PUBLICAR Y OCULTAR CURSO-->
             <a v-if="curso.publicado" @click.stop="ocultarCurso(curso.id)" data-placement="top" title="Ocultar Curso"> <i class="fas fa-lock-open"></i> </a>
             <a v-else @click.stop="publicarCurso(curso.id)" data-placement="top" title="Publicar Curso"> <i class="fas fa-lock"></i> </a> 
-          </template>
-        </span>
-       
+			 </div>
         <h5 class="col text-center">Contenidos </h5>
             <!--dropdownModulo      : contenedor individual del modulo y sus submodulos-->
             <!--dropbtn-modulo      : el boton que contiene el nombre del modulo -->
@@ -272,21 +272,23 @@ parasails.registerComponent("modulo-side-var-menu", {
 		ultimaEvaluacion(submoduloId) {
 			var fecha = "No realizada";
 			let submodulo = null;
-
-			submodulo = this.usuario.ultimasEvaluaciones.find(submodulor => {
-				return submodulor.id === submoduloId;
-			});
-
-			if (submodulo.intentosEvaluacion.length > 0) {
-				let fechaUltimaEv = "01-01-1970";
-				fechaUltimaEv = new Date(submodulo.intentosEvaluacion[0].createdAt);
-				// let fecha= fechaUltimaEv.toString();
-				fecha =
-					fechaUltimaEv.getDate() +
-					"/" +
-					fechaUltimaEv.getMonth() +
-					"/" +
-					fechaUltimaEv.getFullYear();
+			if (this.usuario.ultimasEvaluaciones) {
+				submodulo = this.usuario.ultimasEvaluaciones.find(submodulor => {
+					return submodulor.id === submoduloId;
+				});
+				if (submodulo) {
+					if (submodulo.intentosEvaluacion.length > 0) {
+						let fechaUltimaEv = "01-01-1970";
+						fechaUltimaEv = new Date(submodulo.intentosEvaluacion[0].createdAt);
+						// let fecha= fechaUltimaEv.toString();
+						fecha =
+							fechaUltimaEv.getDate() +
+							"/" +
+							(fechaUltimaEv.getMonth() + 1) +
+							"/" +
+							fechaUltimaEv.getFullYear();
+					}
+				}
 			}
 
 			return fecha;
@@ -298,27 +300,31 @@ parasails.registerComponent("modulo-side-var-menu", {
 				submodulo = this.usuario.ultimasEvaluaciones.find(submodulor => {
 					return submodulor.id === submoduloId;
 				});
-			}
-
-			if (submodulo.intentosEvaluacion.length > 0) {
-				//Los intentos evaluacion estan ordenados en orden descendente por tanto la última evaluacion estará en la posicion 0
-				if (submodulo.intentosEvaluacion[0].apruebaEvaluacion == 1) {
-					aprueba = "SI";
+				if (submodulo) {
+					if (submodulo.intentosEvaluacion.length > 0) {
+						//Los intentos evaluacion estan ordenados en orden descendente por tanto la última evaluacion estará en la posicion 0
+						if (submodulo.intentosEvaluacion[0].apruebaEvaluacion == 1) {
+							aprueba = "SI";
+						}
+					} else {
+						aprueba = "No aplica";
+					}
 				}
-			} else {
-				aprueba = "No aplica para visitantes";
 			}
 
 			return aprueba;
 		},
 		numeroIntentosEvaluacion(submoduloId) {
 			let submodulo = null;
+			if (this.usuario.ultimasEvaluaciones) {
+				submodulo = this.usuario.ultimasEvaluaciones.find(submodulor => {
+					return submodulor.id === submoduloId;
+				});
 
-			submodulo = this.usuario.ultimasEvaluaciones.find(submodulor => {
-				return submodulor.id === submoduloId;
-			});
-
-			return submodulo.intentosEvaluacion.length;
+				return submodulo.intentosEvaluacion.length;
+			} else {
+				return 0;
+			}
 		}
 	},
 	computed: {

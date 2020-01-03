@@ -123,7 +123,7 @@ parasails.registerComponent("modulo-login", {
 			this.correoIncorrecto = false;
 			this.passwordIncorrecto = false;
 			// REVISAR USO DE btoa y atoa de javascript para codificar y decodificar el password
-			io.socket.post(
+			/* io.socket.post(
 				"/login",
 				{
 					alias: this.formData.alias,
@@ -155,20 +155,13 @@ parasails.registerComponent("modulo-login", {
 					}
 
 					if (resData.usuario.administrador || resData.usuario.tutor) {
-						// window.location.replace("/administrar-home");
+						window.location.replace("/administrar-home");
 					} else {
-						// si es un estudiante se crea un socket con su usuario (en el servidor)
-						console.log(
-							`VERIFICA SI ESTAMOS CONECTADOS A UN SERVIDOR _____${io.socket.isConnected()}`
-						);
-						// window.location.replace("/inicio");
+						window.location.replace("/inicio");
 					}
-					// io.socket.on("sessions", function(msg) {
-					// 	console.log("SE CREA UNA NUEVA SESION: ", msg);
-					// });
 				}
-			);
-			/* axios
+			); */
+			axios
 				.post("/login", {
 					//por defecto esto se manda en el body del request http
 					alias: this.formData.alias,
@@ -181,7 +174,8 @@ parasails.registerComponent("modulo-login", {
 						response.data.usuario.tutor
 					) {
 						window.location.replace("/administrar-home");
-					} else {// si es un estudiante se crea un socket con su usuario
+					} else {
+						// si es un estudiante se crea un socket con su usuario
 
 						window.location.replace("/inicio");
 					}
@@ -201,7 +195,7 @@ parasails.registerComponent("modulo-login", {
 							showConfirmButton: true
 						});
 					}
-				}); */
+				});
 		},
 		clickRecuperarContrasenia() {
 			swal({

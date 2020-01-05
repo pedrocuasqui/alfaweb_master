@@ -45,7 +45,15 @@ module.exports = {
 			curso: curso.id
 		}).populate("submodulos", { sort: "createdAt ASC" });
 		curso.modulos = modulos;
+		// se aniade el enlace a si mismo para poder usar el breadcrumb
 		curso.enlace = "/indice-estudiante/?cursoId=" + curso.id;
+		//Conteo del número de submodulos por cada modulo del curso
+		curso.modulos.forEach(modulo => {
+			modulo.submodulos.forEach(submodulo => {
+				numeroSubmodulosCurso += 1;
+			});
+		});
+
 		if (req.session.userId) {
 			usuario = await Estudiante.findOne({ id: req.session.userId });
 			sails.log(usuario);

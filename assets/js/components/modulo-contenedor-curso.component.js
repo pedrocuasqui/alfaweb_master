@@ -201,7 +201,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
                                 </div>
 
                     </div>
-                    <div class="row pie-contenido"  v-if="!evIndividual">
+                    <div class="row pie-contenido" >
                         <div  id="avatar">
                                 <img  @click="clickAsistenteBuho" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
                                 <span>
@@ -210,7 +210,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
                                 <a @click="clickStop" title="Parar" class="audioTag"><i class="fas fa-stop"></i></a>
                                 </span>
                         </div>
-                      <div id="descripcion-objeto" ref="printContenidoDescripcion">
+                      <div id="descripcion-objeto" ref="printContenidoDescripcion"  v-if="!evIndividual">
                         <h6 v-if="existeDescripcion  && tituloTemporal==''" class="typography-line"><span>{{objetoSeleccionado.descripcion}}</span></h6>
                       </div>
                     </div>
@@ -240,6 +240,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			this.$emit("intentar-nuevamente");
 		},
 		evaluacionIndividual(contenido) {
+			//este metodo se usa para regresar desde la evaluacion hacia el contenido usando la fecla REGRESAR
 			if (this.objetoSeleccionado.nombreSubmodulo) {
 				if (this.objetoSeleccionado.evaluacion) {
 					//Si existe evaluación

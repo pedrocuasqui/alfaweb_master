@@ -116,9 +116,11 @@ parasails.registerPage("m-1-encender-computadora", {
 			if (contenido == "contenido") {
 				this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
 				this.evIndividual = false;
+				this.$refs.curso.evIndividual = false;
 			} else {
 				this.tituloEvaluacion = this.objetoSeleccionado.nombreModulo;
 				this.evIndividual = true;
+				this.$refs.curso.evIndividual = true;
 			}
 		},
 

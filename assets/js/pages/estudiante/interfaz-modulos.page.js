@@ -17,8 +17,8 @@ parasails.registerPage("interfaz-modulos", {
 			nombre: "Cursos",
 			texto: "Cursos",
 			id: 1,
-			enlace: "/inicio",
-		},
+			enlace: "/inicio"
+		}
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -90,11 +90,13 @@ parasails.registerPage("interfaz-modulos", {
 			if (contenido == "contenido") {
 				this.tituloEvaluacion = this.objetoSeleccionado.nombre;
 				this.evIndividual = false;
+				this.$refs.curso.evIndividual = false;
 			} else {
 				this.tituloEvaluacion = this.objetoSeleccionado.nombre;
 				this.evIndividual = true;
+				this.$refs.curso.evIndividual = true;
 			}
 			// }
-		},
-	},
+		}
+	}
 });

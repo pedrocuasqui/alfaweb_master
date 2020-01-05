@@ -142,11 +142,11 @@ parasails.registerPage("m-1-hardware", {
 		this.breadcrumb.push(SAILS_LOCALS.curso);
 		this.breadcrumb.push(SAILS_LOCALS.modulo);
 		this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
+	},
+	mounted: async function() {
 		if (SAILS_LOCALS.mostrarEvaluacion) {
 			this.evaluacionIndividual("evaluacion");
 		}
-	},
-	mounted: async function() {
 		//…
 	},
 

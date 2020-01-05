@@ -53,12 +53,13 @@ parasails.registerPage("m-6-realizar-videollamada", {
 		this.breadcrumb.push(SAILS_LOCALS.curso);
 		this.breadcrumb.push(SAILS_LOCALS.modulo);
 		this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
-		if (SAILS_LOCALS.mostrarEvaluacion) {
-			this.evaluacionIndividual("evaluacion");
-		}
 	},
 	mounted: async function() {
 		//…
+		//Se debe hacer aqui la evaluacion para que los elementos del DOM ya se encuentren cargados
+		if (SAILS_LOCALS.mostrarEvaluacion) {
+			this.evaluacionIndividual("evaluacion");
+		}
 	},
 
 	//  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗

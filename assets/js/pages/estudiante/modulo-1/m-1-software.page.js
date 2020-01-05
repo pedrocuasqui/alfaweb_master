@@ -136,9 +136,6 @@ parasails.registerPage("m-1-software", {
 		this.breadcrumb.push(SAILS_LOCALS.curso);
 		this.breadcrumb.push(SAILS_LOCALS.modulo);
 		this.breadcrumb.push(SAILS_LOCALS.objetoSeleccionado);
-		if (SAILS_LOCALS.mostrarEvaluacion) {
-			this.evaluacionIndividual("evaluacion");
-		}
 	},
 	mounted: async function() {
 		// al cargar la página se cargan los codigos de los objetos 'g' hijos de lienzo-svg
@@ -148,6 +145,10 @@ parasails.registerPage("m-1-software", {
 		// se añade un estilo para cada objeto "g" que permita hacer el efecto de zoom con "transform: scale (1.5,1.5)"
 		for (i = 0; i < objetosg.length; i++) {
 			this.anadirEstiloObjeto(objetosg[i].getAttribute("id"));
+		}
+		//Se debe hacer aqui la evaluacion para que los elementos del DOM ya se encuentren cargados
+		if (SAILS_LOCALS.mostrarEvaluacion) {
+			this.evaluacionIndividual("evaluacion");
 		}
 	},
 

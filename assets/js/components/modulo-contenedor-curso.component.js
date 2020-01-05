@@ -201,7 +201,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
                                 </div>
 
                     </div>
-                    <div class="row pie-contenido" >
+                    <div class="row pie-contenido"  v-if="!evIndividual">
                         <div  id="avatar">
                                 <img  @click="clickAsistenteBuho" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
                                 <span>

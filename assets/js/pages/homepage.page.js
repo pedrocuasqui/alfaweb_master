@@ -4,7 +4,7 @@ parasails.registerPage("homepage", {
 	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
 	//  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
 	data: {
-		//…
+		usuario: null
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -20,6 +20,7 @@ parasails.registerPage("homepage", {
 	},
 	mounted: async function() {
 		// this.mostrarPasos();
+		this.usuario = SAILS_LOCALS.usuario;
 	},
 
 	//  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -37,6 +38,6 @@ parasails.registerPage("homepage", {
 			// introJs().start();
 			// introJs().addHints();
 			// });
-		},
-	},
+		}
+	}
 });

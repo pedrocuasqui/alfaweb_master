@@ -97,7 +97,69 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 1,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								'<p>&iquest;Qu&eacute; parte se considera el cerebro del <span style="font-size: 1rem;">computador</span><span style="font-size: 1rem;"> ?</span></p>\n<p><span style="font-size: 1rem;"><img src="https://aenom87820fvvps.belugacdn.link/857-home_default/cpu-solo-computador-core-i5-300ghz-7ma-generacion-8gb-1000gb-1tb-dvdrw.jpg" alt="" width="98" height="98" /></span></p>',
+							opciones: {
+								opcion1: "Impresora",
+								opcion2: "Teclado",
+								opcion3: "Monitor",
+								opcion4: "CPU"
+							},
+							respuesta: "CPU",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">&iquest;Cual es la funci&oacute;n principal de monitor?</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://images-na.ssl-images-amazon.com/images/I/71mBU1vbrJL._SX466_.jpg" alt="" width="123" height="123" /></p>',
+							opciones: {
+								opcion1: "Almacena datos e información.",
+								opcion2: "Ingresa  la información  a la computadora",
+								opcion3: "Permitir al usuario interactuar con la computadora",
+								opcion4: "Realiza una copia de documentos"
+							},
+							respuesta: "Permitir al usuario interactuar con la computadora",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								'<p>&nbsp;El dispositivo que permite ingresar informaci&oacute;n a una computadora o dispositivo por medio de <span style="color: #f1c40f;"><strong>caracteres</strong> </span>es:&nbsp;</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: "El mouse",
+								opcion2: "El monitor",
+								opcion3: "El teclado",
+								opcion4: "La impresora"
+							},
+							respuesta: "El teclado",
+							pista: "",
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								'<p>El hardware se define como</p>\n<p>&nbsp;<img style="font-size: 1rem;" src="https://www.ejemplode.com/images/uploads/informatica/hardware.jpg" width="187" height="187" /></p>',
+							opciones: {
+								opcion1:
+									"Las aplicaciones instaladas en un computador o dispositivo móvil",
+								opcion2:
+									"Conjunto de aplicaciones y componentes físicos que integran una computadora",
+								opcion3:
+									"El conjunto de componentes y dispositivos físicos y tangibles que integran una computadora.",
+								opcion4: "Ninguna de las anteriores"
+							},
+							respuesta:
+								"El conjunto de componentes y dispositivos físicos y tangibles que integran una computadora.",
+							pista: "Tiene que ver con la parte física",
+							pregNumero: 4
+						}
+					],
+					tiempoMaximoPorPregunta: 20,
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "El Teclado",

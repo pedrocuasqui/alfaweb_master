@@ -112,7 +112,9 @@ p.mintrucciones,
 	i.fas.fa-play,
 	i.fas.fa-pause,
 	i.fas.fa-stop,
-	a.audioTag {
+	a.audioTag,
+	i.fas.fa-angle-down,
+	i.fas.fa-angle-up {
 		color: @coloriconos;
 		cursor: pointer;
 	}
@@ -139,7 +141,9 @@ p.mintrucciones,
 	i.fas.fa-volume-mute:hover,
 	i.fas.fa-play:hover,
 	i.fas.fa-pause:hover,
-	i.fas.fa-stop:hover {
+	i.fas.fa-stop:hover,
+	i.fas.fa-angle-down:hover,
+	i.fas.fa-angle-up:hover {
 		color: #e44cc4;
 	}
 
@@ -1369,6 +1373,9 @@ div.row.pregunta_evaluacion .centra_vertical,
 div.row.pregunta_evaluacion .alinea_left,
 .centrado_vertical {
 	display: flex;
+
+	flex-wrap: wrap;
+
 	align-items: center; //centra verticalmente
 }
 
@@ -1488,4 +1495,8 @@ div.padding_bottom {
 .filaAdministradores {
 	// height: 25vh !important;
 	// overflow-y: auto;
+}
+
+div#preguntaEvaluacion div.col-sm-1.centrado_vertical.centrado_horizontal {
+	flex-direction: column;
 }

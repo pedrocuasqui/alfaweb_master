@@ -6,6 +6,7 @@ parasails.registerPage("administrar-contenido", {
 	//  ║║║║║ ║ ║╠═╣║    ╚═╗ ║ ╠═╣ ║ ║╣
 	//  ╩╝╚╝╩ ╩ ╩╩ ╩╩═╝  ╚═╝ ╩ ╩ ╩ ╩ ╚═╝
 	data: {
+		preguntasCuestionario1: null,
 		myArray: ["elem1", "elem2"],
 		formErrors: {},
 		objetoSeleccionado: Object,
@@ -93,27 +94,15 @@ parasails.registerPage("administrar-contenido", {
 		publicarEvaluacion: false
 	},
 	watch: {
-		preguntasCuestionario: function(nuevoValor, antiq) {
+		preguntasCuestionario: function() {
+			// la variable cambiosEnPreguntas se usa para saber si el arreglo de preguntas (preguntasCuestionario) ha sido modificado, sea que se hayan cambiado las posiicones de las preguntas, editado una pregunta, eliminado una pregunta, insertado una pregunta, etc.
 			this.cambiosEnPreguntas = true;
-			console.log(nuevoValor);
 		},
-		tipoEvaluacion: function(nuevo, antiguo) {
-			if (nuevo == "Cuestionario") {
-				this.agregaFuncionalidadDraggable();
-			}
-		},
+
 		evIndividualBandera: function(valorNuevo, ValorAntiguo) {
+			// Este codigo se eejcuta cuando se alterna entre ver u ocultar la evaluacion
 			this.guardaDesdeBotonCerrar = false;
 			this.cambiosEnPreguntas = false;
-			if (
-				valorNuevo &&
-				this.preguntasCuestionario.length > 0 &&
-				this.tipoEvaluacion == "Cuestionario"
-			) {
-				//esta verificacion se lo hace para cuando existe ya una evaluacion en el submodulo
-				//si el nuevo valor es true significa que se muestra la evaluacion(para el dom se crea nuevamente cada vez que cambia), por tanto es necesario volver a agregar esta funcionalidad cada vez que se muestra la evaluacion
-				this.agregaFuncionalidadDraggable();
-			}
 		}
 	},
 
@@ -492,10 +481,6 @@ parasails.registerPage("administrar-contenido", {
 				errores = "";
 				//Se establece el contenido del objeto itnymce para una nueva pregunta
 				$("#mytextarea2").html("<p></p>");
-				if (this.preguntasCuestionario.length == 1) {
-					//se a~nade la funcionalidad draggable una sola vez cuando se crea la primera pregunta
-					this.agregaFuncionalidadDraggable();
-				}
 			}
 
 			this.formErrorsModal = {};
@@ -524,6 +509,7 @@ parasails.registerPage("administrar-contenido", {
 				});
 			} else {
 				//actualiza el contenido del arreglo de preguntas, remueve el elemento de la  posicion del la pregunta que se edita (indicePreguntaEditar) y se coloca la nueva pregunta editada (preguntaEnEdicion).
+				//Empiece la operacion desde la posicion(indicePreguntaEditar), elimine 1 elemento, inserte en ese lugar (preguntaEnEdicion)
 				this.preguntasCuestionario.splice(
 					this.indicePreguntaEditar,
 					1,
@@ -896,32 +882,32 @@ parasails.registerPage("administrar-contenido", {
 		},
 		/**
 		 *
-		 * @param {* int} indexA  //posicion a la cual se mueve el objeto
-		 * @param {* int} indexB  //posicion desde donde se mueve el objeto
+		 * @param {* int} indexDestino  //posicion a la cual se mueve el objeto
+		 * @param {* int} indexOrigen  //posicion desde donde se mueve el objeto
 		 */
-		swapPreguntas(indexA, indexB) {
-			var temp = this.preguntasCuestionario[indexA];
-			this.preguntasCuestionario[indexA] = this.preguntasCuestionario[indexB];
-			this.preguntasCuestionario[indexB] = temp;
+		swapPreguntas(indexDestino, indexOrigen) {
+			console.log(`NUEVA POSICION: ${indexDestino}`);
+			console.log(`ANTERIOR POSICION: ${indexOrigen}`);
 
-			// this.preguntasCuestionario[indexA].pregNumero = indexA + 1; //se asigna la nueva posicion que tendra
-			// this.preguntasCuestionario[indexB].pregNumero = indexB + 1; //se asigna la nueva posision que tendra
+			if (indexDestino != indexOrigen) {
+				// desde la posicion indexDestino, elimine cero elementos, inserte el elemento de la posicion indexOrigen
+				var listaPreguntas = [...this.preguntasCuestionario];
+				var temp = listaPreguntas[indexOrigen];
+
+				//Si el objeto se mueve hacia arriba
+				if (indexOrigen > indexDestino) {
+					listaPreguntas.splice(indexDestino, 0, temp);
+					listaPreguntas.splice(indexOrigen + 1, 1);
+				} else if (indexDestino > indexOrigen) {
+					//Si el objeto se mueve hacia abajo
+					listaPreguntas.splice(indexDestino + 1, 0, temp);
+					listaPreguntas.splice(indexOrigen, 1);
+				}
+				this.preguntasCuestionario = null;
+				this.preguntasCuestionario = [...listaPreguntas];
+			}
 		},
-		agregaFuncionalidadDraggable() {
-			var _this = this;
-			$(() => {
-				// do this after dom is ready
-				var preguntaCreada = document.getElementById("preguntaEvaluacion");
-				new Sortable(preguntaCreada, {
-					animation: 150,
-					ghostClass: "blue-background-class",
-					onEnd: evt => {
-						// let itemEl = evt.item; // dragged HTMLElement
-						this.swapPreguntas(evt.newIndex, evt.oldIndex);
-					}
-				});
-			});
-		},
+
 		onClickCancelarEvaluacion() {
 			this.verificaExistenciaCambios();
 
@@ -941,7 +927,7 @@ parasails.registerPage("administrar-contenido", {
 		},
 		verificaExistenciaCambios() {
 			var _this = this;
-			//la variable cambiosEnPreguntas se modifica en el watcher de preguntasCuestionario, para notificar al ususario de que la clase e
+			//la variable cambiosEnPreguntas se modifica en el watcher de preguntasCuestionario, para notificar al ususario de que la evaluacion ha sido modificada y alertar antes de guardar
 			if (this.cambiosEnPreguntas) {
 				swal({
 					position: "center",
@@ -993,6 +979,32 @@ parasails.registerPage("administrar-contenido", {
 				pista: null,
 				pregNumero: null
 			};
+		},
+		/**
+		 *
+		 * @param {int} indicePregunta int, el  indice de la pregunta que se quiere bajar
+		 */
+		bajarPregunta(indicePregunta) {
+			var temp = this.preguntasCuestionario[indicePregunta];
+			temp.pregNumero = temp.pregNumero + 1;
+			this.preguntasCuestionario.splice(indicePregunta, 1);
+			this.preguntasCuestionario[indicePregunta].pregNumero =
+				indicePregunta + 1;
+			this.preguntasCuestionario.splice(indicePregunta + 1, 0, temp);
+		},
+		/**
+		 *
+		 * @param {int} indicePregunta  //int, el  indice de la pregunta que se quiere subir
+		 */
+		subirPregunta(indicePregunta) {
+			var temp = this.preguntasCuestionario[indicePregunta];
+			temp.pregNumero = temp.pregNumero - 1;
+
+			this.preguntasCuestionario.splice(indicePregunta, 1);
+
+			this.preguntasCuestionario.splice(indicePregunta - 1, 0, temp);
+			this.preguntasCuestionario[indicePregunta].pregNumero =
+				indicePregunta + 1;
 		}
 	},
 	computed: {

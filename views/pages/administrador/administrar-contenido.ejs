@@ -363,11 +363,12 @@
                                                 <p>OPCIONES DE PREGUNTA</p>
                                             </div>
                                         </div>
+                                        <!-- El id preguntaEvaluacion permite identificar a las preguntas uque serán movilizadas -->
                                         <div v-if="tipoEvaluacion=='Cuestionario'" id="preguntaEvaluacion">
                                             <!-- Preguntas -->
                                             <div class="row pregunta_evaluacion"
-                                                v-for="(pregunta, indexPreg) in preguntasCuestionario"
-                                                :key="`preg_${indexPreg}`">
+                                                v-for="(pregunta, indexPreg) in preguntasCuestionario">
+                                                <!-- :key="`preg_${indexPreg}`"-->
                                                 <div class="col-sm-4">
                                                     <div v-html="pregunta.enunciado">
                                                     </div>
@@ -393,7 +394,7 @@
                                                                 correcta.</small></p>
                                                     </div>
                                                 </div>
-                                                <div class="col-sm-2">
+                                                <div class="col-sm-1">
                                                     <small>
                                                         <div class="row">
                                                             <div class="col-sm-4"></div>
@@ -422,6 +423,16 @@
                                                             <div class="col-sm-4"></div>
                                                         </div>
                                                     </small>
+                                                </div>
+                                                <div class="col-sm-1 centrado_vertical centrado_horizontal">
+                                                    <p v-if="indexPreg!=0" @click="subirPregunta(indexPreg)"><i
+                                                            class="fas fa-angle-up fa-2x"></i></p>
+
+                                                    <p v-if="indexPreg < preguntasCuestionario.length-1"
+                                                        @click="bajarPregunta(indexPreg)"><i
+                                                            class="fas fa-angle-down fa-2x"></i>
+                                                    </p>
+
                                                 </div>
                                             </div>
                                         </div>

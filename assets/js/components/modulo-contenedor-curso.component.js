@@ -361,7 +361,8 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			newWin.document.write("<h6>http://www.epn.edu.ec </h6>");
 		},
 		unirseSalaChat() {
-			io.socket.get(
+			//ULTIMO BLOQUE DE PRUEBA CON SOCKETS
+			/* io.socket.get(
 				"http://localhost:1337/sessions",
 				function responseFromServer(body, response) {
 					console.log(
@@ -374,11 +375,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 			);
 			io.socket.on("http://localhost:1337/sessions", function(msg) {
 				console.log("SE CREA UNA NUEVA SESION: ", msg);
-			});
-
-			console.log(
-				`VERIFICA SI ESTAMOS CONECTADOS A UN SERVIDOR ${io.socket.isConnected()}`
-			);
+			}); */
 			/*console.log(
 				"FUNCION unirseSalaChat DE modulo-contenedor-curso, DECLARACION DE SOCKET EN CLIENTE"
 			);

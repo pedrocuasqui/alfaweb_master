@@ -18,7 +18,7 @@ module.exports.session = {
 	 *                                                                          *
 	 ***************************************************************************/
 	secret: "c43a3692ca74e5da2d379cf083666115",
-	rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+	rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
 
 	/***************************************************************************
 	 *                                                                          *
@@ -34,14 +34,13 @@ module.exports.session = {
 	// isSessionDisabled: function (req){
 	//   return !!req.path.match(req._sails.LOOKS_LIKE_ASSET_RX);
 	// },
-	adapter: "connect-mongo",
+
+	// DESCOMENTAR EL SIGUIENTE BLOQUE PARA HABILITAR SOCKETS
+	/* 	adapter: "connect-mongo",
 	// secret: "c43a3692ca74e5da2d379cf083666115",
 	url: "mongodb://localhost:27017/alfabetizaweb",
 	collection: "sessions",
 	auto_reconnect: false,
 	ssl: false,
-	stringify: false
-
-	// adapter: 'sails-mongo',
-	// url: 'mongodb://localhost:27017/alfabetizaweb'
+	stringify: false */
 };

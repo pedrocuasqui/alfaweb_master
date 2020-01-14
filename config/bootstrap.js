@@ -770,7 +770,7 @@ module.exports.bootstrap = async function(done) {
 				"Una base de datos es un conjunto de datos pertenecientes a un mismo contexto y almacenados sistemáticamente para su posterior uso",
 			multimedia: {
 				imagen:
-					"http://localhost:1337/images/uploaded/01a99446-f666-4b78-9e2d-a25c727fdb86.jpg"
+					"https://res.cloudinary.com/techsnips/image/fetch/w_2000,f_auto,q_auto,c_fit/https://adamtheautomator.com/content/images/size/w2000/2019/08/connect-azure-sql-database.jpg"
 			},
 			curso: cursoBdd.id,
 			contenidoTiny:

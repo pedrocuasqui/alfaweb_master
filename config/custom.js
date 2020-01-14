@@ -18,8 +18,10 @@ module.exports.custom = {
 	// mailgunSecret: 'key-testkeyb183848139913858e8abd9a3',
 	// stripeSecret: 'sk_test_Zzd814nldl91104qor5911gjald',
 	// …
-	baseUrl: "http://localhost:1337",
-	imageBaseUrl: "http://localhost:1337/images/uploaded/",
+	// baseUrl: "http://localhost:1337",
+	baseUrl: "https://git.heroku.com",
+	// imageBaseUrl: "http://localhost:1337/images/uploaded/",
+	imageBaseUrl: "https://git.heroku.com/images/uploaded",
 	rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
 	correoAdministrador: "pedro.cuasqui@gmail.com"
 	// rememberMeCookieMaxAge: 2*1000, // 30 days

@@ -150,27 +150,7 @@ parasails.registerPage("crear-modulo", {
 					});
 				});
 		},
-		// asignaObjetoRespuesta(response) {
 
-		//   this.imagenPortada = this.response.data;
-		//   console.log('LOCATION:');
-		//   setTimeout(()=>{
-		//     console.log(this.imagenPortada.location);
-		//     this.rutaTemporal = this.response.data.location;
-		//   },7000);
-
-		//   //SE ASIGNA LA URL DE LA IMAGEN
-		//   //nota: al cargar en la etiqueta src se presenta un error al hacer la peticion get,
-		//   //funciona con rutas quemadas como las lineas debajo
-
-		//   // this.rutaTemporal='https://www.imagen.com.mx/assets/img/imagen_share.png';
-		//   // this.rutaTemporal='http://localhost:1337/images/uploaded/91463fc6-397e-42c9-aaf1-ddd1f1d196c7.jpg';
-
-		//   // console.log('objeto devuelti por el servidor ');
-		//   // console.log(response.data);
-		//   //Libera el objeto imagen para que se pueda reusar en el textarea de tinymce
-		//   // URL.revokeObjectURL(this.imagenTemporal);
-		// },
 		enviarModulo() {
 			const formData = new FormData(); //crea un objeto formData que contiene los campos enviados de un fomrulario, se crea en este caso porque no se usa las propiedades action="" ni method="" enctype="multipart/formdata" en el elemento <form> , enctype es impliscitamente declarado con este objeto
 			// this.imagenPortada.urlLocal=null;

@@ -152,3 +152,16 @@ Blueprint API :{
         Blueprint actions
         
 }
+
+
+
+
+
+
+13/01/2020
+Cuenta Mongo Atlas
+
+Cluster: alfabetizaweb
+Usuario: admin
+Password: admin
+Lista Blanca: {190.96.108.38/32, }

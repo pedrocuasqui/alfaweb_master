@@ -32,3 +32,12 @@ already resolving/rejecting once.
 (silently ignoring this...)
 
 SOLUCION: NO SE REVISA NINGUNA SOLUCION, PERO SE PRODUCE EN LA ACCION QUE GENERÓ EL ERROR ANTERIOR
+
+
+
+
+13-01-2020
+Conectar con MongoDB ATlas
+TEner en cuenta lo siguienteÑ
+1) La lista blanca debe ser configurada con la Ip 0.0.0.0/0 para permitir la conexion de cualquier dispositivo al servidor ATlas
+2) Configurar el adaptador de acuerdo con el siguiente post: https://github.com/balderdashy/sails/issues/4590#issuecomment-475704535

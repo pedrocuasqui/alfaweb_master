@@ -174,9 +174,9 @@ module.exports = {
 		},
 
 		adapter: "connect-mongo",
-		url: "mongodb://localhost:27017/alfabetizaweb",
-		/* 	url:
-			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb", */
+		// url: "mongodb://localhost:27017/alfabetizaweb",
+		url:
+			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
 		ssl: false,
 		// replicaSet: "alfabetizaweb-shard-0",
 		// authSource: "admin",

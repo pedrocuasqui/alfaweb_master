@@ -165,8 +165,25 @@ module.exports = {
 		 * > (For a full list, see https://sailsjs.com/plugins/sessions)            *
 		 *                                                                          *
 		 ***************************************************************************/
-		// adapter: '@sailshq/connect-redis',
-		// url: 'redis://user:password@localhost:6379/databasenumber',
+
+		secret: "c43a3692ca74e5da2d379cf083666115",
+		rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days,
+		cookie: {
+			maxAge: 30 * 24 * 60 * 60 * 1000,
+			secure: true
+		},
+
+		adapter: "connect-mongo",
+		url: "mongodb://localhost:27017/alfabetizaweb",
+		/* 	url:
+			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb", */
+		ssl: false,
+		// replicaSet: "alfabetizaweb-shard-0",
+		// authSource: "admin",
+
+		collection: "sessions",
+		auto_reconnect: false,
+		stringify: false
 		//--------------------------------------------------------------------------
 		// /\   OR, to avoid checking it in to version control, you might opt to
 		// ||   set sensitive credentials like this using an environment variable.
@@ -199,10 +216,6 @@ module.exports = {
 		 * https://sailsjs.com/config/session#?the-session-id-cookie                *
 		 *                                                                          *
 		 ***************************************************************************/
-		cookie: {
-			// secure: true,
-			maxAge: 24 * 60 * 60 * 1000 // 24 hours
-		}
 	},
 
 	/**************************************************************************

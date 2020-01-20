@@ -18,7 +18,7 @@ module.exports.session = {
 	 *                                                                          *
 	 ***************************************************************************/
 	secret: "c43a3692ca74e5da2d379cf083666115",
-	rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+	rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000 // 30 days
 
 	/***************************************************************************
 	 *                                                                          *
@@ -36,15 +36,15 @@ module.exports.session = {
 	// },
 
 	// DESCOMENTAR EL SIGUIENTE BLOQUE PARA HABILITAR SOCKETS
-	adapter: "connect-mongo",
+	/* 	adapter: "connect-mongo",
 	// secret: "c43a3692ca74e5da2d379cf083666115",
 	// url: "mongodb://localhost:27017/alfabetizaweb",
 	url:
 		"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
-	ssl: true,
-	replicaSet: "alfabetizaweb-shard-0",
-	authSource: "admin",
+	ssl: false,
+	// replicaSet: "alfabetizaweb-shard-0",
+	// authSource: "admin",
 	collection: "sessions",
 	auto_reconnect: false,
-	stringify: false
+	stringify: false */
 };

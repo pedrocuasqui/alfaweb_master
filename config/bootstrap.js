@@ -843,7 +843,7 @@ module.exports.bootstrap = async function(done) {
 			{
 				puntos: 1500,
 				nivel: 1,
-				medalla: "bebe",
+				medalla: "novato",
 				tiempoMaximoPorPregunta: 15, //en segundos
 				apruebaEvaluacion: 1,
 				evaluacion: {
@@ -914,7 +914,7 @@ module.exports.bootstrap = async function(done) {
 			{
 				puntos: 1950,
 				nivel: 1,
-				medalla: "bebe",
+				medalla: "novato",
 				tiempoMaximoPorPregunta: 15, //en segundos
 				apruebaEvaluacion: 1,
 				evaluacion: {

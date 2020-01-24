@@ -41,7 +41,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 		},
 		medallaActual: {
 			type: String,
-			default: "bebe"
+			default: "novato"
 		},
 		porcentajeAvance: {
 			type: Number,
@@ -249,7 +249,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 												<div class="col-sm-5 contenedor-icono">
 
 													
-														<img v-if="medallaActual=='bebe'" src="/images/svg/buho_bebe.svg" :alt="medallaActual">
+														<img v-if="medallaActual=='novato'" src="/images/svg/buho_bebe.svg" :alt="medallaActual">
 														<img v-else-if="medallaActual=='estudiante'" src="/images/svg/buho_original_1.svg"
 															:alt="medallaActual">
 														<img v-else-if="medallaActual=='estudiante destacado'" src="/images/svg/buho_original_1.svg"
@@ -460,7 +460,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 						//intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
 						puntos: 0,
 						nivel: 0, //modulo 1
-						medalla: "bebe", //medalla mas basica
+						medalla: "novato", //medalla mas basica
 						tiempoMaximoPorPregunta: 30, //en segundos por defecto
 						evaluacion: null
 					});

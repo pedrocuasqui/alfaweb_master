@@ -45,15 +45,18 @@ module.exports.datastores = {
 		 *    (See https://sailsjs.com/config/datastores for help.)                 *
 		 *                                                                          *
 		 ***************************************************************************/
-		// adapter: 'sails-mysql',
-		// url: 'mysql://user:password@host:port/database',
 
 		/*Mongo db por defecto no tiene habilitada la autenticacion ni autorizacion*/
 		adapter: "sails-mongo",
-		url:
-			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
-		ssl: true,
+		url: "mongodb://localhost:27017/alfabetizaweb",
+		ssl: false
+
+		/*adapter: "sails-mongo",
+	 	url:
+			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb", 
+		ssl: true
 		replicaSet: "alfabetizaweb-shard-0",
 		authSource: "admin"
+		*/
 	}
 };

@@ -67,7 +67,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 				return {
 					puntos: 0,
 					nivel: 0, //modulo 1
-					medalla: "bebe", //medalla mas basica
+					medalla: "novato", //medalla mas basica
 					tiempoMaximoPorPregunta: 30, //en segundos por defecto
 					evaluacion: null
 				};

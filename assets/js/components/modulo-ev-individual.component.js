@@ -713,7 +713,7 @@ parasails.registerComponent("modulo-ev-individual", {
 				this.porcentajeAvanceSubmodulos > 0 &&
 				this.porcentajeAvanceSubmodulos <= 20
 			) {
-				this.medalla = "bebe";
+				this.medalla = "novato";
 			} else if (
 				this.porcentajeAvanceSubmodulos > 20 &&
 				this.porcentajeAvanceSubmodulos <= 80

@@ -29,7 +29,7 @@ module.exports = {
 			type: "string",
 			columnName: "medalla",
 			isIn: [
-				"bebe",
+				"novato",
 				"estudiante",
 				"estudiante destacado",
 				"egresado",

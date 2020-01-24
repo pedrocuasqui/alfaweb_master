@@ -40,7 +40,7 @@ module.exports = {
 			//intento por defecto se usa para los usuario no logueados o usuarios logueados por primera vez que aún no tienen interaccion con el aplicativo
 			puntos: 0,
 			nivel: 1, //modulo 1
-			medalla: "bebe", //medalla mas basica
+			medalla: "novato", //medalla mas basica
 			tiempoMaximoPorPregunta: 30, //en segundos por defecto
 			evaluacion: null
 		};

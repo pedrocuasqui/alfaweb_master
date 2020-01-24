@@ -30,7 +30,7 @@ module.exports = {
 		},
 		medalla: {
 			type: "string",
-			isIn: ["bebe", "estudiante", "graduado", "profesor"],
+			isIn: ["novato", "estudiante", "graduado", "profesor"],
 			required: true
 		},
 		tiempoMaximoPorPregunta: {

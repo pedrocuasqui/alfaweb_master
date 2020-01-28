@@ -696,7 +696,7 @@ module.exports.bootstrap = async function(done) {
 	var avance = null;
 	if ((await Estudiante.count()) == 0 && Object.keys(curso).length > 0) {
 		estudiante = await Estudiante.create({
-			nombre: "Elsa Cando",
+			nombre: "Elsa Coro",
 			alias: "els",
 			email: "elsa.cando@gmail.com",
 			password: "$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie",
@@ -725,7 +725,7 @@ module.exports.bootstrap = async function(done) {
 		//
 		//
 		var profesorCreado = await Profesor.create({
-			nombre: "m",
+			nombre: "Mayra C",
 			alias: "m",
 			email: "m@m.com",
 			password: "$2b$10$dnUGZGpto1RdygwQ2bWDdeLRceCbCuU8Q2vz4RmZD8eXOyg.qrVqe",

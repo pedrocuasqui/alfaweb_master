@@ -302,8 +302,8 @@ parasails.registerComponent("modulo-panel-derecho", {
 							<!-- SeccionSoporte -->
 							<div class="row soporte">
 								<div class="col">
-									<div><span>soporte</span></div>
-									<i class="fas fa-question-circle fa-2x" title="pedro.cuasqui@epn.edu.ec"> </i>
+									<div><span>Soporte:</span></div>
+									<p>pedro.cuasqui@epn.edu.ec</p>
 								</div>
 							</div>
 	

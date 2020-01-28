@@ -747,7 +747,7 @@ module.exports.bootstrap = async function(done) {
 		//
 		//
 		var profesorCreado = await Profesor.create({
-			nombre: "Pedro Cuasqui",
+			nombre: "Emilio Vera",
 			alias: "j",
 			email: "pedro.cuasqui@gmail.com",
 			password: "$2b$10$dnUGZGpto1RdygwQ2bWDdeLRceCbCuU8Q2vz4RmZD8eXOyg.qrVqe",

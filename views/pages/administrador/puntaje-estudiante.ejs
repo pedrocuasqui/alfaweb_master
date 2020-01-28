@@ -64,24 +64,29 @@
 
 
 
-      <div class="row">
+      <div class="row" style="text-align: center;">
         <div class="col">
           <h3>Evaluaciones realizadas</h3>
-
-
-
 
           <div class="accordion" id="accordionIntentosEvaluacion">
             <div class="container">
               <div class="row">
-                <div class="col">Fecha</div>
-                <div class="col">Tema</div>
-                <div class="col">puntos</div>
-                <div class="col">Aprueba Evaluacion</div>
+                <div class="col">
+                  <p>Fecha</p>
+                </div>
+                <div class="col">
+                  <p>Tema</p>
+                </div>
+                <div class="col">
+                  <p>puntos</p>
+                </div>
+                <div class="col">
+                  <p>Aprueba Evaluacion</p>
+                </div>
               </div>
             </div>
 
-            <div class="card" v-for="(intento,index ) in intentoEvaluacionReversa">
+            <div class="card evaluacion" v-for="(intento,index ) in intentoEvaluacionReversa">
               <div class="card-header" :id="'heading'+index">
                 <h2 class="mb-0">
                   <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
@@ -92,7 +97,7 @@
                         <div class="col"> {{devuelveFecha(intento.createdAt)}}</div>
                         <div class="col">{{intento.submodulo.nombreSubmodulo}}</div>
                         <div class="col"> {{intento.puntos}}</div>
-                        <div class="col"> {{intento.apruebaEvaluacion }}</div>
+                        <div class="col"> {{ intento.apruebaEvaluacion==0 ? "NO": "SI" }}</div>
                       </div>
                     </div>
                   </button>
@@ -105,24 +110,26 @@
                     <template v-if="intento.evaluacion.tipo=='Cuestionario'">
 
                       <div class="row" v-for="(pregunta, index) in intento.evaluacion.preguntas">
-                        <div class="col-sm-3" v-html="pregunta.enunciado"></div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6" v-html="pregunta.enunciado"></div>
+                        <div class="col-sm-6">
                           <p
                             :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">
-                            Tu respuesta: {{pregunta.respuestaEstudiante}}</p>
-                          <p>Respuesta correcta:{{pregunta.respuesta}}</p>
+                            Tu respuesta:
+                            {{ pregunta.respuestaEstudiante == null ? "NO RESPONDE": pregunta.respuestaEstudiante}}</p>
+                          <div>Respuesta correcta:{{pregunta.respuesta}}</div>
                         </div>
                       </div>
                     </template>
 
                     <template v-else-if="intento.evaluacion.tipo=='Emparejamiento'">
                       <div class="row" v-for="(pregunta, index) in intento.evaluacion.preguntas">
-                        <div class="col-sm-3"> {{pregunta.enunciado}}</div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-6"> {{pregunta.enunciado}}</div>
+                        <div class="col-sm-6">
                           <p
                             :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">
-                            Tu respuesta: {{pregunta.respuestaEstudiante}}</p>
-                          <p>Respuesta correcta:{{pregunta.respuesta}}</p>
+                            Tu respuesta:
+                            {{ pregunta.respuestaEstudiante == null ? "NO RESPONDE": pregunta.respuestaEstudiante}}</p>
+                          <div>Respuesta correcta:{{pregunta.respuesta}}</div>
                         </div>
                       </div>
                     </template>

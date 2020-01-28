@@ -48,7 +48,9 @@
                   </div>
                   <!-- <p class="mb-1">ultimo Acceso: {{fechaUltimoAccesoEstudiante(estudiante)}}</p> -->
                   <p class="mb-1">Cursos tomados:</p>
-                  <p v-for="curso in estudiante.cursos" class="mb-1">{{curso.nombre}}</p>
+                  <ul>
+                    <li v-for="curso in estudiante.cursos" class="mb-1">{{curso.nombre}}</li>
+                  </ul>
                 </a>
                 <!-- <a class="list-group-item list-group-item-action" href="#"><i class="fas fa-plus"></i> Agregar
           Estudiante</a> -->

@@ -291,14 +291,14 @@ parasails.registerComponent("modulo-panel-derecho", {
 							</div>
 							<!-- Seccion usuarios conectados -->
 							<div class="dropdown-divider"></div>
-							<div class="row usuarios-conectados" v-if="!esAdmin">
+							<!--<div class="row usuarios-conectados" v-if="!esAdmin">
 								<div class="col">
 									<div><span>Últimos usuarios conectados</span></div>
 									<ul>
 										<li v-for="usuario in usuariosConectados">{{usuario.nombre}}</li>
 									</ul>
 								</div>
-							</div>
+							</div> -->
 							<!-- SeccionSoporte -->
 							<div class="row soporte">
 								<div class="col">

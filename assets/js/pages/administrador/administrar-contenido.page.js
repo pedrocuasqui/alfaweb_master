@@ -597,9 +597,12 @@ parasails.registerPage("administrar-contenido", {
 		validarEvaluacion() {
 			this.formErrors = {};
 			//vALIDA QUE TODAS LAS PREGUNTAS TENGA OPCIONES, ESTA VALIDACION FUNCIONA CUANDO SE CAMBIA EL TIPO DE EVALUACION DE "EMPAREJAMIENTO" A "CUESTIONARIO"
+			if (this.preguntasCuestionario.length == 0) {
+				this.formErrors.preguntas = true;
+			}
+			var indicesConError = []; //guarda la posicion de la pregunta con error
 			if (this.tipoEvaluacion == "Cuestionario") {
 				var indice = 0; //contador de posiciones
-				var indicesConError = []; //guarda la posicion de la pregunta con error
 				this.preguntasCuestionario.forEach(pregunta => {
 					//recorrer todas las opciones de respuesta de la pregunta
 
@@ -615,19 +618,8 @@ parasails.registerPage("administrar-contenido", {
 					}
 					indice += 1; //la posicion incrementa en uno
 				});
-
 				if (indicesConError.length > 0) {
 					this.formErrors.opciones = true;
-					swal({
-						position: "center",
-						icon: "warning",
-						title: `Realice las siguientes correcciones`,
-						text:
-							"La(s) pregunta(s) No: " +
-							JSON.stringify(indicesConError) +
-							" no tienen opciones de respuesta",
-						showConfirmButton: false
-					});
 				}
 			}
 			// si el administrador borró el campo y olvidó escribir un valor para tiempo máximo, este se asigna por defecto
@@ -637,6 +629,28 @@ parasails.registerPage("administrar-contenido", {
 
 			if (Object.keys(this.formErrors).length == 0) {
 				this.guardarEvaluacion();
+			} else {
+				texto = "";
+				if (this.formErrors.opciones) {
+					icono = "warning";
+					titulo = "Realice las siguientes correcciones";
+					texto =
+						"La(s) pregunta(s) No: " +
+						JSON.stringify(indicesConError) +
+						" no tienen opciones de respuesta";
+				} else {
+					icono = "error";
+					titulo = "Evaluación vacía";
+					texto = "NO SE PUEDE GUARDAR UNA EVALUACIÓN VACÍA";
+				}
+
+				swal({
+					position: "center",
+					icon: icono,
+					title: titulo,
+					text: texto,
+					showConfirmButton: false
+				});
 			}
 
 			this.formErrors = {};

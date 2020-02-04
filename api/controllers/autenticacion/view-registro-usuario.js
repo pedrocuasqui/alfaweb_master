@@ -12,8 +12,10 @@ module.exports = {
 
 	fn: async function(inputs, exits) {
 		// sin inputs en este controlador obtengo un resultado de error
-		var correoUsuarioAdministrador = sails.config.custom.correoAdministrador;
-		console.log(`correo admin: ${correoUsuarioAdministrador}`);
-		return exits.success({ correoUsuarioAdministrador });
+
+		var superAdministradores = await Profesor.find({
+			superAdmin: true
+		}).sort("createdAt DESC");
+		return exits.success({ superAdministradores });
 	}
 };

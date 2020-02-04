@@ -710,7 +710,7 @@ module.exports.bootstrap = async function(done) {
 		estudiante = await Estudiante.create({
 			nombre: "Pedro Estudiante",
 			alias: "Pedroc",
-			email: "pedroc160710@gmail.com",
+			email: "p@gmail.com",
 			password: "$2b$10$fbmbMm8Pigdur8cA.VFvf.BT3yzl2sm9Cmu2ZV02aTgcCkKaet0Ie",
 			confirmado: true
 		}).fetch();
@@ -718,6 +718,30 @@ module.exports.bootstrap = async function(done) {
 		credenciales = { cursoId: curso.id, usuarioId: estudiante.id };
 		//el avance se coloca en null en lugar de {} porque es mas facil gestionar desde el lado cliente
 		await sails.helpers.registrarAvanceEstudiante(credenciales, avance); //la fecha de acceso es creada dentro
+		//
+		//
+		//NUEVO PROFESOR 0
+		//
+		//
+		var profesorCreado = await Profesor.create({
+			nombre: "oscar",
+			alias: "oscar",
+			email: "pcuasqui@asomif-ecu.com",
+			password: "$2b$10$dnUGZGpto1RdygwQ2bWDdeLRceCbCuU8Q2vz4RmZD8eXOyg.qrVqe",
+			administrador: true,
+			tutor: false,
+			confirmado: true,
+			superAdmin: true
+		}).fetch();
+
+		//CURSO BIG DATA --profesor 0
+		var cursoBigData = await Curso.create({
+			nombre: "Curso de Big Data para ejecutivos ",
+			descripcion:
+				"Este curso revisa herramientas y conceptoss más usados en Big Data",
+			publicado: true,
+			profesor: profesorCreado.id
+		}).fetch();
 
 		//
 		//
@@ -734,7 +758,7 @@ module.exports.bootstrap = async function(done) {
 			confirmado: true
 		}).fetch();
 
-		//CURSO PROGRAMACION BASICA
+		//CURSO PROGRAMACION BASICA  - profesor 1
 		var cursoProgra = await Curso.create({
 			nombre: "Programación básica",
 			descripcion: "conceptos básicos sobre programacion",
@@ -753,10 +777,11 @@ module.exports.bootstrap = async function(done) {
 			password: "$2b$10$dnUGZGpto1RdygwQ2bWDdeLRceCbCuU8Q2vz4RmZD8eXOyg.qrVqe",
 			administrador: true,
 			tutor: false,
-			confirmado: true
+			confirmado: true,
+			superAdmin: true
 		}).fetch();
 
-		//CURSO BASE DE DATOS
+		//CURSO BASE DE DATOS  -- profesor 2
 		var cursoBdd = await Curso.create({
 			nombre: "Base de datos",
 			descripcion: "conceptos básicos de bases de datos",

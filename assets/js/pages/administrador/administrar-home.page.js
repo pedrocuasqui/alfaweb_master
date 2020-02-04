@@ -17,7 +17,7 @@ parasails.registerPage("administrar-home", {
 		cursos: Object,
 		estudiantes: null,
 		usuario: null,
-		administradores: null
+		administradores: []
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗

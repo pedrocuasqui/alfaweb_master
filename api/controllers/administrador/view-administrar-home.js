@@ -64,18 +64,20 @@ module.exports = {
 
 			// aniade el curso de informatica basica al arreglo de cursos
 			cursos.unshift(cursoInforBasica);
+			var administradores = [];
+			//solo si el usuario es superAdmin tiene privilegios para ver a los dem'as administradores
+			if (usuario.superAdmin) {
+				//se busca a todos los administradores que no son superAdmin
+				administradores = await Profesor.find({
+					superAdmin: { "!=": true }
+				}).sort("createdAt DESC");
+			}
 
-			var administradores = await Profesor.find({
-				email: { "!=": sails.config.custom.correoAdministrador }
-			}).sort("createdAt DESC");
-
-			var superAdminEmail = sails.config.custom.correoAdministrador;
 			return exits.success({
 				cursos,
 				estudiantes,
 				usuario,
-				administradores,
-				superAdminEmail
+				administradores
 			});
 		}
 	}

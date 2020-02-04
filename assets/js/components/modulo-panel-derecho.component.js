@@ -202,9 +202,10 @@ parasails.registerComponent("modulo-panel-derecho", {
 	
 					<div id="boton_desplegable_personalizado" class="dropdown-menu">
 						<a class="dropdown-item  ">Rol: {{usuario.administrador && usuario.nombre !='Visitante'? "Administrador":"Estudiante"}}</a>
-						<a v-if="usuario.nombre =='Visitante'" class="dropdown-item  " href="/view-login">Iniciar Sesión</a>
-						<a v-else class="dropdown-item  " href="/view-actualizar-usuario">Cambiar contraseña</a>
-						<a v-if="usuario.nombre !='Visitante'" class="dropdown-item  " href="/logout">Cerrar sesión</a>
+						<a v-if="usuario.nombre =='Visitante'" class="dropdown-item inicia_sesion_item" href="/view-login">Inicia Sesión</a>
+						<a v-else class="dropdown-item  cambiar_pass_item" href="/view-actualizar-usuario">Cambia tu contraseña</a>
+						<a v-if="usuario.nombre !='Visitante'" class="dropdown-item salir_item" href="/logout">Salir</a>
+						<a v-else class="dropdown-item registro_item" href="/view-registro-usuario">Regístrate</a>
 						
 						<div class="dropdown-divider"></div>
 						<div class="container-fluid">

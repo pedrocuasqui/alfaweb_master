@@ -55,6 +55,12 @@ module.exports = {
 			required: false,
 			unique: false
 		},
+		superAdmin: {
+			type: "boolean",
+			columnName: "superAdmin",
+			required: false,
+			unique: false
+		},
 		//  ╔═╗╔╦╗╔╗ ╔═╗╔╦╗╔═╗
 		//  ║╣ ║║║╠╩╗║╣  ║║╚═╗
 		//  ╚═╝╩ ╩╚═╝╚═╝═╩╝╚═╝

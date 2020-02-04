@@ -8,7 +8,7 @@ parasails.registerPage("registro-usuario", {
 		formData: {},
 		// For tracking client-side validation errors in our form.
 		// > Has property set to `true` for each invalid property in `formData`.
-		correoUsuarioAdministrador: "Marco Santórum",
+		superAdministradores: [],
 		formErrors: {
 			/* … */
 		}
@@ -22,7 +22,7 @@ parasails.registerPage("registro-usuario", {
 		_.extend(this, SAILS_LOCALS);
 	},
 	mounted: async function() {
-		this.correoUsuarioAdministrador = SAILS_LOCALS.correoUsuarioAdministrador;
+		this.superAdministradores = [...SAILS_LOCALS.superAdministradores];
 	},
 
 	//  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -108,7 +108,12 @@ parasails.registerPage("registro-usuario", {
 
 					let texto = "";
 					if (this.formData.rol == "administrador") {
-						texto = `El usuario \"${response.data.usuarioCreado.nombre}\" de tipo Administrador, con alias  \"${response.data.usuarioCreado.alias}\" ha sido creado correctamente. \nPara poder ingresar, el usuario ${this.correoUsuarioAdministrador} debe habilitar tu cuenta`;
+						var usuariosAdmin = "";
+						this.superAdministradores.forEach(sadmin => {
+							usuariosAdmin = usuariosAdmin + sadmin.email + ", ";
+						});
+
+						texto = `El usuario \"${response.data.usuarioCreado.nombre}\" de tipo Administrador, con alias  \"${response.data.usuarioCreado.alias}\" ha sido creado correctamente. \nPara poder ingresar, un superAdmin (${usuariosAdmin}) debe habilitar tu cuenta`;
 					} else {
 						texto = `El usuario \"${response.data.usuarioCreado.nombre}\" con alias  \"${response.data.usuarioCreado.alias}\" ha sido creado correctamente. \n Ingresa al correo electrónico \"${response.data.usuarioCreado.email}\" y confirma tu cuenta `;
 					}

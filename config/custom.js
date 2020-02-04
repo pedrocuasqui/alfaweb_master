@@ -24,6 +24,6 @@ module.exports.custom = {
 	// baseUrl: "https://git.heroku.com",
 	// imageBaseUrl: "https://git.heroku.com/images/uploaded",
 	rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-	correoAdministrador: "pedro.cuasqui@gmail.com"
+	correoCuentaSmtp: "pedro.cuasqui@gmail.com"
 	// rememberMeCookieMaxAge: 2*1000, // 30 days
 };

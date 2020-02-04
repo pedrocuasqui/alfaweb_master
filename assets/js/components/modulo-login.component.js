@@ -122,45 +122,7 @@ parasails.registerComponent("modulo-login", {
 			this.aliasIncorrecto = false;
 			this.correoIncorrecto = false;
 			this.passwordIncorrecto = false;
-			// REVISAR USO DE btoa y atoa de javascript para codificar y decodificar el password
-			/* io.socket.post(
-				"/login",
-				{
-					alias: this.formData.alias,
-					email: this.formData.email,
-					password: this.formData.password
-				},
-				(resData, jwRes) => {
-					jwRes.statusCode; // => 200
-					console.log(
-						`SUSCRITO CORRECTAMENTE: ${jwRes.statusCode}\n RESDATA: \n: ${resData}`
-					);
-					console.log(
-						`VERIFICA SI ESTAMOS CONECTADOS A UN SERVIDOR ${io.socket.isConnected()}`
-					);
 
-					if (jwRes.statusCode == 401) {
-						this.aliasIncorrecto = true;
-						this.correoIncorrecto = true;
-					} else if (jwRes.statusCode == 409) {
-						this.passwordIncorrecto = true;
-					} else if (jwRes.statusCode == 423) {
-						swal({
-							icon: "info",
-							title: "Acción requerida!!",
-							text:
-								"Confirma la creación de tu cuenta en el correo electrónico, o \n si eres Administrador debes solicitar el acceso al SuperAdmin del sitio.",
-							showConfirmButton: true
-						});
-					}
-
-					if (resData.usuario.administrador || resData.usuario.tutor) {
-						window.location.replace("/administrar-home");
-					} else {
-						window.location.replace("/inicio");
-					}
-				}
-			); */
 			axios
 				.post("/login", {
 					//por defecto esto se manda en el body del request http

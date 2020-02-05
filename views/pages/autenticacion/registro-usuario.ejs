@@ -3,61 +3,67 @@
   <modulo-contenedor-admin>
     <div class="container ">
       <div class="row justify-content-center">
-        <div class="col-sm-4">
+        <div class="col-sm-8">
+          <h3 class="centrado_horizontal "> Registro de usuario</h3>
           <form @submit.prevent="validarFormulario">
-            <h3 class="centrado_horizontal "> Registro de usuario</h3>
-            <h2></h2>
-            <div class="form-group">
-              <label for="nombre">Nombre de usuario (*)</label>
-              <input name="nombre" class="form-control" id="nombre" type="text" autofocus
+
+            <div class="form-group row">
+              <label for="nombre" class="col-sm-5 col-form-label">Nombre de usuario (*)</label>
+              <input name="nombre" class="form-control col-sm-7" id="nombre" type="text" autofocus
                 :class="[formErrors.nombre ? 'is-invalid' : '']" v-model.trim="formData.nombre"
                 placeholder="Ej. Pepito Pérez">
               <div class="invalid-feedback" v-if="formErrors.nombre">Ingrese un nombre de usuario.</div>
             </div>
-            <div class="form-group">
-              <label for="alias">Alias de usuario (*)</label>
-              <input name="alias" class="form-control" id="alias" autofocus type="text"
+            <div class="form-group row">
+              <label for="alias" class="col-sm-5 col-form-label">Alias de usuario (*)</label>
+              <input name="alias" class="form-control col-sm-7" id="alias" autofocus type="text"
                 :class="[formErrors.alias ? 'is-invalid' : '']" v-model.trim="formData.alias"
                 placeholder="Ej. pepito123">
               <div class="invalid-feedback" v-if="formErrors.alias">Ingrese un alias de usuario válido.</div>
             </div>
-            <div class="form-group">
-              <label for="email">Correo electrónico (*)</label>
-              <input name="email" class="form-control" id="email" type="email"
+            <div class="form-group row">
+              <label for="email" class="col-sm-5 col-form-label">Correo electrónico (*)</label>
+              <input name="email" class="form-control col-sm-7" id="email" type="email"
                 :class="[formErrors.email ? 'is-invalid' : '']" v-model.trim="formData.email"
                 placeholder="pepito@example.com">
               <div class="invalid-feedback" v-if="formErrors.email">Ingrese un correo electrónico válido.</div>
             </div>
-            <div class="form-group">
-              <label for="password">Ingrese un password (*)</label>
-              <input name="password" class="form-control" id="password" type="password"
+            <div class="form-group row">
+              <label for="password" class="col-sm-5 col-form-label">Ingrese un password (*)</label>
+              <input name="password" class="form-control col-sm-7" id="password" type="password"
                 :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.password"
                 placeholder="••••••••" pattern=".{8,}" required title="Mínimo 8 caracteres">
               <div class="invalid-feedback" v-if="formErrors.password">Ingrese un password.</div>
             </div>
-            <div class="form-group">
-              <label for="password">Confirme su password (*)</label>
-              <input name="password" class="form-control" id="passwordConfirm" type="password"
+            <div class="form-group row">
+              <label for="password" class="col-sm-5 col-form-label">Confirme su password (*)</label>
+              <input name="password" class="form-control col-sm-7" id="passwordConfirm" type="password"
                 :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.passwordConfirm"
                 placeholder="••••••••">
               <div class="invalid-feedback" v-if="formErrors.passwordConfirm">El password no coincide</div>
             </div>
-            <label>Seleccione un tipo de usuario (*)</label>
-            <br>
-            <div class="form-check form-check-inline">
-              <input name="rol" value="administrador" v-model="formData.rol" id="rol-administrador" type="radio"
-                class="form-check-input" checked>
-              <label for="rol-administrador" class="form-check-label">Administrador </label>
 
-              <!-- <input name="rol" value="tutor" v-model="formData.rol" id="rol-tutor" type="radio"  class="form-check-input" >
-        <label for="rol-tutor" class="form-check-label">Tutor </label> -->
+            <div class="row">
+              <label class="col-sm-6 col-form-label">Seleccione un tipo de usuario (*)</label>
+              <div class="col-sm-6">
 
-              <input name="rol" value="estudiante" v-model="formData.rol" id="rol-estudiante" type="radio"
-                class="form-check-input">
-              <label for="rol-estudiante" class="form-check-label">Estudiante </label>
+                <div class="form-check form-check-inline pr-5 ">
+                  <input name="rol" value="administrador " v-model="formData.rol" id="rol-administrador" type="radio"
+                    class="form-check-input" checked>
+                  <label for="rol-administrador" class="form-check-label ">Administrador </label>
+                </div>
+                <div class="form-check form-check-inline">
+                  <input name="rol" value="estudiante" v-model="formData.rol" id="rol-estudiante" type="radio"
+                    class="form-check-input ">
+                  <label for="rol-estudiante" class="form-check-label  ">Estudiante </label>
+                </div>
 
-              <div class="invalid-feedback" v-if="formErrors.rol">Seleccione un rol.</div>
+
+              </div>
             </div>
+
+
+
 
             <div class="form-group">
               <input type="submit" value="Registrar" class="btn btn-primary">

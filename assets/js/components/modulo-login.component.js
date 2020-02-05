@@ -33,17 +33,22 @@ parasails.registerComponent("modulo-login", {
 			</div>
 			
 			<div class="container-fluid">
-				<div class="row">
+				<div class="row centrado_horizontal">
 					
+					<div class="col-sm-3"></div>
 					<div class="col-sm-3 nopadding">
-						<input type="radio" id="seleccionar_alias" value="alias" v-model="usuario">
-						<label for="seleccionar_alias">Alias</label>
+						<div class="radio-item">
+							<input type="radio" id="seleccionar_alias" value="alias" v-model="usuario">
+							<label for="seleccionar_alias">Alias</label>
+						</div>
+						
 					</div>
 					<div class="col-sm-3">
-						<input type="radio" id="seleccionar_email" value="email" v-model="usuario">
-						<label for="seleccionar_email">Email</label>		
+						<div class="radio-item">
+							<input type="radio" id="seleccionar_email" value="email" v-model="usuario">
+							<label for="seleccionar_email">Email</label>		
+						</div>
 					</div>
-					<div class="col-sm-3"></div>
 					<div class="col-sm-3"></div>
 				
 				</div>
@@ -74,14 +79,24 @@ parasails.registerComponent("modulo-login", {
         <div class="invalid-feedback" v-if="passwordIncorrecto">Contraseña incorrecta</div>
       </div>
 
-      <div class="form-group">
-        <input type="submit" value="Iniciar Sesión" class="btn btn-primary">
+     
+
+			<div class="row">
+			<div class="col-sm-3"></div>
+			<div class="col-sm-6">
+				<div class="form-group">
+						<input type="submit" value="Iniciar Sesión" class="btn btn-primary boton_formulario">
+				</div>
 			</div>
-			<p class="enlace" @click="clickRecuperarContrasenia()">¿Olvidaste tu contraseña? </p>
-      <div class="form-group">
-        <p>¿Quieres ingresar sin registrarte? </p>
-        <a class="btn btn-primary" href="/inicio" role="button">Ingresa como visitante</a>
-      </div>
+			<div class="col-sm-3"></div>
+		</div>
+			<p class="enlace centrado_horizontal" @click="clickRecuperarContrasenia()"><small>¿Olvidaste tu contraseña?</small> </p>
+			<p class="centrado_horizontal"><small>¿Quieres ingresar sin registrarte?, ingresa como visitante </small></p>
+			<p class="centrado_horizontal">	<a class="btn btn-primary boton_formulario" href="/inicio" role="button">Ingresa como visitante</a></p>
+	
+
+
+
      </div>
     </form>
 

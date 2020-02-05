@@ -32,6 +32,7 @@
 @coloriconos: #ffffff;
 @color_fondo_pagina: #1e1e2f;
 @colorbordeformulario: #2b3553;
+@colorIconosMorados: #e44cc4;
 // FIN VARIABLES
 
 div:not(.contenidoTiny) h1,
@@ -144,7 +145,7 @@ p.mintrucciones,
 	i.fas.fa-stop:hover,
 	i.fas.fa-angle-down:hover,
 	i.fas.fa-angle-up:hover {
-		color: #e44cc4;
+		color: @colorIconosMorados;
 	}
 
 	.estiloLink {
@@ -1533,30 +1534,46 @@ div.card.evaluacion button {
 	font-weight: 900;
 }
 
-input[type="radio"]:after {
-	width: 15px;
-	height: 15px;
-	border-radius: 15px;
-	top: -2px;
-	left: -1px;
-	position: relative;
-	background-color: #d1d3d1;
-	content: "";
+// //////////// INPUT RADIO
+.radio-item {
 	display: inline-block;
-	visibility: visible;
-	border: 2px solid white;
+	position: relative;
+	padding: 0 6px;
+	margin: 10px 0 0;
 }
 
-input[type="radio"]:checked:after {
-	width: 15px;
-	height: 15px;
-	border-radius: 15px;
-	top: -2px;
-	left: -1px;
-	position: relative;
-	background-color: #ffa500;
-	content: "";
-	display: inline-block;
-	visibility: visible;
-	border: 2px solid white;
+.radio-item input[type="radio"] {
+	display: none;
 }
+
+.radio-item label {
+	color: #666;
+	font-weight: normal;
+}
+
+.radio-item label:before {
+	content: " ";
+	display: inline-block;
+	position: relative;
+	top: 0px;
+	margin: 0 5px 0 0;
+	width: 20px;
+	height: 20px;
+	border-radius: 11px;
+	border: 1px solid @colorIconosMorados;
+	background-color: transparent;
+}
+
+.radio-item input[type="radio"]:checked + label:after {
+	border-radius: 13px;
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	top: 8px;
+	left: 12px;
+	content: " ";
+	display: block;
+	background: @colorIconosMorados;
+}
+
+// ///////////////

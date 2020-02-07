@@ -16,14 +16,14 @@ parasails.registerPage("crear-submodulo", {
 		selectedFileTooltip: "",
 		selectedFileDescripcion: "",
 		nuevoArchivo: {
-			urlLocal: null,
+			urlLocal: null
 		},
 		indice: null,
 		formErrors: {
 			nombreSubmodulo: false,
 			descripcionSubmodulo: false,
 			multimedia: false,
-			multimediaGeneral: false,
+			multimediaGeneral: false
 		},
 		moduloSeleccionado: null,
 		tituloTemporal: "Crear submódulo",
@@ -37,7 +37,7 @@ parasails.registerPage("crear-submodulo", {
 
 		contTiny: null,
 
-		adminCreandoModuloSubmodulo: true,
+		adminCreandoModuloSubmodulo: true
 	},
 
 	//  ╦  ╦╔═╗╔═╗╔═╗╦ ╦╔═╗╦  ╔═╗
@@ -53,8 +53,8 @@ parasails.registerPage("crear-submodulo", {
 	mounted: async function() {
 		//se crea la variable contenidoTiny para poder guardar el contenido del textarea de contendio
 		this.contTiny = window.contenidoTiny = null; // se establece el contenido
-		// elimino el elemento con la clase .row.pie-contenido
-		$(".row.pie-contenido").remove();
+		// elimino el elemento con la clase .row.pie-contenido-central
+		$(".row.pie-contenido-central").remove();
 	},
 
 	//  ╦╔╗╔╔╦╗╔═╗╦═╗╔═╗╔═╗╔╦╗╦╔═╗╔╗╔╔═╗
@@ -92,7 +92,7 @@ parasails.registerPage("crear-submodulo", {
 				formData.append(
 					"multimedia",
 					this.selectedFiles[0],
-					this.selectedFiles[0].name,
+					this.selectedFiles[0].name
 				);
 			}
 
@@ -105,7 +105,7 @@ parasails.registerPage("crear-submodulo", {
 			axios({
 				method: "post",
 				url: "/crear-submodulo",
-				data: formData,
+				data: formData
 			})
 				.then(response => {
 					//PASAR COMO PARÁMETRO AL COMPONENTE SIDE-VAR-MENU EL MODULO CREADO
@@ -114,7 +114,7 @@ parasails.registerPage("crear-submodulo", {
 						icon: "success",
 						title: "Tema creado correctamente",
 						showConfirmButton: true,
-						timer: 2000,
+						timer: 2000
 					}).then(val => {
 						//retorna el submodulo creado
 						this.submoduloCreado = response.data;
@@ -123,7 +123,7 @@ parasails.registerPage("crear-submodulo", {
 							"/administrar-contenido/?objetoId=" +
 								this.submoduloCreado.id +
 								"&tipoContenido=" +
-								this.tipoContenido,
+								this.tipoContenido
 						);
 					});
 				})
@@ -135,21 +135,21 @@ parasails.registerPage("crear-submodulo", {
 							icon: "error",
 							title: "Ya existe un tema con el mismo nombre",
 							showConfirmButton: true,
-							timer: 2000,
+							timer: 2000
 						});
 					} else if (err.response.status == 400) {
 						swal({
 							icon: "error",
 							title: "Existen errores en la información suministrada",
 							showConfirmButton: true,
-							timer: 2000,
+							timer: 2000
 						});
 					} else {
 						swal({
 							icon: "error",
 							title: `Error: ${err}`,
 							showConfirmButton: true,
-							timer: 2000,
+							timer: 2000
 						});
 					}
 				});
@@ -182,7 +182,7 @@ parasails.registerPage("crear-submodulo", {
 			this.nuevoArchivo = {
 				urlLocal: null,
 				tooltip: "",
-				descripcion: "",
+				descripcion: ""
 			};
 			this.selectedFileTooltip = "";
 			this.selectedFileDescripcion = "";
@@ -241,7 +241,7 @@ parasails.registerPage("crear-submodulo", {
 		onClickCancelar() {
 			// this.imagensTiny = window.imagenesTemporalesTiny;
 			window.location.assign("/administrar-indice/?cursoId=" + this.curso.id);
-		},
+		}
 	},
 	computed: {
 		mapaCarrusel() {
@@ -268,6 +268,6 @@ parasails.registerPage("crear-submodulo", {
 				existeContenido = false;
 			}
 			return existeContenido;
-		},
-	},
+		}
+	}
 });

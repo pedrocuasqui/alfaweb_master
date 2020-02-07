@@ -147,7 +147,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
             <div class="row fila-principal">
                 <!-- Columna central -->
                 <div class="col-sm-11 col-central">
-                    <div class="row">
+                    <div class="row cabecera-contenido-central">
 
                         <!--"navegacion-atras"-->
                         <div class="col-auto" v-if="navegarAtras">
@@ -191,7 +191,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
 
                     </div>
 
-                    <div class="row">
+                    <div class="row cuerpo-contenido-central" >
 
 
                                 <div class="contenedor-slot-principal" ref="printContenidoCentral">
@@ -201,7 +201,7 @@ parasails.registerComponent("modulo-contenedor-curso", {
                                 </div>
 
                     </div>
-                    <div class="row pie-contenido" >
+                    <div class="row pie-contenido-central" >
                         <div  id="avatar">
                                 <img  @click="clickAsistenteBuho" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
                                 <span>

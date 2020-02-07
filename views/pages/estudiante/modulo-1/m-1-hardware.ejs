@@ -1,52 +1,53 @@
-<div id="m-1-hardware" class="container-fluid" v-cloak>
+<!-- id="m-1-hardware" class="container-fluid" v-cloak>
   <!-- v-cloak mantiene invisible las expresiones de vue que aun no han sido cargadas por el objeto Vue, pueesto que el codigo HTML se carga primero y las expresiones se ven mal sin datos -->
-  <!-- en esta pantalla se pone a prueba el conocimiento adquirido en la página anterior, se pregunta al usuario por un elemento de la computadora y que el usuario seleccione elp correcto -->
+<!-- en esta pantalla se pone a prueba el conocimiento adquirido en la página anterior, se pregunta al usuario por un elemento de la computadora y que el usuario seleccione elp correcto -->
 
-  <!-- MODALS******************************************************************************************* -->
+<!-- MODALS******************************************************************************************* -->
 
-  <modal-detalle-elemento :info-element="cpu">
+<modal-detalle-elemento :info-element="cpu">
 
-  </modal-detalle-elemento>
+</modal-detalle-elemento>
 
-  <modal-detalle-elemento :info-element="teclado">
+<modal-detalle-elemento :info-element="teclado">
 
-  </modal-detalle-elemento>
+</modal-detalle-elemento>
 
-  <modal-detalle-elemento :info-element="mouse">
+<modal-detalle-elemento :info-element="mouse">
 
-  </modal-detalle-elemento>
+</modal-detalle-elemento>
 
-  <modal-detalle-elemento :info-element="monitor">
+<modal-detalle-elemento :info-element="monitor">
 
-  </modal-detalle-elemento>
+</modal-detalle-elemento>
 
-  <modal-detalle-elemento :info-element="impresora">
+<modal-detalle-elemento :info-element="impresora">
 
-  </modal-detalle-elemento>
+</modal-detalle-elemento>
 
-  <modal-detalle-elemento :info-element="usb">
+<modal-detalle-elemento :info-element="usb">
 
-  </modal-detalle-elemento>
+</modal-detalle-elemento>
 
-  <!-- CONTENIDOS******************************************************************************************* -->
-  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
-    :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
-    @evaluacion-individual="evaluacionIndividual" ref="curso" :mostrar-icono-repetir="mostrarIconoRepetir"
-    @intentar-nuevamente="intentarNuevamente" :progreso="progreso" @click-asistente-buho="clickMostrarPista">
-    <!--mostrarIconoRepetir es una varible de tipo Boolean-->
+<!-- CONTENIDOS******************************************************************************************* -->
+<modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
+  :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
+  @evaluacion-individual="evaluacionIndividual" ref="curso" :mostrar-icono-repetir="mostrarIconoRepetir"
+  @intentar-nuevamente="intentarNuevamente" :progreso="progreso" @click-asistente-buho="clickMostrarPista">
+  <!--mostrarIconoRepetir es una varible de tipo Boolean-->
 
-    <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
+  <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
 
-    <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
-      @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
-      @actualiza-progreso="actualizaProgreso">
+  <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
+    @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
+    @actualiza-progreso="actualizaProgreso">
 
-    </modulo-ev-individual>
-    <div v-else  id="contenedor-lienzo">
-      <!-- CONTENIDO  -->
+  </modulo-ev-individual>
+  <div v-else id="contenedor-lienzo">
+    <!-- CONTENIDO  -->
 
-
-      <svg id="lienzo-hardware" version="1.0" viewBox="0 0 375 225" xmlns="http://www.w3.org/2000/svg">
+    <div class="contenedor-imagen-svg">
+      <svg id="lienzo-hardware" class="scaling-svg" width="500" height="300" version="1.0" viewBox="0 0 375 225"
+        xmlns="http://www.w3.org/2000/svg">
         <g id="cpu" @click="infoObjeto('cpu')" class="contenedor" @mousemove="mouseMovePc" @mouseout="mouseOutPc">
           <g id="g26" transform="matrix(-.18701 0 0 .20604 177.92 -30.196)">
             <ellipse id="ellipse16" transform="matrix(.89516 -.44575 .43897 .8985 0 0)" cx="90.05" cy="284.5"
@@ -611,13 +612,11 @@
         <!-- la etiqueta span dentro sirve para que funcione v-cloak -->
         <span>{{textoToolTip}}</span>
       </div>
-
-
     </div>
 
+  </div>
 
 
-  </modulo-contenedor-curso>
 
-</div>
+</modulo-contenedor-curso>
 <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

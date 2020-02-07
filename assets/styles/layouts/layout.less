@@ -572,6 +572,13 @@ p.mintrucciones,
 	left: 0;
 	top: 0;
 }
+
+#contenedor-lienzo {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
 // COMPONENTE:modulo-contenedor-admin
 .nombre-usuario {
 	border-radius: 0 0 5px 5px;
@@ -873,22 +880,6 @@ img.mensaje-bienvenida {
 	text-transform: none;
 }
 
-#lienzo-hardware {
-	display: block;
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	overflow: visible;
-	/*permite que el tooltip se pueda ver sobre los márgenes*/
-	// background-color:rgb(51, 192, 180);
-	width: 80%; //width y height son el viewport de el grafico svg
-	height: auto; //89% del 80vh del contenedor principal, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
-}
-
-#contenedor-lienzo {
-	position: relative;
-}
-
 .text-area-editar {
 	position: absolute;
 	top: 25%;
@@ -896,16 +887,6 @@ img.mensaje-bienvenida {
 	z-index: 10;
 	width: 50%;
 	height: 55%;
-}
-
-.lienzo-svg {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	overflow: visible; //permite que el tooltip se pueda ver sobre los márgenes
-	// background-color:rgb(51, 192, 180);
-	width: 85%; //width y height son el viewport de el grafico svg
-	height: auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
 }
 
 //estilo para poner numeros en el carousel
@@ -944,16 +925,37 @@ img {
 	max-width: auto;
 }
 
+// #lienzo-hardware {
+// 	display: block;
+// 	margin-left: auto;
+// 	margin-right: auto;
+// 	text-align: center;
+// 	overflow: visible;
+// 	/*permite que el tooltip se pueda ver sobre los márgenes*/
+// 	// background-color:rgb(51, 192, 180);
+// 	width: 80%; //width y height son el viewport de el grafico svg
+// 	height: auto; //89% del 80vh del contenedor principal, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+// }
+
+// .lienzo-svg {
+// 	margin-left: auto;
+// 	margin-right: auto;
+// 	text-align: center;
+// 	overflow: visible; //permite que el tooltip se pueda ver sobre los márgenes
+// 	// background-color:rgb(51, 192, 180);
+// 	width: 85%; //width y height son el viewport de el grafico svg
+// 	height: auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+// }
 /*FINAL*/
-#lienzo-svg {
-	margin-left: auto;
-	margin-right: auto;
-	text-align: center;
-	overflow: visible; //permite que el tooltip se pueda ver sobre los márgenes
-	// background-color:rgb(51, 192, 180);
-	width: 75%; //width y height son el viewport de el grafico svg
-	height: auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
-}
+// #lienzo-svg {
+// 	margin-left: auto;
+// 	margin-right: auto;
+// 	text-align: center;
+// 	overflow: visible; //permite que el tooltip se pueda ver sobre los márgenes
+// 	// background-color:rgb(51, 192, 180);
+// 	width: 75%; //width y height son el viewport de el grafico svg
+// 	height: auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+// }
 
 g.contenedor:hover * {
 	fill: #e14eca !important;
@@ -1317,6 +1319,7 @@ h5.modal-title {
 	// position: absolute;
 	color: #fff;
 	font-weight: 600;
+	transition: 0.5s !important; //la transicion al mostrar u ocultar
 }
 .boton_formulario:disabled {
 	opacity: 0.2;
@@ -1359,7 +1362,9 @@ form label {
 label.boton_formulario:hover {
 	cursor: pointer;
 }
-
+.boton_formulario:hover {
+	transform: scaleX(1.05) !important;
+}
 .tox-editor-container {
 	z-index: 1050;
 	background-color: #3e3e3e !important	;

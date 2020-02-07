@@ -2,21 +2,17 @@
 
   <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
     :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
-    @evaluacion-individual="evaluacionIndividual"
-    ref="curso"
-    :mostrar-icono-repetir="mostrarIconoRepetir"
-    @intentar-nuevamente="intentarNuevamente"
-    :progreso="progreso"
-    @click-asistente-buho="clickMostrarPista">
+    @evaluacion-individual="evaluacionIndividual" ref="curso" :mostrar-icono-repetir="mostrarIconoRepetir"
+    @intentar-nuevamente="intentarNuevamente" :progreso="progreso" @click-asistente-buho="clickMostrarPista">
     <!--mostrarIconoRepetir es una varible de tipo Boolean-->
-    
+
     <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
-      <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
-        @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
-        @actualiza-progreso="actualizaProgreso">
-    
+    <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
+      @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
+      @actualiza-progreso="actualizaProgreso">
+
     </modulo-ev-individual>
-    <div v-else>
+    <div v-else id="contenedor-lienzo">
       <iframe width="560" height="315" src="https://www.youtube.com/embed/j77-luZigr8" frameborder="0"
         allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
     </div>

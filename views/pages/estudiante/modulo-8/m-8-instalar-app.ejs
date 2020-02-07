@@ -1,24 +1,21 @@
 <div id="m-8-instalar-app" v-cloak>
 
-    <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
+  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
     :usuario="usuario" :curso="curso" :objeto-seleccionado.sync="objetoSeleccionado"
-    :titulo-temporal.sync="tituloEvaluacion" @evaluacion-individual="evaluacionIndividual" 
-    ref="curso"
-    :mostrar-icono-repetir="mostrarIconoRepetir"
-    @intentar-nuevamente="intentarNuevamente"
-    :progreso="progreso"
+    :titulo-temporal.sync="tituloEvaluacion" @evaluacion-individual="evaluacionIndividual" ref="curso"
+    :mostrar-icono-repetir="mostrarIconoRepetir" @intentar-nuevamente="intentarNuevamente" :progreso="progreso"
     @click-asistente-buho="clickMostrarPista">
     <!--mostrarIconoRepetir es una varible de tipo Boolean-->
-    
+
     <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
-      <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
-        @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
-        @actualiza-progreso="actualizaProgreso">
-    
+    <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
+      @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
+      @actualiza-progreso="actualizaProgreso">
+
     </modulo-ev-individual>
-    <div v-else>
+    <div v-else id="contenedor-lienzo">
       <!-- <img src="/images/informaticabasica/modulo8/instalar_apps/secuencia.gif" alt="Instalar una aplicación"> -->
-      <div id="carouselApp" class="carousel slide" data-ride="carousel" data-interval="false" data-wrap="false">
+      <div id="carouselApp" class="pl-4 carousel slide" data-ride="carousel" data-interval="false" data-wrap="false">
         <ol class="carousel-indicators carousel-indicators-numbers">
           <li data-target="#carouselApp" data-slide-to="0" class="indicador active" @click="obtenerIndice">1</li>
           <li data-target="#carouselApp" data-slide-to="1" class="indicador" @click="obtenerIndice">2</li>
@@ -113,13 +110,11 @@
 
 
         </div>
-        <a class="carousel-control-prev" href="#carouselApp" role="button" data-slide="prev"
-          @click="obtenerIndice">
+        <a class="carousel-control-prev" href="#carouselApp" role="button" data-slide="prev" @click="obtenerIndice">
           <span class="carousel-control-prev-icon" aria-hidden="true"></span>
           <span class="sr-only">Previous</span>
         </a>
-        <a class="carousel-control-next" href="#carouselApp" role="button" data-slide="next"
-          @click="obtenerIndice">
+        <a class="carousel-control-next" href="#carouselApp" role="button" data-slide="next" @click="obtenerIndice">
           <span class="carousel-control-next-icon" aria-hidden="true"></span>
           <span class="sr-only">Next</span>
         </a>

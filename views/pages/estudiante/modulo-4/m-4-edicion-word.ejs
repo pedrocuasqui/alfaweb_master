@@ -1,19 +1,20 @@
 <div id="m-4-edicion-word" v-cloak>
 
-    <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
-    :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
-    >
-  
-        <img src="/images/informaticabasica/modulo4/edicion_word/edicion_documentos.gif" alt="Edición de documentos">
-    
-  
-    </modulo-contenedor-curso>
-    <!--  -->
-  </div>
-  
-  <%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
-  <!--  class="contenedor" @click="infoObjeto('clic-derecho')" @mousemove="mouseMovePc" @mouseout="mouseOutPc" -->
-  <!-- <div v-cloak v-show="mostrarToolTip" class="tooltip1" :style="styleToolTip">
+  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
+    :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado"
+    :titulo-temporal.sync="tituloEvaluacion">
+
+    <img src="/images/informaticabasica/modulo4/edicion_word/edicion_documentos.gif" alt="Edición de documentos"
+      width="75%" height="auto">
+
+
+  </modulo-contenedor-curso>
+  <!--  -->
+</div>
+
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
+<!--  class="contenedor" @click="infoObjeto('clic-derecho')" @mousemove="mouseMovePc" @mouseout="mouseOutPc" -->
+<!-- <div v-cloak v-show="mostrarToolTip" class="tooltip1" :style="styleToolTip">
           
           <span>{{textoToolTip}}</span>
         </div> 

@@ -32,8 +32,9 @@
 @coloriconos: #ffffff;
 @color_fondo_pagina: #1e1e2f;
 @colorbordeformulario: #2b3553;
-@colorIconosMorados: #e44cc4;
+@colorIconosMorados: #e44cc4; 
 @fontSize7em: 0.7rem;
+@colorLetraSidebar: hsla(0,0%,100%,.8);
 // FIN VARIABLES
 
 div:not(.contenidoTiny) h1,
@@ -116,17 +117,22 @@ p.mintrucciones,
 	i.fas.fa-stop,
 	a.audioTag,
 	i.fas.fa-angle-down,
-	i.fas.fa-angle-up {
+	i.fas.fa-angle-up{
 		color: @coloriconos;
 		cursor: pointer;
 	}
 
 	i.fas.fa-play,
 	i.fas.fa-pause,
-	i.fas.fa-stop {
+	i.fas.fa-stop,
+	i.fas.fa-cubes{
 		font-size: 25px;
 	}
-
+	i.fas.fa-cube,
+	.fas.fa-plus-circle,
+	.fas.fa-clipboard-check {
+		font-size: 20px;
+	}
 	i.fas.fa-save:hover,
 	i.fas.fa-edit:hover,
 	i.fas.fa-trash-alt:hover,
@@ -224,13 +230,10 @@ p.mintrucciones,
 			//ancho definido por col-sm-2
 			position: relative;
 			// overflow     : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
-			padding-left: 0% !important; //que el contenido se encuentre apegado al margen izquierdo
+			padding-left: 20px !important; //que el contenido se encuentre apegado al margen izquierdo
 			padding-right: 0% !important; //que el contenido se encuentre apegado al margen derecho
 			text-transform: uppercase;
-			.sidebar-oculto {
-				background-color: #2ee3ad;
-				margin-left: -10vw; //oculta hacia la izquierda el 90% del andho
-			}
+	
 
 			#sidebar-menu {
 				//todo el sidebar
@@ -238,42 +241,21 @@ p.mintrucciones,
 				position: absolute;
 				transition: all 0.3s ease-in-out; //la transicion al mostrar u ocultar
 				text-align: left;
-				// width: 18vw;
-				width: 9vw;
-				//por default se usa el sidebar pequeño
-				// margin-left: -10vw;
+				width: 6vw;
 				background: @menusidebar;
 				overflow: hidden;
 				height: 100%; // esto estará contenido dentro de la columna izquierda
 				opacity: 1;
-				border-radius: 10px;
-
-				// .caret-container {
-				// 	position: absolute;
-				// 	right: 0;
-				// 	height: 100%;
-
-				// 	.caret {
-				// 		background-color: rgb(157, 162, 167);
-				// 		display: flex;
-				// 		align-items: center;
-				// 		height: 100%;
-				// 		color: black;
-				// 		font-size: 2rem;
-				// 		transition: all 0.3s ease-in-out;
-				// 		cursor: pointer; //cambia el icono del puntero a la manito
-				// 	}
-
-				// 	.caret:hover {
-				// 		background-color: aliceblue;
-				// 	}
-				// }
+				border-radius: 5px;
+				
 
 				/* width */
 				::-webkit-scrollbar {
+					width: 4px;
+				}
+				::-webkit-scrollbar:hover {
 					width: 10px;
 				}
-
 				/* Track */
 				::-webkit-scrollbar-track {
 					// box-shadow: inset 0 0 5px grey;
@@ -282,13 +264,11 @@ p.mintrucciones,
 
 				/* Handle */
 				::-webkit-scrollbar-thumb {
-					background: #145836;
-					border-radius: 10px;
+					background: @colorIconosMorados;	
 				}
-
 				/* Handle on hover */
 				::-webkit-scrollbar-thumb:hover {
-					background: #145836c4;
+					background: #9c0886;
 				}
 
 				#menuContenidos {
@@ -297,59 +277,65 @@ p.mintrucciones,
 					float: left;
 					width: 100%;
 					overflow-y: auto;
+					overflow-x: hidden;
 
 					h4,
 					h5 {
 						color: white;
 					}
 
+					span.titulo_sidebar span{
+						display: none;
+					}
+					span.titulo_sidebar img{
+						
+							width: 50px;
+							height: 50px;
+						
+					}
 					.dropdownModulo {
 						//contenedor individual del modulo y sus submodulos
 						position: relative;
 						display: block;
 						width: 100%;
 						float: left;
-						padding-top: 10px;
+						padding-top: 20px;
+						
 					}
 
 					.dropbtn-modulo {
 						//el boton que contiene el nombre del modulo
 						width: 100%;
-						background-color: rgba(0, 0, 0, 0);
+						background-color: rgba(0, 0, 0, 0); //transparente
 						opacity: 1;
-						color: white;
+						color: @colorLetraSidebar;
 						padding: 2px;
 						font-size: @fontSize7em;
 						border: none;
 						text-align: left;
-						// border-bottom: 1px solid rgb(138, 133, 133);
+						word-wrap: break-word !important; 
+						
+						
 					}
-					// .dropbtn-modulo:before {
-					// 	font-family: "Font Awesome 5 free";
-					// 	content: "\f00a";
-					// 	font-weight: 900;
-					// 	height: 50px;
-					// }
-
+					a.dropbtn-modulo span{
+						display: none;
+					}
+				
 					//esta clase solo se aplica al contenedor del submodulo que corresponde al modulo seleccionado
 					.dropdown-submodulo {
 						//contenedor individual del submodulo
 						display: block;
-						// position        : relative; //descomentar esta linea para mostrar el contenido sin mover las demas filas
-						// background-color   : #f1f1f1;
-						background: @menusidebar;
+						// background: @menusidebar;
+						opacity: 1 !important;
 						min-width: 160px;
-						// box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 						z-index: 1;
 						margin-left: 5px;
 					}
+				
 
 					.dropdown-submodulo-deselect {
 						//contenedor individual del submodulo cuando el su modulo no es el seleccionado
 						display: none;
-						// position        : relative; //descomentar esta linea para mostrar el contenido sin mover las demas filas
-						// background-color   : #f1f1f1;
-						background: @menusidebar;
 						min-width: 160px;
 						// box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
 						z-index: 1;
@@ -358,13 +344,15 @@ p.mintrucciones,
 
 					.dropdown-submodulo a,
 					.submodulo-deseleccionado {
-						color: black;
+						color: @colorLetraSidebar;
 						padding: 10px 16px;
 						text-decoration: none;
 						display: block;
 						font-size: @fontSize7em;
-						border-bottom: 1px solid rgb(138, 133, 133);
 					}
+					.dropdown-submodulo a span{
+						display: none;
+				}
 
 					.dropdown-submodulo a:hover,
 					.submodulo-seleccionado {
@@ -392,6 +380,21 @@ p.mintrucciones,
 			}
 		}
 
+		#sidebar-menu:hover {
+			// position: absolute !important;
+			z-index: 10;
+			width: 18vw !important;
+		}
+		.mostrar-texto{
+			display: inline-block !important;
+			transition: all 2s ease-in;
+			
+		}
+		div#menuContenidos hr{
+			border-bottom: 1px solid hsla(0,0%,100%,.5);
+			width: 85%;
+
+		}
 		// /////////////////////////////////////////////////////////////
 		//////////---PARTE CENTRAL Y BARRA LATERAL DERECHA---///////////
 		#columna-contenido-lateral > .fila-principal {
@@ -549,11 +552,6 @@ p.mintrucciones,
 	}
 }
 
-#sidebar-menu:hover {
-	// position: absolute !important;
-	z-index: 10;
-	width: 18vw !important;
-}
 .cabecera-contenido-central {
 	height: 10%;
 	width: 100%;

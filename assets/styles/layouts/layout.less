@@ -33,6 +33,7 @@
 @color_fondo_pagina: #1e1e2f;
 @colorbordeformulario: #2b3553;
 @colorIconosMorados: #e44cc4;
+@fontSize7em: 0.7rem;
 // FIN VARIABLES
 
 div:not(.contenidoTiny) h1,
@@ -170,8 +171,8 @@ p.mintrucciones,
 			//ocupamos el 100% de espacio de ancho para la barra de navegacion
 			width: 100%;
 			height: 100%;
-			font-size: 1.15rem;
-
+			font-size: @fontSize7em;
+			text-transform: uppercase;
 			nav ol {
 				//eliminamos el margen de los elementos ol de la barra de navegacion
 				margin: 0 !important;
@@ -225,7 +226,7 @@ p.mintrucciones,
 			// overflow     : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
 			padding-left: 0% !important; //que el contenido se encuentre apegado al margen izquierdo
 			padding-right: 0% !important; //que el contenido se encuentre apegado al margen derecho
-
+			text-transform: uppercase;
 			.sidebar-oculto {
 				background-color: #2ee3ad;
 				margin-left: -10vw; //oculta hacia la izquierda el 90% del andho
@@ -308,6 +309,7 @@ p.mintrucciones,
 						display: block;
 						width: 100%;
 						float: left;
+						padding-top: 10px;
 					}
 
 					.dropbtn-modulo {
@@ -317,11 +319,17 @@ p.mintrucciones,
 						opacity: 1;
 						color: white;
 						padding: 2px;
-						font-size: 1vw;
+						font-size: @fontSize7em;
 						border: none;
 						text-align: left;
 						// border-bottom: 1px solid rgb(138, 133, 133);
 					}
+					// .dropbtn-modulo:before {
+					// 	font-family: "Font Awesome 5 free";
+					// 	content: "\f00a";
+					// 	font-weight: 900;
+					// 	height: 50px;
+					// }
 
 					//esta clase solo se aplica al contenedor del submodulo que corresponde al modulo seleccionado
 					.dropdown-submodulo {
@@ -354,7 +362,7 @@ p.mintrucciones,
 						padding: 10px 16px;
 						text-decoration: none;
 						display: block;
-						font-size: 1vw;
+						font-size: @fontSize7em;
 						border-bottom: 1px solid rgb(138, 133, 133);
 					}
 
@@ -492,7 +500,7 @@ p.mintrucciones,
 
 				.barra-lateral {
 					height: 100%;
-					font-size: 1vw;
+					font-size: @fontSize7em;
 
 					.row.usuario {
 						position: fixed;

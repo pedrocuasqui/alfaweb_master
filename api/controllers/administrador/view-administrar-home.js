@@ -62,8 +62,7 @@ module.exports = {
 			// 	.populate("cursos")
 			// 	.sort("updatedAt DESC"); //buscar los estudiantes que pertenecen a un curso
 
-			// aniade el curso de informatica basica al arreglo de cursos
-			cursos.unshift(cursoInforBasica);
+
 			var administradores = [];
 			//solo si el usuario es superAdmin tiene privilegios para ver a los dem'as administradores
 			if (usuario.superAdmin) {
@@ -71,6 +70,9 @@ module.exports = {
 				administradores = await Profesor.find({
 					superAdmin: { "!=": true }
 				}).sort("createdAt DESC");
+
+							// aniade el curso de informatica basica al arreglo de cursos
+			cursos.unshift(cursoInforBasica);
 			}
 
 			return exits.success({

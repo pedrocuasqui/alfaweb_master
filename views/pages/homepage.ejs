@@ -43,20 +43,20 @@
               <h5 v-else><i class="fas fa-user "></i> Estudiante</h5>
             </div>
             <div class="row centrado_horizontal">
-              <div class="col-sm-2"></div>
-              <div class="col-sm-4">
+
+              <div class="col-sm-5">
                 <template v-if="usuario.administrador">
-                  <a class="btn btn-primary" href="/administrar-home" role="button">Ingresar</a>
+                  <a class="btn btn-primary boton_formulario" href="/administrar-home" role="button">Ingresar</a>
                 </template>
                 <template v-else>
-                  <a class="btn btn-primary" href="/inicio" role="button">Ingresar</a>
+                  <a class="btn btn-primary boton_formulario" href="/inicio" role="button">Ingresar</a>
                 </template>
 
               </div>
-              <div class="col-sm-4">
-                <a class="btn btn-primary" href="/logout">Cerrar sesión</a>
+              <div class="col-sm-7">
+                <a class="btn btn-primary boton_formulario" href="/logout">Cerrar sesión</a>
               </div>
-              <div class="col-sm-2"></div>
+
 
 
 

@@ -35,6 +35,7 @@
 @colorIconosMorados: #e44cc4; 
 @fontSize7em: 0.7rem;
 @colorLetraSidebar: hsla(0,0%,100%,.8);
+@colorNotificacion: #e66ad2;
 // FIN VARIABLES
 
 div:not(.contenidoTiny) h1,
@@ -1305,11 +1306,18 @@ h5.modal-title {
 	background: #b71d1dc4 !important;
 }
 .introjs-tooltip {
-	background-color: @colorcontenidocentral !important;
+	background-color: @colorNotificacion !important;
 }
 
 .introjs-tooltiptext {
-	color: @colorfuente !important;
+	color: #fff !important;
+}
+.introjs-disabled{
+	color: #222a4259 !important;
+	display: none !important;
+}
+.introjs-helperLayer{
+	background-color: rgba(65, 180, 128, 0.54) !important;
 }
 
 .flotante_izquierda {
@@ -1629,4 +1637,8 @@ div.card.evaluacion button {
 // ///////////////
 .gestion_de_archivos .list-group-item.list-group-item-action {
 	background-color: @color_fondo_pagina !important;
+}
+
+div.introjs-tooltiptext .introjs-button:before{
+	content:"Entendido / ";
 }

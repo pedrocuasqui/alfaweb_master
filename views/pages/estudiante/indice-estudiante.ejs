@@ -4,18 +4,20 @@
     <div class="row" id="div-cabecera">
 
       <div class="col-sm-8">
-        <modulo-barra-nav data-intro="Puedes navegar siguiendo una ruta" data-step="3" :breadcrumb="breadcrumb"></modulo-barra-nav>
+        <modulo-barra-nav data-intro="Desde la barra superior puedes navegar por los cursos y su contenido"
+          data-step="3" data-position="right" :breadcrumb="breadcrumb">
+        </modulo-barra-nav>
       </div>
       <div class="col-sm-2">
         <img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
       </div>
       <div class="col-sm-2">
-          <modulo-panel-derecho v-if="existeCursoEstudianteyLogueado" key="LogueadoConAvance" :usuario="usuario"
+        <modulo-panel-derecho v-if="existeCursoEstudianteyLogueado" key="LogueadoConAvance" :usuario="usuario"
           :curso-estudiante="cursoEstudiante" :curso="curso" :puntaje-actual="progreso.puntos"
           :nivel-actual="progreso.nivel" :total-niveles="progreso.totalNiveles" :medalla-actual="progreso.medalla"
           :porcentaje-avance="progreso.porcentajeAvance"></modulo-panel-derecho>
-        <modulo-panel-derecho v-else-if="noExisteCursoEstudianteyLogueado" key="logueadoSinAvance"
-          :usuario="usuario"></modulo-panel-derecho>
+        <modulo-panel-derecho v-else-if="noExisteCursoEstudianteyLogueado" key="logueadoSinAvance" :usuario="usuario">
+        </modulo-panel-derecho>
         <modulo-panel-derecho v-else key="visitante"></modulo-panel-derecho>
 
       </div>
@@ -32,7 +34,8 @@
           <!-- Columna central -->
           <div class="col-sm-11 col-central">
             <div class="row">
-              <div data-intro="Puedes pulsar la flecha derecha para empezar a navegar desde el primer módulo" data-step="2" class="navegacion-siguiente">
+              <div data-intro="Puedes pulsar la flecha derecha para empezar a navegar desde el primer módulo"
+                data-step="2" class="navegacion-siguiente">
                 <a :href="navegarSiguiente" data-toggle="tooltip" title="Pulsa para continuar"><i style="position: relative;-webkit-animation: mymove 2.5s 3; 
                   animation: mymove 2.5s 3;" class="fas fa-chevron-right fas-3x"></i> </a>
               </div>
@@ -49,7 +52,8 @@
 
             <div class="row contenido-menu">
               <div class="col">
-                <div data-intro="Puedes seleccionar el módulo que deseas revisar" data-step="1" class="row">
+                <div data-intro="Bienvenido! En esta sección encontrarás los módulos del curso" data-step="1"
+                  class="row">
                   <div class="col-sm-3 item-modulo" v-for="contenido in contenidos">
                     <template v-if="isAlfaWeb">
                       <a key="modImage" :href="'/contenido-alfaweb/?enlace='+contenido.enlace"> <img
@@ -77,7 +81,7 @@
           </div>
           <!-- columna derecha -->
           <div class="col-sm-1 col-derecha">
-            
+
           </div>
         </div> <!-- fin fila de contenido central y barra lateral derecha -->
       </div>

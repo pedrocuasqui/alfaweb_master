@@ -131,7 +131,7 @@ p.mintrucciones,
 	i.fas.fa-cube,
 	.fas.fa-plus-circle,
 	.fas.fa-clipboard-check {
-		font-size: 20px;
+		font-size: 15px;
 	}
 	i.fas.fa-save:hover,
 	i.fas.fa-edit:hover,
@@ -284,9 +284,12 @@ p.mintrucciones,
 						color: white;
 					}
 
-					span.titulo_sidebar span{
-						display: none;
+					span.titulo_sidebar {
+						white-space: nowrap;
+    				text-overflow: ellipsis;
+    				overflow: hidden;
 					}
+					
 					span.titulo_sidebar img{
 						
 							width: 50px;
@@ -300,6 +303,12 @@ p.mintrucciones,
 						width: 100%;
 						float: left;
 						padding-top: 20px;
+// las siguientes tres lineas no permiten oculta el texto que excede del contenedor
+
+						white-space: nowrap;
+    				text-overflow: ellipsis;
+						overflow: hidden;
+						
 						
 					}
 
@@ -313,12 +322,13 @@ p.mintrucciones,
 						font-size: @fontSize7em;
 						border: none;
 						text-align: left;
-						word-wrap: break-word !important; 
+						// display: inherit !important; //esta linea no muestra los tres puntos
+						display: flow-root !important; //permite ver los tres puntos del texto que sobrepasa el contenedor
 						
 						
 					}
-					a.dropbtn-modulo span{
-						display: none;
+					a.dropbtn-modulo span, span.titulo_sidebar span, .dropdown-submodulo a span{
+						opacity: 0;
 					}
 				
 					//esta clase solo se aplica al contenedor del submodulo que corresponde al modulo seleccionado
@@ -350,20 +360,18 @@ p.mintrucciones,
 						display: block;
 						font-size: @fontSize7em;
 					}
-					.dropdown-submodulo a span{
-						display: none;
-				}
-
+					
 					.dropdown-submodulo a:hover,
-					.submodulo-seleccionado {
+					.submodulo-seleccionado,.dropdownModulo:hover .dropbtn-modulo {
 						background-color: #82d9b2d4;
+						color: white;
 					}
 
-					.dropdownModulo:hover .dropbtn-modulo {
-						background-color: #389466b3;
-						border-style: solid;
-						border-width: 0px 0px 0px 0px;
-						//border-color: #5f5d5d;
+					.dropdownModulo:hover .dropbtn-modulo * {
+						// background-color: #389466b3;
+						color: white;
+						// border-style: solid;
+						// border-width: 0px 0px 0px 0px;
 					}
 
 					/// estilos dinamicos en funcion del modulo seleccionado
@@ -386,8 +394,9 @@ p.mintrucciones,
 			width: 18vw !important;
 		}
 		.mostrar-texto{
-			display: inline-block !important;
-			transition: all 2s ease-in;
+			// display: inline-block !important;
+			opacity: 1 !important;
+			transition: all 0.5s;
 			
 		}
 		div#menuContenidos hr{

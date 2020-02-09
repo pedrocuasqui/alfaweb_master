@@ -117,7 +117,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 				
 		<div id="menuContenidos" >
 			
-        <span class="titulo_sidebar"><h6 class="col titulo-centrado"> <img src="/images/otros/polibuho_transparent_icono.png" alt="polibuho"> <span :class="{ 'mostrar-texto':mostrarTexto}"> {{curso.nombre}}</span></h6>   
+        <span class="titulo_sidebar"><h6 class="col "> <img src="/images/otros/polibuho_transparent_icono.png" alt="polibuho"> <span :class="{ 'mostrar-texto':mostrarTexto}"> {{curso.nombre}}</span></h6>   
           
         </span>
 			 <div v-if="esAdmin && !cursoInformatica" class="centrado_horizontal">
@@ -134,7 +134,7 @@ parasails.registerComponent("modulo-side-var-menu", {
                 <!--ES ADMIN, PUEDE CREAR CURSO Y MODIFICARLOS, EXCEPTO EL CURSO INFORMATICA BASICA-->
                 <a v-if="esAdmin" key="admin" class="btn btn-primary centrado_vertical dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'" :style="colorModulo(modulo.id)"><i class="fas fa-cubes px-3"></i> <span :class="{ 'mostrar-texto':mostrarTexto}"> {{modulo.nombreModulo}}</span></a>
                 <!--ES CURSO INFORMATICA, TODOS PUEDEN ACCEDER A EL PERO NADIE, NI EL ADMINISTRADOR ni ESTUDIANTE PUEDEn EDITARLO-->
-                <a v-else-if="cursoInformatica" key="informatica" class="btn btn-primary centrado_vertical dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/contenido-alfaweb/?enlace='+modulo.enlace" :style="colorModulo(modulo.id)" > <i class="fas fa-cubes px-3"></i> <span :class="{ 'mostrar-texto':mostrarTexto}"> {{modulo.nombreModulo}}</span></a>
+                <a v-else-if="cursoInformatica" key="informatica" class="btn btn-primary centrado_vertical dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/contenido-alfaweb/?enlace='+modulo.enlace" :style="colorModulo(modulo.id)"> <i class="fas fa-cubes px-3"></i> <span :class="{ 'mostrar-texto':mostrarTexto}"> {{modulo.nombreModulo}}</span></a>
                 <!--ES ESTUDIANTE Y HA INGRESADO A OTRO CURSO  QUE NO SEA INFORMATICA BASICA-->
                 <a v-else key="estudiante" class="btn btn-primary centrado_vertical dropbtn-modulo" :class="{'modulo-seleccionado':perteneceObjeto(modulo.id)}" :href="'/interfaz-modulos/?objetoId='+modulo.id+'&tipoContenido=Modulo'" :style="colorModulo(modulo.id)"> <i class="fas fa-cubes px-3"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> {{modulo.nombreModulo}}</span></a>
 
@@ -142,19 +142,19 @@ parasails.registerComponent("modulo-side-var-menu", {
                 <!--SUBMODULOS-->
                     <template v-if="esAdmin"> 	
                         <div key="esAdmin">
-                            <a  v-for="submodulo in modulo.submodulos" :href="'/administrar-contenido/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']"><i class="fas fa-cube pr-2"></i> <span :class="{ 'mostrar-texto':mostrarTexto}"> {{submodulo.nombreSubmodulo}}</span></a>
+                            <a  v-for="submodulo in modulo.submodulos" :href="'/administrar-contenido/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']"><i class="fas fa-cube px-2"></i> <span :class="{ 'mostrar-texto':mostrarTexto}"> {{submodulo.nombreSubmodulo}}</span></a>
                          </div>
                     </template>
                     <template v-else-if="cursoInformatica">
                         <div key="esCursoInformatica">
-                            <a  v-for="submodulo in modulo.submodulos" :href="'/contenido-alfaweb/?enlace='+submodulo.enlace" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']"><i class="fas fa-cube pr-2"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> {{submodulo.nombreSubmodulo}}</span></a>
-                            <a type="button" v-if="modulo.submodulos.length>0" @click="onClickShowModalEvaluacion(modulo.nombreModulo, index)" > <i class="fas fa-clipboard-check pr-2"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> Evaluación</span></a>
+                            <a  v-for="submodulo in modulo.submodulos" :href="'/contenido-alfaweb/?enlace='+submodulo.enlace" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']"><i class="fas fa-cube px-2"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> {{submodulo.nombreSubmodulo}}</span></a>
+                            <a type="button" v-if="modulo.submodulos.length>0" @click="onClickShowModalEvaluacion(modulo.nombreModulo, index)" > <i class="fas fa-clipboard-check px-2"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> Evaluación</span></a>
                          </div>
                     </template >
                     <template v-else >
                         <div key="noEsCursoInformatica">
-                            <a  v-for="submodulo in modulo.submodulos"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']"> <i class="fas fa-cube pr-2"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> {{submodulo.nombreSubmodulo}}</span></a>
-                            <a type="button" v-if="modulo.submodulos.length>0" @click="onClickShowModalEvaluacion(modulo.nombreModulo, index)" ><i class="fas fa-clipboard-check pr-2"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> Evaluación</span></a>
+                            <a  v-for="submodulo in modulo.submodulos"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo'" :key="submodulo.id" :class="[submodulo.id==objetoSeleccionado.id? 'submodulo-seleccionado':'submodulo-deseleccionado']"> <i class="fas fa-cube px-2"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> {{submodulo.nombreSubmodulo}}</span></a>
+                            <a type="button" v-if="modulo.submodulos.length>0" @click="onClickShowModalEvaluacion(modulo.nombreModulo, index)" ><i class="fas fa-clipboard-check px-2"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> Evaluación</span></a>
                         </div>
                     </template >
                     <a type="button" v-if="habilitarEdicion" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
@@ -194,7 +194,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 				this.objetoSeleccionado.id == moduloId ||
 				this.objetoSeleccionado.modulo == moduloId
 			) {
-				estilo = { backgroundColor: this.objetoSeleccionado.color };
+				estilo = { backgroundColor: "#d3b8d370" };
 			}
 			return estilo;
 		},

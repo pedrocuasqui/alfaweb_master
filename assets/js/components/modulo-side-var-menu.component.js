@@ -120,10 +120,10 @@ parasails.registerComponent("modulo-side-var-menu", {
         <span class="titulo_sidebar"><h6 class="col "> <img src="/images/otros/polibuho_transparent_icono.png" alt="polibuho"> <span :class="{ 'mostrar-texto':mostrarTexto}"> {{curso.nombre}}</span></h6>   
           
         </span>
-			 <div v-if="esAdmin && !cursoInformatica" class="centrado_horizontal">
+			 <div v-if="esAdmin && !cursoInformatica">
         <!--PUBLICAR Y OCULTAR CURSO-->
-            <a v-if="curso.publicado" @click.stop="ocultarCurso(curso.id)" data-placement="top" title="Ocultar Curso"> <i class="fas fa-lock-open"></i> </a>
-            <a v-else @click.stop="publicarCurso(curso.id)" data-placement="top" title="Publicar Curso"> <i class="fas fa-lock"></i> </a> 
+            <a v-if="curso.publicado" @click.stop="ocultarCurso(curso.id)" data-placement="top" title="Ocultar Curso"> <i class="fas fa-lock-open pl-4"></i> </a>
+            <a v-else @click.stop="publicarCurso(curso.id)" data-placement="top" title="Publicar Curso"> <i class="fas fa-lock pl-4"></i> </a> 
 			 </div>
 			<hr>
 			 <!--dropdownModulo      : contenedor individual del modulo y sus submodulos-->
@@ -157,11 +157,11 @@ parasails.registerComponent("modulo-side-var-menu", {
                             <a type="button" v-if="modulo.submodulos.length>0" @click="onClickShowModalEvaluacion(modulo.nombreModulo, index)" ><i class="fas fa-clipboard-check px-2"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> Evaluación</span></a>
                         </div>
                     </template >
-                    <a type="button" v-if="habilitarEdicion" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle"></i> Agregar Submódulo</a>
+                    				<a type="button" v-if="habilitarEdicion" :href="'/view-crear-submodulo/?moduloId='+modulo.id" :class="[crearSubmodulo? 'submodulo-seleccionado':'']"><i class="fas fa-plus-circle px-2"></i><span :class="{ 'mostrar-texto':mostrarTexto}"> Agregar Submódulo</span> </a>
                 </div>
             </div>
           <div v-if="habilitarEdicion" class="dropdownModulo" >
-                <a type="button" class="btn btn-primary dropbtn-modulo" :href="'/view-crear-modulo/?cursoId='+curso.id" ><i class="fas fa-plus-circle" ></i> Agregar Módulo</a>
+                <a type="button" class="btn btn-primary dropbtn-modulo" :href="'/view-crear-modulo/?cursoId='+curso.id" ><i class="fas fa-plus-circle px-3" ></i> <span :class="{ 'mostrar-texto':mostrarTexto}"> Agregar Módulo</span></a>
             </div> 
         </div> 
 

@@ -101,8 +101,8 @@
                       :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'">{{modulo.nombreModulo}}</a>
                   </div>
                   <div v-if="noEsInforBasica" class="col-sm-3 agregaModulo">
-                    <a :href="'/view-crear-modulo/?cursoId='+curso.id" title="Añadir nuevo módulo"><i
-                        class="fas fa-plus-circle fa-2x"></i></a>
+                    <a type="button" class="btn btn-primary boton_formulario"
+                      :href="'/view-crear-modulo/?cursoId='+curso.id" title="Añadir nuevo módulo">Crear módulo</a>
                   </div>
                 </div>
               </div>

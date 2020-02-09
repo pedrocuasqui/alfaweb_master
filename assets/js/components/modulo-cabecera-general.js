@@ -27,7 +27,7 @@ parasails.registerComponent("modulo-cabecera-general", {
 			<modulo-barra-nav :breadcrumb="breadcrumb" :usuario="usuario"></modulo-barra-nav>
 		</div>
 		<div class="col-sm-2">
-			<img src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
+			<img class="imagen_polhibou" src="/images/svg/iconoPolhibou.svg" alt="Logo Polhibou" />
 		</div>
 		
 		<div :class="usuario ? 'col-sm-2':'col-sm-4'">

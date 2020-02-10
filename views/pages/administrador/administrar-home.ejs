@@ -39,22 +39,20 @@
               <div class="list-group list-group-flush">
                 <a v-for="estudiante in estudiantes" :href="'/view-puntaje-estudiante/?estudianteId='+estudiante.id"
                   class="list-group-item list-group-item-action flex-column align-items-start list-group-item-profesor">
-
                   <div class="d-flex w-100 justify-content-between">
                     <h5 class="mb-1">{{estudiante.nombre}}</h5>
-                    <!-- <span class="badge badge-primary badge-pill">puntos: </span>
-            <span class="badge badge-primary badge-pill">nivel: </span> -->
                     <span>ultimo Acceso: {{fechaUltimoAccesoEstudiante(estudiante)}}</span>
                   </div>
-                  <!-- <p class="mb-1">ultimo Acceso: {{fechaUltimoAccesoEstudiante(estudiante)}}</p> -->
                   <p class="mb-1">Cursos tomados:</p>
                   <ul>
                     <li v-for="curso in estudiante.cursos" class="mb-1">{{curso.nombre}}</li>
                   </ul>
                 </a>
-                <!-- <a class="list-group-item list-group-item-action" href="#"><i class="fas fa-plus"></i> Agregar
-          Estudiante</a> -->
+
               </div>
+              <h6 v-if="estudiantes.length==0">
+                <p>NO EXISTEN ESTUDIANTES LOGUEADOS AÚN</p>
+              </h6>
             </div>
           </div>
 
@@ -79,6 +77,9 @@
 
                 </ul>
               </div>
+              <h6 v-if="administradores.length==0">
+                <p>NO EXISTEN USUARIOS CON ROL ADMINISTRADOR REGISTRADOS</p>
+              </h6>
             </div>
           </div>
 

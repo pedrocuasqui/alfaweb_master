@@ -596,10 +596,18 @@
                                     <!-- en caso de  que se intente modificar el curso de informatica basica-->
                                     <div v-else>
                                         <small>
-                                            <p>*solo puede editar el campo TITULO ( en la parte superior) y la
-                                                DESCRIPCIÓN (pie de página)</p>
+                                            <p></p>
                                         </small>
-                                        <h2> NO SE PUEDE EDITAR ESTE CONTENIDO ACCESO RESTRINGIDO</h2>
+                                        <div class="alert alert-info" role="alert">
+                                            *solo puede editar el campo TITULO ( en la parte superior) y la
+                                            DESCRIPCIÓN (pie de página)
+                                        </div>
+                                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                            <strong>Contenido:</strong> El acceso al contenido del curso es restringido.
+                                            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                            </button>
+                                        </div>
                                     </div>
                                     <!-- si se trata de un objeto modulo se muestran las opciones para cargar imágen  -->
                                     <div v-if="objetoSeleccionado.nombreModulo" class="form-group">

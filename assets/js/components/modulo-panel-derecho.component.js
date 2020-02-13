@@ -275,7 +275,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 								</div>
 							</div>
 							<!-- Seccion de evaluacion y puntaje -->
-							<div class="dropdown-divider"></div>
+							<div v-if="!esAdmin" class="dropdown-divider"></div>
 							<div class="row enlaces" v-if="!esAdmin">
 								<div class="col">
 
@@ -291,7 +291,7 @@ parasails.registerComponent("modulo-panel-derecho", {
 								</div>
 							</div>
 							<!-- Seccion usuarios conectados -->
-							<div class="dropdown-divider"></div>
+							<div v-if="!esAdmin" class="dropdown-divider"></div>
 							<!--<div class="row usuarios-conectados" v-if="!esAdmin">
 								<div class="col">
 									<div><span>Últimos usuarios conectados</span></div>

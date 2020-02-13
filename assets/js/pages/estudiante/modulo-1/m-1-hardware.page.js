@@ -78,8 +78,7 @@ parasails.registerPage("m-1-hardware", {
 				{
 					posicion: "1", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"El término monitor se refiere normalmente a la pantalla de vídeo, y su función principal y única es la de permitir al usuario interactuar" +
-						" con la computadora.",
+						"El término monitor se refiere normalmente a la pantalla de vídeo, y su función principal y única es la de permitir al usuario interactuar con la computadora mostrando datos o información al usuario.",
 					imagen:
 						"https://www.asus.com/media/global/products/Em0Dz3MjS9JKYM88/P_setting_fff_1_90_end_500.png",
 					alt: "Monitor"

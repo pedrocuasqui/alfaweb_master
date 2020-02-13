@@ -460,9 +460,10 @@ parasails.registerPage("administrar-contenido", {
 				swal({
 					position: "center",
 					icon: "success",
-					title: `Pregunta agregada correctamente!`,
+					title: `Pregunta agregada correctamente de forma local!`,
+					text: `Recuerda guardar la evaluación para no perder tu avance`,
 					showConfirmButton: true,
-					timer: 1500
+					timer: 2500
 				});
 
 				this.preguntaEnEdicion = {
@@ -701,14 +702,28 @@ parasails.registerPage("administrar-contenido", {
 					}
 				})
 				.catch(err => {
-					swal({
-						title: `No se ha podido crear la evaluación`,
-						icon: "error",
-						type: "error",
-						text: `${err}`,
-						confirmButtonClass: "btn-danger"
-						// buttonsStyling: false
-					});
+					if (err.response) {
+						console.log(`TIPO ERROS ${err.response}`);
+						if (err.response.status == 403) {
+							swal({
+								title: `No se ha podido crear la evaluación`,
+								icon: "error",
+								type: "error",
+								text: `Tu sesión de Administrador ha expirado`,
+								confirmButtonClass: "btn-danger"
+								// buttonsStyling: false
+							});
+						}
+					} else {
+						swal({
+							title: `No se ha podido crear la evaluación`,
+							icon: "error",
+							type: "error",
+							text: `${err}`,
+							confirmButtonClass: "btn-danger"
+							// buttonsStyling: false
+						});
+					}
 				});
 		},
 
@@ -794,8 +809,9 @@ parasails.registerPage("administrar-contenido", {
 					position: "center",
 					icon: "success",
 					title: `Pregunta agregada correctamente!`,
+					text: `Recuerda guardar la evaluación para no perder tu avance`,
 					showConfirmButton: true,
-					timer: 1500
+					timer: 2500
 				});
 				this.preguntaEnEdicion = {
 					enunciado: null,

@@ -32,9 +32,9 @@
 @coloriconos: #ffffff;
 @color_fondo_pagina: #1e1e2f;
 @colorbordeformulario: #2b3553;
-@colorIconosMorados: #e44cc4; 
+@colorIconosMorados: #e44cc4;
 @fontSize7em: 0.7rem;
-@colorLetraSidebar: hsla(0,0%,100%,.8);
+@colorLetraSidebar: hsla(0, 0%, 100%, 0.8);
 @colorNotificacion: #e66ad2;
 // FIN VARIABLES
 
@@ -118,7 +118,7 @@ p.mintrucciones,
 	i.fas.fa-stop,
 	a.audioTag,
 	i.fas.fa-angle-down,
-	i.fas.fa-angle-up{
+	i.fas.fa-angle-up {
 		color: @coloriconos;
 		cursor: pointer;
 	}
@@ -128,8 +128,9 @@ p.mintrucciones,
 	i.fas.fa-stop,
 	i.fas.fa-cubes,
 	i.fas.fa-plus-circle.px-3,
+	i.fas.fa-plus-circle.fa-3x,
 	i.fas.fa-lock-open.pl-4,
-	i.fas.fa-lock.pl-4{
+	i.fas.fa-lock.pl-4 {
 		font-size: 25px;
 	}
 	i.fas.fa-cube,
@@ -236,7 +237,6 @@ p.mintrucciones,
 			padding-left: 20px !important; //que el contenido se encuentre apegado al margen izquierdo
 			padding-right: 0% !important; //que el contenido se encuentre apegado al margen derecho
 			text-transform: uppercase;
-	
 
 			#sidebar-menu {
 				//todo el sidebar
@@ -250,7 +250,6 @@ p.mintrucciones,
 				height: 100%; // esto estará contenido dentro de la columna izquierda
 				opacity: 1;
 				border-radius: 5px;
-				
 
 				/* width */
 				::-webkit-scrollbar {
@@ -267,7 +266,7 @@ p.mintrucciones,
 
 				/* Handle */
 				::-webkit-scrollbar-thumb {
-					background: @colorIconosMorados;	
+					background: @colorIconosMorados;
 				}
 				/* Handle on hover */
 				::-webkit-scrollbar-thumb:hover {
@@ -289,15 +288,13 @@ p.mintrucciones,
 
 					span.titulo_sidebar {
 						white-space: nowrap;
-    				text-overflow: ellipsis;
-    				overflow: hidden;
+						text-overflow: ellipsis;
+						overflow: hidden;
 					}
-					
-					span.titulo_sidebar img{
-						
-							width: 50px;
-							height: 50px;
-						
+
+					span.titulo_sidebar img {
+						width: 50px;
+						height: 50px;
 					}
 					.dropdownModulo {
 						//contenedor individual del modulo y sus submodulos
@@ -306,13 +303,11 @@ p.mintrucciones,
 						width: 100%;
 						float: left;
 						padding-top: 20px;
-// las siguientes tres lineas no permiten oculta el texto que excede del contenedor
+						// las siguientes tres lineas no permiten oculta el texto que excede del contenedor
 
 						white-space: nowrap;
-    				text-overflow: ellipsis;
+						text-overflow: ellipsis;
 						overflow: hidden;
-						
-						
 					}
 
 					.dropbtn-modulo {
@@ -327,13 +322,13 @@ p.mintrucciones,
 						text-align: left;
 						// display: inherit !important; //esta linea no muestra los tres puntos
 						display: flow-root !important; //permite ver los tres puntos del texto que sobrepasa el contenedor
-						
-						
 					}
-					a.dropbtn-modulo span, span.titulo_sidebar span, .dropdown-submodulo a span{
+					a.dropbtn-modulo span,
+					span.titulo_sidebar span,
+					.dropdown-submodulo a span {
 						opacity: 0;
 					}
-				
+
 					//esta clase solo se aplica al contenedor del submodulo que corresponde al modulo seleccionado
 					.dropdown-submodulo {
 						//contenedor individual del submodulo
@@ -344,7 +339,6 @@ p.mintrucciones,
 						z-index: 1;
 						margin-left: 5px;
 					}
-				
 
 					.dropdown-submodulo-deselect {
 						//contenedor individual del submodulo cuando el su modulo no es el seleccionado
@@ -363,9 +357,10 @@ p.mintrucciones,
 						display: block;
 						font-size: @fontSize7em;
 					}
-					
+
 					.dropdown-submodulo a:hover,
-					.submodulo-seleccionado,.dropdownModulo:hover .dropbtn-modulo {
+					.submodulo-seleccionado,
+					.dropdownModulo:hover .dropbtn-modulo {
 						background-color: #82d9b2d4;
 						color: white;
 					}
@@ -396,16 +391,14 @@ p.mintrucciones,
 			z-index: 10;
 			width: 18vw !important;
 		}
-		.mostrar-texto{
+		.mostrar-texto {
 			// display: inline-block !important;
 			opacity: 1 !important;
 			transition: all 0.5s;
-			
 		}
-		div#menuContenidos hr{
-			border-bottom: 1px solid hsla(0,0%,100%,.5);
+		div#menuContenidos hr {
+			border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
 			width: 85%;
-
 		}
 		// /////////////////////////////////////////////////////////////
 		//////////---PARTE CENTRAL Y BARRA LATERAL DERECHA---///////////
@@ -576,7 +569,13 @@ p.mintrucciones,
 	background-color: @colorcontenidocentral;
 	height: 100%;
 	width: 100%;
-	overflow-y: auto;
+	overflow-y: auto !important;
+}
+.contenedor-slot-principal-evaluacion {
+	background-color: @colorcontenidocentral;
+	height: 50vh;
+	width: 100%;
+	overflow-y: auto !important;
 }
 .contenedor-imagen-svg {
 	position: relative;
@@ -828,6 +827,9 @@ img.mensaje-bienvenida {
 	width: auto !important; //con respecto a .modal-body
 	overflow-y: auto;
 }
+.modal_contenedor_descripcion a {
+	color: @colorfuente !important;
+}
 .modal_contenedor_multimedia {
 	height: 400px !important; //con respecto a .modal-body
 	width: auto !important; //con respecto a .modal-body
@@ -841,11 +843,11 @@ img.mensaje-bienvenida {
 }
 
 .carousel-control-prev-icon {
-	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23337ab7' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e") !important;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23d302e1' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e") !important;
 }
 
 .carousel-control-next-icon {
-	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23337ab7' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e") !important;
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23d302e1' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e") !important;
 }
 
 .textoOculto {
@@ -927,7 +929,7 @@ img.mensaje-bienvenida {
 			margin: 0 2px !important;
 			width: 30px !important;
 			height: 30px !important;
-			background-color: #337ab7 !important;
+			background-color: #d302e1 !important;
 		}
 	}
 }
@@ -1312,11 +1314,11 @@ h5.modal-title {
 .introjs-tooltiptext {
 	color: #fff !important;
 }
-.introjs-disabled{
+.introjs-disabled {
 	color: #222a4259 !important;
 	display: none !important;
 }
-.introjs-helperLayer{
+.introjs-helperLayer {
 	background-color: rgba(65, 180, 128, 0.54) !important;
 }
 
@@ -1344,12 +1346,12 @@ h5.modal-title {
 	border-width: 0px;
 	border-radius: 0.4285rem;
 	margin: 4px 1px;
-	margin-top: 1rem !important;
+	// margin-top: 1rem !important;
 	padding: 11px 40px;
 	line-height: 1.35em;
 	// position: absolute;
 	color: #fff;
-	font-weight: 600;
+	font-weight: 400;
 	transition: 0.5s !important; //la transicion al mostrar u ocultar
 }
 .boton_formulario:disabled {
@@ -1371,7 +1373,8 @@ h5.modal-title {
 #boton_desplegable_personalizado.dropdown-item {
 	text-align: center;
 }
-a.dropdown-item{
+a.dropdown-item,
+div.soporte {
 	font-size: @fontSize7em;
 }
 .btn-group {
@@ -1639,9 +1642,12 @@ div.card.evaluacion button {
 	background-color: @color_fondo_pagina !important;
 }
 
-div.introjs-tooltiptext .introjs-button:before{
-	content:"Entendido / ";
+div.introjs-tooltiptext .introjs-button:before {
+	content: "Entendido / ";
 }
-.imagen_polhibou{
+.imagen_polhibou {
 	height: 50px !important;
+}
+.position_absolute {
+	display: absolute !important;
 }

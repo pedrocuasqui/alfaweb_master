@@ -115,7 +115,7 @@ module.exports.bootstrap = async function(done) {
 						},
 						{
 							enunciado:
-								'<p style="text-align: center;">&iquest;Cual es la funci&oacute;n principal de monitor?</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://images-na.ssl-images-amazon.com/images/I/71mBU1vbrJL._SX466_.jpg" alt="" width="123" height="123" /></p>',
+								'<p style="text-align: center;">&iquest;Cual es la funci&oacute;n principal de monitor?</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://images-na.ssl-images-amazon.com/images/I/71mBU1vbrJL._SX466_.jpg" alt="" width="123" height="123" /></p>\n<p>&nbsp;</p>',
 							opciones: {
 								opcion1: "Almacena datos e información.",
 								opcion2: "Ingresa  la información  a la computadora",
@@ -155,9 +155,22 @@ module.exports.bootstrap = async function(done) {
 								"El conjunto de componentes y dispositivos físicos y tangibles que integran una computadora.",
 							pista: "Tiene que ver con la parte física",
 							pregNumero: 4
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">El siguiente dispositivo se conoce como:</p>\n<p style="text-align: center;"><img style="font-size: 1rem;" src="https://lh3.googleusercontent.com/proxy/0E-XxrWd8iaGg4oTJwVfQ2y1E3abWPmUFVGdzEq42uOOdnQMnpBa2wpXLKMBkd73t-OCRNJfUg-vbz1kRAZEb1m1Kglf8IORosTT6VtefCY54yvHRrU_mQMliVfpJm6JSKys0Yl37g" alt="Dispositivo para controlar el computador" width="145" height="137" /></p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: "Teclado",
+								opcion2: "Puntero",
+								opcion3: "Mouse o ratón",
+								opcion4: "Dispositivo de salida"
+							},
+							respuesta: "Mouse o ratón",
+							pista: "Tiene el nombre de un animal",
+							pregNumero: 5
 						}
 					],
-					tiempoMaximoPorPregunta: 20,
+					tiempoMaximoPorPregunta: 100,
 					publicada: true
 				}
 			},
@@ -171,7 +184,150 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 2,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado:
+								'<p style="text-align: center;">Las teclas de funci&oacute;n:<img style="font-size: 1rem; display: block; margin-left: auto; margin-right: auto;" src="https://i.pinimg.com/originals/30/62/87/306287397d539b235c1b1cb00b934fb0.jpg" alt="Resultado de imagen de tecla f1 gift" width="156" height="117" /></p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Sirven como atajos para acceder rápidamente a determinadas funciones en los distintos programas.",
+							pista: "Tiene que ver con hacer más rápido",
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">&nbsp;En general, la tecla F1 :</p>\n<p><img style="font-size: 1rem; display: block; margin-left: auto; margin-right: auto;" src="https://d286ib5nnf9jej.cloudfront.net/wp-content/uploads/2017/05/teclas-funcion-teclado-f1-f2-f3-f4-mediatrends-2-750x500.jpg" alt="Resultado de imagen de tecla f1" width="166" height="111" /></p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Está asociada a la ayuda que ofrecen los distintos programas",
+							pista: "Relacionado con ayuda",
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">La tecla F5:<img style="font-size: 1rem; display: block; margin-left: auto; margin-right: auto;" src="https://2.bp.blogspot.com/-WZjXbsKJGpw/WfS3RPaQmqI/AAAAAAAACbM/uTutxdX01rs5_T3zq7dPGkwLLsURRgvZgCLcBGAs/s1600/ass2.jpg" alt="Resultado de imagen de tecla f5" width="161" height="162" /></p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Actualiza el contenido de la ventana seleccionada.",
+							pista: "Relacionado con renovar",
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">La Tecla F11:&nbsp;</p>\n<p style="text-align: center;">&nbsp;<img style="font-size: 1rem;" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRQpS0dzKs8zntFh3Xqj9tpi9AFNUNJzZWoUIfA6OQ6N55yxz3F" alt="Resultado de imagen de tecla f11" width="217" height="87" /></p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Habilita el modo de pantalla completa en el navegador web",
+							pista: null,
+							pregNumero: 4
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">Las teclas alfanum&eacute;ricas:<img style="font-size: 1rem; display: block; margin-left: auto; margin-right: auto;" src="https://3.bp.blogspot.com/-6DU9NgC4SRo/VOeDR7Iz64I/AAAAAAAABh8/swVLJC7Ddsc/s1600/teclas%2Balfanumericas.png" alt="Resultado de imagen de teclas alfanum&eacute;ricas" width="342" height="138" /></p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Sirven para escribir porque incluyen las letras del alfabeto, números, signos de puntuación y símbolos que se encuentran en las máquinas de escribir tradicionales",
+							pista: "Son las más usadas",
+							pregNumero: 5
+						},
+						{
+							enunciado:
+								"<p>Ejemplos de teclas especiales son:&nbsp;</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Bloq Mayús, Barra espaciadora, Ctrl, Alt, la tecla del logotipo de Windows y Esc",
+							pista: null,
+							pregNumero: 6
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">Las teclas de posici&oacute;n:</p>\n<p style="text-align: center;"><img src="https://i.pinimg.com/originals/c4/7d/88/c47d88963c6fd217884893c33bdc661d.gif" alt="Resultado de imagen de Movimiento gracioso gif" width="90" height="123" /></p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Se utilizan para desplazarse por documentos o páginas web y editar texto. ",
+							pista: null,
+							pregNumero: 7
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">El teclado num&eacute;rico:</p>\n<p style="text-align: center;"><img src="https://cdn.shopify.com/s/files/1/0025/1215/8835/collections/Teclados_Numericos_1200x1200.png?v=1532360772" alt="Resultado de imagen de teclado num&eacute;rico background transparednt" width="127" height="127" /></p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Sirve para escribir los números en forma más rápida.",
+							pista: null,
+							pregNumero: 8
+						},
+						{
+							enunciado:
+								'<p>Las teclas&nbsp;&nbsp;"impr pant", "bloq despl" y "pause"</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Son otras teclas con funciones especiales",
+							pista: null,
+							pregNumero: 9
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">La tecla ESC (Escape):</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.alegsa.com.ar/Imagen/escape.jpg" alt="Resultado de imagen de tecla escape esc" width="150" height="132" /></p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Generalmente sirve para salir de la pantalla temporal que se muestra en pantalla",
+							pista: null,
+							pregNumero: 10
+						}
+					],
+					tiempoMaximoPorPregunta: "200",
+					publicada: false
+				}
 			},
 			{
 				nombreSubmodulo: "Mouse",

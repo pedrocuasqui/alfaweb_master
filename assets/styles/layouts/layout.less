@@ -567,7 +567,7 @@ p.mintrucciones,
 }
 .contenedor-slot-principal {
 	background-color: @colorcontenidocentral;
-	height: 100%;
+	height: 65vh;
 	width: 100%;
 	overflow-y: auto !important;
 }
@@ -830,7 +830,8 @@ img.mensaje-bienvenida {
 .modal_contenedor_descripcion a {
 	color: @colorfuente !important;
 }
-.modal_contenedor_multimedia {
+.modal_contenedor_multimedia,
+.modal_contenedor_multimedia * {
 	height: 400px !important; //con respecto a .modal-body
 	width: auto !important; //con respecto a .modal-body
 	overflow-y: hidden;
@@ -840,6 +841,7 @@ img.mensaje-bienvenida {
 	flex-wrap: wrap;
 	justify-content: center; //centra los elemnentos hijos horizontalmente
 	align-items: center; //centra los elementos hijos verticalmente
+	color: @colorletramodal !important;
 }
 
 .carousel-control-prev-icon {

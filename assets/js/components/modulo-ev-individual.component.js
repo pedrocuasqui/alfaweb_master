@@ -22,7 +22,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			preguntaSeleccionadaJuegoEmparejamiento: null,
 			coloresPreguntasEmparejamiento: [
 				"#F31885",
-				"#F39318",
+				"#A39318",
 				"#B4F318",
 				"#18F38F",
 				"#18A7F3",
@@ -298,7 +298,7 @@ parasails.registerComponent("modulo-ev-individual", {
             <div class="row justify-content-center">
                 
                 <!-- usar el siguiente codigo para el estudiante-->
-                <div class="col-sm-4">
+                <div class="col-sm-5 mb-4">
                     
                     <div @click.stop="seleccionarEnunciadoEmpareja(pregunta,indexPreg)"
                         class="row"
@@ -310,7 +310,7 @@ parasails.registerComponent("modulo-ev-individual", {
                     </div>
                 </div>
                 
-                <div class="col-sm-4">
+                <div class="col-sm-7 mb-4">
                     <div class="row"
                         @click.stop="seleccionarRespuestaEmpareja(pregunta1,indexResp)"
                         :id="'Resp'+indexResp" key="indexResp"

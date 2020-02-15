@@ -23,7 +23,7 @@ parasails.registerComponent("modulo-ev-individual", {
 			coloresPreguntasEmparejamiento: [
 				"#F31885",
 				"#A39318",
-				"#B4F318",
+				"#18F35E",
 				"#18F38F",
 				"#18A7F3",
 				"#9318F3",
@@ -335,7 +335,7 @@ parasails.registerComponent("modulo-ev-individual", {
 </template>
 
     <template v-else>
-        <h3>RESULTADOS:</h3>
+        <h5>RESULTADOS:</h5>
         <div class="container">
         <div><p>Aciertos: {{aciertos.length}} / {{preguntasCuestionarioRespuestas.length}}</p></div>
             
@@ -346,7 +346,7 @@ parasails.registerComponent("modulo-ev-individual", {
                     
                     
                     <div class="col-sm-7"> 
-                        <p :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">Tu respuesta: {{pregunta.respuestaEstudiante ? pregunta.respuestaEstudiante: 'SIN RESPUESTA'}}</p>    
+                        <div class="alert" :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'alert-success' : 'alert-danger']">Tu respuesta: {{pregunta.respuestaEstudiante ? pregunta.respuestaEstudiante: 'SIN RESPUESTA'}}</div>    
                         <p>Respuesta correcta:{{pregunta.respuesta}}</p>
                     </div>   
                 </div>

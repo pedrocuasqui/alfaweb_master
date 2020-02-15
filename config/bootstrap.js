@@ -158,7 +158,7 @@ module.exports.bootstrap = async function(done) {
 						},
 						{
 							enunciado:
-								'<p style="text-align: center;">El siguiente dispositivo se conoce como:</p>\n<p style="text-align: center;"><img style="font-size: 1rem;" src="https://lh3.googleusercontent.com/proxy/0E-XxrWd8iaGg4oTJwVfQ2y1E3abWPmUFVGdzEq42uOOdnQMnpBa2wpXLKMBkd73t-OCRNJfUg-vbz1kRAZEb1m1Kglf8IORosTT6VtefCY54yvHRrU_mQMliVfpJm6JSKys0Yl37g" alt="Dispositivo para controlar el computador" width="145" height="137" /></p>\n<p>&nbsp;</p>',
+								'<p style="text-align: center;">El siguiente dispositivo se conoce como:</p>\n<p style="text-align: center;"><a title="Image from freeiconspng.com" href="https://www.freeiconspng.com/img/23281"><img src="https://www.freeiconspng.com/uploads/mouse-png-11.png" alt="High quality Mouse Cliparts For Free!" width="109" height="103" /></a></p>\n<p>&nbsp;</p>',
 							opciones: {
 								opcion1: "Teclado",
 								opcion2: "Puntero",

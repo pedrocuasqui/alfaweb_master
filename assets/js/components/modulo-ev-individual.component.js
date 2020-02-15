@@ -270,7 +270,7 @@ parasails.registerComponent("modulo-ev-individual", {
 							<div class="list-group">
 							<!--Enunciado-->
 								<div class="d-flex w-100 justify-content-center">
-												<p class="pr-2">Pregunta {{indicePreguntaCuestionario+1}} de {{preguntasCuestionarioRespuestas.length +1}} </p><h5 class="mb-1" v-html="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado"></h5>   
+												<p class="pr-2">Pregunta {{indicePreguntaCuestionario+1}} de {{preguntasCuestionarioRespuestas.length +1}}: </p><h5 class="mb-1" v-html="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado"></h5>   
 								</div>
 								<!--opciones de respuesta-->
 								<div class="form-check texto_alineado_izquierda"  v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])">

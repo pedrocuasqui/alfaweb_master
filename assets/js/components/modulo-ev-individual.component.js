@@ -270,7 +270,7 @@ parasails.registerComponent("modulo-ev-individual", {
 							<div class="list-group">
 							<!--Enunciado-->
 								<div class="d-flex w-100 justify-content-center">
-												<h5 class="mb-1" v-html="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado"></h5>   
+												<p class="pr-2">Pregunta {{indicePreguntaCuestionario+1}} de {{preguntasCuestionarioRespuestas.length +1}} </p><h5 class="mb-1" v-html="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado"></h5>   
 								</div>
 								<!--opciones de respuesta-->
 								<div class="form-check texto_alineado_izquierda"  v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])">
@@ -304,15 +304,18 @@ parasails.registerComponent("modulo-ev-individual", {
 						</div>
             <div class="row justify-content-center">
                 
-                <!-- usar el siguiente codigo para el estudiante-->
+								<!-- usar el siguiente codigo para el estudiante-->
+								
                 <div class="col-sm-5 mb-4">
                     
                     <div @click.stop="seleccionarEnunciadoEmpareja(pregunta,indexPreg)"
                         class="row"
                         :class="[enunciadoSeleccionado == indexPreg ? 'enunSelected': '' ]"
                         :id="'Preg'+indexPreg" key="indexPreg"
-                        v-for="(pregunta,indexPreg) in preguntasCuestionario">
-                        <div v-html="pregunta.enunciado">
+												v-for="(pregunta,indexPreg) in preguntasCuestionario">
+												<div class="col-sm-1"><p>{{indexPreg+1}}</p></div>
+												<div class="col-sm-11"> <div v-html="pregunta.enunciado"> </div>
+												
                         </div>
                     </div>
                 </div>
@@ -344,11 +347,12 @@ parasails.registerComponent("modulo-ev-individual", {
             
                 
                 <div class="row justify-content-center" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
-                                   
-                    <div class="col-sm-5" v-html="pregunta.enunciado"></div> 
+																	 
+										<div class="col-sm-1 centrado_vertical"><p>{{index+1}}</p></div>
+                    <div class="col-sm-4" v-html="pregunta.enunciado"></div> 
                     
                     
-                    <div class="col-sm-7"> 
+                    <div class="col-sm-7 centrado_vertical"> 
                         <div class="alert" :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'alert-success' : 'alert-danger']">Tu respuesta: {{pregunta.respuestaEstudiante ? pregunta.respuestaEstudiante: 'SIN RESPUESTA'}}</div>    
                         <p>Respuesta correcta:{{pregunta.respuesta}}</p>
                     </div>   

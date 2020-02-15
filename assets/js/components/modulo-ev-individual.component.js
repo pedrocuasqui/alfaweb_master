@@ -504,6 +504,29 @@ parasails.registerComponent("modulo-ev-individual", {
 			}
 			this.respuestaAnterior.push(indexResp);
 			if (this.preguntaSeleccionadaJuegoEmparejamiento) {
+				//CUANDO UNA PREGUNTA HA SIDO SELECCIONADA
+
+				if (
+					this.preguntasCuestionarioRespuestas[this.enunciadoSeleccionado]
+						.respuestaEstudiante
+				) {
+					console.log("ya contiene respuesta de estudiante");
+					//si la pregunta seleccionada ya tenia una respuesta, y no es la misma
+					if (
+						this.preguntasCuestionarioRespuestas[this.enunciadoSeleccionado]
+							.respuestaEstudiante != pregunta.respuesta
+					) {
+						//buscar la respuesta que corresponde a la anterior respuesta y quitar su color
+						$(
+							"#Resp" +
+								this.preguntasCuestionarioRespuestas[this.enunciadoSeleccionado]
+									.indiceRespuestaEstudiante
+						).css({
+							"background-color": "#27293d"
+						});
+					}
+				}
+
 				// recorrer el arreglo de preguntasCuestionarioRespuestas
 				for (
 					let p = 0;
@@ -515,12 +538,15 @@ parasails.registerComponent("modulo-ev-individual", {
 						// si la pregunta de indice p tiene una respuestaEstudiante igual a la respuesta seleccionada por el estudiante
 						if (
 							this.preguntasCuestionarioRespuestas[p].respuestaEstudiante ==
-							pregunta.respuesta
+								pregunta.respuesta &&
+							this.preguntasCuestionarioRespuestas[this.enunciadoSeleccionado]
+								.indiceRespuestaEstudiante != indexResp
 						) {
-							// Se quita el estilo de color al enunciado
+							// Se despinta la pregunta que estaba asociada a la respuesta seleccionada
 							$("#Preg" + p).css({
 								"background-color": "#27293d"
 							});
+							console.log("decolorar a pregunta de posicion:" + p);
 
 							//Se establece en null la respuestaEstudiante de la pregunta de indice p
 							this.preguntasCuestionarioRespuestas[
@@ -548,6 +574,9 @@ parasails.registerComponent("modulo-ev-individual", {
 				this.preguntasCuestionarioRespuestas[
 					this.enunciadoSeleccionado
 				].respuestaEstudiante = pregunta.respuesta;
+				this.preguntasCuestionarioRespuestas[
+					this.enunciadoSeleccionado
+				].indiceRespuestaEstudiante = indexResp;
 
 				if (
 					pregunta.respuesta !=

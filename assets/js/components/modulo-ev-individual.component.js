@@ -187,7 +187,7 @@ parasails.registerComponent("modulo-ev-individual", {
       </div>
       <div class="modal-footer">
         <!--<button type="button" class="btn btn-secondary" data-dismiss="modal">Omitir evaluación</button>-->
-        <button type="button" class="btn btn-primary" data-dismiss="modal" >Aceptar</button>
+        <button type="button" class="btn btn-primary boton_formulario" data-dismiss="modal" >Aceptar</button>
         <!--// empieza la evaluaci'on despues de que se cierra el modal de inicio, revisar en la seccion MOUNTED-->
       </div>
     </div>
@@ -296,8 +296,8 @@ parasails.registerComponent("modulo-ev-individual", {
     <template v-if="tipoEvaluacion=='Emparejamiento'">
 				<div class="container">
 						<div  class="row justify-content-center mb-2">
-						<div class="col-sm-5"><p>ENUNCIADOS</p></div>
-						<div class="col-sm-7"><p>OPCIONES DE RESPUESTA</p></div>
+						<div class="col-sm-5"><p>SELECCIONA UN ENUNCIADO</p></div>
+						<div class="col-sm-7"><p>DESPUÉS SELECCIONA UNA RESPUESTA </p></div>
 						</div>
             <div class="row justify-content-center">
                 

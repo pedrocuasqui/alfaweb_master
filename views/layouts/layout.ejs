@@ -68,8 +68,10 @@
 
 
   <!-- tiny mcs -->
+  <script src="http://tinymce.cachefly.net/4.2/langs/es_ES.js"></script>
   <script
     src="https://cloud.tinymce.com/5/tinymce.min.js?apiKey=kjkditphnen1av2wynuz72xcpf4kkxlyj0o0qpn1b82j48oh"></script>
+
   <script>
 
 
@@ -108,6 +110,7 @@
     };
 
     tinymce.init({
+      language: "es_ES",
       selector: '#mytextarea',
       plugins: 'image code',
       toolbar: "insertfile undo redo |image code| bold italic | fontselect fontsizeselect link  |forecolor backcolor | template codesample | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent",
@@ -137,6 +140,7 @@
     // MANTENER ESTA SEGUNDA ISTANCIA PARA SABER QUE PASA CON LA CREACION DE LA EVALUACION
 
     tinymce.init({
+      language: "es_ES",
       selector: '#mytextarea2',
       plugins: 'image code',
       toolbar: "insertfile undo redo |image code| bold italic | fontselect fontsizeselect link  |forecolor backcolor | template codesample | alignleft aligncenter alignright alignjustify | bullist numlist | outdent indent",

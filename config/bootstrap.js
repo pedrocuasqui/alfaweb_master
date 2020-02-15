@@ -895,7 +895,65 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 3,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								"<p>La papelera de reciclaje se encuentra vac&iacute;a cuando no se ha borrado ning&uacute;n archivo:</p>",
+							opciones: {
+								opcion1: "Falso",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>Si el usuario elimina un nuevo archivo y la papelera est&aacute; por llenarse, reacciona eliminando suficientes archivos para que la carpeta no se llene en exceso.</p>",
+							opciones: {
+								opcion1: "Verdadero",
+								opcion2: "Falso",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">La imagen a continuaci&oacute;n representa una papelera llena</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://genesismurillorivas.files.wordpress.com/2015/12/papeleras-reciclaje-049.png" /></p>',
+							opciones: {
+								opcion1: "Falso",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Falso",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								"<p>La papelera permite la recuperaci&oacute;n de informaci&oacute;n que ha sido borrada</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Falso",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 4
+						}
+					],
+					tiempoMaximoPorPregunta: "200",
+					publicada: true
+				}
 			}
 		]);
 
@@ -922,7 +980,70 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 1,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								'<p style="text-align: center;">La secci&oacute;n mostrada a continuaci&oacute;n, recibe el nombre de:</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://support.content.office.net/es-es/media/f48f1f75-3fd1-4c56-9b09-a8ec291d21c6.png" /></p>',
+							opciones: {
+								opcion1: "Barra de estado",
+								opcion2: "Barra de desplazamiento",
+								opcion3: "Cinta de opciones",
+								opcion4: "Área de trabajo"
+							},
+							respuesta: "Cinta de opciones",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado: "<p>La cinta de opciones</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Es un conjunto de herramietas de dibujo",
+								opcion2:
+									"Es un conjunto de herramientas que te permite acceder rápidamente a los comandos que necesitas para crear o editar un documento",
+								opcion3: "Es un conjunto de herramientas de diseño gráfico",
+								opcion4: "No pertenece a Microsoft Word"
+							},
+							respuesta:
+								"Es un conjunto de herramientas que te permite acceder rápidamente a los comandos que necesitas para crear o editar un documento",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado: "<p>El &aacute;rea de trabajo</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Es una opción de la barra de herrramientas",
+								opcion2: "Es un lienzo para dibujar con paint",
+								opcion3:
+									"Es un conjunto de herramientas para editar el documento",
+								opcion4:
+									"Está situada en la parte central, muestra el documento que estamos editando"
+							},
+							respuesta:
+								"Está situada en la parte central, muestra el documento que estamos editando",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">La barra de desplazamiento:</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1:
+									"Es un conjunto de barras de herramientas que te permite acceder rápidamente a los comandos que necesitas para crear o editar un documento",
+								opcion2: "Permite deslizar la hoja hacia arriba o abajo",
+								opcion3:
+									"Esta ubicada en la parte inferior del área de trabajo",
+								opcion4: "No existe en este Software"
+							},
+							respuesta: "Permite deslizar la hoja hacia arriba o abajo",
+							pista: null,
+							pregNumero: 4
+						}
+					],
+					tiempoMaximoPorPregunta: "240",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Área de trabajo",
@@ -934,7 +1055,39 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 2,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								"<p>El &aacute;rea de trabajo se encuentra situada en la parte central de la pantalla de word</p>",
+							opciones: {
+								opcion1: "Verdadero",
+								opcion2: "Falso",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>El &aacute;rea de trabajo presenta una hoja en blanco en la que podemos ingresar el contenido por medio del teclado.</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Falso",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 2
+						}
+					],
+					tiempoMaximoPorPregunta: "120",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Barra de título",

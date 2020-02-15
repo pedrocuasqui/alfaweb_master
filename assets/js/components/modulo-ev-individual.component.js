@@ -294,7 +294,11 @@ parasails.registerComponent("modulo-ev-individual", {
 
     <!-- EMPAREJAMIENTO -->
     <template v-if="tipoEvaluacion=='Emparejamiento'">
-        <div class="container">
+				<div class="container">
+						<div  class="row justify-content-center mb-2">
+						<div class="col-sm-5"><p>ENUNCIADOS</p></div>
+						<div class="col-sm-7"><p>OPCIONES DE RESPUESTA</p></div>
+						</div>
             <div class="row justify-content-center">
                 
                 <!-- usar el siguiente codigo para el estudiante-->
@@ -338,10 +342,10 @@ parasails.registerComponent("modulo-ev-individual", {
                 
                 <div class="row justify-content-center" v-for="(pregunta, index) in preguntasCuestionarioRespuestas">
                                    
-                    <div class="col-sm-3" v-html="pregunta.enunciado"></div> 
+                    <div class="col-sm-5" v-html="pregunta.enunciado"></div> 
                     
                     
-                    <div class="col-sm-3"> 
+                    <div class="col-sm-7"> 
                         <p :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">Tu respuesta: {{pregunta.respuestaEstudiante ? pregunta.respuestaEstudiante: 'SIN RESPUESTA'}}</p>    
                         <p>Respuesta correcta:{{pregunta.respuesta}}</p>
                     </div>   

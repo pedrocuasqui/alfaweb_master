@@ -23,7 +23,7 @@ parasails.registerPage("m-1-encender-computadora", {
 		indicaciones: [
 			{
 				descripcion:
-					"Para encender el equipo siga los siguientes pasos. Paso 1: Encender el CPU, para ello diríjase al botón de encendido del equipo, por lo general es un circulo con una línea en el centro "
+					"Para encender el equipo siga los siguientes pasos. Paso 1: Encender el CPU, para ello diríjase al botón de encendido del equipo, por lo general es un círculo con una línea en el centro "
 			},
 			{
 				descripcion:
@@ -31,7 +31,7 @@ parasails.registerPage("m-1-encender-computadora", {
 			},
 			{
 				descripcion:
-					"Paso 3: Seleccionar un usuario, la computadora require que cada persona se identifique como usuario, por ello debe seleccionar un usuario para poder acceder y esperar a que inicie el computador"
+					"Paso 3: Seleccionar un usuario, la computadora requiere que cada persona se identifique como usuario, por ello debe seleccionar un usuario para poder acceder y esperar a que inicie el computador"
 			},
 			{
 				descripcion:
@@ -39,7 +39,7 @@ parasails.registerPage("m-1-encender-computadora", {
 			},
 			{
 				descripcion:
-					"Para apagar el computador, ir al botón de inicio y seleccionar la opción apagar. Recuerde que esta acción tambien cierra todos los programas abiertos"
+					"Para apagar el computador, ir al botón de inicio y seleccionar la opción apagar. Recuerde que esta acción también cierra todos los programas abiertos"
 			}
 		],
 		silenciar: true,

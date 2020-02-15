@@ -352,9 +352,9 @@ parasails.registerComponent("modulo-ev-individual", {
                     <div class="col-sm-4" v-html="pregunta.enunciado"></div> 
                     
                     
-                    <div class="col-sm-7 centrado_vertical"> 
+                    <div class="col-sm-7 "> 
                         <div class="alert" :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'alert-success' : 'alert-danger']">Tu respuesta: {{pregunta.respuestaEstudiante ? pregunta.respuestaEstudiante: 'SIN RESPUESTA'}}</div>    
-                        <p>Respuesta correcta:{{pregunta.respuesta}}</p>
+                        <p>Respuesta correcta: {{pregunta.respuesta}}</p>
                     </div>   
                 </div>
            

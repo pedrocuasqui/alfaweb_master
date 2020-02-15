@@ -47,7 +47,7 @@ parasails.registerPage("m-1-hardware-mouse", {
 			id: "ClicIzquierdo",
 			titulo: "Clic izquierdo",
 			detalle:
-				'Cuando se dice que "se debe hacer clic", se hace referencia a la acción de presionar un botón del mouse o ratón, generalmente el izquierdo. Esto vale también para su correspondiente en otros dispositivos con puntero como el trackball o el touchpad. Se escribe "click" con K en inglés. En tanto en español suele usarse en frases como: hacer clic, dar clic, clicar o cliquear, sin "k" según la Real Academia Española. Vea la animación debajo como ejemplo.',
+				'Cuando se dice que "se debe hacer clic", se hace referencia a la acción de presionar un botón del mouse o ratón, generalmente el izquierdo. Se escribe "click" con K en inglés en tanto en español suele usarse en frases como: hacer clic, dar clic, clicar o cliquear, sin "k" según la Real Academia Española. Vea la animación debajo como ejemplo.',
 			leerMas: "http://www.alegsa.com.ar/Dic/clic.php",
 			imgs: [
 				{

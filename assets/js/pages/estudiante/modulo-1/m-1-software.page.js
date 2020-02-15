@@ -92,8 +92,8 @@ parasails.registerPage("m-1-software", {
 			id: "Windows",
 			titulo: "Microsoft Windows",
 			detalle:
-				"Es el nombre de una familia de distribuciones de software para PC, smartphone, servidores y sistemas empotrados, desarrollados y vendidos por Microsoft y disponibles para múltiples arquitecturas, tales como x86, x86-64 y ARM.",
-			leerMas: "https://es.wikipedia.org/wiki/Microsoft_Windows",
+				"Microsoft Windows es un sistema operativo, es decir, un conjunto de programas que posibilita la administración de los recursos de una computadora. Este tipo de sistemas empieza a trabajar cuando se enciende el equipo para gestionar el hardware a partir desde los niveles más básicos.",
+			leerMas: "https://definicion.de/windows/",
 			imgs: [
 				{
 					src:

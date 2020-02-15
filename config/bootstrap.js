@@ -326,7 +326,7 @@ module.exports.bootstrap = async function(done) {
 						}
 					],
 					tiempoMaximoPorPregunta: "200",
-					publicada: false
+					publicada: true
 				}
 			},
 			{
@@ -339,32 +339,251 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 3,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								"<p>El mouse es un elemento que permite controlar al ordenador usando una mano por medio de un puntero.</p>",
+							opciones: {
+								opcion1: "Falso",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>El mouse &Oacute;ptico, funciona con una luz en lugar de una esfera.</p>",
+							opciones: {
+								opcion1: "Falso",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>Dar click hace referencia a la acci&oacute;n de presionar un bot&oacute;n del mouse o rat&oacute;n, generalmente el izquierdo</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Falso",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								"<p>El clic derecho del rat&oacute;n o mouse es la acci&oacute;n de presionar (hacer clic) sobre el scroll del mouse</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "False",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "False",
+							pista: null,
+							pregNumero: 4
+						},
+						{
+							enunciado:
+								'<p>Que clicks se dan en la siguiente imagen:</p>\n<p><img src="https://i.stack.imgur.com/dtS3o.gif" /></p>',
+							opciones: {
+								opcion1: "Click derecho, Scroll, Click izquierdo",
+								opcion2: "Click derecho, Click izquierdo ",
+								opcion3: "Scroll, Click derecho, Click izquierdo",
+								opcion4: "Ninguna de las anteriores"
+							},
+							respuesta: "Click derecho, Click izquierdo",
+							pista: null,
+							pregNumero: 5
+						},
+						{
+							enunciado: "<p>El Scroll sirve para:</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Generalmente sirve para abrir documentos.",
+								opcion2: "Generalmente sirve para mostrar opciones.",
+								opcion3:
+									"Generalmente sirve para desplazar el contenido de la pantalla.",
+								opcion4: "Generalmente sirve para borrar documentos"
+							},
+							respuesta:
+								"Generalmente sirve para desplazar el contenido de la pantalla.",
+							pista: null,
+							pregNumero: 6
+						}
+					],
+					tiempoMaximoPorPregunta: "180",
+					publicada: true
+				}
 			},
 
 			{
 				nombreSubmodulo: "Software",
 				descripcion:
-					"El software es un conjunto de números binarios (bits), que tiene algún sentido para la computadora, y es almacenado en algún soporte físico (hardware), desde donde el procesador puede acceder, para ejecutarlo o mostrarlo. ",
+					"Conjunto de programas necesarios para llevar a cabo las tareas dentro del computador. Se compone de un Sistema Operativo y un conjunto de aplicaciones que manipulan o son manipulados por los componentes físicos del computador, algunos ejemplos son: Windows, Microsoft Word, Google Chrome, Adobe, etc. ",
 				enlace: "m1-software",
 				multimedia: {},
 				contenidoTiny: "<p>Pulse para editar</p>",
 				modulo: moduloCreado.id,
 				ordenNavegacion: 4,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado:
+								'<p style="text-align: center;">Software es:&nbsp;</p>\n<p style="text-align: center;"><img src="https://i.ytimg.com/vi/SPZiO0JrftY/maxresdefault.jpg" width="356" height="200" /></p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"El conjunto de programas necesarios para llevar a cabo las tareas dentro del computador.",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">Microsoft Windows es:</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://i.dlpng.com/static/png/40999_preview.png" width="245" height="230" /></p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Un sistema operativo, es decir, un conjunto de programas que posibilita la administración de los recursos de una computadora. ",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">ESET es:</p>\n<p style="text-align: center;"><img src="https://upload.wikimedia.org/wikipedia/commons/thumb/f/f0/ESET_logo.svg/1280px-ESET_logo.svg.png" width="228" height="90" /></p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Una empresa pionera en protección antivirus",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">Linux es:&nbsp;</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b0/NewTux.svg/300px-NewTux.svg.png" width="172" height="207" /></p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Un sistema operativo libre",
+							pista: null,
+							pregNumero: 4
+						},
+						{
+							enunciado:
+								"<p>Otros ejemplos de software son:</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Microsoft Word, Power Point, Google Chrome, Reproductor de Windows",
+							pista: null,
+							pregNumero: 5
+						}
+					],
+					tiempoMaximoPorPregunta: "100",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Conexión de los componentes a la computadora",
 				descripcion:
-					"La forma en que el hardware opera es por medio de energía, el hardware externo se conecta a la computadora por medio de cables o inalámbricamente, en este módulo aprenderás a conectar los principales componentes a la computadora",
+					"La forma en que el hardware opera es por medio de energía, el hardware externo se conecta a la computadora por medio de cables o inalámbricamente, en el ejemplo se explica como conectar los principales componentes a la computadora",
 				enlace: "m1-conexion-componentes",
 				multimedia: {},
 				contenidoTiny: "<p>Pulse para editar</p>",
 				modulo: moduloCreado.id,
 				ordenNavegacion: 5,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								"<p>En el video, que componenentes se conectan a la torre o CPU</p>",
+							opciones: {
+								opcion1: "Iphone, Impresora, cargador",
+								opcion2: "Scanner, Impresora, Mouse",
+								opcion3: "Impresora",
+								opcion4: "Mouse, Teclado, Monitor"
+							},
+							respuesta: "Mouse, Teclado, Monitor",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">El cable VGA conecta<img style="font-size: 1rem; display: block; margin-left: auto; margin-right: auto;" src="https://revista.jovenclub.cu/wp-content/uploads/2018/07/Cable-VGA-Web-678x381.png" width="334" height="188" /></p>',
+							opciones: {
+								opcion1: "El mouse con la torre o CPU",
+								opcion2: "El monitor con la torre o CPU",
+								opcion3: "El teclado con la torre o CPU",
+								opcion4: "La fuente de poder con la torre o CPU"
+							},
+							respuesta: "El monitor con la torre o CPU",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">El conector de la imagen se usa para conectar:</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://cdn.shopify.com/s/files/1/0025/1215/8835/collections/Cables_de_Poder_para_PC_580x.png" width="278" height="278" /></p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: "El Mouse y el Teclado",
+								opcion2: "El teclado y la torre o CPU",
+								opcion3: "El Monitor y la torre o CPU",
+								opcion4: "El teclado"
+							},
+							respuesta: "El Monitor y la torre o CPU",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								"<p>Que precauci&oacute;n se debe tomar antes de encender el computador</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1:
+									"Verificar que el computador tenga instalado un sistema operativo",
+								opcion2: "Verificar que cada parte haya sido bien conectada",
+								opcion3: "Verificar que el regulador esté encendido",
+								opcion4:
+									"Verificar que todos los puertos usb se encuentren ocupados"
+							},
+							respuesta: "Verificar que cada parte haya sido bien conectada",
+							pista: null,
+							pregNumero: 4
+						}
+					],
+					tiempoMaximoPorPregunta: "400",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Encender y apagar la computadora",
@@ -376,12 +595,73 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 6,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado:
+								"<p>Primer paso para encender el computador</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Encender el CPU, para ello diríjase al botón de encendido del equipo, por lo general es un círculo con una línea en el centro",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>Segundo paso para encender el computador</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Encender el monitor, para ello diríjase hacia la parte inferior derecha de la pantalla que es donde generalmente se encuentra el botón de encendido",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>Tercer paso para encender el computador</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: " Seleccionar un usuario",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								"<p>&iquest;Qu&eacute; hace al computador al encender?</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Carga los programas y muestra accesos directos en el escritorio",
+							pista: null,
+							pregNumero: 4
+						}
+					],
+					tiempoMaximoPorPregunta: "240",
+					publicada: true
+				}
 			}
 		]);
 
 		moduloCreado = await ModuloLibro.create({
-			nombreModulo: "Módulo 2- Navegacion en escritorio",
+			nombreModulo: "Módulo 2- Navegación en el escritorio",
 			descripcion:
 				"En este módulo aprenderás a reconocer las partes del escritorio de la computadora y de forma básica aprender a usar sus aplicaciones.",
 			enlace: "m2-navegacion-escritorio",
@@ -404,7 +684,67 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 1,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado: "<p>Los &iacute;conos son:</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Aquellas imágenes que representan a las aplicaciones, y son visibles aún cuando no se encuentre activa la aplicación.",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>Una aplicaci&oacute;n inform&aacute;tica es:</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Un software que les posibilita a los usuarios interesados en la tecnología realizar diferentes tipos de trabajos ",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>Una opci&oacute;n para abrir una aplicaci&oacute;n es:</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Dar doble click en el ícono del escritorio",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">El siguiente es un &iacute;cono de Word, &iquest;En que otro lugar se puede encontrar este &iacute;cono?</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4f/Microsoft_Word_2013_logo.svg/2000px-Microsoft_Word_2013_logo.svg.png" alt="" width="167" height="164" /></p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Dando click en el botón inicio y buscando en la lista de aplicaciones",
+							pista: null,
+							pregNumero: 4
+						}
+					],
+					tiempoMaximoPorPregunta: "200",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Gestión de archivos",
@@ -416,7 +756,134 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 2,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado:
+								'<p>Paso 1 para <span style="background-color: #2dc26b;">crear</span> un archivo</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Ubicarse en el lugar en el que se va a crear el archivo",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								'<p>Paso 2 para <span style="background-color: #2dc26b;">crear</span> un archivo</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Con el mouse dar clic derecho en un espacio vacío",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								'<p>Paso 3 para <span style="background-color: #2dc26b;">crear</span> un archivo</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "En la lista de opciones seleccionar la opción nuevo",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								'<p>Paso 4 para <span style="background-color: #2dc26b;">crear</span> un archivo</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"En la siguiente lista de opciones seleccionar el archivo que se desea crear",
+							pista: null,
+							pregNumero: 4
+						},
+						{
+							enunciado:
+								'<p>Paso 5 para <span style="background-color: #2dc26b;">crear</span> un archivo</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Se crea el icono del archivo creado, darle un nombre al archivo",
+							pista: null,
+							pregNumero: 5
+						},
+						{
+							enunciado:
+								'<p>Paso 1 para <span style="background-color: #b96ad9;">renombrar</span> un archivo</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Seleccionar el archivo que desea renombrar",
+							pista: null,
+							pregNumero: 6
+						},
+						{
+							enunciado:
+								'<p>Paso 2 para <span style="background-color: #b96ad9;">renombrar </span>un archivo</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: " Dar clic derecho sobre el objeto seleccionado",
+							pista: null,
+							pregNumero: 7
+						},
+						{
+							enunciado:
+								'<p>Paso 3 para <span style="background-color: #b96ad9;">renombrar</span> un archivo</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"En la lista de opciones seleccionar la opción renombrar",
+							pista: null,
+							pregNumero: 8
+						},
+						{
+							enunciado:
+								'<p>Paso 4 para <span style="background-color: #b96ad9;">renombrar</span> un archivo</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Escribir el nombre deseado y dar ENTER",
+							pista: null,
+							pregNumero: 9
+						}
+					],
+					tiempoMaximoPorPregunta: "360",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "La papelera de reciclaje",

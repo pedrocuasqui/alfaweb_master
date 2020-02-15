@@ -108,7 +108,7 @@ db.ModuloLibro.insert( [
 
       {
         id: 'd',
-        nombreModulo: 'Módulo 2- Navegacion en escritorio',
+        nombreModulo: 'Módulo 2- Navegación en el escritorio',
         descripcion: 'descripcion Navegacion escritorio',
         enlace: '/m2-navegacion-escritorio',
         multimedia: 'images/svg/buho_bebe.svg',
@@ -215,7 +215,7 @@ db.ModuloLibro.insert([{
         }]",
       },
       {
-        nombreModulo: 'Módulo 2- Navegacion en escritorio',
+        nombreModulo: 'Módulo 2- Navegación en el escritorio',
         descripcion: 'descripcion Navegacion escritorio',
         enlace: '/m2-navegacion-escritorio',
         multimedia: 'images/svg/buho_bebe.svg',
@@ -335,7 +335,7 @@ db.ModuloLibro.insert([{
 
       {
         id: 'd',
-        nombreModulo: 'Módulo 2- Navegacion en escritorio',
+        nombreModulo: 'Módulo 2- Navegación en el escritorio',
         descripcion: 'descripcion Navegacion escritorio',
         enlace: '/m2-navegacion-escritorio',
         multimedia: 'images/svg/buho_bebe.svg',
@@ -444,7 +444,7 @@ insertamos documentos con un id padre
       },
 
       {
-        nombreModulo: 'Módulo 2- Navegacion en escritorio',
+        nombreModulo: 'Módulo 2- Navegación en el escritorio',
         descripcion: 'descripcion Navegacion escritorio',
         enlace: '/m2-navegacion-escritorio',
         multimedia: 'images/svg/buho_bebe.svg',
@@ -501,7 +501,7 @@ insertamos documentos con un id padre
       },
 
       {
-        nombreModulo: 'Módulo 2- Navegacion en escritorio',
+        nombreModulo: 'Módulo 2- Navegación en el escritorio',
         descripcion: 'descripcion Navegacion escritorio',
         enlace: '/m2-navegacion-escritorio',
         multimedia: 'images/svg/buho_bebe.svg',

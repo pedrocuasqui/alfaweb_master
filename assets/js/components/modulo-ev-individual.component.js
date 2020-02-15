@@ -262,28 +262,31 @@ parasails.registerComponent("modulo-ev-individual", {
 <div class="container">
     <!--CUESTIONARIO-->
     <template v-if="tipoEvaluacion=='Cuestionario'">
-        <div class="row justify-content-center">
-            <button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"  class="boton_formulario" > Atrás</button>
-						<div class="list-group">
-						<!--Enunciado-->
-                <div class="d-flex w-100 justify-content-between">
-                    <h5 class="mb-1" v-html="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado"></h5>   
-                </div>
-
-            <div class="custom-control custom-radio" v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])"  >
-            <input type="radio" :id="opcion.id" class="custom-control-input" :value="opcion.texto" 
-            v-model="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"
-            @click.stop="respuestaCuestionarioSeleccionada">
-						<!--v-model="respuestaCuestionarioPreguntaPrueba"  :name="opcion.id"  -->
-						<!--<input type="radio" :id="opcion.id" class="custom-control-input" :value="opcion.texto" v-model="pregunta.respuesta" >-->
-
-
-
-            <label class="custom-control-label" :for="opcion.id">{{opcion.texto}}</label>
-          	</div>
-          </div>
-            <button v-if="esUltimaPregunta" @click="finalizarCuestionario" class="boton_formulario"> Finalizar</button>
-            <button v-else @click="clickSiguientePregunta" class="boton_formulario"> Siguiente</button>
+        <div class="row ">
+						<div class="col-sm-2 centrado_vertical">
+							<button v-if="noEsPrimeraPregunta" @click="clickAnteriorPregunta"  class="boton_formulario" > Atrás</button>
+						</div>
+						<div class="col-sm-8">
+							<div class="list-group">
+							<!--Enunciado-->
+								<div class="d-flex w-100 justify-content-center">
+												<h5 class="mb-1" v-html="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].enunciado"></h5>   
+								</div>
+								<!--opciones de respuesta-->
+								<div class="form-check texto_alineado_izquierda"  v-for="(opcion,index) in opcionesRespuesta(preguntasCuestionarioRespuestas[indicePreguntaCuestionario])">
+									<div class="radio-item mt-0"  >
+									<input type="radio" :id="opcion.id" :value="opcion.texto" 
+									v-model="preguntasCuestionarioRespuestas[indicePreguntaCuestionario].respuestaEstudiante"
+									@click.stop="respuestaCuestionarioSeleccionada">
+									<label :for="opcion.id">{{opcion.texto}}</label>
+									</div>
+								</div>
+							</div>
+						</div>
+						<div class="col-sm-2 centrado_vertical">
+							<button v-if="esUltimaPregunta" @click="finalizarCuestionario" class="boton_formulario"> Finalizar</button>
+							<button v-else @click="clickSiguientePregunta" class="boton_formulario"> Siguiente</button>
+						</div>   
         </div>
     </template>
 
@@ -296,8 +299,8 @@ parasails.registerComponent("modulo-ev-individual", {
     <template v-if="tipoEvaluacion=='Emparejamiento'">
 				<div class="container">
 						<div  class="row justify-content-center mb-2">
-						<div class="col-sm-5"><p>SELECCIONA UN ENUNCIADO</p></div>
-						<div class="col-sm-7"><p>DESPUÉS SELECCIONA UNA RESPUESTA </p></div>
+						<div class="col-sm-5"><p>SELECCIONE UN ENUNCIADO</p></div>
+						<div class="col-sm-7"><p>DESPUÉS SELECCIONE UNA RESPUESTA </p></div>
 						</div>
             <div class="row justify-content-center">
                 

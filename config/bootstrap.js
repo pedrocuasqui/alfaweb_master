@@ -102,7 +102,7 @@ module.exports.bootstrap = async function(done) {
 					preguntas: [
 						{
 							enunciado:
-								'<p>&iquest;Qu&eacute; parte se considera el cerebro del <span style="font-size: 1rem;">computador</span><span style="font-size: 1rem;"> ?</span></p>\n<p><span style="font-size: 1rem;"><img src="https://aenom87820fvvps.belugacdn.link/857-home_default/cpu-solo-computador-core-i5-300ghz-7ma-generacion-8gb-1000gb-1tb-dvdrw.jpg" alt="" width="98" height="98" /></span></p>',
+								'<p>&iquest;Qu&eacute; parte se considera el cerebro del computador? </p>\n<p><span style="font-size: 1rem;"><img src="https://aenom87820fvvps.belugacdn.link/857-home_default/cpu-solo-computador-core-i5-300ghz-7ma-generacion-8gb-1000gb-1tb-dvdrw.jpg" alt="" width="98" height="98" /></span></p>',
 							opciones: {
 								opcion1: "Impresora",
 								opcion2: "Teclado",

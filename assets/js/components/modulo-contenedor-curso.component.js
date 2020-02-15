@@ -52,7 +52,6 @@ parasails.registerComponent("modulo-contenedor-curso", {
 		},
 		crearSubmodulo: false, //variable usada solo cuando se crea un nuevo submodulo para darle estilos de seleccionado
 		mostrarIconoRepetir: false,
-		// mostrarPlay:true
 
 		adminCreandoModuloSubmodulo: {
 			type: Boolean,
@@ -204,10 +203,10 @@ parasails.registerComponent("modulo-contenedor-curso", {
                     <div class="row pie-contenido-central" >
                         <div  id="avatar">
                                 <img  @click="clickAsistenteBuho" src="/images/svg/buho_original_1.svg" alt="Avatar adulto mayor">
-                                <span>
-                                <a v-if="mostrarPlay" @click="clickReproducir" title="Reproducir" class="audioTag"><i class="fas fa-play"></i></a>
-                                <a v-else @click="clickPause" title="Pausar" class="audioTag"><i class="fas fa-pause"></i></a>
-                                <a @click="clickStop" title="Parar" class="audioTag"><i class="fas fa-stop"></i></a>
+                                <span v-if="!evIndividual">
+                                <a v-if="mostrarPlay" id="icono_play" @click="clickReproducir" title="Reproducir" class="audioTag"><i class="fas fa-play"></i></a>
+                                <a v-else id="icono_pause"  @click="clickPause" title="Pausar" class="audioTag"><i class="fas fa-pause"></i></a>
+                                <a id="icono_stop" @click="clickStop" title="Parar" class="audioTag"><i class="fas fa-stop"></i></a>
                                 </span>
                         </div>
                       <div id="descripcion-objeto" ref="printContenidoDescripcion"  v-if="!evIndividual">

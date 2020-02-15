@@ -992,8 +992,8 @@ module.exports.bootstrap = async function(done) {
 				tiempoMaximoPorPregunta: 20,
 				preguntas: [
 					{
-						enunciado: `<div><img	src="https://www.frikipandi.com/wp-content/uploads/2015/03/MySQL.jpg"	alt="Imágen de la pregunta"
-							></img> </div>`,
+						enunciado: `<div><p>La siguiente imagen corresponde al gestor de nombre...</p> <p><img	src="https://www.frikipandi.com/wp-content/uploads/2015/03/MySQL.jpg"	alt="Imagen de la pregunta"
+							></img> </p></div>`,
 						opciones: {
 							opcion1: "Gestor MySQL",
 							opcion2: "Gestor Oracle",
@@ -1001,12 +1001,12 @@ module.exports.bootstrap = async function(done) {
 							opcion4: null
 						},
 						respuesta: "Gestor MySQL",
-						pista: "Gestor MySql"
+						pista: "Su DML es muy similar a SQL Server"
 					},
 
 					{
-						enunciado: `<div><img	src="http://www.ingdiaz.org/wp-content/uploads/2018/01/j00-150x150.png"		alt="Imágen de la pregunta"
-							></img> </div>`,
+						enunciado: `<div><p>La siguiente imagen corresponde al gestor de nombre...</p> <p><img	src="http://www.ingdiaz.org/wp-content/uploads/2018/01/j00-150x150.png"		alt="Imágen de la pregunta"
+							></img> </p> </div>`,
 						opciones: {
 							opcion1: "Gestor de datos SQL server",
 							opcion2: "Gestor de datos Mongo",
@@ -1014,7 +1014,7 @@ module.exports.bootstrap = async function(done) {
 							opcion4: null
 						},
 						respuesta: "Gestor de datos SQL server",
-						pista: "Gestor Sql Server"
+						pista: "Es un SGBD propietario"
 					}
 				]
 			}

@@ -30,7 +30,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 			cursoInformatica: false,
 			moduloEvaluacion: "", //nombre del modulo que se pasa como parametro a la funcion de mostrar modal
 			indiceModulo: 0, //el indice del modulo que se pasa como parametro a la funcion de mostrar modal,
-			mostrarTexto:false
+			mostrarTexto: false
 		};
 	},
 	mounted() {
@@ -49,7 +49,7 @@ parasails.registerComponent("modulo-side-var-menu", {
         <div class="modal-dialog modal-l" role="document">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="etiquetaModalEnlaceEvaluacion">Evaluación {{moduloEvaluacion}}</h5>
+                    <h6 class="modal-title" id="etiquetaModalEnlaceEvaluacion">Evaluación {{moduloEvaluacion}}</h6>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
                         <span aria-hidden="true">&times;</span>
                     </button>
@@ -64,7 +64,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 															<a v-if="submodulo.evaluacion"  :href="'/contenido-alfaweb/?enlace='+submodulo.enlace+'&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">
 															
 																	<div class="d-flex w-100 justify-content-between">
-																		<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+																		<h6 class="mb-1">{{submodulo.nombreSubmodulo}}</h6>
 																	</div>
 																	<p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Lea la pregunta y escoja la respuesta correcta)</small></p>
 																	<p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Empareje el término con el concepto correcto)</small></p>
@@ -73,7 +73,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 															</a> 
 															<a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
 																	<div class="d-flex w-100 justify-content-between">
-																			<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+																			<h6 class="mb-1">{{submodulo.nombreSubmodulo}}</h6>
 																	</div>
 																	<p class="mb-1" >Evaluación no disponible</p>
 															</a> 
@@ -84,7 +84,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 															<template v-for="submodulo in curso.modulos[indiceModulo].submodulos">
 															<a v-if="submodulo.evaluacion"  :href="'/interfaz-modulos/?objetoId='+submodulo.id+'&tipoContenido=Submodulo&mostrarEvaluacion=true'" :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start " :class="[{evaluacion_deshabilitada:!submodulo.evaluacion.publicada}]">  
 																	<div class="d-flex w-100 justify-content-between">
-																		<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+																		<h6 class="mb-1">{{submodulo.nombreSubmodulo}}</h6>
 																	</div>
 																	<p class="mb-1" v-if="submodulo.evaluacion.tipo =='Cuestionario'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Lea la pregunta y escoja la respuesta correcta)</small></p>
 																	<p class="mb-1" v-else="submodulo.evaluacion.tipo =='Emparejamiento'"><small>Tipo: {{submodulo.evaluacion.tipo}} (Empareje el término con el concepto correcto)</small></p>
@@ -94,7 +94,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 															</a> 
 															<a v-else :key="submodulo.id" class="list-group-item list-group-item-action flex-column align-items-start ">   
 																	<div class="d-flex w-100 justify-content-between">
-																			<h5 class="mb-1">{{submodulo.nombreSubmodulo}}</h5>
+																			<h6 class="mb-1">{{submodulo.nombreSubmodulo}}</h6>
 																	</div>
 																	<p class="mb-1" >Evaluación no disponible</p>
 															</a> 
@@ -177,7 +177,7 @@ parasails.registerComponent("modulo-side-var-menu", {
 				$("#modalEnlaceEvaluacion").modal("show");
 			});
 		},
-	
+
 		perteneceObjeto(moduloId) {
 			var pertenece = false;
 			if (
@@ -319,11 +319,11 @@ parasails.registerComponent("modulo-side-var-menu", {
 				return 0;
 			}
 		},
-		desplegarSidebar(){
-			this.mostrarTexto=true;
+		desplegarSidebar() {
+			this.mostrarTexto = true;
 		},
-		ocultarSidebar(){
-			this.mostrarTexto=false;
+		ocultarSidebar() {
+			this.mostrarTexto = false;
 		}
 	},
 	computed: {

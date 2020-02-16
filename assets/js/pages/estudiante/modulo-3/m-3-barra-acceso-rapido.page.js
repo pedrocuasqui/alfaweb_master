@@ -52,7 +52,7 @@ parasails.registerPage("m-3-barra-acceso-rapido", {
 			id: "guardar",
 			titulo: "Guardar",
 			detalle:
-				"Permite guardar el documento en una carpeta del computador, la imágen debajo muestra la ventana que aparece al pulsar el botón guardar",
+				"Permite guardar el documento en una carpeta del computador, la imagen debajo muestra la ventana que aparece al pulsar el botón guardar",
 			leerMas: "https://www.aulaclic.es/word-2016/t_4_1.htm",
 			imgs: [
 				{
@@ -81,7 +81,7 @@ parasails.registerPage("m-3-barra-acceso-rapido", {
 			id: "fuente",
 			titulo: "Fuente",
 			detalle:
-				"permite personalizar el texto con opciones avanzadas de fuentes y caracteres para que tenga el exactamente el aspeco que desea",
+				"Permite personalizar el texto con opciones avanzadas de fuentes y caracteres para que tenga el exactamente el aspecto que desea",
 			leerMas: "",
 			imgs: [
 				{

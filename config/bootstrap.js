@@ -1253,7 +1253,122 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 5,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								"<p>Usando la cinta de opciones en Word, &iquest; Cuales ser&iacute;as los pasos para abrir un documento reciente ?</p>",
+							opciones: {
+								opcion1:
+									"Dar clic en la pestaña REVISAR luego seleccionar la opción ORTOGRAFÍA Y GRAMÁTICA",
+								opcion2:
+									"Dar clic en la pestaña ARCHIVO luego seleccionar la opción RECIENTE, seleccionar el archivo",
+								opcion3:
+									"Dar clic en la pestaña AYUDA luego seleccionar la opción COMENTARIOS",
+								opcion4: null
+							},
+							respuesta:
+								"Dar clic en la pestaña ARCHIVO luego seleccionar la opción RECIENTE, seleccionar el archivo",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>Que pesta&ntilde;a permite crear un documento nuevo</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "La pestaña ARCHIVO en la opción NUEVO",
+								opcion2: "La pestaña REFERENCIAS",
+								opcion3: "La perstaña DISPOSICIÓN",
+								opcion4: null
+							},
+							respuesta: "La pestaña ARCHIVO en la opción NUEVO",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>&iquest;Cu&aacute;l es el nombre de la pesta&ntilde;a que ...</p>\n<p>Aparece seleccionada por defecto; en ella se encuentran las principales acciones de un procesador de textos, agrupadas en bloques de iconos?</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Referencias",
+								opcion2: "Revisar",
+								opcion3: "Insertar",
+								opcion4: "Inicio"
+							},
+							respuesta: "Inicio",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado: "<p>La pesta&ntilde;a INSERTAR</p>",
+							opciones: {
+								opcion1: "Permite copiar el documento en una carpeta",
+								opcion2: "Permite crear un nuevo documento de Word",
+								opcion3:
+									"Permite agregar tablas, gráficos, formas, comentarios, vídeos, hipervínculos",
+								opcion4: null
+							},
+							respuesta:
+								"Permite agregar tablas, gráficos, formas, comentarios, vídeos, hipervínculos",
+							pista: null,
+							pregNumero: 4
+						},
+						{
+							enunciado:
+								"<p>La pesta&ntilde;a DISE&Ntilde;O: Permite seleccionar un nuevo tema para proporcionar al documento un estilo concreto: un conjunto &uacute;nico de colores, fuentes y efectos</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Falso",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 5
+						},
+						{
+							enunciado:
+								"<p>Para establecer los tama&ntilde;os del margen del documento, cambiar la orientaci&oacute;n de la p&aacute;gina, el tama&ntilde;o, agregar o quitar columnas, insertar saltos de p&aacute;gina, ubicar un objeto.</p>\n<p>&nbsp;</p>\n<p>Se utiliza la pesta&ntilde;a...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Ayuda",
+								opcion2: "Disposición",
+								opcion3: "Inicio",
+								opcion4: "Revisar"
+							},
+							respuesta: "Disposición",
+							pista: null,
+							pregNumero: 6
+						},
+						{
+							enunciado:
+								"<p>La pesta&ntilde;a&nbsp; REFERENCIAS:&nbsp; Permite insertar encabezados y pies de p&aacute;gina, &iacute;ndices, citas y bibliograf&iacute;a, etc</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Verdadero",
+								opcion2: "Falso",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 7
+						},
+						{
+							enunciado:
+								"<p>Para revisar la ortograf&iacute;a del documento, &iquest;Qu&eacute; pesta&ntilde;a debo seleccionar?</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Inicio",
+								opcion2: "Insertar",
+								opcion3: "Diseño",
+								opcion4: "Revisar"
+							},
+							respuesta: "Revisar",
+							pista: null,
+							pregNumero: 8
+						}
+					],
+					tiempoMaximoPorPregunta: "800",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Otras Opciones",
@@ -1265,7 +1380,69 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 6,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado: "<p>Otras opciones de la ventana de Word son:</p>",
+							opciones: {
+								opcion1:
+									"La barra de herramientas, el título, el área de trabajo",
+								opcion2:
+									"La barra de desplazamiento en la parte lateral derecha, la barra de estado en la parte inferior, y un botón par iniciar sesión con una cuenta de Mcrosoft.",
+								opcion3: "Las pestañas de INICIO y ARCHIVO",
+								opcion4: null
+							},
+							respuesta:
+								"La barra de desplazamiento en la parte lateral derecha, la barra de estado en la parte inferior, y un botón par iniciar sesión con una cuenta de Mcrosoft.",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>El inicio de sesi&oacute;n de Microsoft office permite principalmente activar el programa office, adem&aacute;s le da al usuario la posibilidad de guardar y compartir archivos en la nube.</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Falso",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>&iquest;Que opci&oacute;n de la ventana de Word nos permite desplazar la ventana hacia abajo?</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Barra inferior",
+								opcion2: "Barra de herramientas",
+								opcion3: "Barra de desplazamiento",
+								opcion4: null
+							},
+							respuesta: "Barra de desplazamiento",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								"<p>La Barra de estado est&aacute; situada en la parte</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Superior de la ventana",
+								opcion2: "Lateral de la ventana",
+								opcion3:
+									"Situada en la parte inferior, es la que nos informa sobre el estado de nuestro documento",
+								opcion4: null
+							},
+							respuesta:
+								"Situada en la parte inferior, es la que nos informa sobre el estado de nuestro documento",
+							pista: null,
+							pregNumero: 4
+						}
+					],
+					tiempoMaximoPorPregunta: "240",
+					publicada: true
+				}
 			}
 			// {
 			//   nombreSubmodulo: 'Barra de estado',
@@ -1291,7 +1468,7 @@ module.exports.bootstrap = async function(done) {
 		moduloCreado = await ModuloLibro.create({
 			nombreModulo: "Módulo 4-Edición de documentos Word",
 			descripcion:
-				"En este módulo aprenderás como editar un documento de word con ejemplos",
+				"En este módulo aprenderás las opciones para editar un documento de Word y personalizarlo",
 			enlace: "m4-edicion-word",
 			multimedia: {
 				imagen: "/images/informaticabasica/portadas_modulos/m4.png"
@@ -1304,14 +1481,98 @@ module.exports.bootstrap = async function(done) {
 			{
 				nombreSubmodulo: "El portapapeles",
 				descripcion:
-					"La opción portapapeles muestra opciones para copiar y pegar ya sea, texto, imágenes o un formato existente",
+					"La opción portapapeles muestra opciones para copiar y pegar ya sea, texto, imágenes o un formato existente en el documento de Word que se está editando",
 				enlace: "m4-portapapeles",
 				multimedia: {},
 				contenidoTiny: "<p>Pulse para editar</p>",
 				modulo: moduloCreado.id,
 				ordenNavegacion: 1,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado: "<p>El portapales permite...</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"copiar y pegar ya sea, texto, imágenes o un formato existente en el documento de Word ",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado: "<p>La opci&oacute;n COPIAR...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Envía el contenido al portapapeles sin eliminarlo del documento",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado: "<p>Antes de copiar un texto, primero se debe...</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Seleccionar el contenido",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								"<p>Cuando copias cierto contenido del documento de Word. &iquest;En qu&eacute; lugar de la ventana puedes ver el contenido copiado?</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "En el portapapeles",
+							pista: null,
+							pregNumero: 4
+						},
+						{
+							enunciado:
+								"<p>Cuando se usa la opci&oacute;n cortar del portapapeles, &iquest; Que pasa con el objeto cortado?</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Desaparece de la hoja de Word",
+							pista: null,
+							pregNumero: 5
+						},
+						{
+							enunciado:
+								"<p>La opci&oacute;n copiar formato permite...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Copiar el formato como el color, estilo de fuente, estilo de borde de un objeto y aplicarlo en otro",
+							pista: null,
+							pregNumero: 6
+						}
+					],
+					tiempoMaximoPorPregunta: "400",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Ortografía y gramática",
@@ -1323,7 +1584,54 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 2,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado:
+								"<p>Las opciones Ortograf&iacute;a y gram&aacute;tica permiten...</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Principalmente corregir los errores ortográficos generados al redactar un documento.",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>La opci&oacute;n Ortograf&iacute;a...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Permite revisar las faltas ortográficas del documento",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>Cuando las palabras se encuentran subrayadas con una l&iacute;nea rojo o verde...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "La palabra está mal escrita",
+							pista: null,
+							pregNumero: 3
+						}
+					],
+					tiempoMaximoPorPregunta: "180",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Guardar e imprimir un documento",
@@ -1334,19 +1642,203 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 3,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								'<p>Para guardar un documento se pueden seguir los siguientes pasos:</p>\n<p><span style="font-size: 10pt;"><em>1) Redactar el documento y revisar la ortograf&iacute;a.</em></span></p>\n<p><span style="font-size: 10pt;"><em>2) Pulsar el icono en forma de disquete.</em></span></p>\n<p><span style="font-size: 10pt;"><em>3) Aparece una pantalla en la que se escribe el nombre del documento y se guarda.</em></span></p>',
+							opciones: {
+								opcion1: "Verdadero",
+								opcion2: "Falso",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>Al pulsar las teclas CTRL y M al mismo tiempo se guarda el documento</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Falso ",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Falso",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>Al Dar clic en ARCHIVO y luego seleccionar la opci&oacute;n GUARDAR COMO el documento ...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Se elimina",
+								opcion2: "Se guarda",
+								opcion3: "Se copia",
+								opcion4: "No pasa nada"
+							},
+							respuesta: "Se guarda",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								"<p>Un atajo de teclado para imprimir un documento es:</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Pulsar las teclas CTRL y P al mismo tiempo",
+								opcion2: "Pulsar las teclas CTRL y M al mismo tiempo",
+								opcion3: "Pulsar solo la tecla CTRL",
+								opcion4: "Pulsar solo la tecla P"
+							},
+							respuesta: "Pulsar las teclas CTRL y P al mismo tiempo",
+							pista: null,
+							pregNumero: 4
+						}
+					],
+					tiempoMaximoPorPregunta: "240",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Diseño de página",
 				descripcion:
-					"Permite modificar principalmente la forma de visualización del documento y su contenido, por ejemplo, crear una hoja de forma horizontal, crear dos columnas de texto, etx. ",
+					"Las opciones del diseño de página permiten modificar principalmente la forma de visualización del documento y su contenido, por ejemplo, crear una hoja de forma horizontal, crear dos columnas de texto, aplicar marca de agua, agregar bordes, etc. ",
 				enlace: "m4-disenio",
 				multimedia: {},
 				contenidoTiny: "<p>Pulse para editar</p>",
 				modulo: moduloCreado.id,
 				ordenNavegacion: 4,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado: "<p>Los temas ...</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Permiten cambiar de forma automática el estilo de la página, los colores de fondo, de texto, etcétera.",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado: "<p>La opci&oacute;n colores ...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Permite cambiar rápidamente todos los colores que se usan en el documento eligiendo de una paleta de colores diferentes",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>Dentro de la opci&oacute;n configurar p&aacute;gina se encuentra la opci&oacute;n ORIENTACI&Oacute;N que permite ...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Aplicar a las páginas un diseño horizontal o vertical",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado: "<p>La opci&oacute;n COLUMNAS</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Divide al texto en dos o más columnas",
+							pista: null,
+							pregNumero: 4
+						},
+						{
+							enunciado:
+								"<p>Dentro de la opci&oacute;n FONDO DE P&Aacute;GINA se encuentra la opci&oacute;n MARCA DE AGUA, esta opci&oacute;n permite ...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								'Agregar texto fantasma, como "Confidencial" o "Urgente" detrás del contenido de la página',
+							pista: null,
+							pregNumero: 5
+						},
+						{
+							enunciado:
+								"<p>Para cambiar el color de la p&aacute;gina que p&aacute;sos debe seguir ...&nbsp;</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"En la pestaña DISEÑO DE PÁGINA seleccionar la opción FONDO DE PÁGINA, a continuación seleccionar COLOR DE PÁGINA",
+							pista: null,
+							pregNumero: 6
+						},
+						{
+							enunciado:
+								"<p>Las opciones de sangr&iacute;a sirven para ...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Alejar el párrafo del márgen izquierdo o derecho",
+							pista: null,
+							pregNumero: 7
+						},
+						{
+							enunciado:
+								"<p>Las opciones de espaciado determinan ...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Cuanto espacio aparece por encima o debajo de los párrafos seleccionados",
+							pista: null,
+							pregNumero: 8
+						},
+						{
+							enunciado:
+								"<p>La opci&oacute;n que permite: cambiar la posici&oacute;n de una imagen, ajustar el texto, traer un objeto al frente, enviar el objeto atr&aacute;s, alinear y girar es ...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "ORGANIZAR",
+							pista: null,
+							pregNumero: 9
+						}
+					],
+					tiempoMaximoPorPregunta: "600",
+					publicada: true
+				}
 			}
 
 			// {
@@ -1444,7 +1936,7 @@ module.exports.bootstrap = async function(done) {
 		moduloCreado = await ModuloLibro.create({
 			nombreModulo: "Módulo 6 - Correo Electrónico y Skype",
 			descripcion:
-				"En este módulo aprenderás a usar medios de comunicación en línea principalmente lo referente a correo electrónico y videollamadas",
+				"En este módulo aprenderás a usar medios de comunicación en línea principalmente el correo electrónico y videollamadas",
 			enlace: "m6-medios-comunicacion",
 			multimedia: {
 				imagen: "/images/informaticabasica/portadas_modulos/m6.png"
@@ -1915,7 +2407,7 @@ module.exports.bootstrap = async function(done) {
 			}
 		]);
 
-		/***SEGUNDO SUBMODULO DEL MODULO "CONCEPTOS" */
+		//***SEGUNDO SUBMODULO DEL MODULO "CONCEPTOS"
 
 		var submodulo2Modulo2Bdd = await SubmoduloLibro.create({
 			nombreSubmodulo: "Modelo entidad relación",
@@ -2069,7 +2561,7 @@ module.exports.bootstrap = async function(done) {
 			}
 		]);
 
-		/***TERCER SUBMODULO DEL MODULO "CONCEPTOS" */
+		//***TERCER SUBMODULO DEL MODULO "CONCEPTOS"
 
 		var submodulo3Modulo2Bdd = await SubmoduloLibro.create({
 			nombreSubmodulo: "Tablas",

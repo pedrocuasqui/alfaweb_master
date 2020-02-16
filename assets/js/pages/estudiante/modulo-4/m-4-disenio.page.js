@@ -33,7 +33,7 @@ parasails.registerPage("m-4-disenio", {
 				{
 					posicion: "1", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"Los temas permiten cambiar de forma automática el estilo de la página, los colores de fondo, de texto, etcétera. La opción temas presenta varias opciones predefinidas como se puede ver en la imágen.",
+						"Los temas permiten cambiar de forma automática el estilo de la página, los colores de fondo, de texto, etcétera. La opción temas presenta varias opciones predefinidas como se puede ver en la imagen.",
 					imagen:
 						"/images/informaticabasica/modulo4/disenio/p_disenio/temas/1.png",
 					alt: "opciones predefinidas de temas"
@@ -41,7 +41,7 @@ parasails.registerPage("m-4-disenio", {
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"Se puede elegir entre diferentes tipos de formatos para el documento, como se puede ver en  la imágen.",
+						"Se puede elegir entre diferentes tipos de formatos para el documento, como se puede ver en  la imagen.",
 					imagen:
 						"/images/informaticabasica/modulo4/disenio/p_disenio/temas/1_1.png",
 					alt: "colores predefinidos"
@@ -64,7 +64,7 @@ parasails.registerPage("m-4-disenio", {
 				"La opción colores te permite cambiar rápidamente todos los colores que se usan en el documento eligiendo de una paleta de colores diferentes",
 			leerMas: "",
 			html:
-				"<p> La opción colores presenta varias opciones predefinidas como se puede ver en la imágen.</p>" +
+				"<p> La opción colores presenta varias opciones predefinidas como se puede ver en la imagen.</p>" +
 				'<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/temas/2.png" alt="colores"></div>'
 		},
 		fuentes: {
@@ -75,7 +75,7 @@ parasails.registerPage("m-4-disenio", {
 			leerMas: "",
 			html:
 				"" +
-				"<p> La opción fuentes presenta varias opciones predefinidas como se puede ver en la imágen.</p>" +
+				"<p> La opción fuentes presenta varias opciones predefinidas como se puede ver en la imagen.</p>" +
 				'<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/temas/3.png" alt="fuentes"></div>'
 		},
 		efectos: {
@@ -86,7 +86,7 @@ parasails.registerPage("m-4-disenio", {
 			leerMas: "",
 			html:
 				"" +
-				"<p> La opción efectos presenta varias opciones predefinidas como se puede ver en la imágen. </p>" +
+				"<p> La opción efectos presenta varias opciones predefinidas como se puede ver en la imagen. </p>" +
 				'<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/temas/4.png" alt="efectos"></div>'
 		},
 		//////////////////////////////////////////////////
@@ -101,7 +101,7 @@ parasails.registerPage("m-4-disenio", {
 			leerMas: "",
 			html:
 				"" +
-				"<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imágen. </p>" +
+				"<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imagen. </p>" +
 				'<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/1.png" alt="márgenes"></div>'
 		},
 		orientacion: {
@@ -185,7 +185,7 @@ parasails.registerPage("m-4-disenio", {
 			leerMas: "",
 			html:
 				"" +
-				"<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imágen. </p>" +
+				"<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imagen. </p>" +
 				'<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/5.png" alt="saltos"></div>'
 		},
 		numeros: {
@@ -196,7 +196,7 @@ parasails.registerPage("m-4-disenio", {
 			leerMas: "",
 			html:
 				"" +
-				"<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imágen. </p>" +
+				"<p> La opción márgenes presenta varias opciones predefinidas como se puede ver en la imagen. </p>" +
 				'<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/configurar/6.png" alt="números"></div>'
 		},
 		guiones: {
@@ -247,10 +247,10 @@ parasails.registerPage("m-4-disenio", {
 				{
 					posicion: "4", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						'Para Agregar una marca de agua de imágen, seleccione la opción "imágen"',
+						'Para Agregar una marca de agua de imagen, seleccione la opción "imagen"',
 					imagen:
 						"/images/informaticabasica/modulo4/disenio/p_disenio/fondo/1_3.png",
-					alt: "marca de agua de imágen"
+					alt: "marca de agua de imagen"
 				},
 				{
 					posicion: "5", //siempre empezar en uno para poder identificar a los elementos
@@ -258,7 +258,7 @@ parasails.registerPage("m-4-disenio", {
 						"Aparecerá la siguiente pantalla, en la cual se elegirá la imagen que se desee.",
 					imagen:
 						"/images/informaticabasica/modulo4/disenio/p_disenio/fondo/1_4.png",
-					alt: "seleccionar la imágen"
+					alt: "seleccionar la imagen"
 				},
 				{
 					posicion: "6", //siempre empezar en uno para poder identificar a los elementos
@@ -273,7 +273,7 @@ parasails.registerPage("m-4-disenio", {
 						"La marca de agua ya ha sido insertada. y se puede ver al fondo del texto",
 					imagen:
 						"/images/informaticabasica/modulo4/disenio/p_disenio/fondo/1_6.png",
-					alt: "La marca de agua de imágen ha sido insertada"
+					alt: "La marca de agua de imagen ha sido insertada"
 				},
 				{
 					posicion: "8", //siempre empezar en uno para poder identificar a los elementos
@@ -299,7 +299,7 @@ parasails.registerPage("m-4-disenio", {
 			leerMas: "",
 			html:
 				"" +
-				"<p> Se presentan colores predefinidos en una paleta como se puede ver en la imágen. </p>" +
+				"<p> Se presentan colores predefinidos en una paleta como se puede ver en la imagen. </p>" +
 				'<div class="d-flex justify-content-center"><img src="/images/informaticabasica/modulo4/disenio/p_disenio/fondo/2.png" alt="color"></div>'
 		},
 		bordes: {
@@ -384,7 +384,7 @@ parasails.registerPage("m-4-disenio", {
 			id: "organizar",
 			titulo: "Organizar",
 			detalle:
-				"Permite configurar la disposición física de distintos elementos dentro de la página, permite realizar acciones como: cambiar la posición de una imágen, ajustar el texto, traer un objeto al frente, enviar el objeto atrás, alinear y girar.",
+				"Permite configurar la disposición física de distintos elementos dentro de la página, permite realizar acciones como: cambiar la posición de una imagen, ajustar el texto, traer un objeto al frente, enviar el objeto atrás, alinear y girar.",
 			leerMas: "",
 			html: ""
 		},

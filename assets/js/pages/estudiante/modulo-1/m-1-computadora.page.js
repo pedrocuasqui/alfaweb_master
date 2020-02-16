@@ -93,7 +93,7 @@ parasails.registerPage("m-1-computadora", {
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"Los monitores han cambiado su forma desde que fueron inventados, Inicialmente los monitores usaban un Tubo de Rayos Catódicos para proyectar la imágen en la pantalla, por tanto eran muy grandes (1981-1989). Actualmente los monitores son planos gracias a la tecnología que utilizan, ésta puede ser: plasma, LCD o LED (1990-2019). ",
+						"Los monitores han cambiado su forma desde que fueron inventados, Inicialmente los monitores usaban un Tubo de Rayos Catódicos para proyectar la imagen en la pantalla, por tanto eran muy grandes (1981-1989). Actualmente los monitores son planos gracias a la tecnología que utilizan, ésta puede ser: plasma, LCD o LED (1990-2019). ",
 					imagen: "https://aticser.files.wordpress.com/2011/06/monitor1.jpg",
 					alt: "Historia de los monitores"
 				},

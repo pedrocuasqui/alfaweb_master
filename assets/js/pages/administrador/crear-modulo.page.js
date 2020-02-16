@@ -145,7 +145,7 @@ parasails.registerPage("crear-modulo", {
 					swal({
 						icon: "error",
 						title: "Oops...",
-						text: `No se pudo guardar la imágen!\n ${err}`
+						text: `No se pudo guardar la imagen!\n ${err}`
 						// footer: "<a href>Why do I have this issue?</a>",
 					});
 				});

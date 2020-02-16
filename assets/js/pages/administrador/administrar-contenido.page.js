@@ -400,7 +400,7 @@ parasails.registerPage("administrar-contenido", {
 				.catch(err => {
 					swal({
 						icon: "error",
-						title: "No se puede cargar la imágen en este momento",
+						title: "No se puede cargar la imagen en este momento",
 						text: `${err}`,
 						showConfirmButton: true
 					});

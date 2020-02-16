@@ -37,7 +37,7 @@ parasails.registerPage("m-4-portapapeles", {
 				},
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
-					detalle: "La imágen o texto aparecerá en el área de trabajo ",
+					detalle: "La imagen o texto aparecerá en el área de trabajo ",
 					imagen:
 						"/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/3.png",
 					alt: "Objeto agregado"
@@ -52,7 +52,7 @@ parasails.registerPage("m-4-portapapeles", {
 				{
 					posicion: "1", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						'Para cortar una imágen o un texto. Primero seleccionar el contenido que se desea cortar y dar clic en "cortar"',
+						'Para cortar una imagen o un texto. Primero seleccionar el contenido que se desea cortar y dar clic en "cortar"',
 					imagen:
 						"/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/4.png",
 					alt: "Selección de texto a cortar"
@@ -60,7 +60,7 @@ parasails.registerPage("m-4-portapapeles", {
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"El texto o imágen aparece en la primera posición del portapapeles",
+						"El texto o imagen aparece en la primera posición del portapapeles y desaparece de la hoja de Word",
 					imagen:
 						"/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/5.png",
 					alt: "Texto cortado"
@@ -98,7 +98,7 @@ parasails.registerPage("m-4-portapapeles", {
 				{
 					posicion: "1", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						'Seleccionar el texto con el formato a copiar y dar clic izquierdo en "Portapapeles".',
+						'La opción COPIAR FORMATO se usa para aplicar rápidamente el mismo formato (como el color, el estilo de fuente, el tamaño y el estilo de borde) a varias partes de texto o gráficos. Para ello debe seleccionar el texto con el formato a copiar y dar clic izquierdo en "Portapapeles".',
 					imagen:
 						"/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/8.png",
 					alt: "Selección de texto con el formato a copiar"
@@ -109,14 +109,15 @@ parasails.registerPage("m-4-portapapeles", {
 						"Seleccionar el texto en el cuál aplicará el formato copiado.",
 					imagen:
 						"/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/9.png",
-					alt: "seleccionar el texto la que se desea aplicar el formato"
+					alt: "Seleccionar el texto la que se desea aplicar el formato"
 				},
 				{
 					posicion: "3", //siempre empezar en uno para poder identificar a los elementos
-					detalle: " El texto adquirirá el formato copiado.",
+					detalle:
+						" El texto adquiere el formato copiado, es decir el mismo color, el mismo tamaño, el mismo borde, etc.",
 					imagen:
 						"/images/informaticabasica/modulo4/portapapeles/p_inicio/portapapeles/10.png",
-					alt: "El texto seleccionado adquirirá el formato copiado"
+					alt: "El texto seleccionado adquiere el formato copiado"
 				}
 			]
 		},

@@ -54,7 +54,7 @@ parasails.registerPage("m-1-hardware", {
 			titulo: "Mouse",
 			detalle:
 				"El mouse es uno de los periféricos de entrada que forman parte de un computador, a través de él se puede " +
-				"interactuar directamente con la computadora mediante un puntero (indicador) que se muestra en la pantalla. En la imágen se puede ver un mouse común con conexión por cable",
+				"interactuar directamente con la computadora mediante un puntero (indicador) que se muestra en la pantalla. En la imagen se puede ver un mouse común con conexión por cable",
 			leerMas: "https://es.wikipedia.org/wiki/Rat%C3%B3n_(inform%C3%A1tica) ",
 			imgs: [
 				{
@@ -86,7 +86,7 @@ parasails.registerPage("m-1-hardware", {
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"Los monitores han cambiado su forma desde que fueron inventados, Inicialmente los monitores usaban un Tubo de Rayos Catódicos para proyectar la imágen en la pantalla, por tanto eran muy grandes como los monitores que se ven a la izquierda de la imágen. Actualmente los monitores son planos gracias a la tecnología que utilizan, ésta puede ser: plasma, LCD o LED como los monitores que se ven a la derecha. ",
+						"Los monitores han cambiado su forma desde que fueron inventados, Inicialmente los monitores usaban un Tubo de Rayos Catódicos para proyectar la imagen en la pantalla, por tanto eran muy grandes como los monitores que se ven a la izquierda de la imagen. Actualmente los monitores son planos gracias a la tecnología que utilizan, ésta puede ser: plasma, LCD o LED como los monitores que se ven a la derecha. ",
 					imagen: "https://aticser.files.wordpress.com/2011/06/monitor1.jpg",
 					alt: "Historia de los monitores"
 				},
@@ -112,7 +112,7 @@ parasails.registerPage("m-1-hardware", {
 			id: "Usb",
 			titulo: "Pendrive o Flash memory",
 			detalle:
-				" Es un tipo de dispositivo de almacenamiento de datos que utiliza circuitos de estado sólido para guardar datos e información. En la imágen se puede ver varios pendrives de diferentes formas y capacidades de almacenamiento",
+				" Es un tipo de dispositivo de almacenamiento de datos que utiliza circuitos de estado sólido para guardar datos e información. En la imagen se puede ver varios pendrives de diferentes formas y capacidades de almacenamiento",
 			leerMas: "https://es.wikipedia.org/wiki/Memoria_USB",
 			imgs: [
 				{

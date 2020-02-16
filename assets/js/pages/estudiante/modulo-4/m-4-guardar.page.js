@@ -30,15 +30,15 @@ parasails.registerPage("m-4-guardar", {
 				{
 					posicion: "1", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"Para guardar un documento siga los siguientes pasos: 1.Terminar de escribir el documento.",
+						"Para guardar un documento siga los siguientes pasos: 1. Una vez terminada la redacción del documento revisar la ortografía .",
 					imagen:
 						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/1.png",
-					alt: "Terminar de redactar el documento"
+					alt: "Terminar la redacción del documento"
 				},
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"2.	Se puede guardar un documento de 3 maneras diferentes: a)	En la parte superior de la pantalla de windows con el icono en forma de disquete ",
+						"2.	Se puede guardar un documento de 3 maneras diferentes: Primera forma para guardar un documento de Word)	En la parte superior de la pantalla de windows con el icono en forma de disquete ",
 					imagen:
 						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/2.png",
 					alt: "Botón guardar"
@@ -46,7 +46,7 @@ parasails.registerPage("m-4-guardar", {
 				{
 					posicion: "3", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"a) Dar clic izquierdo en el ícono disquete y aparecerá la siguiente interfaz, que pide el nombre del documento a guardar.",
+						"A continuación, dar clic izquierdo en el ícono disquete y aparecerá la siguiente interfaz, que pide el nombre del documento a guardar.",
 					imagen:
 						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/3.png",
 					alt: "Seleccionar la ruta para guardar el documento"
@@ -54,7 +54,7 @@ parasails.registerPage("m-4-guardar", {
 				{
 					posicion: "4", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"b)	Utilizando en acceso desde “Archivo”, clic en guardar o guardar como",
+						"Segunda forma para guardar un documento de Word. Utilizando en acceso desde “Archivo”, clic en guardar o guardar como",
 					imagen:
 						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/4.png",
 					alt: "Opción archivo"
@@ -62,14 +62,15 @@ parasails.registerPage("m-4-guardar", {
 				{
 					posicion: "5", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"b)	Seleccionar el lugar para guardar y darle un nombre al archivo",
+						"A continuación)	Seleccionar el lugar para guardar y darle un nombre al archivo",
 					imagen:
 						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/5.png",
 					alt: "Seleccionar la ruta para guardar el documento"
 				},
 				{
 					posicion: "6", //siempre empezar en uno para poder identificar a los elementos
-					detalle: "c)	Utilizando conmandos del teclado",
+					detalle:
+						"Tercera forma para guardar un documento de Word.	Utilizando conmandos del teclado",
 					imagen:
 						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/6.png",
 					alt: "Atajo de teclado para guardar un documento "
@@ -84,15 +85,16 @@ parasails.registerPage("m-4-guardar", {
 			carousel: [
 				{
 					posicion: "1", //siempre empezar en uno para poder identificar a los elementos
-					detalle: "1. Terminar de escribir el documento",
+					detalle:
+						"1. Finalizar la redacción del documento y revisar la ortografía",
 					imagen:
 						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/7.png",
-					alt: "Terminar de redactar"
+					alt: "Finalizar la redacción del documento"
 				},
 				{
 					posicion: "2", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"2. Podemos imprimir un documento de 2 maneras diferentes: a)	Clic en Archivo",
+						"2. Podemos imprimir un documento de 2 maneras diferentes: Primera forma para imprimir un documento.	Clic en Archivo",
 					imagen:
 						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/8.png",
 					alt: "Clic en archivo"
@@ -107,10 +109,11 @@ parasails.registerPage("m-4-guardar", {
 				},
 				{
 					posicion: "4", //siempre empezar en uno para poder identificar a los elementos
-					detalle: "b)	Utilizando comandos del teclado",
+					detalle:
+						"Segunda forma para imprimir un documento.	Utilizando comandos del teclado",
 					imagen:
 						"/images/informaticabasica/modulo4/guardar/guardar_imprimir/10.png",
-					alt: "tajo de teclado para imprimir un documento"
+					alt: "Atajo de teclado para imprimir un documento"
 				},
 				{
 					posicion: "5", //siempre empezar en uno para poder identificar a los elementos

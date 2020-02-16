@@ -23,7 +23,7 @@ parasails.registerPage("m-2-navegacion-escritorio", {
 			id: "EscritorioVacio",
 			titulo: "Escritorio Vacío", //este nombre debe corresponder con el id del modulo de la funcion infoObjeto()
 			detalle:
-				"El escritorio vacío es el área del escritorio que no ha sido usada por un icono o acceso directo, la imágen de fondo se llama FONDO DE ESCRITORIO",
+				"El escritorio vacío es el área del escritorio que no ha sido usada por un icono o acceso directo, la imagen de fondo se llama FONDO DE ESCRITORIO",
 			leerMas:
 				"https://es.answers.acer.com/app/answers/detail/a_id/37320/~/windows-10%3A-cambiar-el-fondo-de-la-pantalla-de-inicio",
 			imgs: [

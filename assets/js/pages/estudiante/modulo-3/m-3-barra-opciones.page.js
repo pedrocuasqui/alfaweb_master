@@ -31,7 +31,7 @@ parasails.registerPage("m-3-barra-opciones", {
 				{
 					posicion: "1", //siempre empezar en uno para poder identificar a los elementos
 					detalle:
-						"Archivo, Es la pestaña que nos da acceso al backstage (o zona de administración) en la que encontraremos acciones como las de Guardar el documento, Abrir otro existente, crear uno Nuevo, Imprimir, Compartir o Exportar. Dependiendo de la función se puede encontrar un boton de INICIO o la pestaña ARCHIVO.",
+						"Archivo, Es la pestaña que nos da acceso a la zona de administración en la que encontraremos acciones como las de Guardar el documento, Abrir otro existente, crear uno Nuevo, Imprimir, Compartir o Exportar. Dependiendo de la función se puede encontrar un boton de INICIO o la pestaña ARCHIVO.",
 					imagen:
 						"/images/informaticabasica/modulo3/barra_opciones/p_archivo/0.png",
 					alt: "Pestaña Archivo o botón Inicio"

@@ -332,7 +332,7 @@ parasails.registerPage("administrar-contenido", {
 					swal({
 						icon: "error",
 						title: "Error: no se ha podido eliminar el objeto seleccionado",
-						text: error,
+						text: `${error}`,
 						showConfirmButton: true
 					});
 				});

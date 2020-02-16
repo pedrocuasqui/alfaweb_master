@@ -568,9 +568,9 @@
                                             <a v-if="editarNombre" @click="actualizarNombre" title="Guardar Nombre"><i
                                                     class="fas fa-save"></i></a>
                                             <a v-else @click="mostrarEditarNombre"><i class="fas fa-edit"></i></a>
-                                            <a data-toggle="modal" data-target="#modalConfirmaEliminar"
-                                                data-placement="top" title="Eliminar Objeto"><i
-                                                    class="fas fa-trash-alt"></i></a>
+                                            <a v-if="noEsInforBasica" data-toggle="modal"
+                                                data-target="#modalConfirmaEliminar" data-placement="top"
+                                                title="Eliminar Objeto"><i class="fas fa-trash-alt"></i></a>
                                         </div>
                                     </div>
 

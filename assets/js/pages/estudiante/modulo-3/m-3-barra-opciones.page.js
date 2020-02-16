@@ -318,7 +318,7 @@ parasails.registerPage("m-3-barra-opciones", {
 			}
 			if (idObjeto == "inicio") {
 				$(function() {
-					$("#modalinicio").modal("show");
+					$("#modal_inicio").modal("show");
 				});
 			}
 			if (idObjeto == "insertar") {

@@ -39,7 +39,7 @@ parasails.registerPage("m-3-barra-acceso-rapido", {
 			id: "autoguardado",
 			titulo: "Botón de autoguardado",
 			detalle:
-				"Guarde el archivo en OneDrive o en Sharepoint online si desea usar la característica de autoguradado ",
+				"La característica de autoguradado permite que un archivo se suba a internet (nube) mediante una cuenta personal de Microsoft, cada vez que el usuario realice un cambio en el documento, este se guardará automáticamente para evitar la pérdida de su contenido, además permite ver en tiempo real los cambios que realizan otros usuarios con quienes se comparte el documento",
 			leerMas: "https://support.microsoft.com/es-ec/help/2617238",
 			imgs: [
 				{

@@ -1099,7 +1099,39 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 3,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								"<p>&iquest; En qu&eacute; parte de la ventana se encuentra la barra de t&iacute;tulo?</p>",
+							opciones: {
+								opcion1: "En la parte inferior de la ventana",
+								opcion2: "En la parte superior de la ventana",
+								opcion3: "Al costado derecho de la  ventana",
+								opcion4: "No existe"
+							},
+							respuesta: "En la parte superior de la ventana",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>La barra de t&iacute;tulo, &iquest; Muestra el nombre de la ventana?</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Falso",
+								opcion2: "Verdadero",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Verdadero",
+							pista: null,
+							pregNumero: 2
+						}
+					],
+					tiempoMaximoPorPregunta: "120",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Barra de herramientas de acceso rápido",
@@ -1111,7 +1143,105 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 4,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado: "<p>El bot&oacute;n de autoguardado permite ...</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Guardar el contenido del documento automáticamente",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>Para usar la caracter&iacute;stica de autoguardado es necesario...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Tener una cuenta de Microsoft",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								'<p>La opci&oacute;n <span style="background-color: #b96ad9;">Guardar...</span></p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Permite guardar el documento en una carpeta del computador",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">El &iacute;cono a continuaci&oacute;n, petenece a la opci&oacute;n...</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://lh3.googleusercontent.com/proxy/jx0S3zzFj_kVIbdOGEW8tEiGBfTb7DTPXlNjzv_Q1YdnGcVWX79Z9SCglHIPZrcDcNdmtEgTVNF7PqISuixZAisSnlkM2d06xR1Fx2CZCg-9q297LXZJHT898Y4Bd_VownAtwkQiJZR1yiirTClfm37Qnmrg8ImRvlNi" alt="Resultado de imagen de icono guardar word" width="236" height="236" /></p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Guardar",
+							pista: null,
+							pregNumero: 4
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">La opci&oacute;n deshacer sirve para...</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://image.flaticon.com/icons/png/512/60/60690.png" width="122" height="122" /></p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Para deshacer una acción",
+							pista: null,
+							pregNumero: 5
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">La opci&oacute;n Fuente...</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://image.flaticon.com/icons/png/512/25/25645.png" width="250" height="250" /></p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Permite personalizar el texto con opciones avanzadas de fuentes y caracteres para que tenga el exactamente el aspecto que desea",
+							pista: null,
+							pregNumero: 6
+						},
+						{
+							enunciado:
+								'<p>En la imagen a continuaci&oacute;n se muestra un &iacute;cono enmarcado con color violeta, al pulsarlo se despliega un men&uacute; de opciones que permite..</p>\n<p><img src="https://support.content.office.net/es-es/media/a93355d7-6b01-45a7-909a-5c53dcae7aee.jpg" alt="" width="569" height="389" /></p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Personalizar la barra de herramientas",
+							pista: null,
+							pregNumero: 7
+						}
+					],
+					tiempoMaximoPorPregunta: "420",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Barra o cinta de opciones",

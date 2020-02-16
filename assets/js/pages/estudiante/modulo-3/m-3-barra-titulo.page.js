@@ -24,13 +24,13 @@ parasails.registerPage("m-3-barra-titulo", {
 			id: "Titulo",
 			titulo: "Barra de título",
 			detalle:
-				"La barra de título es aquella parte de una ventana abierta que muestra la información de aquello para lo que la ventana está siendo utilizada actualmente. Es una barra horizontal, normalmente de color rojo o azul, en la parte superior de la ventana del ordenador que muestra el nombre de la ventana y que, generalmente, contiene opciones para minimizar, maximizar y cerrar ventana.",
+				"La barra de título es aquella parte de una ventana abierta que muestra la información de aquello para lo que la ventana está siendo utilizada actualmente. Es una barra horizontal, normalmente de color rojo o azul, en la parte superior de la ventana del ordenador que muestra el nombre de la ventana.",
 			leerMas:
 				"http://informatica1-2-3-4.blogspot.es/categoria/barra-de-titulo/",
 			imgs: [
 				{
 					src:
-						"http://informatica1-2-3-4.blogspot.es/cache/media/files/01/576/448/2018/03/1519912539_07-barra-de-titulo-word.png",
+						"https://www.luisegiraldo.com/images/07-Barra-de-titulo-word.png",
 					alt: "Barra de título"
 				}
 			]

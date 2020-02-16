@@ -24,8 +24,8 @@ parasails.registerComponent("modulo-ev-individual", {
 				"#F31885",
 				"#A39318",
 				"#18F35E",
-				"#18F38F",
 				"#18A7F3",
+				"#8c726c",
 				"#9318F3",
 				"#F318D8",
 				"#823815",
@@ -37,7 +37,10 @@ parasails.registerComponent("modulo-ev-individual", {
 				"#1833F3",
 				"#18E9F3",
 				"#33F318",
-				"#F3DF18"
+				"#F3DF18",
+				"#C71585",
+				"#FF4500",
+				"#6A5ACD"
 			],
 
 			totalTime: null,
@@ -70,7 +73,8 @@ parasails.registerComponent("modulo-ev-individual", {
 			siguientePreguntaCuestionario: true,
 
 			respuestaAnterior: [],
-			respuestaCuestionarioPreguntaPrueba: ""
+			respuestaCuestionarioPreguntaPrueba: "",
+			colorPregunta: null
 		};
 	},
 	beforeMount() {
@@ -482,14 +486,15 @@ parasails.registerComponent("modulo-ev-individual", {
 				//si aún no termina la evaluación, una vez que termina la evaluacion es necesario que pulse el boton de VOLVER A INTENTAR, en lugar de deshabilitar los botones
 
 				this.enunciadoSeleccionado = indexPreg; //aplica el estilo al enunciado seleccionado
-				// pregunta.color=this.coloresPreguntasEmparejamiento[indexPreg];
 
 				this.preguntaSeleccionadaJuegoEmparejamiento = pregunta; //mantiene esta pregunta para poder comparar con la respuesta que luego seleccione
 
 				//
 				this.tiempoRespuestaInicio = this.totalTime; //copia el tiempo en el que se encuentra actualmente para despues restar del tiempo final cuando responda correctamente y obtener el tiempo que se demoró en responde
+				this.colorPregunta = this.getRandomColor();
 				$("#Preg" + this.enunciadoSeleccionado).css({
-					"background-color": this.coloresPreguntasEmparejamiento[indexPreg],
+					// "background-color": this.coloresPreguntasEmparejamiento[indexPreg],
+					"background-color": this.colorPregunta,
 					"border-radius": "10px"
 				});
 
@@ -497,6 +502,20 @@ parasails.registerComponent("modulo-ev-individual", {
 				this.erroresRespuesta = 0; // se encera porque en adelante no se permite modificar la respuesta, mientras no se presione el enunciado el usuario puede cambiar de respuesta las veces que desee
 
 				this.respuestaAnterior = [];
+				if (
+					this.preguntasCuestionarioRespuestas[this.enunciadoSeleccionado]
+						.respuestaEstudiante
+				) {
+					$(
+						"#Resp" +
+							this.preguntaSeleccionadaJuegoEmparejamiento
+								.indiceRespuestaEstudiante
+					).css({
+						// "background-color": this.coloresPreguntasEmparejamiento[this.enunciadoSeleccionado],
+						"background-color": this.colorPregunta,
+						"border-radius": "10px"
+					});
+				}
 			}
 		},
 		/**
@@ -521,7 +540,6 @@ parasails.registerComponent("modulo-ev-individual", {
 					this.preguntasCuestionarioRespuestas[this.enunciadoSeleccionado]
 						.respuestaEstudiante
 				) {
-					console.log("ya contiene respuesta de estudiante");
 					//si la pregunta seleccionada ya tenia una respuesta, y no es la misma
 					if (
 						this.preguntasCuestionarioRespuestas[this.enunciadoSeleccionado]
@@ -570,9 +588,8 @@ parasails.registerComponent("modulo-ev-individual", {
 				// this.respuestasSeleccionadas.push();
 				//Se  pinta la respuesta  del color de la pregunta seleccionada
 				$("#Resp" + indexResp).css({
-					"background-color": this.coloresPreguntasEmparejamiento[
-						this.enunciadoSeleccionado
-					],
+					// "background-color": this.coloresPreguntasEmparejamiento[this.enunciadoSeleccionado],
+					"background-color": this.colorPregunta,
 					"border-radius": "10px"
 				});
 
@@ -664,8 +681,6 @@ parasails.registerComponent("modulo-ev-individual", {
 					this.arregloRandom.push(pregunta);
 				}
 			});
-
-			// return arregloRandom;
 		},
 		actualizaCuentaRegresiva() {
 			// document.getElementById('countdown').innerHTML = totalTime;
@@ -951,6 +966,20 @@ parasails.registerComponent("modulo-ev-individual", {
 					});
 				}
 			}
+		},
+		/**
+		 * Funcion para obtener un color oscuro
+		 * Fuente: http://jsfiddle.net/xP5v8/
+		 */
+		getRandomColor() {
+			var letters = "012345".split("");
+			var color = "#";
+			color += letters[Math.round(Math.random() * 5)];
+			letters = "0123456789ABCDEF".split("");
+			for (var i = 0; i < 5; i++) {
+				color += letters[Math.round(Math.random() * 15)];
+			}
+			return color;
 		}
 	},
 	computed: {

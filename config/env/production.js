@@ -142,7 +142,8 @@ module.exports = {
 		 ***************************************************************************/
 		cors: {
 			allRoutes: true,
-			allowOrigins: ["https://www.tiny.cloud "]
+			allowOrigins: ["https://www.tiny.cloud "],
+			SameSite: None
 		}
 	},
 
@@ -176,8 +177,8 @@ module.exports = {
 		secret: "c43a3692ca74e5da2d379cf083666115",
 		rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days,
 		cookie: {
-			maxAge: 30 * 24 * 60 * 60 * 1000
-			// secure: true
+			maxAge: 30 * 24 * 60 * 60 * 1000,
+			secure: true
 		}
 		//en produccion, intentar descomentar este bloque de codigo para conectar las sesiones con mongo
 		/* 

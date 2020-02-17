@@ -71,7 +71,7 @@ module.exports = {
 			// url: "mongodb://localhost:27017/alfabetizaweb",
 			url: process.env.DATABASE_URL,
 			// url:				"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
-			ssl: true,
+			ssl: false,
 			replicaSet: "alfabetizaweb-shard-0",
 			authSource: "admin"
 			// auto_reconnect: false,
@@ -184,8 +184,8 @@ module.exports = {
 		/* 
 		adapter: "connect-mongo", //connect es un plugin para almacenar sesiones en mongoDB, es original de express
 		// url: "mongodb://localhost:27017/alfabetizaweb",
-		url:
-			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
+		url: process.env.DATABASE_URL,
+		// url:			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
 		ssl: false,
 		replicaSet: "alfabetizaweb-shard-0",
 		authSource: "admin",

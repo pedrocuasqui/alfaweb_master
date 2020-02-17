@@ -245,7 +245,7 @@ module.exports = {
 		 * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
 		 *                                                                          *
 		 ***************************************************************************/
-		onlyAllowOrigins: ["htts://git.heroku.com"]
+		onlyAllowOrigins: ["htps://git.heroku.com"]
 		/***************************************************************************
 		 *                                                                          *
 		 * If you are deploying a cluster of multiple servers and/or processes,     *

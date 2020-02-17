@@ -142,8 +142,7 @@ module.exports = {
 		 ***************************************************************************/
 		cors: {
 			allRoutes: true,
-			allowOrigins: ["https://www.tiny.cloud "],
-			SameSite: None
+			allowOrigins: ["https://www.tiny.cloud "]
 		}
 	},
 

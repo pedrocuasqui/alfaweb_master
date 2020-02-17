@@ -142,9 +142,8 @@ module.exports = {
 		 *                                                                          *
 		 ***************************************************************************/
 		cors: {
-			// allowOrigins: [
-			//   'https://example.com',
-			// ]
+			allRoutes: true,
+			allowOrigins: ["https://www.tiny.cloud "]
 		}
 	},
 
@@ -352,8 +351,11 @@ module.exports = {
 	 *                                                                         *
 	 ***************************************************************************/
 	custom: {
-		baseUrl: "https://example.com",
-		internalEmailAddress: "support@example.com"
+		baseUrl: "https://arcane-shore-85865.herokuapp.com/",
+		imageBaseUrl: "https://arcane-shore-85865.herokuapp.com/images/uploaded",
+
+		rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
+		correoCuentaSmtp: "pedro.cuasqui@gmail.com"
 
 		// mailgunDomain: 'mg.example.com',
 		// mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',

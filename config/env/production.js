@@ -178,19 +178,20 @@ module.exports = {
 		cookie: {
 			maxAge: 30 * 24 * 60 * 60 * 1000,
 			secure: true
-		}
+		},
 		//en produccion, intentar descomentar este bloque de codigo para conectar las sesiones con mongo
-		/* 
+
 		adapter: "connect-mongo", //connect es un plugin para almacenar sesiones en mongoDB, es original de express
 		// url: "mongodb://localhost:27017/alfabetizaweb",
-		url: process.env.DATABASE_URL,
-		// url:			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
+		// url: process.env.DATABASE_URL,
+		url:
+			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
 		ssl: false,
 		replicaSet: "alfabetizaweb-shard-0",
 		authSource: "admin",
 		collection: "sessions",
 		auto_reconnect: false,
-		stringify: false */
+		stringify: false
 		//--------------------------------------------------------------------------
 		// /\   OR, to avoid checking it in to version control, you might opt to
 		// ||   set sensitive credentials like this using an environment variable.

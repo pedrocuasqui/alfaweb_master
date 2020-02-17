@@ -185,13 +185,13 @@ module.exports.routes = {
 	//  ║║║║╚═╗║
 	//  ╩ ╩╩╚═╝╚═╝
 	/**usar funciones de redireccion */
-	"GET /acerca": { view: "pages/acerca-de" },
+	"GET /acerca": { view: "pages/acerca-de" }
 	// ************************************
 	// ************************************
 	// ************* WEB SOCKETS***********
 	// ************************************
 	// ************************************
-	"GET /chat": {
-		action: "estudiante/chat"
-	}
+	// "GET /chat": {
+	// 	action: "estudiante/chat"
+	// }
 };

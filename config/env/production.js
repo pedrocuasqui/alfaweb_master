@@ -89,7 +89,7 @@ module.exports = {
 		 * https://sailsjs.com/docs/concepts/models-and-orm/model-settings#?migrate *
 		 *                                                                          *
 		 ***************************************************************************/
-		migrate: "safe"
+		migrate: "safe",
 
 		/***************************************************************************
 		 *                                                                          *
@@ -100,7 +100,7 @@ module.exports = {
 		 * choose to keep this enabled.)                                            *
 		 *                                                                          *
 		 ***************************************************************************/
-		// cascadeOnDestroy: true
+		cascadeOnDestroy: true
 	},
 
 	/**************************************************************************
@@ -141,8 +141,8 @@ module.exports = {
 		 *                                                                          *
 		 ***************************************************************************/
 		cors: {
-			// allRoutes: true,
-			// allowOrigins: ["https://www.tiny.cloud "]
+			allRoutes: true,
+			allowOrigins: ["https://www.tiny.cloud "]
 		}
 	},
 
@@ -348,11 +348,11 @@ module.exports = {
 	 *                                                                         *
 	 ***************************************************************************/
 	custom: {
-		/* baseUrl: "https://arcane-shore-85865.herokuapp.com/",
+		baseUrl: "https://arcane-shore-85865.herokuapp.com/",
 		imageBaseUrl: "https://arcane-shore-85865.herokuapp.com/images/uploaded",
 
 		rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
-		correoCuentaSmtp: "pedro.cuasqui@gmail.com" */
+		correoCuentaSmtp: "pedro.cuasqui@gmail.com"
 		// mailgunDomain: 'mg.example.com',
 		// mailgunSecret: 'key-prod_fake_bd32301385130a0bafe030c',
 		// stripeSecret: 'sk_prod__fake_Nfgh82401348jaDa3lkZ0d9Hm',

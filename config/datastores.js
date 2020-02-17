@@ -54,8 +54,9 @@ module.exports.datastores = {
 
 		//Descomentar estas lineas de código para conectarse a Mongo en línea
 		adapter: "sails-mongo",
-		url: process.env.DATABASE_URL,
-		// url:"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
+		// url: process.env.DATABASE_URL,
+		url:
+			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
 		ssl: true,
 		replicaSet: "alfabetizaweb-shard-0",
 		authSource: "admin"

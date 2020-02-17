@@ -1887,14 +1887,100 @@ module.exports.bootstrap = async function(done) {
 			{
 				nombreSubmodulo: "Dirección web",
 				descripcion:
-					"La dirección web es una línea de texto que permite ubicar una página o un sitio web en internet, por medio de un navegador",
+					"La dirección web es una línea de texto que permite ubicar una página o un sitio web en internet, por medio de un navegador, en su forma más básica se compone de tres elementos:  las letras www seguidas del nombre del sitio y la extensión de dominio",
 				enlace: "m5-direccion-web",
 				multimedia: {},
 				contenidoTiny: "<p>Pulse para editar</p>",
 				modulo: moduloCreado.id,
 				ordenNavegacion: 1,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								"<p>&iquest; Qu&eacute; significan las siglas WWW?</p>",
+							opciones: {
+								opcion1: "West World War",
+								opcion2: "World Wide Web",
+								opcion3: "War Web Wide",
+								opcion4: "Página web"
+							},
+							respuesta: "World Wide Web",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>La direcci&oacute;n web es una p&aacute;gina informativa.</p>",
+							opciones: {
+								opcion1: "Verdadero",
+								opcion2: "Falso",
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Falso",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>Una direcci&oacute;n web se compone de tres partes que son:</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: "Titulo, pie de página y contenido",
+								opcion2: "Cabecera, Cuerpo, Pie de página",
+								opcion3:
+									"el texto www, un nombre del sitio y una extensión de dominio",
+								opcion4: "Documento, nombre, ruta"
+							},
+							respuesta:
+								"el texto www, un nombre del sitio y una extensión de dominio",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								'<p>La extensi&oacute;n de dominio, por ejemplo <span style="background-color: #e03e2d;">.com</span>, permite identificar el tipo de sitio adem&aacute;s de...</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: "La empresa ",
+								opcion2: "La provincia ",
+								opcion3: "El país de procedencia",
+								opcion4: "Ninguna de las anteriores"
+							},
+							respuesta: "El país de procedencia",
+							pista: null,
+							pregNumero: 4
+						},
+						{
+							enunciado:
+								'<p>El dominio <span style="background-color: #e03e2d;">.edu</span> ...</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: "Representa entidades ubernamentales",
+								opcion2: "Se refiere a organizaciones",
+								opcion3: "Se refiere a comercial",
+								opcion4: "Se refiere a educación"
+							},
+							respuesta: "Se refiere a educación",
+							pista: null,
+							pregNumero: 5
+						},
+						{
+							enunciado:
+								'<p>El dominio <span style="background-color: #e03e2d;">.org</span> ...</p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: "Se refiere a educación",
+								opcion2: "Representa entidades gubernamentales",
+								opcion3: "Pertenece a Ecuador",
+								opcion4: "Es un dominio comercial"
+							},
+							respuesta: "Representa entidades gubernamentales",
+							pista: null,
+							pregNumero: 6
+						}
+					],
+					tiempoMaximoPorPregunta: "700",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Nombres de dominio",
@@ -1906,7 +1992,54 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 2,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado: "<p>El nombre del sitio web ...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Es un texto que permite identificar al contenido de internet, por ejemplo, Facebook, Google, Youtube",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>La extensi&oacute;n de dominio ...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Permite identificar el tipo de sitio web y el país de procedencia por ejemplo, .com, .edu, .org",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>Los Dominios geogr&aacute;ficos o territoriales ...</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Se refiera al territorio donde se encuentra la dirección web.Por ejemplo:  .ec pertenece a Ecuador , .ar pertenece a Argentina, .es pertenece a España, .co pertenece a Colombia",
+							pista: null,
+							pregNumero: 3
+						}
+					],
+					tiempoMaximoPorPregunta: "250",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Navegador web",
@@ -1918,10 +2051,68 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 3,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado:
+								"<p>Un navegador web es la herramienta de software que nos permite acceder a informaci&oacute;n de internet, los m&aacute;s conocidos son:</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Google Chrome, Mozilla firefox y Microsoft Edge ",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">La im&aacute;gen a continuaci&oacute;n, &iquest; A que navegador <span style="font-size: 1rem;">corresponde?</span></p>\n<p style="text-align: center;"><img src="https://www.stickpng.com/assets/images/5847f407cef1014c0b5e4889.png" alt="Resultado de imagen de firefox background transparent" width="236" height="250" /></p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Mozilla Firefox",
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								'<p>La im&aacute;gen a continuaci&oacute;n, &iquest; A que navegador corresponde ?</p>\n<p><img style="display: block; margin-left: auto; margin-right: auto;" src="https://www.stickpng.com/assets/images/588525cd6f293bbfae451a37.png" alt="Resultado de imagen de google chrome background  transparent" width="287" height="287" /></p>\n<p>&nbsp;</p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Google Chrome",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								'<p style="text-align: center;">La im&aacute;gen a continuaci&oacute;n, &iquest; A que navegador corresponde?</p>\n<p style="text-align: center;"><img src="https://clipartart.com/images/microsoft-edge-icon-clipart-8.png" /></p>',
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Microsoft Edge",
+							pista: null,
+							pregNumero: 4
+						}
+					],
+					tiempoMaximoPorPregunta: "250",
+					publicada: true
+				}
 			},
 			{
-				nombreSubmodulo: "Motores de navegación",
+				nombreSubmodulo: "Motores de búsqueda",
 				descripcion:
 					'Un MOTOR DE BÚSQUEDA, también conocido como "buscador", es un sistema informático que busca archivos almacenados en servidores web',
 				enlace: "m5-motores-navegacion",
@@ -1930,7 +2121,81 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 4,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Emparejamiento",
+					preguntas: [
+						{
+							enunciado: "<p>Paso 1 para navegar por internet</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Abrir el navegador y escribir en la barra de búsqueda el nombre del motor que desea utilizar, por ejemplo www.google.com o www.bing.com",
+							pista: null,
+							pregNumero: 1
+						},
+						{
+							enunciado:
+								"<p>Paso 2 para navegar por internet</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								'Escribir con el teclado, el texto que se quiere buscar, por ejemplo "Como navegar en internet"',
+							pista: null,
+							pregNumero: 2
+						},
+						{
+							enunciado:
+								"<p>Paso 3 para navegar por internet</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Seleccionar una de las opciones encontradas por el navegador, se encuentran en letras azules",
+							pista: null,
+							pregNumero: 3
+						},
+						{
+							enunciado:
+								"<p>Paso 4 para navegar por internet</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta: "Dar clic sobre un enlace para ver su contenido",
+							pista: null,
+							pregNumero: 4
+						},
+						{
+							enunciado:
+								"<p>Paso 5 para navegar por internet</p>\n<p>&nbsp;</p>",
+							opciones: {
+								opcion1: null,
+								opcion2: null,
+								opcion3: null,
+								opcion4: null
+							},
+							respuesta:
+								"Finalmente se abre el contenido y se puede leer el texto",
+							pista: null,
+							pregNumero: 5
+						}
+					],
+					tiempoMaximoPorPregunta: "500",
+					publicada: true
+				}
 			}
 		]);
 		moduloCreado = await ModuloLibro.create({
@@ -1947,7 +2212,7 @@ module.exports.bootstrap = async function(done) {
 		}).fetch();
 		await SubmoduloLibro.createEach([
 			{
-				nombreSubmodulo: "Creación de una cuenta de correo electónico",
+				nombreSubmodulo: "Creación de una cuenta de correo electrónico",
 				descripcion:
 					"Correo electrónico es un servicio electrónico mediante el cual se puede enviar y recibir mensaje de manera instantánea mediante Internet.",
 				enlace: "m6-creacion-cuenta",
@@ -1956,7 +2221,26 @@ module.exports.bootstrap = async function(done) {
 				modulo: moduloCreado.id,
 				ordenNavegacion: 1,
 				color: moduloCreado.color, //el color del padre se hereda a los hijos,
-				evaluacion: null
+				evaluacion: {
+					tipo: "Cuestionario",
+					preguntas: [
+						{
+							enunciado:
+								"<p>Las partes de una direcci&oacute;n de correo en orden son:</p>",
+							opciones: {
+								opcion1: "letras www y dominio",
+								opcion2: "Nombre de usuario, signo arroba (@) y dominio",
+								opcion3: "Nombre de usuario, dominio, signo arroba(@)",
+								opcion4: null
+							},
+							respuesta: "Nombre de usuario, signo arroba (@) y dominio",
+							pista: null,
+							pregNumero: 1
+						}
+					],
+					tiempoMaximoPorPregunta: "120",
+					publicada: true
+				}
 			},
 			{
 				nombreSubmodulo: "Envío de correo electrónico",

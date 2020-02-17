@@ -18,8 +18,8 @@ module.exports.custom = {
 	// baseUrl: "http://localhost:1337",
 	// imageBaseUrl: "http://localhost:1337/images/uploaded/",
 
-	baseUrl: "https://git.heroku.com",
-	imageBaseUrl: "https://git.heroku.com/images/uploaded",
+	baseUrl: "https://arcane-shore-85865.herokuapp.com/",
+	imageBaseUrl: "https://arcane-shore-85865.herokuapp.com/images/uploaded",
 
 	rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
 	correoCuentaSmtp: "pedro.cuasqui@gmail.com"

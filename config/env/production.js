@@ -180,7 +180,7 @@ module.exports = {
 			// secure: true
 		}
 		//en produccion, intentar descomentar este bloque de codigo para conectar las sesiones con mongo
-		/* 
+		/*
 		adapter: "connect-mongo", //connect es un plugin para almacenar sesiones en mongoDB, es original de express
 		// url: "mongodb://localhost:27017/alfabetizaweb",
 		// url: process.env.DATABASE_URL,

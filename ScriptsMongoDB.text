@@ -165,3 +165,10 @@ Cluster: alfabetizaweb
 Usuario: admin
 Password: admin
 Lista Blanca: {190.96.108.38/32, }
+
+16/02/2020
+CARGAR EL PROYECTO A INTERNTET, REVISAR LOS SIGUIENTES archivos
+* config/sessions
+* config/Custom
+* config/datastore
+* config/env/production

@@ -66,7 +66,16 @@ module.exports = {
 			 * https://sailsjs.com/config/datastores                                     *
 			 *                                                                           *
 			 ****************************************************************************/
-			// ssl: true,
+			adapter: "sails-mongo",
+			// adapter: "sails-mongo",
+			// url: "mongodb://localhost:27017/alfabetizaweb",
+			url:
+				"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
+			ssl: true,
+			replicaSet: "alfabetizaweb-shard-0",
+			authSource: "admin"
+			// auto_reconnect: false,
+			// stringify: false
 		}
 	},
 
@@ -171,9 +180,10 @@ module.exports = {
 		cookie: {
 			maxAge: 30 * 24 * 60 * 60 * 1000,
 			secure: true
-		},
-
-		adapter: "connect-mongo",
+		}
+		//en produccion, intentar descomentar este bloque de codigo para conectar las sesiones con mongo
+		/* 
+		adapter: "connect-mongo", //connect es un plugin para almacenar sesiones en mongoDB, es original de express
 		// url: "mongodb://localhost:27017/alfabetizaweb",
 		url:
 			"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
@@ -182,7 +192,7 @@ module.exports = {
 		authSource: "admin",
 		collection: "sessions",
 		auto_reconnect: false,
-		stringify: false
+		stringify: false */
 		//--------------------------------------------------------------------------
 		// /\   OR, to avoid checking it in to version control, you might opt to
 		// ||   set sensitive credentials like this using an environment variable.
@@ -312,7 +322,7 @@ module.exports = {
 	 * this, just try deploying without setting it and see if it works.)       *
 	 *                                                                         *
 	 ***************************************************************************/
-	// port: 80,
+	port: 80,
 
 	/**************************************************************************
 	 *                                                                         *

@@ -44,15 +44,13 @@ module.exports.session = {
 	auto_reconnect: false,
 	stringify: false
 
-	/*
-	adapter: "connect-mongo",
-	url:
-		"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
-	ssl: false,
-	replicaSet: "alfabetizaweb-shard-0",
-	authSource: "admin",
-	collection: "sessions",
-	auto_reconnect: false,
-	stringify: false
-	*/
+	// adapter: "connect-mongo",
+	// url:
+	// 	"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
+	// ssl: false,
+	// replicaSet: "alfabetizaweb-shard-0",
+	// authSource: "admin",
+	// collection: "sessions",
+	// auto_reconnect: false,
+	// stringify: false
 };

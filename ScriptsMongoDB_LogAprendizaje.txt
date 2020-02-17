@@ -579,3 +579,15 @@ https://stackoverflow.com/questions/36525830/executing-code-when-a-session-ends-
 VUEX: no parece haber literaura sobre vuex con parasails o sails js, no se usa vue en este proyecto, revisar tutorial https://www.youtube.com/watch?v=-qmLWz6pWnM&list=PLPl81lqbj-4J-gfAERGDCdOQtVgRhSvIT&index=13
 
 
+
+
+
+13/02/2020
+***DIFERNCIAS ENTRE sails-mongo(SAILS) y connect-mongo(EXPRESS)
+connect-mongo and sails-mongo are separate projects that do different things. If you simply npm install connect-mongo --save, sessions should work.
+
+connect-mongo (https://github.com/kcbanner/connect-mongo)
+connect-mongo is an Express (http://expressjs.com/) plugin that supports storing sessions in MongoDB. This project is actually not related to Sails, except to the degree that Sails uses Express to manage sessions.
+
+sails-mongo (https://github.com/balderdashy/sails-mongo)
+sails-mongo is a Waterline Adapter that enables you to use MongoDB with the Waterline ORM (included with Sails) as the persistence layer. sails-mongo is not used to store sessions, and is not related to connect-mongo

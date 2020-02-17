@@ -349,8 +349,8 @@ module.exports = {
 	 *                                                                         *
 	 ***************************************************************************/
 	custom: {
-		baseUrl: "https://arcane-shore-85865.herokuapp.com/",
-		imageBaseUrl: "https://arcane-shore-85865.herokuapp.com/images/uploaded",
+		baseUrl: "https://obscure-harbor-71757.herokuapp.com/",
+		imageBaseUrl: "https://obscure-harbor-71757.herokuapp.com/images/uploaded",
 
 		rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days
 		correoCuentaSmtp: "pedro.cuasqui@gmail.com"

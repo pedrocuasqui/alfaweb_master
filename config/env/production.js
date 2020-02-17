@@ -176,11 +176,11 @@ module.exports = {
 		secret: "c43a3692ca74e5da2d379cf083666115",
 		rememberMeCookieMaxAge: 30 * 24 * 60 * 60 * 1000, // 30 days,
 		cookie: {
-			maxAge: 30 * 24 * 60 * 60 * 1000,
-			secure: true
-		},
+			maxAge: 30 * 24 * 60 * 60 * 1000
+			// secure: true
+		}
 		//en produccion, intentar descomentar este bloque de codigo para conectar las sesiones con mongo
-
+		/* 
 		adapter: "connect-mongo", //connect es un plugin para almacenar sesiones en mongoDB, es original de express
 		// url: "mongodb://localhost:27017/alfabetizaweb",
 		// url: process.env.DATABASE_URL,
@@ -191,7 +191,7 @@ module.exports = {
 		authSource: "admin",
 		collection: "sessions",
 		auto_reconnect: false,
-		stringify: false
+		stringify: false */
 		//--------------------------------------------------------------------------
 		// /\   OR, to avoid checking it in to version control, you might opt to
 		// ||   set sensitive credentials like this using an environment variable.

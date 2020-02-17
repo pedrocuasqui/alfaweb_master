@@ -72,7 +72,7 @@ module.exports = {
 			// url: process.env.DATABASE_URL,
 			url:
 				"mongodb://admin:admin@alfabetizaweb-shard-00-00-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-01-cyg3m.mongodb.net:27017,alfabetizaweb-shard-00-02-cyg3m.mongodb.net:27017/alfabetizaweb",
-			ssl: true,
+			ssl: false,
 			replicaSet: "alfabetizaweb-shard-0",
 			authSource: "admin"
 		}
@@ -245,7 +245,7 @@ module.exports = {
 		 * > Be sure to use the right protocol!  ("http://" vs. "https://")         *
 		 *                                                                          *
 		 ***************************************************************************/
-		onlyAllowOrigins: ["https://git.heroku.com"]
+		onlyAllowOrigins: ["htts://git.heroku.com"]
 		/***************************************************************************
 		 *                                                                          *
 		 * If you are deploying a cluster of multiple servers and/or processes,     *

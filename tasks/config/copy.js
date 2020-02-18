@@ -18,16 +18,16 @@ module.exports = function(grunt) {
 					cwd: "./assets",
 					src: ["**/*.!(coffee|less)"],
 					dest: ".tmp/public"
-				},
+				}
 				// configuracion basada en el siguiente post
 				// https://stackoverflow.com/questions/23903148/sails-js-setup-how-to-make-a-node-module-available-across-the-sails-project-co
 				// http://ash.zi.vc/sails/2016/02/02/including-client-side-node-modules-in-my-sails-application/
-				{
-					expand: true,
-					cwd: "./node_modules/vue-sidebar-menu/dist",
-					src: ["**/*"],
-					dest: ".tmp/public/js/libs"
-				}
+				// {
+				// 	expand: true,
+				// 	cwd: "./node_modules/vue-sidebar-menu/dist",
+				// 	src: ["**/*"],
+				// 	dest: ".tmp/public/js/libs"
+				// }
 			]
 		},
 		build: {

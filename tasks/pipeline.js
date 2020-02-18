@@ -64,13 +64,13 @@ var jsFilesToInject = [
 	// > Be sure to list dependencies that depend on each other in the right order!
 
 	// se cargan las dependencias en el siguiente orden
+	"dependencies/jquery.min.js",
 	"dependencies/lodash.js",
 	"dependencies/vue.js",
 	"dependencies/parasails.js",
-	"dependencies/jquery.min.js",
 
 	"dependencies/*.js",
-	"dependencies/**/*.js",
+	// "dependencies/**/*.js",
 
 	// All of the rest of your custom client-side js files will be injected here,
 	// in no particular order.  To customize the ordering, add additional items

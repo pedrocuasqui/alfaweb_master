@@ -64,7 +64,6 @@ var jsFilesToInject = [
 	// > Be sure to list dependencies that depend on each other in the right order!
 
 	// se cargan las dependencias en el siguiente orden
-	"dependencies/jquery.min.js",
 	"dependencies/lodash.js",
 	"dependencies/vue.js",
 	"dependencies/parasails.js",

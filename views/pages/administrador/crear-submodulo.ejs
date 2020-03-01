@@ -1,0 +1,80 @@
+<div id="crear-submodulo" v-cloak>
+
+  <!-- ;aj;flkja -->
+  <modulo-contenedor-curso :curso="curso" :objeto-seleccionado="moduloSeleccionado" :titulo-temporal="tituloTemporal"
+    :crear-submodulo="crearSubmodulo" :breadcrumb="breadcrumb" :usuario="usuario"
+    :admin-creando-modulo-submodulo="adminCreandoModuloSubmodulo">
+
+    <div class="contenedor-formulario">
+      <div class=" formularioCentralSmall">
+        <form id="formulario">
+          <!-- ingresa el titulo del submodulo -->
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label for="nombreSubmodulo">Título del submódulo: (*)</label>
+            </div>
+            <div class="col-sm-9">
+              <input type="text" id="nombreSubmodulo" v-model="nombreSubmodulo"
+                placeholder="Ej: Partes de la computadora " class="form-control"
+                :class="[formErrors.nombreSubmodulo && nombreSubmodulo==''? 'is-invalid' : '']" maxlength="100"
+                autofocus>
+              <div class="invalid-feedback" v-if="formErrors.nombreSubmodulo && nombreSubmodulo==''">Ingrese un nombre
+                para el submódulo.</div>
+            </div>
+          </div>
+          <!-- ingresa la descripcion del submodulo -->
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label for="descripcionSubmodulo">Breve descripción o instrucciones: (*) </label>
+            </div>
+            <div class="col-sm-9">
+              <input type="text" id="descripcionSubmodulo" v-model="descripcionSubmodulo"
+                placeholder="Ej: Las partes de la computadora son todos los accesorios que se conectan a ella"
+                class="form-control"
+                :class="[formErrors.descripcionSubmodulo && descripcionSubmodulo=='' ? 'is-invalid' : '']"
+                maxlength="400">
+              <div class="invalid-feedback" v-if="formErrors.descripcionSubmodulo && descripcionSubmodulo==''">Ingrese
+                una descripción general para el
+                Submódulo.</div>
+            </div>
+          </div>
+          <!-- EDITOR DE CONTENIDOS TINYMCE -->
+          <div class="form-group row">
+            <div class="col-sm-3">
+              <label for="tinyMce">Contenido: (*)</label>
+            </div>
+
+            <div class="col-sm-9">
+              <form method="post" id="tinyMce">
+                <!-- post para que las imágenes se carguen con la funcionalidad por defecto de tinymce-->
+                <div id="mytextarea" class="contenidoTiny " @keyup="actualizaContTiny()"> </div>
+                <!-- EL CONTENIDO DE ESTA ETIQUETA SE ESTABLECE EN EL ARCHIVO layout.ejs -->
+                <div class="invalid-feedback" v-if="formErrors.contenidoTiny && !existeContenidoTiny">Debe ingresar
+                  algún contenido </div>
+              </form>
+            </div>
+          </div>
+
+
+          <div class="form-group row">
+            <div class="col-sm-4"></div>
+            <div class="col-sm-4">
+              <button class="boton_formulario" type="button" id="enviarModulo" @click="validarFormulario">
+                Guardar Submódulo</button>
+            </div>
+            <div class="col-sm-3">
+              <button class="boton_formulario" type="button" id="cancelarModulo" @click="onClickCancelar">
+                Cancelar</button>
+            </div>
+            <div class="col-sm-1"></div>
+
+          </div>
+          <br>
+          <br>
+        </form>
+      </div>
+    </div>
+  </modulo-contenedor-curso>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

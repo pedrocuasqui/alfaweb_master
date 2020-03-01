@@ -7,11 +7,14 @@
  *   https://sailsjs.com/anatomy/tasks/register/sync-assets.js
  *
  */
+//REVISADO PARA MODIFICAR sync.js
+
 module.exports = function(grunt) {
-  grunt.registerTask('syncAssets', [
-    'jst:dev',
-    'less:dev',
-    'sync:dev',
-    'coffee:dev'
-  ]);
+	grunt.registerTask("syncAssets", [
+		"jst:dev",
+		"less:dev"
+		// "sync:dev", //agregado
+		// "coffee:dev" //agregado
+		// "browserify",
+	]);
 };

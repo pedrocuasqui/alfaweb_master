@@ -1,0 +1,42 @@
+<!--
+Esta es la página de inicio de estudiante o visitante.
+For more information, see:
+• https://sailsjs.com/documentation/concepts/views
+• https://sailsjs.com/documentation/concepts/routes
+-->
+<link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>
+<div id="inicio" v-cloak>
+
+  <div class="div-contenido container-fluid" v-cloak>
+    <!-- Barra de navegacion en la parte superior-->
+    <!--contiene a div class="row"-->
+    <modulo-cabecera-general :breadcrumb="breadcrumb" :usuario="usuario"></modulo-cabecera-general>
+
+    <!--Contenido -->
+    <div class="row" id="div-body">
+
+      <div class=" formularioCentralSmall jumbotron">
+        <div class="lista-cursos-disponible">
+          <h1 class="titulo-centrado"><span data-hint-position="top-left"
+              data-hint="Seleccione un curso de la lista">CURSOS DISPONIBLES</span></h1>
+          <!--list-group-item btn-curso  list-group-item-action flex-column align-items-start-->
+          <template v-for="(curso, index) in cursosPublicados">
+            <button :id="curso.id" type="button" class=" button " @click="abrirCurso(curso.id)">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{curso.nombre}}</h5>
+                <!--span hace que los contenidos se presenten en linea-->
+                <span>
+                  {{index+1}}
+                </span>
+              </div>
+              <p class="mb-1 d-flex w-100 justify-content-between">{{curso.descripcion}}</p>
+            </button>
+          </template>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+</div>

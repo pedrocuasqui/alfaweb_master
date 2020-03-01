@@ -1,0 +1,160 @@
+<div id="puntaje-estudiante" v-cloak>
+
+
+  <!-- Pagina principal -->
+  <modulo-contenedor-admin :breadcrumb="breadcrumb" :usuario="usuario">
+    <div class="container">
+      <div class="row">
+        <div class="col">
+          <h3 for="curso">Curso</h3>
+          <div class="form-group">
+            <select class="form-control inputFull" id="curso" v-model="cursoSeleccionado" @change="clickPuntuacion()">
+              <option value="0" selected> Seleccione un curso </option>
+              <option v-for="(curso, index) in estudiante.cursos" :value="curso.id"> {{curso.nombre}}
+              </option>
+
+            </select>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <!-- COLUMNA IZQUIERDA: TABLA DE POSICIONES -->
+        <div class="col">
+          <h3>Tabla de posiciones - {{nombreCursoSeleccionado}}</h3>
+          <table class="table">
+            <thead class="thead-dark">
+              <tr>
+                <th scope="col">Posición</th>
+                <th scope="col">Estudiante</th>
+                <th scope="col">Puntos</th>
+                <th scope="col">Experiencia</th>
+                <th scope="col">Nivel</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr v-for="(estudiante, index) in estudiantesConSusIntentosQuickSort">
+
+                <th scope="row">{{index+1}}</th>
+                <td>{{estudiante.nombre}}</td>
+                <td>{{estudiante.intentosEvaluacion[0].puntos}}</td>
+                <td>{{estudiante.intentosEvaluacion[0].medalla}}</td>
+                <td>{{estudiante.intentosEvaluacion[0].nivel}}</td>
+
+              </tr>
+            </tbody>
+          </table>
+        </div>
+
+
+
+
+
+        <!-- COLUMNA DERECHA: GRAFICO DE AVANCE -->
+        <div class="col">
+          <h3>Gráfico de puntuaciones por evaluación</h3>
+          <div>
+            <p> Puntuación de las últimas evaluaciones</p>
+          </div>
+          <canvas id="graficoPuntuacionHistorica"></canvas>
+
+        </div>
+      </div>
+
+
+
+
+      <div class="row" style="text-align: center;">
+        <div class="col">
+          <h3>Evaluaciones realizadas</h3>
+
+          <div class="accordion" id="accordionIntentosEvaluacion">
+            <div class="container">
+              <div class="row">
+                <div class="col">
+                  <p>Fecha</p>
+                </div>
+                <div class="col">
+                  <p>Tema</p>
+                </div>
+                <div class="col">
+                  <p>puntos</p>
+                </div>
+                <div class="col">
+                  <p>Aprueba Evaluacion</p>
+                </div>
+              </div>
+            </div>
+
+            <div class="card evaluacion" v-for="(intento,index ) in intentoEvaluacionReversa">
+              <div class="card-header" :id="'heading'+index">
+                <h2 class="mb-0">
+                  <button class="btn btn-link collapsed" type="button" data-toggle="collapse"
+                    :data-target="'#collapse'+index" aria-expanded="false" :aria-controls="'collapse'+index">
+
+                    <div class="container">
+                      <div class="row">
+                        <div class="col"> {{devuelveFecha(intento.createdAt)}}</div>
+                        <div class="col">{{intento.submodulo.nombreSubmodulo}}</div>
+                        <div class="col"> {{intento.puntos}}</div>
+                        <div class="col"> {{ intento.apruebaEvaluacion==0 ? "NO": "SI" }}</div>
+                      </div>
+                    </div>
+                  </button>
+                </h2>
+              </div>
+              <div :id="'collapse'+index" class="collapse" :aria-labelledby="'heading'+index"
+                data-parent="#accordionIntentosEvaluacion">
+                <div class="card-body">
+                  <div>
+                    <template v-if="intento.evaluacion.tipo=='Cuestionario'">
+
+                      <div class="row" v-for="(pregunta, index) in intento.evaluacion.preguntas">
+                        <div class="col-sm-6" v-html="pregunta.enunciado"></div>
+                        <div class="col-sm-6">
+                          <p
+                            :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">
+                            Tu respuesta:
+                            {{ pregunta.respuestaEstudiante == null ? "NO RESPONDE": pregunta.respuestaEstudiante}}</p>
+                          <div>Respuesta correcta: {{pregunta.respuesta}}</div>
+                        </div>
+                      </div>
+                    </template>
+
+                    <template v-else-if="intento.evaluacion.tipo=='Emparejamiento'">
+                      <div class="row" v-for="(pregunta, index) in intento.evaluacion.preguntas">
+                        <div class="col-sm-6"> {{pregunta.enunciado}}</div>
+                        <div class="col-sm-6">
+                          <p
+                            :class="[pregunta.respuestaEstudiante==pregunta.respuesta ? 'respuesta_correcta' : 'respuesta_erronea']">
+                            Tu respuesta:
+                            {{ pregunta.respuestaEstudiante == null ? "NO RESPONDE": pregunta.respuestaEstudiante}}</p>
+                          <div>Respuesta correcta: {{pregunta.respuesta}}</div>
+                        </div>
+                      </div>
+                    </template>
+
+                  </div>
+
+
+
+
+
+
+
+
+
+
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+    </div>
+  </modulo-contenedor-admin>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

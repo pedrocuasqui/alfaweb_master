@@ -1,0 +1,70 @@
+<div id="m-5-direccion-web" v-cloak>
+
+
+  <modal-detalle-elemento :info-element="siglas">
+
+  </modal-detalle-elemento>
+
+  <modal-detalle-elemento :info-element="nombre">
+
+  </modal-detalle-elemento>
+
+  <modal-detalle-elemento :info-element="tipo">
+
+  </modal-detalle-elemento>
+
+
+
+  <!-- CONTENIDOS******************************************************************************************* -->
+
+  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
+    :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
+    @evaluacion-individual="evaluacionIndividual" ref="curso" :mostrar-icono-repetir="mostrarIconoRepetir"
+    @intentar-nuevamente="intentarNuevamente" :progreso="progreso" @click-asistente-buho="clickMostrarPista">
+    <!--mostrarIconoRepetir es una varible de tipo Boolean-->
+
+    <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
+    <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
+      @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
+      @actualiza-progreso="actualizaProgreso">
+
+    </modulo-ev-individual>
+    <div v-else id="contenedor-lienzo">
+      <div class="contenedor-imagen-svg">
+        <svg id="lienzo-svg" class="scaling-svg" viewBox="0 0 132.29 40.375" xmlns="http://www.w3.org/2000/svg">
+          <text id="text1394" x="10.727327" y="23.157515"
+            style="fill:#000000;font-family:sans-serif;font-size:10.583px;letter-spacing:0px;line-height:1.25;stroke-width:.26458;word-spacing:0px"
+            xml:space="preserve">
+            <tspan id="tspan1392" x="10.727327" y="23.157515" style="stroke-width:.26458">
+              <tspan id="tspan1396" style="fill:#da0000">WWW</tspan>.<tspan id="tspan1400" style="fill:#00e400">GOOGLE
+              </tspan>.<tspan id="tspan1402" style="fill:#0000e6">COM</tspan>
+            </tspan>
+          </text>
+          <g id="world wide web" class="contenedor1" @click="infoObjeto('siglas')" @mousemove="mouseMovePc"
+            @mouseout="mouseOutPc">
+            <rect id="rect1411" x="9.3914" y="11.307" width="34.774" height="15.119"
+              style="fill-opacity:0;paint-order:normal;stroke-width:0" />
+          </g>
+          <g id="nombre del sitio" class="contenedor1" @click="infoObjeto('nombre')" @mousemove="mouseMovePc"
+            @mouseout="mouseOutPc">
+            <rect id="rect1411-6" x="44.165" y="11.307" width="49.137" height="15.119"
+              style="fill-opacity:0;paint-order:normal;stroke-width:0" />
+          </g>
+          <g id="extensión de dominio" class="contenedor1" @click="infoObjeto('tipo')" @mousemove="mouseMovePc"
+            @mouseout="mouseOutPc">
+            <rect id="rect1411-6-3" x="94.494" y="11.049" width="33.64" height="15.119"
+              style="fill-opacity:0;paint-order:normal;stroke-width:0" />
+          </g>
+        </svg>
+        <div v-cloak v-show="mostrarToolTip" class="tooltip1" :style="styleToolTip">
+          <span>{{textoToolTip}}</span>
+        </div>
+      </div>
+
+    </div>
+
+  </modulo-contenedor-curso>
+  <!--  -->
+</div>
+
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

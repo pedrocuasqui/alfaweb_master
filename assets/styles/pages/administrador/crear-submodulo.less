@@ -1,0 +1,100 @@
+.modal-header,
+.modal-footer {
+	padding: 0.5rem 1rem !important;
+}
+
+.modal-footer > button {
+	font-size: 0.8rem !important;
+}
+
+.minimizar-campos > * {
+	//se aplica a todos los hijos de form-group
+	display: inline-block; //permite aplicar los demás estilos
+	font-size: xx-small; //tamaño pequeno con respecto al archivo html
+	// background-color: aqua;
+	width: 50% !important;
+	margin: 0px !important;
+}
+
+.minimizar-campos {
+	margin: 0px !important;
+	display: inline-flex;
+}
+
+.form-group input {
+	//tener en cuenta que con importer, esta configuración prevalece para las siguiente páginas definidas en importes
+	width: 100%;
+	margin: 0 auto;
+}
+
+form {
+	padding: 0 15px;
+}
+
+input[type="file"],
+input[type="submit"] {
+	display: block;
+}
+
+.contenido-izquierda {
+	// background-color: green;
+	height: 59vh;
+}
+
+.contenido-derecha {
+	// background-color:  olivedrab;
+	position: relative;
+	height: 58vh;
+}
+.contenedor-imagen {
+	position: relative;
+	height: 56vh;
+}
+
+.carousel-indicators-numbers {
+	li {
+		text-indent: 0 !important;
+		margin: 0 2px !important;
+		width: 30px !important;
+		height: 30px !important;
+		border: none !important;
+		border-radius: 100% !important;
+		line-height: 30px !important;
+		color: #fff !important;
+		background-color: #999 !important;
+		transition: all 0.25s ease;
+		&.active,
+		&:hover {
+			margin: 0 2px !important;
+			width: 30px !important;
+			height: 30px !important;
+			background-color: #337ab7 !important;
+		}
+	}
+}
+
+.contenedor-imagen-mapa {
+	display: inline-block;
+	position: relative;
+	// display:flex;
+}
+.contenedor-imagen-mapa img {
+	max-height: 28vh;
+	max-width: auto;
+}
+
+.handle {
+	// CONTROLA EL ESTILO DEL DIV QUE CONTROLA EL TAMAÑO DEL CONTENEDOR DE LAIMAGEN
+	background-color: #727272;
+	width: 10px;
+	height: 10px;
+	cursor: se-resize;
+	position: absolute;
+	right: 0;
+	bottom: 0;
+}
+
+.botonTecnica {
+	width: 100%;
+	height: auto;
+}

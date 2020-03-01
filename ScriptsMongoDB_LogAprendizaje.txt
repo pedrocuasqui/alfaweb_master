@@ -1,0 +1,593 @@
+/*Por defecto mongo no tiene habilitado el control de acceso*/
+
+>use alfabetizaweb 
+switched to db alfabetizaweb
+> db.createCollection("LibroAlfabetizacion")                                                                            { "ok" : 1 }
+> db.LibroAlfabetizacion.insert([
+{
+"nombre_modulo":"Antes de empezar (Practica tus habilidades con el mouse)",
+"descripcion":"",
+"ruta_medios":"C:/Users/PedroW10/Pictures/a.png"
+},
+{
+"nombre_modulo":"Módulo1: la computadora",
+"descripcion":"",
+"ruta_medios":"C:/Users/PedroW10/Documents/ProyectoIntegradorFis/alfabetizacioninformatica/4ta edicion/media/image6.gif"
+]})
+
+/*renombro la coleccion de LibroAlfabetizacion a ModuloLibro*/
+
+db.LibroAlfabetizacion.renameCollection("ModuloLibro")
+
+/*Elimino los documentos de la coleccion y vuelvo a insertar los documentos con un nuevo campo*/
+ db.collection.remove() 
+
+/*insercion*/
+> db.ModuloLibro.insert([
+{
+"id":1,
+"nombreModulo":"Introducción",
+"descripcion":"",
+"rutaMedios":"C:/Users/PedroW10/Pictures/a.png"
+},
+{
+"id":2,
+"nombreModulo":"Antes de empezar (Practica tus habilidades con el mouse)",
+"descripcion":"",
+"rutaMedios":"C:/Users/PedroW10/Pictures/a.png"
+},
+{
+"id":3,
+"nombreModulo":"Módulo1: la computadora",
+"descripcion":"La computadora es un dispositivo que realiza miles de operaciones rapidamente",
+"rutaMedios":"C:/Users/PedroW10/Documents/ProyectoIntegradorFis/alfabetizacioninformatica/4ta edicion/media/image6.gif"
+}
+])
+/*,
+        ".tmp" : true*/
+
+12/02/2019
+BODY PARSER llamado SKIPPPER de sails         
+
+
+8/04/2019
+insertamos los siguientes documentos en la coleccion "ModuloLibro" porque la compu(servidor) se apagó y por tanto se borraron los datos almacenados en la coleccion, ver el archivo config/models.js propiedad migrate:...
+
+db.ModuloLibro.insert( [
+      {
+        id: 'a',
+        nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la intro',
+        enlace: '',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: ""
+      },
+      {
+        id: 'b',
+        nombreModulo: 'antes de empezar', descripcion: 'descripcion antes de empezar',
+        enlace: '',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: ""
+      },
+      {
+        id: 'c',
+        nombreModulo: 'Módulo 1- La computadora ',
+        enlace: '/m1-computadora',
+        descripcion: 'descripcion la computadora',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'c1',
+          nombre: 'El sistema informático (Hardware y software)',
+          enlace: '/m1-sistema-informatico',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+          /* temas: [
+              {
+               id:'12',
+               nombre: 'Monitor',
+               enlace:'/m1-sistema-informatico-monitor',
+               descripcion: 'El monitor ...',
+               multimedia: 'http://...'
+             },
+             {
+               id:'13',
+               nombre: 'Mouse',
+               enlace:'/m1-sistema-informatico-mouse',
+               descripcion: 'El monitor ...',
+               multimedia: 'http://...'
+             }]*/
+        },
+        {
+          id: 'c2',
+          nombre: 'Conexion de los distintos componentes de la computadora',
+          enlace: '/m1-conexion-componentes',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://...',
+
+        }]
+      },
+
+      {
+        id: 'd',
+        nombreModulo: 'Módulo 2- Navegación en el escritorio',
+        descripcion: 'descripcion Navegacion escritorio',
+        enlace: '/m2-navegacion-escritorio',
+        multimedia: 'images/svg/buho_bebe.svg',
+        submodulos: [{
+          id: 'd1',
+          nombre: 'El escritorio',
+          enlace: '/m2-navegacion-escritorio-escritorio',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+
+        ]
+      },
+      {
+        id: 'e',
+        nombreModulo: 'Módulo 3-Edición de documentos Word',
+        descripcion: 'Edición de documentos en word parte 1',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'e1',
+          nombre: 'Pantalla principal',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },  ],
+      },
+      {
+        id: 'f',
+        nombreModulo: 'Módulo 4-Edición de documentos Word',
+        descripcion: 'Edicion de documentos en word parte 2',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'f1',
+          nombre: 'Pantalla principal',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        }, ]
+      },
+
+      {
+        id: 'g',
+        nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
+        descripcion: 'descripcion edicion de documentos',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'g1',
+          nombre: 'Tablas',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+        {
+          id: 'g2',
+          nombre: 'Imágenes',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+
+        ]
+      },
+    ])
+
+* por medio del API RESTFUL json de blueprint insertar: 
+http://localhost:1337/modulolibro/create?nombreModulo=Modulo2: Navegacion en el escritorio&enlace=m2-escritorio&multimedia=images/svg/buho_bebe.svg
+
+
+
+
+
+corrijo el objeto json a insertar en la base de datos MOduloLibro de acuerdo a los datos definidos en el modelo ModuloLibro de sails en esta aplicacion
+
+db.ModuloLibro.insert([{
+        nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la intro',
+        enlace: '',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: "",
+      },
+      {
+        nombreModulo: 'antes de empezar', descripcion: 'descripcion antes de empezar',
+        enlace: '',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: "",
+      {
+        nombreModulo: 'Módulo 1- La computadora ',
+        enlace: '/m1-computadora',
+        descripcion: 'descripcion la computadora',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: "[{
+          nombre: 'El sistema informático (Hardware y software)',
+          enlace: '/m1-sistema-informatico',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        } ,
+        {
+          nombre: 'Conexion de los distintos componentes de la computadora',
+          enlace: '/m1-conexion-componentes',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://...',
+        }]",
+      },
+      {
+        nombreModulo: 'Módulo 2- Navegación en el escritorio',
+        descripcion: 'descripcion Navegacion escritorio',
+        enlace: '/m2-navegacion-escritorio',
+        multimedia: 'images/svg/buho_bebe.svg',
+        submodulos:" [{
+          nombre: 'El escritorio',
+          enlace: '/m2-navegacion-escritorio-escritorio',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        }        ]",
+      },
+      {
+        nombreModulo: 'Módulo 3-Edición de documentos Word',
+        descripcion: 'Edición de documentos en word parte 1',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: "[{
+          id: 'e1',
+          nombre: 'Pantalla principal',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        } ]",
+      },
+      {
+        nombreModulo: 'Módulo 4-Edición de documentos Word',
+        descripcion: 'Edicion de documentos en word parte 2',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: "[{
+          nombre: 'Pantalla principal',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        }]",
+      },
+      {
+        nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
+        descripcion: 'descripcion edicion de documentos',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: "[{
+          nombre: 'Tablas',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+        {
+          nombre: 'Imágenes',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+        ]",
+      },
+    ])
+
+
+
+
+
+
+
+
+    la correccion no me pemite ingresar directamente todos los registros en la consola, se inserta la anterior consulta json 
+    db.ModuloLibro.insert( [
+      {
+        id: 'a',
+        nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la intro',
+        enlace: '',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: ''
+      },
+      {
+        id: 'b',
+        nombreModulo: 'antes de empezar', descripcion: 'descripcion antes de empezar',
+        enlace: '',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: ''
+      },
+      {
+        id: 'c',
+        nombreModulo: 'Módulo 1- La computadora ',
+        enlace: '/m1-computadora',
+        descripcion: 'descripcion la computadora',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'c1',
+          nombre: 'El sistema informático (Hardware y software)',
+          enlace: '/m1-sistema-informatico',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+          /* temas: [
+              {
+               id:'12',
+               nombre: 'Monitor',
+               enlace:'/m1-sistema-informatico-monitor',
+               descripcion: 'El monitor ...',
+               multimedia: 'http://...'
+             },
+             {
+               id:'13',
+               nombre: 'Mouse',
+               enlace:'/m1-sistema-informatico-mouse',
+               descripcion: 'El monitor ...',
+               multimedia: 'http://...'
+             }]*/
+        },
+        {
+          id: 'c2',
+          nombre: 'Conexion de los distintos componentes de la computadora',
+          enlace: '/m1-conexion-componentes',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://...',
+
+        }]
+      },
+
+      {
+        id: 'd',
+        nombreModulo: 'Módulo 2- Navegación en el escritorio',
+        descripcion: 'descripcion Navegacion escritorio',
+        enlace: '/m2-navegacion-escritorio',
+        multimedia: 'images/svg/buho_bebe.svg',
+        submodulos: [{
+          id: 'd1',
+          nombre: 'El escritorio',
+          enlace: '/m2-navegacion-escritorio-escritorio',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+
+        ]
+      },
+      {
+        id: 'e',
+        nombreModulo: 'Módulo 3-Edición de documentos Word',
+        descripcion: 'Edición de documentos en word parte 1',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'e1',
+          nombre: 'Pantalla principal',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },  ],
+      },
+      {
+        id: 'f',
+        nombreModulo: 'Módulo 4-Edición de documentos Word',
+        descripcion: 'Edicion de documentos en word parte 2',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'f1',
+          nombre: 'Pantalla principal',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        }, ],
+      },
+
+      {
+        id: 'g',
+        nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
+        descripcion: 'descripcion edicion de documentos',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        submodulos: [{
+          id: 'g1',
+          nombre: 'Tablas',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+        {
+          id: 'g2',
+          nombre: 'Imágenes',
+          enlace: '/',
+          descripcion: 'Descripcion submódulo',
+          multimedia: 'http://..',
+        },
+
+        ],
+      },
+    ])
+    
+10/04/2019
+
+    *video de modelo para una base mongo https://www.youtube.com/watch?v=zsdJAuxOV3U
+
+
+11/0/2019
+
+Diagrama entidad relacion de sergio lujan para un juego
+https://www.researchgate.net/figure/Figura-1-Base-de-datos-del-sistema-modelada-mediante-UML_fig3_320809023
+
+
+
+
+insertamos documentos con un id padre
+//los submodulos se insertan dentro de una coleccion para submodulos, cada documento hará referencia al módulo padre\
+//en la interfaz, para insertar un documento en modulo libro primero debe existir el curso al que pertenece
+ db.ModuloLibro.insert( [
+      {
+        nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la introduccion',
+        enlace: '',
+        descripcion: '',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: { "$ref":"Curso", "$id":ObjectId("5cafa987620c201bf4a2aa2f")}
+      },
+      {
+        nombreModulo: 'antes de empezar', descripcion: 'descripcion antes de empezar',
+        enlace: '',
+        descripcion: '',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: { "$ref":"Curso", "$id":ObjectId("5cafa987620c201bf4a2aa2f")}
+      },
+      {
+        nombreModulo: 'Módulo 1- La computadora ',
+        enlace: '/m1-computadora',
+        descripcion: 'descripcion la computadora',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: { "$ref":"Curso", "$id":ObjectId("5cafa987620c201bf4a2aa2f")}
+        
+      },
+
+      {
+        nombreModulo: 'Módulo 2- Navegación en el escritorio',
+        descripcion: 'descripcion Navegacion escritorio',
+        enlace: '/m2-navegacion-escritorio',
+        multimedia: 'images/svg/buho_bebe.svg',
+        curso: { "$ref":"Curso", "$id":ObjectId("5cafa987620c201bf4a2aa2f")}
+      },
+      {
+        nombreModulo: 'Módulo 3-Edición de documentos Word',
+        descripcion: 'Edición de documentos en word parte 1',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: { "$ref":"Curso", "$id":ObjectId("5cafa987620c201bf4a2aa2f")}
+      },
+      {
+        nombreModulo: 'Módulo 4-Edición de documentos Word',
+        descripcion: 'Edicion de documentos en word parte 2',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: { "$ref":"Curso", "$id":ObjectId("5cafa987620c201bf4a2aa2f")}
+      },
+
+      {
+        id: 'g',
+        nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
+        descripcion: 'descripcion edicion de documentos',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: { "$ref":"Curso", "$id":ObjectId("5cafa987620c201bf4a2aa2f")}
+      },
+    ])
+
+
+    ** Guia para escoger una estrategia de modelado de la base de datos no relacional(embebida o relacional) en este caso en mogodb: https://www.beeva.com/beeva-view/desarrollo/mongobd-modelo-de-datos-y-buenas-practicas/
+
+
+    15/04/2019
+
+    usando ModuloLibro.create llenamos varios módulos del curso 'Alfabetiacion informatica'
+
+    await ModuloLibro.create(
+      {
+        nombreModulo: 'Introduccion al curso', descripcion: 'descripcion de la introduccion',
+        enlace: '',
+        descripcion: '',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+      },
+      {
+        nombreModulo: 'Módulo 1- La computadora ',
+        enlace: '/m1-computadora',
+        descripcion: 'descripcion la computadora',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+        
+      },
+
+      {
+        nombreModulo: 'Módulo 2- Navegación en el escritorio',
+        descripcion: 'descripcion Navegacion escritorio',
+        enlace: '/m2-navegacion-escritorio',
+        multimedia: 'images/svg/buho_bebe.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+      },
+      {
+        nombreModulo: 'Módulo 3-Edición de documentos Word',
+        descripcion: 'Edición de documentos en word parte 1',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+      },
+      {
+        nombreModulo: 'Módulo 4-Edición de documentos Word',
+        descripcion: 'Edicion de documentos en word parte 2',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+      },
+
+      {
+        nombreModulo: 'Módulo 5- Inserción de imágenes y tablas',
+        descripcion: 'descripcion edicion de documentos',
+        enlace: '/',
+        multimedia: 'images/svg/modulo1-portada.svg',
+        curso: '5cafa987620c201bf4a2aa2f'
+      }
+    );
+
+
+
+
+    Viernes 10-05-2019
+Problema para registrar components en parasails: https://github.com/balderdashy/sails/issues/4475
+PARASAILS NO ACEPTA NI REQUIRE NI IMPORT
+
+
+
+Miercoles 29-05-2019
+Se usan las siguientes fuentes para cargar el contenido del curso alfabetizacion basica
+* https://conceptodefinicion.de/
+* https://emtic.educarex.es/pildoras/pub/cont/archivos/Elementos_basicos_de_Word.pdf
+
+
+
+
+
+
+
+
+
+Viernes 14-06-2019
+Fuente: https://en.ryte.com/wiki/GET_Parameter
+
+GET request
+When the GET request method is used, if a client uses the HTTP protocol on a web server to request a certain resource, the client sends the server certain GET parameters through the requested URL. These parameters are pairs of names and their corresponding values, so-called name-value pairs. These are added to the URL with a “?” sign and tell the server which resources are meant. The name and value are always separated using a “=” sign.
+
+The syntax is as follows:
+
+http://www.domain.com/index.html*?name1=value1
+Multiple parameters, as well as entire lists, can be transmitted to the server. Here, the various parameters are separated using a “&” sign.
+
+http://www.domain.com/index.html*?name1=value1&name2=value2
+
+
+
+28-06-2019
+
+SESSIONS
+por que la sesion expira
+https://stackoverflow.com/questions/36525830/executing-code-when-a-session-ends-in-sails-js
+
+
+05-08-2019
+VUEX: no parece haber literaura sobre vuex con parasails o sails js, no se usa vue en este proyecto, revisar tutorial https://www.youtube.com/watch?v=-qmLWz6pWnM&list=PLPl81lqbj-4J-gfAERGDCdOQtVgRhSvIT&index=13
+
+
+
+
+
+13/02/2020
+***DIFERNCIAS ENTRE sails-mongo(SAILS) y connect-mongo(EXPRESS)
+connect-mongo and sails-mongo are separate projects that do different things. If you simply npm install connect-mongo --save, sessions should work.
+
+connect-mongo (https://github.com/kcbanner/connect-mongo)
+connect-mongo is an Express (http://expressjs.com/) plugin that supports storing sessions in MongoDB. This project is actually not related to Sails, except to the degree that Sails uses Express to manage sessions.
+
+sails-mongo (https://github.com/balderdashy/sails-mongo)
+sails-mongo is a Waterline Adapter that enables you to use MongoDB with the Waterline ORM (included with Sails) as the persistence layer. sails-mongo is not used to store sessions, and is not related to connect-mongo

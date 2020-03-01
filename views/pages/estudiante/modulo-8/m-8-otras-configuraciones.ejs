@@ -1,0 +1,26 @@
+<div id="m-8-otras-configuraciones" v-cloak>
+
+  <modulo-contenedor-curso :navegar-atras="navegarAtras" :navegar-siguiente="navegarSiguiente" :breadcrumb="breadcrumb"
+    :usuario="usuario" :curso="curso" :objeto-seleccionado="objetoSeleccionado" :titulo-temporal.sync="tituloEvaluacion"
+    @evaluacion-individual="evaluacionIndividual" ref="curso" :mostrar-icono-repetir="mostrarIconoRepetir"
+    @intentar-nuevamente="intentarNuevamente" :progreso="progreso" @click-asistente-buho="clickMostrarPista">
+    <!--mostrarIconoRepetir es una varible de tipo Boolean-->
+
+    <!-- si el contenido retornado es un submodulo se permiten las evaluaciones -->
+    <modulo-ev-individual v-if="evIndividual" :submodulo="objetoSeleccionado" :usuario="usuario"
+      @finaliza-evaluacion="finalizaEvaluacion" ref="componenteEvaluacion" :curso="curso"
+      @actualiza-progreso="actualizaProgreso">
+
+    </modulo-ev-individual>
+    <div v-else id="contenedor-lienzo">
+      <video width="750" height="450" controls>
+        <source src="/images/informaticabasica/modulo8/otras_configuraciones/cambiar_fondo.mp4" type="video/mp4">
+        Tu navegador no soporta los vídeos de HTML5
+      </video>
+
+    </div>
+
+  </modulo-contenedor-curso>
+  <!--  -->
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

@@ -1,23 +1,80 @@
-<!--
-This is your default homepage.
-For more information, see:
-• https://sailsjs.com/documentation/concepts/views
-• https://sailsjs.com/documentation/concepts/routes
--->
-<link href="https://fonts.googleapis.com/css?family=Lato:300,400" rel="stylesheet">
+<div id="homepage" v-cloak>
+  <div class="container contenedor-principal">
+    <div class="row banner-homepage">
+      <!-- <div class="col">
+        <img class="imagen-banner" src="/images/homepage/icono_inclusion_digital_1.jpg" alt="banner inclusión digital">
+      </div> -->
+    </div>
+    <div class="row contenido-homepage">
+      <div class="col-sm-6 homepage-logo">
+        <div class="row">
+          <div class="imagen-derecha-homepage">
+            <img src="/images/homepage/epn.png" alt="Escudo de la EPN">
+          </div>
+        </div>
 
-<div>
-  <div>
-    ESCOJA SU ROL
-  </div>
-  <div>
-    <ul>
-      <li> <a href="/administrar">Administrador</a></li>
-      <li>Tutor</li>
-      <li>Estudiante</li>
-      
-    </ul>
+        <div class="row">
+          <div class="col">
+            <h3 class="titulo-centrado">BIENVENIDO!!!</h3>
+            <p>
+              "Alfaweb" es un sistema desarrollado por la Facultad de Sistemas de la Escuela Politécnica Nacional para
+              promover la inclusión informática por medio de gamificación.
+            </p>
 
- 
+          </div>
+        </div>
+
+      </div>
+      <div class="col-sm-6 homepage-login">
+        <div class="row">
+
+          <modulo-login v-if="!usuario">
+            <div class="form-group">
+              <span id="navegarSiguiente">¿No te has registrado aún?</span> <span><a class="btn btn-info"
+                  href="/view-registro-usuario" role="button">Regístrate</a></span>
+            </div>
+          </modulo-login>
+          <div v-else>
+            <div class="row">
+              <h3>Usuario logueado: <em> {{usuario.nombre}} </em></h3>
+            </div>
+            <div class="row">
+              <h5 v-if="usuario.administrador"><i class="fas fa-user-tie"></i> Administrador </h5>
+              <h5 v-else><i class="fas fa-user "></i> Estudiante</h5>
+            </div>
+            <div class="row centrado_horizontal">
+
+              <div class="col-sm-5">
+                <template v-if="usuario.administrador">
+                  <a class="btn btn-primary boton_formulario" href="/administrar-home" role="button">Ingresar</a>
+                </template>
+                <template v-else>
+                  <a class="btn btn-primary boton_formulario" href="/inicio" role="button">Ingresar</a>
+                </template>
+
+              </div>
+              <div class="col-sm-7">
+                <a class="btn btn-primary boton_formulario" href="/logout">Cerrar sesión</a>
+              </div>
+
+
+
+
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </div>
+
+    </div>
+    <!-- Agregar aqui contenido de prueba -->
+
+
   </div>
+
 </div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

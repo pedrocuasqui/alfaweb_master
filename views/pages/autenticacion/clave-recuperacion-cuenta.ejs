@@ -1,0 +1,47 @@
+<div id="clave-recuperacion-cuenta" v-cloak>
+  <modulo-contenedor-admin>
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-sm-4">
+
+          <form @submit.prevent="validarFormulario" v-if="!mostrarCamposContrasenia">
+            <h3 class="centrado_horizontal">Recuperación de cuenta</h3>
+
+            <div class="form-group">
+              <label for="codigoTemporal">Ingresa el código de 6 dígitos</label>
+              <input name="codigoTemporal" class="form-control" id="codigoTemporal"
+                :class="[formErrors.codigoTemporal ? 'is-invalid' : '']" v-model.trim="formData.codigoTemporal">
+              <div class="invalid-feedback" v-if="formErrors.codigoTemporal">Ingrese el código.</div>
+              <div class="invalid-feedback" v-if="formErrors.erroneo">Código erróneo</div>
+            </div>
+
+
+            <div class="form-group">
+              <input type="submit" value="Verificar código" class="btn btn-primary">
+            </div>
+
+          </form>
+
+          <div v-if="mostrarCamposContrasenia">
+            <div class="form-group">
+              <label for="password">Ingrese nuevo password (*)</label>
+              <input name="password" class="form-control" id="password" type="password"
+                :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.password"
+                placeholder="••••••••">
+              <div class="invalid-feedback" v-if="formErrors.password">Ingrese un password.</div>
+            </div>
+            <div class="form-group">
+              <label for="password">Confirme su nuevo password (*)</label>
+              <input name="password" class="form-control" id="passwordConfirm" type="password"
+                :class="[formErrors.password ? 'is-invalid' : '']" v-model.trim="formData.passwordConfirm"
+                placeholder="••••••••">
+              <div class="invalid-feedback" v-if="formErrors.passwordConfirm">El password no coincide.</div>
+            </div>
+            <button class="boton_formulario" @click="validarContrasenia">Guardar cambios</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </modulo-contenedor-admin>
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

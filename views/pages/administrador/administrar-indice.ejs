@@ -1,0 +1,123 @@
+<div id="administrar-indice" v-cloak>
+  <!-- Modal -->
+  <div class="modal fade" id="modalConfirmaEliminar" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+    aria-hidden="true">
+    <div class="modal-dialog" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="exampleModalLabel">Eliminar Curso </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Cerrar">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body">
+          <div class="modal_pregunta">
+            <p>Quieres eliminar el curso: <strong>{{curso.nombre}}</strong></p>
+            <p>Se eliminarán también sus módulos asociados</p>
+          </div>
+
+        </div>
+        <div class="modal-footer">
+          <button class="btn btn-primary" data-dismiss="modal" @click="eliminarDocumento()">Aceptar</button>
+          <a class="btn btn-primary" href="" data-dismiss="modal" role="button">Cancelar</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Contenido -->
+
+  <div class="div-contenido container-fluid" v-cloak>
+    <div class="row" id="div-cabecera">
+
+      <div class="col-sm-8">
+        <modulo-barra-nav :breadcrumb="breadcrumb" :usuario="usuario"></modulo-barra-nav>
+      </div>
+      <%- include ../icono-polhibou %>
+      <div class="col-sm-2">
+        <modulo-panel-derecho :usuario="usuario"></modulo-panel-derecho>
+      </div>
+    </div>
+
+
+
+
+    <!-- Contenedor de contenido -->
+    <div class="row" id="div-body">
+      <!-- columna izquierda -->
+      <div class="col-sm-1 col-izquierda">
+        <!-- <modulo-side-var-menu></modulo-side-var-menu> -->
+      </div>
+      <div class="col-sm-11" id="columna-contenido-lateral">
+        <div class="row fila-principal">
+          <!-- Columna central -->
+          <div class="col-sm-11 col-central">
+
+            <div class="row cabecera-central">
+              <div class="navegacion-siguiente">
+                <a :href="navegarSiguiente" data-toggle="tooltip" title="Pulsa para continuar"><i style="position: relative;-webkit-animation: mymove 2.5s 3; 
+                      animation: mymove 2.5s 3;" class="fas fa-chevron-right fas-3x"></i> </a>
+              </div>
+              <div class="navegacion-atras">
+                <a :href="navegarAtras" data-toggle="tooltip" title="Pulsa para regresar"> <i
+                    class="fas fa-chevron-left fas-3x"></i> </a>
+              </div>
+              <div class="col" id="titulo-modulo">
+                <!-- <h1 class="mensaje-bienvenida" >BIENVENIDO!!</h1> -->
+                <img class="mensaje-bienvenida" src="/images/svg/bienvenido.svg" alt="mensaje de bienvenida" />
+                <div class="row">
+                  <div class="col nombre-curso">
+                    <!-- <input v-if="editarNombre" type="text" name="nombreCurso" v-model="curso.nombre" autofocus> -->
+                    <h1>{{curso.nombre}}</h1>
+
+                    <!-- <a v-if="editarNombre" @click="guardarNombre" title="Editar Curso"><i class="fas fa-save"></i></a>
+                    <a v-else @click="mostrarCajaEditar" ><i class="fas fa-edit"></i></a> -->
+                    <a data-toggle="modal" v-if="noEsInforBasica" data-target="#modalConfirmaEliminar"
+                      data-placement="top" title="Eliminar Curso"><i class="fas fa-trash-alt"></i></a>
+
+                  </div>
+
+                </div>
+                <div class="row curso-descripcion">
+                  <div class="col">
+                    <input v-if="editarNombre" type="text" name="descripcionCurso" v-model="curso.descripcion"
+                      autofocus>
+                    <h6 v-else>{{curso.descripcion}}</h6>
+                  </div>
+
+                </div>
+
+              </div>
+            </div>
+            <div class="row contenido-menu">
+              <div class="col">
+                <div class="row">
+                  <div class="col-sm-3 item-modulo" v-for="modulo in curso.modulos">
+                    <a :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'"> <img
+                        :src="modulo.multimedia.imagen" :alt="'Imagen de '+modulo.nombreModulo"></a>
+                    <a
+                      :href="'/administrar-contenido/?objetoId='+modulo.id+'&tipoContenido=Modulo'">{{modulo.nombreModulo}}</a>
+                  </div>
+                  <div v-if="noEsInforBasica" class="col-sm-3 agregaModulo">
+                    <a type="button" class="btn btn-primary boton_formulario"
+                      :href="'/view-crear-modulo/?cursoId='+curso.id" title="Añadir nuevo módulo">Crear módulo</a>
+                  </div>
+                </div>
+              </div>
+
+            </div>
+          </div>
+          <!-- columna derecha -->
+          <div class="col-sm-1 col-derecha">
+
+          </div>
+        </div> <!-- fin fila de contenido central y barra lateral derecha -->
+      </div>
+      <!--fin columna contenido central y barra lateral derecha-->
+
+
+    </div>
+  </div>
+
+</div>
+<%- /* Expose server-rendered data as window.SAILS_LOCALS :: */ exposeLocalsToBrowser() %>

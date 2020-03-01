@@ -1,0 +1,1701 @@
+#layout-general {
+	//es el body del layout principal
+	//se usa para poder usar elementos con posicion absoluta dentro de este padre
+	height: 100vh; // vh hace referencia a la centésima parte de la altura del viewport
+	width: 100vw; //vw hace referencia al la centésima parte del ancho del viewport
+	// font-family     : 'Roboto', sans-serif;
+	font-family: "Poppins", sans-serif;
+	background-color: #1e1e2f;
+	overflow: hidden;
+	[v-cloak] * {
+		display: none;
+	}
+
+	//ocultamos las expresiones vue mientras se cargan en la pagina los valores de los archivos js del cliente
+	// [v-cloak]::before { content: "loading…" } //usar esta etiqueta si se quiere usar loading mientras carga, solo sirve para vuejs, no para carga de imagenes o carga de base de datos
+}
+
+// /////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////
+// VARIABLES
+// /////////////////////////////////////////////////////////////
+// /////////////////////////////////////////////////////////////
+
+@opacity-8: rgba(255, 255, 255, 0.8);
+@font-weight-normal: 400;
+@colorcontenidocentral: #27293d;
+@borderradiusmargen: 0.65rem 0.6rem 0.6rem 0.6rem;
+@colorfuente: #c0c1c2;
+@colortitulomodal: #595959;
+@colorletramodal: #222a42;
+@menusidebar: linear-gradient(0deg, #389466 0%, #42b883 100%);
+@coloriconos: #ffffff;
+@color_fondo_pagina: #1e1e2f;
+@colorbordeformulario: #2b3553;
+@colorIconosMorados: #e44cc4;
+@fontSize7em: 0.7rem;
+@colorLetraSidebar: hsla(0, 0%, 100%, 0.8);
+@colorNotificacion: #e66ad2;
+// FIN VARIABLES
+
+div:not(.contenidoTiny) h1,
+div:not(.contenidoTiny) h2,
+div:not(.contenidoTiny) h3,
+div:not(.contenidoTiny) h4,
+div:not(.contenidoTiny) h5,
+div:not(.contenidoTiny) h6,
+div:not(.contenidoTiny) p,
+div:not(.contenidoTiny) a,
+div:not(.contenidoTiny) label,
+div:not(.contenidoTiny) span,
+div:not(.contenidoTiny) li,
+form:not(#tinyMce) span,
+li {
+	font-weight: @font-weight-normal !important;
+	color: @opacity-8;
+}
+
+.modal-content .col-sm-2 label,
+.modal-content .modal_pregunta p,
+p.mintrucciones,
+#modalEnlaceEvaluacion a,
+#modalEnlaceEvaluacion h1,
+#modalEnlaceEvaluacion h2,
+#modalEnlaceEvaluacion h3,
+#modalEnlaceEvaluacion h4,
+#modalEnlaceEvaluacion h5,
+#modalEnlaceEvaluacion h6,
+#modalEnlaceEvaluacion span,
+#modalEnlaceEvaluacion p,
+.tox-tbtn__select-label,
+.introjs-button {
+	color: @colorletramodal !important;
+}
+
+#layout-general > div:first-child {
+	padding-left: 1px !important;
+	padding-right: 1px !important;
+}
+
+// COMPONENTES: modulo-contenedor-admin y modulo-contenedor-curso
+.div-contenido {
+	// Estilo de los elementos del componente: modulo-contenedor-admin.component.js, se puede colocar el siguiente codigo dentro del archivo mencionado
+	//Existen dos opciones para definir estilos para componentes, la primera, DEFINIR GLOBALMENTE (como en este caso), la segunda, definir una etiqueta Style dentro de cada componente
+	//el contenido abarca todo
+	position: relative;
+	// background-color: palevioletred;
+	padding-left: 0px;
+	padding-right: 0px;
+
+	//clase usada para mostrar el error en los inputs
+	.invalid-feedback {
+		display: block;
+		width: 100%;
+		margin-top: 0.25rem;
+		font-size: 80%;
+		color: #f05d5e;
+	}
+
+	.is-invalid {
+		box-shadow: 0 0 0 1px #fff, 0 0 0 0.2rem rgba(240, 93, 94, 0.25);
+	}
+
+	i.fas.fa-save,
+	i.fas.fa-edit,
+	i.fas.fa-trash-alt,
+	i.fas.fa-plus-circle,
+	i.fa-exchange-alt,
+	i.fas.fa-redo-alt,
+	i.fas.fa-arrow-alt-circle-right,
+	i.fas.fa-chevron-right,
+	i.fas.fa-chevron-left,
+	i.fas.fa-lock-open,
+	i.fas.fa-lock,
+	i.fas.fa-print,
+	i.fas.fa-volume-up,
+	i.fas.fa-volume-mute,
+	i.fas.fa-play,
+	i.fas.fa-pause,
+	i.fas.fa-stop,
+	a.audioTag,
+	i.fas.fa-angle-down,
+	i.fas.fa-angle-up {
+		color: @coloriconos;
+		cursor: pointer;
+	}
+
+	i.fas.fa-play,
+	i.fas.fa-pause,
+	i.fas.fa-stop,
+	i.fas.fa-cubes,
+	i.fas.fa-plus-circle.px-3,
+	i.fas.fa-plus-circle.fa-3x,
+	i.fas.fa-lock-open.pl-4,
+	i.fas.fa-lock.pl-4 {
+		font-size: 25px;
+	}
+	i.fas.fa-cube,
+	.fas.fa-plus-circle,
+	.fas.fa-clipboard-check {
+		font-size: 15px;
+	}
+	i.fas.fa-save:hover,
+	i.fas.fa-edit:hover,
+	i.fas.fa-trash-alt:hover,
+	i.fa-exchange-alt:hover,
+	i.fas.fa-redo-alt:hover,
+	i.fas.fa-arrow-alt-circle-right:hover,
+	i.fas.fa-chevron-right:hover,
+	i.fas.fa-chevron-left:hover,
+	i.fas.fa-lock-open:hover,
+	i.fas.fa-lock:hover,
+	i.fas.fa-print:hover,
+	i.fas.fa-volume-up:hover,
+	i.fas.fa-volume-mute:hover,
+	i.fas.fa-play:hover,
+	i.fas.fa-pause:hover,
+	i.fas.fa-stop:hover,
+	i.fas.fa-angle-down:hover,
+	i.fas.fa-angle-up:hover {
+		color: @colorIconosMorados;
+	}
+
+	.estiloLink {
+		cursor: pointer;
+	}
+
+	////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	////////////////////---CABECERA PRINCIPAL---////////////////////
+	.row#div-cabecera {
+		// background-color: #0460a9;
+		background: rgba(0, 0, 0, 0);
+		width: 100%;
+		height: 9vh; //9% del alto de .div-contenido
+		margin: 0px !important;
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+
+		#breadcrumb {
+			//ocupamos el 100% de espacio de ancho para la barra de navegacion
+			width: 100%;
+			height: 100%;
+			font-size: @fontSize7em;
+			text-transform: uppercase;
+			nav ol {
+				//eliminamos el margen de los elementos ol de la barra de navegacion
+				margin: 0 !important;
+				padding-top: 7px !important;
+				padding-bottom: 7px !important;
+				// background-color: #0460a9;
+				background: rgba(0, 0, 0, 0);
+
+				a {
+					color: aliceblue;
+				}
+			}
+		}
+	}
+
+	.row#div-cabecera > :first-child {
+		// columna que contiene el breadcrumb
+		height: 100%;
+	}
+
+	.row#div-cabecera > :last-child {
+		//columna que contiene la imagen polhibou
+		height: 100%;
+
+		img {
+			//el ultimo hijo: columna con el logo polhibou
+			height: 84%;
+			width: 100%;
+		}
+	}
+
+	////////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	// /////////////////////////////////////////////////////////////
+	////////////////////---CUERPO PRINCIPAL---////////////////////
+	.row#div-body {
+		height: 90vh;
+		// background-color: #3e8e41;
+		// position: relative; //necesario para tomar como referencia de "position" hijo a este padre
+		margin-right: 0px !important;
+		margin-left: 0px !important;
+		width: 100%;
+
+		// /////////////////////////////////////////////////////////////
+		//////////////////////---SIDE BAR MENU---///////////////////////
+		div.col-izquierda {
+			height: 100%;
+			//ancho definido por col-sm-2
+			position: relative;
+			// overflow     : hidden; //para que al esconder el sidebar por la izquierda no se vea por encima del contenedor
+			padding-left: 20px !important; //que el contenido se encuentre apegado al margen izquierdo
+			padding-right: 0% !important; //que el contenido se encuentre apegado al margen derecho
+			text-transform: uppercase;
+
+			#sidebar-menu {
+				//todo el sidebar
+				z-index: 10;
+				position: absolute;
+				transition: all 0.3s ease-in-out; //la transicion al mostrar u ocultar
+				text-align: left;
+				width: 6vw;
+				background: @menusidebar;
+				overflow: hidden;
+				height: 100%; // esto estará contenido dentro de la columna izquierda
+				opacity: 1;
+				border-radius: 5px;
+
+				// /* width */
+				// ::-webkit-scrollbar {
+				// 	width: 4px;
+				// }
+				// ::-webkit-scrollbar:hover {
+				// 	width: 10px;
+				// }
+				// /* Track */
+				// ::-webkit-scrollbar-track {
+				// 	// box-shadow: inset 0 0 5px grey;
+				// 	// border-radius: 10px;
+				// }
+
+				// /* Handle */
+				// ::-webkit-scrollbar-thumb {
+				// 	background: @colorIconosMorados;
+				// }
+				// /* Handle on hover */
+				// ::-webkit-scrollbar-thumb:hover {
+				// 	background: #9c0886;
+				// }
+
+				#menuContenidos {
+					/*BLOQUE DEL CONTENIDO DEL MENÚ*/
+					height: 100%;
+					float: left;
+					width: 100%;
+					overflow-y: auto;
+					overflow-x: hidden;
+
+					h4,
+					h5 {
+						color: white;
+					}
+
+					span.titulo_sidebar {
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+					}
+
+					span.titulo_sidebar img {
+						width: 50px;
+						height: 50px;
+					}
+					.dropdownModulo {
+						//contenedor individual del modulo y sus submodulos
+						position: relative;
+						display: block;
+						width: 100%;
+						float: left;
+						padding-top: 20px;
+						// las siguientes tres lineas no permiten oculta el texto que excede del contenedor
+
+						white-space: nowrap;
+						text-overflow: ellipsis;
+						overflow: hidden;
+					}
+
+					.dropbtn-modulo {
+						//el boton que contiene el nombre del modulo
+						width: 100%;
+						background-color: rgba(0, 0, 0, 0); //transparente
+						opacity: 1;
+						color: @colorLetraSidebar;
+						padding: 2px;
+						font-size: @fontSize7em;
+						border: none;
+						text-align: left;
+						// display: inherit !important; //esta linea no muestra los tres puntos
+						display: flow-root !important; //permite ver los tres puntos del texto que sobrepasa el contenedor
+					}
+					a.dropbtn-modulo span,
+					span.titulo_sidebar span,
+					.dropdown-submodulo a span {
+						opacity: 0;
+					}
+
+					//esta clase solo se aplica al contenedor del submodulo que corresponde al modulo seleccionado
+					.dropdown-submodulo {
+						//contenedor individual del submodulo
+						display: block;
+						// background: @menusidebar;
+						opacity: 1 !important;
+						min-width: 160px;
+						z-index: 1;
+						margin-left: 5px;
+					}
+
+					.dropdown-submodulo-deselect {
+						//contenedor individual del submodulo cuando el su modulo no es el seleccionado
+						display: none;
+						min-width: 160px;
+						// box-shadow         : 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+						z-index: 1;
+						margin-left: 5px;
+					}
+
+					.dropdown-submodulo a,
+					.submodulo-deseleccionado {
+						color: @colorLetraSidebar;
+						padding: 10px 16px;
+						text-decoration: none;
+						display: block;
+						font-size: @fontSize7em;
+					}
+
+					.dropdown-submodulo a:hover,
+					.submodulo-seleccionado,
+					.dropdownModulo:hover .dropbtn-modulo {
+						background-color: #82d9b2d4;
+						color: white;
+					}
+
+					.dropdownModulo:hover .dropbtn-modulo * {
+						// background-color: #389466b3;
+						color: white;
+						// border-style: solid;
+						// border-width: 0px 0px 0px 0px;
+					}
+
+					/// estilos dinamicos en funcion del modulo seleccionado
+					.modulo-seleccionado {
+						// background-color: #777575;
+
+						border-style: solid;
+						border-width: 0px 0px 0px 0px;
+						// border-color: white;
+					}
+
+					/*FIN BLOQUE DEL CONTENIDO DEL MENU*/
+				}
+			}
+		}
+
+		#sidebar-menu:hover {
+			// position: absolute !important;
+			z-index: 10;
+			width: 18vw !important;
+		}
+		.mostrar-texto {
+			// display: inline-block !important;
+			opacity: 1 !important;
+			transition: all 0.5s;
+		}
+		div#menuContenidos hr {
+			border-bottom: 1px solid hsla(0, 0%, 100%, 0.5);
+			width: 85%;
+		}
+		// /////////////////////////////////////////////////////////////
+		//////////---PARTE CENTRAL Y BARRA LATERAL DERECHA---///////////
+		#columna-contenido-lateral > .fila-principal {
+			height: 100%;
+			position: relative;
+
+			div.col-central {
+				// background-color: chocolate;
+				position: relative; //para poder acomodar los botones en funcion de este padre
+				display: block;
+				text-align: center;
+				background-color: @colorcontenidocentral;
+				// border-radius   :calc(0.2857rem - 0.0225rem) calc(0.2857rem - 0.0225rem) 0 0;
+				border-radius: @borderradiusmargen;
+				padding: 15px;
+
+				//Fila del titulo
+				#titulo-modulo {
+					div.col.nombre-curso a,
+					h1 {
+						display: inline-block;
+					}
+
+					h1 {
+						font-size: 2vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
+						color: white;
+					}
+
+					h6 {
+						//font-size: 1.1vw; //el tamaño de fuente en funcion del tamaño de la ventana del navegador
+						color: white;
+					}
+				}
+
+				.navegacion-siguiente {
+					margin-top: 0;
+					margin-left: 94%; //muevo este contenedor hacia la derecha del contenedor padre
+					position: absolute;
+					z-index: 1;
+					font-size: 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
+				}
+
+				.navegacion-atras {
+					margin-top: 0;
+					margin-right: 94%; //muevo este contenedor hacia la izquierda del contenedor padre
+					position: absolute;
+					font-size: 3.5vw; //vw hace referencia a la centésima parte del ancho del viewport.
+					z-index: 1;
+				}
+
+				.row.pie-contenido-central {
+					//la ultima fila del contenedor --> avatar y descripcionObjeto
+					position: absolute;
+					bottom: 0.5%;
+					width: 100%;
+					height: 10%;
+
+					#avatar {
+						height: 100% !important;
+						width: 10%;
+						position: relative;
+
+						img {
+							// position: absolute;
+							height: auto;
+							width: 50%;
+							bottom: 0;
+							left: 0;
+						}
+						span {
+							height: auto;
+							width: 50%;
+						}
+					}
+
+					#descripcion-objeto {
+						/* background-image: url("../images/svg/comentario.svg");
+                        background-size: 90% 100%  !important; 
+                        background-repeat:no-repeat;*/
+						width: 90% !important;
+						height: 100% !important;
+						border-radius: 50px;
+						border: 1px solid white;
+						padding-left: 10px;
+						padding-right: 10px;
+
+						display: flex;
+						justify-content: center;
+						align-items: center;
+						h6 {
+							font-size: 0.8rem;
+							color: white;
+							word-break: break-all;
+						}
+					}
+				}
+			}
+			div.col-derecha-oculta {
+				// background-color: #2EE3AD;
+				margin-top: -100%; //oculta hacia la izquierda el 90% del andho
+			}
+
+			div.col-derecha {
+				height: 100%;
+				transition: all 0.4s ease-in-out;
+
+				.barra-lateral {
+					height: 100%;
+					font-size: @fontSize7em;
+
+					.row.usuario {
+						position: fixed;
+						height: 10%;
+					}
+
+					.row.progreso {
+						height: 30%;
+						border-bottom: 1px solid black;
+						display: flex;
+						align-items: center;
+						overflow: visible; //para el icono
+
+						.col {
+							height: 100%;
+							padding-top: 2%;
+							padding-bottom: 2%;
+							overflow: visible; //para el icono
+						}
+					}
+
+					.row.enlaces {
+						height: 25%;
+						border-bottom: 1px solid black;
+						display: flex;
+						align-items: center;
+
+						.col {
+							padding-top: 2%;
+							padding-bottom: 2%;
+						}
+					}
+
+					.row.usuarios-conectados {
+						height: 25%;
+						border-bottom: 1px solid black;
+					}
+
+					.row.soporte {
+						height: 10%;
+						// border-bottom   : 1px solid black;
+					}
+				}
+			}
+		}
+	}
+}
+
+.cabecera-contenido-central {
+	height: 10%;
+	width: 100%;
+}
+.cuerpo-contenido-central {
+	height: 80%;
+	width: 100%;
+}
+.contenedor-slot-principal {
+	background-color: @colorcontenidocentral;
+	height: 65vh;
+	width: 100%;
+	overflow-y: auto !important;
+}
+.contenedor-slot-principal-evaluacion {
+	background-color: @colorcontenidocentral;
+	height: 50vh;
+	width: 100%;
+	overflow-y: auto !important;
+}
+.contenedor-imagen-svg {
+	position: relative;
+	width: 100%;
+	height: 100%;
+	box-sizing: border-box;
+}
+.scaling-svg {
+	position: absolute;
+	height: 100%;
+	width: 100%;
+	left: 0;
+	top: 0;
+}
+
+#contenedor-lienzo {
+	position: relative;
+	width: 100%;
+	height: 100%;
+}
+
+// COMPONENTE:modulo-contenedor-admin
+.nombre-usuario {
+	border-radius: 0 0 5px 5px;
+	background-color: #b1cee6;
+	position: absolute;
+	top: 0;
+	right: 0;
+	z-index: 1;
+	opacity: 1;
+	width: 15vw;
+}
+
+// COMPONENTE: modulo-modal-ini-actv
+#modalInicial {
+	div.modal-content {
+		background-color: darkorange;
+	}
+}
+
+// COMPONENTE    : modulo-panel-derecho --en adelante
+@padding-superior: 5%;
+@padding-inferior: 5%;
+
+// .puntaje,
+// .medallas,
+// .nivel {
+// 	padding-top: @padding-superior;
+// 	padding-bottom: @padding-inferior;
+// 	overflow: visible;
+// 	position: relative;
+// }
+
+// .nivel > .progress > .progress-bar {
+// 	background-color: rgb(59, 219, 59);
+// 	//.progress.icono se define mas abajo en este documento
+// }
+
+// .puntaje > .progress > .progress-bar {
+// 	background-color: #0460a9;
+// }
+
+// .medallas > .progress > .progress-bar {
+// 	background-color: rgb(247, 0, 255);
+// }
+
+// .progress.icono {
+// 	background-color: inherit;
+// 	overflow: visible;
+
+// 	.progress-bar {
+// 		background-color: inherit;
+// 	}
+// }
+
+.row.indicador {
+	padding-bottom: 5px;
+}
+
+// div.contenedor-icono {
+// 	overflow: visible;
+
+// 	i {
+// 		position: absolute; //funciona para darle libertad de ubicacion al icono
+// 		margin-left: 10px;
+// 		margin-top: -2px;
+// 	}
+
+// 	span {
+// 		// position      : absolute; //funciona para darle libertad de ubicacion al icono
+// 		margin-left: 10px;
+// 		color: white;
+// 	}
+
+// 	img {
+// 		height: 150%;
+// 		margin-left: 20px;
+// 		margin-top: 0px;
+// 	}
+// }
+
+// COMPONENTE: modulo-panel-derecho -- lo anterior
+
+//COMPONENTE: modulo-indice
+.row.contenido-menu {
+	background-color: @colorcontenidocentral;
+}
+
+.row.contenido-menu * {
+	background-color: @colorcontenidocentral;
+}
+
+.row.contenido-menu img {
+	border-radius: @borderradiusmargen;
+}
+
+.item-modulo {
+	background-color: rgb(255, 255, 255);
+	padding: 20px;
+}
+
+.agregaModulo {
+	display: flex; // centrar hijos
+	align-items: center; //centrar hijos
+}
+
+.item-modulo > a {
+	display: block;
+	background-color: white;
+}
+
+.item-modulo > a > img {
+	width: 10vw;
+	height: 10vh;
+}
+
+img.mensaje-bienvenida {
+	height: 10vh;
+}
+
+/* 
+  
+  .navegacion-siguiente i{ //codigo insertado en html, archivo indice-estudiante.ejs, clase .navegacion-siguiente
+    position         : relative;
+    -webkit-animation: mymove 2.5s 3; // Safari 4.0 - 8.0 
+    animation        : mymove 2.5s 3;
+  } */
+
+/* Safari 4.0 - 8.0 */
+@-webkit-keyframes mymove {
+	0% {
+		top: 0px;
+		transform: scale(1);
+		border: 2.5px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
+
+	50% {
+		top: 0px;
+		transform: scale(1.3);
+		border: 3px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
+
+	100% {
+		top: 0px;
+		transform: scale(1);
+		border: 2.5px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
+}
+
+/* Standard syntax */
+@keyframes mymove {
+	0% {
+		top: 0px;
+		transform: scale(1);
+		border: 2.5px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
+
+	50% {
+		top: 0px;
+		transform: scale(1.3);
+		border: 3px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
+
+	100% {
+		top: 0px;
+		transform: scale(1);
+		border: 2.5px rgb(248, 1, 1) solid;
+		border-radius: 50px;
+	}
+}
+
+#avatarModal {
+	width: 35px;
+	height: 55px;
+}
+
+#avatarModal:hover,
+.iconoAudio:hover {
+	//animacion tomada de https://css-tricks.com/snippets/css/shake-css-keyframe-animation/
+	animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
+}
+
+.avatarModalInicio {
+	animation: shake 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
+	transform: translate3d(0, 0, 0);
+	backface-visibility: hidden;
+	perspective: 1000px;
+}
+
+@keyframes shake {
+	//animacion tomada de https://css-tricks.com/snippets/css/shake-css-keyframe-animation/
+	10%,
+	90% {
+		transform: translate3d(-1px, 0, 0);
+	}
+
+	20%,
+	80% {
+		transform: translate3d(2px, 0, 0);
+	}
+
+	30%,
+	50%,
+	70% {
+		transform: translate3d(-4px, 0, 0);
+	}
+
+	40%,
+	60% {
+		transform: translate3d(4px, 0, 0);
+	}
+}
+
+.carousel.slide.modalDetalle img {
+	width: auto !important;
+	max-height: 60vh !important;
+}
+
+.modal_contenedor_descripcion {
+	height: 100px !important; //con respecto a .modal-body
+	width: auto !important; //con respecto a .modal-body
+	overflow-y: auto;
+}
+.modal_contenedor_descripcion a {
+	color: @colorfuente !important;
+}
+.modal_contenedor_multimedia {
+	height: 400px !important; //con respecto a .modal-body
+	width: auto !important; //con respecto a .modal-body
+	overflow-y: hidden;
+	////LAS SIGUIENTES SON PROPIEDADES DE FLEXBOX
+	display: flex;
+	flex-direction: row;
+	flex-wrap: wrap;
+	justify-content: center; //centra los elemnentos hijos horizontalmente
+	align-items: center; //centra los elementos hijos verticalmente
+	color: @colorletramodal !important;
+}
+.modal_contenedor_multimedia * {
+	color: @colorletramodal !important;
+}
+.carousel-control-prev-icon {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23d302e1' viewBox='0 0 8 8'%3e%3cpath d='M5.25 0l-4 4 4 4 1.5-1.5-2.5-2.5 2.5-2.5-1.5-1.5z'/%3e%3c/svg%3e") !important;
+}
+
+.carousel-control-next-icon {
+	background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' fill='%23d302e1' viewBox='0 0 8 8'%3e%3cpath d='M2.75 0l-1.5 1.5 2.5 2.5-2.5 2.5 1.5 1.5 4-4-4-4z'/%3e%3c/svg%3e") !important;
+}
+
+.textoOculto {
+	position: absolute;
+	z-index: -10;
+	opacity: 0;
+}
+
+.alert {
+	border: 0;
+}
+.alert.alert-success {
+	background-color: #00bf9a;
+}
+
+.alert.alert-danger {
+	background-color: #fd77a4;
+}
+
+.input-submit {
+	color: @colorfuente;
+	position: absolute;
+}
+.inputfile.form-control,
+.inputfile {
+	visibility: hidden;
+	position: absolute;
+}
+
+.contenedor-formulario {
+	height: 100%;
+	width: auto;
+	overflow-y: auto;
+	overflow-x: hidden;
+}
+
+.typography-line {
+	padding-left: 25%;
+	margin-bottom: 35px;
+	position: relative;
+	display: block;
+	width: 100%;
+}
+
+.typography-line span {
+	color: @colorfuente;
+	display: block;
+	font-weight: 400;
+	font-size: 13px;
+	line-height: 13px;
+	left: 0;
+	position: absolute;
+	// width         : 260px;
+	text-transform: none;
+}
+
+.text-area-editar {
+	position: absolute;
+	top: 25%;
+	left: 25%;
+	z-index: 10;
+	width: 50%;
+	height: 55%;
+}
+
+//estilo para poner numeros en el carousel
+.carousel-indicators-numbers {
+	li {
+		text-indent: 0 !important;
+		margin: 0 2px !important;
+		width: 30px !important;
+		height: 30px !important;
+		border: none !important;
+		border-radius: 100% !important;
+		line-height: 30px !important;
+		color: #fff !important;
+		background-color: #999 !important;
+		transition: all 0.25s ease;
+
+		&.active,
+		&:hover {
+			margin: 0 2px !important;
+			width: 30px !important;
+			height: 30px !important;
+			background-color: #d302e1 !important;
+		}
+	}
+}
+
+img {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 100%;
+	max-height: 100%;
+}
+
+.carousel .carousel-item img {
+	max-height: 54vh;
+	max-width: auto;
+}
+
+#contenedor-lienzo .carousel .carousel-item img {
+	max-height: 65vh;
+	max-width: auto;
+}
+
+// #lienzo-hardware {
+// 	display: block;
+// 	margin-left: auto;
+// 	margin-right: auto;
+// 	text-align: center;
+// 	overflow: visible;
+// 	/*permite que el tooltip se pueda ver sobre los márgenes*/
+// 	// background-color:rgb(51, 192, 180);
+// 	width: 80%; //width y height son el viewport de el grafico svg
+// 	height: auto; //89% del 80vh del contenedor principal, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+// }
+
+// .lienzo-svg {
+// 	margin-left: auto;
+// 	margin-right: auto;
+// 	text-align: center;
+// 	overflow: visible; //permite que el tooltip se pueda ver sobre los márgenes
+// 	// background-color:rgb(51, 192, 180);
+// 	width: 85%; //width y height son el viewport de el grafico svg
+// 	height: auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+// }
+/*FINAL*/
+// #lienzo-svg {
+// 	margin-left: auto;
+// 	margin-right: auto;
+// 	text-align: center;
+// 	overflow: visible; //permite que el tooltip se pueda ver sobre los márgenes
+// 	// background-color:rgb(51, 192, 180);
+// 	width: 75%; //width y height son el viewport de el grafico svg
+// 	height: auto; //79% contenedor padre, si es necesario modificar el tamaño de la imagen hacerlo con height y width en este selector
+// }
+
+g.contenedor:hover * {
+	fill: #e14eca !important;
+	cursor: pointer;
+}
+
+//aplica estilo a los elementos de clase g con clase "contenedor", estos elementos contendrán el grupo de graficos svg sobre los cuales se moverá el mouse
+g.contenedor0:hover {
+	fill: #e14eca !important;
+}
+
+g.contenedor1:hover * {
+	stroke-width: 1.5px !important;
+	stroke: #e14eca !important;
+	stroke-opacity: 1;
+}
+
+.tooltip {
+	pointer-events: none; //permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
+	opacity: 1;
+	display: block;
+	position: fixed; // el origen de coordenadas se toma de la ventana del navegador
+	border-radius: 3px;
+	// border:#d3d3d3 solid 1px;
+	background: #0084ff;
+	font-family: Comfortaa, Verdana;
+	font-size: medium;
+	padding: 8px;
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	max-height: 50px;
+}
+
+.tooltip1 {
+	pointer-events: none; //permite que los eventos del puntero no apliquen en este elemento, sirve para que si el mouse se superpone al tooltip, este no interfiera con @mousemove
+	opacity: 1;
+	display: block;
+	position: fixed; // el origen de coordenadas se toma de la ventana del navegador
+	border-radius: 3px;
+	// border        : #d3d3d3 solid 1px;
+	background: #0084ff;
+	font-family: Comfortaa, Verdana;
+	font-size: medium;
+	padding: 8px;
+	box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+	max-height: 50px;
+}
+
+.formularioCentralSmall {
+	background-color: @colorcontenidocentral !important;
+	width: 85%;
+	height: 100%;
+	margin: auto;
+	// text-align: center;
+}
+//computadora, por favor al elemento que tiene un identificador llamado .lista-cursos-disponible centrele con respecto a su padre
+.lista-cursos-disponible {
+	// width: 75%;
+	margin: auto;
+	position: relative;
+}
+
+.button,
+.list-group-item-estudiante,
+.list-group-item-profesor {
+	border-bottom: 1px solid;
+	border-color: #ccc !important;
+	background-color: @colorcontenidocentral !important;
+	padding: 12px 20px !important;
+	width: 100% !important;
+}
+
+.button:hover,
+.list-group-item-estudiante:hover,
+.list-group-item-profesor:hover {
+	background-color: darken(@colorcontenidocentral, 5%) !important;
+	// background-image: linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+	// background-image: -webkit-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+	// background-image: -o-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+	// background-image: -moz-linear-gradient(to bottom right,white, darken(white,20%),white) !important;
+	// color           : white;
+}
+// .list-group-item-profesor {
+// 	border-bottom: 1px solid;
+// 	border-color: #ccc !important;
+// 	background-color: @colorcontenidocentral !important;
+// 	padding: 12px 20px !important;
+// 	width: 100% !important;
+// }
+
+p a:hover {
+	color: white !important;
+}
+
+#homepage,
+.contenedor-principal {
+	height: inherit; //hereda las propedades del padre, #layout-general
+	width: inherit;
+	font-family: inherit;
+	background-color: inherit;
+}
+
+.banner-homepage {
+	height: 20%;
+	background-image: url(/images/homepage/Escuela-Politecnica.jpg);
+	background-size: cover;
+	background-repeat: no-repeat;
+
+	.col,
+	.col .imagen-banner {
+		height: 100%;
+		width: 100%;
+		border: 1px solid #a9a9a9;
+	}
+}
+
+.contenido-homepage {
+	height: 80%;
+}
+
+.contenido-homepage .row {
+	justify-content: center;
+}
+
+.contenido-homepage .col-sm-6 {
+	padding-top: 13px;
+	box-sizing: border-box;
+}
+
+.contenido-homepage .homepage-logo,
+.contenido-homepage .homepage-login {
+	border: 1px solid #a9a9a9;
+}
+
+.seccion-inicia-sesion {
+	// border: 1px solid #a9a9a9;
+	// padding: 25px 45px;
+}
+.contenedor-admin-login {
+	position: relative;
+}
+.login-contenedor {
+	width: 40%;
+	margin: auto;
+}
+
+.imagen-derecha-homepage {
+	img {
+		max-height: 300px;
+		max-width: auto;
+	}
+}
+
+.form-group .btn.btn-primary {
+	width: 100% !important;
+}
+
+// .contenedor-formulario-registro{
+//     width: 100%;
+//     justify-content: center;
+//     // position: relative;
+// }
+// .contenedor-formulario-registro .fila-contenedor{
+//     width: 150px !important;
+
+// }
+
+#svg8 {
+	position: absolute;
+	z-index: 1;
+	width: 90% !important;
+	height: 100% !important;
+}
+
+h5.modal-title {
+	color: @colortitulomodal !important;
+}
+
+/////////////////////////////////////////////////////
+
+@-webkit-keyframes bounceInDown {
+	from,
+	60%,
+	75%,
+	90%,
+	to {
+		-webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -3000px, 0);
+		transform: translate3d(0, -3000px, 0);
+	}
+
+	60% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 25px, 0);
+		transform: translate3d(0, 25px, 0);
+	}
+
+	75% {
+		-webkit-transform: translate3d(0, -10px, 0);
+		transform: translate3d(0, -10px, 0);
+	}
+
+	90% {
+		-webkit-transform: translate3d(0, 5px, 0);
+		transform: translate3d(0, 5px, 0);
+	}
+
+	to {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+@keyframes bounceInDown {
+	from,
+	60%,
+	75%,
+	90%,
+	to {
+		-webkit-animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+		animation-timing-function: cubic-bezier(0.215, 0.61, 0.355, 1);
+	}
+
+	0% {
+		opacity: 0;
+		-webkit-transform: translate3d(0, -3000px, 0);
+		transform: translate3d(0, -3000px, 0);
+	}
+
+	60% {
+		opacity: 1;
+		-webkit-transform: translate3d(0, 25px, 0);
+		transform: translate3d(0, 25px, 0);
+	}
+
+	75% {
+		-webkit-transform: translate3d(0, -10px, 0);
+		transform: translate3d(0, -10px, 0);
+	}
+
+	90% {
+		-webkit-transform: translate3d(0, 5px, 0);
+		transform: translate3d(0, 5px, 0);
+	}
+
+	to {
+		-webkit-transform: translate3d(0, 0, 0);
+		transform: translate3d(0, 0, 0);
+	}
+}
+
+.bounceInDown {
+	-webkit-animation-name: bounceInDown;
+	animation-name: bounceInDown;
+}
+////////////////////////////////////////////////////
+
+.evFinPtos {
+	animation: bounceInDown 0.9s;
+}
+
+.titulo-centrado,
+.contenido_centrado_horizontalmente {
+	text-align: center;
+}
+
+//COMPONENTE: modulo-indice ---lo anterior
+
+.contenidoTiny {
+	background-color: @colorcontenidocentral;
+	border: 1px solid #a9a9a9;
+	border-color: @colorbordeformulario !important;
+	border-radius: 0.4285rem !important;
+	color: @opacity-8 !important;
+	p {
+		color: @opacity-8 !important;
+	}
+}
+
+.form-control {
+	background-color: @colorcontenidocentral !important;
+	box-shadow: none !important;
+	border-color: #2b3553 !important;
+	border-radius: 0.4285rem !important;
+	color: @opacity-8 !important;
+}
+
+.form-control:focus,
+.contenidoTiny:focus {
+	background-color: @colorcontenidocentral !important;
+	border: 1px solid #12bf75 !important;
+	outline: 0px !important; //esta propiedad se implementa para el contenidoTiny
+	color: @opacity-8 !important;
+	box-shadow: none !important;
+	p {
+		color: @opacity-8 !important;
+	}
+}
+
+.contenido-evaluacion {
+	text-align: center;
+	width: 85%;
+	margin: auto;
+}
+.contenido-evaluacion .container {
+	padding-top: 20px;
+}
+.contenido-evaluacion .progress {
+	background-color: #030311ab !important;
+	border-radius: 0.875rem !important;
+}
+.contenido-evaluacion .progress .progress-bar {
+	background-color: #ba54f5 !important;
+}
+.contenido-evaluacion .progress .progress-bar .progress-bar-striped {
+	background-image: none !important;
+}
+.table {
+	color: @colorfuente !important;
+}
+
+.introjs-hint-pulse {
+	border: 5px solid #bb2e0f4a !important;
+	background-color: #54464699 !important;
+}
+
+.introjs-hint-dot {
+	border: 10px solid #d81414cc !important;
+	background: #b71d1dc4 !important;
+}
+.introjs-tooltip {
+	background-color: @colorNotificacion !important;
+}
+
+.introjs-tooltiptext {
+	color: #fff !important;
+}
+.introjs-disabled {
+	color: #222a4259 !important;
+	display: none !important;
+}
+.introjs-helperLayer {
+	background-color: rgba(65, 180, 128, 0.54) !important;
+}
+
+.flotante_izquierda {
+	float: left;
+}
+
+#botones_play_imprimir {
+	position: absolute;
+	top: -10px !important;
+	left: 75px !important;
+}
+#botones_play_imprimir i {
+	color: @colorletramodal;
+}
+
+#label_pulse_aqui {
+	color: black !important;
+}
+
+.boton_formulario {
+	background-color: #e14eca !important;
+	background-image: linear-gradient(to bottom left, #e14eca, #ba54f5, #e14eca);
+	background-size: 210% 210%;
+	border-width: 0px;
+	border-radius: 0.4285rem;
+	margin: 4px 1px;
+	// margin-top: 1rem !important;
+	padding: 11px 40px;
+	line-height: 1.35em;
+	// position: absolute;
+	color: #fff;
+	font-weight: 400;
+	transition: 0.5s !important; //la transicion al mostrar u ocultar
+}
+.boton_formulario:disabled {
+	opacity: 0.2;
+}
+
+#boton_desplegable_personalizado.dropdown-menu {
+	// border: 1px solid #e14eca;
+	margin-left: -15px !important;
+	width: 15vw !important;
+	transition: all 0.1s ease-in-out !important; //la transicion al mostrar u ocultar ;
+	transform: translate3d(0px, 59px, 0px) !important;
+	background: linear-gradient(#222a42, #1d253b) !important;
+}
+#boton_desplegable_personalizado.dropdown-menu * {
+	background-color: rgba(0, 0, 0, 0) !important;
+	color: @colorfuente !important;
+}
+#boton_desplegable_personalizado.dropdown-item {
+	text-align: center;
+}
+a.dropdown-item,
+div.soporte {
+	font-size: @fontSize7em;
+}
+.btn-group {
+	// Boton del nombre de usuario
+	width: 100% !important;
+}
+
+#alerta_ultimo_tema {
+	position: absolute;
+	margin-left: -20vw;
+	z-index: 1;
+	a {
+		color: #0c5460 !important;
+	}
+}
+form label {
+	text-align: left !important;
+	display: flex !important;
+	align-items: center !important;
+}
+
+label.boton_formulario:hover {
+	cursor: pointer;
+}
+.boton_formulario:hover {
+	transform: scaleX(1.05) !important;
+}
+.tox-editor-container {
+	z-index: 1050;
+	background-color: #3e3e3e !important	;
+	.tox-menubar {
+		background-color: #2d2626 !important;
+	}
+}
+
+.custom-control-input {
+	// z-index: 1;
+	opacity: 1;
+}
+
+div.pregunta_evaluacion {
+	padding: 11px;
+	border-bottom: 1px solid @colorfuente;
+}
+div.pregunta_evaluacion:hover {
+	border: 1px solid @colorbordeformulario;
+	background-color: @colorbordeformulario;
+}
+
+div.row.pregunta_evaluacion .alinea_left,
+div.alinea_left {
+	text-align: left !important;
+}
+
+div.row.pregunta_evaluacion .centra_vertical,
+div.row.pregunta_evaluacion .alinea_left,
+.centrado_vertical {
+	display: flex;
+
+	flex-wrap: wrap;
+
+	align-items: center; //centra verticalmente
+}
+
+div.row.boton_centrado,
+.centrado_horizontal {
+	display: flex;
+	justify-content: center;
+}
+
+div.padding_bottom {
+	padding-bottom: 20px;
+}
+.col-sm-10.alinea_left {
+	word-break: break-all;
+}
+
+.margen_interno {
+	border: 1px solid @colorfuente;
+}
+
+.talkbubble {
+	// width: 120px;
+	// height: 80px;
+	background: rgb(231, 202, 202);
+	position: relative;
+	-moz-border-radius: 10px;
+	-webkit-border-radius: 10px;
+	border-radius: 10px;
+}
+.talkbubble:before {
+	content: "";
+	position: absolute;
+	right: 83%;
+	top: 100px;
+	width: 0;
+	height: 0;
+
+	border-top: 26px solid rgb(231, 202, 202);
+	border-right: 13px solid transparent;
+	border-bottom: 13px solid transparent;
+	border-left: 13px solid transparent;
+}
+
+#modalInstrucciones .modal-content {
+	background: linear-gradient(
+			rgba(255, 255, 255, 0.5),
+			rgba(245, 240, 240, 0.226)
+		),
+		url("/images/otros/win2.jpg") no-repeat center fixed;
+	background-size: contain;
+}
+#modalInstruccionesLabel,
+#actividadFinalizadaLabel {
+	color: white !important;
+}
+#modalInstrucciones .modal-header,
+#actividadFinalizada .modal-header {
+	border-bottom: 0px;
+}
+#modalInstrucciones .modal-footer,
+#actividadFinalizada .modal-footer {
+	border-top: 0px;
+}
+
+#actividadFinalizada .modal-content {
+	background: linear-gradient(
+			rgba(149, 67, 146, 0.637),
+			rgba(206, 202, 202, 0.328)
+		),
+		url("/images/otros/win2.jpg") no-repeat center fixed;
+	background-size: contain;
+}
+
+.fas.fa-star,
+.fas.fa-sad-tear,
+.fas.fa-smile {
+	font-size: 2em;
+}
+.fas.fa-star.color,
+.fas.fa-sad-tear,
+.fas.fa-smile {
+	color: #ffd800;
+}
+
+.puntos_final {
+	width: 60px;
+	height: auto;
+}
+
+.evaluacion_deshabilitada {
+	pointer-events: none;
+	cursor: default;
+	opacity: 0.4;
+}
+.btn.dropdown-toggle.boton_formulario {
+	word-wrap: break-word;
+}
+
+.nopadding {
+	padding: 0 !important;
+	margin: 0 !important;
+}
+.contenido {
+	padding: 45px !important;
+}
+
+.enlace:hover {
+	cursor: pointer;
+	color: #2ee3ad;
+	margin-bottom: 1px solid #2ee3ad;
+}
+
+.filaEstudiantesLogueados {
+	height: 60vh !important;
+	overflow-y: auto;
+}
+.filaAdministradores {
+	// height: 25vh !important;
+	// overflow-y: auto;
+}
+
+div#preguntaEvaluacion div.col-sm-1.centrado_vertical.centrado_horizontal {
+	flex-direction: column;
+}
+
+div.card.evaluacion button {
+	width: 100% !important;
+}
+
+.inicia_sesion_item:before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f007";
+	display: inline-block;
+	padding-right: 5px;
+	font-weight: 900;
+}
+.registro_item:before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f234";
+	display: inline-block;
+	padding-right: 5px;
+	font-weight: 900;
+}
+.cambiar_pass_item:before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f084";
+	display: inline-block;
+	padding-right: 5px;
+	font-weight: 900;
+}
+
+.salir_item:before {
+	font-family: "Font Awesome 5 Free";
+	content: "\f2f5";
+	display: inline-block;
+	padding-right: 5px;
+	font-weight: 900;
+}
+
+// //////////// INPUT RADIO
+.radio-item {
+	display: inline-block;
+	position: relative;
+	padding: 0 6px;
+	margin: 10px 0 0;
+}
+
+.radio-item input[type="radio"] {
+	display: none;
+}
+
+.radio-item label {
+	color: #666;
+	font-weight: normal;
+}
+
+.radio-item label:before {
+	content: " ";
+	display: inline-block;
+	position: relative;
+	top: 0px;
+	margin: 0 5px 0 0;
+	width: 20px;
+	height: 20px;
+	border-radius: 11px;
+	border: 1px solid @colorIconosMorados;
+	background-color: transparent;
+}
+
+.radio-item input[type="radio"]:checked + label:after {
+	border-radius: 13px;
+	width: 8px;
+	height: 8px;
+	position: absolute;
+	top: 8px;
+	left: 12px;
+	content: " ";
+	display: block;
+	background: @colorIconosMorados;
+}
+
+// ///////////////
+.gestion_de_archivos .list-group-item.list-group-item-action {
+	background-color: @color_fondo_pagina !important;
+}
+
+div.introjs-tooltiptext .introjs-button:before {
+	content: "Entendido / ";
+}
+.imagen_polhibou {
+	height: 50px !important;
+}
+.position_absolute {
+	display: absolute !important;
+}
+
+/* width */
+::-webkit-scrollbar {
+	width: 4px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	// box-shadow: inset 0 0 5px grey;
+	// border-radius: 10px;
+	background-color: #030311ab !important;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: @colorIconosMorados;
+}
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: #9c0886;
+}
+::-webkit-scrollbar-corner:hover {
+	width: 20px !important;
+}
+// div:hover::-webkit-scrollbar-corner {
+// 	width: 20px;
+// 	/*background-color: red !important;*/
+// }
+
+.texto_alineado_izquierda {
+	text-align: left;
+}
